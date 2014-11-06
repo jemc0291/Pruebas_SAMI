@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitudServiciosViewDlg" widgetVar="SolicitudServiciosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSolicitudServiciosTitle}">
+            <h:form id="SolicitudServiciosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudServiciosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_idSolicitudServicio}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.idSolicitudServicio}" title="#{bundle.ViewSolicitudServiciosTitle_idSolicitudServicio}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_fechaServicio}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.fechaServicio}" title="#{bundle.ViewSolicitudServiciosTitle_fechaServicio}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_horaServicio}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.horaServicio}" title="#{bundle.ViewSolicitudServiciosTitle_horaServicio}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_descripcionservicioSolicitud}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.descripcionservicioSolicitud}" title="#{bundle.ViewSolicitudServiciosTitle_descripcionservicioSolicitud}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_descripcionServicioPrestado}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.descripcionServicioPrestado}" title="#{bundle.ViewSolicitudServiciosTitle_descripcionServicioPrestado}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_ubicaciónSolicitud}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.ubicaciónSolicitud}" title="#{bundle.ViewSolicitudServiciosTitle_ubicaciónSolicitud}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_ubicacionServicioPrestado}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.ubicacionServicioPrestado}" title="#{bundle.ViewSolicitudServiciosTitle_ubicacionServicioPrestado}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_fueAtendido}"/>
+                        <p:selectBooleanCheckbox value="#{solicitudServiciosController.selected.fueAtendido}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_fueSolucionado}"/>
+                        <p:selectBooleanCheckbox value="#{solicitudServiciosController.selected.fueSolucionado}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_observaciones}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.observaciones}" title="#{bundle.ViewSolicitudServiciosTitle_observaciones}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_referencia}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.referencia}" title="#{bundle.ViewSolicitudServiciosTitle_referencia}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_fechaSolicitudServicio}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.fechaSolicitudServicio}" title="#{bundle.ViewSolicitudServiciosTitle_fechaSolicitudServicio}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_tiposDeServiciosSolicitudDeServicios}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.tiposDeServiciosSolicitudDeServicios}" title="#{bundle.ViewSolicitudServiciosTitle_tiposDeServiciosSolicitudDeServicios}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_idPrioridades}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.idPrioridades}" title="#{bundle.ViewSolicitudServiciosTitle_idPrioridades}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudServiciosLabel_idServicio}"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.idServicio}" title="#{bundle.ViewSolicitudServiciosTitle_idServicio}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SolicitudServiciosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitudMaterialesAlmacenEditDlg" widgetVar="SolicitudMaterialesAlmacenEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSolicitudMaterialesAlmacenTitle}">
+            <h:form id="SolicitudMaterialesAlmacenEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudMaterialesAlmacenController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSolicitudMaterialesAlmacenLabel_idSolicitudMaterial}" for="idSolicitudMaterial" />
+                        <p:inputText id="idSolicitudMaterial" value="#{solicitudMaterialesAlmacenController.selected.idSolicitudMaterial}" title="#{bundle.EditSolicitudMaterialesAlmacenTitle_idSolicitudMaterial}" required="true" requiredMessage="#{bundle.EditSolicitudMaterialesAlmacenRequiredMessage_idSolicitudMaterial}"/>
+                        <p:outputLabel value="#{bundle.EditSolicitudMaterialesAlmacenLabel_fechaDeSolicitud}" for="fechaDeSolicitud" />
+                        <p:calendar id="fechaDeSolicitud" pattern="MM/dd/yyyy" value="#{solicitudMaterialesAlmacenController.selected.fechaDeSolicitud}" title="#{bundle.EditSolicitudMaterialesAlmacenTitle_fechaDeSolicitud}" required="true" requiredMessage="#{bundle.EditSolicitudMaterialesAlmacenRequiredMessage_fechaDeSolicitud}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSolicitudMaterialesAlmacenLabel_observaciones}" for="observaciones" />
+                        <p:inputText id="observaciones" value="#{solicitudMaterialesAlmacenController.selected.observaciones}" title="#{bundle.EditSolicitudMaterialesAlmacenTitle_observaciones}" />
+                        <p:outputLabel value="#{bundle.EditSolicitudMaterialesAlmacenLabel_idArea}" for="idArea" />
+                        <p:selectOneMenu id="idArea" value="#{solicitudMaterialesAlmacenController.selected.idArea}" required="true" requiredMessage="#{bundle.EditSolicitudMaterialesAlmacenRequiredMessage_idArea}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{areasController.itemsAvailableSelectOne}"
+                                           var="idAreaItem"
+                                           itemValue="#{idAreaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSolicitudMaterialesAlmacenLabel_idFichaCaracterizacion}" for="idFichaCaracterizacion" />
+                        <p:selectOneMenu id="idFichaCaracterizacion" value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}" required="true" requiredMessage="#{bundle.EditSolicitudMaterialesAlmacenRequiredMessage_idFichaCaracterizacion}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{fichaCaracterizacionController.itemsAvailableSelectOne}"
+                                           var="idFichaCaracterizacionItem"
+                                           itemValue="#{idFichaCaracterizacionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{solicitudMaterialesAlmacenController.update}" value="#{bundle.Save}" update="display,:SolicitudMaterialesAlmacenListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SolicitudMaterialesAlmacenEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SolicitudMaterialesAlmacenEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ComisionesCreateDlg" widgetVar="ComisionesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateComisionesTitle}">
+            <h:form id="ComisionesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{comisionesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_idComision}" for="idComision" />
+                        <p:inputText id="idComision" value="#{comisionesController.selected.idComision}" title="#{bundle.CreateComisionesTitle_idComision}" required="true" requiredMessage="#{bundle.CreateComisionesRequiredMessage_idComision}"/>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_objetivoComision}" for="objetivoComision" />
+                        <p:inputText id="objetivoComision" value="#{comisionesController.selected.objetivoComision}" title="#{bundle.CreateComisionesTitle_objetivoComision}" required="true" requiredMessage="#{bundle.CreateComisionesRequiredMessage_objetivoComision}"/>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_fechaComision}" for="fechaComision" />
+                        <p:calendar id="fechaComision" pattern="MM/dd/yyyy HH:mm:ss" value="#{comisionesController.selected.fechaComision}" title="#{bundle.EditComisionesTitle_fechaComision}" required="true" requiredMessage="#{bundle.EditComisionesRequiredMessage_fechaComision}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_fechaTramite}" for="fechaTramite" />
+                        <p:calendar id="fechaTramite" pattern="MM/dd/yyyy HH:mm:ss" value="#{comisionesController.selected.fechaTramite}" title="#{bundle.EditComisionesTitle_fechaTramite}" required="true" requiredMessage="#{bundle.EditComisionesRequiredMessage_fechaTramite}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_idAprobacion}" for="idAprobacion" />
+                        <p:selectOneMenu id="idAprobacion" value="#{comisionesController.selected.idAprobacion}" required="true" requiredMessage="#{bundle.EditComisionesRequiredMessage_idAprobacion}">
+                            <f:selectItems value="#{aprobacionesController.itemsAvailableSelectOne}"
+                                           var="idAprobacionItem"
+                                           itemValue="#{idAprobacionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_idDescripcion}" for="idDescripcion" />
+                        <p:selectOneMenu id="idDescripcion" value="#{comisionesController.selected.idDescripcion}" required="true" requiredMessage="#{bundle.EditComisionesRequiredMessage_idDescripcion}">
+                            <f:selectItems value="#{descripcionesReferenciasViaticosController.itemsAvailableSelectOne}"
+                                           var="idDescripcionItem"
+                                           itemValue="#{idDescripcionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_idContrato}" for="idContrato" />
+                        <p:selectOneMenu id="idContrato" value="#{comisionesController.selected.idContrato}" required="true" requiredMessage="#{bundle.EditComisionesRequiredMessage_idContrato}">
+                            <f:selectItems value="#{contratosController.itemsAvailableSelectOne}"
+                                           var="idContratoItem"
+                                           itemValue="#{idContratoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_idCuenta}" for="idCuenta" />
+                        <p:selectOneMenu id="idCuenta" value="#{comisionesController.selected.idCuenta}" required="true" requiredMessage="#{bundle.EditComisionesRequiredMessage_idCuenta}">
+                            <f:selectItems value="#{cuentasBancariasController.itemsAvailableSelectOne}"
+                                           var="idCuentaItem"
+                                           itemValue="#{idCuentaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_idFichaCaracterizacion}" for="idFichaCaracterizacion" />
+                        <p:selectOneMenu id="idFichaCaracterizacion" value="#{comisionesController.selected.idFichaCaracterizacion}" required="true" requiredMessage="#{bundle.EditComisionesRequiredMessage_idFichaCaracterizacion}">
+                            <f:selectItems value="#{fichaCaracterizacionController.itemsAvailableSelectOne}"
+                                           var="idFichaCaracterizacionItem"
+                                           itemValue="#{idFichaCaracterizacionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_idCentroFormacion}" for="idCentroFormacion" />
+                        <p:selectOneMenu id="idCentroFormacion" value="#{comisionesController.selected.idCentroFormacion}" required="true" requiredMessage="#{bundle.EditComisionesRequiredMessage_idCentroFormacion}">
+                            <f:selectItems value="#{centroFormacionController.itemsAvailableSelectOne}"
+                                           var="idCentroFormacionItem"
+                                           itemValue="#{idCentroFormacionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_ciudad}" for="ciudad" />
+                        <p:selectOneMenu id="ciudad" value="#{comisionesController.selected.ciudad}" required="true" requiredMessage="#{bundle.EditComisionesRequiredMessage_ciudad}">
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"
+                                           var="ciudadItem"
+                                           itemValue="#{ciudadItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateComisionesLabel_idUsuario}" for="idUsuario" />
+                        <p:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" required="true" requiredMessage="#{bundle.EditComisionesRequiredMessage_idUsuario}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="idUsuarioItem"
+                                           itemValue="#{idUsuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{comisionesController.create}" value="#{bundle.Save}" update="display,:ComisionesListForm:datalist,:growl" oncomplete="handleSubmit(args,'ComisionesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ComisionesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

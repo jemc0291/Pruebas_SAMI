@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpresaViewDlg" widgetVar="EmpresaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmpresaTitle}">
+            <h:form id="EmpresaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empresaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_idEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.idEmpresa}" title="#{bundle.ViewEmpresaTitle_idEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_nitEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.nitEmpresa}" title="#{bundle.ViewEmpresaTitle_nitEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_nombreEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.nombreEmpresa}" title="#{bundle.ViewEmpresaTitle_nombreEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_cargoRmEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.cargoRmEmpresa}" title="#{bundle.ViewEmpresaTitle_cargoRmEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_ciudadEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.ciudadEmpresa}" title="#{bundle.ViewEmpresaTitle_ciudadEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_direccionEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.direccionEmpresa}" title="#{bundle.ViewEmpresaTitle_direccionEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_emailEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.emailEmpresa}" title="#{bundle.ViewEmpresaTitle_emailEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_telefonoEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.telefonoEmpresa}" title="#{bundle.ViewEmpresaTitle_telefonoEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_nombrePerosna}"/>
+                        <h:outputText value="#{empresaController.selected.nombrePerosna}" title="#{bundle.ViewEmpresaTitle_nombrePerosna}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_cargoPersonaODependencia}"/>
+                        <h:outputText value="#{empresaController.selected.cargoPersonaODependencia}" title="#{bundle.ViewEmpresaTitle_cargoPersonaODependencia}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_municipio}"/>
+                        <h:outputText value="#{empresaController.selected.municipio}" title="#{bundle.ViewEmpresaTitle_municipio}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_departamento}"/>
+                        <h:outputText value="#{empresaController.selected.departamento}" title="#{bundle.ViewEmpresaTitle_departamento}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_pais}"/>
+                        <h:outputText value="#{empresaController.selected.pais}" title="#{bundle.ViewEmpresaTitle_pais}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmpresaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

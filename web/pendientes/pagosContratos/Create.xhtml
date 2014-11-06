@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PagosContratosCreateDlg" widgetVar="PagosContratosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePagosContratosTitle}">
+            <h:form id="PagosContratosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pagosContratosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePagosContratosLabel_idPago}" for="idPago" />
+                        <p:inputText id="idPago" value="#{pagosContratosController.selected.idPago}" title="#{bundle.CreatePagosContratosTitle_idPago}" required="true" requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_idPago}"/>
+                        <p:outputLabel value="#{bundle.CreatePagosContratosLabel_fechaDePago}" for="fechaDePago" />
+                        <p:calendar id="fechaDePago" pattern="MM/dd/yyyy" value="#{pagosContratosController.selected.fechaDePago}" title="#{bundle.EditPagosContratosTitle_fechaDePago}" required="true" requiredMessage="#{bundle.EditPagosContratosRequiredMessage_fechaDePago}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePagosContratosLabel_idFactura}" for="idFactura" />
+                        <p:selectOneMenu id="idFactura" value="#{pagosContratosController.selected.idFactura}" required="true" requiredMessage="#{bundle.EditPagosContratosRequiredMessage_idFactura}">
+                            <f:selectItems value="#{facturasController.itemsAvailableSelectOne}"
+                                           var="idFacturaItem"
+                                           itemValue="#{idFacturaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePagosContratosLabel_idContrato}" for="idContrato" />
+                        <p:selectOneMenu id="idContrato" value="#{pagosContratosController.selected.idContrato}" required="true" requiredMessage="#{bundle.EditPagosContratosRequiredMessage_idContrato}">
+                            <f:selectItems value="#{contratosController.itemsAvailableSelectOne}"
+                                           var="idContratoItem"
+                                           itemValue="#{idContratoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pagosContratosController.create}" value="#{bundle.Save}" update="display,:PagosContratosListForm:datalist,:growl" oncomplete="handleSubmit(args,'PagosContratosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PagosContratosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

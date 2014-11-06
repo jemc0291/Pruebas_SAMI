@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpresaEditDlg" widgetVar="EmpresaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEmpresaTitle}">
+            <h:form id="EmpresaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empresaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_idEmpresa}" for="idEmpresa" />
+                        <p:inputText id="idEmpresa" value="#{empresaController.selected.idEmpresa}" title="#{bundle.EditEmpresaTitle_idEmpresa}" required="true" requiredMessage="#{bundle.EditEmpresaRequiredMessage_idEmpresa}"/>
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_nitEmpresa}" for="nitEmpresa" />
+                        <p:inputText id="nitEmpresa" value="#{empresaController.selected.nitEmpresa}" title="#{bundle.EditEmpresaTitle_nitEmpresa}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_nombreEmpresa}" for="nombreEmpresa" />
+                        <p:inputText id="nombreEmpresa" value="#{empresaController.selected.nombreEmpresa}" title="#{bundle.EditEmpresaTitle_nombreEmpresa}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_cargoRmEmpresa}" for="cargoRmEmpresa" />
+                        <p:inputText id="cargoRmEmpresa" value="#{empresaController.selected.cargoRmEmpresa}" title="#{bundle.EditEmpresaTitle_cargoRmEmpresa}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_ciudadEmpresa}" for="ciudadEmpresa" />
+                        <p:inputText id="ciudadEmpresa" value="#{empresaController.selected.ciudadEmpresa}" title="#{bundle.EditEmpresaTitle_ciudadEmpresa}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_direccionEmpresa}" for="direccionEmpresa" />
+                        <p:inputText id="direccionEmpresa" value="#{empresaController.selected.direccionEmpresa}" title="#{bundle.EditEmpresaTitle_direccionEmpresa}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_emailEmpresa}" for="emailEmpresa" />
+                        <p:inputText id="emailEmpresa" value="#{empresaController.selected.emailEmpresa}" title="#{bundle.EditEmpresaTitle_emailEmpresa}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_telefonoEmpresa}" for="telefonoEmpresa" />
+                        <p:inputText id="telefonoEmpresa" value="#{empresaController.selected.telefonoEmpresa}" title="#{bundle.EditEmpresaTitle_telefonoEmpresa}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_nombrePerosna}" for="nombrePerosna" />
+                        <p:inputText id="nombrePerosna" value="#{empresaController.selected.nombrePerosna}" title="#{bundle.EditEmpresaTitle_nombrePerosna}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_cargoPersonaODependencia}" for="cargoPersonaODependencia" />
+                        <p:inputText id="cargoPersonaODependencia" value="#{empresaController.selected.cargoPersonaODependencia}" title="#{bundle.EditEmpresaTitle_cargoPersonaODependencia}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_municipio}" for="municipio" />
+                        <p:inputText id="municipio" value="#{empresaController.selected.municipio}" title="#{bundle.EditEmpresaTitle_municipio}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_departamento}" for="departamento" />
+                        <p:inputText id="departamento" value="#{empresaController.selected.departamento}" title="#{bundle.EditEmpresaTitle_departamento}" />
+                        <p:outputLabel value="#{bundle.EditEmpresaLabel_pais}" for="pais" />
+                        <p:inputText id="pais" value="#{empresaController.selected.pais}" title="#{bundle.EditEmpresaTitle_pais}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{empresaController.update}" value="#{bundle.Save}" update="display,:EmpresaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EmpresaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmpresaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

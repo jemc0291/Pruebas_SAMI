@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContratosCreateDlg" widgetVar="ContratosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateContratosTitle}">
+            <h:form id="ContratosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{contratosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_idContrato}" for="idContrato" />
+                        <p:inputText id="idContrato" value="#{contratosController.selected.idContrato}" title="#{bundle.CreateContratosTitle_idContrato}" required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_idContrato}"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_numeroDeContrato}" for="numeroDeContrato" />
+                        <p:inputText id="numeroDeContrato" value="#{contratosController.selected.numeroDeContrato}" title="#{bundle.CreateContratosTitle_numeroDeContrato}" required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_numeroDeContrato}"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_fechaSuscripcion}" for="fechaSuscripcion" />
+                        <p:calendar id="fechaSuscripcion" pattern="MM/dd/yyyy" value="#{contratosController.selected.fechaSuscripcion}" title="#{bundle.EditContratosTitle_fechaSuscripcion}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_fechaSuscripcion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_fechaInicioContrato}" for="fechaInicioContrato" />
+                        <p:calendar id="fechaInicioContrato" pattern="MM/dd/yyyy" value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.EditContratosTitle_fechaInicioContrato}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_fechaInicioContrato}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_fechaFinContrato}" for="fechaFinContrato" />
+                        <p:calendar id="fechaFinContrato" pattern="MM/dd/yyyy" value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.EditContratosTitle_fechaFinContrato}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_fechaFinContrato}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_plazoDias}" for="plazoDias" />
+                        <p:inputText id="plazoDias" value="#{contratosController.selected.plazoDias}" title="#{bundle.CreateContratosTitle_plazoDias}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_plazoMeses}" for="plazoMeses" />
+                        <p:inputText id="plazoMeses" value="#{contratosController.selected.plazoMeses}" title="#{bundle.CreateContratosTitle_plazoMeses}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_objetoContractual}" for="objetoContractual" />
+                        <p:inputText id="objetoContractual" value="#{contratosController.selected.objetoContractual}" title="#{bundle.CreateContratosTitle_objetoContractual}" required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_objetoContractual}"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_obligaciones}" for="obligaciones" />
+                        <p:inputText id="obligaciones" value="#{contratosController.selected.obligaciones}" title="#{bundle.CreateContratosTitle_obligaciones}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_valorContrato}" for="valorContrato" />
+                        <p:inputText id="valorContrato" value="#{contratosController.selected.valorContrato}" title="#{bundle.CreateContratosTitle_valorContrato}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_primerPago}" for="primerPago" />
+                        <p:inputText id="primerPago" value="#{contratosController.selected.primerPago}" title="#{bundle.CreateContratosTitle_primerPago}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_ultimoPago}" for="ultimoPago" />
+                        <p:inputText id="ultimoPago" value="#{contratosController.selected.ultimoPago}" title="#{bundle.CreateContratosTitle_ultimoPago}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_numeroDeMensualidades}" for="numeroDeMensualidades" />
+                        <p:inputText id="numeroDeMensualidades" value="#{contratosController.selected.numeroDeMensualidades}" title="#{bundle.CreateContratosTitle_numeroDeMensualidades}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_valorMensual}" for="valorMensual" />
+                        <p:inputText id="valorMensual" value="#{contratosController.selected.valorMensual}" title="#{bundle.CreateContratosTitle_valorMensual}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_fechaAnexo}" for="fechaAnexo" />
+                        <p:calendar id="fechaAnexo" pattern="MM/dd/yyyy" value="#{contratosController.selected.fechaAnexo}" title="#{bundle.EditContratosTitle_fechaAnexo}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_fechaDeAutorizacion}" for="fechaDeAutorizacion" />
+                        <p:calendar id="fechaDeAutorizacion" pattern="MM/dd/yyyy" value="#{contratosController.selected.fechaDeAutorizacion}" title="#{bundle.EditContratosTitle_fechaDeAutorizacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_fechaDeEstudioPrevio}" for="fechaDeEstudioPrevio" />
+                        <p:calendar id="fechaDeEstudioPrevio" pattern="MM/dd/yyyy" value="#{contratosController.selected.fechaDeEstudioPrevio}" title="#{bundle.EditContratosTitle_fechaDeEstudioPrevio}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_fechaDeIdoneidad}" for="fechaDeIdoneidad" />
+                        <p:calendar id="fechaDeIdoneidad" pattern="MM/dd/yyyy" value="#{contratosController.selected.fechaDeIdoneidad}" title="#{bundle.EditContratosTitle_fechaDeIdoneidad}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_adicionPresupuestal}" for="adicionPresupuestal" />
+                        <p:inputText id="adicionPresupuestal" value="#{contratosController.selected.adicionPresupuestal}" title="#{bundle.CreateContratosTitle_adicionPresupuestal}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_adicionPlazoNuevaFecha}" for="adicionPlazoNuevaFecha" />
+                        <p:calendar id="adicionPlazoNuevaFecha" pattern="MM/dd/yyyy" value="#{contratosController.selected.adicionPlazoNuevaFecha}" title="#{bundle.EditContratosTitle_adicionPlazoNuevaFecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_idPoliza}" for="idPoliza" />
+                        <p:inputText id="idPoliza" value="#{contratosController.selected.idPoliza}" title="#{bundle.CreateContratosTitle_idPoliza}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_idCuentasBancarias}" for="idCuentasBancarias" />
+                        <p:inputText id="idCuentasBancarias" value="#{contratosController.selected.idCuentasBancarias}" title="#{bundle.CreateContratosTitle_idCuentasBancarias}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_observaciones}" for="observaciones" />
+                        <p:inputText id="observaciones" value="#{contratosController.selected.observaciones}" title="#{bundle.CreateContratosTitle_observaciones}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_justificacion}" for="justificacion" />
+                        <p:inputText id="justificacion" value="#{contratosController.selected.justificacion}" title="#{bundle.CreateContratosTitle_justificacion}" />
+                        <p:outputLabel value="#{bundle.CreateContratosLabel_idTipoContrato}" for="idTipoContrato" />
+                        <p:selectOneMenu id="idTipoContrato" value="#{contratosController.selected.idTipoContrato}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_idTipoContrato}">
+                            <f:selectItems value="#{tipoDeContratoController.itemsAvailableSelectOne}"
+                                           var="idTipoContratoItem"
+                                           itemValue="#{idTipoContratoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{contratosController.create}" value="#{bundle.Save}" update="display,:ContratosListForm:datalist,:growl" oncomplete="handleSubmit(args,'ContratosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ContratosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CrpViewDlg" widgetVar="CrpViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCrpTitle}">
+            <h:form id="CrpViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{crpController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCrpLabel_numeroCrp}"/>
+                        <h:outputText value="#{crpController.selected.numeroCrp}" title="#{bundle.ViewCrpTitle_numeroCrp}"/>
+                        <h:outputText value="#{bundle.ViewCrpLabel_fechaExpedicion}"/>
+                        <h:outputText value="#{crpController.selected.fechaExpedicion}" title="#{bundle.ViewCrpTitle_fechaExpedicion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCrpLabel_fechaRecepcion}"/>
+                        <h:outputText value="#{crpController.selected.fechaRecepcion}" title="#{bundle.ViewCrpTitle_fechaRecepcion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCrpLabel_objetivoDelGasto}"/>
+                        <h:outputText value="#{crpController.selected.objetivoDelGasto}" title="#{bundle.ViewCrpTitle_objetivoDelGasto}"/>
+                        <h:outputText value="#{bundle.ViewCrpLabel_total}"/>
+                        <h:outputText value="#{crpController.selected.total}" title="#{bundle.ViewCrpTitle_total}"/>
+                        <h:outputText value="#{bundle.ViewCrpLabel_subtotal}"/>
+                        <h:outputText value="#{crpController.selected.subtotal}" title="#{bundle.ViewCrpTitle_subtotal}"/>
+                        <h:outputText value="#{bundle.ViewCrpLabel_crpRubros}"/>
+                        <h:outputText value="#{crpController.selected.crpRubros}" title="#{bundle.ViewCrpTitle_crpRubros}"/>
+                        <h:outputText value="#{bundle.ViewCrpLabel_idRecursos}"/>
+                        <h:outputText value="#{crpController.selected.idRecursos}" title="#{bundle.ViewCrpTitle_idRecursos}"/>
+                        <h:outputText value="#{bundle.ViewCrpLabel_idTipoSolicitud}"/>
+                        <h:outputText value="#{crpController.selected.idTipoSolicitud}" title="#{bundle.ViewCrpTitle_idTipoSolicitud}"/>
+                        <h:outputText value="#{bundle.ViewCrpLabel_ordenesDeViajeCrp}"/>
+                        <h:outputText value="#{crpController.selected.ordenesDeViajeCrp}" title="#{bundle.ViewCrpTitle_ordenesDeViajeCrp}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CrpViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

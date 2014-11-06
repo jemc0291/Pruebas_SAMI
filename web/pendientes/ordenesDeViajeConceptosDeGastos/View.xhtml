@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenesDeViajeConceptosDeGastosViewDlg" widgetVar="OrdenesDeViajeConceptosDeGastosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOrdenesDeViajeConceptosDeGastosTitle}">
+            <h:form id="OrdenesDeViajeConceptosDeGastosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordenesDeViajeConceptosDeGastosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewOrdenesDeViajeConceptosDeGastosLabel_costoGasto}"/>
+                        <h:outputText value="#{ordenesDeViajeConceptosDeGastosController.selected.costoGasto}" title="#{bundle.ViewOrdenesDeViajeConceptosDeGastosTitle_costoGasto}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeViajeConceptosDeGastosLabel_ordenesDeviaje}"/>
+                        <h:outputText value="#{ordenesDeViajeConceptosDeGastosController.selected.ordenesDeviaje}" title="#{bundle.ViewOrdenesDeViajeConceptosDeGastosTitle_ordenesDeviaje}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeViajeConceptosDeGastosLabel_conceptosDeGastos}"/>
+                        <h:outputText value="#{ordenesDeViajeConceptosDeGastosController.selected.conceptosDeGastos}" title="#{bundle.ViewOrdenesDeViajeConceptosDeGastosTitle_conceptosDeGastos}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="OrdenesDeViajeConceptosDeGastosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DatosOnbaseViewDlg" widgetVar="DatosOnbaseViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDatosOnbaseTitle}">
+            <h:form id="DatosOnbaseViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{datosOnbaseController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_idDatosOnbase}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.idDatosOnbase}" title="#{bundle.ViewDatosOnbaseTitle_idDatosOnbase}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_numRadicadoRecibida}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.numRadicadoRecibida}" title="#{bundle.ViewDatosOnbaseTitle_numRadicadoRecibida}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_nis}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.nis}" title="#{bundle.ViewDatosOnbaseTitle_nis}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_codigoRegional}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.codigoRegional}" title="#{bundle.ViewDatosOnbaseTitle_codigoRegional}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_modoIngreso}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.modoIngreso}" title="#{bundle.ViewDatosOnbaseTitle_modoIngreso}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_entregaALaMano}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.entregaALaMano}" title="#{bundle.ViewDatosOnbaseTitle_entregaALaMano}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_fechaProcedencia}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.fechaProcedencia}" title="#{bundle.ViewDatosOnbaseTitle_fechaProcedencia}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_numeroRadicadoOrigen}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.numeroRadicadoOrigen}" title="#{bundle.ViewDatosOnbaseTitle_numeroRadicadoOrigen}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_tipoDocumento}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.tipoDocumento}" title="#{bundle.ViewDatosOnbaseTitle_tipoDocumento}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_tiempoRespuestaDias}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.tiempoRespuestaDias}" title="#{bundle.ViewDatosOnbaseTitle_tiempoRespuestaDias}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_fechaRespuesta}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.fechaRespuesta}" title="#{bundle.ViewDatosOnbaseTitle_fechaRespuesta}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_numeroDeAnexos}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.numeroDeAnexos}" title="#{bundle.ViewDatosOnbaseTitle_numeroDeAnexos}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_asunto}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.asunto}" title="#{bundle.ViewDatosOnbaseTitle_asunto}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_tipoPeticion}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.tipoPeticion}" title="#{bundle.ViewDatosOnbaseTitle_tipoPeticion}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_descripcionAnexos}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.descripcionAnexos}" title="#{bundle.ViewDatosOnbaseTitle_descripcionAnexos}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_tipoDigitalizacion}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.tipoDigitalizacion}" title="#{bundle.ViewDatosOnbaseTitle_tipoDigitalizacion}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_idUsuarioAdmin}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.idUsuarioAdmin}" title="#{bundle.ViewDatosOnbaseTitle_idUsuarioAdmin}"/>
+                        <h:outputText value="#{bundle.ViewDatosOnbaseLabel_idUsuarioDestino}"/>
+                        <h:outputText value="#{datosOnbaseController.selected.idUsuarioDestino}" title="#{bundle.ViewDatosOnbaseTitle_idUsuarioDestino}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DatosOnbaseViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

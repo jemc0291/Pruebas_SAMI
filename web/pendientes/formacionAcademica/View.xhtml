@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FormacionAcademicaViewDlg" widgetVar="FormacionAcademicaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFormacionAcademicaTitle}">
+            <h:form id="FormacionAcademicaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{formacionAcademicaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFormacionAcademicaLabel_idFormacion}"/>
+                        <h:outputText value="#{formacionAcademicaController.selected.idFormacion}" title="#{bundle.ViewFormacionAcademicaTitle_idFormacion}"/>
+                        <h:outputText value="#{bundle.ViewFormacionAcademicaLabel_nombreFormacion}"/>
+                        <h:outputText value="#{formacionAcademicaController.selected.nombreFormacion}" title="#{bundle.ViewFormacionAcademicaTitle_nombreFormacion}"/>
+                        <h:outputText value="#{bundle.ViewFormacionAcademicaLabel_soportadoFormacion}"/>
+                        <p:selectBooleanCheckbox value="#{formacionAcademicaController.selected.soportadoFormacion}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewFormacionAcademicaLabel_idNivelesFormacion}"/>
+                        <h:outputText value="#{formacionAcademicaController.selected.idNivelesFormacion}" title="#{bundle.ViewFormacionAcademicaTitle_idNivelesFormacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FormacionAcademicaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

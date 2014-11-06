@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitudMaterialesAlmacenMaterialesCreateDlg" widgetVar="SolicitudMaterialesAlmacenMaterialesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSolicitudMaterialesAlmacenMaterialesTitle}">
+            <h:form id="SolicitudMaterialesAlmacenMaterialesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudMaterialesAlmacenMaterialesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSolicitudMaterialesAlmacenMaterialesLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{solicitudMaterialesAlmacenMaterialesController.selected.cantidad}" title="#{bundle.CreateSolicitudMaterialesAlmacenMaterialesTitle_cantidad}" />
+                        <p:outputLabel value="#{bundle.CreateSolicitudMaterialesAlmacenMaterialesLabel_materiales}" for="materiales" />
+                        <p:selectOneMenu id="materiales" value="#{solicitudMaterialesAlmacenMaterialesController.selected.materiales}" required="true" requiredMessage="#{bundle.EditSolicitudMaterialesAlmacenMaterialesRequiredMessage_materiales}">
+                            <f:selectItems value="#{materialesController.itemsAvailableSelectOne}"
+                                           var="materialesItem"
+                                           itemValue="#{materialesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateSolicitudMaterialesAlmacenMaterialesLabel_solicitudMaterialesAlmacen}" for="solicitudMaterialesAlmacen" />
+                        <p:selectOneMenu id="solicitudMaterialesAlmacen" value="#{solicitudMaterialesAlmacenMaterialesController.selected.solicitudMaterialesAlmacen}" required="true" requiredMessage="#{bundle.EditSolicitudMaterialesAlmacenMaterialesRequiredMessage_solicitudMaterialesAlmacen}">
+                            <f:selectItems value="#{solicitudMaterialesAlmacenController.itemsAvailableSelectOne}"
+                                           var="solicitudMaterialesAlmacenItem"
+                                           itemValue="#{solicitudMaterialesAlmacenItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{solicitudMaterialesAlmacenMaterialesController.create}" value="#{bundle.Save}" update="display,:SolicitudMaterialesAlmacenMaterialesListForm:datalist,:growl" oncomplete="handleSubmit(args,'SolicitudMaterialesAlmacenMaterialesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SolicitudMaterialesAlmacenMaterialesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TiposDeSolicitudesCreateDlg" widgetVar="TiposDeSolicitudesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTiposDeSolicitudesTitle}">
+            <h:form id="TiposDeSolicitudesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tiposDeSolicitudesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTiposDeSolicitudesLabel_idTipoSolicitud}" for="idTipoSolicitud" />
+                        <p:inputText id="idTipoSolicitud" value="#{tiposDeSolicitudesController.selected.idTipoSolicitud}" title="#{bundle.CreateTiposDeSolicitudesTitle_idTipoSolicitud}" required="true" requiredMessage="#{bundle.CreateTiposDeSolicitudesRequiredMessage_idTipoSolicitud}"/>
+                        <p:outputLabel value="#{bundle.CreateTiposDeSolicitudesLabel_nombreTipoSolicitud}" for="nombreTipoSolicitud" />
+                        <p:selectBooleanCheckbox id="nombreTipoSolicitud" value="#{tiposDeSolicitudesController.selected.nombreTipoSolicitud}" required="true" requiredMessage="#{bundle.EditTiposDeSolicitudesRequiredMessage_nombreTipoSolicitud}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tiposDeSolicitudesController.create}" value="#{bundle.Save}" update="display,:TiposDeSolicitudesListForm:datalist,:growl" oncomplete="handleSubmit(args,'TiposDeSolicitudesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TiposDeSolicitudesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

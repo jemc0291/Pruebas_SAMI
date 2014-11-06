@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PagosContratosViewDlg" widgetVar="PagosContratosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPagosContratosTitle}">
+            <h:form id="PagosContratosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pagosContratosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPagosContratosLabel_idPago}"/>
+                        <h:outputText value="#{pagosContratosController.selected.idPago}" title="#{bundle.ViewPagosContratosTitle_idPago}"/>
+                        <h:outputText value="#{bundle.ViewPagosContratosLabel_fechaDePago}"/>
+                        <h:outputText value="#{pagosContratosController.selected.fechaDePago}" title="#{bundle.ViewPagosContratosTitle_fechaDePago}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPagosContratosLabel_idFactura}"/>
+                        <h:outputText value="#{pagosContratosController.selected.idFactura}" title="#{bundle.ViewPagosContratosTitle_idFactura}"/>
+                        <h:outputText value="#{bundle.ViewPagosContratosLabel_idContrato}"/>
+                        <h:outputText value="#{pagosContratosController.selected.idContrato}" title="#{bundle.ViewPagosContratosTitle_idContrato}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PagosContratosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

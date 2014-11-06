@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BancosCreateDlg" widgetVar="BancosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBancosTitle}">
+            <h:form id="BancosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bancosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBancosLabel_nitBanco}" for="nitBanco" />
+                        <p:inputText id="nitBanco" value="#{bancosController.selected.nitBanco}" title="#{bundle.CreateBancosTitle_nitBanco}" required="true" requiredMessage="#{bundle.CreateBancosRequiredMessage_nitBanco}"/>
+                        <p:outputLabel value="#{bundle.CreateBancosLabel_nombreDeBanco}" for="nombreDeBanco" />
+                        <p:inputText id="nombreDeBanco" value="#{bancosController.selected.nombreDeBanco}" title="#{bundle.CreateBancosTitle_nombreDeBanco}" required="true" requiredMessage="#{bundle.CreateBancosRequiredMessage_nombreDeBanco}"/>
+                        <p:outputLabel value="#{bundle.CreateBancosLabel_idBanco}" for="idBanco" />
+                        <p:inputText id="idBanco" value="#{bancosController.selected.idBanco}" title="#{bundle.CreateBancosTitle_idBanco}" required="true" requiredMessage="#{bundle.CreateBancosRequiredMessage_idBanco}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bancosController.create}" value="#{bundle.Save}" update="display,:BancosListForm:datalist,:growl" oncomplete="handleSubmit(args,'BancosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BancosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

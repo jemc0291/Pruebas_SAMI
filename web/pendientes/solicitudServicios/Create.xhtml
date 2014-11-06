@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitudServiciosCreateDlg" widgetVar="SolicitudServiciosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSolicitudServiciosTitle}">
+            <h:form id="SolicitudServiciosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudServiciosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_idSolicitudServicio}" for="idSolicitudServicio" />
+                        <p:inputText id="idSolicitudServicio" value="#{solicitudServiciosController.selected.idSolicitudServicio}" title="#{bundle.CreateSolicitudServiciosTitle_idSolicitudServicio}" required="true" requiredMessage="#{bundle.CreateSolicitudServiciosRequiredMessage_idSolicitudServicio}"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_fechaServicio}" for="fechaServicio" />
+                        <p:calendar id="fechaServicio" pattern="MM/dd/yyyy" value="#{solicitudServiciosController.selected.fechaServicio}" title="#{bundle.EditSolicitudServiciosTitle_fechaServicio}" required="true" requiredMessage="#{bundle.EditSolicitudServiciosRequiredMessage_fechaServicio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_horaServicio}" for="horaServicio" />
+                        <p:calendar id="horaServicio" pattern="HH:mm:ss" value="#{solicitudServiciosController.selected.horaServicio}" title="#{bundle.EditSolicitudServiciosTitle_horaServicio}" required="true" requiredMessage="#{bundle.EditSolicitudServiciosRequiredMessage_horaServicio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_descripcionservicioSolicitud}" for="descripcionservicioSolicitud" />
+                        <p:inputText id="descripcionservicioSolicitud" value="#{solicitudServiciosController.selected.descripcionservicioSolicitud}" title="#{bundle.CreateSolicitudServiciosTitle_descripcionservicioSolicitud}" required="true" requiredMessage="#{bundle.CreateSolicitudServiciosRequiredMessage_descripcionservicioSolicitud}"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_descripcionServicioPrestado}" for="descripcionServicioPrestado" />
+                        <p:inputText id="descripcionServicioPrestado" value="#{solicitudServiciosController.selected.descripcionServicioPrestado}" title="#{bundle.CreateSolicitudServiciosTitle_descripcionServicioPrestado}" />
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_ubicaciónSolicitud}" for="ubicaciónSolicitud" />
+                        <p:inputText id="ubicaciónSolicitud" value="#{solicitudServiciosController.selected.ubicaciónSolicitud}" title="#{bundle.CreateSolicitudServiciosTitle_ubicaciónSolicitud}" />
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_ubicacionServicioPrestado}" for="ubicacionServicioPrestado" />
+                        <p:inputText id="ubicacionServicioPrestado" value="#{solicitudServiciosController.selected.ubicacionServicioPrestado}" title="#{bundle.CreateSolicitudServiciosTitle_ubicacionServicioPrestado}" required="true" requiredMessage="#{bundle.CreateSolicitudServiciosRequiredMessage_ubicacionServicioPrestado}"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_fueAtendido}" for="fueAtendido" />
+                        <p:selectBooleanCheckbox id="fueAtendido" value="#{solicitudServiciosController.selected.fueAtendido}" />
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_fueSolucionado}" for="fueSolucionado" />
+                        <p:selectBooleanCheckbox id="fueSolucionado" value="#{solicitudServiciosController.selected.fueSolucionado}" />
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_observaciones}" for="observaciones" />
+                        <p:inputText id="observaciones" value="#{solicitudServiciosController.selected.observaciones}" title="#{bundle.CreateSolicitudServiciosTitle_observaciones}" required="true" requiredMessage="#{bundle.CreateSolicitudServiciosRequiredMessage_observaciones}"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_referencia}" for="referencia" />
+                        <p:inputText id="referencia" value="#{solicitudServiciosController.selected.referencia}" title="#{bundle.CreateSolicitudServiciosTitle_referencia}" required="true" requiredMessage="#{bundle.CreateSolicitudServiciosRequiredMessage_referencia}"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_fechaSolicitudServicio}" for="fechaSolicitudServicio" />
+                        <p:calendar id="fechaSolicitudServicio" pattern="MM/dd/yyyy" value="#{solicitudServiciosController.selected.fechaSolicitudServicio}" title="#{bundle.EditSolicitudServiciosTitle_fechaSolicitudServicio}" required="true" requiredMessage="#{bundle.EditSolicitudServiciosRequiredMessage_fechaSolicitudServicio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_tiposDeServiciosSolicitudDeServicios}" for="tiposDeServiciosSolicitudDeServicios" />
+                        <p:selectOneMenu id="tiposDeServiciosSolicitudDeServicios" value="#{solicitudServiciosController.selected.tiposDeServiciosSolicitudDeServicios}" >
+                            <f:selectItems value="#{tiposDeServiciosSolicitudDeServiciosController.itemsAvailableSelectOne}"
+                                           var="tiposDeServiciosSolicitudDeServiciosItem"
+                                           itemValue="#{tiposDeServiciosSolicitudDeServiciosItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_idPrioridades}" for="idPrioridades" />
+                        <p:selectOneMenu id="idPrioridades" value="#{solicitudServiciosController.selected.idPrioridades}" required="true" requiredMessage="#{bundle.EditSolicitudServiciosRequiredMessage_idPrioridades}">
+                            <f:selectItems value="#{prioridadesController.itemsAvailableSelectOne}"
+                                           var="idPrioridadesItem"
+                                           itemValue="#{idPrioridadesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateSolicitudServiciosLabel_idServicio}" for="idServicio" />
+                        <p:selectOneMenu id="idServicio" value="#{solicitudServiciosController.selected.idServicio}" required="true" requiredMessage="#{bundle.EditSolicitudServiciosRequiredMessage_idServicio}">
+                            <f:selectItems value="#{serviciosController.itemsAvailableSelectOne}"
+                                           var="idServicioItem"
+                                           itemValue="#{idServicioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{solicitudServiciosController.create}" value="#{bundle.Save}" update="display,:SolicitudServiciosListForm:datalist,:growl" oncomplete="handleSubmit(args,'SolicitudServiciosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SolicitudServiciosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

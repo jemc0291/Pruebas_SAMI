@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TiposPasajesEditDlg" widgetVar="TiposPasajesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTiposPasajesTitle}">
+            <h:form id="TiposPasajesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tiposPasajesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTiposPasajesLabel_idTipoPasaje}" for="idTipoPasaje" />
+                        <p:inputText id="idTipoPasaje" value="#{tiposPasajesController.selected.idTipoPasaje}" title="#{bundle.EditTiposPasajesTitle_idTipoPasaje}" required="true" requiredMessage="#{bundle.EditTiposPasajesRequiredMessage_idTipoPasaje}"/>
+                        <p:outputLabel value="#{bundle.EditTiposPasajesLabel_nombreTipoPasaje}" for="nombreTipoPasaje" />
+                        <p:selectBooleanCheckbox id="nombreTipoPasaje" value="#{tiposPasajesController.selected.nombreTipoPasaje}" required="true" requiredMessage="#{bundle.EditTiposPasajesRequiredMessage_nombreTipoPasaje}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tiposPasajesController.update}" value="#{bundle.Save}" update="display,:TiposPasajesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TiposPasajesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TiposPasajesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitudMaterialesAlmacenMaterialesViewDlg" widgetVar="SolicitudMaterialesAlmacenMaterialesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSolicitudMaterialesAlmacenMaterialesTitle}">
+            <h:form id="SolicitudMaterialesAlmacenMaterialesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudMaterialesAlmacenMaterialesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSolicitudMaterialesAlmacenMaterialesLabel_cantidad}"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenMaterialesController.selected.cantidad}" title="#{bundle.ViewSolicitudMaterialesAlmacenMaterialesTitle_cantidad}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudMaterialesAlmacenMaterialesLabel_materiales}"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenMaterialesController.selected.materiales}" title="#{bundle.ViewSolicitudMaterialesAlmacenMaterialesTitle_materiales}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudMaterialesAlmacenMaterialesLabel_solicitudMaterialesAlmacen}"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenMaterialesController.selected.solicitudMaterialesAlmacen}" title="#{bundle.ViewSolicitudMaterialesAlmacenMaterialesTitle_solicitudMaterialesAlmacen}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SolicitudMaterialesAlmacenMaterialesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

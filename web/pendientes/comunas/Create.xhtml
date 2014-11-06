@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ComunasCreateDlg" widgetVar="ComunasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateComunasTitle}">
+            <h:form id="ComunasCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{comunasController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateComunasLabel_idComuna}" for="idComuna" />
+                        <p:inputText id="idComuna" value="#{comunasController.selected.idComuna}" title="#{bundle.CreateComunasTitle_idComuna}" required="true" requiredMessage="#{bundle.CreateComunasRequiredMessage_idComuna}"/>
+                        <p:outputLabel value="#{bundle.CreateComunasLabel_nombreComuna}" for="nombreComuna" />
+                        <p:inputText id="nombreComuna" value="#{comunasController.selected.nombreComuna}" title="#{bundle.CreateComunasTitle_nombreComuna}" />
+                        <p:outputLabel value="#{bundle.CreateComunasLabel_ciudad}" for="ciudad" />
+                        <p:selectOneMenu id="ciudad" value="#{comunasController.selected.ciudad}" required="true" requiredMessage="#{bundle.EditComunasRequiredMessage_ciudad}">
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"
+                                           var="ciudadItem"
+                                           itemValue="#{ciudadItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{comunasController.create}" value="#{bundle.Save}" update="display,:ComunasListForm:datalist,:growl" oncomplete="handleSubmit(args,'ComunasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ComunasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

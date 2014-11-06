@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenesDeviajeCreateDlg" widgetVar="OrdenesDeviajeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateOrdenesDeviajeTitle}">
+            <h:form id="OrdenesDeviajeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordenesDeviajeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_numeroOrdendeviaje}" for="numeroOrdendeviaje" />
+                        <p:inputText id="numeroOrdendeviaje" value="#{ordenesDeviajeController.selected.numeroOrdendeviaje}" title="#{bundle.CreateOrdenesDeviajeTitle_numeroOrdendeviaje}" required="true" requiredMessage="#{bundle.CreateOrdenesDeviajeRequiredMessage_numeroOrdendeviaje}"/>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_fechaTramite}" for="fechaTramite" />
+                        <p:calendar id="fechaTramite" pattern="MM/dd/yyyy HH:mm:ss" value="#{ordenesDeviajeController.selected.fechaTramite}" title="#{bundle.EditOrdenesDeviajeTitle_fechaTramite}" required="true" requiredMessage="#{bundle.EditOrdenesDeviajeRequiredMessage_fechaTramite}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_observacionesDeLaOrden}" for="observacionesDeLaOrden" />
+                        <p:inputText id="observacionesDeLaOrden" value="#{ordenesDeviajeController.selected.observacionesDeLaOrden}" title="#{bundle.CreateOrdenesDeviajeTitle_observacionesDeLaOrden}" />
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_ruta}" for="ruta" />
+                        <p:inputText id="ruta" value="#{ordenesDeviajeController.selected.ruta}" title="#{bundle.CreateOrdenesDeviajeTitle_ruta}" required="true" requiredMessage="#{bundle.CreateOrdenesDeviajeRequiredMessage_ruta}"/>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_subtotal}" for="subtotal" />
+                        <p:inputText id="subtotal" value="#{ordenesDeviajeController.selected.subtotal}" title="#{bundle.CreateOrdenesDeviajeTitle_subtotal}" />
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_menosRetefuente}" for="menosRetefuente" />
+                        <p:inputText id="menosRetefuente" value="#{ordenesDeviajeController.selected.menosRetefuente}" title="#{bundle.CreateOrdenesDeviajeTitle_menosRetefuente}" />
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_valorNetoAReconocer}" for="valorNetoAReconocer" />
+                        <p:inputText id="valorNetoAReconocer" value="#{ordenesDeviajeController.selected.valorNetoAReconocer}" title="#{bundle.CreateOrdenesDeviajeTitle_valorNetoAReconocer}" required="true" requiredMessage="#{bundle.CreateOrdenesDeviajeRequiredMessage_valorNetoAReconocer}"/>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_objetvos}" for="objetvos" />
+                        <p:inputText id="objetvos" value="#{ordenesDeviajeController.selected.objetvos}" title="#{bundle.CreateOrdenesDeviajeTitle_objetvos}" required="true" requiredMessage="#{bundle.CreateOrdenesDeviajeRequiredMessage_objetvos}"/>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_totalAnticipoAPagar}" for="totalAnticipoAPagar" />
+                        <p:inputText id="totalAnticipoAPagar" value="#{ordenesDeviajeController.selected.totalAnticipoAPagar}" title="#{bundle.CreateOrdenesDeviajeTitle_totalAnticipoAPagar}" required="true" requiredMessage="#{bundle.CreateOrdenesDeviajeRequiredMessage_totalAnticipoAPagar}"/>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_entidadSuministraVehiculo}" for="entidadSuministraVehiculo" />
+                        <p:selectBooleanCheckbox id="entidadSuministraVehiculo" value="#{ordenesDeviajeController.selected.entidadSuministraVehiculo}" required="true" requiredMessage="#{bundle.EditOrdenesDeviajeRequiredMessage_entidadSuministraVehiculo}"/>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_idTipoPasaje}" for="idTipoPasaje" />
+                        <p:selectOneMenu id="idTipoPasaje" value="#{ordenesDeviajeController.selected.idTipoPasaje}" required="true" requiredMessage="#{bundle.EditOrdenesDeviajeRequiredMessage_idTipoPasaje}">
+                            <f:selectItems value="#{tiposPasajesController.itemsAvailableSelectOne}"
+                                           var="idTipoPasajeItem"
+                                           itemValue="#{idTipoPasajeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_idDpto}" for="idDpto" />
+                        <p:selectOneMenu id="idDpto" value="#{ordenesDeviajeController.selected.idDpto}" required="true" requiredMessage="#{bundle.EditOrdenesDeviajeRequiredMessage_idDpto}">
+                            <f:selectItems value="#{departamentosController.itemsAvailableSelectOne}"
+                                           var="idDptoItem"
+                                           itemValue="#{idDptoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_codigoDeDependencia}" for="codigoDeDependencia" />
+                        <p:selectOneMenu id="codigoDeDependencia" value="#{ordenesDeviajeController.selected.codigoDeDependencia}" required="true" requiredMessage="#{bundle.EditOrdenesDeviajeRequiredMessage_codigoDeDependencia}">
+                            <f:selectItems value="#{dependenciasController.itemsAvailableSelectOne}"
+                                           var="codigoDeDependenciaItem"
+                                           itemValue="#{codigoDeDependenciaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_idTrayecto}" for="idTrayecto" />
+                        <p:selectOneMenu id="idTrayecto" value="#{ordenesDeviajeController.selected.idTrayecto}" required="true" requiredMessage="#{bundle.EditOrdenesDeviajeRequiredMessage_idTrayecto}">
+                            <f:selectItems value="#{trayectosController.itemsAvailableSelectOne}"
+                                           var="idTrayectoItem"
+                                           itemValue="#{idTrayectoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_idCuenta}" for="idCuenta" />
+                        <p:selectOneMenu id="idCuenta" value="#{ordenesDeviajeController.selected.idCuenta}" required="true" requiredMessage="#{bundle.EditOrdenesDeviajeRequiredMessage_idCuenta}">
+                            <f:selectItems value="#{cuentasBancariasController.itemsAvailableSelectOne}"
+                                           var="idCuentaItem"
+                                           itemValue="#{idCuentaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_idUsuario}" for="idUsuario" />
+                        <p:selectOneMenu id="idUsuario" value="#{ordenesDeviajeController.selected.idUsuario}" required="true" requiredMessage="#{bundle.EditOrdenesDeviajeRequiredMessage_idUsuario}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="idUsuarioItem"
+                                           itemValue="#{idUsuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateOrdenesDeviajeLabel_idComision}" for="idComision" />
+                        <p:selectOneMenu id="idComision" value="#{ordenesDeviajeController.selected.idComision}" required="true" requiredMessage="#{bundle.EditOrdenesDeviajeRequiredMessage_idComision}">
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOne}"
+                                           var="idComisionItem"
+                                           itemValue="#{idComisionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ordenesDeviajeController.create}" value="#{bundle.Save}" update="display,:OrdenesDeviajeListForm:datalist,:growl" oncomplete="handleSubmit(args,'OrdenesDeviajeCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="OrdenesDeviajeCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PagosCreateDlg" widgetVar="PagosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePagosTitle}">
+            <h:form id="PagosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pagosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePagosLabel_idPagos}" for="idPagos" />
+                        <p:inputText id="idPagos" value="#{pagosController.selected.idPagos}" title="#{bundle.CreatePagosTitle_idPagos}" required="true" requiredMessage="#{bundle.CreatePagosRequiredMessage_idPagos}"/>
+                        <p:outputLabel value="#{bundle.CreatePagosLabel_valorCuota}" for="valorCuota" />
+                        <p:inputText id="valorCuota" value="#{pagosController.selected.valorCuota}" title="#{bundle.CreatePagosTitle_valorCuota}" />
+                        <p:outputLabel value="#{bundle.CreatePagosLabel_horasEjecutadas}" for="horasEjecutadas" />
+                        <p:calendar id="horasEjecutadas" pattern="MM/dd/yyyy HH:mm:ss" value="#{pagosController.selected.horasEjecutadas}" title="#{bundle.EditPagosTitle_horasEjecutadas}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePagosLabel_idUsuario}" for="idUsuario" />
+                        <p:selectOneMenu id="idUsuario" value="#{pagosController.selected.idUsuario}" required="true" requiredMessage="#{bundle.EditPagosRequiredMessage_idUsuario}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="idUsuarioItem"
+                                           itemValue="#{idUsuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePagosLabel_idContrato}" for="idContrato" />
+                        <p:selectOneMenu id="idContrato" value="#{pagosController.selected.idContrato}" required="true" requiredMessage="#{bundle.EditPagosRequiredMessage_idContrato}">
+                            <f:selectItems value="#{contratosController.itemsAvailableSelectOne}"
+                                           var="idContratoItem"
+                                           itemValue="#{idContratoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pagosController.create}" value="#{bundle.Save}" update="display,:PagosListForm:datalist,:growl" oncomplete="handleSubmit(args,'PagosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PagosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

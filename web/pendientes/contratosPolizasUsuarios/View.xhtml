@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContratosPolizasUsuariosViewDlg" widgetVar="ContratosPolizasUsuariosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewContratosPolizasUsuariosTitle}">
+            <h:form id="ContratosPolizasUsuariosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{contratosPolizasUsuariosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewContratosPolizasUsuariosLabel_fechaSesion}"/>
+                        <h:outputText value="#{contratosPolizasUsuariosController.selected.fechaSesion}" title="#{bundle.ViewContratosPolizasUsuariosTitle_fechaSesion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewContratosPolizasUsuariosLabel_observaciones}"/>
+                        <h:outputText value="#{contratosPolizasUsuariosController.selected.observaciones}" title="#{bundle.ViewContratosPolizasUsuariosTitle_observaciones}"/>
+                        <h:outputText value="#{bundle.ViewContratosPolizasUsuariosLabel_usuarios}"/>
+                        <h:outputText value="#{contratosPolizasUsuariosController.selected.usuarios}" title="#{bundle.ViewContratosPolizasUsuariosTitle_usuarios}"/>
+                        <h:outputText value="#{bundle.ViewContratosPolizasUsuariosLabel_polizas}"/>
+                        <h:outputText value="#{contratosPolizasUsuariosController.selected.polizas}" title="#{bundle.ViewContratosPolizasUsuariosTitle_polizas}"/>
+                        <h:outputText value="#{bundle.ViewContratosPolizasUsuariosLabel_contratos}"/>
+                        <h:outputText value="#{contratosPolizasUsuariosController.selected.contratos}" title="#{bundle.ViewContratosPolizasUsuariosTitle_contratos}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ContratosPolizasUsuariosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

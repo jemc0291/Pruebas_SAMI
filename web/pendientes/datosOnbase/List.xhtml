@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDatosOnbaseTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="DatosOnbaseListForm">
+                <p:panel header="#{bundle.ListDatosOnbaseTitle}">
+                    <p:dataTable id="datalist" value="#{datosOnbaseController.items}" var="item"
+                                 selectionMode="single" selection="#{datosOnbaseController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idDatosOnbase}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_idDatosOnbase}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDatosOnbase}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_numRadicadoRecibida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numRadicadoRecibida}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_nis}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nis}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_codigoRegional}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoRegional}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_modoIngreso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.modoIngreso}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_entregaALaMano}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.entregaALaMano}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_fechaProcedencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaProcedencia}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_numeroRadicadoOrigen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroRadicadoOrigen}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_tipoDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoDocumento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_tiempoRespuestaDias}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tiempoRespuestaDias}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_fechaRespuesta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaRespuesta}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_numeroDeAnexos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroDeAnexos}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_asunto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.asunto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_tipoPeticion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoPeticion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_descripcionAnexos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionAnexos}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_tipoDigitalizacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoDigitalizacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_idUsuarioAdmin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuarioAdmin}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDatosOnbaseTitle_idUsuarioDestino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuarioDestino}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{datosOnbaseController.prepareCreate}" update=":DatosOnbaseCreateForm" oncomplete="PF('DatosOnbaseCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DatosOnbaseViewForm" oncomplete="PF('DatosOnbaseViewDialog').show()" disabled="#{empty datosOnbaseController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DatosOnbaseEditForm" oncomplete="PF('DatosOnbaseEditDialog').show()" disabled="#{empty datosOnbaseController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{datosOnbaseController.destroy}" update=":growl,datalist" disabled="#{empty datosOnbaseController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

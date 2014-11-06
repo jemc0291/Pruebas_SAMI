@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CrpCreateDlg" widgetVar="CrpCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCrpTitle}">
+            <h:form id="CrpCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{crpController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCrpLabel_numeroCrp}" for="numeroCrp" />
+                        <p:inputText id="numeroCrp" value="#{crpController.selected.numeroCrp}" title="#{bundle.CreateCrpTitle_numeroCrp}" required="true" requiredMessage="#{bundle.CreateCrpRequiredMessage_numeroCrp}"/>
+                        <p:outputLabel value="#{bundle.CreateCrpLabel_fechaExpedicion}" for="fechaExpedicion" />
+                        <p:calendar id="fechaExpedicion" pattern="MM/dd/yyyy HH:mm:ss" value="#{crpController.selected.fechaExpedicion}" title="#{bundle.EditCrpTitle_fechaExpedicion}" required="true" requiredMessage="#{bundle.EditCrpRequiredMessage_fechaExpedicion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCrpLabel_fechaRecepcion}" for="fechaRecepcion" />
+                        <p:calendar id="fechaRecepcion" pattern="MM/dd/yyyy HH:mm:ss" value="#{crpController.selected.fechaRecepcion}" title="#{bundle.EditCrpTitle_fechaRecepcion}" required="true" requiredMessage="#{bundle.EditCrpRequiredMessage_fechaRecepcion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCrpLabel_objetivoDelGasto}" for="objetivoDelGasto" />
+                        <p:inputText id="objetivoDelGasto" value="#{crpController.selected.objetivoDelGasto}" title="#{bundle.CreateCrpTitle_objetivoDelGasto}" required="true" requiredMessage="#{bundle.CreateCrpRequiredMessage_objetivoDelGasto}"/>
+                        <p:outputLabel value="#{bundle.CreateCrpLabel_total}" for="total" />
+                        <p:inputText id="total" value="#{crpController.selected.total}" title="#{bundle.CreateCrpTitle_total}" required="true" requiredMessage="#{bundle.CreateCrpRequiredMessage_total}"/>
+                        <p:outputLabel value="#{bundle.CreateCrpLabel_subtotal}" for="subtotal" />
+                        <p:inputText id="subtotal" value="#{crpController.selected.subtotal}" title="#{bundle.CreateCrpTitle_subtotal}" />
+                        <p:outputLabel value="#{bundle.CreateCrpLabel_crpRubros}" for="crpRubros" />
+                        <p:selectOneMenu id="crpRubros" value="#{crpController.selected.crpRubros}" >
+                            <f:selectItems value="#{crpRubrosController.itemsAvailableSelectOne}"
+                                           var="crpRubrosItem"
+                                           itemValue="#{crpRubrosItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCrpLabel_idRecursos}" for="idRecursos" />
+                        <p:selectOneMenu id="idRecursos" value="#{crpController.selected.idRecursos}" required="true" requiredMessage="#{bundle.EditCrpRequiredMessage_idRecursos}">
+                            <f:selectItems value="#{recursosOFuentesController.itemsAvailableSelectOne}"
+                                           var="idRecursosItem"
+                                           itemValue="#{idRecursosItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCrpLabel_idTipoSolicitud}" for="idTipoSolicitud" />
+                        <p:selectOneMenu id="idTipoSolicitud" value="#{crpController.selected.idTipoSolicitud}" required="true" requiredMessage="#{bundle.EditCrpRequiredMessage_idTipoSolicitud}">
+                            <f:selectItems value="#{tiposDeSolicitudesController.itemsAvailableSelectOne}"
+                                           var="idTipoSolicitudItem"
+                                           itemValue="#{idTipoSolicitudItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCrpLabel_ordenesDeViajeCrp}" for="ordenesDeViajeCrp" />
+                        <p:selectOneMenu id="ordenesDeViajeCrp" value="#{crpController.selected.ordenesDeViajeCrp}" >
+                            <f:selectItems value="#{ordenesDeViajeCrpController.itemsAvailableSelectOne}"
+                                           var="ordenesDeViajeCrpItem"
+                                           itemValue="#{ordenesDeViajeCrpItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{crpController.create}" value="#{bundle.Save}" update="display,:CrpListForm:datalist,:growl" oncomplete="handleSubmit(args,'CrpCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CrpCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TrayectosEditDlg" widgetVar="TrayectosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTrayectosTitle}">
+            <h:form id="TrayectosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{trayectosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTrayectosLabel_idTrayecto}" for="idTrayecto" />
+                        <p:inputText id="idTrayecto" value="#{trayectosController.selected.idTrayecto}" title="#{bundle.EditTrayectosTitle_idTrayecto}" required="true" requiredMessage="#{bundle.EditTrayectosRequiredMessage_idTrayecto}"/>
+                        <p:outputLabel value="#{bundle.EditTrayectosLabel_nombreTrayecto}" for="nombreTrayecto" />
+                        <p:inputText id="nombreTrayecto" value="#{trayectosController.selected.nombreTrayecto}" title="#{bundle.EditTrayectosTitle_nombreTrayecto}" required="true" requiredMessage="#{bundle.EditTrayectosRequiredMessage_nombreTrayecto}"/>
+                        <p:outputLabel value="#{bundle.EditTrayectosLabel_salidaEstimada}" for="salidaEstimada" />
+                        <p:calendar id="salidaEstimada" pattern="MM/dd/yyyy" value="#{trayectosController.selected.salidaEstimada}" title="#{bundle.EditTrayectosTitle_salidaEstimada}" required="true" requiredMessage="#{bundle.EditTrayectosRequiredMessage_salidaEstimada}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTrayectosLabel_llegadaEstimada}" for="llegadaEstimada" />
+                        <p:calendar id="llegadaEstimada" pattern="MM/dd/yyyy" value="#{trayectosController.selected.llegadaEstimada}" title="#{bundle.EditTrayectosTitle_llegadaEstimada}" required="true" requiredMessage="#{bundle.EditTrayectosRequiredMessage_llegadaEstimada}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTrayectosLabel_numeroDias}" for="numeroDias" />
+                        <p:inputText id="numeroDias" value="#{trayectosController.selected.numeroDias}" title="#{bundle.EditTrayectosTitle_numeroDias}" required="true" requiredMessage="#{bundle.EditTrayectosRequiredMessage_numeroDias}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{trayectosController.update}" value="#{bundle.Save}" update="display,:TrayectosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TrayectosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TrayectosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

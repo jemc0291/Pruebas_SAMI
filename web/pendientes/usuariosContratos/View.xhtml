@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuariosContratosViewDlg" widgetVar="UsuariosContratosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsuariosContratosTitle}">
+            <h:form id="UsuariosContratosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuariosContratosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUsuariosContratosLabel_rol}"/>
+                        <h:outputText value="#{usuariosContratosController.selected.rol}" title="#{bundle.ViewUsuariosContratosTitle_rol}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosContratosLabel_usuarios}"/>
+                        <h:outputText value="#{usuariosContratosController.selected.usuarios}" title="#{bundle.ViewUsuariosContratosTitle_usuarios}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosContratosLabel_contratos}"/>
+                        <h:outputText value="#{usuariosContratosController.selected.contratos}" title="#{bundle.ViewUsuariosContratosTitle_contratos}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UsuariosContratosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

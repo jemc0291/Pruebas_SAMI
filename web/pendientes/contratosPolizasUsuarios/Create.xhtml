@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContratosPolizasUsuariosCreateDlg" widgetVar="ContratosPolizasUsuariosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateContratosPolizasUsuariosTitle}">
+            <h:form id="ContratosPolizasUsuariosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{contratosPolizasUsuariosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateContratosPolizasUsuariosLabel_fechaSesion}" for="fechaSesion" />
+                        <p:calendar id="fechaSesion" pattern="MM/dd/yyyy" value="#{contratosPolizasUsuariosController.selected.fechaSesion}" title="#{bundle.EditContratosPolizasUsuariosTitle_fechaSesion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateContratosPolizasUsuariosLabel_observaciones}" for="observaciones" />
+                        <p:inputText id="observaciones" value="#{contratosPolizasUsuariosController.selected.observaciones}" title="#{bundle.CreateContratosPolizasUsuariosTitle_observaciones}" />
+                        <p:outputLabel value="#{bundle.CreateContratosPolizasUsuariosLabel_usuarios}" for="usuarios" />
+                        <p:selectOneMenu id="usuarios" value="#{contratosPolizasUsuariosController.selected.usuarios}" required="true" requiredMessage="#{bundle.EditContratosPolizasUsuariosRequiredMessage_usuarios}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="usuariosItem"
+                                           itemValue="#{usuariosItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateContratosPolizasUsuariosLabel_polizas}" for="polizas" />
+                        <p:selectOneMenu id="polizas" value="#{contratosPolizasUsuariosController.selected.polizas}" required="true" requiredMessage="#{bundle.EditContratosPolizasUsuariosRequiredMessage_polizas}">
+                            <f:selectItems value="#{polizasController.itemsAvailableSelectOne}"
+                                           var="polizasItem"
+                                           itemValue="#{polizasItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateContratosPolizasUsuariosLabel_contratos}" for="contratos" />
+                        <p:selectOneMenu id="contratos" value="#{contratosPolizasUsuariosController.selected.contratos}" required="true" requiredMessage="#{bundle.EditContratosPolizasUsuariosRequiredMessage_contratos}">
+                            <f:selectItems value="#{contratosController.itemsAvailableSelectOne}"
+                                           var="contratosItem"
+                                           itemValue="#{contratosItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{contratosPolizasUsuariosController.create}" value="#{bundle.Save}" update="display,:ContratosPolizasUsuariosListForm:datalist,:growl" oncomplete="handleSubmit(args,'ContratosPolizasUsuariosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ContratosPolizasUsuariosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

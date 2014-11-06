@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenesDeviajeViewDlg" widgetVar="OrdenesDeviajeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOrdenesDeviajeTitle}">
+            <h:form id="OrdenesDeviajeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordenesDeviajeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_numeroOrdendeviaje}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.numeroOrdendeviaje}" title="#{bundle.ViewOrdenesDeviajeTitle_numeroOrdendeviaje}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_fechaTramite}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.fechaTramite}" title="#{bundle.ViewOrdenesDeviajeTitle_fechaTramite}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_observacionesDeLaOrden}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.observacionesDeLaOrden}" title="#{bundle.ViewOrdenesDeviajeTitle_observacionesDeLaOrden}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_ruta}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.ruta}" title="#{bundle.ViewOrdenesDeviajeTitle_ruta}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_subtotal}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.subtotal}" title="#{bundle.ViewOrdenesDeviajeTitle_subtotal}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_menosRetefuente}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.menosRetefuente}" title="#{bundle.ViewOrdenesDeviajeTitle_menosRetefuente}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_valorNetoAReconocer}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.valorNetoAReconocer}" title="#{bundle.ViewOrdenesDeviajeTitle_valorNetoAReconocer}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_objetvos}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.objetvos}" title="#{bundle.ViewOrdenesDeviajeTitle_objetvos}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_totalAnticipoAPagar}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.totalAnticipoAPagar}" title="#{bundle.ViewOrdenesDeviajeTitle_totalAnticipoAPagar}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_entidadSuministraVehiculo}"/>
+                        <p:selectBooleanCheckbox value="#{ordenesDeviajeController.selected.entidadSuministraVehiculo}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_idTipoPasaje}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.idTipoPasaje}" title="#{bundle.ViewOrdenesDeviajeTitle_idTipoPasaje}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_idDpto}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.idDpto}" title="#{bundle.ViewOrdenesDeviajeTitle_idDpto}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_codigoDeDependencia}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.codigoDeDependencia}" title="#{bundle.ViewOrdenesDeviajeTitle_codigoDeDependencia}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_idTrayecto}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.idTrayecto}" title="#{bundle.ViewOrdenesDeviajeTitle_idTrayecto}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_idCuenta}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.idCuenta}" title="#{bundle.ViewOrdenesDeviajeTitle_idCuenta}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_idUsuario}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.idUsuario}" title="#{bundle.ViewOrdenesDeviajeTitle_idUsuario}"/>
+                        <h:outputText value="#{bundle.ViewOrdenesDeviajeLabel_idComision}"/>
+                        <h:outputText value="#{ordenesDeviajeController.selected.idComision}" title="#{bundle.ViewOrdenesDeviajeTitle_idComision}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="OrdenesDeviajeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
