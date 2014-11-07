@@ -6,9 +6,14 @@
 
 package co.edu.sena.sami.jpa.entities;
 
+import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -363,7 +368,11 @@ public class Usuarios implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        try {
+            this.password = JsfUtil.generateDigest(password);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String getGpRh() {
