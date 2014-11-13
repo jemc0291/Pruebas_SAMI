@@ -49,10 +49,22 @@ public class PaisController implements Serializable {
         return ejbFacade;
     }
 
-    public Pais prepareCreate() {
+    public String prepareCreate() {
         selected = new Pais();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarPais";
+    }
+    
+      public String prepareModificarPais() {
+        return "ModificarPais";
+    }
+
+    public String prepareConsultarPais() {
+        return "ConsultarPais";
+    }
+
+    public String prepareListPais() {
+        return "/Configuracion/Pais/ListarPais";
     }
 
     public void create() {

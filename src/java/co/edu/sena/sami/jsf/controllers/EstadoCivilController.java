@@ -49,10 +49,22 @@ public class EstadoCivilController implements Serializable {
         return ejbFacade;
     }
 
-    public EstadoCivil prepareCreate() {
+    public String prepareCreate() {
         selected = new EstadoCivil();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarEstadoCivil";
+    }
+
+    public String prepareModificarEstadoCivil() {
+        return "ModificarEstadoCivil";
+    }
+
+    public String prepareConsultarEstadoCivil() {
+        return "ConsultarEstadoCivil";
+    }
+
+    public String prepareListEstadoCivil() {
+        return "/Configuracion/Estado Civil/ListarEstadoCivil";
     }
 
     public void create() {

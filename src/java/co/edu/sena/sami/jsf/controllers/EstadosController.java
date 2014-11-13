@@ -49,10 +49,22 @@ public class EstadosController implements Serializable {
         return ejbFacade;
     }
 
-    public Estados prepareCreate() {
+    public String prepareCreate() {
         selected = new Estados();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarEstados";
+    }
+
+    public String prepareModificarEstados() {
+        return "ModificarEstados";
+    }
+
+    public String prepareConsultarEstados() {
+        return "ConsultarEstados";
+    }
+
+    public String prepareListEstados() {
+        return "/Configuracion/EstadoCivil/ListarEstadoCivil";
     }
 
     public void create() {

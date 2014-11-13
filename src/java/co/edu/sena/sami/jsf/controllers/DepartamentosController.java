@@ -49,11 +49,24 @@ public class DepartamentosController implements Serializable {
         return ejbFacade;
     }
 
-    public Departamentos prepareCreate() {
+    public String prepareCreate() {
         selected = new Departamentos();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarDepartamentos";
     }
+    
+    public String prepareModificarDepartamentos() {
+        return "ModificarDepartamentos";
+    }
+
+    public String prepareConsultarDepartamentos() {
+        return "ConsultarDepartamentos";
+    }
+
+    public String prepareListDepartamentos() {
+        return "/Configuracion/Departamentos/ListarDepartamentos";
+    }
+    
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("DepartamentosCreated"));

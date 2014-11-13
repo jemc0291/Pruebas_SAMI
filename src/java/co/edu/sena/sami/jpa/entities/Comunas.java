@@ -116,7 +116,7 @@ public class Comunas implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Comunas[ idComuna=" + idComuna + " ]";
+        return  nombreComuna + " ";
     }
     
 }

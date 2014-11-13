@@ -8,14 +8,13 @@
         <meta name="viewport" content="width=device-width, minimun-scale=1,maximun=1"/>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'/>
         <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/estilos_index.css"/>
-        <script type="text/javascript" src="#{request.contextPath}/resources/js/jquery.slides.min.js"></script>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/fonts.css"/>
         <title>Sami</title>               
     </head>
     <body class="body" jsf:id="body">
         <header class="Header">
             <img src="#{request.contextPath}/resources/images/sami.png" width="280" height="100" class="Header-logo" />
-            <p class="Header-title-inicio">SISTEMA ADMINISTRATIVO MODULARA INTEGRADO</p>
+            <p class="Header-title-inicio">SISTEMA ADMINISTRATIVO MODULAR INTEGRADO</p>
             <figure class="Menu-img">
                 <img src="#{request.contextPath}/resources/images/ministerio_trabajo.PNG" width="100"/>
                 <img src="#{request.contextPath}/resources/images/progreso_para_todos.PNG"/>
@@ -23,7 +22,7 @@
             </figure>
             <nav class="menu-inicio">
                 <ul class="MainMenu-list1">                 
-                    <li class="MaiMenu-item1"><a href="sami_inicio.html" class="MainMenu-link1">INICIO</a></li>
+                    <li class="MaiMenu-item1"><a jsf:outcome="/sami_inicio.xhtml" class="MainMenu-link1">INICIO</a></li>
                     <li class="MaiMenu-item1"><a href="sami_inicio_modulos.html" class="MainMenu-link1">INFORMACION MODULOS</a></li>
                     <li class="MaiMenu-item1"><a href="sami_inicio_ayuda.html" class="MainMenu-link1">AYUDA</a></li> 
                 </ul>                        
@@ -51,28 +50,12 @@
             </form>
             <div class="main"> 
                 <div class="slides">
-                    <img src="#{request.contextPath}/resources/images/images1.jpg" height="260px"/>
-                    <img src="#{request.contextPath}/resources/images/images2.jpg" height="260px"/>
-                    <img src="#{request.contextPath}/resources/images/images3.jpg" height="260px"/>
+                    <img src="#{request.contextPath}/resources/images/img1.jpg" height="260px"/>
+                    <img src="#{request.contextPath}/resources/images/img2.jpg" height="260px"/>
+                    <img src="#{request.contextPath}/resources/images/img3.jpg" height="260px"/>
                 </div>
             </div>
-            <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-            <script src="#{request.contextPath}/resources/js/jquery.slides.js"></script>
-            <script>
-                        $(function() {
-                            $(".slides").slidesjs({
-                                play: {
-                                    active: true,
-                                    effect: "slide",
-                                    interval: 3000,
-                                    auto: true,
-                                    swap: true,
-                                    pauseOnHover: false,
-                                    restartDelay: 2500
-                                }
-                            });
-                        });
-            </script>
+          
             <figure class="img-enlaces-inicio">
                 <h3 class="Enlaces">ENLACES</h3>
                 <a href="http://oferta.senasofiaplus.edu.co/" target="_black"><img src="#{request.contextPath}/resources/images/sena-sofia-plus.png" width="170" height="70" class="Figure-im"/></a>
@@ -112,6 +95,24 @@
             </p>
 
         </footer>  
+         <script type="text/javascript" src="#{request.contextPath}/resources/js/jquery.slides.min.js"></script>
+         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+            <script src="#{request.contextPath}/resources/js/jquery.slides.js"></script>
+            <script>
+                        $(function() {
+                            $(".slides").slidesjs({
+                                play: {
+                                    active: true,
+                                    effect: "slide",
+                                    interval: 3000,
+                                    auto: true,
+                                    swap: true,
+                                    pauseOnHover: false,
+                                    restartDelay: 2500
+                                }
+                            });
+                        });
+            </script>
     </body>   
 </html>
 

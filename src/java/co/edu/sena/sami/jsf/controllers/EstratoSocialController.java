@@ -49,10 +49,22 @@ public class EstratoSocialController implements Serializable {
         return ejbFacade;
     }
 
-    public EstratoSocial prepareCreate() {
+    public String prepareCreate() {
         selected = new EstratoSocial();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarEstratoSocial";
+    }
+
+    public String prepareModificarEstratoSocial() {
+        return "ModificarEstratoSocial";
+    }
+
+    public String prepareConsultarEstratoSocial() {
+        return "ConsultarEstratoSocial";
+    }
+
+    public String prepareListEstratoSocial() {
+        return "/Configuracion/EstratoSocial/ListarEstratoSocial";
     }
 
     public void create() {

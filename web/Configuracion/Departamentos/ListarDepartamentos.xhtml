@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">LISTAR DEPARTAMENTOS</ui:define>
+        <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h1>LISTAR DEPARTAMENTOS</h1>
+            <h:form>
+
+                <P>
+                    <h:commandButton action="#{departamentosController.prepareCreate}" value="Agregar Departamento"/>
+                    <h:commandButton action="#{departamentosController.prepareModificarDepartamentos}" value="Modificar Departamento"/>
+                </P>
+                <p:outputPanel id="DepartamentosTablePanel">
+                    <p:dataTable value="#{departamentosController.items}" var="item"
+                                 rows="10" id="DepartamentoTable" 
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="20,40,60">
+
+                        <p:column>
+                            <f:facet name="header">ID Departamento</f:facet>
+                            <h:outputText value="#{item.idDpto}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.nombreDpto}" filterMatchMode="contains">
+                            <f:facet name="header">Nombre Departamento</f:facet>
+                            <h:outputText value="#{item.nombreDpto}"/>
+                        </p:column>
+
+                        <p:column>
+
+                            <p:commandButton icon="ui-icon-pencil" action="#{departamentosController.prepareModificarDepartamentos}">
+                                <f:setPropertyActionListener value="#{item}" target="#{departamentosController.selected}"/>
+                            </p:commandButton>
+
+                            <p:commandButton icon="ui-icon-trash" action="#{departamentosController.destroy}"
+                                             process="@this" update="DepartamentoTable">
+                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el departamento?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{item}" target="#{departamentosController.selected}"/>
+                            </p:commandButton>
+                        </p:column>
+
+
+                    </p:dataTable>
+                </p:outputPanel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

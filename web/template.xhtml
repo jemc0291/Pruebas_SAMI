@@ -19,139 +19,43 @@
 
     <body jsf:id="body">
         <p:growl id="growl" life="3000" />
-        <header class="Header">
-            <figure class="HeaderLogoContainer">
-                <img class="HeaderLogoImage" src="#{request.contextPath}/resources/images/template/logo.png"/>
-                <figcaption class="HeaderLogoDescription">Sistema Administrativo Modular Integrado</figcaption>
+        <header Class="Header">
+            <figure Class="Header-imageContainer">
+                <img class="Header-logo" src="#{request.contextPath}/resources/images/template/logo.png" width="200"/>
             </figure>
-            <h1 class="HeaderTittle">SISTEMA ADMINISTRATIVO <br/>MODULAR INTEGRADO</h1>
-            <article class="ContainerList">
-                <p class="HeaderGreetingUser">Bienvenido,Usuario</p>
-                <select class="HeaderListModules-Options" name="Roles">
-                    <option class="HeaderList-Item" selected="true" value="0"> Elige una opción </option>
-                    <optgroup class="HeaderListCategory" label="Módulos"> 
-                        <option class="HeaderList-Item" value="1">Contratación y cuentas de cobro</option>
-                        <option class="HeaderList-Item" value="2">Supervisión de contratos y mantenimiento</option>  
-                        <option class="HeaderList-Item" value="3">Supervisión de contratos de compras, suministros y servicios</option> 
-                        <option class="HeaderList-Item" value="4">Gestión y talento humano</option>
-                        <option class="HeaderList-Item" value="5">Gestión documental</option> 
-                        <option class="HeaderList-Item" value="6">Gestión de materiales de formación</option>
-                    </optgroup> 
-                    <optgroup class="HeaderListCategory" label="Opciones"> 
-                        <option class="HeaderList-Item" value="10">Configuracion</option> 
-                        <option class="HeaderList-Item" value="11">Cerrar Sesión</option> 
-                    </optgroup> 
-                </select>
-            </article> 
-            <nav class="MainMenu">
-                <ul class="MainMenu-list">
-                    <li class="MainMenu-item">
-                        <a class="MainMenu-link" href="">Opción 1</a>
-                    </li>
-                    <li class="MainMenu-item">
-                        <a class="MainMenu-link" href="../../User/Jefe/busqueda_contrato_jefe.html">Opción 2</a>
-                    </li>
-                    <li class="MainMenu-item">
-                        <a class="MainMenu-link" href="../Jefe/Crear_contrato_jefe.html">Opción 3</a>
-                    </li>
-                    <li class="MainMenu-item">
-                        <a class="MainMenu-link" href="../Jefe/confirmar_paz_y_salvo.html">Opción N</a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- <h:form id="menuForm">
-                    <p:menubar autoDisplay="false">
-                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                        <p:submenu label="#{bundle.Maintenance}">
-                            <p:menuitem value="ActaVerificacion" outcome="/pendientes/actaVerificacion/List.xhtml" />
-                            <p:menuitem value="Aprobaciones" outcome="/pendientes/aprobaciones/List.xhtml" />
-                            <p:menuitem value="Areas" outcome="/pendientes/areas/List.xhtml" />
-                            <p:menuitem value="Arl" outcome="/pendientes/arl/List.xhtml" />
-                            <p:menuitem value="Aseguradora" outcome="/pendientes/aseguradora/List.xhtml" />
-                            <p:menuitem value="Bancos" outcome="/pendientes/bancos/List.xhtml" />
-                            <p:menuitem value="Barrios" outcome="/pendientes/barrios/List.xhtml" />
-                            <p:menuitem value="Categorias" outcome="/pendientes/categorias/List.xhtml" />
-                            <p:menuitem value="Ccf" outcome="/pendientes/ccf/List.xhtml" />
-                            <p:menuitem value="Cdp" outcome="/pendientes/cdp/List.xhtml" />
-                            <p:menuitem value="CentroFormacion" outcome="/pendientes/centroFormacion/List.xhtml" />
-                            <p:menuitem value="Ciudad" outcome="/pendientes/ciudad/List.xhtml" />
-                            <p:menuitem value="Comisiones" outcome="/pendientes/comisiones/List.xhtml" />
-                            <p:menuitem value="Comunas" outcome="/pendientes/comunas/List.xhtml" />
-                            <p:menuitem value="ConceptosDeGastos" outcome="/pendientes/conceptosDeGastos/List.xhtml" />
-                            <p:menuitem value="Contratos" outcome="/pendientes/contratos/List.xhtml" />
-                            <p:menuitem value="ContratosPolizasUsuarios" outcome="/pendientes/contratosPolizasUsuarios/List.xhtml" />
-                            <p:menuitem value="Crp" outcome="/pendientes/crp/List.xhtml" />
-                            <p:menuitem value="CrpRubros" outcome="/pendientes/crpRubros/List.xhtml" />
-                            <p:menuitem value="CuentasBancarias" outcome="/pendientes/cuentasBancarias/List.xhtml" />
-                            <p:menuitem value="DatosOnbase" outcome="/pendientes/datosOnbase/List.xhtml" />
-                            <p:menuitem value="Departamentos" outcome="/pendientes/departamentos/List.xhtml" />
-                            <p:menuitem value="Dependencias" outcome="/pendientes/dependencias/List.xhtml" />
-                            <p:menuitem value="DescripcionesReferenciasViaticos" outcome="/pendientes/descripcionesReferenciasViaticos/List.xhtml" />
-                            <p:menuitem value="Empresa" outcome="/pendientes/empresa/List.xhtml" />
-                            <p:menuitem value="Eps" outcome="/pendientes/eps/List.xhtml" />
-                            <p:menuitem value="EstadoCivil" outcome="/pendientes/estadoCivil/List.xhtml" />
-                            <p:menuitem value="Estados" outcome="/pendientes/estados/List.xhtml" />
-                            <p:menuitem value="EstratoSocial" outcome="/pendientes/estratoSocial/List.xhtml" />
-                            <p:menuitem value="Facturas" outcome="/pendientes/facturas/List.xhtml" />
-                            <p:menuitem value="FichaCaracterizacion" outcome="/pendientes/fichaCaracterizacion/List.xhtml" />
-                            <p:menuitem value="FondoDePensiones" outcome="/pendientes/fondoDePensiones/List.xhtml" />
-                            <p:menuitem value="FormacionAcademica" outcome="/pendientes/formacionAcademica/List.xhtml" />
-                            <p:menuitem value="Gestiones" outcome="/pendientes/gestiones/List.xhtml" />
-                            <p:menuitem value="Informes" outcome="/pendientes/informes/List.xhtml" />
-                            <p:menuitem value="InformesDeComisiones" outcome="/pendientes/informesDeComisiones/List.xhtml" />
-                            <p:menuitem value="Legalizaciones" outcome="/pendientes/legalizaciones/List.xhtml" />
-                            <p:menuitem value="ListasDeChequeos" outcome="/pendientes/listasDeChequeos/List.xhtml" />
-                            <p:menuitem value="Materiales" outcome="/pendientes/materiales/List.xhtml" />
-                            <p:menuitem value="NivelesFormacion" outcome="/pendientes/nivelesFormacion/List.xhtml" />
-                            <p:menuitem value="NotaEntrada" outcome="/pendientes/notaEntrada/List.xhtml" />
-                            <p:menuitem value="NotaEntradaMateriales" outcome="/pendientes/notaEntradaMateriales/List.xhtml" />
-                            <p:menuitem value="Novedades" outcome="/pendientes/novedades/List.xhtml" />
-                            <p:menuitem value="NovedadesListasDeChequeos" outcome="/pendientes/novedadesListasDeChequeos/List.xhtml" />
-                            <p:menuitem value="OrdenesDeViajeConceptosDeGastos" outcome="/pendientes/ordenesDeViajeConceptosDeGastos/List.xhtml" />
-                            <p:menuitem value="OrdenesDeViajeCrp" outcome="/pendientes/ordenesDeViajeCrp/List.xhtml" />
-                            <p:menuitem value="OrdenesDeviaje" outcome="/pendientes/ordenesDeviaje/List.xhtml" />
-                            <p:menuitem value="Pagos" outcome="/pendientes/pagos/List.xhtml" />
-                            <p:menuitem value="PagosContratos" outcome="/pendientes/pagosContratos/List.xhtml" />
-                            <p:menuitem value="Pais" outcome="/pendientes/pais/List.xhtml" />
-                            <p:menuitem value="Polizas" outcome="/pendientes/polizas/List.xhtml" />
-                            <p:menuitem value="Prioridades" outcome="/pendientes/prioridades/List.xhtml" />
-                            <p:menuitem value="ProgramaDeFormacion" outcome="/pendientes/programaDeFormacion/List.xhtml" />
-                            <p:menuitem value="ProyectoFormacion" outcome="/pendientes/proyectoFormacion/List.xhtml" />
-                            <p:menuitem value="RecursosOFuentes" outcome="/pendientes/recursosOFuentes/List.xhtml" />
-                            <p:menuitem value="RelacionesGastosDeTransporte" outcome="/pendientes/relacionesGastosDeTransporte/List.xhtml" />
-                            <p:menuitem value="RiesgosLaborales" outcome="/pendientes/riesgosLaborales/List.xhtml" />
-                            <p:menuitem value="Rol" outcome="/pendientes/rol/List.xhtml" />
-                            <p:menuitem value="Rubros" outcome="/pendientes/rubros/List.xhtml" />
-                            <p:menuitem value="Servicios" outcome="/pendientes/servicios/List.xhtml" />
-                            <p:menuitem value="Sexo" outcome="/pendientes/sexo/List.xhtml" />
-                            <p:menuitem value="SolicitudMaterialesAlmacen" outcome="/pendientes/solicitudMaterialesAlmacen/List.xhtml" />
-                            <p:menuitem value="SolicitudMaterialesAlmacenMateriales" outcome="/pendientes/solicitudMaterialesAlmacenMateriales/List.xhtml" />
-                            <p:menuitem value="SolicitudServicios" outcome="/pendientes/solicitudServicios/List.xhtml" />
-                            <p:menuitem value="SoportesDeDocumentos" outcome="/pendientes/soportesDeDocumentos/List.xhtml" />
-                            <p:menuitem value="Tarifas" outcome="/pendientes/tarifas/List.xhtml" />
-                            <p:menuitem value="TipoDeContrato" outcome="/pendientes/tipoDeContrato/List.xhtml" />
-                            <p:menuitem value="TipoDeCuenta" outcome="/pendientes/tipoDeCuenta/List.xhtml" />
-                            <p:menuitem value="TipoDeServicios" outcome="/pendientes/tipoDeServicios/List.xhtml" />
-                            <p:menuitem value="TipoDocumentos" outcome="/pendientes/tipoDocumentos/List.xhtml" />
-                            <p:menuitem value="TiposDeServiciosSolicitudDeServicios" outcome="/pendientes/tiposDeServiciosSolicitudDeServicios/List.xhtml" />
-                            <p:menuitem value="TiposDeSolicitudes" outcome="/pendientes/tiposDeSolicitudes/List.xhtml" />
-                            <p:menuitem value="TiposPasajes" outcome="/pendientes/tiposPasajes/List.xhtml" />
-                            <p:menuitem value="Trayectos" outcome="/pendientes/trayectos/List.xhtml" />
-                            <p:menuitem value="Usuarios" outcome="/pendientes/usuarios/List.xhtml" />
-                            <p:menuitem value="UsuariosContratos" outcome="/pendientes/usuariosContratos/List.xhtml" />
-                            <p:menuitem value="UsuariosSolicitudMaterialesAlmacen" outcome="/pendientes/usuariosSolicitudMaterialesAlmacen/List.xhtml" />
-                        </p:submenu>
-                    </p:menubar>
-                </h:form>-->
+            <center class="Header-title"><h1>SISTEMA ADMINISTRATIVO<br>MODULAR INTEGRADO</br></h1></center>
+            <article class="header-id">
+                <p class="Header-greetingUser">Bienvenido<br>Usuario</br></p>
+                <nav class="HeaderList">
+                    <ul class="HeaderList-option">
+                        <li class="HeaderList-item"><h3 id="list-box">Modulos<span class="icon-triangle-down"></span></h3>
+                            <ul>
+                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo1/index_modulo1.xhtml">Contratación y cuentas de cobro</a></li>
+                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo2/index_modulo2.xhtml">Supervisión de contratos y mantenimiento</a></li>
+                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo3/index_modulo3.xhtml">Supervisión de contratos de compras, suministros y servicios</a></li>
+                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo4/index_modulo4.xhtml">Gestión y talento humano</a></li>
+                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo5/index_modulo5.xhtml">Gestión documental</a></li>
+                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo6/index_modulo6.xhtml">Gestión de materiales de formación</a></li>
+                                <li class="HeaderList-link"><a  jsf:outcome="/Configuracion/index_configuracion.xhtml">Configuracion</a></li>
+                                <li class="HeaderList-link"><a  href="">Cerrar Sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </article>
         </header>
-
-
-        <section class="section">
-            <ui:insert name="body"/>
-            <br/>
+        <section class="Band-mant">
+            <nav class="MainMenu">
+                <ui:insert name="menu"/>
+            </nav>
+            <article class="View-cpds">
+                <ui:insert name="body"/>
+                <br/>
+            </article>
         </section>
-        
-        <footer class="Footer">
+
+
+        <footer class="Footer" >
             <article class="Footer-item">
                 <h4 class="Footer-title">Contacto</h4>
                 <p class="Footer-description">contactosami@gmail.com</p>
@@ -162,22 +66,26 @@
             </article>
             <article class="Footer-item">
                 <h4 class="Footer-title">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
-                <p class="Footer-description">Centro de biotecnologia industrial</p>
-                <p class="Footer-description">Palmira, Valle del Cauca</p>
-                <p class="Footer-description">Carrera 30 n° 40-25</p>
-                <p class="Footer-description">Telefono: 2750968</p>
-                <p class="Footer-description">Fax: 2750965</p>
+                <p class="Footer-descriptioncon">Centro de biotecnologia industrial</p>
+                <p class="Footer-descriptioncon">Palmira, Valle del Cauca</p>
+                <p class="Footer-descriptioncon">Carrera 30 n° 40-25</p>
+                <p class="Footer-descriptioncon">Telefono: 2750968</p>
+                <p class="Footer-descriptioncon">Fax: 2750965</p>
             </article>
             <article class="Footer-item">
-                <a class="Footer-description" href=""><img src="#{request.contextPath}/resources/images/template/icon1small.png" alt="enlace1"/></a>
-                <a class="Footer-description" href=""><img src="#{request.contextPath}/resources/images/template/icon2small.png" alt="enlace1"/></a>
-                <a class="Footer-description" href=""><img src="#{request.contextPath}/resources/images/template/icon3small.png" alt="enlace1"/></a>
-                <a class="Footer-description" href=""><img src="#{request.contextPath}/resources/images/template/icon4small.png" alt="enlace1"/></a>
-                <!--<a class="Footer-description" href=""><img src="#{request.contextPath}/resources/images/template/icons.png" alt="enlace1"/></a>-->
+                <i class="icon-icon-sofia-01"></i>
+                <i class="icon-icon-sena0"></i>
+                <i class="icon-cog"></i>
+                <i class="icon-help"></i>
             </article>
         </footer>
 
-
+        <form jsf:id="confirmForm">
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </form>
 
 
     </body>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Gestion Documental</ui:define>
+        <ui:define name="menu"><ui:include src="/Modulo5/menu_modulo5.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+         
+            <section class="section">
+                <h:form> 
+                    <ul>
+
+                        <h:commandButton value="Agregar Usuario" action="#{usuarioController.prepareAgregar()}"/>
+
+                        <h:commandButton value="Consultar Usuario" action="#{usuarioController.prepareConsultar()}"/>
+                        
+                        <h:commandButton value="Modificar Usuario" action="#{usuarioController.prepareModificar()}"/>
+
+                        <br/>
+                        <br/>
+                    </ul>
+                </h:form>
+
+
+                <section class="section-form">
+                    <form jsf:id="usuarioCreateForm">
+                        <h:panelGrid columns="3">
+                            <label class="Form-na">Numero Identificacion</label> 
+                            <input type="tel" jsf:id="numeroidInputText" required="true" 
+                                   jsf:requiredMessage="Por favor ingrese el numero de id" 
+                                   jsf:validatorMessage="Use solo numeros"
+                                   jsf:converterMessage="Use solo números. Máximo 16 digitos"
+                                   jsf:value="#{usuarioController.usuarioActual.numeroDeCedula}">
+                                <f:ajax execute="@this" render="numeroidMessage"/>
+                            </input>
+                            <h:message id="numeroidMessage" for="numeroidInputText" styleClass="error"/>
+
+
+                            <label class="Form-na">Primer Nombre</label> 
+                            <input type="text" jsf:id="primerNombreInputText" required="true" disabled="true"
+                                   jsf:requiredMessage="Por favor ingrese el nombre" 
+                                   jsf:validatorMessage="Use solo letras"
+                                   jsf:value="#{usuarioController.usuarioActual.nombre1}" maxlength="30">
+                                <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                <f:ajax execute="@this" render="primerNombreMessage"/>
+                            </input>
+                            <h:message id="primerNombreMessage" for="primerNombreInputText" styleClass="error"/>
+
+                            <label class="Form-na">Segundo Nombre</label> 
+                            <input type="text" jsf:id="segundoNombreInputText" required="true" disabled="true"
+                                   jsf:requiredMessage="Por favor ingrese el nombre" 
+                                   jsf:validatorMessage="Use solo letras" 
+                                   jsf:value="#{usuarioController.usuarioActual.nombre2}" maxlength="30">
+                                <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                <f:ajax execute="@this" render="segundoNombreMessage"/>
+                            </input>
+                            <h:message id="segundoNombreMessage" for="segundoNombreInputText" styleClass="error"/>
+
+
+                            <label class="Form-na">Primer Apellido</label> 
+                            <input type="text" jsf:id="primerApellidoInputText" required="true" disabled="true"
+                                   jsf:requiredMessage="Por favor ingrese el nombre" 
+                                   jsf:validatorMessage="Use solo letras" 
+                                   jsf:value="#{usuarioController.usuarioActual.apellido1}" maxlength="30">
+                                <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                <f:ajax execute="@this" render="primerApellidoMessage"/>
+                            </input>
+                            <h:message id="primerApellidoMessage" for="primerApellidoInputText" styleClass="error"/>
+
+                            <label class="Form-na">Segundo Apellido</label> 
+                            <input type="text" jsf:id="segundoApellidoInputText" required="true" disabled="true"
+                                   jsf:requiredMessage="Por favor ingrese el nombre" 
+                                   jsf:validatorMessage="Use solo letras" 
+                                   jsf:value="#{usuarioController.usuarioActual.apellido2}" maxlength="30">
+                                <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                <f:ajax execute="@this" render="segundoApellidoMessage"/>
+                            </input>
+                            <h:message id="segundoApellidoMessage" for="segundoApellidoInputText" styleClass="error"/>
+                            
+                            <label>Fecha Nacimiento:</label>
+                            <input type="date" jsf:id="fechaInputText" required="true" disabled="true"
+                                   jsf:requiredMessage="Por favor ingrese la fecha de Nacimiento"
+                                   jsf:value="#{usuarioController.usuarioActual.fecha}">
+                                <f:convertDateTime pattern="yyyy-MM-dd"/>
+                                <f:ajax execute="@this" render="fechaMessage"/>
+                            </input>
+                            <h:message id="fechaMessage" for="fechaInputText" styleClass="error"/>
+
+
+                            <label class="Form-docs">Tipo de Documento</label> 
+                            <p:selectOneMenu id="tipodocumentos" value="#{usuarioController.usuarioActual.idTipoDoc}" required="true" disabled="true"
+                                             requiredMessage=" se requiere el tipo de documento">
+                                <f:selectItems value="#{usuarioController.listTipoDocumentoSelectOne}"
+                                               var="documento"
+                                               itemValue="#{documento}"/>
+                            </p:selectOneMenu>
+                            <h:message id="tipodocumentosMessage" for="tipodocumentosInputText" styleClass="error"/>
+                            
+                            <label>Expedicion:</label>
+                            <input type="date" jsf:id="expedicionInputText" required="true" disabled="true"
+                                   jsf:requiredMessage="Por favor ingrese la fecha de expedicion"
+                                   jsf:value="#{usuarioController.usuarioActual.fechaExpedicionDoc}">
+                                <f:convertDateTime pattern="yyyy-MM-dd"/>
+                                <f:ajax execute="@this" render="expedicionMessage"/>
+                            </input>
+                            <h:message id="expedicionMessage" for="expedicionInputText" styleClass="error"/>
+
+
+                            <label class="Form-docs">Direccion</label> 
+                            <input type="text" jsf:id="direccionInputText" required="true" disabled="true"
+                                   jsf:requiredMessage="Por favor ingrese la direccion de su residencia"
+                                   jsf:validatorMessage="Por favor ingrese una direccion valida"
+                                   jsf:converterMessage="use solo letras y numeros"
+                                   jsf:value="#{usuarioController.usuarioActual.direccionUsu}">
+                                <f:validateRegex pattern="[A-Za-z 0-9áéíóúÁÉÍÓÚÑñ]*"/>
+                                <f:ajax execute="@this" render="direccionMessage"/>
+                            </input>
+                            <h:message id="direccionMessage" for="direccionInputText" styleClass="error"/>
+
+                            <label class="Form-datos">Movil</label>
+                            <input type="tel" jsf:id="movilInputText" required="true" disabled="true"
+                                   jsf:requiredMessage="Por favor ingrese el numero movil" 
+                                   jsf:validatorMessage="Ingrese un numero movi valido, debe ser mayor a cero"
+                                   jsf:converterMessage="Use solo números. Máximo 16 digitos"
+                                   jsf:value="#{usuarioController.usuarioActual.movilUsu}">
+                                <f:ajax execute="@this" render="movilMessage"/>
+                            </input>
+                            <h:message id="movilMessage" for="movilInputText" styleClass="error"/>
+
+                            <label class="Form-datos">E-mail</label> 
+                            <input type="email" jsf:id="emailInputText" required="true" disabled="true"
+                                   jsf:requiredMessage="Por favor ingrese un email"
+                                   jsf:validatorMessage="Ingrese un email "
+                                   jsf:converterMessage="Use caracteres" maxlength="50"
+                                   jsf:value="#{usuarioController.usuarioActual.email}">
+                                <f:ajax execute="@this" render= "emailMessage"/>
+                            </input>
+                            <h:message id="emailMessage" for="emailInputText" styleClass="error"/>
+                          
+                            <label class="Form-datos">Centro de Formacion</label> 
+                            <p:selectOneMenu id="centrodeformacion" value="#{usuarioController.usuarioActual.idCentroFormacion}" required="true" disabled="true"
+                                             requiredMessage=" se requiere centro de formacion">
+                                <f:selectItems value="#{usuarioController.listCentroFormacionSelectOne}"
+                                               var="centro"
+                                               itemValue="#{centro}"/>
+                            </p:selectOneMenu>
+                              <h:message id="centrodeformacionMessage" for="CentroFormacionInputText" styleClass="error"/>
+                              
+                               <label class="Form-datos">Ciudad</label> 
+                               <p:selectOneMenu id="ciudad" value="#{usuarioController.usuarioActual.ciudad}" required="true" disabled="true"
+                                                requiredMessage=" se requiere ciudad  ">
+                                   <f:selectItems value="#{usuarioController.listCiudadSelectOne}"
+                                               var="ciudad"
+                                               itemValue="#{ciudad}"/>
+                            </p:selectOneMenu>
+                              <h:message id="ciudadMessage" for="CiudadInputText" styleClass="error"/>
+                              
+                        </h:panelGrid>
+                        <h:commandButton value="Agregar" action="#{usuarioController.addUsuario}"/>
+                        <h:button value="Cancelar" outcome="/index"/>
+                    </form>
+                </section>
+                <br/>
+                <br/>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>

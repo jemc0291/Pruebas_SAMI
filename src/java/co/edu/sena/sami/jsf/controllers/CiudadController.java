@@ -51,10 +51,22 @@ public class CiudadController implements Serializable {
         return ejbFacade;
     }
 
-    public Ciudad prepareCreate() {
+    public String prepareCreate() {
         selected = new Ciudad();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarCiudad";
+    }
+    
+    public String prepareModificarCiudad () {
+        return "ModificarCiudad";
+    }
+
+    public String prepareConsultarCiudad () {
+        return "ConsultarCiudad";
+    }
+
+    public String prepareListCiudad () {
+        return "/Configuracion/Ciudad/ListarCiudad";
     }
 
     public void create() {
@@ -82,6 +94,9 @@ public class CiudadController implements Serializable {
         }
         return items;
     }
+    
+    
+
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

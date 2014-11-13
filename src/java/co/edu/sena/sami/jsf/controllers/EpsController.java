@@ -49,10 +49,22 @@ public class EpsController implements Serializable {
         return ejbFacade;
     }
 
-    public Eps prepareCreate() {
+    public String prepareCreate() {
         selected = new Eps();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarEps";
+    }
+    
+     public String prepareModificarEps() {
+        return "ModificarEps";
+    }
+
+    public String prepareConsultarEps() {
+        return "ConsultarEps";
+    }
+
+    public String prepareListEps() {
+        return "/Configuracion/EPS/ListarEps";
     }
 
     public void create() {
@@ -60,6 +72,7 @@ public class EpsController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        
     }
 
     public void update() {

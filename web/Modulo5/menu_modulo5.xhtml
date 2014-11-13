@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition>
+        <ul class="MainMenu-list">
+            <li class="MainMenu-item"><a jsf:outcome="/Modulo5/index_modulo5.xhtml">Inicio</a></li>
+            <li class="MainMenu-item"><a jsf:outcome="/Modulo5/Gestion Documental/Usuarios/Listar.xhtml">Usuario</a></li>
+            <li class="MainMenu-item"><a >P.Q.R.S.F.</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Pqrsf/ListarProducidas.xhtml">Producidas</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Pqrsf/ListarRecibidas.xhtml">Recibidas</a></li>
+                    <li class="AlternMenu-link"><a >Reportes</a>
+                        <ul>
+                            <li><a jsf:outcome="/Modulo5/Gestion Documental/Pqrsf/reporteIndividual.xhtml">Individual</a></li>
+                            <li><a jsf:outcome="/Modulo5/Gestion Documental/Pqrsf/reporteConsolidado.xhtml">Consolidado</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="MainMenu-item"><a >Radicaciones</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Radicaciones/internas.xhtml">Internas</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Radicaciones/externas.xhtml">Externas</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Radicaciones/circulares.xhtml">Circulares</a></li>
+                    <li class="AlternMenu-link"><a >Contratacion</a>
+                        <ul>
+                            <li><a jsf:outcome="/Modulo5/Gestion Documental/Radicaciones/contrato.xhtml">Contrato</a></li>
+                            <li><a jsf:outcome="/Modulo5/Gestion Documental/Radicaciones/oferta.xhtml">Oferta</a></li>
+                            <li><a jsf:outcome="/Modulo5/Gestion Documental/Radicaciones/numeroContrato.xhtml">Numero Contrato</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="MainMenu-item"><a >Normas</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Normas/verGesdoc.xhtml">Gestion Documental</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Normas/verPqrsf.xhtml">P.Q.R.S.F.</a></li>
+                </ul>
+            </li>
+            <li class="MainMenu-item"><a >Plantillas</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Plantillas/verActa.xhtml">Acta</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Plantillas/verAcuerdo.xhtml">Acuerdo</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Plantillas/verCarta.xhtml">Carta</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Plantillas/verCircular.xhtml">Circular</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Plantillas/verContrato.xhtml">Contrato</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Plantillas/verConvenio.xhtml">Convenio</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Plantillas/verListaAsistencia.xhtml">Lista de Asistencia</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Modulo5/Gestion Documental/Plantillas/verResolucion.xhtml">Resolucion</a></li>
+                </ul>
+            </li>
+        </ul>
+    </ui:composition>
+</html>

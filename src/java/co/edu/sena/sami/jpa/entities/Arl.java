@@ -108,7 +108,7 @@ public class Arl implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Arl[ idArl=" + idArl + " ]";
+        return nombreArl + " ";
     }
     
 }

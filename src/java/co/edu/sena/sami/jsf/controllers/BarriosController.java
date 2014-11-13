@@ -49,11 +49,24 @@ public class BarriosController implements Serializable {
         return ejbFacade;
     }
 
-    public Barrios prepareCreate() {
+    public String prepareCreate() {
         selected = new Barrios();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarBarrios";
     }
+    
+    public String prepareModificarBarrios() {
+        return "ModificarBarrios";
+    }
+
+    public String prepareConsultarBarrios() {
+        return "ConsultarBarrios";
+    }
+
+    public String prepareListBarrios() {
+        return "/Configuracion/Barrios/ListarBarrios";
+    }
+
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("BarriosCreated"));

@@ -49,10 +49,22 @@ public class ArlController implements Serializable {
         return ejbFacade;
     }
 
-    public Arl prepareCreate() {
+    public String prepareCreate() {
         selected = new Arl();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarArl";
+    }
+    
+     public String prepareModificarArl() {
+        return "ModificarArl";
+    }
+
+    public String prepareConsultarArl() {
+        return "ConsultarArl";
+    }
+
+    public String prepareListEps() {
+        return "/Configuracion/Arl/ListarArl";
     }
 
     public void create() {

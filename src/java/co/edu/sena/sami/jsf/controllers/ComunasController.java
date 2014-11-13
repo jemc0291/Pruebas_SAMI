@@ -49,11 +49,24 @@ public class ComunasController implements Serializable {
         return ejbFacade;
     }
 
-    public Comunas prepareCreate() {
+    public String prepareCreate() {
         selected = new Comunas();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarComunas";
     }
+    
+       public String prepareModificarComunas() {
+        return "ModificarComunas";
+    }
+
+    public String prepareConsultarComunas() {
+        return "ConsultarComunas";
+    }
+
+    public String prepareListComunas() {
+        return "/Configuracion/Comunas/ListarComunas";
+    }
+
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ComunasCreated"));

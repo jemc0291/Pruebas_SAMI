@@ -49,11 +49,24 @@ public class CentroFormacionController implements Serializable {
         return ejbFacade;
     }
 
-    public CentroFormacion prepareCreate() {
+    public String prepareCreate() {
         selected = new CentroFormacion();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarCentroFormacion";
     }
+    
+       public String prepareModificarCentroFormacion() {
+        return "ModificarCentroFormacion";
+    }
+
+    public String prepareConsultarCentroFormacion() {
+        return "ConsultarCentroFormacion";
+    }
+
+    public String prepareListCentroFormacion() {
+        return "/Configuracion/Centro de Formacion/ListarCentroFormacion";
+    }
+
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("CentroFormacionCreated"));

@@ -49,10 +49,14 @@ public class SexoController implements Serializable {
         return ejbFacade;
     }
 
-    public Sexo prepareCreate() {
+    public String prepareCreate() {
         selected = new Sexo();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarSexo";
+    }
+
+    public String prepareListSexo() {
+        return "/Configuracion/Sexo/ListarSexo";
     }
 
     public void create() {

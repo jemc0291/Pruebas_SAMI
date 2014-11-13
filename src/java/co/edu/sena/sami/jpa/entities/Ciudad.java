@@ -222,7 +222,7 @@ public class Ciudad implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Ciudad[ ciudadPK=" + ciudadPK + " ]";
+        return nombreCiudad + " " ;
     }
     
 }

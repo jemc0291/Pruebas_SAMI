@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Caja de Compensacion</ui:define>
+        <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            
+            <h:form> 
+                <h:commandButton value="Modificar Ccf" action="#{ccfController.prepareModificarCcf}"/>
+                <h:commandButton value="Volver A Lista" action="#{ccfController.prepareListCcf}"/>
+            
+            </h:form>
+            
+            <section class="section-form">
+                <form jsf:id="CcfCreateForm">
+                    <h:panelGrid columns="3">
+
+                        <label class="Form-na">Nombre Ccf</label> 
+                        <input type="text" jsf:id="NombreCcfInputText" required="true"
+                               jsf:requiredMessage="Por favor ingrese el nombre de la Caja de Compensacion Familiar" 
+                               jsf:validatorMessage="Use solo letras"
+                               jsf:value="#{ccfController.selected.nombreCcf}" maxlength="30">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="NombreCcfMessage"/>
+                        </input>
+                        <h:message id="NombreCcfMessage" for="NombreCcfInputText" styleClass="error"/>
+                    </h:panelGrid>
+                    <h:commandButton value="Guardar" action="#{ccfController.update}"/>
+                </form>
+            </section>
+
+        </ui:define>
+    </ui:composition>
+</html>

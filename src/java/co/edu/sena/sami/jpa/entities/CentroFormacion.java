@@ -158,7 +158,7 @@ public class CentroFormacion implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.CentroFormacion[ idCentroFormacion=" + idCentroFormacion + " ]";
+        return nombreCentroFormacion + " ";
     }
     
 }

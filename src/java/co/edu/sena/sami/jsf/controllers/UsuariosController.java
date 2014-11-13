@@ -49,10 +49,10 @@ public class UsuariosController implements Serializable {
         return ejbFacade;
     }
 
-    public Usuarios prepareCreate() {
+    public String prepareCreate() {
         selected = new Usuarios();
         initializeEmbeddableKey();
-        return selected;
+        return "Agregar";
     }
 
     public void create() {

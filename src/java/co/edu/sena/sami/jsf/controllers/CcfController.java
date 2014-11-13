@@ -49,10 +49,22 @@ public class CcfController implements Serializable {
         return ejbFacade;
     }
 
-    public Ccf prepareCreate() {
+    public String prepareCreate() {
         selected = new Ccf();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarCcf";
+    }
+    
+    public String prepareModificarCcf() {
+        return "ModificarCcf";
+    }
+
+    public String prepareConsultarCcf() {
+        return "ConsultarCcf";
+    }
+
+    public String prepareListCcf() {
+        return "/Configuracion/CCF/ListarCcf";
     }
 
     public void create() {

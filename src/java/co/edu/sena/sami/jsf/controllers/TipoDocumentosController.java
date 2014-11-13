@@ -49,10 +49,14 @@ public class TipoDocumentosController implements Serializable {
         return ejbFacade;
     }
 
-    public TipoDocumentos prepareCreate() {
+    public String prepareCreate() {
         selected = new TipoDocumentos();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarTipoDocumentos ";
+    }
+    
+     public String prepareListTipoDocumentos () {
+        return "/Configuracion/Tipo Documento/ListarTipoDocumento";
     }
 
     public void create() {

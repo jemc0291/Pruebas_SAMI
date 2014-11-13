@@ -11,9 +11,8 @@
         <p:dialog id="UsuariosCreateDlg" widgetVar="UsuariosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUsuariosTitle}">
             <h:form id="UsuariosCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{usuariosController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_idUsuario}" for="idUsuario" />
-                        <p:inputText id="idUsuario" value="#{usuariosController.selected.idUsuario}" title="#{bundle.CreateUsuariosTitle_idUsuario}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_idUsuario}"/>
+                    <p:panelGrid columns="4" rendered="#{usuariosController.selected != null}">
+
                         <p:outputLabel value="#{bundle.CreateUsuariosLabel_codigodestinoONBASE}" for="codigodestinoONBASE" />
                         <p:inputText id="codigodestinoONBASE" value="#{usuariosController.selected.codigodestinoONBASE}" title="#{bundle.CreateUsuariosTitle_codigodestinoONBASE}" />
                         <p:outputLabel value="#{bundle.CreateUsuariosLabel_numeroDoc}" for="numeroDoc" />
