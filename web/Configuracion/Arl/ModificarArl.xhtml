@@ -19,7 +19,7 @@
 
             <section class="section-form">
                 <form jsf:id="ArlCreateForm">
-                    <h:panelGrid columns="3">
+                    <p:panelGrid columns="3" layout="grid">
 
                         <label class="Form-na">Nombre Arl</label> 
                         <input type="text" jsf:id="NombreArlInputText" required="true"
@@ -30,7 +30,7 @@
                             <f:ajax execute="@this" render="NombreArlMessage"/>
                         </input>
                         <h:message id="NombreArlMessage" for="NombreArlInputText" styleClass="error"/>
-                    </h:panelGrid>
+                    </p:panelGrid>
                     <h:commandButton value="Guardar" action="#{arlController.update}"/>
                 </form>
             </section>

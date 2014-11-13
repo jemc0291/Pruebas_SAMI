@@ -19,7 +19,7 @@
             
             <section class="section-form">
                 <form jsf:id="CcfCreateForm">
-                    <h:panelGrid columns="3">
+                    <p:panelGrid columns="3" layout="grid">
                         
                         <label class="Form-na">Nombre Caja de Compensacion</label> 
                         <input type="text" jsf:id="NombreCcfInputText" required="true"
@@ -30,7 +30,7 @@
                             <f:ajax execute="@this" render="NombreCcfMessage"/>
                         </input>
                         <h:message id="NombreCcfMessage" for="NombreCcfInputText" styleClass="error"/>
-                    </h:panelGrid>
+                    </p:panelGrid>
                     <h:commandButton value="Guardar" action="#{ccfController.create}"/>
                 </form>
             </section>

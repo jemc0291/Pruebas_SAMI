@@ -658,7 +658,7 @@ table, th, td {
     color:black;
     text-decoration: none;
     float: left;
-   
+
 }
 
 
@@ -681,7 +681,7 @@ table, th, td {
 
 }
 
-@media screen and (max-width: 720px){
+/*@media screen and (max-width: 720px){
     table, thead, tr, th, tbody, td{
         display: block;
 
@@ -719,30 +719,29 @@ table, th, td {
     td:nth-of-type(6):before{content: "Nombre Entidad Remitente:   ";}
     td:nth-of-type(7):before{content: "Nombre Persona:   ";}
     td:nth-of-type(8):before{content: "Funcionario Destino:   ";}
-    td:nth-of-type(9):before{content: "E-mail:   ";}
+    td:nth-of-type(9):before{content: "E-mail:   ";}*/
 
-    .Section-Embed{/*Gestion Documental*/
+/*    .Section-Embed{Gestion Documental
         width: 0px;
         height: 0px;
-    }
+    }*/
 
-    /*---------MODULO6----------*/
+/*---------MODULO6----------*/
 
-    .form{
-        width: 470px;
-        padding: 0 5px;
-        margin: 0 auto;
-    }
-
-
-    .Form-solitudM{
-        width: 470px;
-        height: auto;
-        background: #119178; 
-        margin: 0 auto;
-        padding: 0 1%;
-        box-shadow: 5px 5px 0 #AAA;
-        border-radius: 5px;
-    }
-
+.form{
+    width: 470px;
+    padding: 0 5px;
+    margin: 0 auto;
 }
+
+
+.Form-solitudM{
+    width: 470px;
+    height: auto;
+    background: #119178; 
+    margin: 0 auto;
+    padding: 0 1%;
+    box-shadow: 5px 5px 0 #AAA;
+    border-radius: 5px;
+}
+

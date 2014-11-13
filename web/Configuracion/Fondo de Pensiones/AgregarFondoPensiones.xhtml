@@ -19,7 +19,7 @@
 
             <section class="section-form">
                 <form jsf:id="FondoPensionesCreateForm">
-                    <h:panelGrid columns="3">
+                    <p:panelGrid columns="3" layout="grid">
                
                         <label class="Form-na">Nombre Fondo de Pensiones</label> 
                         <input type="text" jsf:id="NombreFondoPensionesInputText" required="true"
@@ -30,7 +30,7 @@
                             <f:ajax execute="@this" render="NombreFondoPensionesMessage"/>
                         </input>
                         <h:message id="NombreFondoPensionesMessage" for="NombreFondoPensionesInputText" styleClass="error"/>
-                    </h:panelGrid>
+                    </p:panelGrid>
                     <h:commandButton value="Guardar" action="#{fondoDePensionesController.create}"/>
                 </form>
             </section>

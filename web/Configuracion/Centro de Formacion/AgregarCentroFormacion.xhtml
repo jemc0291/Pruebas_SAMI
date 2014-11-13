@@ -19,7 +19,7 @@
 
             <section class="section-form">
                 <form jsf:id="CentroFormacionCreateForm">
-                    <h:panelGrid columns="3">
+                    <p:panelGrid columns="3" layout="grid">
                         <label class="Form-na">Codigo de Centro de Formacion</label> 
                         <input type="tel" jsf:id="CentroFormacionInputText" required="true" 
                                jsf:requiredMessage="Por favor ingrese el codigo del Centro de Formacion" 
@@ -77,7 +77,7 @@
                                            itemValue="#{ciudad}"/>
                         </p:selectOneMenu>
                         <h:message id="ciudadMessage" for="CiudadInputText" styleClass="error"/>
-                    </h:panelGrid>
+                    </p:panelGrid>
                     <h:commandButton value="Guardar" action="#{centroFormacionController.create}"/>
                 </form>
             </section>

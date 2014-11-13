@@ -19,7 +19,7 @@
 
             <section class="section-form">
                 <form jsf:id="BarrioCreateForm">
-                    <h:panelGrid columns="3">
+                    <p:panelGrid columns="3" layout="grid">
                         <label class="Form-na">Id</label> 
                         <input type="tel" jsf:id="IdBarrioInputText" required="true" disabled="true"
                                jsf:requiredMessage="Por favor ingrese el Id " 
@@ -48,7 +48,7 @@
                         </p:selectOneMenu>
                         <h:message id="ComunasMessage" for="ComunasInputText" styleClass="error"/> 
                         
-                    </h:panelGrid>
+                    </p:panelGrid>
                     <h:commandButton value="Guardar" action="#{barriosController.update}"/>
                 </form>
             </section>

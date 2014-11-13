@@ -29,7 +29,7 @@
 
                 <section class="section-form">
                     <form jsf:id="usuarioCreateForm">
-                        <h:panelGrid columns="3">
+                        <p:panelGrid columns="3" layout="grid">
                             <label class="Form-na">Numero Identificacion</label> 
                             <input type="tel" jsf:id="numeroidInputText" required="true" 
                                    jsf:requiredMessage="Por favor ingrese el numero de id" 
@@ -160,7 +160,7 @@
                             </p:selectOneMenu>
                               <h:message id="ciudadMessage" for="CiudadInputText" styleClass="error"/>
                               
-                        </h:panelGrid>
+                        </p:panelGrid>
                         <h:commandButton value="Agregar" action="#{usuarioController.addUsuario}"/>
                         <h:button value="Cancelar" outcome="/index"/>
                     </form>

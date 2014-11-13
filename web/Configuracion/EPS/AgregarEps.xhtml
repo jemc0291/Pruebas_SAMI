@@ -19,7 +19,7 @@
             
             <section class="section-form">
                 <form jsf:id="EpsCreateForm">
-                    <h:panelGrid columns="3">
+                    <p:panelGrid columns="3" layout="grid">
                
                         <label class="Form-na">Nombre Eps</label> 
                         <input type="text" jsf:id="NombreEpsInputText" required="true"
@@ -30,7 +30,7 @@
                             <f:ajax execute="@this" render="NombreEpsMessage"/>
                         </input>
                         <h:message id="NombreEpsMessage" for="NombreEpsInputText" styleClass="error"/>
-                    </h:panelGrid>
+                    </p:panelGrid>
                     <h:commandButton value="Guardar" action="#{epsController.create}"/>
                 </form>
             </section>

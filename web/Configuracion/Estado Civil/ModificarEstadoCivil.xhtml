@@ -19,7 +19,7 @@
             
             <section class="section-form">
                 <form jsf:id="EstadoCivilCreateForm">
-                    <h:panelGrid columns="3" >
+                    <p:panelGrid columns="3" layout="grid">
                  
                         <label class="Form-na">Estado Civil</label> 
                         <input type="text" jsf:id="NombEstadoCivilInputText" required="true"
@@ -30,8 +30,8 @@
                             <f:ajax execute="@this" render="NombEstadoCivilMessage"/>
                         </input>
                         <h:message id="NombEstadoCivilMessage" for="NombEstadoCivilInputText" styleClass="error"/>
-                    </h:panelGrid>
-                    <h:commandButton value="Guardar" action="#{estadoCivilController.update}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="Guardar" action="#{estadoCivilController.update}"/>
                 </form>
             </section>
 

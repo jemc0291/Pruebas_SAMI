@@ -19,7 +19,7 @@
 
             <section class="section-form">
                 <form jsf:id="CiudadCreateForm">
-                    <h:panelGrid columns="3">
+                    <p:panelGrid columns="3" layout="grid">
                         <label class="Form-na">Id Ciudad</label> 
                         <input type="tel" jsf:id="CiudadInputText" required="true" disabled="true"
                                jsf:requiredMessage="Por favor ingrese el numero de id" 
@@ -47,7 +47,7 @@
                             <f:ajax execute="@this" render="NombCiudadMessage"/>
                         </input>
                         <h:message id="NombCiudadMessage" for="NombCiudadInputText" styleClass="error"/>
-                    </h:panelGrid>
+                    </p:panelGrid>
                     <h:commandButton value="Guardar" action="#{ciudadController.update}"/>
                 </form>
             </section>

@@ -15,7 +15,7 @@
   
                 <section class="section-form">
                     <form jsf:id="usuarioCreateForm">
-                        <h:panelGrid columns="3">
+                        <p:panelGrid columns="3" layout="grid">
                             <label class="Form-na">ID Usuario</label> 
                             <input type="tel" jsf:id="IDUsuarioInputText" required="true"
                                    jsf:requiredMessage="Por favor ingrese el numero de id" 
@@ -236,7 +236,7 @@
                             </p:selectOneMenu>
                             <h:message id="tipodocumentosMessage" for="tipodocumentosInputText" styleClass="error"/>
 
-                        </h:panelGrid>
+                        </p:panelGrid>
                         <h:commandButton value="Agregar" action="#{usuariosController.create}"/>
                         <h:button value="Cancelar" outcome="/index"/>
                     </form>
