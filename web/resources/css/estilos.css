@@ -1,11 +1,11 @@
 /* -----clases comunes------*/
 @font-face {
     font-family: 'icomoon';
-    src:url("#{resource['fonts/icomoon.eot']}?jfrvdd");
-    src:url("#{resource['fonts/icomoon.eot']}?#iefixjfrvdd") format('embedded-opentype'),
-        url("#{resource['fonts/icomoon.woff']}?jfrvdd") format('woff'),
-        url("#{resource['fonts/icomoon.ttf']}?jfrvdd") format('truetype'),
-        url("#{resource['fonts/icomoon.svg']}?jfrvdd#icomoon") format('svg');
+    src:url("/SAMI/faces/javax.faces.resource/fonts/icomoon.eot?jfrvdd");
+    src:url("/SAMI/faces/javax.faces.resource/fonts/icomoon.eot?#iefixjfrvdd") format('embedded-opentype'),
+        url("/SAMI/faces/javax.faces.resource/fonts/icomoon.woff?jfrvdd") format('woff'),
+        url("/SAMI/faces/javax.faces.resource/fonts/icomoon.ttf?jfrvdd") format('truetype'),
+        url("/SAMI/faces/javax.faces.resource/fonts/icomoon.svg?jfrvdd#icomoon") format('svg');
 }
 
 [class^="icon-"], [class*=" icon-"] {
