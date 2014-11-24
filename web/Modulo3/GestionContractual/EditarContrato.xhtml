@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <ui:composition template="/template.xhtml">
+        <ui:define name="title">Editar Contrato</ui:define>
+        <ui:define name="menu"><ui:include src="/Modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+
+                <h:form>
+                    <h1><h:outputText value="Editar Contrato"/></h1>
+                    <h:panelGrid columns="3">
+                        <label value="#{bundle.EditContratosLabel_numeroDeContrato}" jsf:for="numeroDeContrato" class="FormLabelSCCSS" />
+                        <input type="number" jsf:id="numeroDeContrato" class="FormInputSCCSS" disabled="true"
+                               jsf:value="#{contratosController.selected.numeroDeContrato}" title="#{bundle.EditContratosTitle_numeroDeContrato}" 
+                               required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_numeroDeContrato}"
+                               jsf:validator="#{contratosController.validarContrato}" >
+                            <f:ajax execute="@this" render="NumeroContratoMessage" />
+                            <f:validateLongRange minimum="0"/>
+                        </input>
+                        <h:message id="NumeroContratoMessage" for="numeroDeContrato" class="ErrorDupli" />
+                        
+                        <label value="#{bundle.EditContratosLabel_idTipoContrato}" jsf:for="idTipoContrato" class="FormLabelSCCSS" />
+                        <h:selectOneMenu id="idTipoContrato" value="#{contratosController.selected.idTipoContrato}" title="#{bundle.EditContratosTitle_idTipoContrato}" required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_idTipoContrato}" styleClass="FormSelectSCCSS" >
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{tipoDeContratoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:message id="TipoContratoMessage" for="idTipoContrato" />
+                        
+                        <label value="#{bundle.EditContratosLabel_fechaSuscripcion}" jsf:for="fechaSuscripcion" class="FormLabelSCCSS" />
+                        <input type="date" jsf:id="fechaSuscripcion" jsf:value="#{contratosController.selected.fechaSuscripcion}" title="#{bundle.EditContratosTitle_fechaSuscripcion}" class="FormInputDateSCCSS"
+                               required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_fechaSuscripcion}" disabled="true" >
+                            <f:convertDateTime pattern="yyyy-MM-dd" />
+                            <f:ajax execute="@this" render="FechaSuscripcionMessage" />
+                        </input>
+                        <h:message id="FechaSuscripcionMessage" for="fechaSuscripcion" />
+                        
+                        <label value="#{bundle.EditContratosLabel_fechaInicioContrato}" jsf:for="fechaInicioContrato" class="FormLabelSCCSS" />
+                        <input type="date" jsf:id="fechaInicioContrato" jsf:value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.EditContratosTitle_fechaInicioContrato}" class="FormInputDateSCCSS"
+                               required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_fechaInicioContrato}" disabled="true" >
+                            <f:convertDateTime pattern="yyyy-MM-dd" />
+                            <f:ajax execute="@this" render="FechaInicioMessage" />
+                        </input>
+                        <h:message id="FechaInicioMessage" for="fechaInicioContrato" />
+                        
+                        <label value="#{bundle.EditContratosLabel_fechaFinContrato}" jsf:for="fechaFinContrato" class="FormLabelSCCSS" />
+                        <input type="date" jsf:id="fechaFinContrato" jsf:value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.EditContratosTitle_fechaFinContrato}" class="FormInputDateSCCSS"
+                               required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_fechaFinContrato}" disabled="true" >
+                            <f:convertDateTime pattern="yyyy-MM-dd" />
+                            <f:ajax execute="@this" render="FechaFinalMessage" />
+                        </input>
+                        <h:message id="FechaFinalMessage" for="fechaFinContrato" />
+                        
+                        <label value="#{bundle.EditContratosLabel_objetoContractual}" jsf:for="objetoContractual" class="FormLabelSCCSS" />
+                        <input type="text" jsf:id="objetoContractual" jsf:value="#{contratosController.selected.objetoContractual}" title="#{bundle.EditContratosTitle_objetoContractual}" class="FormInputSCCSS"
+                               required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_objetoContractual}">
+                            <f:ajax execute="@this" render="ObjetoContractualMessage" />
+                        </input>
+                        <h:message id="ObjetoContractualMessage" for="objetoContractual" />
+                        
+                        <label value="#{bundle.EditContratosLabel_valorContrato}" jsf:for="valorContrato" class="FormLabelSCCSS" />
+                        <input type="number" jsf:id="valorContrato" jsf:value="#{contratosController.selected.valorContrato}" title="#{bundle.EditContratosTitle_valorContrato}" class="FormInputSCCSS"
+                               required="true" jsf:requiredMessage="El valor del contrato es obligatorio">
+                            <f:ajax execute="@this" render="ValorContratoMessage" />
+                            <f:validateLongRange minimum="0"/>
+                        </input>
+                        <h:message id="ValorContratoMessage" for="valorContrato" class="ErrorDupli" />                        
+                                                
+                        <label value="#{bundle.EditContratosLabel_observaciones}" jsf:for="observaciones" class="FormLabelSCCSS" />
+                        <textarea type="text" jsf:id="observaciones" jsf:value="#{contratosController.selected.observaciones}" title="#{bundle.EditContratosTitle_observaciones}" class="FormTextAreaSCCSS"
+                                  jsf:validatorMessage="Ingrese texto" >
+                            <f:ajax execute="@this" render="ObservacionesMessage" />
+                        </textarea>
+                        <h:message id="ObservacionesMessage" for="observaciones" />                        
+                        
+                    </h:panelGrid>
+                    <h:commandButton value="Guardar" action="#{contratosController.update()}" class="FormButtonSCCSS"/>
+                    <h:button value="Cancelar" outcome="ListaContratos" class="FormButtonSCCSS" />
+                </h:form>
+
+    </ui:define>
+    </ui:composition>
+</html>
+

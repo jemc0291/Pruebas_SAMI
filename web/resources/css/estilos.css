@@ -546,6 +546,47 @@ table, th, td {
 
 /*---------MODULO3----------*/
 
+.FormButtonSCCSS{
+    position: relative;
+    top: 2em;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: .3em;
+    margin-right: 0em;
+    margin-left: 4em;
+}
+.FormSelectSCCSS{
+    margin-bottom: 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-right: 15px;
+}
+.FormInputSCCSS{
+    margin-bottom: 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.FormInputDateSCCSS{
+    margin-bottom: 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 6px;
+}
+.FormLabelSCCSS{
+    position: relative;
+    bottom: .5em;
+}
+.FormTextAreaSCCSS{
+    padding-bottom: 3em;
+    border: 1px solid black;
+    border-radius: 5px;
+    resize: none;
+}
+.ErrorDupli{
+    color: red;
+    font-weight: bold;
+}
+
 /*---------MODULO4----------*/
 
 .Content-formTahuSection {

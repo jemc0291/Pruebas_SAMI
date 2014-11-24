@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Crear Soportes</ui:define>
+        <ui:define name="menu"><ui:include src="/Modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+         <nav jsf:id="navigationBar" >
+             <ul jsf:id="navigationBarContainer">
+               <li jsf:id="navButton">
+                  <a jsf:id="navButtonLink">Consultar contrato </a>
+               </li>
+               <li jsf:id="navButton1" >
+                  <a jsf:id="navButtonLink1">Buzón de alertas </a>
+               </li>
+             </ul>
+         </nav>
+            <section>
+                <article>
+                        <h:form>
+                            <h1>Crear Soporte</h1>
+                            <h:panelGrid columns="1">
+                                <label class="FormLabelSCCSS" jsf:for="idSoporte">*ID Soporte:</label>
+                                <input class="FormInputSCCSS" type="number" jsf:id="idSoporte" jsf:required="true"
+                                       jsf:validatorMessage=" Por favor ingrese un id entre 1 a 999"
+                                       jsf:requiredMessage=" El campo (ID Soporte) es requerido."
+                                       jsf:value="#{soportesDeDocumentosController.selected.idSoporte}"
+                                       jsf:validator="#{soportesDeDocumentosController.validarSoporte}">
+                                       <f:validateLongRange minimum="1" maximum="999"/>
+                                       <f:ajax execute="@this" render="idSoporteMessage"/>
+                                </input>
+                                <h:message id="idSoporteMessage" for="idSoporte" class="Error"/>       
+                                
+                                <label class="FormLabelSCCSS" jsf:for="urlDocumento">URL Documento:</label>
+                                <input class="FormInputSCCSS" jsf:id="urlDocumento"
+                                       jsf:value="#{soportesDeDocumentosController.selected.urlDocumento}"
+                                       jsf:type="url">
+                                </input>
+                                
+                                <label class="FormLabelSCCSS" jsf:for="observacion">Observaciones:</label>
+                                <textarea type="text" class="FormInputSCCSS" jsf:id="observacion"
+                                       jsf:value="#{soportesDeDocumentosController.selected.observacion}"
+                                       jsf:rows="4" jsf:cols="30">
+                                </textarea>
+                                       
+                                
+                                <label class="FormLabelSCCSS" jsf:for="destinoArchivo">Destino Archivo:</label>
+                                <h:inputFile id="destinoArchivo" value="#{soportesDeDocumentosController.selected.destinoArchivo}"></h:inputFile>
+                               
+                                <!--textarea type="text" jsf:rows="4" jsf:cols="30" jsf:id="destinoArchivo" 
+                                          jsf:value="#{soportesDeDocumentosController.selected.destinoArchivo}">
+                                </textarea-->
+                                
+                                <label class="FormLabelSCCSS" jsf:for="tipoSoporte">Tipo de soporte:</label>
+                                <h:selectOneMenu class="" id="tipoSoporte" required="true"
+                                        value="#{soportesDeDocumentosController.selected.tipoSoporte}">
+                                    <f:selectItem itemLabel="Contrato" itemValue="Contrato"/>
+                                    <f:selectItem itemLabel="Factura" itemValue="Factura"/>
+                                    <f:selectItem itemLabel="Informe de supervisión" itemValue="Informe de supervisión"/>
+                                    <f:selectItem itemLabel="Nota de entrada" itemValue="Nota de entrada"/>
+                                    
+                                </h:selectOneMenu>
+                                <!--input class="FormInputSCCSS" id="tipoSoporte" value="#{soportesDeDocumentosController.selected.tipoSoporte}" 
+                                             title="TipoSoporte" /-->
+                                
+                                <label class="FormLabelSCCSS" jsf:for="idContrato">ID Contrato:</label>
+                                <h:selectOneMenu id="idContrato" value="#{soportesDeDocumentosController.selected.idContrato}"
+                                                 title="IdContrato" required="true" 
+                                                 requiredMessage="The IdContrato field is required.">
+                                    <f:selectItems value="#{soportesDeDocumentosController.listaContratosSelectOne}"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <h:commandButton class="FormButtonSCCSS" value="Guardar" action="#{soportesDeDocumentosController.create()}" />
+                            <!--h:button class="FormButtonSCCSS" value="Cancelar" outcome="ListInformes"/-->
+                            <h:button class="FormButtonSCCSS" value="Inicio" outcome="/index"/>
+                        </h:form>
+                </article>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Crear Informes</ui:define>
+        <ui:define name="menu"><ui:include src="/Modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+         <nav jsf:id="navigationBar" >
+             <ul jsf:id="navigationBarContainer">
+               <li jsf:id="navButton">
+                  <a jsf:id="navButtonLink">Consultar contrato </a>
+               </li>
+               <li jsf:id="navButton1" >
+                  <a jsf:id="navButtonLink1">Buzón de alertas </a>
+               </li>
+             </ul>
+         </nav>
+            <section>
+                <article>
+                        <h:form>
+                            <h1>Crear Pago Contrato</h1>
+                            <h:panelGrid columns="2">
+                                <label value="IdPago:" for="idPago" />
+                                <input id="idPago" value="#{pagosContratosController.selected.idPago}"
+                                       title="IdPago" required="true"
+                                       requiredMessage="The IdPago field is required."/>
+                                <label value="FechaDePago:" for="fechaDePago" />
+                                <input id="fechaDePago" value="#{pagosContratosController.selected.fechaDePago}"
+                                       title="FechaDePago" required="true" type="date"
+                                       requiredMessage="El campo: FechaDePago es requerido.">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </input>
+                                <label value="IdFactura:" for="idFactura" />
+                                <h:selectOneMenu id="idFactura" value="#{pagosContratosController.selected.idFactura}"
+                                                 title="IdFactura" required="true"
+                                                 requiredMessage="The IdFactura field is required.">
+                                    <!-- TODO: update below reference to list of available items-->
+                                    <f:selectItems value="#{fixme}"/>
+                                </h:selectOneMenu>
+                                <label value="IdContrato:" for="idContrato" />
+                                <h:selectOneMenu id="idContrato" value="#{pagosContratosController.selected.idContrato}"
+                                                 title="IdContrato" required="true"
+                                                 requiredMessage="The IdContrato field is required.">
+                                    <!-- TODO: update below reference to list of available items-->
+                                    <f:selectItems value="#{pagosContratosController.listaContratosSelectOne}"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <h:commandButton class="FormButtonSCCSS" value="Guardar" action="#{pagosContratosController.create()}" />
+                            <h:button class="FormButtonSCCSS" value="Cancelar" outcome=""/>
+                            <h:button class="FormButtonSCCSS" value="Inicio" outcome="/index"/>
+                        </h:form>
+                </article>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

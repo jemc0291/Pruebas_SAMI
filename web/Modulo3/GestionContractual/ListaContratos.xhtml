@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Lista Contratos</ui:define>
+        <ui:define name="menu"><ui:include src="/Modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Lista de Contratos"/></h1>
+                    <p:dataTable value="#{contratosController.items}" var="item"
+                                 id="contratosTable" 
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15" >
+                        
+                        <p:column filterBy="#{item.numeroDeContrato}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Numero De Contrato"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroDeContrato}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Tipo De Contrato"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoContrato.toString()}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha De Suscripcion"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaSuscripcion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha De Inicio Contrato"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaInicioContrato}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha Finalización Contrato"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaFinContrato}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>                        
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Objeto Contractual"/>
+                            </f:facet>
+                            <h:outputText value="#{item.objetoContractual}"/>
+                        </p:column>
+                        
+                                            
+                                                
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nueva Fecha Final"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaAnexo}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>                                              
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Adicion Presupuestal"/>
+                            </f:facet>
+                            <h:outputText value="#{item.adicionPresupuestal}"/>
+                        </p:column>
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Numero de Poliza"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPoliza}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Observaciones"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observaciones}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Valor Contrato"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorContrato}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="OPCIONES"/>
+                            </f:facet>
+                            
+                            <p:commandButton icon="ui-icon-search" action="#{contratosController.prepareView()}">
+                                <f:setPropertyActionListener value="#{item}" target="#{contratosController.selected}"/>
+                            </p:commandButton>
+                            
+                            <p:commandButton icon="ui-icon-pencil" action="#{contratosController.prepareEdit()}">
+                                <f:setPropertyActionListener value="#{item}" target="#{contratosController.selected}"/>
+                            </p:commandButton>
+
+                        </p:column>
+                        
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+
+    </ui:define>
+    </ui:composition>
+</html>
+

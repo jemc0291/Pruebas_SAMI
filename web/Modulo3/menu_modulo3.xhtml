@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:composition>
+        <h:form>
+        <ul class="MainMenu-list">
+            <li class="MainMenu-item">
+                <a jsf:outcome="/Modulo3/index_modulo3">
+                    Inicio
+                </a>
+            </li>
+            <li class="MainMenu-item">
+                <a jsf:action="#{contratosController.prepareCreate()}" class="MainMenu-link">
+                    Registrar Contrato
+                </a>
+            </li>
+            <li class="MainMenu-item">
+                <a jsf:outcome="/Modulo3/GestionContractual/ListaContratos" class="MainMenu-link">
+                    Lista Contratos
+                </a>
+            </li>
+            <li class="MainMenu-item">
+                <a jsf:action="#{informesController.prepareCreate()}" class="MainMenu-link">
+                    Registrar Informe
+                </a>
+            </li>
+            <li class="MainMenu-item">
+                <a jsf:outcome="/Modulo3/GestionContractual/ListInformes" class="MainMenu-link">
+                    Lista Informes
+                </a>
+            </li>
+            <li class="MainMenu-item">
+                <a jsf:action="#{soportesDeDocumentosController.prepareCreate()}" class="MainMenu-link">
+                    Registrar Soportes
+                </a>
+            </li>
+            <li class="MainMenu-item">
+                <a class="MainMenu-link">
+                    Lista de Soportes
+                </a>
+            </li>
+            <li class="MainMenu-item">
+                <a jsf:action="#{pagosContratosController.prepareCreate()}" class="MainMenu-link">
+                    Administrar Facturas
+                </a>
+            </li>
+            <li class="MainMenu-item">
+                <a class="MainMenu-link">
+                    Lista de Facturas
+                </a>
+            </li>
+        </ul>
+        </h:form>
+    </ui:composition>
+</html>
+

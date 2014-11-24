@@ -14,10 +14,12 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.validator.ValidatorException;
 
 @Named("contratosController")
 @SessionScoped
@@ -49,29 +51,56 @@ public class ContratosController implements Serializable {
         return ejbFacade;
     }
 
-    public Contratos prepareCreate() {
+     
+    public String prepareCreate() {
         selected = new Contratos();
-        initializeEmbeddableKey();
-        return selected;
+        //initializeEmbeddableKey();
+        return "/Modulo3/GestionContractual/CrearContrato";
     }
-
-    public void create() {
+    
+    public String prepareEdit(){
+        return "/Modulo3/GestionContractual/EditarContrato";
+    }
+    
+    public String prepareView(){
+        return "VerContrato";
+    }
+    
+//    public String create(){
+//        try{
+//            getFacade().create(selected);
+//            return "/contratos/List";
+//        }catch (Exception e) {
+//            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+//            return null;
+//        }
+//    }
+    public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ContratosCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        return "ListaContratos";
+//return "/index";
     }
 
-    public void update() {
+    public String update() {
+        try{
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("ContratosUpdated"));
+        return "ListaContratos";
+        }catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return null;
+        }
     }
 
-    public void destroy() {
+    public String destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/resources/Bundle").getString("ContratosDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        return "ListaContratos";
     }
 
     public List<Contratos> getItems() {
@@ -161,5 +190,19 @@ public class ContratosController implements Serializable {
         }
 
     }
+    private void addErrorMessage(String title, String msg) {
+        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
+        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+    }
+    
+    
+    public void validarContrato(FacesContext contex, UIComponent component, Object value)
+            throws ValidatorException {
+        if (getFacade().findByNumeroDeContrato((int) value) != null) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contrato ya existente", "El contrato ya existe en la base de datos !!!!"));
+        } else {
+            selected.setNumeroDeContrato((int) value);
+        }
 
+    }
 }
