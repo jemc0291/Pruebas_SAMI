@@ -7,7 +7,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Gestion Documental</ui:define>
+        <ui:define name="title"> Ciudad <h:outputText value="#{bundle.ListCiudadTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
@@ -20,8 +20,8 @@
             <section class="section-form">
                 <form jsf:id="CiudadCreateForm">
                     <p:panelGrid columns="3" layout="grid">
-                        <label class="Form-na">Id Ciudad</label> 
-                        <input type="tel" jsf:id="CiudadInputText" required="true" disabled="true"
+                        <label class="Form-na" value="#{bundle.CreateCiudadLabel_ciudadPK_idCiudad}" for="Ciudad"> Id Ciudad </label> 
+                        <input type="tel" jsf:id="CiudadInputText" required="true"  disabled="true"
                                jsf:requiredMessage="Por favor ingrese el numero de id" 
                                jsf:validatorMessage="Use solo numeros"
                                jsf:converterMessage="Use solo números. Máximo 16 digitos"
@@ -30,15 +30,15 @@
                         </input>
                         <h:message id="CiudadMessage" for="CiudadInputText" styleClass="error"/>
 
-                        <label class="Form-na">Id Departamento</label> 
-                        <p:selectOneMenu id="departamentos" value="#{ciudadController.selected.departamentos}" required="true" requiredMessage="#{bundle.EditCiudadRequiredMessage_departamentos}">
+                        <label class="Form-na" value="#{bundle.CreateCiudadLabel_departamentos}" for="departamentosItem"> Id Departamento</label> 
+                        <p:selectOneMenu id="departamentos" value="#{ciudadController.selected.departamentos}" required="true">
                             <f:selectItems value="#{departamentosController.itemsAvailableSelectOne}"
                                            var="departamentosItem"
                                            itemValue="#{departamentosItem}"/>
                         </p:selectOneMenu>
                         <h:message id="DeptoMessage" for="DeptoInputText" styleClass="error"/>
 
-                        <label class="Form-na">Nombre Ciudad</label> 
+                        <label class="Form-na" value="#{bundle.CreateCiudadLabel_nombreCiudad}" for="NombCiudad" > Nombre Ciuadad</label> 
                         <input type="text" jsf:id="NombCiudadInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre" 
                                jsf:validatorMessage="Use solo letras"

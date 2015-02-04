@@ -32,8 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "ProgramaDeFormacion.findAll", query = "SELECT p FROM ProgramaDeFormacion p"),
     @NamedQuery(name = "ProgramaDeFormacion.findByIdProgramaFormacion", query = "SELECT p FROM ProgramaDeFormacion p WHERE p.idProgramaFormacion = :idProgramaFormacion"),
-    @NamedQuery(name = "ProgramaDeFormacion.findByNombreprogramaformacion", query = "SELECT p FROM ProgramaDeFormacion p WHERE p.nombreprogramaformacion = :nombreprogramaformacion"),
-    @NamedQuery(name = "ProgramaDeFormacion.findByDuracionPrograma", query = "SELECT p FROM ProgramaDeFormacion p WHERE p.duracionPrograma = :duracionPrograma")})
+    @NamedQuery(name = "ProgramaDeFormacion.findByNombreprogramaformacion", query = "SELECT p FROM ProgramaDeFormacion p WHERE p.nombreprogramaformacion = :nombreprogramaformacion")})
 public class ProgramaDeFormacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,9 +45,6 @@ public class ProgramaDeFormacion implements Serializable {
     @Size(min = 1, max = 35)
     @Column(name = "Nombre_programa_formacion")
     private String nombreprogramaformacion;
-    @Size(max = 45)
-    @Column(name = "duracion_programa")
-    private String duracionPrograma;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProgramaFormacion")
     private List<FichaCaracterizacion> fichaCaracterizacionList;
 
@@ -78,14 +74,6 @@ public class ProgramaDeFormacion implements Serializable {
 
     public void setNombreprogramaformacion(String nombreprogramaformacion) {
         this.nombreprogramaformacion = nombreprogramaformacion;
-    }
-
-    public String getDuracionPrograma() {
-        return duracionPrograma;
-    }
-
-    public void setDuracionPrograma(String duracionPrograma) {
-        this.duracionPrograma = duracionPrograma;
     }
 
     @XmlTransient

@@ -1,23 +1,33 @@
 package co.edu.sena.sami.jsf.controllers;
 
+import co.edu.sena.sami.jpa.entities.CentroFormacion;
+import co.edu.sena.sami.jpa.entities.Ciudad;
+import co.edu.sena.sami.jpa.entities.Rol;
 import co.edu.sena.sami.jpa.entities.Usuarios;
+import co.edu.sena.sami.jpa.sessions.CentroFormacionFacade;
+import co.edu.sena.sami.jpa.sessions.CiudadFacade;
+import co.edu.sena.sami.jpa.sessions.RolFacade;
+import co.edu.sena.sami.jpa.sessions.UsuariosFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
-import co.edu.sena.sami.jpa.sessions.UsuariosFacade;
-
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.validator.ValidatorException;
+import javax.inject.Named;
 
 @Named("usuariosController")
 @SessionScoped
@@ -26,13 +36,40 @@ public class UsuariosController implements Serializable {
     @EJB
     private co.edu.sena.sami.jpa.sessions.UsuariosFacade ejbFacade;
     private List<Usuarios> items = null;
+    private List<Rol> listaRoles = null;
     private Usuarios selected;
+    @EJB
+    private RolFacade rolFacade;
+    @EJB
+    private CiudadFacade ciudadFacade;
+    @EJB
+    private CentroFormacionFacade centroFormacionFacade;
 
     public UsuariosController() {
     }
 
     public Usuarios getSelected() {
         return selected;
+    }
+    
+    public CiudadFacade getCiudadFacade() {
+        return ciudadFacade;
+    }
+    
+    public CentroFormacionFacade getCentroFormacionFacade() {
+        return centroFormacionFacade;
+    }
+    
+     public RolFacade getRolFacade() {
+        return rolFacade;
+    }
+
+    public List<Rol> getListaRoles() {
+        return listaRoles;
+    }
+
+    public void setListaRoles(List<Rol> listaRoles) {
+        this.listaRoles = listaRoles;
     }
 
     public void setSelected(Usuarios selected) {
@@ -51,19 +88,45 @@ public class UsuariosController implements Serializable {
 
     public String prepareCreate() {
         selected = new Usuarios();
+        listaRoles = new ArrayList<>();
         initializeEmbeddableKey();
         return "Agregar";
     }
+    
+    public String prepareModificarUsuario() {
+       return "Modificar";
+   }
+
+   public String prepareConsultarUsuario() {
+       return "Consultar";
+   }
+
+   public String prepareListUsuario() {
+       return "/Modulo5/Gestion Documental/Usuarios/Listar";
+   }
 
     public void create() {
+          try {
+            selected.setFacheDeCreacion(new Date());
+            selected.setEstado(true);
+            selected.setRolList(listaRoles);
+            getFacade().create(selected);
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            
+        }
+          
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("UsuariosCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        
+        
     }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("UsuariosUpdated"));
+        
     }
 
     public void destroy() {
@@ -80,6 +143,28 @@ public class UsuariosController implements Serializable {
         }
         return items;
     }
+    
+     public List<Ciudad> getListCiudadesAutoComplete(String query) {
+        try {
+            return getCiudadFacade().findByNombre(query);
+        } catch (Exception ex) {
+            Logger.getLogger(UsuariosController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+     
+     public List<CentroFormacion> getListCentroFormacionAutoComplete(String query) {
+        try {
+            return getCentroFormacionFacade().findByNombre(query);
+        } catch (Exception ex) {
+            Logger.getLogger(UsuariosController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+   
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
@@ -120,6 +205,11 @@ public class UsuariosController implements Serializable {
     public List<Usuarios> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+     public List<Rol> getListRolSelectOne() {
+        return getRolFacade().findAll();
+    }
+    
 
     @FacesConverter(forClass = Usuarios.class)
     public static class UsuariosControllerConverter implements Converter {
@@ -160,6 +250,41 @@ public class UsuariosController implements Serializable {
             }
         }
 
+    }
+    
+       public void validarDocumento(FacesContext contex, UIComponent component, Object value)
+            throws ValidatorException {
+           Usuarios UsuarioConsulta = getFacade().findByNumeroDocumento((String) value);
+
+        if (UsuarioConsulta != null) {
+            if (selected.getNumeroDoc()!= null) {
+                if (!Objects.equals(selected.getNumeroDoc(), UsuarioConsulta.getNumeroDoc())) {
+                    throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            ResourceBundle.getBundle("/resources/Bundle").getString("ValidatorDocumentoTitle"),
+                            ResourceBundle.getBundle("/resources/Bundle").getString("ValidatorDocumento")));
+                }
+            } else {
+                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        ResourceBundle.getBundle("/resources/Bundle").getString("ValidatorDocumentoTitle"),
+                        ResourceBundle.getBundle("/resources/Bundle").getString("ValidatorDocumento")));
+            }
+        } else {
+            String documento = (String) value;
+            selected.setNumeroDoc(documento);
+        }
+    }
+
+
+    private void addErrorMessage(String title, String msg) {
+        FacesMessage facesMsg
+                = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
+        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+    }
+
+    private void addSuccessMessage(String title, String msg) {
+        FacesMessage facesMsg
+                = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
+        FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
     }
 
 }

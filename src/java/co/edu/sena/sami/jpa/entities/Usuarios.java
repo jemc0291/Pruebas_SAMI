@@ -6,7 +6,7 @@
 
 package co.edu.sena.sami.jpa.entities;
 
-import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
+import co.edu.sena.sami.jsf.controllers.util.DigestUtil;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -62,7 +62,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findByDireccionUsu", query = "SELECT u FROM Usuarios u WHERE u.direccionUsu = :direccionUsu"),
     @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password"),
     @NamedQuery(name = "Usuarios.findByGpRh", query = "SELECT u FROM Usuarios u WHERE u.gpRh = :gpRh"),
-    @NamedQuery(name = "Usuarios.findByCalificacion", query = "SELECT u FROM Usuarios u WHERE u.calificacion = :calificacion")})
+    @NamedQuery(name = "Usuarios.findByCalificacion", query = "SELECT u FROM Usuarios u WHERE u.calificacion = :calificacion"),
+    @NamedQuery(name = "Usuarios.findByFacheDeCreacion", query = "SELECT u FROM Usuarios u WHERE u.facheDeCreacion = :facheDeCreacion"),
+    @NamedQuery(name = "Usuarios.findByEstado", query = "SELECT u FROM Usuarios u WHERE u.estado = :estado")})
 public class Usuarios implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -132,6 +134,11 @@ public class Usuarios implements Serializable {
     @Size(max = 10)
     @Column(name = "calificacion")
     private String calificacion;
+    @Column(name = "fache_de_creacion")
+    @Temporal(TemporalType.DATE)
+    private Date facheDeCreacion;
+    @Column(name = "estado")
+    private Boolean estado;
     @JoinTable(name = "usuarios_crp", joinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
         @JoinColumn(name = "numero_crp", referencedColumnName = "numero_crp")})
@@ -167,6 +174,8 @@ public class Usuarios implements Serializable {
         @JoinColumn(name = "id_riesgos_laborales", referencedColumnName = "id_riesgos_laborales")})
     @ManyToMany
     private List<RiesgosLaborales> riesgosLaboralesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<Documentos> documentosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<InformesDeComisiones> informesDeComisionesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
@@ -368,9 +377,11 @@ public class Usuarios implements Serializable {
     }
 
     public void setPassword(String password) {
-        try {
-            this.password = JsfUtil.generateDigest(password);
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+         try {
+            this.password = DigestUtil.generateDigest(password);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -389,6 +400,22 @@ public class Usuarios implements Serializable {
 
     public void setCalificacion(String calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public Date getFacheDeCreacion() {
+        return facheDeCreacion;
+    }
+
+    public void setFacheDeCreacion(Date facheDeCreacion) {
+        this.facheDeCreacion = facheDeCreacion;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
     @XmlTransient
@@ -452,6 +479,15 @@ public class Usuarios implements Serializable {
 
     public void setRiesgosLaboralesList(List<RiesgosLaborales> riesgosLaboralesList) {
         this.riesgosLaboralesList = riesgosLaboralesList;
+    }
+
+    @XmlTransient
+    public List<Documentos> getDocumentosList() {
+        return documentosList;
+    }
+
+    public void setDocumentosList(List<Documentos> documentosList) {
+        this.documentosList = documentosList;
     }
 
     @XmlTransient

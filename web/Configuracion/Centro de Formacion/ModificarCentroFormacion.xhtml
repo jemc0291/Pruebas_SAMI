@@ -7,7 +7,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Centro de Formacion</ui:define>
+        <ui:define name="title">Centro de Formacion <h:outputText value="#{bundle.ListCentroFormacionTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
@@ -20,8 +20,8 @@
             <section class="section-form">
                 <form jsf:id="CentroFormacionCreateForm">
                     <p:panelGrid columns="3" layout="grid">
-                        <label class="Form-na">Codigo de Centro de Formacion</label> 
-                        <input type="tel" jsf:id="CentroFormacionInputText" required="true" 
+                        <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_idCentroFormacion}" jsf:for="CentroFormacion"> </label> 
+                        <input type="tel" jsf:id="CentroFormacionInputText" required="true"  disabled="true"
                                jsf:requiredMessage="Por favor ingrese el codigo del Centro de Formacion" 
                                jsf:validatorMessage="Use solo numeros"
                                jsf:converterMessage="Use solo números. Máximo 16 digitos"
@@ -30,7 +30,7 @@
                         </input>
                         <h:message id="CentroFormacionMessage" for="CentroFormacionInputText" styleClass="error"/>
 
-                        <label class="Form-na">Nombre Centro de Formacion</label> 
+                        <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_nombreCentroFormacion}" for="NombreCentroFormacion"> Nombre Centro Formacion </label> 
                         <input type="text" jsf:id="NombCentroFormacionInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre del Centro de Formacion" 
                                jsf:validatorMessage="Use solo letras"
@@ -40,45 +40,40 @@
                         </input>
                         <h:message id="NombCentroFormacionMessage" for="NombCentroFormacionInputText" styleClass="error"/>
 
-                        <label class="Form-na">Direccion Centro de Formacion</label> 
-                        <input type="text" jsf:id="DirCentroFormacionInputText" required="true"
-                               jsf:requiredMessage="Por favor ingrese el nombre" 
-                               jsf:validatorMessage="Use solo letras"
-                               jsf:value="#{centroFormacionController.selected.direccionCentroFormacion}" maxlength="30">
-                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
-                            <f:ajax execute="@this" render="DirCentroFormacionMessage"/>
-                        </input>
-                        <h:message id="DirCentroFormacionMessage" for="DirCentroFormacionInputText" styleClass="error"/>
-
-                        <label class="Form-na">Telefono de Centro de Formacion</label> 
-                        <input type="text" jsf:id="TelCentroFormacionInputText" required="true"
-                               jsf:requiredMessage="Por favor ingrese el nombre" 
-                               jsf:validatorMessage="Use solo letras"
-                               jsf:value="#{centroFormacionController.selected.telefonoCentroFormacion}" maxlength="30">
-                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                        <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_telefonoCentroFormacion}" for="TelCentroFormacion"> Telefono </label> 
+                        <input type="tel" jsf:id="TelCentroFormacionInputText"
+                               jsf:requiredMessage="Por favor ingrese el numero de telefono" 
+                               jsf:validatorMessage="Ingrese un numero movi valido, debe ser mayor a cero"
+                               jsf:converterMessage="Use solo números. Máximo 16 digitos"
+                               jsf:value="#{centroFormacionController.selected.telefonoCentroFormacion}">
                             <f:ajax execute="@this" render="TelCentroFormacionMessage"/>
                         </input>
                         <h:message id="TelCentroFormacionMessage" for="TelCentroFormacionInputText" styleClass="error"/>
 
-                        <label class="Form-na">E-mail de Centro de Formacion</label> 
-                        <input type="text" jsf:id="MailCentroFormacionInputText" required="true"
-                               jsf:requiredMessage="Por favor ingrese el nombre" 
-                               jsf:validatorMessage="Use solo letras"
-                               jsf:value="#{centroFormacionController.selected.telefonoCentroFormacion}" maxlength="30">
-                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
-                            <f:ajax execute="@this" render="MailCentroFormacionMessage"/>
-                        </input>
-                        <h:message id="MailCentroFormacionMessage" for="MailCentroFormacionInputText" styleClass="error"/>
-
-                        <label class="Form-datos">Ciudad</label> 
-                        <p:selectOneMenu id="ciudad" value="#{centroFormacionController.itemsAvailableSelectOne}" required="true" requiredMessage=" se requiere ciudad  ">
-                            <f:selectItems value="#{centroFormacionController.itemsAvailableSelectOne}"
+                        <label class="Form-na">Ciudad</label> 
+                        <h:selectOneMenu id="ciudadInputText" value="#{centroFormacionController.selected.ciudad}"
+                                         requiredMessage=" se requiere ciudad  ">
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"
                                            var="ciudad"
                                            itemValue="#{ciudad}"/>
-                        </p:selectOneMenu>
-                        <h:message id="ciudadMessage" for="CiudadInputText" styleClass="error"/>
+                        </h:selectOneMenu>
+                        <h:message id="ciudadMessage" for="ciudadInputText" styleClass="error"/>
+
+                        <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_direccionCentroFormacion}" for="DirCentroFormacion" > Direccion  </label> 
+                        <input type="text" jsf:id="DirCentroFormacionInputText" 
+                               jsf:requiredMessage="Por favor ingrese la direccion"
+                               jsf:validatorMessage="Por favor ingrese una direccion valida"
+                               jsf:converterMessage="use solo letras y numeros"
+                               jsf:value="#{centroFormacionController.selected.direccionCentroFormacion}">
+                            <f:validateRegex pattern="[A-Za-z 0-9áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="direccionMessage"/>
+                        </input>
+                        <h:message id="direccionMessage" for="direccionInputText" styleClass="error"/>
+                        <h:message id="DirCentroFormacionMessage" for="DirCentroFormacionInputText" styleClass="error"/>
+
+
                     </p:panelGrid>
-                    <h:commandButton value="Guardar" action="#{centroFormacionController.update}"/>
+                    <h:commandButton value="Guardar" action="#{centroFormacionController.create}"/>
                 </form>
             </section>
         </ui:define>

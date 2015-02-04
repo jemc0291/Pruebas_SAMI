@@ -6,15 +6,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR DEPARTAMENTOS</ui:define>
+        <ui:define name="title">Departamentos <h:outputText value="#{bundle.ListDepartamentosTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>LISTAR DEPARTAMENTOS</h1>
+            <h1>Lista De Departamentos</h1>
             <h:form>
 
                 <P>
                     <h:commandButton action="#{departamentosController.prepareCreate}" value="Agregar Departamento"/>
-                    <h:commandButton action="#{departamentosController.prepareModificarDepartamentos}" value="Modificar Departamento"/>
                 </P>
                 <p:outputPanel id="DepartamentosTablePanel">
                     <p:dataTable value="#{departamentosController.items}" var="item"
@@ -24,22 +23,22 @@
                                  rowsPerPageTemplate="20,40,60">
 
                         <p:column>
-                            <f:facet name="header">ID Departamento</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListDepartamentosTitle_idDpto}"/></f:facet>
                             <h:outputText value="#{item.idDpto}"/>
                         </p:column>
 
                         <p:column filterBy="#{item.nombreDpto}" filterMatchMode="contains">
-                            <f:facet name="header">Nombre Departamento</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListDepartamentosTitle_nombreDpto}"/></f:facet>
                             <h:outputText value="#{item.nombreDpto}"/>
                         </p:column>
 
                         <p:column>
-
-                            <p:commandButton icon="ui-icon-pencil" action="#{departamentosController.prepareModificarDepartamentos}">
+                            <f:facet name="header">Opciones</f:facet>
+                            <p:commandButton icon="ui-icon-pencil" value="#{bundle.Edit}" action="#{departamentosController.prepareModificarDepartamentos}">
                                 <f:setPropertyActionListener value="#{item}" target="#{departamentosController.selected}"/>
                             </p:commandButton>
 
-                            <p:commandButton icon="ui-icon-trash" action="#{departamentosController.destroy}"
+                            <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{departamentosController.destroy}"
                                              process="@this" update="DepartamentoTable">
                                 <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el departamento?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{item}" target="#{departamentosController.selected}"/>

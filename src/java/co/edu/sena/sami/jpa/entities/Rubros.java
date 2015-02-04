@@ -42,7 +42,9 @@ public class Rubros implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "id_rubro")
     private String idRubro;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "rubro")
     private String rubro;
     @ManyToMany(mappedBy = "rubrosList")
@@ -55,6 +57,11 @@ public class Rubros implements Serializable {
 
     public Rubros(String idRubro) {
         this.idRubro = idRubro;
+    }
+
+    public Rubros(String idRubro, String rubro) {
+        this.idRubro = idRubro;
+        this.rubro = rubro;
     }
 
     public String getIdRubro() {

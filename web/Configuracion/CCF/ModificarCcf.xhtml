@@ -7,7 +7,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Caja de Compensacion</ui:define>
+        <ui:define name="title"> Ccf <h:outputText value="#{bundle.ListCcfTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             
@@ -21,7 +21,7 @@
                 <form jsf:id="CcfCreateForm">
                     <p:panelGrid columns="3" layout="grid">
 
-                        <label class="Form-na">Nombre Ccf</label> 
+                        <label class="Form-na" value="#{bundle.EditCcfLabel_nombreCcf}" for="NombreCcf" > Nombre Ccf </label> 
                         <input type="text" jsf:id="NombreCcfInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre de la Caja de Compensacion Familiar" 
                                jsf:validatorMessage="Use solo letras"

@@ -6,32 +6,39 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR ESTRATO SOCIAL</ui:define>
+        <ui:define name="title">Estrato Social <h:outputText value="#{bundle.ListEstratoSocialTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>LISTAR ESTRATO SOCIAL</h1>
+            <h1>Lista De Estratos Sociales</h1>
             <h:form>
 
                 <P>
-                    <h:commandButton action="#{EstratoSocialController.prepareAgregarEstractoSocial}" value="Agregar Estrato Social"/>
+                    <h:commandButton action="#{estratoSocialController.prepareCreate}" value="Agregar Estrato Social"/>
                     
                 </P>
                 <p:outputPanel id="EstratoSocialTablePanel">
-                    <p:dataTable value="#{EstratoSocialController.listaEstratoSocial}" var="item"
+                    <p:dataTable value="#{estratoSocialController.items}" var="item"
                                  rows="10" id="EstratoSocialTable" 
                                  paginator="true"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="20,40,60">
 
                         <p:column>
-                            <f:facet name="header">ID Estrato Social</f:facet>
-                            <h:outputText value="#{item.idEstratoSocial}"/>
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">Nombre Estrato Social</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListEstratoSocialTitle_nombreEstrato}"/></f:facet>
                             <h:outputText value="#{item.nombreEstrato}"/>
                         </p:column>
+                         <p:column>
+                         
+                             <p:commandButton icon="ui-icon-pencil" value="#{bundle.Edit}" action="#{estratoSocialController.prepareModificarEstratoSocial}">
+                                 <f:setPropertyActionListener value="#{item}" target="#{estratoSocialController.selected}"/>
+                        </p:commandButton>
+
+                             <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{estratoSocialController.destroy}"
+                                         process="@this" update="EstratoSocialTable">
+                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el estrato social?" icon="ui-icon-alert" />
+                            <f:setPropertyActionListener value="#{item}" target="#{estratoSocialController.selected}"/>
+                        </p:commandButton>
+                    </p:column>
 
                     </p:dataTable>
                 </p:outputPanel>

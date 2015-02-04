@@ -55,6 +55,11 @@ public class ConceptosDeGastos implements Serializable {
     private List<Crp> crpList;
     @ManyToMany(mappedBy = "conceptosDeGastosList")
     private List<Cdp> cdpList;
+    @JoinTable(name = "legalizaciones_de_comisiones_conceptos_de_gastos", joinColumns = {
+        @JoinColumn(name = "codigo_gasto", referencedColumnName = "codigo_gasto")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_legalizacion_de_comision", referencedColumnName = "id_legalizacion_de_comision")})
+    @ManyToMany
+    private List<LegalizacionesDeComisiones> legalizacionesDeComisionesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoGasto")
     private List<Legalizaciones> legalizacionesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conceptosDeGastos")
@@ -104,6 +109,15 @@ public class ConceptosDeGastos implements Serializable {
 
     public void setCdpList(List<Cdp> cdpList) {
         this.cdpList = cdpList;
+    }
+
+    @XmlTransient
+    public List<LegalizacionesDeComisiones> getLegalizacionesDeComisionesList() {
+        return legalizacionesDeComisionesList;
+    }
+
+    public void setLegalizacionesDeComisionesList(List<LegalizacionesDeComisiones> legalizacionesDeComisionesList) {
+        this.legalizacionesDeComisionesList = legalizacionesDeComisionesList;
     }
 
     @XmlTransient

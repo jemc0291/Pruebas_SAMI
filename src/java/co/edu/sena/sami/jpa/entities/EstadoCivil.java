@@ -100,7 +100,7 @@ public class EstadoCivil implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.EstadoCivil[ idEstadoCivil=" + idEstadoCivil + " ]";
+        return nombreEstadoCivil + "";
     }
     
 }

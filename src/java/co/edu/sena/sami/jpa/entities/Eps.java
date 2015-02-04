@@ -108,7 +108,7 @@ public class Eps implements Serializable {
 
     @Override
     public String toString() {
-        return  nombreEps + " ";
+        return nombreEps + "";
     }
     
 }

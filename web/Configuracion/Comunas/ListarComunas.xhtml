@@ -6,15 +6,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR COMUNAS</ui:define>
+        <ui:define name="title"> Comunas  <h:outputText value="#{bundle.ListComunasTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>LISTAR COMUNAS</h1>
+            <h1>Lista De Comunas</h1>
             <h:form>
 
                 <P>
                     <h:commandButton action="#{comunasController.prepareCreate}" value="Agregar Comunas"/>
-                    <h:commandButton action="#{comunasController.prepareModificarComunas}" value="Modificar Comunas"/>
                 </P>
                 <p:outputPanel id="ComunasTablePanel">
                     <p:dataTable value="#{comunasController.items}" var="item"
@@ -23,23 +22,18 @@
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="20,40,60">
 
-                        <p:column>
-                            <f:facet name="header">ID Comuna</f:facet>
-                            <h:outputText value="#{item.idComuna}"/>
-                        </p:column>
-
                         <p:column filterBy="#{item.nombreComuna}" filterMatchMode="contains">
-                            <f:facet name="header">Nombre Comuna</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListComunasTitle_nombreComuna}"/> </f:facet>
                             <h:outputText value="#{item.nombreComuna}"/>
                         </p:column>
                         
                          <p:column>
-                          
-                             <p:commandButton icon="ui-icon-pencil" action="#{comunasController.prepareModificarComunas}">
+                          <f:facet name="header">Opciones</f:facet>
+                             <p:commandButton icon="ui-icon-pencil" value="#{bundle.Edit}" action="#{comunasController.prepareModificarComunas}">
                                  <f:setPropertyActionListener value="#{item}" target="#{comunasController.selected}"/>
                         </p:commandButton>
 
-                             <p:commandButton icon="ui-icon-trash" action="#{comunasController.destroy}"
+                             <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{comunasController.destroy}"
                                          process="@this" update="ComunasTable">
                             <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar la comuna?" icon="ui-icon-alert" />
                             <f:setPropertyActionListener value="#{item}" target="#{comunasController.selected}"/>

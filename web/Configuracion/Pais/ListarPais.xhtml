@@ -6,10 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR PAIS</ui:define>
+        <ui:define name="title">Lista Pais <h:outputText value="#{bundle.ListPaisTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>LISTA DE PAISES</h1>
+            <h1>Lista De Pais</h1>
             <h:form>
 
                 <P>
@@ -24,22 +24,22 @@
                                  rowsPerPageTemplate="20,40,60">
 
                         <p:column>
-                            <f:facet name="header">ID Pais</f:facet>
+                            <f:facet name="header">Código</f:facet>
                             <h:outputText value="#{item.idPais}"/>
                         </p:column>
 
                         <p:column filterBy="#{item.nombrepais}" filterMatchMode="contains">
-                            <f:facet name="header">Nombre Pais</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListPaisTitle_nombrepais}"/></f:facet>
                             <h:outputText value="#{item.nombrepais}"/>
                         </p:column>
                         
                          <p:column>
                           <f:facet name="header">Opciones</f:facet>
-                          <p:commandButton icon="ui-icon-pencil" action="#{paisController.prepareModificarPais}">
+                          <p:commandButton icon="ui-icon-pencil" value="#{bundle.Edit}" action="#{paisController.prepareModificarPais}">
                               <f:setPropertyActionListener value="#{item}" target="#{paisController.selected}"/>
                         </p:commandButton>
 
-                          <p:commandButton icon="ui-icon-trash" action="#{paisController.destroy}"
+                          <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{paisController.destroy}"
                                          process="@this" update="PaisTable">
                             <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el pais?" icon="ui-icon-alert" />
                             <f:setPropertyActionListener value="#{item}" target="#{paisController.selected}"/>

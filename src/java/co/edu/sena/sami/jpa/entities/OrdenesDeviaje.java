@@ -101,6 +101,8 @@ public class OrdenesDeviaje implements Serializable {
     private List<Ciudad> ciudadList;
     @ManyToMany(mappedBy = "ordenesDeviajeList")
     private List<Cdp> cdpList;
+    @ManyToMany(mappedBy = "ordenesDeviajeList")
+    private List<Crp> crpList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "numeroOrdendeviaje")
     private List<RelacionesGastosDeTransporte> relacionesGastosDeTransporteList;
     @JoinColumn(name = "id_tipo_pasaje", referencedColumnName = "id_tipo_pasaje")
@@ -118,6 +120,9 @@ public class OrdenesDeviaje implements Serializable {
     @JoinColumn(name = "id_cuenta", referencedColumnName = "id_cuenta")
     @ManyToOne(optional = false)
     private CuentasBancarias idCuenta;
+    @JoinColumn(name = "id_relaciones_gastos_de_transporte", referencedColumnName = "id_relaciones_gastos_de_transporte")
+    @ManyToOne(optional = false)
+    private RelacionesGastosDeTransporte idRelacionesGastosDeTransporte;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuarios idUsuario;
@@ -261,6 +266,15 @@ public class OrdenesDeviaje implements Serializable {
     }
 
     @XmlTransient
+    public List<Crp> getCrpList() {
+        return crpList;
+    }
+
+    public void setCrpList(List<Crp> crpList) {
+        this.crpList = crpList;
+    }
+
+    @XmlTransient
     public List<RelacionesGastosDeTransporte> getRelacionesGastosDeTransporteList() {
         return relacionesGastosDeTransporteList;
     }
@@ -307,6 +321,14 @@ public class OrdenesDeviaje implements Serializable {
 
     public void setIdCuenta(CuentasBancarias idCuenta) {
         this.idCuenta = idCuenta;
+    }
+
+    public RelacionesGastosDeTransporte getIdRelacionesGastosDeTransporte() {
+        return idRelacionesGastosDeTransporte;
+    }
+
+    public void setIdRelacionesGastosDeTransporte(RelacionesGastosDeTransporte idRelacionesGastosDeTransporte) {
+        this.idRelacionesGastosDeTransporte = idRelacionesGastosDeTransporte;
     }
 
     public Usuarios getIdUsuario() {

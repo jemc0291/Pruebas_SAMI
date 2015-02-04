@@ -1,10 +1,9 @@
 package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.Ciudad;
+import co.edu.sena.sami.jpa.sessions.CiudadFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
-import co.edu.sena.sami.jpa.sessions.CiudadFacade;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,12 +11,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import static javax.management.Query.value;
+import static javax.management.Query.value;
 
 @Named("ciudadController")
 @SessionScoped
@@ -95,7 +96,6 @@ public class CiudadController implements Serializable {
         return items;
     }
     
-    
 
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -138,7 +138,7 @@ public class CiudadController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Ciudad.class)
+    @FacesConverter(forClass = Ciudad.class, value="ciudadConverter")
     public static class CiudadControllerConverter implements Converter {
 
         private static final String SEPARATOR = "#";

@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head jsf:id="head">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, minimun-scale=1,maximun=1"/>
@@ -27,27 +29,21 @@
                     <li class="MaiMenu-item1"><a href="sami_inicio_ayuda.html" class="MainMenu-link1">AYUDA</a></li> 
                 </ul>                        
             </nav>
-            <form class="Ingresar" name="inicioDatos" method="get" onsubmit="return ValidaDatos()">
-                <section>
-                    <label for="Nombre">Nombre de Usuario:</label>
-                    <br/>
-                    <input type="text" name="textNombre" placeholder="*Digite su nombre" oninput="validation('Nombre')" pattern="([a-z]{5,25})" maxlength="25"/>
-                </section>
+            
+             <h:panelGroup rendered="true">
+            <form jsf:id="LoginForm" class="Ingresar" name="inicioDatos">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages/>
+                </h:panelGroup>
+                <input jsf:id="user" type="text" placeholder="Usuario" jsf:value="#{loginController.username}" required="true" />
+                <input jsf:id="password" type="password" placeholder="Contraseña" jsf:value="#{loginController.password}" required="true" />
                 <br/>
-                <section>
-                    <br/>
-                    <label for="Contraseña">*Contraseña</label>
-                    <input type="password" name="textpassword" value="" maxlength="15"/> 
-                </section>
-                <br/>
-                <input type="checkbox" name="R"/>Recordar Contraseña
-                <section>
-                    <br/>  
-                    <a href="actualizarContraseña.html"/> <input class="Button" type="button" value="Aceptar" onclick="enviado()"/>
-                </section> 
-                <br/>
-                <a href="actualizarSami.html">Olvido su Contraseña</a>
+                <input type="submit" value="Ingresar" jsf:action="#{loginController.login}">
+                    <f:ajax execute="@this @form" render="messagePanel"/>
+                </input>                         
             </form>
+        </h:panelGroup>
+                
             <div class="main"> 
                 <div class="slides">
                     <img src="#{request.contextPath}/resources/images/img1.jpg" height="260px"/>

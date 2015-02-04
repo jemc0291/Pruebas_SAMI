@@ -6,44 +6,39 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR CCF</ui:define>
+        <ui:define name="title">Lista Ccf <h:outputText value="#{bundle.ListCcfTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>LISTA DE CCF</h1>
+            <h1>Lista De Caja De Compensacion Familiar</h1>
             <h:form>
 
                 <P>
-                    <h:commandButton action="#{ccfController.prepareCreate}" value="Agregar CCF"/>
+                    <h:commandButton action="#{ccfController.prepareCreate}" value="Agregar Ccf"/>
                 </P>
-                <p:outputPanel id="CcfTablePanel">
+                <p:outputPanel id="ArlTablePanel">
                     <p:dataTable value="#{ccfController.items}" var="item"
-                                 rows="10" id="CcfTable" 
+                                 rows="10" id="ArlTable" 
                                  paginator="true"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="20,40,60">
 
-                        <p:column>
-                            <f:facet name="header">ID</f:facet>
-                            <h:outputText value="#{item.idCcf}"/>
-                        </p:column>
-
                         <p:column filterBy="#{item.nombreCcf}" filterMatchMode="contains">
-                            <f:facet name="header">Nombre Ccf</f:facet>
+                            <f:facet name="header"> <h:outputText value="#{bundle.ListCcfTitle_nombreCcf}"/></f:facet>
                             <h:outputText value="#{item.nombreCcf}"/>
                         </p:column>
                         
                          <p:column>
                         <f:facet name="header">Opciones</f:facet>
-                             <p:commandButton icon="ui-icon-pencil" action="#{ccfController.prepareModificarCcf}">
+                        <p:commandButton icon="ui-icon-pencil" value="#{bundle.Edit}" action="#{ccfController.prepareModificarCcf}">
                                  <f:setPropertyActionListener value="#{item}" target="#{ccfController.selected}"/>
                         </p:commandButton>
 
-                        <p:commandButton icon="ui-icon-trash" action="#{ccfController.destroy}"
-                                         process="@this" update="CcfTable">
-                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar la Caja de Compensacion?" icon="ui-icon-alert" />
+                        <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{ccfController.destroy}"
+                                         process="@this" update="ArlTable">
+                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar la ARL?" icon="ui-icon-alert" />
                             <f:setPropertyActionListener value="#{item}" target="#{ccfController.selected}"/>
                         </p:commandButton>
-                    </p:column>
+                        </p:column>
                     </p:dataTable>
                 </p:outputPanel>
             </h:form>

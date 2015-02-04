@@ -108,7 +108,7 @@ public class Arl implements Serializable {
 
     @Override
     public String toString() {
-        return nombreArl + " ";
+        return nombreArl + "";
     }
     
 }

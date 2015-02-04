@@ -121,7 +121,7 @@ public class RolController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Rol.class)
+    @FacesConverter(forClass = Rol.class, value = "rolConverter")
     public static class RolControllerConverter implements Converter {
 
         @Override

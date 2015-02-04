@@ -7,7 +7,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Gestion Documental</ui:define>
+        <ui:define name="title">Comunas  <h:outputText value="#{bundle.ListComunasTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
@@ -20,7 +20,7 @@
             <section class="section-form">
                 <form jsf:id="ComunaCreateForm">
                     <p:panelGrid columns="3" layout="grid">
-                        <label class="Form-na">Id Comuna</label> 
+                        <label class="Form-na" value="#{bundle.CreateComunasLabel_idComuna}" for="IdComuna"> Id Comuna</label> 
                         <input type="tel" jsf:id="IdComunaInputText" required="true" 
                                jsf:requiredMessage="Por favor ingrese el Id" 
                                jsf:validatorMessage="Use solo numeros"
@@ -30,7 +30,7 @@
                         </input>
                         <h:message id="IdComunaMessage" for="IdComunaInputText" styleClass="error"/>
 
-                        <label class="Form-na">Nombre Comuna </label> 
+                        <label class="Form-na" value="#{bundle.CreateComunasLabel_nombreComuna}" for="NombreComuna" > Nombre Comuna</label> 
                         <input type="text" jsf:id="NombreComunaInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre" 
                                jsf:validatorMessage="Use solo letras"
@@ -42,7 +42,7 @@
 
 
 
-                        <label class="Form-na">Ciudad</label> 
+                        <label class="Form-na" value="#{bundle.CreateComunasLabel_ciudad}" for="ciudad"> Ciudad</label> 
                         <p:selectOneMenu id="ciudad" value="#{comunasController.selected.ciudad}" required="true" requiredMessage="#{bundle.EditCiudadRequiredMessage_departamentos}">
                             <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"
                                            var="ciudadItem"

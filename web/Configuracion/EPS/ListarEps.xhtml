@@ -6,12 +6,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR EPS</ui:define>
+        <ui:define name="title">Lista EPS <h:outputText value="#{bundle.ListEpsTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>LISTA DE EPS</h1>
+            <h1>Lista De Entidad Promotora De Salud</h1>
             <h:form>
-
                 <P>
                     <h:commandButton action="#{epsController.prepareCreate}" value="Agregar EPS"/>
                 </P>
@@ -22,24 +21,19 @@
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="20,40,60">
 
-                        <p:column>
-                            <f:facet name="header">ID Eps</f:facet>
-                            <h:outputText value="#{item.idEps}"/>
-                        </p:column>
-
                         <p:column filterBy="#{item.nombreEps}" filterMatchMode="contains">
-                            <f:facet name="header">Nombre Eps</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListEpsTitle_nombreEps}"/></f:facet>
                             <h:outputText value="#{item.nombreEps}"/>
                         </p:column>
 
                         <p:column>
                             <f:facet name="header">Opciones</f:facet>
 
-                           <p:commandButton icon="ui-icon-pencil" action="#{epsController.prepareModificarEps}">
+                           <p:commandButton icon="ui-icon-pencil" value="#{bundle.Edit}" action="#{epsController.prepareModificarEps}">
                                <f:setPropertyActionListener value="#{item}" target="#{epsController.selected}"/>
                             </p:commandButton>
                             
-                            <p:commandButton icon="ui-icon-trash" action="#{epsController.destroy}"
+                            <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{epsController.destroy}"
                                              process="@this" update="EpsTable">
                                 <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar la eps?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{item}" target="#{epsController.selected}"/>

@@ -6,15 +6,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR CENTRO DE FORMACION</ui:define>
+        <ui:define name="title">Centro De Formacion <h:outputText value="#{bundle.ListCentroFormacionTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>LISTAR CENTRO DE FORMACION</h1>
+           <h1>Lista De Centros De Formacion</h1>
             <h:form>
 
                 <P>
                     <h:commandButton action="#{centroFormacionController.prepareCreate}" value="Agregar Centro de Formacion"/>
-                    <h:commandButton action="#{centroFormacionController.prepareModificarCentroFormacion}" value="Modificar Centro de Formacion"/>
                 </P>
                 <p:outputPanel id="CentroFormacionTablePanel">
                     <p:dataTable value="#{centroFormacionController.items}" var="item"
@@ -24,34 +23,33 @@
                                  rowsPerPageTemplate="20,40,60">
 
                         <p:column>
-                            <f:facet name="header">ID Centro de Formacion</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListCentroFormacionTitle_idCentroFormacion}"/></f:facet>
                             <h:outputText value="#{item.idCentroFormacion}"/>
                         </p:column>
 
                         <p:column filterBy="#{item.nombreCentroFormacion}" filterMatchMode="contains">
-                            <f:facet name="header">Nombre Centro de Formacion</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListCentroFormacionTitle_nombreCentroFormacion}"/></f:facet>
                             <h:outputText value="#{item.nombreCentroFormacion}"/>
                         </p:column>
                         
                         <p:column>
-                            <f:facet name="header">Direccion de Centro de Formacion</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListCentroFormacionTitle_direccionCentroFormacion}"/></f:facet>
                             <h:outputText value="#{item.direccionCentroFormacion}"/>
                         </p:column>
                         
                         <p:column>
-                            <f:facet name="header">Ciudad</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListCentroFormacionTitle_ciudad}"/></f:facet>
                             <h:outputText value="#{item.ciudad}"/>
                         </p:column> 
                          <p:column>
-                           
-          
-                             <p:commandButton icon="ui-icon-pencil" action="#{centroFormacionController.prepareModificarCentroFormacion}">
+                           <f:facet name="header">Opciones</f:facet>
+                             <p:commandButton icon="ui-icon-pencil" value="#{bundle.Edit}" action="#{centroFormacionController.prepareModificarCentroFormacion}">
                                  <f:setPropertyActionListener value="#{item}" target="#{centroFormacionController.selected}"/>
                         </p:commandButton>
 
-                             <p:commandButton icon="ui-icon-trash" action="#{centroFormacionController.destroy}"
+                             <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{centroFormacionController.destroy}"
                                          process="@this" update="CentroFormacionTable">
-                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el empleado?" icon="ui-icon-alert" />
+                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el centro de formacion?" icon="ui-icon-alert" />
                             <f:setPropertyActionListener value="#{item}" target="#{centroFormacionController.selected}"/>
                         </p:commandButton>
                     </p:column>

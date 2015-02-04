@@ -108,7 +108,7 @@ public class EstratoSocial implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.EstratoSocial[ idEstratoSocial=" + idEstratoSocial + " ]";
+        return nombreEstrato + "";
     }
     
 }

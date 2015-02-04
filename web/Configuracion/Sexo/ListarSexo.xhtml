@@ -6,20 +6,24 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR SEXO</ui:define>
+        <ui:define name="title">Genero <h:outputText value="#{bundle.ListSexoTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>SEXO</h1>
+            <h1>Lista Genero</h1>
             <h:form>
 
-                <p:outputPanel id="GeneroTablePanel">
-                    <p:dataTable value="#{SexoController.listaSexo}" var="item"
-                                 rows="10" id="GeneroTable"> 
+                <p:outputPanel id="EstratoSocialTablePanel">
+                    <p:dataTable value="#{sexoController.items}" var="item"
+                                 rows="10" id="SexoTable" 
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="20,40,60">
 
-                        <p:column filterBy="#{item.nombreSexo}" filterMatchMode="contains">
-                            <f:facet name="header">Sexo</f:facet>
+                        <p:column>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListSexoTitle_nombreSexo}"/></f:facet>
                             <h:outputText value="#{item.nombreSexo}"/>
                         </p:column>
+                        
 
                     </p:dataTable>
                 </p:outputPanel>

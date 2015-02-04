@@ -41,7 +41,9 @@ public class Dependencias implements Serializable {
     @NotNull
     @Column(name = "codigo_de_dependencia")
     private Integer codigoDeDependencia;
-    @Size(max = 100)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "descripcion_dependencia")
     private String descripcionDependencia;
     @ManyToMany(mappedBy = "dependenciasList")
@@ -56,6 +58,11 @@ public class Dependencias implements Serializable {
 
     public Dependencias(Integer codigoDeDependencia) {
         this.codigoDeDependencia = codigoDeDependencia;
+    }
+
+    public Dependencias(Integer codigoDeDependencia, String descripcionDependencia) {
+        this.codigoDeDependencia = codigoDeDependencia;
+        this.descripcionDependencia = descripcionDependencia;
     }
 
     public Integer getCodigoDeDependencia() {

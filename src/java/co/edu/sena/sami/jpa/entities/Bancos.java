@@ -33,14 +33,17 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Bancos.findAll", query = "SELECT b FROM Bancos b"),
+    @NamedQuery(name = "Bancos.findByIdBanco", query = "SELECT b FROM Bancos b WHERE b.idBanco = :idBanco"),
     @NamedQuery(name = "Bancos.findByNitBanco", query = "SELECT b FROM Bancos b WHERE b.nitBanco = :nitBanco"),
-    @NamedQuery(name = "Bancos.findByNombreDeBanco", query = "SELECT b FROM Bancos b WHERE b.nombreDeBanco = :nombreDeBanco"),
-    @NamedQuery(name = "Bancos.findByIdBanco", query = "SELECT b FROM Bancos b WHERE b.idBanco = :idBanco")})
+    @NamedQuery(name = "Bancos.findByNombreDeBanco", query = "SELECT b FROM Bancos b WHERE b.nombreDeBanco = :nombreDeBanco")})
 public class Bancos implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
+    @Column(name = "id_banco")
+    private Integer idBanco;
+    @Size(max = 15)
     @Column(name = "nit_banco")
     private String nitBanco;
     @Basic(optional = false)
@@ -48,11 +51,6 @@ public class Bancos implements Serializable {
     @Size(min = 1, max = 70)
     @Column(name = "nombre_de_banco")
     private String nombreDeBanco;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_banco")
-    private Integer idBanco;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBanco")
     private List<CuentasBancarias> cuentasBancariasList;
 
@@ -63,10 +61,17 @@ public class Bancos implements Serializable {
         this.idBanco = idBanco;
     }
 
-    public Bancos(Integer idBanco, String nitBanco, String nombreDeBanco) {
+    public Bancos(Integer idBanco, String nombreDeBanco) {
         this.idBanco = idBanco;
-        this.nitBanco = nitBanco;
         this.nombreDeBanco = nombreDeBanco;
+    }
+
+    public Integer getIdBanco() {
+        return idBanco;
+    }
+
+    public void setIdBanco(Integer idBanco) {
+        this.idBanco = idBanco;
     }
 
     public String getNitBanco() {
@@ -83,14 +88,6 @@ public class Bancos implements Serializable {
 
     public void setNombreDeBanco(String nombreDeBanco) {
         this.nombreDeBanco = nombreDeBanco;
-    }
-
-    public Integer getIdBanco() {
-        return idBanco;
-    }
-
-    public void setIdBanco(Integer idBanco) {
-        this.idBanco = idBanco;
     }
 
     @XmlTransient

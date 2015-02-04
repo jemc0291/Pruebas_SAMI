@@ -78,12 +78,17 @@ public class Crp implements Serializable {
     @ManyToMany(mappedBy = "crpList")
     private List<Usuarios> usuariosList;
     @JoinTable(name = "crp_dependencias", joinColumns = {
-        @JoinColumn(name = "numero_crp", referencedColumnName = "numero_crp")}, inverseJoinColumns = {
+        @JoinColumn(name = "crp_numero_crp", referencedColumnName = "numero_crp")}, inverseJoinColumns = {
         @JoinColumn(name = "codigo_de_dependencia", referencedColumnName = "codigo_de_dependencia")})
     @ManyToMany
     private List<Dependencias> dependenciasList;
     @ManyToMany(mappedBy = "crpList")
     private List<ConceptosDeGastos> conceptosDeGastosList;
+    @JoinTable(name = "ordenes_de_viaje_crp", joinColumns = {
+        @JoinColumn(name = "numero_crp", referencedColumnName = "numero_crp")}, inverseJoinColumns = {
+        @JoinColumn(name = "numero_ordendeviaje", referencedColumnName = "numero_ordendeviaje")})
+    @ManyToMany
+    private List<OrdenesDeviaje> ordenesDeviajeList;
     @JoinTable(name = "gestiones_crp", joinColumns = {
         @JoinColumn(name = "numero_crp", referencedColumnName = "numero_crp")}, inverseJoinColumns = {
         @JoinColumn(name = "codigo_gestion", referencedColumnName = "codigo_gestion")})
@@ -99,8 +104,6 @@ public class Crp implements Serializable {
     @JoinColumn(name = "id_tipo_solicitud", referencedColumnName = "id_tipo_solicitud")
     @ManyToOne(optional = false)
     private TiposDeSolicitudes idTipoSolicitud;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "crp")
-    private OrdenesDeViajeCrp ordenesDeViajeCrp;
 
     public Crp() {
     }
@@ -193,6 +196,15 @@ public class Crp implements Serializable {
     }
 
     @XmlTransient
+    public List<OrdenesDeviaje> getOrdenesDeviajeList() {
+        return ordenesDeviajeList;
+    }
+
+    public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
+        this.ordenesDeviajeList = ordenesDeviajeList;
+    }
+
+    @XmlTransient
     public List<Gestiones> getGestionesList() {
         return gestionesList;
     }
@@ -232,14 +244,6 @@ public class Crp implements Serializable {
 
     public void setIdTipoSolicitud(TiposDeSolicitudes idTipoSolicitud) {
         this.idTipoSolicitud = idTipoSolicitud;
-    }
-
-    public OrdenesDeViajeCrp getOrdenesDeViajeCrp() {
-        return ordenesDeViajeCrp;
-    }
-
-    public void setOrdenesDeViajeCrp(OrdenesDeViajeCrp ordenesDeViajeCrp) {
-        this.ordenesDeViajeCrp = ordenesDeViajeCrp;
     }
 
     @Override

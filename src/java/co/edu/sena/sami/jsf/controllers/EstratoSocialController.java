@@ -64,7 +64,7 @@ public class EstratoSocialController implements Serializable {
     }
 
     public String prepareListEstratoSocial() {
-        return "/Configuracion/EstratoSocial/ListarEstratoSocial";
+        return "/Configuracion/Estrato Social/ListarEstratoSocial";
     }
 
     public void create() {

@@ -1,23 +1,34 @@
 package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.DatosOnbase;
+import co.edu.sena.sami.jpa.sessions.DatosOnbaseFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
-import co.edu.sena.sami.jpa.sessions.DatosOnbaseFacade;
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import javax.servlet.ServletContext;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
 
 @Named("datosOnbaseController")
 @SessionScoped
@@ -25,6 +36,7 @@ public class DatosOnbaseController implements Serializable {
 
     @EJB
     private co.edu.sena.sami.jpa.sessions.DatosOnbaseFacade ejbFacade;
+    
     private List<DatosOnbase> items = null;
     private DatosOnbase selected;
 
@@ -161,5 +173,71 @@ public class DatosOnbaseController implements Serializable {
         }
 
     }
+    //boton para importar los datos//
+    private UploadedFile file;
+    private String destination = "C:\\Temp\\Archivo";
+//
 
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+
+    public void upload() {
+//        if (file != null) {
+//            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+//            FacesContext.getCurrentInstance().addMessage(null, message);
+        FacesMessage msg = new FacesMessage("Success! ", file.getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        // Do what you want with the file        
+        try {
+            copyFile(file.getFileName(), file.getInputstream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        }
+    }
+
+//    public void upload(FileUploadEvent event) {
+//       
+//
+//    }
+    public void copyFile(String fileName, InputStream in) {
+        try {
+
+            // write the inputStream to a FileOutputStream
+            OutputStream out = new FileOutputStream(new File(destination + fileName));
+
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = in.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+
+            in.close();
+            out.flush();
+            out.close();
+
+            System.out.println("New file created!");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //boton descargar 
+//    private StreamedContent file;
+//
+//    public FileDownloadView() {
+//        InputStream stream = ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/resources/demo/images/optimus.jpg");
+//        file = new DefaultStreamedContent(stream, "image/jpg", "downloaded_optimus.jpg");
+//    }
+//
+//    public StreamedContent getFile() {
+//        return file;
+//    }
 }
+

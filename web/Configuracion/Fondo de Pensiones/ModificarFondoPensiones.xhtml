@@ -7,20 +7,20 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Fondo de Pensiones</ui:define>
+        <ui:define name="title">Fondo de Pensiones <h:outputText value="#{bundle.ListFondoDePensionesTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
             <h:form> 
-                <h:commandButton value="Agregar Fondo de Pensiones" action="#{fondoDePensionesController.prepareCreate}"/>
-                <h:commandButton value="Volver A Lista" action="#{fondoDePensionesController.prepareListFondoDePensiones}"/>
+                <h:commandButton value="Modificar Fondo de Pensiones" action="#{fondoDePensionesController.prepareModificarFondoDePensiones}"/>
+                <h:commandButton value="Volver A Lista" action="#{fondoDePensionesController.prepareListFondoPensiones}"/>
 
             </h:form>
 
             <section class="section-form">
                 <form jsf:id="FondoPensionesCreateForm">
                     <p:panelGrid columns="3" layout="grid">
-                        <label class="Form-na">Nombre Fondo de Pensiones</label> 
+                        <label class="Form-na" value="#{bundle.EditFondoDePensionesLabel_nombreFondoPensiones}" for="nombreFondoPensiones">Nombre Fondo de Pensiones</label> 
                         <input type="text" jsf:id="NombreFondoPensionesInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre de la eps" 
                                jsf:validatorMessage="Use solo letras"

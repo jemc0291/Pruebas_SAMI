@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -86,6 +88,8 @@ public class RelacionesGastosDeTransporte implements Serializable {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuarios idUsuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRelacionesGastosDeTransporte")
+    private List<OrdenesDeviaje> ordenesDeviajeList;
 
     public RelacionesGastosDeTransporte() {
     }
@@ -183,6 +187,15 @@ public class RelacionesGastosDeTransporte implements Serializable {
 
     public void setIdUsuario(Usuarios idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    @XmlTransient
+    public List<OrdenesDeviaje> getOrdenesDeviajeList() {
+        return ordenesDeviajeList;
+    }
+
+    public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
+        this.ordenesDeviajeList = ordenesDeviajeList;
     }
 
     @Override

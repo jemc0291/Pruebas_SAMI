@@ -66,10 +66,9 @@ public class Comisiones implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idComision")
     private List<InformesDeComisiones> informesDeComisionesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idComision")
+    private List<LegalizacionesDeComisiones> legalizacionesDeComisionesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idComision")
     private List<OrdenesDeviaje> ordenesDeviajeList;
-    @JoinColumn(name = "id_aprobacion", referencedColumnName = "id_aprobacion")
-    @ManyToOne(optional = false)
-    private Aprobaciones idAprobacion;
     @JoinColumn(name = "id_descripcion", referencedColumnName = "id_descripcion")
     @ManyToOne(optional = false)
     private DescripcionesReferenciasViaticos idDescripcion;
@@ -93,6 +92,9 @@ public class Comisiones implements Serializable {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuarios idUsuario;
+    @JoinColumn(name = "id_aprobacion", referencedColumnName = "id_aprobacion")
+    @ManyToOne(optional = false)
+    private Aprobaciones idAprobacion;
 
     public Comisiones() {
     }
@@ -150,20 +152,21 @@ public class Comisiones implements Serializable {
     }
 
     @XmlTransient
+    public List<LegalizacionesDeComisiones> getLegalizacionesDeComisionesList() {
+        return legalizacionesDeComisionesList;
+    }
+
+    public void setLegalizacionesDeComisionesList(List<LegalizacionesDeComisiones> legalizacionesDeComisionesList) {
+        this.legalizacionesDeComisionesList = legalizacionesDeComisionesList;
+    }
+
+    @XmlTransient
     public List<OrdenesDeviaje> getOrdenesDeviajeList() {
         return ordenesDeviajeList;
     }
 
     public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
         this.ordenesDeviajeList = ordenesDeviajeList;
-    }
-
-    public Aprobaciones getIdAprobacion() {
-        return idAprobacion;
-    }
-
-    public void setIdAprobacion(Aprobaciones idAprobacion) {
-        this.idAprobacion = idAprobacion;
     }
 
     public DescripcionesReferenciasViaticos getIdDescripcion() {
@@ -220,6 +223,14 @@ public class Comisiones implements Serializable {
 
     public void setIdUsuario(Usuarios idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Aprobaciones getIdAprobacion() {
+        return idAprobacion;
+    }
+
+    public void setIdAprobacion(Aprobaciones idAprobacion) {
+        this.idAprobacion = idAprobacion;
     }
 
     @Override

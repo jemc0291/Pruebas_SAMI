@@ -116,7 +116,7 @@ public class Comunas implements Serializable {
 
     @Override
     public String toString() {
-        return  nombreComuna + " ";
+        return nombreComuna + " ";
     }
     
 }

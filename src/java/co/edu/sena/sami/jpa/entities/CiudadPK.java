@@ -77,7 +77,7 @@ public class CiudadPK implements Serializable {
 
     @Override
     public String toString() {
-        return idCiudad  + idDpto + "";
+        return idCiudad + idDpto+ "";
     }
     
 }

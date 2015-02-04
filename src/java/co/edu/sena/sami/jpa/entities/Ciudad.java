@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c"),
     @NamedQuery(name = "Ciudad.findByIdCiudad", query = "SELECT c FROM Ciudad c WHERE c.ciudadPK.idCiudad = :idCiudad"),
-    @NamedQuery(name = "Ciudad.findByNombreCiudad", query = "SELECT c FROM Ciudad c WHERE c.nombreCiudad = :nombreCiudad"),
+    @NamedQuery(name = "Ciudad.findByNombreCiudad", query = "SELECT c FROM Ciudad c WHERE c.nombreCiudad LIKE :nombreCiudad"),
     @NamedQuery(name = "Ciudad.findByIdDpto", query = "SELECT c FROM Ciudad c WHERE c.ciudadPK.idDpto = :idDpto")})
 public class Ciudad implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -222,7 +222,7 @@ public class Ciudad implements Serializable {
 
     @Override
     public String toString() {
-        return nombreCiudad + " " ;
+        return nombreCiudad + ", " +getDepartamentos().getNombreDpto() + ", " + getDepartamentos().getIdPais().getNombrepais();
     }
     
 }

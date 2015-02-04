@@ -63,7 +63,7 @@ public class ArlController implements Serializable {
         return "ConsultarArl";
     }
 
-    public String prepareListEps() {
+    public String prepareListArl() {
         return "/Configuracion/Arl/ListarArl";
     }
 

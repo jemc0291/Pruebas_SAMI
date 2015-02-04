@@ -33,25 +33,40 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Aprobaciones.findAll", query = "SELECT a FROM Aprobaciones a"),
-    @NamedQuery(name = "Aprobaciones.findByFechaAprobacion", query = "SELECT a FROM Aprobaciones a WHERE a.fechaAprobacion = :fechaAprobacion"),
-    @NamedQuery(name = "Aprobaciones.findByIdAprobacion", query = "SELECT a FROM Aprobaciones a WHERE a.idAprobacion = :idAprobacion")})
+    @NamedQuery(name = "Aprobaciones.findByIdAprobacion", query = "SELECT a FROM Aprobaciones a WHERE a.idAprobacion = :idAprobacion"),
+    @NamedQuery(name = "Aprobaciones.findByFechaAprobacion", query = "SELECT a FROM Aprobaciones a WHERE a.fechaAprobacion = :fechaAprobacion")})
 public class Aprobaciones implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Column(name = "fecha_aprobacion")
-    @Temporal(TemporalType.DATE)
-    private Date fechaAprobacion;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_aprobacion")
-    private Boolean idAprobacion;
+    private Integer idAprobacion;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fecha_aprobacion")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaAprobacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAprobacion")
     private List<Comisiones> comisionesList;
 
     public Aprobaciones() {
     }
 
-    public Aprobaciones(Boolean idAprobacion) {
+    public Aprobaciones(Integer idAprobacion) {
+        this.idAprobacion = idAprobacion;
+    }
+
+    public Aprobaciones(Integer idAprobacion, Date fechaAprobacion) {
+        this.idAprobacion = idAprobacion;
+        this.fechaAprobacion = fechaAprobacion;
+    }
+
+    public Integer getIdAprobacion() {
+        return idAprobacion;
+    }
+
+    public void setIdAprobacion(Integer idAprobacion) {
         this.idAprobacion = idAprobacion;
     }
 
@@ -61,14 +76,6 @@ public class Aprobaciones implements Serializable {
 
     public void setFechaAprobacion(Date fechaAprobacion) {
         this.fechaAprobacion = fechaAprobacion;
-    }
-
-    public Boolean getIdAprobacion() {
-        return idAprobacion;
-    }
-
-    public void setIdAprobacion(Boolean idAprobacion) {
-        this.idAprobacion = idAprobacion;
     }
 
     @XmlTransient

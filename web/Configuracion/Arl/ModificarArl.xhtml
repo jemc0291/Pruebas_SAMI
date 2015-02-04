@@ -7,13 +7,13 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">ARl</ui:define>
+        <ui:define name="title">ARl <h:outputText value="#{bundle.ListArlTitle}"></h:outputText> </ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
             <h:form> 
                 <h:commandButton value="Modificar Arl" action="#{arlController.prepareModificarArl}"/>
-                    <h:commandButton value="Volver A Lista" action="#{arlController.prepareListEps}"/>
+                <h:commandButton value="Volver A Lista" action="#{arlController.prepareListArl}"/>
 
             </h:form>
 
@@ -21,7 +21,7 @@
                 <form jsf:id="ArlCreateForm">
                     <p:panelGrid columns="3" layout="grid">
 
-                        <label class="Form-na">Nombre Arl</label> 
+                        <label class="Form-na" value="#{bundle.EditArlLabel_nombreArl}" for="NombreArl">  Nombre ARL </label> 
                         <input type="text" jsf:id="NombreArlInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre de la Arl" 
                                jsf:validatorMessage="Use solo letras"

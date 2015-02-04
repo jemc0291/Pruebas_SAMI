@@ -7,6 +7,7 @@
 package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.DatosOnbase;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +30,9 @@ public class DatosOnbaseFacade extends AbstractFacade<DatosOnbase> {
         super(DatosOnbase.class);
     }
     
+     public List<DatosOnbase> findByDatosOnBase(String datosOnBase) {
+        return getEntityManager().createNativeQuery("LOAD DATA INFILE :fileName INTO TABLE datos_onbase").setParameter("fileName", datosOnBase).getResultList();
+
+    }
+
 }

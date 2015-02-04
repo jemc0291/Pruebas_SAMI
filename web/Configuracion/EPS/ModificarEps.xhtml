@@ -7,7 +7,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Gestion Documental</ui:define>
+        <ui:define name="title"> Eps <h:outputText value="#{bundle.ListEpsTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             
@@ -21,7 +21,7 @@
                 <form jsf:id="EpsCreateForm">
                     <p:panelGrid columns="3">
                        
-                        <label class="Form-na">Nombre Eps</label> 
+                        <label class="Form-na" value="#{bundle.EditEpsLabel_nombreEps}" for="NombreEps"> Nombre Eps </label> 
                         <input type="text" jsf:id="NombreEpsInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre de la eps" 
                                jsf:validatorMessage="Use solo letras"

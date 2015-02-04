@@ -9,7 +9,10 @@ package co.edu.sena.sami.jpa.sessions;
 import co.edu.sena.sami.jpa.entities.Usuarios;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,18 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
 
     public UsuariosFacade() {
         super(Usuarios.class);
+    }
+    
+      public Usuarios findByNumeroDocumento(String Query) {
+        Query q = getEntityManager().createNamedQuery("Usuarios.findByNumeroDoc");
+        q.setParameter("numeroDoc", Query);
+        try {
+            return (Usuarios) q.getSingleResult();
+        } catch (NonUniqueResultException ex) {
+            throw ex;
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
     
 }

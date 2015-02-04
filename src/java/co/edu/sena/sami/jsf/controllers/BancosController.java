@@ -49,10 +49,18 @@ public class BancosController implements Serializable {
         return ejbFacade;
     }
 
-    public Bancos prepareCreate() {
+    public String prepareCreate() {
         selected = new Bancos();
         initializeEmbeddableKey();
-        return selected;
+        return "AgregarBancos";
+    }
+    
+     public String prepareModificarBanco() {
+        return "ModificarBancos";
+    }
+     
+     public String prepareListBanco() {
+        return "/Configuracion/Bancos/ListarBancos";
     }
 
     public void create() {

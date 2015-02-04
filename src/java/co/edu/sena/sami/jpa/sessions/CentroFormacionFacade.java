@@ -7,9 +7,11 @@
 package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.CentroFormacion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,13 @@ public class CentroFormacionFacade extends AbstractFacade<CentroFormacion> {
 
     public CentroFormacionFacade() {
         super(CentroFormacion.class);
+    }
+    
+     public List<CentroFormacion> findByNombre(String nombre) {
+        Query q= getEntityManager().createNamedQuery("CentroFormacion.findByNombreCentroFormacion");
+        q.setParameter("nombreCentroFormacion", nombre + "%");
+        return q.getResultList();
+
     }
     
 }

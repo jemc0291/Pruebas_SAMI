@@ -52,13 +52,11 @@ public class Facturas implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @JoinTable(name = "nota_entrada_facturas", joinColumns = {
-        @JoinColumn(name = "id_factura", referencedColumnName = "id_factura")}, inverseJoinColumns = {
+    @JoinTable(name = "facturas_nota_entrada", joinColumns = {
+        @JoinColumn(name = "d_factura", referencedColumnName = "id_factura")}, inverseJoinColumns = {
         @JoinColumn(name = "id_Nota", referencedColumnName = "id_Nota")})
     @ManyToMany
     private List<NotaEntrada> notaEntradaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
-    private List<PagosContratos> pagosContratosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
     private List<ActaVerificacion> actaVerificacionList;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
@@ -103,15 +101,6 @@ public class Facturas implements Serializable {
 
     public void setNotaEntradaList(List<NotaEntrada> notaEntradaList) {
         this.notaEntradaList = notaEntradaList;
-    }
-
-    @XmlTransient
-    public List<PagosContratos> getPagosContratosList() {
-        return pagosContratosList;
-    }
-
-    public void setPagosContratosList(List<PagosContratos> pagosContratosList) {
-        this.pagosContratosList = pagosContratosList;
     }
 
     @XmlTransient

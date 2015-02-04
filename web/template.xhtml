@@ -26,22 +26,25 @@
             <center class="Header-title"><h1>SISTEMA ADMINISTRATIVO<br>MODULAR INTEGRADO</br></h1></center>
             <article class="header-id">
                 <p class="Header-greetingUser">Bienvenido<br>Usuario</br></p>
-                <nav class="HeaderList">
-                    <ul class="HeaderList-option">
-                        <li class="HeaderList-item"><h3 id="list-box">Modulos<span class="icon-triangle-down"></span></h3>
-                            <ul>
-                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo1/index_modulo1.xhtml">Contratación y cuentas de cobro</a></li>
-                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo2/index_modulo2.xhtml">Supervisión de contratos y mantenimiento</a></li>
-                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo3/index_modulo3.xhtml">Supervisión de contratos de compras, suministros y servicios</a></li>
-                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo4/index_modulo4.xhtml">Gestión y talento humano</a></li>
-                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo5/index_modulo5.xhtml">Gestión documental</a></li>
-                                <li class="HeaderList-link"><a  jsf:outcome="/Modulo6/index_modulo6.xhtml">Gestión de materiales de formación</a></li>
-                                <li class="HeaderList-link"><a  jsf:outcome="/Configuracion/index_configuracion.xhtml">Configuracion</a></li>
-                                <li class="HeaderList-link"><a  href="">Cerrar Sesión</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
+                <h:form>
+                    <nav class="HeaderList">
+                        <ul class="HeaderList-option">
+                            <li class="HeaderList-item"><h3 id="list-box">Modulos<span class="icon-triangle-down"></span></h3>
+                                <ul>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/Modulo1/index_modulo1.xhtml">Contratación y cuentas de cobro</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/Modulo2/index_modulo2.xhtml">Supervisión de contratos y mantenimiento</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/Modulo3/index_modulo3.xhtml">Supervisión de contratos de compras, suministros y servicios</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/Modulo4/index_modulo4.xhtml">Gestión y talento humano</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/Modulo5/index_modulo5.xhtml">Gestión documental</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/Modulo6/index_modulo6.xhtml">Gestión de materiales de formación</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/Configuracion/index_configuracion.xhtml">Configuracion</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/Programa Formacion/index_programa.xhtml">Programa Formacion</a></li>
+                                    <li class="HeaderList-link"><a  jsf:action="#{loginController.logout}">Cerrar Sesión</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </h:form>
             </article>
         </header>
         <section class="Band-mant">

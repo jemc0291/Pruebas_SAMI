@@ -108,7 +108,7 @@ public class Ccf implements Serializable {
 
     @Override
     public String toString() {
-        return  nombreCcf + " ";
+        return nombreCcf + "";
     }
     
 }

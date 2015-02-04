@@ -7,7 +7,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Departamentos</ui:define>
+        <ui:define name="title"> Departamentos <h:outputText value="#{bundle.ListDepartamentosTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
@@ -20,7 +20,7 @@
             <section class="section-form">
                 <form jsf:id="DepratamentoCreateForm">
                     <p:panelGrid columns="3" layout="grid">
-                        <label class="Form-na">Id Departamento</label> 
+                        <label class="Form-na" value="#{bundle.CreateDepartamentosLabel_idDpto}" for="Departamento" > Codigo Departamento </label> 
                         <input type="tel" jsf:id="DepartamentoInputText" required="true" 
                                jsf:requiredMessage="Por favor ingrese el numero de id" 
                                jsf:validatorMessage="Use solo numeros"
@@ -30,7 +30,7 @@
                         </input>
                         <h:message id="DepartamentosMessage" for="DepartamentoInputText" styleClass="error"/>
 
-                        <label class="Form-na">Nombre Departamento</label> 
+                        <label class="Form-na" value="#{bundle.CreateDepartamentosLabel_nombreDpto}" for="NombDepartamento"> Nombre Departamento </label> 
                         <input type="text" jsf:id="NombDepartamentoInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre" 
                                jsf:validatorMessage="Use solo letras"

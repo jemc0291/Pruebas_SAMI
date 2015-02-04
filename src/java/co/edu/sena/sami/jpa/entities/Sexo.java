@@ -108,7 +108,7 @@ public class Sexo implements Serializable {
 
     @Override
     public String toString() {
-        return nombreSexo + " ";
+        return nombreSexo + "";
     }
     
 }

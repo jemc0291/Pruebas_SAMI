@@ -40,24 +40,19 @@ public class TipoDeServicios implements Serializable {
     @NotNull
     @Column(name = "id_tipo_serv")
     private Integer idTipoServ;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "nombre_Servicio")
     private String nombreServicio;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtipoServicio")
     private List<TiposDeServiciosSolicitudDeServicios> tiposDeServiciosSolicitudDeServiciosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoServ")
+    private List<Servicios> serviciosList;
 
     public TipoDeServicios() {
     }
 
     public TipoDeServicios(Integer idTipoServ) {
         this.idTipoServ = idTipoServ;
-    }
-
-    public TipoDeServicios(Integer idTipoServ, String nombreServicio) {
-        this.idTipoServ = idTipoServ;
-        this.nombreServicio = nombreServicio;
     }
 
     public Integer getIdTipoServ() {
@@ -83,6 +78,15 @@ public class TipoDeServicios implements Serializable {
 
     public void setTiposDeServiciosSolicitudDeServiciosList(List<TiposDeServiciosSolicitudDeServicios> tiposDeServiciosSolicitudDeServiciosList) {
         this.tiposDeServiciosSolicitudDeServiciosList = tiposDeServiciosSolicitudDeServiciosList;
+    }
+
+    @XmlTransient
+    public List<Servicios> getServiciosList() {
+        return serviciosList;
+    }
+
+    public void setServiciosList(List<Servicios> serviciosList) {
+        this.serviciosList = serviciosList;
     }
 
     @Override

@@ -6,15 +6,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR BARRIOS</ui:define>
+        <ui:define name="title"> Barrios <h:outputText value="#{bundle.ListBarriosTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>LISTAR BARRIOS</h1>
+            <h1>Lista De Barrios</h1>
             <h:form>
 
                 <P>
                     <h:commandButton action="#{barriosController.prepareCreate}" value="Agregar Barrios"/>
-                    <h:commandButton action="#{barriosController.prepareModificarBarrios}" value="Modificar Barrios"/>
                 </P>
                 <p:outputPanel id="BarriosTablePanel">
                     <p:dataTable value="#{barriosController.items}" var="item"
@@ -23,29 +22,23 @@
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="20,40,60">
 
-                        <p:column>
-                            <f:facet name="header">ID</f:facet>
-                            <h:outputText value="#{item.idBarrio}"/>
-                        </p:column>
-
                         <p:column filterBy="#{item.nombreBarrio}" filterMatchMode="contains">
-                            <f:facet name="header">Nombre Barrios</f:facet>
+                            <f:facet name="header"> <h:outputText value="#{bundle.ListBarriosTitle_nombreBarrio}"/></f:facet>
                             <h:outputText value="#{item.nombreBarrio}"/>
                         </p:column>
                         
                          <p:column>
                            
-                             <p:commandButton icon="ui-icon-pencil" action="#{barriosController.prepareModificarBarrios}">
+                             <p:commandButton icon="ui-icon-pencil" value="#{bundle.Edit}" action="#{barriosController.prepareModificarBarrios}">
                                  <f:setPropertyActionListener value="#{item}" target="#{barriosController.selected}"/>
                         </p:commandButton>
 
-                             <p:commandButton icon="ui-icon-trash" action="#{barriosController.destroy}"
+                             <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{barriosController.destroy}"
                                          process="@this" update="EpsTable">
                             <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el barrio?" icon="ui-icon-alert" />
                             <f:setPropertyActionListener value="#{item}" target="#{barriosController.selected}"/>
                         </p:commandButton>
                     </p:column>
-
 
                     </p:dataTable>
                 </p:outputPanel>

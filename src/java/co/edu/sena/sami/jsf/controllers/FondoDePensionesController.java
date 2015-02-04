@@ -52,20 +52,19 @@ public class FondoDePensionesController implements Serializable {
     public String prepareCreate() {
         selected = new FondoDePensiones();
         initializeEmbeddableKey();
-        return "AgregarFondodePensiones";
+        return "AgregarFondoPensiones";
     }
        public String prepareModificarFondoDePensiones() {
-        return "ModificarFondoDePensiones";
+        return "ModificarFondoPensiones";
     }
 
     public String prepareConsultarFondoDePensiones() {
-        return "ConsultarFondoDePensiones";
+        return "ConsultarFondoPensiones";
     }
 
-    public String prepareListFondoDePensiones() {
+   public String prepareListFondoPensiones() {
         return "/Configuracion/Fondo de Pensiones/ListarFondoPensiones";
     }
-
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("FondoDePensionesCreated"));

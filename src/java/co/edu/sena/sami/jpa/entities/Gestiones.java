@@ -40,7 +40,9 @@ public class Gestiones implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "codigo_gestion")
     private String codigoGestion;
-    @Size(max = 70)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 70)
     @Column(name = "nombre_gestion")
     private String nombreGestion;
     @ManyToMany(mappedBy = "gestionesList")
@@ -53,6 +55,11 @@ public class Gestiones implements Serializable {
 
     public Gestiones(String codigoGestion) {
         this.codigoGestion = codigoGestion;
+    }
+
+    public Gestiones(String codigoGestion, String nombreGestion) {
+        this.codigoGestion = codigoGestion;
+        this.nombreGestion = nombreGestion;
     }
 
     public String getCodigoGestion() {

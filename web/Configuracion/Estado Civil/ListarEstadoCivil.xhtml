@@ -6,10 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR ESTADO CIVIL</ui:define>
+        <ui:define name="title"> Estado Civil <h:outputText value="#{bundle.ListEstadoCivilTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>LISTAR ESTADO CIVIL</h1>
+            <h1>Lista De Estados Civiles</h1>
             <h:form>
 
                 <P>
@@ -22,13 +22,8 @@
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="20,40,60">
 
-                        <p:column>
-                            <f:facet name="header">ID Estado Civil</f:facet>
-                            <h:outputText value="#{item.idEstadoCivil}"/>
-                        </p:column>
-
                         <p:column filterBy="#{item.nombreEstadoCivil}" filterMatchMode="contains">
-                            <f:facet name="header">Nombre Estado Civil</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListEstadoCivilTitle_nombreEstadoCivil}"/></f:facet>
                             <h:outputText value="#{item.nombreEstadoCivil}"/>
                         </p:column>
    

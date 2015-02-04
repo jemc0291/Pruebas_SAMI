@@ -6,10 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">LISTAR TIPO DE DOCUMENTOS</ui:define>
+        <ui:define name="title">Tipo Documentos <h:outputText value="#{bundle.ListTipoDocumentosTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>TIPO DE DOCUMENTO</h1>
+            <h1>Lista De Tipos De Documentos</h1>
             <h:form>
 
                 <p:outputPanel id="TipoDocumentoTablePanel">
@@ -17,7 +17,7 @@
                                  rows="10" id="TipoDocumentoTable" >
 
                                  <p:column filterBy="#{item.nombreTipoDoc}" filterMatchMode="contains">
-                            <f:facet name="header">Tipo de Documento</f:facet>
+                            <f:facet name="header"><h:outputText value="#{bundle.ListTipoDocumentosTitle_nombreTipoDoc}"/></f:facet>
                             <h:outputText value="#{item.nombreTipoDoc}"/>
                         </p:column>
 

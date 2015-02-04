@@ -7,30 +7,30 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Gestion Documental</ui:define>
+        <ui:define name="title">Estrato Social <h:outputText value="#{bundle.ListEstratoSocialTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
             <h:form> 
-                <h:commandButton value="Agregar Estrato Social" action="#{EstratoSocialController.prepareAgregarEstractoSocial}"/>
-                <h:commandButton value="Volver A Lista" action="#{EstratoSocialController.prepareModificarEstratoSocial}"/>
+                <h:commandButton value="Agregar Estrato Social" action="#{estratoSocialController.prepareCreate}"/>
+                <h:commandButton value="Volver A Lista" action="#{estratoSocialController.prepareListEstratoSocial}"/>
 
             </h:form>
 
             <section class="section-form">
                 <form jsf:id="EstratoSocialCreateForm">
                     <p:panelGrid columns="3" layout="grid">
-                        <label class="Form-na">Nombre Estrato Social</label> 
+                        <label class="Form-na" value="#{bundle.CreateEstratoSocialLabel_nombreEstrato}" for="NombreEstrato">Nombre Estrato Social</label> 
                         <input type="text" jsf:id="NombreEstratoSocialInputText" required="true"
-                               jsf:requiredMessage="Por favor ingrese el nombre de la eps" 
+                               jsf:requiredMessage="Por favor ingrese el nombre del estrato" 
                                jsf:validatorMessage="Use solo letras"
-                               jsf:value="#{EstratoSocialController.estratoSocialActual.nombreEstrato}" maxlength="30">
+                               jsf:value="#{estratoSocialController.selected.nombreEstrato}" maxlength="30">
                             <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
                             <f:ajax execute="@this" render="NombreEstratoSocialMessage"/>
                         </input>
                         <h:message id="NombreEstratoSocialMessage" for="NombreEstratoSocialInputText" styleClass="error"/>
                     </p:panelGrid>
-                    <h:commandButton value="Guardar" action="#{EstratoSocialController.addEstractoSocial}"/>
+                    <h:commandButton value="Guardar" action="#{estratoSocialController.create}"/>
                 </form>
             </section>
 

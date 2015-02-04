@@ -645,6 +645,8 @@ table, th, td {
 
 /*---------MODULO5----------*/
 
+
+
 .SubMenu-item{/*Gestion Documental*/
     position: relative;
     list-style-type: none;
@@ -722,67 +724,35 @@ table, th, td {
 
 }
 
-/*@media screen and (max-width: 720px){
-    table, thead, tr, th, tbody, td{
-        display: block;
-
-
-    }
-
-    thead tr{
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-
-    td{
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 50%;
-    }
-
-    td:before{
-        position: absolute;
-        top:6px;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-
-    }
-
-    td:nth-of-type(1):before{content: "No. Radicado Recibido:   ";}
-    td:nth-of-type(2):before{content: "N.I.S:   ";}
-    td:nth-of-type(3):before{content: "Fecha Procedencia:   ";}
-    td:nth-of-type(4):before{content: "Tiempo de Respuesta(dias):   ";}
-    td:nth-of-type(5):before{content: "Fecha de Respuesta:   ";}
-    td:nth-of-type(6):before{content: "Nombre Entidad Remitente:   ";}
-    td:nth-of-type(7):before{content: "Nombre Persona:   ";}
-    td:nth-of-type(8):before{content: "Funcionario Destino:   ";}
-    td:nth-of-type(9):before{content: "E-mail:   ";}*/
-
-/*    .Section-Embed{Gestion Documental
-        width: 0px;
-        height: 0px;
-    }*/
-
-/*---------MODULO6----------*/
-
-.form{
-    width: 470px;
-    padding: 0 5px;
-    margin: 0 auto;
+.Form-datos{/*Gestion Documental*/
+    width: 90%;
+    font-size: smaller;
 }
 
+    @media screen and (max-width: 1030px){
 
-.Form-solitudM{
-    width: 470px;
-    height: auto;
-    background: #119178; 
-    margin: 0 auto;
-    padding: 0 1%;
-    box-shadow: 5px 5px 0 #AAA;
-    border-radius: 5px;
-}
+    .Section-Embed{//Gestion Documental
+                   width: 0px;
+                   height: 0px;
+    }
+      /*---------MODULO6----------*/
 
+        .form{
+            width: 470px;
+            padding: 0 5px;
+            margin: 0 auto;
+        }
+
+
+        .Form-solitudM{
+            width: 470px;
+            height: auto;
+            background: #119178; 
+            margin: 0 auto;
+            padding: 0 1%;
+            box-shadow: 5px 5px 0 #AAA;
+            border-radius: 5px;
+        }
+
+    }
+    

@@ -27,6 +27,8 @@ public class CentroFormacionController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.CentroFormacionFacade ejbFacade;
     private List<CentroFormacion> items = null;
     private CentroFormacion selected;
+    @EJB
+    private CentroFormacionFacade centroFormacionFacade;
 
     public CentroFormacionController() {
     }
@@ -49,13 +51,17 @@ public class CentroFormacionController implements Serializable {
         return ejbFacade;
     }
 
+    public CentroFormacionFacade getCentroFormacionFacade() {
+        return centroFormacionFacade;
+    }
+
     public String prepareCreate() {
         selected = new CentroFormacion();
         initializeEmbeddableKey();
         return "AgregarCentroFormacion";
     }
-    
-       public String prepareModificarCentroFormacion() {
+
+    public String prepareModificarCentroFormacion() {
         return "ModificarCentroFormacion";
     }
 
@@ -66,7 +72,6 @@ public class CentroFormacionController implements Serializable {
     public String prepareListCentroFormacion() {
         return "/Configuracion/Centro de Formacion/ListarCentroFormacion";
     }
-
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("CentroFormacionCreated"));
@@ -134,8 +139,21 @@ public class CentroFormacionController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = CentroFormacion.class)
+    public List<CentroFormacion> getListCentroFormacionAutoComplete(String query) {
+        try {
+            return getCentroFormacionFacade().findByNombre(query);
+        } catch (Exception ex) {
+            Logger.getLogger(CentroFormacionController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    @FacesConverter(forClass = CentroFormacion.class, value = "centroFormacionConverter")
     public static class CentroFormacionControllerConverter implements Converter {
+        
+        private static final String SEPARATOR = "#";
+        private static final String SEPARATOR_ESCAPED = "\\#";
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
@@ -158,6 +176,8 @@ public class CentroFormacionController implements Serializable {
             sb.append(value);
             return sb.toString();
         }
+        
+        
 
         @Override
         public String getAsString(FacesContext facesContext, UIComponent component, Object object) {

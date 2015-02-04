@@ -13,8 +13,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -44,7 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SolicitudServicios.findByHoraServicio", query = "SELECT s FROM SolicitudServicios s WHERE s.horaServicio = :horaServicio"),
     @NamedQuery(name = "SolicitudServicios.findByDescripcionservicioSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.descripcionservicioSolicitud = :descripcionservicioSolicitud"),
     @NamedQuery(name = "SolicitudServicios.findByDescripcionServicioPrestado", query = "SELECT s FROM SolicitudServicios s WHERE s.descripcionServicioPrestado = :descripcionServicioPrestado"),
-    @NamedQuery(name = "SolicitudServicios.findByUbicaci\u00f3nSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.ubicaci\u00f3nSolicitud = :ubicaci\u00f3nSolicitud"),
+    @NamedQuery(name = "SolicitudServicios.findByUbicacionSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.ubicacionSolicitud = :ubicacionSolicitud"),
     @NamedQuery(name = "SolicitudServicios.findByUbicacionServicioPrestado", query = "SELECT s FROM SolicitudServicios s WHERE s.ubicacionServicioPrestado = :ubicacionServicioPrestado"),
     @NamedQuery(name = "SolicitudServicios.findByFueAtendido", query = "SELECT s FROM SolicitudServicios s WHERE s.fueAtendido = :fueAtendido"),
     @NamedQuery(name = "SolicitudServicios.findByFueSolucionado", query = "SELECT s FROM SolicitudServicios s WHERE s.fueSolucionado = :fueSolucionado"),
@@ -54,8 +52,8 @@ import javax.xml.bind.annotation.XmlTransient;
 public class SolicitudServicios implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id_solicitud_servicio")
     private Integer idSolicitudServicio;
     @Basic(optional = false)
@@ -77,8 +75,8 @@ public class SolicitudServicios implements Serializable {
     @Column(name = "descripcion_servicio_prestado")
     private String descripcionServicioPrestado;
     @Size(max = 40)
-    @Column(name = "ubicaci\u00f3n_solicitud")
-    private String ubicaciónSolicitud;
+    @Column(name = "ubicacion_solicitud")
+    private String ubicacionSolicitud;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -94,7 +92,6 @@ public class SolicitudServicios implements Serializable {
     @Column(name = "observaciones")
     private String observaciones;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "referencia")
     private int referencia;
     @Basic(optional = false)
@@ -106,12 +103,9 @@ public class SolicitudServicios implements Serializable {
     private List<Usuarios> usuariosList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "solicitudServicios")
     private TiposDeServiciosSolicitudDeServicios tiposDeServiciosSolicitudDeServicios;
-    @JoinColumn(name = "id_prioridades", referencedColumnName = "id_prioridades")
+    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
     @ManyToOne(optional = false)
-    private Prioridades idPrioridades;
-    @JoinColumn(name = "id_servicio", referencedColumnName = "id_servicio")
-    @ManyToOne(optional = false)
-    private Servicios idServicio;
+    private EstadosDeSolicitudes idEstado;
 
     public SolicitudServicios() {
     }
@@ -171,12 +165,12 @@ public class SolicitudServicios implements Serializable {
         this.descripcionServicioPrestado = descripcionServicioPrestado;
     }
 
-    public String getUbicaciónSolicitud() {
-        return ubicaciónSolicitud;
+    public String getUbicacionSolicitud() {
+        return ubicacionSolicitud;
     }
 
-    public void setUbicaciónSolicitud(String ubicaciónSolicitud) {
-        this.ubicaciónSolicitud = ubicaciónSolicitud;
+    public void setUbicacionSolicitud(String ubicacionSolicitud) {
+        this.ubicacionSolicitud = ubicacionSolicitud;
     }
 
     public String getUbicacionServicioPrestado() {
@@ -244,20 +238,12 @@ public class SolicitudServicios implements Serializable {
         this.tiposDeServiciosSolicitudDeServicios = tiposDeServiciosSolicitudDeServicios;
     }
 
-    public Prioridades getIdPrioridades() {
-        return idPrioridades;
+    public EstadosDeSolicitudes getIdEstado() {
+        return idEstado;
     }
 
-    public void setIdPrioridades(Prioridades idPrioridades) {
-        this.idPrioridades = idPrioridades;
-    }
-
-    public Servicios getIdServicio() {
-        return idServicio;
-    }
-
-    public void setIdServicio(Servicios idServicio) {
-        this.idServicio = idServicio;
+    public void setIdEstado(EstadosDeSolicitudes idEstado) {
+        this.idEstado = idEstado;
     }
 
     @Override

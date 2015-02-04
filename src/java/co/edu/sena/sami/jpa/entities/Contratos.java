@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Contratos.findAll", query = "SELECT c FROM Contratos c"),
     @NamedQuery(name = "Contratos.findByIdContrato", query = "SELECT c FROM Contratos c WHERE c.idContrato = :idContrato"),
     @NamedQuery(name = "Contratos.findByNumeroDeContrato", query = "SELECT c FROM Contratos c WHERE c.numeroDeContrato = :numeroDeContrato"),
-    @NamedQuery(name = "Contratos.findByFechaSuscripcion", query = "SELECT c FROM Contratos c WHERE c.fechaSuscripcion = :fechaSuscripcion"),
+    @NamedQuery(name = "Contratos.findByFechasuscripcion", query = "SELECT c FROM Contratos c WHERE c.fechasuscripcion = :fechasuscripcion"),
     @NamedQuery(name = "Contratos.findByFechaInicioContrato", query = "SELECT c FROM Contratos c WHERE c.fechaInicioContrato = :fechaInicioContrato"),
     @NamedQuery(name = "Contratos.findByFechaFinContrato", query = "SELECT c FROM Contratos c WHERE c.fechaFinContrato = :fechaFinContrato"),
     @NamedQuery(name = "Contratos.findByPlazoDias", query = "SELECT c FROM Contratos c WHERE c.plazoDias = :plazoDias"),
@@ -77,9 +77,9 @@ public class Contratos implements Serializable {
     private int numeroDeContrato;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "fecha_suscripcion")
+    @Column(name = "Fecha_suscripcion")
     @Temporal(TemporalType.DATE)
-    private Date fechaSuscripcion;
+    private Date fechasuscripcion;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_inicio_contrato")
@@ -169,10 +169,10 @@ public class Contratos implements Serializable {
         this.idContrato = idContrato;
     }
 
-    public Contratos(Integer idContrato, int numeroDeContrato, Date fechaSuscripcion, Date fechaInicioContrato, Date fechaFinContrato, String objetoContractual) {
+    public Contratos(Integer idContrato, int numeroDeContrato, Date fechasuscripcion, Date fechaInicioContrato, Date fechaFinContrato, String objetoContractual) {
         this.idContrato = idContrato;
         this.numeroDeContrato = numeroDeContrato;
-        this.fechaSuscripcion = fechaSuscripcion;
+        this.fechasuscripcion = fechasuscripcion;
         this.fechaInicioContrato = fechaInicioContrato;
         this.fechaFinContrato = fechaFinContrato;
         this.objetoContractual = objetoContractual;
@@ -194,12 +194,12 @@ public class Contratos implements Serializable {
         this.numeroDeContrato = numeroDeContrato;
     }
 
-    public Date getFechaSuscripcion() {
-        return fechaSuscripcion;
+    public Date getFechasuscripcion() {
+        return fechasuscripcion;
     }
 
-    public void setFechaSuscripcion(Date fechaSuscripcion) {
-        this.fechaSuscripcion = fechaSuscripcion;
+    public void setFechasuscripcion(Date fechasuscripcion) {
+        this.fechasuscripcion = fechasuscripcion;
     }
 
     public Date getFechaInicioContrato() {

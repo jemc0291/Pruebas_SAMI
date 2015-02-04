@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.Ciudad;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,6 +18,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class CiudadFacade extends AbstractFacade<Ciudad> {
+
     @PersistenceContext(unitName = "SAMIPU")
     private EntityManager em;
 
@@ -28,5 +30,12 @@ public class CiudadFacade extends AbstractFacade<Ciudad> {
     public CiudadFacade() {
         super(Ciudad.class);
     }
-    
+
+    public List<Ciudad> findByNombre(String nombre) {
+        Query q= getEntityManager().createNamedQuery("Ciudad.findByNombreCiudad");
+        q.setParameter("nombreCiudad", nombre + "%");
+        return q.getResultList();
+
+    }
+
 }

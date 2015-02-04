@@ -82,13 +82,13 @@ public class Cdp implements Serializable {
         @JoinColumn(name = "id_rubro", referencedColumnName = "id_rubro")})
     @ManyToMany
     private List<Rubros> rubrosList;
+    @ManyToMany(mappedBy = "cdpList")
+    private List<Usuarios> usuariosList;
     @JoinTable(name = "conceptos_de_gastos_cdp", joinColumns = {
         @JoinColumn(name = "numero_cdp", referencedColumnName = "numero_cdp")}, inverseJoinColumns = {
         @JoinColumn(name = "codigo_gasto", referencedColumnName = "codigo_gasto")})
     @ManyToMany
     private List<ConceptosDeGastos> conceptosDeGastosList;
-    @ManyToMany(mappedBy = "cdpList")
-    private List<Usuarios> usuariosList;
     @JoinTable(name = "cdp_dependencias", joinColumns = {
         @JoinColumn(name = "numero_cdp", referencedColumnName = "numero_cdp")}, inverseJoinColumns = {
         @JoinColumn(name = "codigo_de_dependencia", referencedColumnName = "codigo_de_dependencia")})
@@ -188,21 +188,21 @@ public class Cdp implements Serializable {
     }
 
     @XmlTransient
-    public List<ConceptosDeGastos> getConceptosDeGastosList() {
-        return conceptosDeGastosList;
-    }
-
-    public void setConceptosDeGastosList(List<ConceptosDeGastos> conceptosDeGastosList) {
-        this.conceptosDeGastosList = conceptosDeGastosList;
-    }
-
-    @XmlTransient
     public List<Usuarios> getUsuariosList() {
         return usuariosList;
     }
 
     public void setUsuariosList(List<Usuarios> usuariosList) {
         this.usuariosList = usuariosList;
+    }
+
+    @XmlTransient
+    public List<ConceptosDeGastos> getConceptosDeGastosList() {
+        return conceptosDeGastosList;
+    }
+
+    public void setConceptosDeGastosList(List<ConceptosDeGastos> conceptosDeGastosList) {
+        this.conceptosDeGastosList = conceptosDeGastosList;
     }
 
     @XmlTransient
