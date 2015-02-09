@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CrpRubrosCreateDlg" widgetVar="CrpRubrosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCrpRubrosTitle}">
+            <h:form id="CrpRubrosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{crpRubrosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCrpRubrosLabel_numeroCrp}" for="numeroCrp" />
+                        <p:inputText id="numeroCrp" value="#{crpRubrosController.selected.numeroCrp}" title="#{bundle.CreateCrpRubrosTitle_numeroCrp}" required="true" requiredMessage="#{bundle.CreateCrpRubrosRequiredMessage_numeroCrp}"/>
+                        <p:outputLabel value="#{bundle.CreateCrpRubrosLabel_idRubro}" for="idRubro" />
+                        <p:selectOneMenu id="idRubro" value="#{crpRubrosController.selected.idRubro}" required="true" requiredMessage="#{bundle.EditCrpRubrosRequiredMessage_idRubro}">
+                            <f:selectItems value="#{rubrosController.itemsAvailableSelectOne}"
+                                           var="idRubroItem"
+                                           itemValue="#{idRubroItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCrpRubrosLabel_crp}" for="crp" />
+                        <p:selectOneMenu id="crp" value="#{crpRubrosController.selected.crp}" required="true" requiredMessage="#{bundle.EditCrpRubrosRequiredMessage_crp}">
+                            <f:selectItems value="#{crpController.itemsAvailableSelectOne}"
+                                           var="crpItem"
+                                           itemValue="#{crpItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{crpRubrosController.create}" value="#{bundle.Save}" update="display,:CrpRubrosListForm:datalist,:growl" oncomplete="handleSubmit(args,'CrpRubrosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CrpRubrosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

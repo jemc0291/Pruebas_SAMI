@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProyectoFormacionEditDlg" widgetVar="ProyectoFormacionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProyectoFormacionTitle}">
+            <h:form id="ProyectoFormacionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proyectoFormacionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditProyectoFormacionLabel_idProyectoFormacion}" for="idProyectoFormacion" />
+                        <p:inputText id="idProyectoFormacion" value="#{proyectoFormacionController.selected.idProyectoFormacion}" title="#{bundle.EditProyectoFormacionTitle_idProyectoFormacion}" required="true" requiredMessage="#{bundle.EditProyectoFormacionRequiredMessage_idProyectoFormacion}"/>
+                        <p:outputLabel value="#{bundle.EditProyectoFormacionLabel_nombreProyectoFormacion}" for="nombreProyectoFormacion" />
+                        <p:inputText id="nombreProyectoFormacion" value="#{proyectoFormacionController.selected.nombreProyectoFormacion}" title="#{bundle.EditProyectoFormacionTitle_nombreProyectoFormacion}" required="true" requiredMessage="#{bundle.EditProyectoFormacionRequiredMessage_nombreProyectoFormacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{proyectoFormacionController.update}" value="#{bundle.Save}" update="display,:ProyectoFormacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProyectoFormacionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProyectoFormacionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

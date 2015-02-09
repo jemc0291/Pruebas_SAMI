@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PolizasEditDlg" widgetVar="PolizasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPolizasTitle}">
+            <h:form id="PolizasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{polizasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPolizasLabel_numeroDePoliza}" for="numeroDePoliza" />
+                        <p:inputText id="numeroDePoliza" value="#{polizasController.selected.numeroDePoliza}" title="#{bundle.EditPolizasTitle_numeroDePoliza}" required="true" requiredMessage="#{bundle.EditPolizasRequiredMessage_numeroDePoliza}"/>
+                        <p:outputLabel value="#{bundle.EditPolizasLabel_valorDePoliza}" for="valorDePoliza" />
+                        <p:inputText id="valorDePoliza" value="#{polizasController.selected.valorDePoliza}" title="#{bundle.EditPolizasTitle_valorDePoliza}" required="true" requiredMessage="#{bundle.EditPolizasRequiredMessage_valorDePoliza}"/>
+                        <p:outputLabel value="#{bundle.EditPolizasLabel_vigenciaDesde}" for="vigenciaDesde" />
+                        <p:calendar id="vigenciaDesde" pattern="MM/dd/yyyy" value="#{polizasController.selected.vigenciaDesde}" title="#{bundle.EditPolizasTitle_vigenciaDesde}" required="true" requiredMessage="#{bundle.EditPolizasRequiredMessage_vigenciaDesde}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPolizasLabel_vigenciaHasta}" for="vigenciaHasta" />
+                        <p:calendar id="vigenciaHasta" pattern="MM/dd/yyyy" value="#{polizasController.selected.vigenciaHasta}" title="#{bundle.EditPolizasTitle_vigenciaHasta}" required="true" requiredMessage="#{bundle.EditPolizasRequiredMessage_vigenciaHasta}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPolizasLabel_fechaAprobacion}" for="fechaAprobacion" />
+                        <p:calendar id="fechaAprobacion" pattern="MM/dd/yyyy" value="#{polizasController.selected.fechaAprobacion}" title="#{bundle.EditPolizasTitle_fechaAprobacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPolizasLabel_idAseguradora}" for="idAseguradora" />
+                        <p:selectOneMenu id="idAseguradora" value="#{polizasController.selected.idAseguradora}" required="true" requiredMessage="#{bundle.EditPolizasRequiredMessage_idAseguradora}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{aseguradoraController.itemsAvailableSelectOne}"
+                                           var="idAseguradoraItem"
+                                           itemValue="#{idAseguradoraItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{polizasController.update}" value="#{bundle.Save}" update="display,:PolizasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PolizasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PolizasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

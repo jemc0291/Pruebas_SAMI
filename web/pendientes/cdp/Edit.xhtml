@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CdpEditDlg" widgetVar="CdpEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCdpTitle}">
+            <h:form id="CdpEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cdpController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCdpLabel_numeroCdp}" for="numeroCdp" />
+                        <p:inputText id="numeroCdp" value="#{cdpController.selected.numeroCdp}" title="#{bundle.EditCdpTitle_numeroCdp}" required="true" requiredMessage="#{bundle.EditCdpRequiredMessage_numeroCdp}"/>
+                        <p:outputLabel value="#{bundle.EditCdpLabel_fechaExpedicion}" for="fechaExpedicion" />
+                        <p:calendar id="fechaExpedicion" pattern="MM/dd/yyyy HH:mm:ss" value="#{cdpController.selected.fechaExpedicion}" title="#{bundle.EditCdpTitle_fechaExpedicion}" required="true" requiredMessage="#{bundle.EditCdpRequiredMessage_fechaExpedicion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCdpLabel_fechaRecepcion}" for="fechaRecepcion" />
+                        <p:calendar id="fechaRecepcion" pattern="MM/dd/yyyy HH:mm:ss" value="#{cdpController.selected.fechaRecepcion}" title="#{bundle.EditCdpTitle_fechaRecepcion}" required="true" requiredMessage="#{bundle.EditCdpRequiredMessage_fechaRecepcion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCdpLabel_objetivoDelGasto}" for="objetivoDelGasto" />
+                        <p:inputText id="objetivoDelGasto" value="#{cdpController.selected.objetivoDelGasto}" title="#{bundle.EditCdpTitle_objetivoDelGasto}" required="true" requiredMessage="#{bundle.EditCdpRequiredMessage_objetivoDelGasto}"/>
+                        <p:outputLabel value="#{bundle.EditCdpLabel_total}" for="total" />
+                        <p:inputText id="total" value="#{cdpController.selected.total}" title="#{bundle.EditCdpTitle_total}" required="true" requiredMessage="#{bundle.EditCdpRequiredMessage_total}"/>
+                        <p:outputLabel value="#{bundle.EditCdpLabel_subtotal}" for="subtotal" />
+                        <p:inputText id="subtotal" value="#{cdpController.selected.subtotal}" title="#{bundle.EditCdpTitle_subtotal}" />
+                        <p:outputLabel value="#{bundle.EditCdpLabel_idRecursos}" for="idRecursos" />
+                        <p:selectOneMenu id="idRecursos" value="#{cdpController.selected.idRecursos}" required="true" requiredMessage="#{bundle.EditCdpRequiredMessage_idRecursos}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{recursosOFuentesController.itemsAvailableSelectOne}"
+                                           var="idRecursosItem"
+                                           itemValue="#{idRecursosItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCdpLabel_idTipoSolicitud}" for="idTipoSolicitud" />
+                        <p:selectOneMenu id="idTipoSolicitud" value="#{cdpController.selected.idTipoSolicitud}" required="true" requiredMessage="#{bundle.EditCdpRequiredMessage_idTipoSolicitud}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tiposDeSolicitudesController.itemsAvailableSelectOne}"
+                                           var="idTipoSolicitudItem"
+                                           itemValue="#{idTipoSolicitudItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cdpController.update}" value="#{bundle.Save}" update="display,:CdpListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CdpEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CdpEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

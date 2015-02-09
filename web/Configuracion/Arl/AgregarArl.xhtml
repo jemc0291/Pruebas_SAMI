@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title"> ARl <h:outputText value="#{bundle.ListArlTitle}"></h:outputText> </ui:define>
+        <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <h:form> 
+                <h:commandButton value="Agregar Arl" action="#{arlController.prepareCreate}"/>
+                <h:commandButton value="Volver A Lista" action="#{arlController.prepareListArl}"/>
+
+            </h:form>
+
+            <section class="section-form">
+                <form jsf:id="ArlCreateForm">
+                    <p:panelGrid columns="3" layout="grid">
+                        
+                        
+                        <label class="Form-na" value="#{bundle.CreateArlLabel_nombreArl}" for="NombreArl"> Nombre Arl </label> 
+                        <input type="text" jsf:id="NombreArlInputText" required="true"
+                               jsf:requiredMessage="Por favor ingrese el nombre de la Arl" 
+                               jsf:validatorMessage="Use solo letras"
+                               jsf:value="#{arlController.selected.nombreArl}" maxlength="30">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="NombreArlMessage"/>
+                        </input>
+                        <h:message id="NombreArlMessage" for="NombreArlInputText" styleClass="error"/>
+                    </p:panelGrid>
+                    <h:commandButton value="Guardar" action="#{arlController.create}"/>
+                </form>
+            </section>
+
+        </ui:define>
+    </ui:composition>
+</html>

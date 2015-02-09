@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FondoDePensionesEditDlg" widgetVar="FondoDePensionesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFondoDePensionesTitle}">
+            <h:form id="FondoDePensionesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{fondoDePensionesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFondoDePensionesLabel_idFondoPensiones}" for="idFondoPensiones" />
+                        <p:inputText id="idFondoPensiones" value="#{fondoDePensionesController.selected.idFondoPensiones}" title="#{bundle.EditFondoDePensionesTitle_idFondoPensiones}" required="true" requiredMessage="#{bundle.EditFondoDePensionesRequiredMessage_idFondoPensiones}"/>
+                        <p:outputLabel value="#{bundle.EditFondoDePensionesLabel_nombreFondoPensiones}" for="nombreFondoPensiones" />
+                        <p:inputText id="nombreFondoPensiones" value="#{fondoDePensionesController.selected.nombreFondoPensiones}" title="#{bundle.EditFondoDePensionesTitle_nombreFondoPensiones}" required="true" requiredMessage="#{bundle.EditFondoDePensionesRequiredMessage_nombreFondoPensiones}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{fondoDePensionesController.update}" value="#{bundle.Save}" update="display,:FondoDePensionesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FondoDePensionesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FondoDePensionesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

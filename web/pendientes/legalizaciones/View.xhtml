@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LegalizacionesViewDlg" widgetVar="LegalizacionesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLegalizacionesTitle}">
+            <h:form id="LegalizacionesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{legalizacionesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_numeroLegalizacion}"/>
+                        <h:outputText value="#{legalizacionesController.selected.numeroLegalizacion}" title="#{bundle.ViewLegalizacionesTitle_numeroLegalizacion}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_subtotal}"/>
+                        <h:outputText value="#{legalizacionesController.selected.subtotal}" title="#{bundle.ViewLegalizacionesTitle_subtotal}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_menosRetefuente}"/>
+                        <h:outputText value="#{legalizacionesController.selected.menosRetefuente}" title="#{bundle.ViewLegalizacionesTitle_menosRetefuente}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_valorNetoAReconocer}"/>
+                        <h:outputText value="#{legalizacionesController.selected.valorNetoAReconocer}" title="#{bundle.ViewLegalizacionesTitle_valorNetoAReconocer}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_saldo}"/>
+                        <h:outputText value="#{legalizacionesController.selected.saldo}" title="#{bundle.ViewLegalizacionesTitle_saldo}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_saldoAFavor}"/>
+                        <h:outputText value="#{legalizacionesController.selected.saldoAFavor}" title="#{bundle.ViewLegalizacionesTitle_saldoAFavor}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_valorAReintegrar}"/>
+                        <h:outputText value="#{legalizacionesController.selected.valorAReintegrar}" title="#{bundle.ViewLegalizacionesTitle_valorAReintegrar}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_fechaSalida}"/>
+                        <h:outputText value="#{legalizacionesController.selected.fechaSalida}" title="#{bundle.ViewLegalizacionesTitle_fechaSalida}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_fechaLlegada}"/>
+                        <h:outputText value="#{legalizacionesController.selected.fechaLlegada}" title="#{bundle.ViewLegalizacionesTitle_fechaLlegada}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_dias}"/>
+                        <h:outputText value="#{legalizacionesController.selected.dias}" title="#{bundle.ViewLegalizacionesTitle_dias}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_valorLegalizar}"/>
+                        <h:outputText value="#{legalizacionesController.selected.valorLegalizar}" title="#{bundle.ViewLegalizacionesTitle_valorLegalizar}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_menosValorAnticipo}"/>
+                        <h:outputText value="#{legalizacionesController.selected.menosValorAnticipo}" title="#{bundle.ViewLegalizacionesTitle_menosValorAnticipo}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_saldooPositivo}"/>
+                        <h:outputText value="#{legalizacionesController.selected.saldooPositivo}" title="#{bundle.ViewLegalizacionesTitle_saldooPositivo}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_presupuesto}"/>
+                        <h:outputText value="#{legalizacionesController.selected.presupuesto}" title="#{bundle.ViewLegalizacionesTitle_presupuesto}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_solicitaOrdenaSaldo}"/>
+                        <h:outputText value="#{legalizacionesController.selected.solicitaOrdenaSaldo}" title="#{bundle.ViewLegalizacionesTitle_solicitaOrdenaSaldo}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_numeroCrp}"/>
+                        <h:outputText value="#{legalizacionesController.selected.numeroCrp}" title="#{bundle.ViewLegalizacionesTitle_numeroCrp}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_ciudad}"/>
+                        <h:outputText value="#{legalizacionesController.selected.ciudad}" title="#{bundle.ViewLegalizacionesTitle_ciudad}"/>
+                        <h:outputText value="#{bundle.ViewLegalizacionesLabel_codigoGasto}"/>
+                        <h:outputText value="#{legalizacionesController.selected.codigoGasto}" title="#{bundle.ViewLegalizacionesTitle_codigoGasto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="LegalizacionesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

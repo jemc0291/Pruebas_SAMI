@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuariosSolicitudMaterialesAlmacenEditDlg" widgetVar="UsuariosSolicitudMaterialesAlmacenEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUsuariosSolicitudMaterialesAlmacenTitle}">
+            <h:form id="UsuariosSolicitudMaterialesAlmacenEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuariosSolicitudMaterialesAlmacenController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditUsuariosSolicitudMaterialesAlmacenLabel_rol}" for="rol" />
+                        <p:selectOneMenu id="rol" value="#{usuariosSolicitudMaterialesAlmacenController.selected.rol}" required="true" requiredMessage="#{bundle.EditUsuariosSolicitudMaterialesAlmacenRequiredMessage_rol}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{rolController.itemsAvailableSelectOne}"
+                                           var="rolItem"
+                                           itemValue="#{rolItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditUsuariosSolicitudMaterialesAlmacenLabel_solicitudMaterialesAlmacen}" for="solicitudMaterialesAlmacen" />
+                        <p:selectOneMenu id="solicitudMaterialesAlmacen" value="#{usuariosSolicitudMaterialesAlmacenController.selected.solicitudMaterialesAlmacen}" required="true" requiredMessage="#{bundle.EditUsuariosSolicitudMaterialesAlmacenRequiredMessage_solicitudMaterialesAlmacen}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{solicitudMaterialesAlmacenController.itemsAvailableSelectOne}"
+                                           var="solicitudMaterialesAlmacenItem"
+                                           itemValue="#{solicitudMaterialesAlmacenItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditUsuariosSolicitudMaterialesAlmacenLabel_usuarios}" for="usuarios" />
+                        <p:selectOneMenu id="usuarios" value="#{usuariosSolicitudMaterialesAlmacenController.selected.usuarios}" required="true" requiredMessage="#{bundle.EditUsuariosSolicitudMaterialesAlmacenRequiredMessage_usuarios}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="usuariosItem"
+                                           itemValue="#{usuariosItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuariosSolicitudMaterialesAlmacenController.update}" value="#{bundle.Save}" update="display,:UsuariosSolicitudMaterialesAlmacenListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsuariosSolicitudMaterialesAlmacenEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuariosSolicitudMaterialesAlmacenEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

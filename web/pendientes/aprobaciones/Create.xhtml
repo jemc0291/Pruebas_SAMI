@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AprobacionesCreateDlg" widgetVar="AprobacionesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAprobacionesTitle}">
+            <h:form id="AprobacionesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{aprobacionesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAprobacionesLabel_fechaAprobacion}" for="fechaAprobacion" />
+                        <p:calendar id="fechaAprobacion" pattern="MM/dd/yyyy" value="#{aprobacionesController.selected.fechaAprobacion}" title="#{bundle.EditAprobacionesTitle_fechaAprobacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAprobacionesLabel_idAprobacion}" for="idAprobacion" />
+                        <p:selectBooleanCheckbox id="idAprobacion" value="#{aprobacionesController.selected.idAprobacion}" required="true" requiredMessage="#{bundle.EditAprobacionesRequiredMessage_idAprobacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{aprobacionesController.create}" value="#{bundle.Save}" update="display,:AprobacionesListForm:datalist,:growl" oncomplete="handleSubmit(args,'AprobacionesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AprobacionesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

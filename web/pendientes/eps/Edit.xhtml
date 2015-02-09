@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EpsEditDlg" widgetVar="EpsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEpsTitle}">
+            <h:form id="EpsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{epsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEpsLabel_idEps}" for="idEps" />
+                        <p:inputText id="idEps" value="#{epsController.selected.idEps}" title="#{bundle.EditEpsTitle_idEps}" required="true" requiredMessage="#{bundle.EditEpsRequiredMessage_idEps}"/>
+                        <p:outputLabel value="#{bundle.EditEpsLabel_nombreEps}" for="nombreEps" />
+                        <p:inputText id="nombreEps" value="#{epsController.selected.nombreEps}" title="#{bundle.EditEpsTitle_nombreEps}" required="true" requiredMessage="#{bundle.EditEpsRequiredMessage_nombreEps}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{epsController.update}" value="#{bundle.Save}" update="display,:EpsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EpsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EpsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

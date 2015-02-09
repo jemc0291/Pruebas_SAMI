@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitudMaterialesAlmacenViewDlg" widgetVar="SolicitudMaterialesAlmacenViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSolicitudMaterialesAlmacenTitle}">
+            <h:form id="SolicitudMaterialesAlmacenViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudMaterialesAlmacenController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSolicitudMaterialesAlmacenLabel_idSolicitudMaterial}"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idSolicitudMaterial}" title="#{bundle.ViewSolicitudMaterialesAlmacenTitle_idSolicitudMaterial}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudMaterialesAlmacenLabel_fechaDeSolicitud}"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.fechaDeSolicitud}" title="#{bundle.ViewSolicitudMaterialesAlmacenTitle_fechaDeSolicitud}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSolicitudMaterialesAlmacenLabel_observaciones}"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.observaciones}" title="#{bundle.ViewSolicitudMaterialesAlmacenTitle_observaciones}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudMaterialesAlmacenLabel_idArea}"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idArea}" title="#{bundle.ViewSolicitudMaterialesAlmacenTitle_idArea}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudMaterialesAlmacenLabel_idFichaCaracterizacion}"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}" title="#{bundle.ViewSolicitudMaterialesAlmacenTitle_idFichaCaracterizacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SolicitudMaterialesAlmacenViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

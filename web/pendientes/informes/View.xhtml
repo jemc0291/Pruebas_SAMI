@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InformesViewDlg" widgetVar="InformesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewInformesTitle}">
+            <h:form id="InformesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{informesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewInformesLabel_idInformes}"/>
+                        <h:outputText value="#{informesController.selected.idInformes}" title="#{bundle.ViewInformesTitle_idInformes}"/>
+                        <h:outputText value="#{bundle.ViewInformesLabel_fechaInforme}"/>
+                        <h:outputText value="#{informesController.selected.fechaInforme}" title="#{bundle.ViewInformesTitle_fechaInforme}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewInformesLabel_observaciones}"/>
+                        <h:outputText value="#{informesController.selected.observaciones}" title="#{bundle.ViewInformesTitle_observaciones}"/>
+                        <h:outputText value="#{bundle.ViewInformesLabel_idContrato}"/>
+                        <h:outputText value="#{informesController.selected.idContrato}" title="#{bundle.ViewInformesTitle_idContrato}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="InformesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

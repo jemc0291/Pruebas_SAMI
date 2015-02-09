@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuariosCreateDlg" widgetVar="UsuariosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUsuariosTitle}">
+            <h:form id="UsuariosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{usuariosController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_codigodestinoONBASE}" for="codigodestinoONBASE" />
+                        <p:inputText id="codigodestinoONBASE" value="#{usuariosController.selected.codigodestinoONBASE}" title="#{bundle.CreateUsuariosTitle_codigodestinoONBASE}" />
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_numeroDoc}" for="numeroDoc" />
+                        <p:inputText id="numeroDoc" value="#{usuariosController.selected.numeroDoc}" title="#{bundle.CreateUsuariosTitle_numeroDoc}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_numeroDoc}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_fechaExpedicionDoc}" for="fechaExpedicionDoc" />
+                        <p:calendar id="fechaExpedicionDoc" pattern="MM/dd/yyyy" value="#{usuariosController.selected.fechaExpedicionDoc}" title="#{bundle.EditUsuariosTitle_fechaExpedicionDoc}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_razonSocial}" for="razonSocial" />
+                        <p:inputText id="razonSocial" value="#{usuariosController.selected.razonSocial}" title="#{bundle.CreateUsuariosTitle_razonSocial}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_razonSocial}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_segundoNombre}" for="segundoNombre" />
+                        <p:inputText id="segundoNombre" value="#{usuariosController.selected.segundoNombre}" title="#{bundle.CreateUsuariosTitle_segundoNombre}" />
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_primerApellido}" for="primerApellido" />
+                        <p:inputText id="primerApellido" value="#{usuariosController.selected.primerApellido}" title="#{bundle.CreateUsuariosTitle_primerApellido}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_primerApellido}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_segundoApellido}" for="segundoApellido" />
+                        <p:inputText id="segundoApellido" value="#{usuariosController.selected.segundoApellido}" title="#{bundle.CreateUsuariosTitle_segundoApellido}" />
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_nombreRepreLegal}" for="nombreRepreLegal" />
+                        <p:inputText id="nombreRepreLegal" value="#{usuariosController.selected.nombreRepreLegal}" title="#{bundle.CreateUsuariosTitle_nombreRepreLegal}" />
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_fechaNac}" for="fechaNac" />
+                        <p:calendar id="fechaNac" pattern="MM/dd/yyyy" value="#{usuariosController.selected.fechaNac}" title="#{bundle.EditUsuariosTitle_fechaNac}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{usuariosController.selected.email}" title="#{bundle.CreateUsuariosTitle_email}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_email}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_telefonoPrincipalUsu}" for="telefonoPrincipalUsu" />
+                        <p:inputText id="telefonoPrincipalUsu" value="#{usuariosController.selected.telefonoPrincipalUsu}" title="#{bundle.CreateUsuariosTitle_telefonoPrincipalUsu}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_telefonoPrincipalUsu}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_telefonoAlternoUsu}" for="telefonoAlternoUsu" />
+                        <p:inputText id="telefonoAlternoUsu" value="#{usuariosController.selected.telefonoAlternoUsu}" title="#{bundle.CreateUsuariosTitle_telefonoAlternoUsu}" />
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_direccionUsu}" for="direccionUsu" />
+                        <p:inputText id="direccionUsu" value="#{usuariosController.selected.direccionUsu}" title="#{bundle.CreateUsuariosTitle_direccionUsu}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_direccionUsu}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{usuariosController.selected.password}" title="#{bundle.CreateUsuariosTitle_password}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_password}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_gpRh}" for="gpRh" />
+                        <p:inputText id="gpRh" value="#{usuariosController.selected.gpRh}" title="#{bundle.CreateUsuariosTitle_gpRh}" />
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_calificacion}" for="calificacion" />
+                        <p:inputText id="calificacion" value="#{usuariosController.selected.calificacion}" title="#{bundle.CreateUsuariosTitle_calificacion}" />
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_idTipoDoc}" for="idTipoDoc" />
+                        <p:selectOneMenu id="idTipoDoc" value="#{usuariosController.selected.idTipoDoc}" required="true" requiredMessage="#{bundle.EditUsuariosRequiredMessage_idTipoDoc}">
+                            <f:selectItems value="#{tipoDocumentosController.itemsAvailableSelectOne}"
+                                           var="idTipoDocItem"
+                                           itemValue="#{idTipoDocItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_idEstratoSocial}" for="idEstratoSocial" />
+                        <p:selectOneMenu id="idEstratoSocial" value="#{usuariosController.selected.idEstratoSocial}" >
+                            <f:selectItems value="#{estratoSocialController.itemsAvailableSelectOne}"
+                                           var="idEstratoSocialItem"
+                                           itemValue="#{idEstratoSocialItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_idEstadoCivil}" for="idEstadoCivil" />
+                        <p:selectOneMenu id="idEstadoCivil" value="#{usuariosController.selected.idEstadoCivil}" >
+                            <f:selectItems value="#{estadoCivilController.itemsAvailableSelectOne}"
+                                           var="idEstadoCivilItem"
+                                           itemValue="#{idEstadoCivilItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_idSexo}" for="idSexo" />
+                        <p:selectOneMenu id="idSexo" value="#{usuariosController.selected.idSexo}" >
+                            <f:selectItems value="#{sexoController.itemsAvailableSelectOne}"
+                                           var="idSexoItem"
+                                           itemValue="#{idSexoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_idCcf}" for="idCcf" />
+                        <p:selectOneMenu id="idCcf" value="#{usuariosController.selected.idCcf}" >
+                            <f:selectItems value="#{ccfController.itemsAvailableSelectOne}"
+                                           var="idCcfItem"
+                                           itemValue="#{idCcfItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_idFondoPensiones}" for="idFondoPensiones" />
+                        <p:selectOneMenu id="idFondoPensiones" value="#{usuariosController.selected.idFondoPensiones}" >
+                            <f:selectItems value="#{fondoDePensionesController.itemsAvailableSelectOne}"
+                                           var="idFondoPensionesItem"
+                                           itemValue="#{idFondoPensionesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_idEps}" for="idEps" />
+                        <p:selectOneMenu id="idEps" value="#{usuariosController.selected.idEps}" >
+                            <f:selectItems value="#{epsController.itemsAvailableSelectOne}"
+                                           var="idEpsItem"
+                                           itemValue="#{idEpsItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_idArl}" for="idArl" />
+                        <p:selectOneMenu id="idArl" value="#{usuariosController.selected.idArl}" >
+                            <f:selectItems value="#{arlController.itemsAvailableSelectOne}"
+                                           var="idArlItem"
+                                           itemValue="#{idArlItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_ciudad}" for="ciudad" />
+                        <p:selectOneMenu id="ciudad" value="#{usuariosController.selected.ciudad}" >
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"
+                                           var="ciudadItem"
+                                           itemValue="#{ciudadItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_ciudad1}" for="ciudad1" />
+                        <p:selectOneMenu id="ciudad1" value="#{usuariosController.selected.ciudad1}" required="true" requiredMessage="#{bundle.EditUsuariosRequiredMessage_ciudad1}">
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"
+                                           var="ciudad1Item"
+                                           itemValue="#{ciudad1Item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_idCentroFormacion}" for="idCentroFormacion" />
+                        <p:selectOneMenu id="idCentroFormacion" value="#{usuariosController.selected.idCentroFormacion}" >
+                            <f:selectItems value="#{centroFormacionController.itemsAvailableSelectOne}"
+                                           var="idCentroFormacionItem"
+                                           itemValue="#{idCentroFormacionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuariosController.create}" value="#{bundle.Save}" update="display,:UsuariosListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuariosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuariosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

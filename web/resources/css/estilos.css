@@ -1,0 +1,758 @@
+/* -----clases comunes------*/
+@font-face {
+    font-family: 'icomoon';
+    src:url("/SAMI/faces/javax.faces.resource/fonts/icomoon.eot?jfrvdd");
+    src:url("/SAMI/faces/javax.faces.resource/fonts/icomoon.eot?#iefixjfrvdd") format('embedded-opentype'),
+        url("/SAMI/faces/javax.faces.resource/fonts/icomoon.woff?jfrvdd") format('woff'),
+        url("/SAMI/faces/javax.faces.resource/fonts/icomoon.ttf?jfrvdd") format('truetype'),
+        url("/SAMI/faces/javax.faces.resource/fonts/icomoon.svg?jfrvdd#icomoon") format('svg');
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-help:before {
+    background: -webkit-linear-gradient(rgba(87, 240, 170, 0.88), rgba(37, 148, 55, 1));
+    border-radius: 20%;
+    border: 1px solid rgba(176, 166, 166, 1);
+    color: rgba(0, 0, 0, 0.76);
+    content: "\e600";
+    font-size: 2.6em;
+    padding: 6px 4px 4px 4px;
+}
+.icon-cog:before {
+    background: -webkit-linear-gradient(rgba(213, 201, 201, 1), rgba(0, 0, 0, 0.96));
+    border-radius: 20%;
+    border: 1px solid rgba(176, 166, 166, 1);
+    color: rgba(255, 255, 255, 0.83);
+    content: "\e601";
+    font-size: 2.6em;
+    padding: 6px 4px 4px 4px;
+}
+.icon-icon-sena0:before {
+    background: -webkit-linear-gradient(rgba(193, 248, 250, 1), rgba(188, 222, 224, 0.67));
+    border-radius: 20%;
+    border: 1px solid rgba(116, 111, 111, 0.57);
+    color: #747D7E;
+    content: "\e605";
+    font-size: 2.5em;
+    padding: 6px 1px 4px 1px;
+
+}
+.icon-icon-sofia-01:before {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 1), rgba(194, 199, 195, 0.6));
+    border-radius: 20%;
+    border: 1px solid rgba(116, 111, 111, 0.57);
+    color: rgba(36, 32, 32, 0.77);
+    content: "\e603";
+    font-size: 2.5em;
+    padding: 6px 3px 4px 3px;
+}
+.icon-triangle-down:before {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 1), rgba(194, 199, 195, 0.6));
+    content: "\e601";
+    font-size: 1.2em;
+    border-radius: 16%;
+    border: 1px solid rgba(116, 111, 111, 0.57);
+    color: rgba(0, 0, 0, 0.37);
+    padding: 1px 1px 1px 1px;
+}
+
+
+.Band-mant{
+    background-color: #238276;
+    border: solid 10px rgba(102, 123, 112, 0.4);
+    padding-bottom: 2em;
+}
+.Footer {
+    background-image: url("../images/template/footer.png");
+    /* background-position: center; */
+    margin-bottom: 0;
+    padding-top: 3em;
+    padding-bottom: 5em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* left: 12px; */
+    text-align: center;
+}
+
+.Footer-item,
+.Footer-title,
+.Footer-imageDescription{
+    display: inline-block;
+    margin-right: 3em;
+    margin-left: 3em;
+    margin-bottom: 2em;
+    list-style: none;
+}
+
+.Footer-description{
+
+}
+
+.Header-imageContainer{
+    display: inline-block;
+}
+
+.HeaderListModules-Options{
+    display: inline-block;
+    position: static;
+    text-align: center;
+    margin-left: 19em;
+
+}
+.Header-title{
+    display: inline-block;
+    text-align: center;
+    margin-left: 0.6em;
+    margin-bottom: 0em;
+    padding-top: 5em;
+    position: relative;
+    bottom: 46px;
+    margin-right: 3em;
+}
+
+.header-id{
+    display: inline-block;
+    width: 20em;
+    position: relative;
+    bottom: 2em;
+}
+
+
+.Header-greetingUser{
+    text-align: right;
+    margin-bottom: -2em;
+    padding-bottom: 1em;
+}
+
+.Header-ListModules{
+    width: 90%;
+
+}
+.HeaderList {
+    margin: 0;
+    font-size: 12px;
+    text-align: left;
+
+}
+
+.Header{
+    background-image: url("../images/template/header.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Header-logo{
+    width: 97%;
+    height: 60%;
+    margin-right: 2em;
+}
+
+.HeaderList-item{
+    float:right;
+    margin-right: -2em;
+}
+
+.HeaderList-item a {
+    background-color: rgba(75, 118, 109, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    color: rgb(249, 249, 249);
+    display: block;
+    text-decoration: none;
+}
+
+.HeaderList-item a:hover {
+    background-color:rgba(231, 247, 244, 0.82);
+    color: black;
+    border: 1px solid rgba(66, 52, 52, 0.34);
+}
+
+.HeaderList-item ul {
+    display:none;
+    position:absolute; 
+}
+
+.HeaderList-option li:hover > ul {
+    display:block;
+}
+
+.HeaderList-link {
+    position:relative;
+}
+
+.HeaderList-option{
+    margin-top: 5px;
+    padding-right: 27px;
+
+}
+
+.AlternMenu-link ul {
+    right:-140px;
+    top:0px;
+}
+
+.AlternMenu-link {
+    position:relative;
+}
+
+.MainMenu {
+    background-color: #238276;
+    overflow: hidden;
+}
+
+.MainMenu-item a,
+.SubMenu-item a{
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.89), rgba(189, 200, 199, 0.71));
+    color: black;
+    display: block;
+    padding: 9px 14px;
+    text-decoration: none;
+}
+
+.MainMenu-item a:hover,
+.SubMenu-item a:hover{
+    background-color:rgba(231, 247, 244, 0);
+    border: 2px solid rgba(66, 52, 52, 0.34);
+    color: black;
+}
+
+.SubMenu-item{
+    border-right: 1px solid rgba(58, 116, 84, 0.53);
+    float: left;
+    font-size: 12px;
+}
+
+.MainMenu-item ul,
+.SubMenu-item ul{
+    display:none;
+    min-width:140px;
+    position:absolute;
+}
+
+.MainMenu-item{
+    border-right: 1px solid rgba(58, 116, 84, 0.53);
+    float: left;
+}
+
+.MainMenu-link{
+    color: white ;
+    display: block;
+    padding: 5px 5px;
+    text-decoration: none;
+}
+
+.MainMenu-list li:hover > ul {
+    background-color: rgba(65, 60, 60, 0.40);
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-radius: 8px;
+    padding: 6px;
+    color: rgb(249, 249, 249);
+    display:block;
+}
+
+.MainMenu-list{
+    margin-top: 0.8em;
+    padding-left: 39px;
+}
+
+ul, ol {
+    list-style:none;  
+}
+
+#list-box{
+    border: 1px solid rgba(140, 138, 138, 0.59);
+    border-radius: 4px;
+    background: white;
+    padding-left: 6em;
+}
+
+.View-cpds{
+    padding: 1em;
+    background: white;
+    margin-left: 2.5em;
+    margin-right: 2.5em;
+}
+
+/*--------------------------------------------*/
+/*----MODULO1-----------*/
+.Content-cpds{
+    padding-bottom: 4px; 
+}
+
+.Table-cpds{
+    margin-top: 7px;
+}
+
+
+.Container-list{
+    float: right;
+    position: relative;
+    bottom: 190px;
+}
+
+
+
+.Button-cpds{
+    background: rgb(106, 168, 79);
+    padding: 5px 33px;
+    border-radius: 10%;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    top: -8px;
+}
+
+table, th, td {
+    /* border: 1px solid black; */
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: left;
+}
+
+.Button-other-cpds {
+    background: rgb(106, 168, 79);
+    padding: 5px 33px;
+    border-radius: 10%;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    top: -8px;
+}
+
+/*----MODULO2-----------*/
+.Advertise{
+    margin-left: 3em;
+}
+
+.Band-age{
+    float: right;
+}
+
+.form-band{
+    border: solid 1px black;
+}
+
+.Bandd-mant{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 42em;
+}
+
+.Descri-mant{
+    border: solid 1px black;
+    background-color: white;
+    height: 15em;
+    width: 75em;
+    margin-left: 2em;
+    margin-top: 2em
+}
+
+.soli-exter{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 23em;
+}
+
+
+.SolEx-mant{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 33em;
+}
+
+.histo-mant{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 22em
+}
+
+.HisIng-mant{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 39em
+}
+
+
+.HisIngr-mant{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 39em
+}
+
+.hisRegis-mant{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 50em
+}
+
+.mant-admi{
+    border: solid 1px black;
+    background-color: white;
+    height: 45em;
+    width: 75em;
+    margin-left: 2.3em;
+
+}
+
+.ban-admi{
+    border: solid 1px black;
+    background-color: white;
+    width: 75em;
+    margin-left: 2.3em;
+    margin-top: -1em
+}
+
+.Hismant{
+    border: solid 1px black;
+    background-color: white;
+    height: 17em;
+    width: 75em;
+    margin-left: 2.4em;
+}
+
+.exter-solit{
+    border: solid 1px black;
+    background-color: white;
+    height: 18em;
+    width: 75em;
+    margin-left: 2.3em;
+
+}
+
+.Work-exter{
+    border: solid 1px black;
+    background-color: white;
+    height: 29em;
+    width: 75em;
+    margin-left: 2.3em;
+}
+
+.ButtonRegis{
+    float: inherit;
+}
+
+.registro{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 40em;
+}
+
+.titu{
+    text-align: center;
+}
+
+
+.formuRegis{
+    border: solid 1px black;
+    background: white;
+    height: 36em;
+    width: 74em;
+    margin-left: 2.3em;
+}
+
+.mater-mant{
+    border: solid 1px black;
+    background-color: white;
+    height: 30em;
+    width: 75em;
+    margin-left: 2.3em;
+
+}
+
+.Bandej-mant{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 35em;
+}
+
+.ingre-ma{
+    background-color: white;
+    height: 34em;
+    width: 75em;
+    margin-left: 2.4em;
+    margin-top: -1em
+}
+
+.ban-mante{
+    height: 3em;
+}
+
+
+.ingre-mant{
+    border: solid 1px black;
+    background-color: white;
+    height: 34em;
+    width: 70em;
+    margin-left: 2em;
+    margin-top: 2em
+
+}
+
+.sup-cont{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 30em
+}
+
+.form-contra{
+    border: solid 1px black;
+    background-color: white;
+    height: 20em;
+    width: 70em;
+    margin-left: 2em;
+    margin-top: 2em
+}
+
+.CrearRegistro{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 41em;
+
+}
+
+.sup-contratos{
+    background-color: #238276;
+    border: solid 1px black ;
+    height: 38em
+}
+
+.sup-form{
+    border: solid 1px black;
+    background-color: white;
+    height: 30em;
+    width: 70em;
+    margin-left: 2em;
+    margin-top: 2em
+}
+
+.tabla {  
+    width: 100%;  
+    border-collapse : colapso ;  
+} 
+
+/*---------MODULO3----------*/
+
+.FormButtonSCCSS{
+    position: relative;
+    top: 2em;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: .3em;
+    margin-right: 0em;
+    margin-left: 4em;
+}
+.FormSelectSCCSS{
+    margin-bottom: 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-right: 15px;
+}
+.FormInputSCCSS{
+    margin-bottom: 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.FormInputDateSCCSS{
+    margin-bottom: 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 6px;
+}
+.FormLabelSCCSS{
+    position: relative;
+    bottom: .5em;
+}
+.FormTextAreaSCCSS{
+    padding-bottom: 3em;
+    border: 1px solid black;
+    border-radius: 5px;
+    resize: none;
+}
+.ErrorDupli{
+    color: red;
+    font-weight: bold;
+}
+
+/*---------MODULO4----------*/
+
+.Content-formTahuSection {
+    display: inline-block;
+    margin: none;
+}
+
+
+.Content-tahuModule { 
+    border: solid 0.5px black;
+    margin-right: 1em;
+    margin-left: 1em;
+    background-color: white;
+    position: relative;
+    padding-bottom: 5em;
+
+
+
+
+}
+.Content-tahuOptions fieldset {
+    width: 8em;
+    margin-right: 2em;
+}
+
+.Content-tahuOptions{
+    border: solid 1px gray; 
+    display: inline-block;
+    height: auto;
+    margin: 0;
+    padding-top: .5em;
+    padding-bottom: 1em;
+    position: absolute;
+    width: auto;
+
+
+}
+
+.Container-tahu {
+    border: solid 0.5px gray;
+    background-color: #238276;
+    padding-bottom: 1em;
+}
+.Content-tahu{ 
+    display: inline-block;
+    margin-left: 17em;
+    margin-bottom: 5em;
+
+
+}
+
+.Content-tahuInformative {
+    margin-right: 1em;
+
+}
+
+/*---------MODULO5----------*/
+
+
+
+.SubMenu-item{/*Gestion Documental*/
+    position: relative;
+    list-style-type: none;
+    float: left;
+}
+
+.SubMenu-link{/*Gestion Documental*/
+    display: block;
+    padding: 5px 5px;
+    /*border-left: 1px solid white; */
+    color: white ;
+    text-decoration: none;
+
+}
+
+
+.Section{/*Gestion Documental*/
+    background-color: #238276;
+    border:1px solid #238276;
+    padding-right: 10px;
+    padding-left: 10px;
+    min-height: 25em;
+
+
+}
+
+.Section-form{/*Gestion Documental*/
+    background-color: white;
+    margin: 0 auto;
+    border: 1px solid black;
+    min-height: 25em;
+    margin: .6em 0;
+    margin-top: 0px;
+
+
+}
+
+
+.Section-Tab{/*Gestion Documental*/
+    background-color: white;
+    width: 100%;
+    table-layout:fixed;
+
+}
+
+.Tab-scroll{/*Gestion Documental*/
+    overflow:scroll;
+    height: 200px;
+}
+
+.Section-link{/*Gestion Documental*/
+    color:black;
+    text-decoration: none;
+    float: left;
+
+}
+
+
+.Section-Embed{/*Gestion Documental*/
+    width: 890px;
+    height: 575px;
+    background-position: right;
+}
+
+
+.button{
+    margin: 0 auto 1em auto;
+    position: static;
+}
+
+
+.Form-agregarInput{/*Gestion Documental*/
+    margin: 0 auto 1em;
+    width: 20%;
+
+}
+
+.Form-datos{/*Gestion Documental*/
+    width: 90%;
+    font-size: smaller;
+}
+
+    @media screen and (max-width: 1030px){
+
+    .Section-Embed{//Gestion Documental
+                   width: 0px;
+                   height: 0px;
+    }
+      /*---------MODULO6----------*/
+
+        .form{
+            width: 470px;
+            padding: 0 5px;
+            margin: 0 auto;
+        }
+
+
+        .Form-solitudM{
+            width: 470px;
+            height: auto;
+            background: #119178; 
+            margin: 0 auto;
+            padding: 0 1%;
+            box-shadow: 5px 5px 0 #AAA;
+            border-radius: 5px;
+        }
+
+    }
+    

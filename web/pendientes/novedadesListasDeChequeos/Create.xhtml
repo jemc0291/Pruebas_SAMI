@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NovedadesListasDeChequeosCreateDlg" widgetVar="NovedadesListasDeChequeosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateNovedadesListasDeChequeosTitle}">
+            <h:form id="NovedadesListasDeChequeosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{novedadesListasDeChequeosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateNovedadesListasDeChequeosLabel_valorItem}" for="valorItem" />
+                        <p:selectBooleanCheckbox id="valorItem" value="#{novedadesListasDeChequeosController.selected.valorItem}" required="true" requiredMessage="#{bundle.EditNovedadesListasDeChequeosRequiredMessage_valorItem}"/>
+                        <p:outputLabel value="#{bundle.CreateNovedadesListasDeChequeosLabel_listasDeChequeos}" for="listasDeChequeos" />
+                        <p:selectOneMenu id="listasDeChequeos" value="#{novedadesListasDeChequeosController.selected.listasDeChequeos}" required="true" requiredMessage="#{bundle.EditNovedadesListasDeChequeosRequiredMessage_listasDeChequeos}">
+                            <f:selectItems value="#{listasDeChequeosController.itemsAvailableSelectOne}"
+                                           var="listasDeChequeosItem"
+                                           itemValue="#{listasDeChequeosItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateNovedadesListasDeChequeosLabel_novedades}" for="novedades" />
+                        <p:selectOneMenu id="novedades" value="#{novedadesListasDeChequeosController.selected.novedades}" required="true" requiredMessage="#{bundle.EditNovedadesListasDeChequeosRequiredMessage_novedades}">
+                            <f:selectItems value="#{novedadesController.itemsAvailableSelectOne}"
+                                           var="novedadesItem"
+                                           itemValue="#{novedadesItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{novedadesListasDeChequeosController.create}" value="#{bundle.Save}" update="display,:NovedadesListasDeChequeosListForm:datalist,:growl" oncomplete="handleSubmit(args,'NovedadesListasDeChequeosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="NovedadesListasDeChequeosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

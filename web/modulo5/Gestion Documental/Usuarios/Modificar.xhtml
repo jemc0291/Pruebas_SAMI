@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title"><h:outputText value="#{bundle.EditUsuariosTitle}"></h:outputText></ui:define>
+        <ui:define name="menu"><ui:include src="/modulo5/menu_modulo5.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+
+            <section class="section-form">
+                <form jsf:id="usuarioCreateForm">
+                    <p:panelGrid columns="3" layout="grid">
+                        <label value="#{bundle.EditUsuariosLabel_razonSocial}" jsf:for="primerNombreInputText"></label> 
+                        <p:inputText type="text" id="primerNombreInputText" 
+                                     required="true" 
+                                     disabled="true"
+                                     requiredMessage="#{bundle.EditUsuariosRequiredMessage_razonSocial}"
+                                     value="#{usuariosController.selected.razonSocial}" maxlength="30"
+                                     title="#{bundle.EditUsuariosTitle_razonSocial}">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="primerNombreMessage"/>
+                        </p:inputText>
+                        <h:message id="primerNombreMessage" for="primerNombreInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_segundoNombre}" jsf:for="segundoNombreInputText"></label> 
+                        <p:inputText type="text" id="segundoNombreInputText"
+                                     value="#{usuariosController.selected.segundoNombre}" maxlength="30"
+                                     title="#{bundle.EditUsuariosTitle_segundoNombre}"
+                                     disabled="true">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="segundoNombreMessage"/>
+                        </p:inputText>
+                        <h:message id="segundoNombreMessage" for="segundoNombreInputText" styleClass="error"/>
+
+
+                        <label value="#{bundle.EditUsuariosLabel_primerApellido}" jsf:for="primerApellidoInputText"></label> 
+                        <p:inputText type="text" id="primerApellidoInputText" 
+                                     required="true" 
+                                     disabled="true"
+                                     requiredMessage="#{bundle.EditUsuariosRequiredMessage_primerApellido}"
+                                     value="#{usuariosController.selected.primerApellido}" maxlength="30"
+                                     title="#{bundle.EditUsuariosTitle_primerApellido}">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="primerApellidoMessage"/>
+                        </p:inputText>
+                        <h:message id="primerApellidoMessage" for="primerApellidoInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_segundoApellido}" jsf:for="segundoApellidoInputText"></label> 
+                        <p:inputText type="text" id="segundoApellidoInputText" 
+                                     value="#{usuariosController.selected.segundoApellido}" maxlength="30"
+                                     title="#{bundle.EditUsuariosTitle_segundoApellido}"
+                                     disabled="true">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="segundoApellidoMessage"/>
+                        </p:inputText>
+                        <h:message id="segundoApellidoMessage" for="segundoApellidoInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_idTipoDoc}" jsf:for="tipodocumentosInputText"></label> 
+                        <h:selectOneMenu id="tipodocumentosInputText" value="#{usuariosController.selected.idTipoDoc}" 
+                                         required="true" 
+                                         requiredMessage="#{bundle.EditUsuariosRequiredMessage_idTipoDoc}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems value="#{tipoDocumentosController.itemsAvailableSelectOne}"
+                                           var="documento"
+                                           itemValue="#{documento}"/>
+                        </h:selectOneMenu>
+                        <h:message id="tipodocumentosMessage" for="tipodocumentosInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_numeroDoc}" jsf:for="numeroidInputText"></label> 
+                        <p:inputText type="text" id="numeroidInputText" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.EditUsuariosRequiredMessage_numeroDoc}"
+                                     value="#{usuariosController.selected.numeroDoc}"
+                                     title="#{bundle.EditUsuariosTitle_numeroDoc}">
+                            <f:ajax execute="@this" render="numeroidMessage"/>
+                        </p:inputText>
+                        <h:message id="numeroidMessage" for="numeroidInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_fechaExpedicionDoc}" jsf:for="expedicionInputText"></label>
+                        <p:calendar id="expedicionInputText" required="true" yearRange="c-100:c+100"                            
+                                    value="#{usuariosController.selected.fechaExpedicionDoc}"
+                                    title="#{bundle.EditUsuariosTitle_fechaExpedicionDoc}"
+                                    locale="de" navigator="true" pattern="yyyy-MMM-dd"
+                                    showOn="button">
+                            <f:ajax execute="@this" render="expedicionMessage"/>
+                        </p:calendar>
+                        <h:message id="expedicionMessage" for="expedicionInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_ciudad}" jsf:for="ciudad"></label>
+                        <p:autoComplete id="ciudad" value="#{usuariosController.selected.ciudad}" 
+                                        required="true" requiredMessage="#{bundle.EditUsuariosRequiredMessage_ciudad}"
+                                        completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 
+                                        var="ciudad" itemLabel="#{ciudad}" itemValue="#{ciudad}" 
+                                        converter="ciudadConverter" pt:required="true"
+                                        forceSelection="true" maxResults="10"/> 
+                        <p:message id="ciudadMessage" for="ciudad"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_fechaNac}" jsf:for="fechaInputText"></label>
+                        <p:calendar id="fechaInputText" required="true" yearRange="c-100:c+100"
+                                    requiredMessage="Por favor ingrese la fecha de Nacimiento"
+                                    value="#{usuariosController.selected.fechaNac}"
+                                    disabled="true"
+                                    title="#{bundle.EditUsuariosTitle_fechaNac}"
+                                    locale="de" navigator="true" pattern="yyyy-MMM-dd"
+                                    showOn="button">
+                            <f:ajax execute="@this" render="fechaMessage"/>
+                        </p:calendar>
+                        <h:message id="fechaMessage" for="fechaInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_idEstratoSocial}" jsf:for="EstratoSocialInputText"></label>
+                        <h:selectOneMenu id="EstratoSocialInputText" 
+                                         value="#{usuariosController.selected.idEstratoSocial}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems value="#{estratoSocialController.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="EstratoSocialMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="EstratoSocialMessage" for="EstratoSocialInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_ciudad1}" jsf:for="ciudad1"></label> 
+                        <p:autoComplete id="ciudad1" value="#{usuariosController.selected.ciudad1}" 
+                                        required="true" requiredMessage="#{bundle.EditUsuariosRequiredMessage_ciudad1}"
+                                        completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 
+                                        var="ciudad1" itemLabel="#{ciudad1}" itemValue="#{ciudad1}" 
+                                        converter="ciudadConverter" pt:required="true"
+                                        forceSelection="true" maxResults="10"/> 
+                        <p:message id="ciudad1Message" for="ciudad1"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_direccionUsu}" jsf:for="direccionInputText"></label> 
+                        <p:inputText type="text" id="direccionInputText" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.EditUsuariosRequiredMessage_direccionUsu}"
+                                     value="#{usuariosController.selected.direccionUsu}"
+                                     title="#{bundle.EditUsuariosTitle_direccionUsu}">
+                            <f:validateRegex pattern="[A-Za-z 0-9áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="direccionMessage"/>
+                        </p:inputText>
+                        <h:message id="direccionMessage" for="direccionInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_telefonoPrincipalUsu}" jsf:for="movilInputText"></label>
+                        <p:inputText type="tel" id="movilInputText" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.EditUsuariosRequiredMessage_telefonoPrincipalUsu}"
+                                     value="#{usuariosController.selected.telefonoPrincipalUsu}"
+                                     title="#{bundle.EditUsuariosTitle_telefonoPrincipalUsu}">
+                            <f:ajax execute="@this" render="movilMessage"/>
+                        </p:inputText>
+                        <h:message id="movilMessage" for="movilInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_telefonoAlternoUsu}" jsf:for="TelefonoInputText"></label>
+                        <p:inputText type="tel" id="TelefonoInputText" 
+                                     value="#{usuariosController.selected.telefonoAlternoUsu}"
+                                     title="#{bundle.EditUsuariosTitle_telefonoAlternoUsu}">
+                            <f:ajax execute="@this" render="TelefonoMessage"/>
+                        </p:inputText>
+                        <h:message id="TelefonoMessage" for="TelefonoInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_email}" jsf:for="emailInputText"></label> 
+                        <p:inputText type="email" id="emailInputText" 
+                                     value="#{usuariosController.selected.email}"
+                                     title="#{bundle.EditUsuariosTitle_email}">
+                            <f:ajax execute="@this" render= "emailMessage"/>
+                        </p:inputText>
+                        <h:message id="emailMessage" for="emailInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_idCentroFormacion}" jsf:for="centroFormacion"></label> 
+                        <p:autoComplete id="centroFormacion" value="#{usuariosController.selected.idCentroFormacion}" 
+                                        required="true" completeMethod="#{usuariosController.getListCentroFormacionAutoComplete}" 
+                                        var="centroFormacion" itemLabel="#{centroFormacion}" itemValue="#{centroFormacion}" 
+                                        converter="centroFormacionConverter" pt:required="true"
+                                        forceSelection="true" maxResults="10"/> 
+                        <p:message id="centrodeformacionMessage" for="centroFormacion"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_gpRh}" jsf:for="FactorInputText"></label>
+                        <p:inputText type="text" id="FactorInputText"
+                                     value="#{usuariosController.selected.gpRh}"
+                                     title="#{bundle.EditUsuariosTitle_gpRh}">
+                            <f:ajax execute="@this" render="FactorMessage"/>
+                        </p:inputText>
+                        <h:message id="FactorMessage" for="FactorInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_idEstadoCivil}" jsf:for="idEstadoCivil"></label>
+                        <h:selectOneMenu id="EstadoCivilInputText"
+                                         value="#{usuariosController.selected.idEstadoCivil}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems value="#{estadoCivilController.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="EstadoCivilMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="EstadoCivilMessage" for="EstadoCivilInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_idSexo}" jsf:for="generoInputText"></label>
+                        <h:selectOneMenu id="generoInputText" 
+                                         value="#{usuariosController.selected.idSexo}"
+                                         disabled="true">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems value="#{sexoController.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="generoMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="generoMessage" for="generoInputText" styleClass="error"/>
+
+
+                        <label value="#{bundle.EditUsuariosLabel_idEps}" jsf:for="IDEpsInputText"></label>
+                        <h:selectOneMenu class="Form-datos" id="IDEpsInputText"
+                                         value="#{usuariosController.selected.idEps}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems  value="#{epsController.itemsAvailableSelectOne}"
+                                            var="Eps"
+                                            itemValue="#{Eps}"/>
+                            <f:ajax execute="@this" render="IDEpsMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="IDEpsMessage" for="IDEpsInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_idArl}" jsf:for="IDArlInputText"></label>
+                        <h:selectOneMenu class="Form-datos" id="IDArlInputText" 
+                                         value="#{usuariosController.selected.idArl}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems value="#{arlController.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="IDArlMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="IDArlMessage" for="IDArlInputText" styleClass="error"/>
+
+                        <label value="#{bundle.EditUsuariosLabel_idCcf}" for="IdCcfInputText"></label>
+                        <h:selectOneMenu class="Form-datos" id="IdCcfInputText"
+                                         value="#{usuariosController.selected.idCcf}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems value="#{ccfController.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="IdCcfMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="IdCcfMessage" for="IdCcfInputText" styleClass="error"/>
+
+                        <label jsf:for="rol"> Rol </label>
+                        <h:selectManyCheckbox id="rol" value="#{usuariosController.listaRoles}" layout="grid" 
+                                              converter="rolConverter"
+                                              requiredMessage="Requerido">  
+                            <f:selectItems value="#{usuariosController.listRolSelectOne}"/>
+                            <f:ajax execute="@this" render="rolMessage"/>
+                        </h:selectManyCheckbox> 
+                        <p:message id="rolMessage" for="rol"/>
+
+                    </p:panelGrid>
+                    <h:commandButton action="#{usuariosController.update}" value="Modificar"/>
+
+                </form>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>

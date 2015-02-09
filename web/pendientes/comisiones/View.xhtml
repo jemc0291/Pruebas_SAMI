@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ComisionesViewDlg" widgetVar="ComisionesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewComisionesTitle}">
+            <h:form id="ComisionesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{comisionesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewComisionesLabel_idComision}"/>
+                        <h:outputText value="#{comisionesController.selected.idComision}" title="#{bundle.ViewComisionesTitle_idComision}"/>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_objetivoComision}"/>
+                        <h:outputText value="#{comisionesController.selected.objetivoComision}" title="#{bundle.ViewComisionesTitle_objetivoComision}"/>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_fechaComision}"/>
+                        <h:outputText value="#{comisionesController.selected.fechaComision}" title="#{bundle.ViewComisionesTitle_fechaComision}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_fechaTramite}"/>
+                        <h:outputText value="#{comisionesController.selected.fechaTramite}" title="#{bundle.ViewComisionesTitle_fechaTramite}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_idAprobacion}"/>
+                        <h:outputText value="#{comisionesController.selected.idAprobacion}" title="#{bundle.ViewComisionesTitle_idAprobacion}"/>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_idDescripcion}"/>
+                        <h:outputText value="#{comisionesController.selected.idDescripcion}" title="#{bundle.ViewComisionesTitle_idDescripcion}"/>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_idContrato}"/>
+                        <h:outputText value="#{comisionesController.selected.idContrato}" title="#{bundle.ViewComisionesTitle_idContrato}"/>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_idCuenta}"/>
+                        <h:outputText value="#{comisionesController.selected.idCuenta}" title="#{bundle.ViewComisionesTitle_idCuenta}"/>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_idFichaCaracterizacion}"/>
+                        <h:outputText value="#{comisionesController.selected.idFichaCaracterizacion}" title="#{bundle.ViewComisionesTitle_idFichaCaracterizacion}"/>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_idCentroFormacion}"/>
+                        <h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="#{bundle.ViewComisionesTitle_idCentroFormacion}"/>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_ciudad}"/>
+                        <h:outputText value="#{comisionesController.selected.ciudad}" title="#{bundle.ViewComisionesTitle_ciudad}"/>
+                        <h:outputText value="#{bundle.ViewComisionesLabel_idUsuario}"/>
+                        <h:outputText value="#{comisionesController.selected.idUsuario}" title="#{bundle.ViewComisionesTitle_idUsuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ComisionesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

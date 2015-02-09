@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Lista Bancos <h:outputText value="#{bundle.ListBancosTitle}"></h:outputText> </ui:define>
+        <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+        <h1>Lista De Bancos</h1>
+            <h:form>
+                
+                <P>
+                    <h:commandButton action="#{bancosController.prepareCreate}" value="Agregar Bancos"/>
+                </P>
+                <p:outputPanel id="BancosTablePanel">
+                    <p:dataTable value="#{bancosController.items}" var="item"
+                                 rows="10" id="BancosTable" 
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="20,40,60">
+
+                        <p:column filterBy="#{item.nombreDeBanco}" filterMatchMode="contains">
+                            <f:facet name="header"> <h:outputText value="#{bundle.ListBancosTitle_nombreDeBanco}"/></f:facet>
+                            <h:outputText value="#{item.nombreDeBanco}"/>
+                        </p:column>
+                        
+                         <p:column>
+                        <f:facet name="header">Opciones</f:facet>
+                        <p:commandButton icon="ui-icon-pencil" value="#{bundle.Edit}" action="#{bancosController.prepareModificarBanco}">
+                            <f:setPropertyActionListener value="#{item}" target="#{bancosController.selected}"/>
+                        </p:commandButton>
+
+                        <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{bancosController.destroy}"
+                                         process="@this" update="BancosTable">
+                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el Banco?" icon="ui-icon-alert" />
+                            <f:setPropertyActionListener value="#{item}" target="#{bancosController.selected}"/>
+                        </p:commandButton>
+                    </p:column>
+                        
+                    </p:dataTable>
+                </p:outputPanel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

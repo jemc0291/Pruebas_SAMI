@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MaterialesEditDlg" widgetVar="MaterialesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMaterialesTitle}">
+            <h:form id="MaterialesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materialesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMaterialesLabel_idMateriales}" for="idMateriales" />
+                        <p:inputText id="idMateriales" value="#{materialesController.selected.idMateriales}" title="#{bundle.EditMaterialesTitle_idMateriales}" required="true" requiredMessage="#{bundle.EditMaterialesRequiredMessage_idMateriales}"/>
+                        <p:outputLabel value="#{bundle.EditMaterialesLabel_nombreMaterial}" for="nombreMaterial" />
+                        <p:inputText id="nombreMaterial" value="#{materialesController.selected.nombreMaterial}" title="#{bundle.EditMaterialesTitle_nombreMaterial}" required="true" requiredMessage="#{bundle.EditMaterialesRequiredMessage_nombreMaterial}"/>
+                        <p:outputLabel value="#{bundle.EditMaterialesLabel_unidadMedida}" for="unidadMedida" />
+                        <p:inputText id="unidadMedida" value="#{materialesController.selected.unidadMedida}" title="#{bundle.EditMaterialesTitle_unidadMedida}" required="true" requiredMessage="#{bundle.EditMaterialesRequiredMessage_unidadMedida}"/>
+                        <p:outputLabel value="#{bundle.EditMaterialesLabel_tipoMaterial}" for="tipoMaterial" />
+                        <p:inputText id="tipoMaterial" value="#{materialesController.selected.tipoMaterial}" title="#{bundle.EditMaterialesTitle_tipoMaterial}" />
+                        <p:outputLabel value="#{bundle.EditMaterialesLabel_descripcionelemento}" for="descripcionelemento" />
+                        <p:inputText id="descripcionelemento" value="#{materialesController.selected.descripcionelemento}" title="#{bundle.EditMaterialesTitle_descripcionelemento}" />
+                        <p:outputLabel value="#{bundle.EditMaterialesLabel_idCategoria}" for="idCategoria" />
+                        <p:selectOneMenu id="idCategoria" value="#{materialesController.selected.idCategoria}" required="true" requiredMessage="#{bundle.EditMaterialesRequiredMessage_idCategoria}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{categoriasController.itemsAvailableSelectOne}"
+                                           var="idCategoriaItem"
+                                           itemValue="#{idCategoriaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{materialesController.update}" value="#{bundle.Save}" update="display,:MaterialesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MaterialesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MaterialesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

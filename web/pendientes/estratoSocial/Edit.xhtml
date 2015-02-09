@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstratoSocialEditDlg" widgetVar="EstratoSocialEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEstratoSocialTitle}">
+            <h:form id="EstratoSocialEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estratoSocialController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEstratoSocialLabel_idEstratoSocial}" for="idEstratoSocial" />
+                        <p:inputText id="idEstratoSocial" value="#{estratoSocialController.selected.idEstratoSocial}" title="#{bundle.EditEstratoSocialTitle_idEstratoSocial}" required="true" requiredMessage="#{bundle.EditEstratoSocialRequiredMessage_idEstratoSocial}"/>
+                        <p:outputLabel value="#{bundle.EditEstratoSocialLabel_nombreEstrato}" for="nombreEstrato" />
+                        <p:inputText id="nombreEstrato" value="#{estratoSocialController.selected.nombreEstrato}" title="#{bundle.EditEstratoSocialTitle_nombreEstrato}" required="true" requiredMessage="#{bundle.EditEstratoSocialRequiredMessage_nombreEstrato}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{estratoSocialController.update}" value="#{bundle.Save}" update="display,:EstratoSocialListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EstratoSocialEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EstratoSocialEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

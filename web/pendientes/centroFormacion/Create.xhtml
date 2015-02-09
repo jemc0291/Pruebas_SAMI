@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CentroFormacionCreateDlg" widgetVar="CentroFormacionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCentroFormacionTitle}">
+            <h:form id="CentroFormacionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{centroFormacionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCentroFormacionLabel_idCentroFormacion}" for="idCentroFormacion" />
+                        <p:inputText id="idCentroFormacion" value="#{centroFormacionController.selected.idCentroFormacion}" title="#{bundle.CreateCentroFormacionTitle_idCentroFormacion}" required="true" requiredMessage="#{bundle.CreateCentroFormacionRequiredMessage_idCentroFormacion}"/>
+                        <p:outputLabel value="#{bundle.CreateCentroFormacionLabel_nombreCentroFormacion}" for="nombreCentroFormacion" />
+                        <p:inputText id="nombreCentroFormacion" value="#{centroFormacionController.selected.nombreCentroFormacion}" title="#{bundle.CreateCentroFormacionTitle_nombreCentroFormacion}" required="true" requiredMessage="#{bundle.CreateCentroFormacionRequiredMessage_nombreCentroFormacion}"/>
+                        <p:outputLabel value="#{bundle.CreateCentroFormacionLabel_direccionCentroFormacion}" for="direccionCentroFormacion" />
+                        <p:inputText id="direccionCentroFormacion" value="#{centroFormacionController.selected.direccionCentroFormacion}" title="#{bundle.CreateCentroFormacionTitle_direccionCentroFormacion}" />
+                        <p:outputLabel value="#{bundle.CreateCentroFormacionLabel_telefonoCentroFormacion}" for="telefonoCentroFormacion" />
+                        <p:inputText id="telefonoCentroFormacion" value="#{centroFormacionController.selected.telefonoCentroFormacion}" title="#{bundle.CreateCentroFormacionTitle_telefonoCentroFormacion}" />
+                        <p:outputLabel value="#{bundle.CreateCentroFormacionLabel_ciudad}" for="ciudad" />
+                        <p:selectOneMenu id="ciudad" value="#{centroFormacionController.selected.ciudad}" required="true" requiredMessage="#{bundle.EditCentroFormacionRequiredMessage_ciudad}">
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"
+                                           var="ciudadItem"
+                                           itemValue="#{ciudadItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{centroFormacionController.create}" value="#{bundle.Save}" update="display,:CentroFormacionListForm:datalist,:growl" oncomplete="handleSubmit(args,'CentroFormacionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CentroFormacionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

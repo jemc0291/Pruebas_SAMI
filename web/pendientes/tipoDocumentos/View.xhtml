@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoDocumentosViewDlg" widgetVar="TipoDocumentosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTipoDocumentosTitle}">
+            <h:form id="TipoDocumentosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoDocumentosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTipoDocumentosLabel_idTipoDoc}"/>
+                        <h:outputText value="#{tipoDocumentosController.selected.idTipoDoc}" title="#{bundle.ViewTipoDocumentosTitle_idTipoDoc}"/>
+                        <h:outputText value="#{bundle.ViewTipoDocumentosLabel_nombreTipoDoc}"/>
+                        <h:outputText value="#{tipoDocumentosController.selected.nombreTipoDoc}" title="#{bundle.ViewTipoDocumentosTitle_nombreTipoDoc}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TipoDocumentosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

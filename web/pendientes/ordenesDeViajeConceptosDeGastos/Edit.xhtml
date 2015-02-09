@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenesDeViajeConceptosDeGastosEditDlg" widgetVar="OrdenesDeViajeConceptosDeGastosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditOrdenesDeViajeConceptosDeGastosTitle}">
+            <h:form id="OrdenesDeViajeConceptosDeGastosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordenesDeViajeConceptosDeGastosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditOrdenesDeViajeConceptosDeGastosLabel_costoGasto}" for="costoGasto" />
+                        <p:inputText id="costoGasto" value="#{ordenesDeViajeConceptosDeGastosController.selected.costoGasto}" title="#{bundle.EditOrdenesDeViajeConceptosDeGastosTitle_costoGasto}" required="true" requiredMessage="#{bundle.EditOrdenesDeViajeConceptosDeGastosRequiredMessage_costoGasto}"/>
+                        <p:outputLabel value="#{bundle.EditOrdenesDeViajeConceptosDeGastosLabel_ordenesDeviaje}" for="ordenesDeviaje" />
+                        <p:selectOneMenu id="ordenesDeviaje" value="#{ordenesDeViajeConceptosDeGastosController.selected.ordenesDeviaje}" required="true" requiredMessage="#{bundle.EditOrdenesDeViajeConceptosDeGastosRequiredMessage_ordenesDeviaje}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ordenesDeviajeController.itemsAvailableSelectOne}"
+                                           var="ordenesDeviajeItem"
+                                           itemValue="#{ordenesDeviajeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrdenesDeViajeConceptosDeGastosLabel_conceptosDeGastos}" for="conceptosDeGastos" />
+                        <p:selectOneMenu id="conceptosDeGastos" value="#{ordenesDeViajeConceptosDeGastosController.selected.conceptosDeGastos}" required="true" requiredMessage="#{bundle.EditOrdenesDeViajeConceptosDeGastosRequiredMessage_conceptosDeGastos}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{conceptosDeGastosController.itemsAvailableSelectOne}"
+                                           var="conceptosDeGastosItem"
+                                           itemValue="#{conceptosDeGastosItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ordenesDeViajeConceptosDeGastosController.update}" value="#{bundle.Save}" update="display,:OrdenesDeViajeConceptosDeGastosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'OrdenesDeViajeConceptosDeGastosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="OrdenesDeViajeConceptosDeGastosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

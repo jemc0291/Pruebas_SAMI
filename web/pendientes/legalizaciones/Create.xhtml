@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LegalizacionesCreateDlg" widgetVar="LegalizacionesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLegalizacionesTitle}">
+            <h:form id="LegalizacionesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{legalizacionesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_numeroLegalizacion}" for="numeroLegalizacion" />
+                        <p:inputText id="numeroLegalizacion" value="#{legalizacionesController.selected.numeroLegalizacion}" title="#{bundle.CreateLegalizacionesTitle_numeroLegalizacion}" required="true" requiredMessage="#{bundle.CreateLegalizacionesRequiredMessage_numeroLegalizacion}"/>
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_subtotal}" for="subtotal" />
+                        <p:inputText id="subtotal" value="#{legalizacionesController.selected.subtotal}" title="#{bundle.CreateLegalizacionesTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateLegalizacionesRequiredMessage_subtotal}"/>
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_menosRetefuente}" for="menosRetefuente" />
+                        <p:inputText id="menosRetefuente" value="#{legalizacionesController.selected.menosRetefuente}" title="#{bundle.CreateLegalizacionesTitle_menosRetefuente}" required="true" requiredMessage="#{bundle.CreateLegalizacionesRequiredMessage_menosRetefuente}"/>
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_valorNetoAReconocer}" for="valorNetoAReconocer" />
+                        <p:inputText id="valorNetoAReconocer" value="#{legalizacionesController.selected.valorNetoAReconocer}" title="#{bundle.CreateLegalizacionesTitle_valorNetoAReconocer}" />
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_saldo}" for="saldo" />
+                        <p:inputText id="saldo" value="#{legalizacionesController.selected.saldo}" title="#{bundle.CreateLegalizacionesTitle_saldo}" />
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_saldoAFavor}" for="saldoAFavor" />
+                        <p:inputText id="saldoAFavor" value="#{legalizacionesController.selected.saldoAFavor}" title="#{bundle.CreateLegalizacionesTitle_saldoAFavor}" />
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_valorAReintegrar}" for="valorAReintegrar" />
+                        <p:inputText id="valorAReintegrar" value="#{legalizacionesController.selected.valorAReintegrar}" title="#{bundle.CreateLegalizacionesTitle_valorAReintegrar}" />
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_fechaSalida}" for="fechaSalida" />
+                        <p:calendar id="fechaSalida" pattern="MM/dd/yyyy" value="#{legalizacionesController.selected.fechaSalida}" title="#{bundle.EditLegalizacionesTitle_fechaSalida}" required="true" requiredMessage="#{bundle.EditLegalizacionesRequiredMessage_fechaSalida}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_fechaLlegada}" for="fechaLlegada" />
+                        <p:calendar id="fechaLlegada" pattern="MM/dd/yyyy" value="#{legalizacionesController.selected.fechaLlegada}" title="#{bundle.EditLegalizacionesTitle_fechaLlegada}" required="true" requiredMessage="#{bundle.EditLegalizacionesRequiredMessage_fechaLlegada}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_dias}" for="dias" />
+                        <p:inputText id="dias" value="#{legalizacionesController.selected.dias}" title="#{bundle.CreateLegalizacionesTitle_dias}" required="true" requiredMessage="#{bundle.CreateLegalizacionesRequiredMessage_dias}"/>
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_valorLegalizar}" for="valorLegalizar" />
+                        <p:inputText id="valorLegalizar" value="#{legalizacionesController.selected.valorLegalizar}" title="#{bundle.CreateLegalizacionesTitle_valorLegalizar}" />
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_menosValorAnticipo}" for="menosValorAnticipo" />
+                        <p:inputText id="menosValorAnticipo" value="#{legalizacionesController.selected.menosValorAnticipo}" title="#{bundle.CreateLegalizacionesTitle_menosValorAnticipo}" />
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_saldooPositivo}" for="saldooPositivo" />
+                        <p:inputText id="saldooPositivo" value="#{legalizacionesController.selected.saldooPositivo}" title="#{bundle.CreateLegalizacionesTitle_saldooPositivo}" />
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_presupuesto}" for="presupuesto" />
+                        <p:inputText id="presupuesto" value="#{legalizacionesController.selected.presupuesto}" title="#{bundle.CreateLegalizacionesTitle_presupuesto}" />
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_solicitaOrdenaSaldo}" for="solicitaOrdenaSaldo" />
+                        <p:inputText id="solicitaOrdenaSaldo" value="#{legalizacionesController.selected.solicitaOrdenaSaldo}" title="#{bundle.CreateLegalizacionesTitle_solicitaOrdenaSaldo}" />
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_numeroCrp}" for="numeroCrp" />
+                        <p:selectOneMenu id="numeroCrp" value="#{legalizacionesController.selected.numeroCrp}" required="true" requiredMessage="#{bundle.EditLegalizacionesRequiredMessage_numeroCrp}">
+                            <f:selectItems value="#{crpController.itemsAvailableSelectOne}"
+                                           var="numeroCrpItem"
+                                           itemValue="#{numeroCrpItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_ciudad}" for="ciudad" />
+                        <p:selectOneMenu id="ciudad" value="#{legalizacionesController.selected.ciudad}" required="true" requiredMessage="#{bundle.EditLegalizacionesRequiredMessage_ciudad}">
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"
+                                           var="ciudadItem"
+                                           itemValue="#{ciudadItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLegalizacionesLabel_codigoGasto}" for="codigoGasto" />
+                        <p:selectOneMenu id="codigoGasto" value="#{legalizacionesController.selected.codigoGasto}" required="true" requiredMessage="#{bundle.EditLegalizacionesRequiredMessage_codigoGasto}">
+                            <f:selectItems value="#{conceptosDeGastosController.itemsAvailableSelectOne}"
+                                           var="codigoGastoItem"
+                                           itemValue="#{codigoGastoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{legalizacionesController.create}" value="#{bundle.Save}" update="display,:LegalizacionesListForm:datalist,:growl" oncomplete="handleSubmit(args,'LegalizacionesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LegalizacionesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

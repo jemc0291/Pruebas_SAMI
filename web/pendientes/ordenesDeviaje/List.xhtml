@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListOrdenesDeviajeTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="OrdenesDeviajeListForm">
+                <p:panel header="#{bundle.ListOrdenesDeviajeTitle}">
+                    <p:dataTable id="datalist" value="#{ordenesDeviajeController.items}" var="item"
+                                 selectionMode="single" selection="#{ordenesDeviajeController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.numeroOrdendeviaje}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_numeroOrdendeviaje}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroOrdendeviaje}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_fechaTramite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaTramite}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_observacionesDeLaOrden}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observacionesDeLaOrden}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_ruta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ruta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_subtotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subtotal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_menosRetefuente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.menosRetefuente}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_valorNetoAReconocer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorNetoAReconocer}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_objetvos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.objetvos}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_totalAnticipoAPagar}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalAnticipoAPagar}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_entidadSuministraVehiculo}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.entidadSuministraVehiculo}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_idTipoPasaje}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoPasaje}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_idDpto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDpto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_codigoDeDependencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoDeDependencia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_idTrayecto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTrayecto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_idCuenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCuenta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_idUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesDeviajeTitle_idComision}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idComision}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ordenesDeviajeController.prepareCreate}" update=":OrdenesDeviajeCreateForm" oncomplete="PF('OrdenesDeviajeCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":OrdenesDeviajeViewForm" oncomplete="PF('OrdenesDeviajeViewDialog').show()" disabled="#{empty ordenesDeviajeController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":OrdenesDeviajeEditForm" oncomplete="PF('OrdenesDeviajeEditDialog').show()" disabled="#{empty ordenesDeviajeController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{ordenesDeviajeController.destroy}" update=":growl,datalist" disabled="#{empty ordenesDeviajeController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

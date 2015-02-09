@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FormacionAcademicaCreateDlg" widgetVar="FormacionAcademicaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFormacionAcademicaTitle}">
+            <h:form id="FormacionAcademicaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{formacionAcademicaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateFormacionAcademicaLabel_idFormacion}" for="idFormacion" />
+                        <p:inputText id="idFormacion" value="#{formacionAcademicaController.selected.idFormacion}" title="#{bundle.CreateFormacionAcademicaTitle_idFormacion}" required="true" requiredMessage="#{bundle.CreateFormacionAcademicaRequiredMessage_idFormacion}"/>
+                        <p:outputLabel value="#{bundle.CreateFormacionAcademicaLabel_nombreFormacion}" for="nombreFormacion" />
+                        <p:inputText id="nombreFormacion" value="#{formacionAcademicaController.selected.nombreFormacion}" title="#{bundle.CreateFormacionAcademicaTitle_nombreFormacion}" />
+                        <p:outputLabel value="#{bundle.CreateFormacionAcademicaLabel_soportadoFormacion}" for="soportadoFormacion" />
+                        <p:selectBooleanCheckbox id="soportadoFormacion" value="#{formacionAcademicaController.selected.soportadoFormacion}" />
+                        <p:outputLabel value="#{bundle.CreateFormacionAcademicaLabel_idNivelesFormacion}" for="idNivelesFormacion" />
+                        <p:selectOneMenu id="idNivelesFormacion" value="#{formacionAcademicaController.selected.idNivelesFormacion}" required="true" requiredMessage="#{bundle.EditFormacionAcademicaRequiredMessage_idNivelesFormacion}">
+                            <f:selectItems value="#{nivelesFormacionController.itemsAvailableSelectOne}"
+                                           var="idNivelesFormacionItem"
+                                           itemValue="#{idNivelesFormacionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{formacionAcademicaController.create}" value="#{bundle.Save}" update="display,:FormacionAcademicaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FormacionAcademicaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FormacionAcademicaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
