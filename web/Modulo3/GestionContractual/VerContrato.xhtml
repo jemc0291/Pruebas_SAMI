@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Lista Contratos</ui:define>
+        <ui:define name="menu"><ui:include src="/Modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            
+            <h:form>
+                    <h1><h:outputText value="Ver Contrato"/></h1>
+                    <h:panelGrid columns="2">
+                        <label jsf:value="#{bundle.ViewContratosLabel_numeroDeContrato}" class="FormLabelSCCSS" />
+                        <input class="FormInputSCCSS" disabled="true"
+                               value="#{contratosController.selected.numeroDeContrato}" title="#{bundle.ViewContratosTitle_numeroDeContrato}" > 
+                        </input>
+                        
+                        <label jsf:value="#{bundle.ViewContratosLabel_idTipoContrato}" class="FormLabelSCCSS" />
+                        <input value="#{contratosController.selected.idTipoContrato.toString()}" title="#{bundle.ViewContratosTitle_idTipoContrato}" class="FormInputDateSCCSS" disabled="true">                            
+                        </input>
+                        
+                        <label jsf:value="#{bundle.ViewContratosLabel_fechaSuscripcion}" class="FormLabelSCCSS" />
+                        <h:inputText id="fechaSuscripcionText" value="#{contratosController.selected.fechaSuscripcion}" title="#{bundle.ViewContratosTitle_fechaSuscripcion}" class="FormInputDateSCCSS"
+                               disabled="true" >
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        </h:inputText>
+                                                
+                        <label jsf:value="#{bundle.ViewContratosLabel_fechaInicioContrato}" class="FormLabelSCCSS" />
+                        <h:inputText value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.ViewContratosTitle_fechaInicioContrato}" class="FormInputDateSCCSS"
+                               disabled="true" >
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        </h:inputText>
+                        
+                        <label jsf:value="#{bundle.ViewContratosLabel_fechaFinContrato}" class="FormLabelSCCSS" />
+                        <h:inputText value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.ViewContratosTitle_fechaFinContrato}" class="FormInputDateSCCSS"
+                               disabled="true" >
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        </h:inputText>
+                        
+                        <label jsf:value="#{bundle.ViewContratosLabel_objetoContractual}" class="FormLabelSCCSS" />
+                        <textarea jsf:value="#{contratosController.selected.objetoContractual}" title="#{bundle.ViewContratosTitle_objetoContractual}" class="FormTextAreaSCCSS"
+                               disabled="true" >                           
+                        </textarea>
+                        
+                        <label jsf:value="#{bundle.ViewContratosLabel_valorContrato}" class="FormLabelSCCSS" />
+                        <input value="#{contratosController.selected.valorContrato}" title="#{bundle.ViewContratosTitle_valorContrato}" class="FormInputSCCSS"
+                               disabled="true" >                          
+                        </input>                                             
+                                                
+                        <label jsf:value="#{bundle.ViewContratosLabel_observaciones}" class="FormLabelSCCSS" />
+                        <textarea jsf:value="#{contratosController.selected.observaciones}" title="#{bundle.ViewContratosTitle_observaciones}" class="FormTextAreaSCCSS"
+                                  disabled="true" >                           
+                        </textarea>
+                        
+                    </h:panelGrid>
+                    </h:form>
+            
+            </ui:define>
+    </ui:composition>
+</html>
+

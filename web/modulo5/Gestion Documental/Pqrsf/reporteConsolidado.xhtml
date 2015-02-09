@@ -6,7 +6,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
   <ui:composition template="/template.xhtml">
         <ui:define name="title">Sami</ui:define>
-        <ui:define name="menu"><ui:include src="/modulo5/menu_modulo5.xhtml"></ui:include></ui:define>
-        <ui:define name="body"></ui:define>
+        <ui:define name="menu"><ui:include src="/Modulo5/menu_modulo5.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h:form>
+                 <P>
+                    <h:commandButton action="#{datosOnbaseController.selected}" value="Descargar"/>
+                    <h:commandButton action="#{datosOnbaseController.selected}" value="Cancelar"/>
+                </P>
+            </h:form>
+        </ui:define>
   </ui:composition>
 </html>

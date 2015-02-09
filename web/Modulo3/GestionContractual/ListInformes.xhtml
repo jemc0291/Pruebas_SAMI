@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Crear Informes</ui:define>
+        <ui:define name="menu"><ui:include src="/Modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+        <nav jsf:id="navigationBar" >
+         <ul jsf:id="navigationBarContainer">
+           <li jsf:id="navButton">
+               <a jsf:id="navButtonLink">Consultar contrato </a>
+           </li>
+           <li jsf:id="navButton1" >
+               <a jsf:id="navButtonLink1">Buzón de alertas </a>
+           </li>
+         </ul>
+        </nav>
+                <h:form>
+                   <h1>Lista - Informes</h1>
+                    <p:dataTable value="#{informesController.items}" var="item">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdInformes"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idInformes}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="FechaInforme"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaInforme}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Observaciones"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observaciones}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdContrato"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idContrato}"/>
+                        </p:column>
+                    </p:dataTable>
+                   <section>
+                     <h:button value="Inicio" outcome="/index"/>  
+                   </section>
+                </h:form>
+        </ui:define>
+       </ui:composition>          
+</html>
+
+
