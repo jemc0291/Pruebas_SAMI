@@ -9,52 +9,60 @@
         <ui:define name="title">Crear Informes</ui:define>
         <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-         <nav jsf:id="navigationBar" >
-             <ul jsf:id="navigationBarContainer">
-               <li jsf:id="navButton">
-                  <a jsf:id="navButtonLink">Consultar contrato </a>
-               </li>
-               <li jsf:id="navButton1" >
-                  <a jsf:id="navButtonLink1">Buzón de alertas </a>
-               </li>
-             </ul>
-         </nav>
-            <section>
-                <article>
-                        <h:form>
-                            <h1>Crear Pago Contrato</h1>
-                            <h:panelGrid columns="2">
-                                <label value="IdPago:" for="idPago" />
-                                <input id="idPago" value="#{pagosContratosController.selected.idPago}"
-                                       title="IdPago" required="true"
-                                       requiredMessage="The IdPago field is required."/>
-                                <label value="FechaDePago:" for="fechaDePago" />
-                                <input id="fechaDePago" value="#{pagosContratosController.selected.fechaDePago}"
-                                       title="FechaDePago" required="true" type="date"
-                                       requiredMessage="El campo: FechaDePago es requerido.">
-                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                </input>
-                                <label value="IdFactura:" for="idFactura" />
-                                <h:selectOneMenu id="idFactura" value="#{pagosContratosController.selected.idFactura}"
-                                                 title="IdFactura" required="true"
-                                                 requiredMessage="The IdFactura field is required.">
-                                    <!-- TODO: update below reference to list of available items-->
-                                    <f:selectItems value="#{fixme}"/>
-                                </h:selectOneMenu>
-                                <label value="IdContrato:" for="idContrato" />
-                                <h:selectOneMenu id="idContrato" value="#{pagosContratosController.selected.idContrato}"
-                                                 title="IdContrato" required="true"
-                                                 requiredMessage="The IdContrato field is required.">
-                                    <!-- TODO: update below reference to list of available items-->
-                                    <f:selectItems value="#{pagosContratosController.listaContratosSelectOne}"/>
-                                </h:selectOneMenu>
-                            </h:panelGrid>
-                            <h:commandButton class="FormButtonSCCSS" value="Guardar" action="#{pagosContratosController.create()}" />
-                            <h:button class="FormButtonSCCSS" value="Cancelar" outcome=""/>
-                            <h:button class="FormButtonSCCSS" value="Inicio" outcome="/index"/>
-                        </h:form>
-                </article>
-            </section>
+ 
+                    <h:form>
+                        <h1><h:outputText value="#{bundle.CreatePagosContratosTitle}"/></h1>
+                        <h:panelGrid columns="3">
+
+                            <label value="#{bundle.CreatePagosContratosLabel_numFactura}" jsf:for="numFactura" class="FormLabelSCCSS" />
+                            <input type="number" jsf:id="numFactura" jsf:value="#{pagosContratosController.selected.numFactura}"
+                                   title="#{bundle.CreatePagosContratosTitle_numFactura}" required="true" class="FormInputSCCSS"
+                                   jsf:requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_numFactura}">
+                                   <f:ajax execute="@this" render="numFacturaMessage" />
+                                   <f:validateLongRange minimum="1"/>
+                                   </input>
+                            <h:message id="numFacturaMessage" for="numFactura" class="ErrorDupli"/>
+
+                            <label value="#{bundle.CreatePagosContratosLabel_fechaFactura}" jsf:for="fechaFactura" class="FormLabelSCCSS" />
+                            <input type="date" jsf:id="fechaFactura" jsf:value="#{pagosContratosController.selected.fechaFactura}"
+                                   title="#{bundle.CreatePagosContratosTitle_fechaFactura}" required="true" class="FormInputDateSCCSS"
+                                   jsf:requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_fechaFactura}" min="2014-11-01" max="2016-12-31">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                                <f:ajax execute="@this" render="fechaFacturaMessage"/>
+                            </input>
+                            <h:message id="fechaFacturaMessage" for="fechaFactura" class="Error"/>
+
+                            <label value="#{bundle.CreatePagosContratosLabel_valFactura}" jsf:for="valFactura" class="FormLabelSCCSS" />
+                            <input type="number" jsf:id="valFactura" jsf:value="#{pagosContratosController.selected.valFactura}"
+                                   title="#{bundle.CreatePagosContratosTitle_valFactura}" required="true" class="FormInputSCCSS"
+                                   jsf:requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_valFactura}">
+                                   <f:ajax execute="@this" render="valFacturaMessage"/>
+                                   </input>
+                                   <h:message id="valFacturaMessage" for="valFactura" class="Error"/>
+
+                            <label value="#{bundle.CreatePagosContratosLabel_fechaDePago}" jsf:for="fechaDePago" class="FormLabelSCCSS"/>
+                            <input  type="date" jsf:id="fechaDePago" jsf:value="#{pagosContratosController.selected.fechaDePago}"
+                                    title="#{bundle.CreatePagosContratosTitle_fechaDePago}" required="true" class="FormInputDateSCCSS"
+                                    jsf:requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_fechaDePago}" min="2014-11-01" max="2016-12-31">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                                <f:ajax execute="@this" render="fechaDePagoMessage"/>
+                            </input>
+                            <h:message id="fechaDePagoMessage" for="fechaDePago" class="Error"/>
+
+                            <label value="#{bundle.CreatePagosContratosLabel_idContrato}" jsf:for="idContrato" class="FormLabelSCCSS" />
+                            <h:selectOneMenu id="idContrato" value="#{pagosContratosController.selected.idContrato}"
+                                             title="#{bundle.CreatePagosContratosTitle_idContrato}" required="true" class="FormSelectSCCSS"
+                                             requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_idContrato}">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems itemLabel="Seleccione uno.."/>
+                                <f:selectItems value="#{contratosController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:message id="idContratoMessage" for="idContrato" class="Error"/>
+                        </h:panelGrid>
+                        <h:commandButton class="FormButtonSCCSS" value="#{bundle.CreatePagosContratosSaveLink}" action="#{pagosContratosController.create()}" />
+                        <h:button class="FormButtonSCCSS" value="Cancelar" outcome="ListaFacturas"/>
+                        <h:button class="FormButtonSCCSS" value="#{bundle.CreatePagosContratosIndexLink}" outcome="/index"/>
+                    </h:form>
         </ui:define>
     </ui:composition>
 </html>

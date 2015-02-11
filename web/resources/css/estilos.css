@@ -558,7 +558,7 @@ table, th, td {
     border-radius: 6px;
     padding: .3em;
     margin-right: 0em;
-    margin-left: 4em;
+    margin-left: 4em;  
 }
 .FormSelectSCCSS{
     margin-bottom: 0.7em;
@@ -575,7 +575,22 @@ table, th, td {
     margin-bottom: 0.7em;
     border: 1px solid black;
     border-radius: 5px;
-    padding-left: 6px;
+    padding-left: 24px;
+    padding-right: 2px;
+}
+.FormInputDateViewSCCSS{
+    margin-bottom: 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.FormInputDateEditSCCSS{
+    margin-bottom: 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 4px;
+    padding-right: 2px;
 }
 .FormLabelSCCSS{
     position: relative;
@@ -590,6 +605,13 @@ table, th, td {
 .ErrorDupli{
     color: red;
     font-weight: bold;
+}
+.SelectInformeSCCSS{
+    margin-bottom: 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-right: 60px;
+    padding-left: 4px;
 }
 
 /*---------MODULO4----------*/

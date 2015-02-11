@@ -1,6 +1,8 @@
 package co.edu.sena.sami.jsf.controllers;
 
+import co.edu.sena.sami.jpa.entities.Contratos;
 import co.edu.sena.sami.jpa.entities.SoportesDeDocumentos;
+import co.edu.sena.sami.jpa.sessions.ContratosFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.SoportesDeDocumentosFacade;
@@ -14,15 +16,19 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.validator.ValidatorException;
 
 @Named("soportesDeDocumentosController")
 @SessionScoped
 public class SoportesDeDocumentosController implements Serializable {
 
+    @EJB
+    private ContratosFacade contratosFacade;
     @EJB
     private co.edu.sena.sami.jpa.sessions.SoportesDeDocumentosFacade ejbFacade;
     private List<SoportesDeDocumentos> items = null;
@@ -48,11 +54,30 @@ public class SoportesDeDocumentosController implements Serializable {
     private SoportesDeDocumentosFacade getFacade() {
         return ejbFacade;
     }
+    public ContratosFacade getContratosFacade() {
+        return contratosFacade;
+    }
 
-    public SoportesDeDocumentos prepareCreate() {
+    public String prepareCreate() {
         selected = new SoportesDeDocumentos();
-        initializeEmbeddableKey();
-        return selected;
+        return "/modulo3/GestionContractual/CreateSoporte";
+    }
+
+    public String prepareEdit() {
+        return "/modulo3/GestionContractual/";
+    }
+
+    public String prepareView() {
+        return "/modulo3/GestionContractual/";
+    }
+
+    public String prepareList() {
+        recargarLista();
+        return "/modulo3/GestionContractual/ListInformes";
+    }
+
+    public void recargarLista() {
+        items = null;
     }
 
     public void create() {
@@ -79,6 +104,20 @@ public class SoportesDeDocumentosController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+    public List<Contratos> getListaContratosSelectOne(){
+        return getContratosFacade().findAll();
+       
+    }
+    
+     public void validarSoporte(FacesContext contex, UIComponent component, Object value)
+            throws ValidatorException {
+        if (getFacade().findByIdSoporte((int) value) != null) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Soporte ya existente", "El Soporte ya existe en la base de datos"));
+        } else {
+            selected.setIdSoporte((int) value);
+        }
+
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

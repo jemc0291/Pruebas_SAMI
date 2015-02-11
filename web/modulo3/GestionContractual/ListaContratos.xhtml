@@ -20,32 +20,35 @@
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15" >
+                        <f:facet name="header">
+                        Lista de Contratos
+                        </f:facet>
                         
                         <p:column filterBy="#{item.numeroDeContrato}" filterMatchMode="contains">
                             <f:facet name="header">
-                                <h:outputText value="Numero De Contrato"/>
+                                <h:outputText value="#{bundle.ListContratosTitle_numeroDeContrato}"/>
                             </f:facet>
                             <h:outputText value="#{item.numeroDeContrato}"/>
                         </p:column>
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Tipo De Contrato"/>
+                                <h:outputText value="#{bundle.ListContratosTitle_idTipoContrato}"/>
                             </f:facet>
                             <h:outputText value="#{item.idTipoContrato.toString()}"/>
                         </p:column>
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Fecha De Suscripcion"/>
+                                <h:outputText value="#{bundle.ListContratosTitle_fechaSuscripcion}"/>
                             </f:facet>
-                            <h:outputText value="#{item.fechaSuscripcion}">
+                            <h:outputText value="#{item.fechasuscripcion}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Fecha De Inicio Contrato"/>
+                                <h:outputText value="#{bundle.ListContratosTitle_fechaInicioContrato}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaInicioContrato}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -53,7 +56,7 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Fecha Finalización Contrato"/>
+                                <h:outputText value="#{bundle.ListContratosTitle_fechaFinContrato}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaFinContrato}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -62,7 +65,7 @@
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Objeto Contractual"/>
+                                <h:outputText value="#{bundle.ListContratosTitle_objetoContractual}"/>
                             </f:facet>
                             <h:outputText value="#{item.objetoContractual}"/>
                         </p:column>
@@ -71,7 +74,7 @@
                                                 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Nueva Fecha Final"/>
+                                <h:outputText value="#{bundle.ListContratosTitle_fechaAnexo}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaAnexo}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -80,28 +83,14 @@
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Adicion Presupuestal"/>
+                                <h:outputText value="#{bundle.ListContratosTitle_adicionPresupuestal}"/>
                             </f:facet>
                             <h:outputText value="#{item.adicionPresupuestal}"/>
                         </p:column>
-                       
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Numero de Poliza"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idPoliza}"/>
-                        </p:column>
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Observaciones"/>
-                            </f:facet>
-                            <h:outputText value="#{item.observaciones}"/>
-                        </p:column>
-                        
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Valor Contrato"/>
+                                <h:outputText value="#{bundle.ListContratosTitle_valorContrato}"/>
                             </f:facet>
                             <h:outputText value="#{item.valorContrato}"/>
                         </p:column>
@@ -111,11 +100,11 @@
                                 <h:outputText value="OPCIONES"/>
                             </f:facet>
                             
-                            <p:commandButton icon="ui-icon-search" action="#{contratosController.prepareView()}">
+                            <p:commandButton icon="ui-icon-search" title="Ver detalles de Contrato" action="#{contratosController.prepareView()}">
                                 <f:setPropertyActionListener value="#{item}" target="#{contratosController.selected}"/>
                             </p:commandButton>
                             
-                            <p:commandButton icon="ui-icon-pencil" action="#{contratosController.prepareEdit()}">
+                            <p:commandButton icon="ui-icon-pencil" title="Editar Contrato" action="#{contratosController.prepareEdit()}">
                                 <f:setPropertyActionListener value="#{item}" target="#{contratosController.selected}"/>
                             </p:commandButton>
 

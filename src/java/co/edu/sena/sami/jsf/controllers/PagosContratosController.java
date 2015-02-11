@@ -1,6 +1,7 @@
 package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.PagosContratos;
+import co.edu.sena.sami.jpa.sessions.ContratosFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.PagosContratosFacade;
@@ -23,6 +24,8 @@ import javax.faces.convert.FacesConverter;
 @SessionScoped
 public class PagosContratosController implements Serializable {
 
+    @EJB
+    private ContratosFacade contratosFacade;
     @EJB
     private co.edu.sena.sami.jpa.sessions.PagosContratosFacade ejbFacade;
     private List<PagosContratos> items = null;
@@ -48,18 +51,38 @@ public class PagosContratosController implements Serializable {
     private PagosContratosFacade getFacade() {
         return ejbFacade;
     }
-
-    public PagosContratos prepareCreate() {
-        selected = new PagosContratos();
-        initializeEmbeddableKey();
-        return selected;
+    public ContratosFacade getContratosFacade() {
+        return contratosFacade;
     }
 
-    public void create() {
+    public String prepareCreate() {
+        selected = new PagosContratos();
+        return "/modulo3/GestionContractual/CreatePagoContrato";
+    }
+
+    public String prepareEdit() {
+        return "/modulo3/GestionContractual/EditarFactura";
+    }
+
+    public String prepareView() {
+        return "VerFactura";
+    }
+///Modulo3/GestionContractual/
+    public String prepareList() {
+        recargarLista();
+        return "/modulo3/GestionContractual/";
+    }
+
+    public void recargarLista() {
+        items = null;
+    }
+
+    public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("PagosContratosCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        return "ListaFacturas";
     }
 
     public void update() {
