@@ -9,15 +9,16 @@ package co.edu.sena.sami.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "tarifas")
@@ -45,8 +46,8 @@ public class Tarifas implements Serializable {
     @NotNull
     @Column(name = "valor_tarifa")
     private int valorTarifa;
-    @ManyToMany(mappedBy = "tarifasList")
-    private List<RelacionesGastosDeTransporte> relacionesGastosDeTransporteList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTarifa")
+    private List<ValorGasto> valorGastoList;
     @JoinColumns({
         @JoinColumn(name = "id_ciudad", referencedColumnName = "id_ciudad"),
         @JoinColumn(name = "id_dpto", referencedColumnName = "id_dpto")})
@@ -82,12 +83,12 @@ public class Tarifas implements Serializable {
     }
 
     @XmlTransient
-    public List<RelacionesGastosDeTransporte> getRelacionesGastosDeTransporteList() {
-        return relacionesGastosDeTransporteList;
+    public List<ValorGasto> getValorGastoList() {
+        return valorGastoList;
     }
 
-    public void setRelacionesGastosDeTransporteList(List<RelacionesGastosDeTransporte> relacionesGastosDeTransporteList) {
-        this.relacionesGastosDeTransporteList = relacionesGastosDeTransporteList;
+    public void setValorGastoList(List<ValorGasto> valorGastoList) {
+        this.valorGastoList = valorGastoList;
     }
 
     public Ciudad getCiudad() {

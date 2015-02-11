@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "bancos")
@@ -51,8 +51,10 @@ public class Bancos implements Serializable {
     @Size(min = 1, max = 70)
     @Column(name = "nombre_de_banco")
     private String nombreDeBanco;
+    @OneToMany(mappedBy = "idBanco")
+    private List<Usuarios> usuariosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBanco")
-    private List<CuentasBancarias> cuentasBancariasList;
+    private List<Comisiones> comisionesList;
 
     public Bancos() {
     }
@@ -91,12 +93,21 @@ public class Bancos implements Serializable {
     }
 
     @XmlTransient
-    public List<CuentasBancarias> getCuentasBancariasList() {
-        return cuentasBancariasList;
+    public List<Usuarios> getUsuariosList() {
+        return usuariosList;
     }
 
-    public void setCuentasBancariasList(List<CuentasBancarias> cuentasBancariasList) {
-        this.cuentasBancariasList = cuentasBancariasList;
+    public void setUsuariosList(List<Usuarios> usuariosList) {
+        this.usuariosList = usuariosList;
+    }
+
+    @XmlTransient
+    public List<Comisiones> getComisionesList() {
+        return comisionesList;
+    }
+
+    public void setComisionesList(List<Comisiones> comisionesList) {
+        this.comisionesList = comisionesList;
     }
 
     @Override
@@ -121,7 +132,7 @@ public class Bancos implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Bancos[ idBanco=" + idBanco + " ]";
+        return nombreDeBanco;
     }
     
 }

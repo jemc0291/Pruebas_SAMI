@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "tipo_de_servicios")
@@ -40,19 +40,24 @@ public class TipoDeServicios implements Serializable {
     @NotNull
     @Column(name = "id_tipo_serv")
     private Integer idTipoServ;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "nombre_Servicio")
     private String nombreServicio;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtipoServicio")
-    private List<TiposDeServiciosSolicitudDeServicios> tiposDeServiciosSolicitudDeServiciosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoServ")
-    private List<Servicios> serviciosList;
+    private List<SolicitudServicios> solicitudServiciosList;
 
     public TipoDeServicios() {
     }
 
     public TipoDeServicios(Integer idTipoServ) {
         this.idTipoServ = idTipoServ;
+    }
+
+    public TipoDeServicios(Integer idTipoServ, String nombreServicio) {
+        this.idTipoServ = idTipoServ;
+        this.nombreServicio = nombreServicio;
     }
 
     public Integer getIdTipoServ() {
@@ -72,21 +77,12 @@ public class TipoDeServicios implements Serializable {
     }
 
     @XmlTransient
-    public List<TiposDeServiciosSolicitudDeServicios> getTiposDeServiciosSolicitudDeServiciosList() {
-        return tiposDeServiciosSolicitudDeServiciosList;
+    public List<SolicitudServicios> getSolicitudServiciosList() {
+        return solicitudServiciosList;
     }
 
-    public void setTiposDeServiciosSolicitudDeServiciosList(List<TiposDeServiciosSolicitudDeServicios> tiposDeServiciosSolicitudDeServiciosList) {
-        this.tiposDeServiciosSolicitudDeServiciosList = tiposDeServiciosSolicitudDeServiciosList;
-    }
-
-    @XmlTransient
-    public List<Servicios> getServiciosList() {
-        return serviciosList;
-    }
-
-    public void setServiciosList(List<Servicios> serviciosList) {
-        this.serviciosList = serviciosList;
+    public void setSolicitudServiciosList(List<SolicitudServicios> solicitudServiciosList) {
+        this.solicitudServiciosList = solicitudServiciosList;
     }
 
     @Override

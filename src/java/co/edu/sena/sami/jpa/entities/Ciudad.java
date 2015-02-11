@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "ciudad")
@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c"),
     @NamedQuery(name = "Ciudad.findByIdCiudad", query = "SELECT c FROM Ciudad c WHERE c.ciudadPK.idCiudad = :idCiudad"),
-    @NamedQuery(name = "Ciudad.findByNombreCiudad", query = "SELECT c FROM Ciudad c WHERE c.nombreCiudad LIKE :nombreCiudad"),
+    @NamedQuery(name = "Ciudad.findByNombreCiudad", query = "SELECT c FROM Ciudad c WHERE c.nombreCiudad = :nombreCiudad"),
     @NamedQuery(name = "Ciudad.findByIdDpto", query = "SELECT c FROM Ciudad c WHERE c.ciudadPK.idDpto = :idDpto")})
 public class Ciudad implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -43,33 +43,26 @@ public class Ciudad implements Serializable {
     @Size(max = 45)
     @Column(name = "nombre_ciudad")
     private String nombreCiudad;
-    @JoinTable(name = "ordenes_deviaje_ciudades", joinColumns = {
+    @JoinTable(name = "ciudad_comisiones", joinColumns = {
         @JoinColumn(name = "id_ciudad", referencedColumnName = "id_ciudad"),
         @JoinColumn(name = "id_dpto", referencedColumnName = "id_dpto")}, inverseJoinColumns = {
-        @JoinColumn(name = "numero_ordendeviaje", referencedColumnName = "numero_ordendeviaje")})
+        @JoinColumn(name = "id_comision", referencedColumnName = "id_comision")})
     @ManyToMany
-    private List<OrdenesDeviaje> ordenesDeviajeList;
-    @JoinTable(name = "relaciones_gastos_de_transporte_ciudad", joinColumns = {
-        @JoinColumn(name = "id_ciudad", referencedColumnName = "id_ciudad"),
-        @JoinColumn(name = "id_dpto", referencedColumnName = "id_dpto")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_relaciones_gastos_de_transporte", referencedColumnName = "id_relaciones_gastos_de_transporte")})
-    @ManyToMany
-    private List<RelacionesGastosDeTransporte> relacionesGastosDeTransporteList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
-    private List<InformesDeComisiones> informesDeComisionesList;
+    private List<Comisiones> comisionesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
     private List<CentroFormacion> centroFormacionList;
+    @JoinColumn(name = "id_valor_gasto", referencedColumnName = "id_valor_gasto")
+    @ManyToOne
+    private ValorGasto idValorGasto;
     @JoinColumn(name = "id_dpto", referencedColumnName = "id_dpto", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Departamentos departamentos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
-    private List<Legalizaciones> legalizacionesList;
     @OneToMany(mappedBy = "ciudad")
     private List<Usuarios> usuariosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad1")
     private List<Usuarios> usuariosList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
-    private List<Comisiones> comisionesList;
+    private List<Comisiones> comisionesList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
     private List<Comunas> comunasList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
@@ -103,30 +96,12 @@ public class Ciudad implements Serializable {
     }
 
     @XmlTransient
-    public List<OrdenesDeviaje> getOrdenesDeviajeList() {
-        return ordenesDeviajeList;
+    public List<Comisiones> getComisionesList() {
+        return comisionesList;
     }
 
-    public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
-        this.ordenesDeviajeList = ordenesDeviajeList;
-    }
-
-    @XmlTransient
-    public List<RelacionesGastosDeTransporte> getRelacionesGastosDeTransporteList() {
-        return relacionesGastosDeTransporteList;
-    }
-
-    public void setRelacionesGastosDeTransporteList(List<RelacionesGastosDeTransporte> relacionesGastosDeTransporteList) {
-        this.relacionesGastosDeTransporteList = relacionesGastosDeTransporteList;
-    }
-
-    @XmlTransient
-    public List<InformesDeComisiones> getInformesDeComisionesList() {
-        return informesDeComisionesList;
-    }
-
-    public void setInformesDeComisionesList(List<InformesDeComisiones> informesDeComisionesList) {
-        this.informesDeComisionesList = informesDeComisionesList;
+    public void setComisionesList(List<Comisiones> comisionesList) {
+        this.comisionesList = comisionesList;
     }
 
     @XmlTransient
@@ -138,21 +113,20 @@ public class Ciudad implements Serializable {
         this.centroFormacionList = centroFormacionList;
     }
 
+    public ValorGasto getIdValorGasto() {
+        return idValorGasto;
+    }
+
+    public void setIdValorGasto(ValorGasto idValorGasto) {
+        this.idValorGasto = idValorGasto;
+    }
+
     public Departamentos getDepartamentos() {
         return departamentos;
     }
 
     public void setDepartamentos(Departamentos departamentos) {
         this.departamentos = departamentos;
-    }
-
-    @XmlTransient
-    public List<Legalizaciones> getLegalizacionesList() {
-        return legalizacionesList;
-    }
-
-    public void setLegalizacionesList(List<Legalizaciones> legalizacionesList) {
-        this.legalizacionesList = legalizacionesList;
     }
 
     @XmlTransient
@@ -174,12 +148,12 @@ public class Ciudad implements Serializable {
     }
 
     @XmlTransient
-    public List<Comisiones> getComisionesList() {
-        return comisionesList;
+    public List<Comisiones> getComisionesList1() {
+        return comisionesList1;
     }
 
-    public void setComisionesList(List<Comisiones> comisionesList) {
-        this.comisionesList = comisionesList;
+    public void setComisionesList1(List<Comisiones> comisionesList1) {
+        this.comisionesList1 = comisionesList1;
     }
 
     @XmlTransient
@@ -222,7 +196,7 @@ public class Ciudad implements Serializable {
 
     @Override
     public String toString() {
-        return nombreCiudad + ", " +getDepartamentos().getNombreDpto() + ", " + getDepartamentos().getIdPais().getNombrepais();
+        return nombreCiudad;
     }
     
 }

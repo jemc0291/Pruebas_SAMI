@@ -17,8 +17,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "contratos")
@@ -139,11 +137,6 @@ public class Contratos implements Serializable {
     @Size(max = 500)
     @Column(name = "justificacion")
     private String justificacion;
-    @JoinTable(name = "estados_contratos", joinColumns = {
-        @JoinColumn(name = "id_contrato", referencedColumnName = "id_contrato")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")})
-    @ManyToMany
-    private List<Estados> estadosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idContrato")
     private List<SoportesDeDocumentos> soportesDeDocumentosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idContrato")
@@ -157,8 +150,6 @@ public class Contratos implements Serializable {
     private List<Comisiones> comisionesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "contratos")
     private List<UsuariosContratos> usuariosContratosList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contratos")
-    private List<ContratosPolizasUsuarios> contratosPolizasUsuariosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idContrato")
     private List<Informes> informesList;
 
@@ -371,15 +362,6 @@ public class Contratos implements Serializable {
     }
 
     @XmlTransient
-    public List<Estados> getEstadosList() {
-        return estadosList;
-    }
-
-    public void setEstadosList(List<Estados> estadosList) {
-        this.estadosList = estadosList;
-    }
-
-    @XmlTransient
     public List<SoportesDeDocumentos> getSoportesDeDocumentosList() {
         return soportesDeDocumentosList;
     }
@@ -430,15 +412,6 @@ public class Contratos implements Serializable {
 
     public void setUsuariosContratosList(List<UsuariosContratos> usuariosContratosList) {
         this.usuariosContratosList = usuariosContratosList;
-    }
-
-    @XmlTransient
-    public List<ContratosPolizasUsuarios> getContratosPolizasUsuariosList() {
-        return contratosPolizasUsuariosList;
-    }
-
-    public void setContratosPolizasUsuariosList(List<ContratosPolizasUsuarios> contratosPolizasUsuariosList) {
-        this.contratosPolizasUsuariosList = contratosPolizasUsuariosList;
     }
 
     @XmlTransient

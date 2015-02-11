@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "eps")
@@ -108,7 +108,7 @@ public class Eps implements Serializable {
 
     @Override
     public String toString() {
-        return nombreEps + "";
+        return nombreEps;
     }
     
 }

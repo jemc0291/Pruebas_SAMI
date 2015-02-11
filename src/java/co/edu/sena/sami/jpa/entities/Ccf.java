@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "ccf")
@@ -108,7 +108,7 @@ public class Ccf implements Serializable {
 
     @Override
     public String toString() {
-        return nombreCcf + "";
+        return nombreCcf;
     }
     
 }

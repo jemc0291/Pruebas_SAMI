@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "barrios")
@@ -99,7 +99,7 @@ public class Barrios implements Serializable {
 
     @Override
     public String toString() {
-        return nombreBarrio + "";
+        return  nombreBarrio;
     }
     
 }

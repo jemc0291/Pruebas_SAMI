@@ -72,7 +72,8 @@
                                required="true"
                                requiredMessage="#{bundle.CreateUsuariosRequiredMessage_numeroDoc}"
                                value="#{usuariosController.selected.numeroDoc}"
-                               title="#{bundle.CreateUsuariosTitle_numeroDoc}">
+                               title="#{bundle.CreateUsuariosTitle_numeroDoc}"
+                               pt:pattern="[0-999]*">
                             <f:ajax execute="@this" render="numeroidMessage"/>
                         </p:inputText>
                         <h:message id="numeroidMessage" for="numeroidInputText" styleClass="error"/>
@@ -250,7 +251,7 @@
 
                     </p:panelGrid>
                    <h:commandButton  action="#{usuariosController.create}" value="#{bundle.Save}"/>
-                    <h:button value="Cancelar" outcome="/index"/>
+                   
                 </form>
             </section>
         </ui:define>

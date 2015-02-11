@@ -13,9 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "categorias")
@@ -48,11 +45,6 @@ public class Categorias implements Serializable {
     @Size(min = 1, max = 35)
     @Column(name = "nombre_categoria")
     private String nombreCategoria;
-    @JoinTable(name = "ordenes_deviaje_categorias", joinColumns = {
-        @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")}, inverseJoinColumns = {
-        @JoinColumn(name = "numero_ordendeviaje", referencedColumnName = "numero_ordendeviaje")})
-    @ManyToMany
-    private List<OrdenesDeviaje> ordenesDeviajeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria")
     private List<Materiales> materialesList;
 
@@ -82,15 +74,6 @@ public class Categorias implements Serializable {
 
     public void setNombreCategoria(String nombreCategoria) {
         this.nombreCategoria = nombreCategoria;
-    }
-
-    @XmlTransient
-    public List<OrdenesDeviaje> getOrdenesDeviajeList() {
-        return ordenesDeviajeList;
-    }
-
-    public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
-        this.ordenesDeviajeList = ordenesDeviajeList;
     }
 
     @XmlTransient

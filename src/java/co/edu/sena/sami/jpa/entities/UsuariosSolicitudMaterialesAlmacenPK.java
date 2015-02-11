@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Embeddable
 public class UsuariosSolicitudMaterialesAlmacenPK implements Serializable {

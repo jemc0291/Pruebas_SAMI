@@ -9,14 +9,15 @@ package co.edu.sena.sami.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "estados")
@@ -43,11 +44,11 @@ public class Estados implements Serializable {
     private Integer idEstado;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 130)
+    @Size(min = 1, max = 45)
     @Column(name = "nombre_estado")
     private String nombreEstado;
-    @ManyToMany(mappedBy = "estadosList")
-    private List<Contratos> contratosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstado")
+    private List<Avance> avanceList;
 
     public Estados() {
     }
@@ -78,12 +79,12 @@ public class Estados implements Serializable {
     }
 
     @XmlTransient
-    public List<Contratos> getContratosList() {
-        return contratosList;
+    public List<Avance> getAvanceList() {
+        return avanceList;
     }
 
-    public void setContratosList(List<Contratos> contratosList) {
-        this.contratosList = contratosList;
+    public void setAvanceList(List<Avance> avanceList) {
+        this.avanceList = avanceList;
     }
 
     @Override

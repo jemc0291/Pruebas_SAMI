@@ -9,12 +9,13 @@ package co.edu.sena.sami.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "gestiones")
@@ -45,10 +46,8 @@ public class Gestiones implements Serializable {
     @Size(min = 1, max = 70)
     @Column(name = "nombre_gestion")
     private String nombreGestion;
-    @ManyToMany(mappedBy = "gestionesList")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoGestion")
     private List<Cdp> cdpList;
-    @ManyToMany(mappedBy = "gestionesList")
-    private List<Crp> crpList;
 
     public Gestiones() {
     }
@@ -85,15 +84,6 @@ public class Gestiones implements Serializable {
 
     public void setCdpList(List<Cdp> cdpList) {
         this.cdpList = cdpList;
-    }
-
-    @XmlTransient
-    public List<Crp> getCrpList() {
-        return crpList;
-    }
-
-    public void setCrpList(List<Crp> crpList) {
-        this.crpList = crpList;
     }
 
     @Override

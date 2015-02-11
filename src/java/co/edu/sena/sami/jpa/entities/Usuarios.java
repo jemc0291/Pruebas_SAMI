@@ -6,14 +6,9 @@
 
 package co.edu.sena.sami.jpa.entities;
 
-import co.edu.sena.sami.jsf.controllers.util.DigestUtil;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -39,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "usuarios")
@@ -64,7 +59,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findByGpRh", query = "SELECT u FROM Usuarios u WHERE u.gpRh = :gpRh"),
     @NamedQuery(name = "Usuarios.findByCalificacion", query = "SELECT u FROM Usuarios u WHERE u.calificacion = :calificacion"),
     @NamedQuery(name = "Usuarios.findByFechaDeCreacion", query = "SELECT u FROM Usuarios u WHERE u.fechaDeCreacion = :fechaDeCreacion"),
-    @NamedQuery(name = "Usuarios.findByEstado", query = "SELECT u FROM Usuarios u WHERE u.estado = :estado")})
+    @NamedQuery(name = "Usuarios.findByEstado", query = "SELECT u FROM Usuarios u WHERE u.estado = :estado"),
+    @NamedQuery(name = "Usuarios.findByNumCuentaBanco", query = "SELECT u FROM Usuarios u WHERE u.numCuentaBanco = :numCuentaBanco"),
+    @NamedQuery(name = "Usuarios.findByNombreTipoCuenta", query = "SELECT u FROM Usuarios u WHERE u.nombreTipoCuenta = :nombreTipoCuenta")})
 public class Usuarios implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -135,40 +132,33 @@ public class Usuarios implements Serializable {
     @Column(name = "calificacion")
     private String calificacion;
     @Column(name = "fecha_de_creacion")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeCreacion;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "estado")
-    private Boolean estado;
-    @JoinTable(name = "usuarios_crp", joinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
-        @JoinColumn(name = "numero_crp", referencedColumnName = "numero_crp")})
-    @ManyToMany
-    private List<Crp> crpList;
-    @JoinTable(name = "rol_usuarios", joinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")})
-    @ManyToMany
-    private List<Rol> rolList;
+    private boolean estado;
+    @Size(max = 30)
+    @Column(name = "num_cuenta_banco")
+    private String numCuentaBanco;
+    @Size(max = 45)
+    @Column(name = "nombre_tipo_cuenta")
+    private String nombreTipoCuenta;
     @JoinTable(name = "usuario_formacion_academica", joinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
         @JoinColumn(name = "id_formacion", referencedColumnName = "id_formacion")})
     @ManyToMany
     private List<FormacionAcademica> formacionAcademicaList;
-    @JoinTable(name = "usuarios_cdp", joinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
-        @JoinColumn(name = "numero_cdp", referencedColumnName = "numero_cdp")})
-    @ManyToMany
-    private List<Cdp> cdpList;
     @JoinTable(name = "usuarios_ficha_caracterizacion", joinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
         @JoinColumn(name = "id_ficha_caracterizacion", referencedColumnName = "id_ficha_caracterizacion")})
     @ManyToMany
     private List<FichaCaracterizacion> fichaCaracterizacionList;
-    @JoinTable(name = "usuarios_solicitud_servicios", joinColumns = {
+    @JoinTable(name = "rol_usuarios", joinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_solicitud_servicio", referencedColumnName = "id_solicitud_servicio")})
+        @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")})
     @ManyToMany
-    private List<SolicitudServicios> solicitudServiciosList;
+    private List<Rol> rolList;
     @JoinTable(name = "usuarios_riesgos_laborales", joinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
         @JoinColumn(name = "id_riesgos_laborales", referencedColumnName = "id_riesgos_laborales")})
@@ -177,15 +167,16 @@ public class Usuarios implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Documentos> documentosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<InformesDeComisiones> informesDeComisionesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Novedades> novedadesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Pagos> pagosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private List<AvanceUsuarios> avanceUsuariosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<RelacionesGastosDeTransporte> relacionesGastosDeTransporteList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<OrdenesDeviaje> ordenesDeviajeList;
+    private List<SolicitudServicios> solicitudServiciosList;
+    @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
+    @ManyToOne
+    private Bancos idBanco;
     @JoinColumn(name = "id_tipo_doc", referencedColumnName = "id_tipo_doc")
     @ManyToOne(optional = false)
     private TipoDocumentos idTipoDoc;
@@ -233,14 +224,10 @@ public class Usuarios implements Serializable {
     private List<UsuariosContratos> usuariosContratosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Facturas> facturasList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<CuentasBancarias> cuentasBancariasList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarioAdmin")
     private List<DatosOnbase> datosOnbaseList;
     @OneToMany(mappedBy = "idUsuarioDestino")
     private List<DatosOnbase> datosOnbaseList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-    private List<ContratosPolizasUsuarios> contratosPolizasUsuariosList;
 
     public Usuarios() {
     }
@@ -249,7 +236,7 @@ public class Usuarios implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuarios(Integer idUsuario, String numeroDoc, String razonSocial, String primerApellido, String email, String telefonoPrincipalUsu, String direccionUsu, String password) {
+    public Usuarios(Integer idUsuario, String numeroDoc, String razonSocial, String primerApellido, String email, String telefonoPrincipalUsu, String direccionUsu, String password, boolean estado) {
         this.idUsuario = idUsuario;
         this.numeroDoc = numeroDoc;
         this.razonSocial = razonSocial;
@@ -258,6 +245,7 @@ public class Usuarios implements Serializable {
         this.telefonoPrincipalUsu = telefonoPrincipalUsu;
         this.direccionUsu = direccionUsu;
         this.password = password;
+        this.estado = estado;
     }
 
     public Integer getIdUsuario() {
@@ -377,13 +365,7 @@ public class Usuarios implements Serializable {
     }
 
     public void setPassword(String password) {
-         try {
-            this.password = DigestUtil.generateDigest(password);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.password = password;
     }
 
     public String getGpRh() {
@@ -410,30 +392,28 @@ public class Usuarios implements Serializable {
         this.fechaDeCreacion = fechaDeCreacion;
     }
 
-    public Boolean getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(Boolean estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
-    @XmlTransient
-    public List<Crp> getCrpList() {
-        return crpList;
+    public String getNumCuentaBanco() {
+        return numCuentaBanco;
     }
 
-    public void setCrpList(List<Crp> crpList) {
-        this.crpList = crpList;
+    public void setNumCuentaBanco(String numCuentaBanco) {
+        this.numCuentaBanco = numCuentaBanco;
     }
 
-    @XmlTransient
-    public List<Rol> getRolList() {
-        return rolList;
+    public String getNombreTipoCuenta() {
+        return nombreTipoCuenta;
     }
 
-    public void setRolList(List<Rol> rolList) {
-        this.rolList = rolList;
+    public void setNombreTipoCuenta(String nombreTipoCuenta) {
+        this.nombreTipoCuenta = nombreTipoCuenta;
     }
 
     @XmlTransient
@@ -446,15 +426,6 @@ public class Usuarios implements Serializable {
     }
 
     @XmlTransient
-    public List<Cdp> getCdpList() {
-        return cdpList;
-    }
-
-    public void setCdpList(List<Cdp> cdpList) {
-        this.cdpList = cdpList;
-    }
-
-    @XmlTransient
     public List<FichaCaracterizacion> getFichaCaracterizacionList() {
         return fichaCaracterizacionList;
     }
@@ -464,12 +435,12 @@ public class Usuarios implements Serializable {
     }
 
     @XmlTransient
-    public List<SolicitudServicios> getSolicitudServiciosList() {
-        return solicitudServiciosList;
+    public List<Rol> getRolList() {
+        return rolList;
     }
 
-    public void setSolicitudServiciosList(List<SolicitudServicios> solicitudServiciosList) {
-        this.solicitudServiciosList = solicitudServiciosList;
+    public void setRolList(List<Rol> rolList) {
+        this.rolList = rolList;
     }
 
     @XmlTransient
@@ -491,15 +462,6 @@ public class Usuarios implements Serializable {
     }
 
     @XmlTransient
-    public List<InformesDeComisiones> getInformesDeComisionesList() {
-        return informesDeComisionesList;
-    }
-
-    public void setInformesDeComisionesList(List<InformesDeComisiones> informesDeComisionesList) {
-        this.informesDeComisionesList = informesDeComisionesList;
-    }
-
-    @XmlTransient
     public List<Novedades> getNovedadesList() {
         return novedadesList;
     }
@@ -518,21 +480,29 @@ public class Usuarios implements Serializable {
     }
 
     @XmlTransient
-    public List<RelacionesGastosDeTransporte> getRelacionesGastosDeTransporteList() {
-        return relacionesGastosDeTransporteList;
+    public List<AvanceUsuarios> getAvanceUsuariosList() {
+        return avanceUsuariosList;
     }
 
-    public void setRelacionesGastosDeTransporteList(List<RelacionesGastosDeTransporte> relacionesGastosDeTransporteList) {
-        this.relacionesGastosDeTransporteList = relacionesGastosDeTransporteList;
+    public void setAvanceUsuariosList(List<AvanceUsuarios> avanceUsuariosList) {
+        this.avanceUsuariosList = avanceUsuariosList;
     }
 
     @XmlTransient
-    public List<OrdenesDeviaje> getOrdenesDeviajeList() {
-        return ordenesDeviajeList;
+    public List<SolicitudServicios> getSolicitudServiciosList() {
+        return solicitudServiciosList;
     }
 
-    public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
-        this.ordenesDeviajeList = ordenesDeviajeList;
+    public void setSolicitudServiciosList(List<SolicitudServicios> solicitudServiciosList) {
+        this.solicitudServiciosList = solicitudServiciosList;
+    }
+
+    public Bancos getIdBanco() {
+        return idBanco;
+    }
+
+    public void setIdBanco(Bancos idBanco) {
+        this.idBanco = idBanco;
     }
 
     public TipoDocumentos getIdTipoDoc() {
@@ -669,15 +639,6 @@ public class Usuarios implements Serializable {
     }
 
     @XmlTransient
-    public List<CuentasBancarias> getCuentasBancariasList() {
-        return cuentasBancariasList;
-    }
-
-    public void setCuentasBancariasList(List<CuentasBancarias> cuentasBancariasList) {
-        this.cuentasBancariasList = cuentasBancariasList;
-    }
-
-    @XmlTransient
     public List<DatosOnbase> getDatosOnbaseList() {
         return datosOnbaseList;
     }
@@ -693,15 +654,6 @@ public class Usuarios implements Serializable {
 
     public void setDatosOnbaseList1(List<DatosOnbase> datosOnbaseList1) {
         this.datosOnbaseList1 = datosOnbaseList1;
-    }
-
-    @XmlTransient
-    public List<ContratosPolizasUsuarios> getContratosPolizasUsuariosList() {
-        return contratosPolizasUsuariosList;
-    }
-
-    public void setContratosPolizasUsuariosList(List<ContratosPolizasUsuarios> contratosPolizasUsuariosList) {
-        this.contratosPolizasUsuariosList = contratosPolizasUsuariosList;
     }
 
     @Override
@@ -726,7 +678,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Usuarios[ idUsuario=" + idUsuario + " ]";
+        return razonSocial;
     }
     
 }

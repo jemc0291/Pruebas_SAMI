@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Embeddable
 public class CiudadPK implements Serializable {
@@ -77,7 +77,7 @@ public class CiudadPK implements Serializable {
 
     @Override
     public String toString() {
-        return idCiudad + idDpto+ "";
+        return idCiudad + idDpto + "";
     }
     
 }

@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "nota_entrada")
@@ -48,12 +46,12 @@ public class NotaEntrada implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     @ManyToMany(mappedBy = "notaEntradaList")
     private List<Facturas> facturasList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "notaEntrada")
-    private NotaEntradaMateriales notaEntradaMateriales;
+    @ManyToMany(mappedBy = "notaEntradaList")
+    private List<Materiales> materialesList;
 
     public NotaEntrada() {
     }
@@ -92,12 +90,13 @@ public class NotaEntrada implements Serializable {
         this.facturasList = facturasList;
     }
 
-    public NotaEntradaMateriales getNotaEntradaMateriales() {
-        return notaEntradaMateriales;
+    @XmlTransient
+    public List<Materiales> getMaterialesList() {
+        return materialesList;
     }
 
-    public void setNotaEntradaMateriales(NotaEntradaMateriales notaEntradaMateriales) {
-        this.notaEntradaMateriales = notaEntradaMateriales;
+    public void setMaterialesList(List<Materiales> materialesList) {
+        this.materialesList = materialesList;
     }
 
     @Override

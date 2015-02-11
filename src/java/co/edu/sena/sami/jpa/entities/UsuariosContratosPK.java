@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Embeddable
 public class UsuariosContratosPK implements Serializable {
@@ -30,14 +30,19 @@ public class UsuariosContratosPK implements Serializable {
     @NotNull
     @Column(name = "id_rol")
     private int idRol;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "numero_de_poliza")
+    private int numeroDePoliza;
 
     public UsuariosContratosPK() {
     }
 
-    public UsuariosContratosPK(int idContrato, int idUsuario, int idRol) {
+    public UsuariosContratosPK(int idContrato, int idUsuario, int idRol, int numeroDePoliza) {
         this.idContrato = idContrato;
         this.idUsuario = idUsuario;
         this.idRol = idRol;
+        this.numeroDePoliza = numeroDePoliza;
     }
 
     public int getIdContrato() {
@@ -64,12 +69,21 @@ public class UsuariosContratosPK implements Serializable {
         this.idRol = idRol;
     }
 
+    public int getNumeroDePoliza() {
+        return numeroDePoliza;
+    }
+
+    public void setNumeroDePoliza(int numeroDePoliza) {
+        this.numeroDePoliza = numeroDePoliza;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (int) idContrato;
         hash += (int) idUsuario;
         hash += (int) idRol;
+        hash += (int) numeroDePoliza;
         return hash;
     }
 
@@ -89,12 +103,15 @@ public class UsuariosContratosPK implements Serializable {
         if (this.idRol != other.idRol) {
             return false;
         }
+        if (this.numeroDePoliza != other.numeroDePoliza) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.UsuariosContratosPK[ idContrato=" + idContrato + ", idUsuario=" + idUsuario + ", idRol=" + idRol + " ]";
+        return "co.edu.sena.sami.jpa.entities.UsuariosContratosPK[ idContrato=" + idContrato + ", idUsuario=" + idUsuario + ", idRol=" + idRol + ", numeroDePoliza=" + numeroDePoliza + " ]";
     }
     
 }

@@ -13,7 +13,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "dependencias")
@@ -46,12 +47,11 @@ public class Dependencias implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "descripcion_dependencia")
     private String descripcionDependencia;
-    @ManyToMany(mappedBy = "dependenciasList")
-    private List<Crp> crpList;
-    @ManyToMany(mappedBy = "dependenciasList")
-    private List<Cdp> cdpList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoDeDependencia")
-    private List<OrdenesDeviaje> ordenesDeviajeList;
+    private List<Cdp> cdpList;
+    @JoinColumn(name = "id_presupuestos", referencedColumnName = "id_presupuestos")
+    @ManyToOne(optional = false)
+    private Presupuestos idPresupuestos;
 
     public Dependencias() {
     }
@@ -82,15 +82,6 @@ public class Dependencias implements Serializable {
     }
 
     @XmlTransient
-    public List<Crp> getCrpList() {
-        return crpList;
-    }
-
-    public void setCrpList(List<Crp> crpList) {
-        this.crpList = crpList;
-    }
-
-    @XmlTransient
     public List<Cdp> getCdpList() {
         return cdpList;
     }
@@ -99,13 +90,12 @@ public class Dependencias implements Serializable {
         this.cdpList = cdpList;
     }
 
-    @XmlTransient
-    public List<OrdenesDeviaje> getOrdenesDeviajeList() {
-        return ordenesDeviajeList;
+    public Presupuestos getIdPresupuestos() {
+        return idPresupuestos;
     }
 
-    public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
-        this.ordenesDeviajeList = ordenesDeviajeList;
+    public void setIdPresupuestos(Presupuestos idPresupuestos) {
+        this.idPresupuestos = idPresupuestos;
     }
 
     @Override

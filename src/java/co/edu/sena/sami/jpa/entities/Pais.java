@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "pais")
@@ -100,7 +100,7 @@ public class Pais implements Serializable {
 
     @Override
     public String toString() {
-        return nombrepais + " ";
+        return nombrepais;
     }
     
 }

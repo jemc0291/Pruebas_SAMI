@@ -10,16 +10,15 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "comisiones")
@@ -39,8 +38,30 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Comisiones.findAll", query = "SELECT c FROM Comisiones c"),
     @NamedQuery(name = "Comisiones.findByIdComision", query = "SELECT c FROM Comisiones c WHERE c.idComision = :idComision"),
     @NamedQuery(name = "Comisiones.findByObjetivoComision", query = "SELECT c FROM Comisiones c WHERE c.objetivoComision = :objetivoComision"),
-    @NamedQuery(name = "Comisiones.findByFechaComision", query = "SELECT c FROM Comisiones c WHERE c.fechaComision = :fechaComision"),
-    @NamedQuery(name = "Comisiones.findByFechaTramite", query = "SELECT c FROM Comisiones c WHERE c.fechaTramite = :fechaTramite")})
+    @NamedQuery(name = "Comisiones.findByFechaTramite", query = "SELECT c FROM Comisiones c WHERE c.fechaTramite = :fechaTramite"),
+    @NamedQuery(name = "Comisiones.findByTranspIntermunicipal", query = "SELECT c FROM Comisiones c WHERE c.transpIntermunicipal = :transpIntermunicipal"),
+    @NamedQuery(name = "Comisiones.findByNumComServicios", query = "SELECT c FROM Comisiones c WHERE c.numComServicios = :numComServicios"),
+    @NamedQuery(name = "Comisiones.findByObservacionesOrden", query = "SELECT c FROM Comisiones c WHERE c.observacionesOrden = :observacionesOrden"),
+    @NamedQuery(name = "Comisiones.findBySuministraVehiculo", query = "SELECT c FROM Comisiones c WHERE c.suministraVehiculo = :suministraVehiculo"),
+    @NamedQuery(name = "Comisiones.findByObjetivos", query = "SELECT c FROM Comisiones c WHERE c.objetivos = :objetivos"),
+    @NamedQuery(name = "Comisiones.findByMesaPlanificar", query = "SELECT c FROM Comisiones c WHERE c.mesaPlanificar = :mesaPlanificar"),
+    @NamedQuery(name = "Comisiones.findByLlegadaEstimada", query = "SELECT c FROM Comisiones c WHERE c.llegadaEstimada = :llegadaEstimada"),
+    @NamedQuery(name = "Comisiones.findBySalidaEstimada", query = "SELECT c FROM Comisiones c WHERE c.salidaEstimada = :salidaEstimada"),
+    @NamedQuery(name = "Comisiones.findByNumDias", query = "SELECT c FROM Comisiones c WHERE c.numDias = :numDias"),
+    @NamedQuery(name = "Comisiones.findByAprobado", query = "SELECT c FROM Comisiones c WHERE c.aprobado = :aprobado"),
+    @NamedQuery(name = "Comisiones.findByTransIntermunicipal", query = "SELECT c FROM Comisiones c WHERE c.transIntermunicipal = :transIntermunicipal"),
+    @NamedQuery(name = "Comisiones.findByTransComision", query = "SELECT c FROM Comisiones c WHERE c.transComision = :transComision"),
+    @NamedQuery(name = "Comisiones.findByOtrosGastos", query = "SELECT c FROM Comisiones c WHERE c.otrosGastos = :otrosGastos"),
+    @NamedQuery(name = "Comisiones.findByVehiculoSena", query = "SELECT c FROM Comisiones c WHERE c.vehiculoSena = :vehiculoSena"),
+    @NamedQuery(name = "Comisiones.findByVehiculoComisionado", query = "SELECT c FROM Comisiones c WHERE c.vehiculoComisionado = :vehiculoComisionado"),
+    @NamedQuery(name = "Comisiones.findByAuxilioManutencion", query = "SELECT c FROM Comisiones c WHERE c.auxilioManutencion = :auxilioManutencion"),
+    @NamedQuery(name = "Comisiones.findByFechaEntregaInforme", query = "SELECT c FROM Comisiones c WHERE c.fechaEntregaInforme = :fechaEntregaInforme"),
+    @NamedQuery(name = "Comisiones.findByActividadesOTemas", query = "SELECT c FROM Comisiones c WHERE c.actividadesOTemas = :actividadesOTemas"),
+    @NamedQuery(name = "Comisiones.findByCompromisoSena", query = "SELECT c FROM Comisiones c WHERE c.compromisoSena = :compromisoSena"),
+    @NamedQuery(name = "Comisiones.findByProdEntragados", query = "SELECT c FROM Comisiones c WHERE c.prodEntragados = :prodEntragados"),
+    @NamedQuery(name = "Comisiones.findBySaldoNegativo", query = "SELECT c FROM Comisiones c WHERE c.saldoNegativo = :saldoNegativo"),
+    @NamedQuery(name = "Comisiones.findBySaldoPositivo", query = "SELECT c FROM Comisiones c WHERE c.saldoPositivo = :saldoPositivo"),
+    @NamedQuery(name = "Comisiones.findByPresupuesto", query = "SELECT c FROM Comisiones c WHERE c.presupuesto = :presupuesto")})
 public class Comisiones implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,29 +76,85 @@ public class Comisiones implements Serializable {
     private String objetivoComision;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "fecha_comision")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaComision;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "fecha_tramite")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaTramite;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idComision")
-    private List<InformesDeComisiones> informesDeComisionesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idComision")
-    private List<LegalizacionesDeComisiones> legalizacionesDeComisionesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idComision")
-    private List<OrdenesDeviaje> ordenesDeviajeList;
+    @Column(name = "transp_intermunicipal")
+    private Boolean transpIntermunicipal;
+    @Column(name = "num_com_servicios")
+    private Integer numComServicios;
+    @Size(max = 1000)
+    @Column(name = "observaciones_orden")
+    private String observacionesOrden;
+    @Column(name = "suministra_vehiculo")
+    private Boolean suministraVehiculo;
+    @Size(max = 3000)
+    @Column(name = "objetivos")
+    private String objetivos;
+    @Size(max = 45)
+    @Column(name = "mesa_planificar")
+    private String mesaPlanificar;
+    @Column(name = "llegada_estimada")
+    @Temporal(TemporalType.DATE)
+    private Date llegadaEstimada;
+    @Column(name = "salida_estimada")
+    @Temporal(TemporalType.DATE)
+    private Date salidaEstimada;
+    @Column(name = "num_dias")
+    private Integer numDias;
+    @Column(name = "aprobado")
+    private Boolean aprobado;
+    @Column(name = "trans_intermunicipal")
+    private Integer transIntermunicipal;
+    @Column(name = "trans_comision")
+    private Integer transComision;
+    @Column(name = "otros_gastos")
+    private Integer otrosGastos;
+    @Column(name = "vehiculo_sena")
+    private Integer vehiculoSena;
+    @Column(name = "vehiculo_comisionado")
+    private Integer vehiculoComisionado;
+    @Column(name = "auxilio_manutencion")
+    private Integer auxilioManutencion;
+    @Column(name = "fecha_entrega_informe")
+    @Temporal(TemporalType.DATE)
+    private Date fechaEntregaInforme;
+    @Size(max = 3000)
+    @Column(name = "actividades_o_temas")
+    private String actividadesOTemas;
+    @Size(max = 3000)
+    @Column(name = "compromiso_sena")
+    private String compromisoSena;
+    @Size(max = 3000)
+    @Column(name = "prod_entragados")
+    private String prodEntragados;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "saldo_negativo")
+    private Double saldoNegativo;
+    @Column(name = "saldo_positivo")
+    private Double saldoPositivo;
+    @Size(max = 45)
+    @Column(name = "presupuesto")
+    private String presupuesto;
+    @ManyToMany(mappedBy = "comisionesList")
+    private List<Cdp> cdpList;
+    @ManyToMany(mappedBy = "comisionesList")
+    private List<Ciudad> ciudadList;
+    @JoinColumn(name = "id_grupo", referencedColumnName = "id_grupo")
+    @ManyToOne(optional = false)
+    private Grupos idGrupo;
+    @JoinColumn(name = "id_tipo_pasaje", referencedColumnName = "id_tipo_pasaje")
+    @ManyToOne
+    private TiposPasajes idTipoPasaje;
+    @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
+    @ManyToOne(optional = false)
+    private Bancos idBanco;
     @JoinColumn(name = "id_descripcion", referencedColumnName = "id_descripcion")
     @ManyToOne(optional = false)
     private DescripcionesReferenciasViaticos idDescripcion;
     @JoinColumn(name = "id_contrato", referencedColumnName = "id_contrato")
     @ManyToOne(optional = false)
     private Contratos idContrato;
-    @JoinColumn(name = "id_cuenta", referencedColumnName = "id_cuenta")
-    @ManyToOne(optional = false)
-    private CuentasBancarias idCuenta;
     @JoinColumn(name = "id_ficha_caracterizacion", referencedColumnName = "id_ficha_caracterizacion")
     @ManyToOne(optional = false)
     private FichaCaracterizacion idFichaCaracterizacion;
@@ -92,9 +169,6 @@ public class Comisiones implements Serializable {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuarios idUsuario;
-    @JoinColumn(name = "id_aprobacion", referencedColumnName = "id_aprobacion")
-    @ManyToOne(optional = false)
-    private Aprobaciones idAprobacion;
 
     public Comisiones() {
     }
@@ -103,10 +177,9 @@ public class Comisiones implements Serializable {
         this.idComision = idComision;
     }
 
-    public Comisiones(Integer idComision, String objetivoComision, Date fechaComision, Date fechaTramite) {
+    public Comisiones(Integer idComision, String objetivoComision, Date fechaTramite) {
         this.idComision = idComision;
         this.objetivoComision = objetivoComision;
-        this.fechaComision = fechaComision;
         this.fechaTramite = fechaTramite;
     }
 
@@ -126,14 +199,6 @@ public class Comisiones implements Serializable {
         this.objetivoComision = objetivoComision;
     }
 
-    public Date getFechaComision() {
-        return fechaComision;
-    }
-
-    public void setFechaComision(Date fechaComision) {
-        this.fechaComision = fechaComision;
-    }
-
     public Date getFechaTramite() {
         return fechaTramite;
     }
@@ -142,31 +207,230 @@ public class Comisiones implements Serializable {
         this.fechaTramite = fechaTramite;
     }
 
+    public Boolean getTranspIntermunicipal() {
+        return transpIntermunicipal;
+    }
+
+    public void setTranspIntermunicipal(Boolean transpIntermunicipal) {
+        this.transpIntermunicipal = transpIntermunicipal;
+    }
+
+    public Integer getNumComServicios() {
+        return numComServicios;
+    }
+
+    public void setNumComServicios(Integer numComServicios) {
+        this.numComServicios = numComServicios;
+    }
+
+    public String getObservacionesOrden() {
+        return observacionesOrden;
+    }
+
+    public void setObservacionesOrden(String observacionesOrden) {
+        this.observacionesOrden = observacionesOrden;
+    }
+
+    public Boolean getSuministraVehiculo() {
+        return suministraVehiculo;
+    }
+
+    public void setSuministraVehiculo(Boolean suministraVehiculo) {
+        this.suministraVehiculo = suministraVehiculo;
+    }
+
+    public String getObjetivos() {
+        return objetivos;
+    }
+
+    public void setObjetivos(String objetivos) {
+        this.objetivos = objetivos;
+    }
+
+    public String getMesaPlanificar() {
+        return mesaPlanificar;
+    }
+
+    public void setMesaPlanificar(String mesaPlanificar) {
+        this.mesaPlanificar = mesaPlanificar;
+    }
+
+    public Date getLlegadaEstimada() {
+        return llegadaEstimada;
+    }
+
+    public void setLlegadaEstimada(Date llegadaEstimada) {
+        this.llegadaEstimada = llegadaEstimada;
+    }
+
+    public Date getSalidaEstimada() {
+        return salidaEstimada;
+    }
+
+    public void setSalidaEstimada(Date salidaEstimada) {
+        this.salidaEstimada = salidaEstimada;
+    }
+
+    public Integer getNumDias() {
+        return numDias;
+    }
+
+    public void setNumDias(Integer numDias) {
+        this.numDias = numDias;
+    }
+
+    public Boolean getAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(Boolean aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public Integer getTransIntermunicipal() {
+        return transIntermunicipal;
+    }
+
+    public void setTransIntermunicipal(Integer transIntermunicipal) {
+        this.transIntermunicipal = transIntermunicipal;
+    }
+
+    public Integer getTransComision() {
+        return transComision;
+    }
+
+    public void setTransComision(Integer transComision) {
+        this.transComision = transComision;
+    }
+
+    public Integer getOtrosGastos() {
+        return otrosGastos;
+    }
+
+    public void setOtrosGastos(Integer otrosGastos) {
+        this.otrosGastos = otrosGastos;
+    }
+
+    public Integer getVehiculoSena() {
+        return vehiculoSena;
+    }
+
+    public void setVehiculoSena(Integer vehiculoSena) {
+        this.vehiculoSena = vehiculoSena;
+    }
+
+    public Integer getVehiculoComisionado() {
+        return vehiculoComisionado;
+    }
+
+    public void setVehiculoComisionado(Integer vehiculoComisionado) {
+        this.vehiculoComisionado = vehiculoComisionado;
+    }
+
+    public Integer getAuxilioManutencion() {
+        return auxilioManutencion;
+    }
+
+    public void setAuxilioManutencion(Integer auxilioManutencion) {
+        this.auxilioManutencion = auxilioManutencion;
+    }
+
+    public Date getFechaEntregaInforme() {
+        return fechaEntregaInforme;
+    }
+
+    public void setFechaEntregaInforme(Date fechaEntregaInforme) {
+        this.fechaEntregaInforme = fechaEntregaInforme;
+    }
+
+    public String getActividadesOTemas() {
+        return actividadesOTemas;
+    }
+
+    public void setActividadesOTemas(String actividadesOTemas) {
+        this.actividadesOTemas = actividadesOTemas;
+    }
+
+    public String getCompromisoSena() {
+        return compromisoSena;
+    }
+
+    public void setCompromisoSena(String compromisoSena) {
+        this.compromisoSena = compromisoSena;
+    }
+
+    public String getProdEntragados() {
+        return prodEntragados;
+    }
+
+    public void setProdEntragados(String prodEntragados) {
+        this.prodEntragados = prodEntragados;
+    }
+
+    public Double getSaldoNegativo() {
+        return saldoNegativo;
+    }
+
+    public void setSaldoNegativo(Double saldoNegativo) {
+        this.saldoNegativo = saldoNegativo;
+    }
+
+    public Double getSaldoPositivo() {
+        return saldoPositivo;
+    }
+
+    public void setSaldoPositivo(Double saldoPositivo) {
+        this.saldoPositivo = saldoPositivo;
+    }
+
+    public String getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(String presupuesto) {
+        this.presupuesto = presupuesto;
+    }
+
     @XmlTransient
-    public List<InformesDeComisiones> getInformesDeComisionesList() {
-        return informesDeComisionesList;
+    public List<Cdp> getCdpList() {
+        return cdpList;
     }
 
-    public void setInformesDeComisionesList(List<InformesDeComisiones> informesDeComisionesList) {
-        this.informesDeComisionesList = informesDeComisionesList;
-    }
-
-    @XmlTransient
-    public List<LegalizacionesDeComisiones> getLegalizacionesDeComisionesList() {
-        return legalizacionesDeComisionesList;
-    }
-
-    public void setLegalizacionesDeComisionesList(List<LegalizacionesDeComisiones> legalizacionesDeComisionesList) {
-        this.legalizacionesDeComisionesList = legalizacionesDeComisionesList;
+    public void setCdpList(List<Cdp> cdpList) {
+        this.cdpList = cdpList;
     }
 
     @XmlTransient
-    public List<OrdenesDeviaje> getOrdenesDeviajeList() {
-        return ordenesDeviajeList;
+    public List<Ciudad> getCiudadList() {
+        return ciudadList;
     }
 
-    public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
-        this.ordenesDeviajeList = ordenesDeviajeList;
+    public void setCiudadList(List<Ciudad> ciudadList) {
+        this.ciudadList = ciudadList;
+    }
+
+    public Grupos getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(Grupos idGrupo) {
+        this.idGrupo = idGrupo;
+    }
+
+    public TiposPasajes getIdTipoPasaje() {
+        return idTipoPasaje;
+    }
+
+    public void setIdTipoPasaje(TiposPasajes idTipoPasaje) {
+        this.idTipoPasaje = idTipoPasaje;
+    }
+
+    public Bancos getIdBanco() {
+        return idBanco;
+    }
+
+    public void setIdBanco(Bancos idBanco) {
+        this.idBanco = idBanco;
     }
 
     public DescripcionesReferenciasViaticos getIdDescripcion() {
@@ -183,14 +447,6 @@ public class Comisiones implements Serializable {
 
     public void setIdContrato(Contratos idContrato) {
         this.idContrato = idContrato;
-    }
-
-    public CuentasBancarias getIdCuenta() {
-        return idCuenta;
-    }
-
-    public void setIdCuenta(CuentasBancarias idCuenta) {
-        this.idCuenta = idCuenta;
     }
 
     public FichaCaracterizacion getIdFichaCaracterizacion() {
@@ -223,14 +479,6 @@ public class Comisiones implements Serializable {
 
     public void setIdUsuario(Usuarios idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public Aprobaciones getIdAprobacion() {
-        return idAprobacion;
-    }
-
-    public void setIdAprobacion(Aprobaciones idAprobacion) {
-        this.idAprobacion = idAprobacion;
     }
 
     @Override

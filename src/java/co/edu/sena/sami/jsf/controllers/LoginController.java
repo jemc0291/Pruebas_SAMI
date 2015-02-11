@@ -99,7 +99,7 @@ public class LoginController implements Serializable {
     }
     
     public boolean isGestionMateriales() {
-        return getRequest().isUserInRole("webModulo5");
+        return getRequest().isUserInRole("webModulo6");
     }
 
     public String login() {

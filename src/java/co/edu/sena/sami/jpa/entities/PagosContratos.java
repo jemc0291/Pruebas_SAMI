@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "pagos_contratos")
@@ -58,8 +58,6 @@ public class PagosContratos implements Serializable {
     @NotNull
     @Column(name = "val_factura")
     private float valFactura;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "fecha_de_pago")
     @Temporal(TemporalType.DATE)
     private Date fechaDePago;
@@ -74,12 +72,11 @@ public class PagosContratos implements Serializable {
         this.idPago = idPago;
     }
 
-    public PagosContratos(Integer idPago, int numFactura, Date fechaFactura, float valFactura, Date fechaDePago) {
+    public PagosContratos(Integer idPago, int numFactura, Date fechaFactura, float valFactura) {
         this.idPago = idPago;
         this.numFactura = numFactura;
         this.fechaFactura = fechaFactura;
         this.valFactura = valFactura;
-        this.fechaDePago = fechaDePago;
     }
 
     public Integer getIdPago() {

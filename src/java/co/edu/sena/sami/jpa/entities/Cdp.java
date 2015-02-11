@@ -12,6 +12,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -29,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "cdp")
@@ -37,71 +39,45 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Cdp.findAll", query = "SELECT c FROM Cdp c"),
     @NamedQuery(name = "Cdp.findByNumeroCdp", query = "SELECT c FROM Cdp c WHERE c.numeroCdp = :numeroCdp"),
-    @NamedQuery(name = "Cdp.findByFechaExpedicion", query = "SELECT c FROM Cdp c WHERE c.fechaExpedicion = :fechaExpedicion"),
+    @NamedQuery(name = "Cdp.findByFechaSolicitud", query = "SELECT c FROM Cdp c WHERE c.fechaSolicitud = :fechaSolicitud"),
     @NamedQuery(name = "Cdp.findByFechaRecepcion", query = "SELECT c FROM Cdp c WHERE c.fechaRecepcion = :fechaRecepcion"),
-    @NamedQuery(name = "Cdp.findByObjetivoDelGasto", query = "SELECT c FROM Cdp c WHERE c.objetivoDelGasto = :objetivoDelGasto"),
-    @NamedQuery(name = "Cdp.findByTotal", query = "SELECT c FROM Cdp c WHERE c.total = :total"),
-    @NamedQuery(name = "Cdp.findBySubtotal", query = "SELECT c FROM Cdp c WHERE c.subtotal = :subtotal")})
+    @NamedQuery(name = "Cdp.findByObjetivoDelGasto", query = "SELECT c FROM Cdp c WHERE c.objetivoDelGasto = :objetivoDelGasto")})
 public class Cdp implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "numero_cdp")
-    private String numeroCdp;
+    private Integer numeroCdp;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "fecha_expedicion")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaExpedicion;
+    @Column(name = "fecha_solicitud")
+    @Temporal(TemporalType.DATE)
+    private Date fechaSolicitud;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_recepcion")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fechaRecepcion;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "objetivo_del_gasto")
     private String objetivoDelGasto;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "total")
-    private double total;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "subtotal")
-    private Double subtotal;
-    @JoinTable(name = "gestiones_cdp", joinColumns = {
+    @JoinTable(name = "comisiones_cdp", joinColumns = {
         @JoinColumn(name = "numero_cdp", referencedColumnName = "numero_cdp")}, inverseJoinColumns = {
-        @JoinColumn(name = "codigo_gestion", referencedColumnName = "codigo_gestion")})
+        @JoinColumn(name = "id_comision", referencedColumnName = "id_comision")})
     @ManyToMany
-    private List<Gestiones> gestionesList;
-    @JoinTable(name = "rubros_cdp", joinColumns = {
-        @JoinColumn(name = "numero_cdp", referencedColumnName = "numero_cdp")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_rubro", referencedColumnName = "id_rubro")})
-    @ManyToMany
-    private List<Rubros> rubrosList;
-    @ManyToMany(mappedBy = "cdpList")
-    private List<Usuarios> usuariosList;
-    @JoinTable(name = "conceptos_de_gastos_cdp", joinColumns = {
-        @JoinColumn(name = "numero_cdp", referencedColumnName = "numero_cdp")}, inverseJoinColumns = {
-        @JoinColumn(name = "codigo_gasto", referencedColumnName = "codigo_gasto")})
-    @ManyToMany
-    private List<ConceptosDeGastos> conceptosDeGastosList;
-    @JoinTable(name = "cdp_dependencias", joinColumns = {
-        @JoinColumn(name = "numero_cdp", referencedColumnName = "numero_cdp")}, inverseJoinColumns = {
-        @JoinColumn(name = "codigo_de_dependencia", referencedColumnName = "codigo_de_dependencia")})
-    @ManyToMany
-    private List<Dependencias> dependenciasList;
-    @JoinTable(name = "ordenes_de_viaje_cdp", joinColumns = {
-        @JoinColumn(name = "numero_cdp", referencedColumnName = "numero_cdp")}, inverseJoinColumns = {
-        @JoinColumn(name = "numero_ordendeviaje", referencedColumnName = "numero_ordendeviaje")})
-    @ManyToMany
-    private List<OrdenesDeviaje> ordenesDeviajeList;
-    @JoinColumn(name = "id_recursos", referencedColumnName = "id_recursos")
+    private List<Comisiones> comisionesList;
+    @JoinColumn(name = "id_rubro", referencedColumnName = "id_rubro")
     @ManyToOne(optional = false)
-    private RecursosOFuentes idRecursos;
+    private Rubros idRubro;
+    @JoinColumn(name = "codigo_gestion", referencedColumnName = "codigo_gestion")
+    @ManyToOne(optional = false)
+    private Gestiones codigoGestion;
+    @JoinColumn(name = "codigo_de_dependencia", referencedColumnName = "codigo_de_dependencia")
+    @ManyToOne(optional = false)
+    private Dependencias codigoDeDependencia;
     @JoinColumn(name = "id_tipo_solicitud", referencedColumnName = "id_tipo_solicitud")
     @ManyToOne(optional = false)
     private TiposDeSolicitudes idTipoSolicitud;
@@ -109,32 +85,31 @@ public class Cdp implements Serializable {
     public Cdp() {
     }
 
-    public Cdp(String numeroCdp) {
+    public Cdp(Integer numeroCdp) {
         this.numeroCdp = numeroCdp;
     }
 
-    public Cdp(String numeroCdp, Date fechaExpedicion, Date fechaRecepcion, String objetivoDelGasto, double total) {
+    public Cdp(Integer numeroCdp, Date fechaSolicitud, Date fechaRecepcion, String objetivoDelGasto) {
         this.numeroCdp = numeroCdp;
-        this.fechaExpedicion = fechaExpedicion;
+        this.fechaSolicitud = fechaSolicitud;
         this.fechaRecepcion = fechaRecepcion;
         this.objetivoDelGasto = objetivoDelGasto;
-        this.total = total;
     }
 
-    public String getNumeroCdp() {
+    public Integer getNumeroCdp() {
         return numeroCdp;
     }
 
-    public void setNumeroCdp(String numeroCdp) {
+    public void setNumeroCdp(Integer numeroCdp) {
         this.numeroCdp = numeroCdp;
     }
 
-    public Date getFechaExpedicion() {
-        return fechaExpedicion;
+    public Date getFechaSolicitud() {
+        return fechaSolicitud;
     }
 
-    public void setFechaExpedicion(Date fechaExpedicion) {
-        this.fechaExpedicion = fechaExpedicion;
+    public void setFechaSolicitud(Date fechaSolicitud) {
+        this.fechaSolicitud = fechaSolicitud;
     }
 
     public Date getFechaRecepcion() {
@@ -153,82 +128,37 @@ public class Cdp implements Serializable {
         this.objetivoDelGasto = objetivoDelGasto;
     }
 
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public Double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
-    }
-
     @XmlTransient
-    public List<Gestiones> getGestionesList() {
-        return gestionesList;
+    public List<Comisiones> getComisionesList() {
+        return comisionesList;
     }
 
-    public void setGestionesList(List<Gestiones> gestionesList) {
-        this.gestionesList = gestionesList;
+    public void setComisionesList(List<Comisiones> comisionesList) {
+        this.comisionesList = comisionesList;
     }
 
-    @XmlTransient
-    public List<Rubros> getRubrosList() {
-        return rubrosList;
+    public Rubros getIdRubro() {
+        return idRubro;
     }
 
-    public void setRubrosList(List<Rubros> rubrosList) {
-        this.rubrosList = rubrosList;
+    public void setIdRubro(Rubros idRubro) {
+        this.idRubro = idRubro;
     }
 
-    @XmlTransient
-    public List<Usuarios> getUsuariosList() {
-        return usuariosList;
+    public Gestiones getCodigoGestion() {
+        return codigoGestion;
     }
 
-    public void setUsuariosList(List<Usuarios> usuariosList) {
-        this.usuariosList = usuariosList;
+    public void setCodigoGestion(Gestiones codigoGestion) {
+        this.codigoGestion = codigoGestion;
     }
 
-    @XmlTransient
-    public List<ConceptosDeGastos> getConceptosDeGastosList() {
-        return conceptosDeGastosList;
+    public Dependencias getCodigoDeDependencia() {
+        return codigoDeDependencia;
     }
 
-    public void setConceptosDeGastosList(List<ConceptosDeGastos> conceptosDeGastosList) {
-        this.conceptosDeGastosList = conceptosDeGastosList;
-    }
-
-    @XmlTransient
-    public List<Dependencias> getDependenciasList() {
-        return dependenciasList;
-    }
-
-    public void setDependenciasList(List<Dependencias> dependenciasList) {
-        this.dependenciasList = dependenciasList;
-    }
-
-    @XmlTransient
-    public List<OrdenesDeviaje> getOrdenesDeviajeList() {
-        return ordenesDeviajeList;
-    }
-
-    public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
-        this.ordenesDeviajeList = ordenesDeviajeList;
-    }
-
-    public RecursosOFuentes getIdRecursos() {
-        return idRecursos;
-    }
-
-    public void setIdRecursos(RecursosOFuentes idRecursos) {
-        this.idRecursos = idRecursos;
+    public void setCodigoDeDependencia(Dependencias codigoDeDependencia) {
+        this.codigoDeDependencia = codigoDeDependencia;
     }
 
     public TiposDeSolicitudes getIdTipoSolicitud() {

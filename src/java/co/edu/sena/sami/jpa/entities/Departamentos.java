@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "departamentos")
@@ -50,8 +50,6 @@ public class Departamentos implements Serializable {
     @JoinColumn(name = "id_pais", referencedColumnName = "id_Pais")
     @ManyToOne
     private Pais idPais;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDpto")
-    private List<OrdenesDeviaje> ordenesDeviajeList;
 
     public Departamentos() {
     }
@@ -93,15 +91,6 @@ public class Departamentos implements Serializable {
         this.idPais = idPais;
     }
 
-    @XmlTransient
-    public List<OrdenesDeviaje> getOrdenesDeviajeList() {
-        return ordenesDeviajeList;
-    }
-
-    public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
-        this.ordenesDeviajeList = ordenesDeviajeList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -124,7 +113,7 @@ public class Departamentos implements Serializable {
 
     @Override
     public String toString() {
-        return nombreDpto + "";
+        return nombreDpto;
     }
     
 }

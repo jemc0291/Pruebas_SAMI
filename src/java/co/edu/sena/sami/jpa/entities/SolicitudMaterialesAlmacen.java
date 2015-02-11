@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "solicitud_materiales_almacen")
@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SolicitudMaterialesAlmacen.findAll", query = "SELECT s FROM SolicitudMaterialesAlmacen s"),
     @NamedQuery(name = "SolicitudMaterialesAlmacen.findByIdSolicitudMaterial", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.idSolicitudMaterial = :idSolicitudMaterial"),
     @NamedQuery(name = "SolicitudMaterialesAlmacen.findByFechaDeSolicitud", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.fechaDeSolicitud = :fechaDeSolicitud"),
-    @NamedQuery(name = "SolicitudMaterialesAlmacen.findByObservaciones", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.observaciones = :observaciones")})
+    @NamedQuery(name = "SolicitudMaterialesAlmacen.findByObservaciones", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.observaciones = :observaciones"),
+    @NamedQuery(name = "SolicitudMaterialesAlmacen.findByAprobado", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.aprobado = :aprobado"),
+    @NamedQuery(name = "SolicitudMaterialesAlmacen.findByNoAprobado", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.noAprobado = :noAprobado")})
 public class SolicitudMaterialesAlmacen implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,11 +53,15 @@ public class SolicitudMaterialesAlmacen implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_de_solicitud")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeSolicitud;
     @Size(max = 200)
     @Column(name = "observaciones")
     private String observaciones;
+    @Column(name = "aprobado")
+    private Boolean aprobado;
+    @Column(name = "no_aprobado")
+    private Boolean noAprobado;
     @JoinColumn(name = "id_area", referencedColumnName = "id_area")
     @ManyToOne(optional = false)
     private Areas idArea;
@@ -101,6 +107,22 @@ public class SolicitudMaterialesAlmacen implements Serializable {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public Boolean getAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(Boolean aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public Boolean getNoAprobado() {
+        return noAprobado;
+    }
+
+    public void setNoAprobado(Boolean noAprobado) {
+        this.noAprobado = noAprobado;
     }
 
     public Areas getIdArea() {

@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "tipo_de_contrato")
@@ -100,7 +100,7 @@ public class TipoDeContrato implements Serializable {
 
     @Override
     public String toString() {
-        return nombreTipoContrato;
+        return "co.edu.sena.sami.jpa.entities.TipoDeContrato[ idTipoContrato=" + idTipoContrato + " ]";
     }
     
 }

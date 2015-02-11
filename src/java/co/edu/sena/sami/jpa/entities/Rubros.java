@@ -13,7 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "rubros")
@@ -47,10 +46,8 @@ public class Rubros implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "rubro")
     private String rubro;
-    @ManyToMany(mappedBy = "rubrosList")
-    private List<Cdp> cdpList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRubro")
-    private List<CrpRubros> crpRubrosList;
+    private List<Cdp> cdpList;
 
     public Rubros() {
     }
@@ -87,15 +84,6 @@ public class Rubros implements Serializable {
 
     public void setCdpList(List<Cdp> cdpList) {
         this.cdpList = cdpList;
-    }
-
-    @XmlTransient
-    public List<CrpRubros> getCrpRubrosList() {
-        return crpRubrosList;
-    }
-
-    public void setCrpRubrosList(List<CrpRubros> crpRubrosList) {
-        this.crpRubrosList = crpRubrosList;
     }
 
     @Override

@@ -9,7 +9,6 @@ package co.edu.sena.sami.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,12 +17,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "tipos_pasajes")
@@ -41,10 +41,11 @@ public class TiposPasajes implements Serializable {
     private Integer idTipoPasaje;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "nombre_tipo_pasaje")
-    private boolean nombreTipoPasaje;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoPasaje")
-    private List<OrdenesDeviaje> ordenesDeviajeList;
+    private String nombreTipoPasaje;
+    @OneToMany(mappedBy = "idTipoPasaje")
+    private List<Comisiones> comisionesList;
 
     public TiposPasajes() {
     }
@@ -53,7 +54,7 @@ public class TiposPasajes implements Serializable {
         this.idTipoPasaje = idTipoPasaje;
     }
 
-    public TiposPasajes(Integer idTipoPasaje, boolean nombreTipoPasaje) {
+    public TiposPasajes(Integer idTipoPasaje, String nombreTipoPasaje) {
         this.idTipoPasaje = idTipoPasaje;
         this.nombreTipoPasaje = nombreTipoPasaje;
     }
@@ -66,21 +67,21 @@ public class TiposPasajes implements Serializable {
         this.idTipoPasaje = idTipoPasaje;
     }
 
-    public boolean getNombreTipoPasaje() {
+    public String getNombreTipoPasaje() {
         return nombreTipoPasaje;
     }
 
-    public void setNombreTipoPasaje(boolean nombreTipoPasaje) {
+    public void setNombreTipoPasaje(String nombreTipoPasaje) {
         this.nombreTipoPasaje = nombreTipoPasaje;
     }
 
     @XmlTransient
-    public List<OrdenesDeviaje> getOrdenesDeviajeList() {
-        return ordenesDeviajeList;
+    public List<Comisiones> getComisionesList() {
+        return comisionesList;
     }
 
-    public void setOrdenesDeviajeList(List<OrdenesDeviaje> ordenesDeviajeList) {
-        this.ordenesDeviajeList = ordenesDeviajeList;
+    public void setComisionesList(List<Comisiones> comisionesList) {
+        this.comisionesList = comisionesList;
     }
 
     @Override

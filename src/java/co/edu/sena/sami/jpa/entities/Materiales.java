@@ -14,6 +14,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "materiales")
@@ -60,13 +62,16 @@ public class Materiales implements Serializable {
     @Size(max = 200)
     @Column(name = "Descripcion_elemento")
     private String descripcionelemento;
+    @JoinTable(name = "nota_entrada_materiales", joinColumns = {
+        @JoinColumn(name = "id_material", referencedColumnName = "id_materiales")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_Nota", referencedColumnName = "id_Nota")})
+    @ManyToMany
+    private List<NotaEntrada> notaEntradaList;
     @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(optional = false)
     private Categorias idCategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "materiales")
     private List<SolicitudMaterialesAlmacenMateriales> solicitudMaterialesAlmacenMaterialesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "materiales")
-    private List<NotaEntradaMateriales> notaEntradaMaterialesList;
 
     public Materiales() {
     }
@@ -121,6 +126,15 @@ public class Materiales implements Serializable {
         this.descripcionelemento = descripcionelemento;
     }
 
+    @XmlTransient
+    public List<NotaEntrada> getNotaEntradaList() {
+        return notaEntradaList;
+    }
+
+    public void setNotaEntradaList(List<NotaEntrada> notaEntradaList) {
+        this.notaEntradaList = notaEntradaList;
+    }
+
     public Categorias getIdCategoria() {
         return idCategoria;
     }
@@ -136,15 +150,6 @@ public class Materiales implements Serializable {
 
     public void setSolicitudMaterialesAlmacenMaterialesList(List<SolicitudMaterialesAlmacenMateriales> solicitudMaterialesAlmacenMaterialesList) {
         this.solicitudMaterialesAlmacenMaterialesList = solicitudMaterialesAlmacenMaterialesList;
-    }
-
-    @XmlTransient
-    public List<NotaEntradaMateriales> getNotaEntradaMaterialesList() {
-        return notaEntradaMaterialesList;
-    }
-
-    public void setNotaEntradaMaterialesList(List<NotaEntradaMateriales> notaEntradaMaterialesList) {
-        this.notaEntradaMaterialesList = notaEntradaMaterialesList;
     }
 
     @Override

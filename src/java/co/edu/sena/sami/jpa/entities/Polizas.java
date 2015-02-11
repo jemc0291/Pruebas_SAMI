@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "polizas")
@@ -64,11 +64,11 @@ public class Polizas implements Serializable {
     @Column(name = "fecha_aprobacion")
     @Temporal(TemporalType.DATE)
     private Date fechaAprobacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "polizas")
+    private List<UsuariosContratos> usuariosContratosList;
     @JoinColumn(name = "id_aseguradora", referencedColumnName = "id_aseguradora")
     @ManyToOne(optional = false)
     private Aseguradora idAseguradora;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "polizas")
-    private List<ContratosPolizasUsuarios> contratosPolizasUsuariosList;
 
     public Polizas() {
     }
@@ -124,21 +124,21 @@ public class Polizas implements Serializable {
         this.fechaAprobacion = fechaAprobacion;
     }
 
+    @XmlTransient
+    public List<UsuariosContratos> getUsuariosContratosList() {
+        return usuariosContratosList;
+    }
+
+    public void setUsuariosContratosList(List<UsuariosContratos> usuariosContratosList) {
+        this.usuariosContratosList = usuariosContratosList;
+    }
+
     public Aseguradora getIdAseguradora() {
         return idAseguradora;
     }
 
     public void setIdAseguradora(Aseguradora idAseguradora) {
         this.idAseguradora = idAseguradora;
-    }
-
-    @XmlTransient
-    public List<ContratosPolizasUsuarios> getContratosPolizasUsuariosList() {
-        return contratosPolizasUsuariosList;
-    }
-
-    public void setContratosPolizasUsuariosList(List<ContratosPolizasUsuarios> contratosPolizasUsuariosList) {
-        this.contratosPolizasUsuariosList = contratosPolizasUsuariosList;
     }
 
     @Override

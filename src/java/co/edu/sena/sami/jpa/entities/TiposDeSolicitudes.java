@@ -18,12 +18,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "tipos_de_solicitudes")
@@ -41,12 +42,11 @@ public class TiposDeSolicitudes implements Serializable {
     private Integer idTipoSolicitud;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "nombre_tipo_solicitud")
-    private boolean nombreTipoSolicitud;
+    private String nombreTipoSolicitud;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoSolicitud")
     private List<Cdp> cdpList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoSolicitud")
-    private List<Crp> crpList;
 
     public TiposDeSolicitudes() {
     }
@@ -55,7 +55,7 @@ public class TiposDeSolicitudes implements Serializable {
         this.idTipoSolicitud = idTipoSolicitud;
     }
 
-    public TiposDeSolicitudes(Integer idTipoSolicitud, boolean nombreTipoSolicitud) {
+    public TiposDeSolicitudes(Integer idTipoSolicitud, String nombreTipoSolicitud) {
         this.idTipoSolicitud = idTipoSolicitud;
         this.nombreTipoSolicitud = nombreTipoSolicitud;
     }
@@ -68,11 +68,11 @@ public class TiposDeSolicitudes implements Serializable {
         this.idTipoSolicitud = idTipoSolicitud;
     }
 
-    public boolean getNombreTipoSolicitud() {
+    public String getNombreTipoSolicitud() {
         return nombreTipoSolicitud;
     }
 
-    public void setNombreTipoSolicitud(boolean nombreTipoSolicitud) {
+    public void setNombreTipoSolicitud(String nombreTipoSolicitud) {
         this.nombreTipoSolicitud = nombreTipoSolicitud;
     }
 
@@ -83,15 +83,6 @@ public class TiposDeSolicitudes implements Serializable {
 
     public void setCdpList(List<Cdp> cdpList) {
         this.cdpList = cdpList;
-    }
-
-    @XmlTransient
-    public List<Crp> getCrpList() {
-        return crpList;
-    }
-
-    public void setCrpList(List<Crp> crpList) {
-        this.crpList = crpList;
     }
 
     @Override

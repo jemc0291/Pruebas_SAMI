@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Entity
 @Table(name = "estado_civil")
@@ -100,7 +100,7 @@ public class EstadoCivil implements Serializable {
 
     @Override
     public String toString() {
-        return nombreEstadoCivil + "";
+        return nombreEstadoCivil;
     }
     
 }
