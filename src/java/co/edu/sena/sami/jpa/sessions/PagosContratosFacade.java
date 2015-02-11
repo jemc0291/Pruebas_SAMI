@@ -9,7 +9,10 @@ package co.edu.sena.sami.jpa.sessions;
 import co.edu.sena.sami.jpa.entities.PagosContratos;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +31,15 @@ public class PagosContratosFacade extends AbstractFacade<PagosContratos> {
     public PagosContratosFacade() {
         super(PagosContratos.class);
     }
-    
+    public PagosContratos findByIdPago(int idPago) {
+        Query q = getEntityManager().createNamedQuery("PagosContratos.findByIdPago");
+        q.setParameter("idPago", idPago);
+        try {
+            return (PagosContratos) q.getSingleResult();
+        } catch (NonUniqueResultException ex) {
+            throw ex;
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
 }

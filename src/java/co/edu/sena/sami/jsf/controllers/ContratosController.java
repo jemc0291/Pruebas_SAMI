@@ -55,11 +55,11 @@ public class ContratosController implements Serializable {
     public String prepareCreate() {
         selected = new Contratos();
         //initializeEmbeddableKey();
-        return "/Modulo3/GestionContractual/CrearContrato";
+        return "/modulo3/GestionContractual/CrearContrato";
     }
     
     public String prepareEdit(){
-        return "/Modulo3/GestionContractual/EditarContrato";
+        return "/modulo3/GestionContractual/EditarContrato";
     }
     
     public String prepareView(){

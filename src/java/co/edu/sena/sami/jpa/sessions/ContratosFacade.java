@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.Contratos;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -41,5 +41,11 @@ public class ContratosFacade extends AbstractFacade<Contratos> {
         } catch (NoResultException ex) {
             return null;
         }
+    }
+    public List<Contratos> findByNumeroContratoCompletar(int numeroContrato){
+        Query q = getEntityManager().createNamedQuery("Contratos.findByNumeroDeContrato");
+        q.setParameter("numeroDeContrato", numeroContrato + "%");
+        q.setMaxResults(10);
+        return q.getResultList();
     }
 }

@@ -19,23 +19,23 @@
                         </input>
                         
                         <label jsf:value="#{bundle.ViewContratosLabel_idTipoContrato}" class="FormLabelSCCSS" />
-                        <input value="#{contratosController.selected.idTipoContrato.toString()}" title="#{bundle.ViewContratosTitle_idTipoContrato}" class="FormInputDateSCCSS" disabled="true">                            
+                        <input value="#{contratosController.selected.idTipoContrato.toString()}" title="#{bundle.ViewContratosTitle_idTipoContrato}" class="FormInputSCCSS" disabled="true">                            
                         </input>
                         
                         <label jsf:value="#{bundle.ViewContratosLabel_fechaSuscripcion}" class="FormLabelSCCSS" />
-                        <h:inputText id="fechaSuscripcionText" value="#{contratosController.selected.fechaSuscripcion}" title="#{bundle.ViewContratosTitle_fechaSuscripcion}" class="FormInputDateSCCSS"
+                        <h:inputText id="fechaSuscripcionText" value="#{contratosController.selected.fechasuscripcion}" title="#{bundle.ViewContratosTitle_fechaSuscripcion}" class="FormInputDateViewSCCSS"
                                disabled="true" >
                             <f:convertDateTime pattern="dd-MM-yyyy"/>
                         </h:inputText>
                                                 
                         <label jsf:value="#{bundle.ViewContratosLabel_fechaInicioContrato}" class="FormLabelSCCSS" />
-                        <h:inputText value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.ViewContratosTitle_fechaInicioContrato}" class="FormInputDateSCCSS"
+                        <h:inputText value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.ViewContratosTitle_fechaInicioContrato}" class="FormInputDateViewSCCSS"
                                disabled="true" >
                             <f:convertDateTime pattern="dd-MM-yyyy"/>
                         </h:inputText>
                         
                         <label jsf:value="#{bundle.ViewContratosLabel_fechaFinContrato}" class="FormLabelSCCSS" />
-                        <h:inputText value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.ViewContratosTitle_fechaFinContrato}" class="FormInputDateSCCSS"
+                        <h:inputText value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.ViewContratosTitle_fechaFinContrato}" class="FormInputDateViewSCCSS"
                                disabled="true" >
                             <f:convertDateTime pattern="dd-MM-yyyy"/>
                         </h:inputText>

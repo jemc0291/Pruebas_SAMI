@@ -49,10 +49,26 @@ public class InformesController implements Serializable {
         return ejbFacade;
     }
 
-    public Informes prepareCreate() {
+   public String prepareCreate() {
         selected = new Informes();
-        initializeEmbeddableKey();
-        return selected;
+        return "/modulo3/GestionContractual/CreateInforme";
+    }
+
+    public String prepareEdit() {
+        return "/modulo3/GestionContractual/EditInforme";
+    }
+
+    public String prepareView() {
+        return "/modulo3/GestionContractual/viewInforme";
+    }
+
+    public String prepareList() {
+        recargarLista();
+        return "/modulo3/GestionContractual/ListInformes";
+    }
+
+    public void recargarLista() {
+        items = null;
     }
 
     public void create() {

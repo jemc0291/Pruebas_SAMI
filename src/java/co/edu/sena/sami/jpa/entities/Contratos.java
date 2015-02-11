@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.entities;
 
 import java.io.Serializable;
@@ -472,7 +471,7 @@ public class Contratos implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Contratos[ idContrato=" + idContrato + " ]";
+        return String.valueOf(numeroDeContrato);
     }
     
 }
