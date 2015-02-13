@@ -19,6 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -140,6 +141,8 @@ public class Comisiones implements Serializable {
     private List<Cdp> cdpList;
     @ManyToMany(mappedBy = "comisionesList")
     private List<Ciudad> ciudadList;
+    @OneToMany(mappedBy = "idComision")
+    private List<Notificaciones> notificacionesList;
     @JoinColumn(name = "id_grupo", referencedColumnName = "id_grupo")
     @ManyToOne(optional = false)
     private Grupos idGrupo;
@@ -407,6 +410,15 @@ public class Comisiones implements Serializable {
 
     public void setCiudadList(List<Ciudad> ciudadList) {
         this.ciudadList = ciudadList;
+    }
+
+    @XmlTransient
+    public List<Notificaciones> getNotificacionesList() {
+        return notificacionesList;
+    }
+
+    public void setNotificacionesList(List<Notificaciones> notificacionesList) {
+        this.notificacionesList = notificacionesList;
     }
 
     public Grupos getIdGrupo() {

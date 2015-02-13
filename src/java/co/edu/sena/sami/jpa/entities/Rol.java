@@ -132,7 +132,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return  nombreRol;
+        return nombreRol;
     }
     
 }

@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package co.edu.sena.sami.jpa.entities;
 
 import java.io.Serializable;
@@ -140,6 +141,8 @@ public class Contratos implements Serializable {
     private List<SoportesDeDocumentos> soportesDeDocumentosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idContrato")
     private List<Pagos> pagosList;
+    @OneToMany(mappedBy = "idContrato")
+    private List<Notificaciones> notificacionesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idContrato")
     private List<PagosContratos> pagosContratosList;
     @JoinColumn(name = "id_tipo_contrato", referencedColumnName = "id_tipo_contrato")
@@ -379,6 +382,15 @@ public class Contratos implements Serializable {
     }
 
     @XmlTransient
+    public List<Notificaciones> getNotificacionesList() {
+        return notificacionesList;
+    }
+
+    public void setNotificacionesList(List<Notificaciones> notificacionesList) {
+        this.notificacionesList = notificacionesList;
+    }
+
+    @XmlTransient
     public List<PagosContratos> getPagosContratosList() {
         return pagosContratosList;
     }
@@ -444,7 +456,7 @@ public class Contratos implements Serializable {
 
     @Override
     public String toString() {
-        return String.valueOf(numeroDeContrato);
+        return "co.edu.sena.sami.jpa.entities.Contratos[ idContrato=" + idContrato + " ]";
     }
     
 }

@@ -170,6 +170,8 @@ public class Usuarios implements Serializable {
     private List<Novedades> novedadesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Pagos> pagosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<Notificaciones> notificacionesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<AvanceUsuarios> avanceUsuariosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
@@ -477,6 +479,15 @@ public class Usuarios implements Serializable {
 
     public void setPagosList(List<Pagos> pagosList) {
         this.pagosList = pagosList;
+    }
+
+    @XmlTransient
+    public List<Notificaciones> getNotificacionesList() {
+        return notificacionesList;
+    }
+
+    public void setNotificacionesList(List<Notificaciones> notificacionesList) {
+        this.notificacionesList = notificacionesList;
     }
 
     @XmlTransient

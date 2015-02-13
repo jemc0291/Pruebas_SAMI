@@ -99,7 +99,7 @@ public class Barrios implements Serializable {
 
     @Override
     public String toString() {
-        return  nombreBarrio;
+        return nombreBarrio;
     }
     
 }
