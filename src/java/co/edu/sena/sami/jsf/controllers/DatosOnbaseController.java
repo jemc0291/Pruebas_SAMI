@@ -190,7 +190,7 @@ public class DatosOnbaseController implements Serializable {
 //        if (file != null) {
 //            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
 //            FacesContext.getCurrentInstance().addMessage(null, message);
-        FacesMessage msg = new FacesMessage("Success! ", file.getFileName() + " is uploaded.");
+        FacesMessage msg = new FacesMessage("Éxito! ", file.getFileName() + " ha sido Cargado.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
         // Do what you want with the file        
         try {

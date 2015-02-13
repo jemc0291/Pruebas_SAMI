@@ -32,7 +32,7 @@ public class LoginController implements Serializable {
     private UsuariosFacade usuariosFacade;
 
     public LoginController() {
-        
+      
     }
 
     public String getUsername() {
@@ -73,7 +73,7 @@ public class LoginController implements Serializable {
     private String getLogueado() {
         return getPrincipal().getName();
     }
-    
+
     public Usuarios getUserLogueado() {
         return getUsuariosFacade().findByNumeroDocumento(getLogueado());
     }
@@ -93,11 +93,11 @@ public class LoginController implements Serializable {
     public boolean isGestionTalento() {
         return getRequest().isUserInRole("webModulo4");
     }
-    
+
     public boolean isGestionDocumental() {
         return getRequest().isUserInRole("webModulo5");
     }
-    
+
     public boolean isGestionMateriales() {
         return getRequest().isUserInRole("webModulo6");
     }
