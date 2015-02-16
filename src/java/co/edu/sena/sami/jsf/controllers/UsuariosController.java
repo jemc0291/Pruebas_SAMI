@@ -102,7 +102,7 @@ public class UsuariosController implements Serializable {
    }
 
    public String prepareListUsuario() {
-       return "/modulo5/Gestion Documental/Usuarios/Listar";
+       return "/Configuracion/Usuarios/Listar";
    }
 
     public void create() {
