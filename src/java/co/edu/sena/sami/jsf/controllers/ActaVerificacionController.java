@@ -1,6 +1,9 @@
 package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.ActaVerificacion;
+import co.edu.sena.sami.jpa.entities.Facturas;
+import co.edu.sena.sami.jpa.entities.Rol;
+import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.ActaVerificacionFacade;
@@ -28,6 +31,57 @@ public class ActaVerificacionController implements Serializable {
     private List<ActaVerificacion> items = null;
     private ActaVerificacion selected;
 
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.UsuariosFacade ejbFacadeUsuarios;
+    private List<Usuarios> itemsUsuarios = null;
+    private Usuarios selectedUsuarios;
+    
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.FacturasFacade ejbFacadeFacturas;
+    private List<Facturas> itemsFacturas = null;
+    private Facturas selectedFacturas;
+
+    
+    /**
+     * @return the ejbFacadeUsuarios
+     */
+    public co.edu.sena.sami.jpa.sessions.UsuariosFacade getFacadeUsuarios() {
+        return ejbFacadeUsuarios;
+    }
+
+    /**
+     * @return the ejbFacadeFacturas
+     */
+    public co.edu.sena.sami.jpa.sessions.FacturasFacade getFacadeFacturas() {
+        return ejbFacadeFacturas;
+    }
+    
+    
+     public Usuarios getUsuarios(java.lang.Integer id) {
+        return getFacadeUsuarios().find(id);
+    }
+
+    public List<Usuarios> getItemsAvailableSelectManyUsuarios() {
+        return getFacadeUsuarios().findAll();
+    }
+
+    public List<Usuarios> getItemsAvailableSelectOneUsuarios() {
+        return getFacadeUsuarios().findAll();
+    }
+    
+    
+    public Facturas getFacturas(java.lang.Integer id) {
+        return getFacadeFacturas().find(id);
+    }
+
+    public List<Facturas> getItemsAvailableSelectManyFacturas() {
+        return getFacadeFacturas().findAll();
+    }
+
+    public List<Facturas> getItemsAvailableSelectOneFacturas() {
+        return getFacadeFacturas().findAll();
+    }
+    
     public ActaVerificacionController() {
     }
 
@@ -49,10 +103,10 @@ public class ActaVerificacionController implements Serializable {
         return ejbFacade;
     }
 
-    public ActaVerificacion prepareCreate() {
+    public String prepareCreate() {
         selected = new ActaVerificacion();
         initializeEmbeddableKey();
-        return selected;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/CreateActa.xhtml";
     }
 
     public void create() {
@@ -120,6 +174,7 @@ public class ActaVerificacionController implements Serializable {
     public List<ActaVerificacion> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+
 
     @FacesConverter(forClass = ActaVerificacion.class)
     public static class ActaVerificacionControllerConverter implements Converter {

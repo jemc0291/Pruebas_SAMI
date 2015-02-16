@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Notas de Entrada</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Solicitud"/></h1>
+                    <p:panelGrid columns="2">
+                        <h:outputText value="IdSolicitudMaterial:"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idSolicitudMaterial}" title="IdSolicitudMaterial"/>
+                        <h:outputText value="FechaDeSolicitud:"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.fechaDeSolicitud}" title="FechaDeSolicitud">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Observaciones:"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.observaciones}" title="Observaciones"/>
+                        <h:outputText value="IdArea:"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idArea}" title="IdArea"/>
+                        <h:outputText value="IdFichaCaracterizacion:"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}" title="IdFichaCaracterizacion"/>
+                    </p:panelGrid>
+
+
+
+                    <h1><h:outputText value="Materiales"/></h1>
+                    <p:panelGrid columns="2">
+                        <h:outputText value="Cantidad:"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenMaterialesController.selected.cantidad}" title="Cantidad"/>
+                        <h:outputText value="Materiales:"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenMaterialesController.selected.materiales}" title="Materiales"/>
+                        <h:outputText value="SolicitudMaterialesAlmacen:"/>
+                        <h:outputText value="#{solicitudMaterialesAlmacenMaterialesController.selected.solicitudMaterialesAlmacen}" title="SolicitudMaterialesAlmacen"/>
+                    </p:panelGrid>
+
+
+                </h:form>
+            </f:view>
+
+        </ui:define>
+    </ui:composition>
+</html>
