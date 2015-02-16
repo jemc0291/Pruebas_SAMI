@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Crear Contrato</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo1/menu_modulo1.xhtml"></ui:include></ui:define>
+        <ui:define name="body"> 
+          
+            
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_idTipoContrato}" for="idTipoContrato" />
+                    <h:selectOneMenu id="idTipoContrato" value="#{contratosModulo1Controller.selected.idTipoContrato}" title="IdTipoContrato" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_idTipoContrato}">
+
+
+                        <f:selectItems value="#{tipoDeContratoController.itemsAvailableSelectOne}"
+                                       var="idTipoContratoItem"
+                                       itemValue="#{idTipoContratoItem}"/>
+                       
+
+                    </h:selectOneMenu>
+
+                    <label  for="numeroDeContrato" 
+                            jsf:value="#{bundle.CreateContratosLabel_numeroDeContrato}"/>
+                    <input type="text" maxlength="11" jsf:id="numeroDeContrato" jsf:value="#{contratosModulo1Controller.selected.numeroDeContrato}" 
+                           pattern="[0-9]*"    jsf:title="#{bundle.CreateContratosTitle_numeroDeContrato}" required="true" jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_numeroDeContrato}" ></input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_fechaSuscripcion}" jsf:for="fechasuscripcion" />
+                    <input type="date" jsf:id="fechasuscripcion" jsf:value="#{contratosModulo1Controller.selected.fechasuscripcion}" 
+                            jsf:title="#{bundle.CreateContratosLabel_fechaSuscripcion}" required="true" jsf:requiredMessage="The Fechasuscripcion field is required.">
+                       <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_fechaInicioContrato}" for="fechaInicioContrato" />
+                    <input type="date" jsf:id="fechaInicioContrato" jsf:value="#{contratosModulo1Controller.selected.fechaInicioContrato}" jsf:title="#{bundle.EditContratosTitle_fechaInicioContrato}"
+                           required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_fechaInicioContrato}">
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </input>
+
+                    <label  jsf:value="#{bundle.CreateContratosLabel_fechaFinContrato}" for="fechaFinContrato" />
+                    <input type="date" jsf:id="fechaFinContrato" jsf:value="#{contratosModulo1Controller.selected.fechaFinContrato}" jsf:title="#{bundle.EditContratosTitle_fechaFinContrato}"
+                           required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_fechaFinContrato}"  >
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </input>
+
+                    <label  jsf:value="#{bundle.CreateContratosLabel_plazoDias}" for="plazoDias" />
+                    <input type="text"  pattern="[0-9]*" jsf:id="plazoDias" maxlength="11" jsf:value="#{contratosModulo1Controller.selected.plazoDias}" jsf:title="#{bundle.CreateContratosTitle_plazoDias}" ></input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_plazoMeses}" for="plazoMeses" />
+                    <input type="text" pattern="[0-9]*" maxlength="8" jsf:id="plazoMeses" jsf:value="#{contratosModulo1Controller.selected.plazoMeses}" jsf:title="#{bundle.CreateContratosTitle_plazoMeses}" ></input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_objetoContractual}" for="objetoContractual" />
+                    <textarea type="text" jsf:id="objetoContractual" maxlength="500" jsf:value="#{contratosModulo1Controller.selected.objetoContractual}" jsf:title="#{bundle.CreateContratosTitle_objetoContractual}" 
+                              required="true" jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_objetoContractual}"></textarea>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_obligaciones}" for="obligaciones" />
+                    <textarea type="text" jsf:id="obligaciones" maxlength="4000" jsf:value="#{contratosModulo1Controller.selected.obligaciones}" jsf:title="#{bundle.CreateContratosTitle_obligaciones}" ></textarea>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_valorContrato}"  for="valorContrato"/> 
+                    <input type="text" pattern="[0-9]*" maxlength="10" jsf:id="valorContrato"  jsf:value="#{contratosModulo1Controller.selected.valorContrato}" jsf:title="#{bundle.CreateContratosTitle_valorContrato}"></input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_primerPago}" for="primerPago" />
+                    <input type="text" pattern="[0-9]*" maxlength="9" jsf:id="primerPago" jsf:value="#{contratosModulo1Controller.selected.primerPago}" jsf:title="#{bundle.CreateContratosTitle_primerPago}" ></input>
+
+                    <label  jsf:value="#{bundle.CreateContratosLabel_ultimoPago}" for="ultimoPago" />
+                    <input type="text" pattern="[0-9]*" maxlength="10" jsf:id="ultimoPago" jsf:value="#{contratosModulo1Controller.selected.ultimoPago}" jsf:title="#{bundle.CreateContratosTitle_ultimoPago}" ></input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_numeroDeMensualidades}" for="numeroDeMensualidades" />
+                    <input type="text" pattern="[0-9]*" maxlength="8" jsf:id="numeroDeMensualidades" jsf:value="#{contratosModulo1Controller.selected.numeroDeMensualidades}" 
+                           jsf:title="#{bundle.CreateContratosTitle_numeroDeMensualidades}" ></input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_valorMensual}" for="valorMensual" />
+                    <input type="text" pattern="[0-9]*" maxlength="9" jsf:id="valorMensual" jsf:value="#{contratosModulo1Controller.selected.valorMensual}" 
+                           jsf:title="#{bundle.CreateContratosTitle_valorMensual}" />
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_fechaAnexo}" for="fechaAnexo" />
+                    <input type="date" jsf:id="fechaAnexo" jsf:value="#{contratosModulo1Controller.selected.fechaAnexo}" jsf:title="#{bundle.EditContratosTitle_fechaAnexo}" >
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_fechaDeAutorizacion}" for="fechaDeAutorizacion" />
+                    <input type="date" jsf:id="fechaDeAutorizacion" jsf:value="#{contratosModulo1Controller.selected.fechaDeAutorizacion}" jsf:title="#{bundle.EditContratosTitle_fechaDeAutorizacion}" >
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_fechaDeEstudioPrevio}" for="fechaDeEstudioPrevio" />
+                    <input type="date" jsf:id="fechaDeEstudioPrevio" jsf:value="#{contratosModulo1Controller.selected.fechaDeEstudioPrevio}" jsf:title="#{bundle.EditContratosTitle_fechaDeEstudioPrevio}" >
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_fechaDeIdoneidad}" for="fechaDeIdoneidad" />
+                    <input type="date" jsf:id="fechaDeIdoneidad" jsf:value="#{contratosModulo1Controller.selected.fechaDeIdoneidad}" jsf:title="#{bundle.EditContratosTitle_fechaDeIdoneidad}"  >
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_adicionPresupuestal}" for="adicionPresupuestal" />
+                    <input type="text" pattern="[0-9]*" maxlength="9"  jsf:id="adicionPresupuestal" jsf:value="#{contratosModulo1Controller.selected.adicionPresupuestal}" jsf:title="#{bundle.CreateContratosTitle_adicionPresupuestal}" ></input>
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_adicionPlazoNuevaFecha}" for="adicionPlazoNuevaFecha" />
+                    <input type="date" jsf:id="adicionPlazoNuevaFecha" jsf:value="#{contratosModulo1Controller.selected.adicionPlazoNuevaFecha}" jsf:title="#{bundle.EditContratosTitle_adicionPlazoNuevaFecha}" >
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </input>
+                   
+                    <label jsf:value="#{bundle.CreateContratosLabel_observaciones}" for="observaciones" />
+                    <textarea type="text" jsf:id="observaciones" maxlength="5000" jsf:value="#{contratosModulo1Controller.selected.observaciones}" jsf:title="#{bundle.CreateContratosTitle_observaciones}"></textarea>    
+
+                    <label jsf:value="#{bundle.CreateContratosLabel_justificacion}"  for="justificacion" />
+                    <textarea type="text" jsf:id="justificacion" maxlength="500" jsf:value="#{contratosModulo1Controller.selected.justificacion}" jsf:title="#{bundle.CreateContratosTitle_justificacion}" ></textarea>
+
+                </h:panelGrid>
+
+                <h:commandButton p:class="Button-guardar" value ="#{bundle.Save}"
+                                 action="#{contratosModulo1Controller.create}"/>
+                <h:button p:class="Button-cancelar" value="#{bundle.Cancel}" outcome="/modulo1/ContratacionPrestacionDeServicios/Contratos/ListContrato"/>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

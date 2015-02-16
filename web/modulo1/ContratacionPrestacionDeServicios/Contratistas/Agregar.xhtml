@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Crear contratistal</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo1/menu_modulo1.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h:panelGrid columns="2">
+
+                        <h:outputLabel value="NumeroDoc:" for="numeroDoc" />
+                        <h:inputText id="numeroDoc" value="#{usuariosController.selected.numeroDoc}" title="NumeroDoc" required="true" requiredMessage="The NumeroDoc field is required."/>
+                        <h:outputLabel value="FechaExpedicionDoc:" for="fechaExpedicionDoc" />
+                        <h:inputText id="fechaExpedicionDoc" value="#{usuariosController.selected.fechaExpedicionDoc}" title="FechaExpedicionDoc" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="RazonSocial:" for="razonSocial" />
+                        <h:inputText id="razonSocial" value="#{usuariosController.selected.razonSocial}" title="RazonSocial" required="true" requiredMessage="The RazonSocial field is required."/>
+                        <h:outputLabel value="SegundoNombre:" for="segundoNombre" />
+                        <h:inputText id="segundoNombre" value="#{usuariosController.selected.segundoNombre}" title="SegundoNombre" />
+                        <h:outputLabel value="PrimerApellido:" for="primerApellido" />
+                        <h:inputText id="primerApellido" value="#{usuariosController.selected.primerApellido}" title="PrimerApellido" required="true" requiredMessage="The PrimerApellido field is required."/>
+                        <h:outputLabel value="SegundoApellido:" for="segundoApellido" />
+                        <h:inputText id="segundoApellido" value="#{usuariosController.selected.segundoApellido}" title="SegundoApellido" />
+                        <h:outputLabel value="NombreRepreLegal:" for="nombreRepreLegal" />
+                        <h:inputText id="nombreRepreLegal" value="#{usuariosController.selected.nombreRepreLegal}" title="NombreRepreLegal" />
+                        <h:outputLabel value="FechaNac:" for="fechaNac" />
+                        <h:inputText id="fechaNac" value="#{usuariosController.selected.fechaNac}" title="FechaNac" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="Email:" for="email" />
+                        <h:inputText id="email" value="#{usuariosController.selected.email}" title="Email" required="true" requiredMessage="The Email field is required."/>
+                        <h:outputLabel value="TelefonoPrincipalUsu:" for="telefonoPrincipalUsu" />
+                        <h:inputText id="telefonoPrincipalUsu" value="#{usuariosController.selected.telefonoPrincipalUsu}" title="TelefonoPrincipalUsu" required="true" requiredMessage="The TelefonoPrincipalUsu field is required."/>
+                        <h:outputLabel value="TelefonoAlternoUsu:" for="telefonoAlternoUsu" />
+                        <h:inputText id="telefonoAlternoUsu" value="#{usuariosController.selected.telefonoAlternoUsu}" title="TelefonoAlternoUsu" />
+                        <h:outputLabel value="DireccionUsu:" for="direccionUsu" />
+                        <h:inputText id="direccionUsu" value="#{usuariosController.selected.direccionUsu}" title="DireccionUsu" required="true" requiredMessage="The DireccionUsu field is required."/>
+                        <h:outputLabel value="Password:" for="password" />
+                        <h:inputText id="password" value="#{usuariosController.selected.password}" title="Password" required="true" requiredMessage="The Password field is required."/>
+                        <h:outputLabel value="GpRh:" for="gpRh" />
+                        <h:inputText id="gpRh" value="#{usuariosController.selected.gpRh}" title="GpRh" />
+                        <h:outputLabel value="Calificacion:" for="calificacion" />
+                        <h:inputText id="calificacion" value="#{usuariosController.selected.calificacion}" title="Calificacion" />
+                        <h:outputLabel value="IdTipoDoc:" for="idTipoDoc" />
+                        <h:selectOneMenu id="idTipoDoc" value="#{usuariosController.selected.idTipoDoc}" title="IdTipoDoc" required="true" requiredMessage="The IdTipoDoc field is required.">
+                            <f:selectItems value="#{tipoDocumentosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdEstratoSocial:" for="idEstratoSocial" />
+                        <h:selectOneMenu id="idEstratoSocial" value="#{usuariosController.selected.idEstratoSocial}" title="IdEstratoSocial" >
+                            <f:selectItems value="#{estratoSocialController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdEstadoCivil:" for="idEstadoCivil" />
+                        <h:selectOneMenu id="idEstadoCivil" value="#{usuariosController.selected.idEstadoCivil}" title="IdEstadoCivil" >
+                            <f:selectItems value="#{estadoCivilController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdSexo:" for="idSexo" />
+                        <h:selectOneMenu id="idSexo" value="#{usuariosController.selected.idSexo}" title="IdSexo" >
+                            <f:selectItems value="#{sexoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdCcf:" for="idCcf" />
+                        <h:selectOneMenu id="idCcf" value="#{usuariosController.selected.idCcf}" title="IdCcf" >
+                            <f:selectItems value="#{ccfController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdFondoPensiones:" for="idFondoPensiones" />
+                        <h:selectOneMenu id="idFondoPensiones" value="#{usuariosController.selected.idFondoPensiones}" title="IdFondoPensiones" >
+                            <f:selectItems value="#{fondoDePensionesController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdEps:" for="idEps" />
+                        <h:selectOneMenu id="idEps" value="#{usuariosController.selected.idEps}" title="IdEps" >
+                            <f:selectItems value="#{epsController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdArl:" for="idArl" />
+                        <h:selectOneMenu id="idArl" value="#{usuariosController.selected.idArl}" title="IdArl" >
+                            <f:selectItems value="#{arlController.itemsAvailableSelectOne}"/>
+
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Ciudad:" for="ciudad" />
+                        <h:selectOneMenu id="ciudad" value="#{usuariosController.selected.ciudad}" title="Ciudad" >
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Ciudad1:" for="ciudad1" />
+                        <h:selectOneMenu id="ciudad1" value="#{usuariosController.selected.ciudad1}" title="Ciudad1" required="true" requiredMessage="The Ciudad1 field is required.">
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdCentroFormacion:" for="idCentroFormacion" />
+                        <h:selectOneMenu id="idCentroFormacion" value="#{usuariosController.selected.idCentroFormacion}" title="IdCentroFormacion" >
+                            <f:selectItems value="#{centroFormacionController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton p:class="Button-guardar" value ="#{bundle.Save}"
+                                     action="#{usuariosController.create}"/>
+                    <h:button p:class="Button-cancelar" value="#{bundle.Cancel}" outcome="/modulo1/ContratacionPrestacionDeServicios/Contratistas/ListContratistas"/>
+
+                </h:form>
+            </f:view>
+
+
+        </ui:define>
+    </ui:composition>
+</html>
+

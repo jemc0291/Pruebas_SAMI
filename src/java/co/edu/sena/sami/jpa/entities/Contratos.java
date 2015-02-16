@@ -456,7 +456,7 @@ public class Contratos implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Contratos[ idContrato=" + idContrato + " ]";
+        return String.valueOf(numeroDeContrato);
     }
     
 }
