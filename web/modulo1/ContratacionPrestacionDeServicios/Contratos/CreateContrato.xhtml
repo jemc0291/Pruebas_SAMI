@@ -10,20 +10,20 @@
         <ui:define name="title">Crear Contrato</ui:define>
         <ui:define name="menu"><ui:include src="/modulo1/menu_modulo1.xhtml"></ui:include></ui:define>
         <ui:define name="body"> 
-          
-            
-            <h:form>
+
+
+            <h:form id="contratoForm" >
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
 
                     <label jsf:value="#{bundle.CreateContratosLabel_idTipoContrato}" for="idTipoContrato" />
-                    <h:selectOneMenu id="idTipoContrato" value="#{contratosModulo1Controller.selected.idTipoContrato}" title="IdTipoContrato" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_idTipoContrato}">
+                    <h:selectOneMenu id="idTipoContrato" value="#{contratosModulo1Controller.selected.idTipoContrato}" title="IdTipoContrato" required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_idTipoContrato}">
 
 
                         <f:selectItems value="#{tipoDeContratoController.itemsAvailableSelectOne}"
                                        var="idTipoContratoItem"
                                        itemValue="#{idTipoContratoItem}"/>
-                       
+
 
                     </h:selectOneMenu>
 
@@ -33,22 +33,46 @@
                            pattern="[0-9]*"    jsf:title="#{bundle.CreateContratosTitle_numeroDeContrato}" required="true" jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_numeroDeContrato}" ></input>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_fechaSuscripcion}" jsf:for="fechasuscripcion" />
-                    <input type="date" jsf:id="fechasuscripcion" jsf:value="#{contratosModulo1Controller.selected.fechasuscripcion}" 
-                            jsf:title="#{bundle.CreateContratosLabel_fechaSuscripcion}" required="true" jsf:requiredMessage="The Fechasuscripcion field is required.">
-                       <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
 
+                    <p:calendar  id="fechasuscripcion" 
+                                 pattern="yyyy-MM-dd"
+                                 value="#{contratosModulo1Controller.selected.fechasuscripcion}" 
+                                 title="#{bundle.CreateContratosTitle_fechaSuscripcion}"
+                                 showOn="button"
+
+                                 maxdate="#{contratosModulo1Controller.selected.fechaInicioContrato}"
+                                 required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}">
+                        <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="contratoForm"/>
+
+                        <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="contratoForm"/>
+
+                    </p:calendar>
                     <label jsf:value="#{bundle.CreateContratosLabel_fechaInicioContrato}" for="fechaInicioContrato" />
-                    <input type="date" jsf:id="fechaInicioContrato" jsf:value="#{contratosModulo1Controller.selected.fechaInicioContrato}" jsf:title="#{bundle.EditContratosTitle_fechaInicioContrato}"
-                           required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_fechaInicioContrato}">
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
+                    <p:calendar  id="fechaInicioContrato" 
+                                 pattern="yyyy-MM-dd"
+                                 value="#{contratosModulo1Controller.selected.fechaInicioContrato}" 
+                                 title="#{bundle.CreateContratosTitle_fechaInicioContrato}"
+                                 showOn="button"
+                                 mindate="#{contratosModulo1Controller.selected.fechasuscripcion}"
+                                 maxdate="#{contratosModulo1Controller.selected.fechaFinContrato}"
+                                 required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}">
+                        <p:ajax event="dateSelect" process="@this fechaFinContrato" update="contratoForm"/>
+                        <p:ajax  event="valueChange"  process="@this fechaFinContrato" update="contratoForm"/>
+
+
+                    </p:calendar>
 
                     <label  jsf:value="#{bundle.CreateContratosLabel_fechaFinContrato}" for="fechaFinContrato" />
-                    <input type="date" jsf:id="fechaFinContrato" jsf:value="#{contratosModulo1Controller.selected.fechaFinContrato}" jsf:title="#{bundle.EditContratosTitle_fechaFinContrato}"
-                           required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_fechaFinContrato}"  >
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
+                    <p:calendar  id="fechaFinContrato" value="#{contratosModulo1Controller.selected.fechaFinContrato}" 
+                                 title="#{bundle.CreateContratosTitle_fechaFinContrato}"
+                                 pattern="yyyy-MM-dd"
+                                 showOn="button"
+                                 mindate="#{contratosModulo1Controller.selected.fechaInicioContrato}"
+                                 required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}"  >
+                        <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="contratoForm"/>
+
+                        <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="contratoForm"/>
+                    </p:calendar>
 
                     <label  jsf:value="#{bundle.CreateContratosLabel_plazoDias}" for="plazoDias" />
                     <input type="text"  pattern="[0-9]*" jsf:id="plazoDias" maxlength="11" jsf:value="#{contratosModulo1Controller.selected.plazoDias}" jsf:title="#{bundle.CreateContratosTitle_plazoDias}" ></input>
@@ -81,33 +105,62 @@
                            jsf:title="#{bundle.CreateContratosTitle_valorMensual}" />
 
                     <label jsf:value="#{bundle.CreateContratosLabel_fechaAnexo}" for="fechaAnexo" />
-                    <input type="date" jsf:id="fechaAnexo" jsf:value="#{contratosModulo1Controller.selected.fechaAnexo}" jsf:title="#{bundle.EditContratosTitle_fechaAnexo}" >
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
+                    <p:calendar  id="fechaAnexo" 
+                                 pattern="yyyy-MM-dd"
+                                 value="#{contratosModulo1Controller.selected.fechaAnexo}" 
+                                 title="#{bundle.CreateContratosTitle_fechaAnexo}"
+                                 showOn="button"
+
+                                 required="true" >                      
+
+                    </p:calendar>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_fechaDeAutorizacion}" for="fechaDeAutorizacion" />
-                    <input type="date" jsf:id="fechaDeAutorizacion" jsf:value="#{contratosModulo1Controller.selected.fechaDeAutorizacion}" jsf:title="#{bundle.EditContratosTitle_fechaDeAutorizacion}" >
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
+                    <p:calendar  id="fechaDeAutorizacion" 
+                                 pattern="yyyy-MM-dd"
+                                 value="#{contratosModulo1Controller.selected.fechaDeAutorizacion}" 
+                                 title="#{bundle.CreateContratosTitle_fechaDeAutorizacion}"
+                                 showOn="button"
+
+                                 required="true"    >                   
+
+                    </p:calendar>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_fechaDeEstudioPrevio}" for="fechaDeEstudioPrevio" />
-                    <input type="date" jsf:id="fechaDeEstudioPrevio" jsf:value="#{contratosModulo1Controller.selected.fechaDeEstudioPrevio}" jsf:title="#{bundle.EditContratosTitle_fechaDeEstudioPrevio}" >
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
+                    <p:calendar  id="fechaDeEstudioPrevio" 
+                                 pattern="yyyy-MM-dd"
+                                 value="#{contratosModulo1Controller.selected.fechaDeEstudioPrevio}" 
+                                 title="#{bundle.CreateContratosTitle_fechaDeEstudioPrevio}"
+                                 showOn="button"
+
+                                 required="true" >                     
+
+                    </p:calendar>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_fechaDeIdoneidad}" for="fechaDeIdoneidad" />
-                    <input type="date" jsf:id="fechaDeIdoneidad" jsf:value="#{contratosModulo1Controller.selected.fechaDeIdoneidad}" jsf:title="#{bundle.EditContratosTitle_fechaDeIdoneidad}"  >
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
+                    <p:calendar  id="fechaDeIdoneidad" 
+                                 pattern="yyyy-MM-dd"
+                                 value="#{contratosModulo1Controller.selected.fechaDeIdoneidad}" 
+                                 title="#{bundle.CreateContratosTitle_fechaDeIdoneidad}"
+                                 showOn="button"
+
+                                 required="true"    >                  
+
+                    </p:calendar>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_adicionPresupuestal}" for="adicionPresupuestal" />
                     <input type="text" pattern="[0-9]*" maxlength="9"  jsf:id="adicionPresupuestal" jsf:value="#{contratosModulo1Controller.selected.adicionPresupuestal}" jsf:title="#{bundle.CreateContratosTitle_adicionPresupuestal}" ></input>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_adicionPlazoNuevaFecha}" for="adicionPlazoNuevaFecha" />
-                    <input type="date" jsf:id="adicionPlazoNuevaFecha" jsf:value="#{contratosModulo1Controller.selected.adicionPlazoNuevaFecha}" jsf:title="#{bundle.EditContratosTitle_adicionPlazoNuevaFecha}" >
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
-                   
+                    <p:calendar  id="adicionPlazoNuevaFecha" 
+                                 pattern="yyyy-MM-dd"
+                                 value="#{contratosModulo1Controller.selected.adicionPlazoNuevaFecha}" 
+                                 title="#{bundle.CreateContratosTitle_adicionPlazoNuevaFecha}"
+                                 showOn="button"
+
+                                 required="true"    >                   
+
+                    </p:calendar>
                     <label jsf:value="#{bundle.CreateContratosLabel_observaciones}" for="observaciones" />
                     <textarea type="text" jsf:id="observaciones" maxlength="5000" jsf:value="#{contratosModulo1Controller.selected.observaciones}" jsf:title="#{bundle.CreateContratosTitle_observaciones}"></textarea>    
 
