@@ -49,10 +49,10 @@ public class FacturasController implements Serializable {
         return ejbFacade;
     }
 
-    public Facturas prepareCreate() {
+    public String prepareCreate() {
         selected = new Facturas();
         initializeEmbeddableKey();
-        return selected;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/Facturas/CreateFactura.xhtml";
     }
 
     public void create() {
