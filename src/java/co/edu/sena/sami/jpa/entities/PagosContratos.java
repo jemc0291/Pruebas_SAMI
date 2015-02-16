@@ -7,6 +7,8 @@
 package co.edu.sena.sami.jpa.entities;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -151,5 +153,25 @@ public class PagosContratos implements Serializable {
     public String toString() {
         return "co.edu.sena.sami.jpa.entities.PagosContratos[ idPago=" + idPago + " ]";
     }
-    
+    public Long getRestaFechas(){
+        long resultado;
+        
+        DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        String fechaInicioString = df.format(fechaFactura);
+        try {
+            fechaFactura = df.parse(fechaInicioString);
+        } catch (ParseException ex) {
+        }
+        String fechaFinalString = df.format(fechaDePago);
+        try {
+            fechaDePago = df.parse(fechaFinalString);
+        } catch (ParseException ex) {
+        }
+        long fechaInicialMs = fechaFactura.getTime();
+        long fechaFinalMs = fechaDePago.getTime();
+        long diferencia = fechaFinalMs - fechaInicialMs;
+        double dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        resultado=((int)dias);
+        return resultado;
+    }
 }
