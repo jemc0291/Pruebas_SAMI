@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+        <ul class="MainMenu-list">
+
+
+            <li class="MainMenu-item">
+                <a jsf:outcome="/modulo1/index_modulo1.xhtml">Inicio</a>
+            </li>
+            <li class="MainMenu-item">
+                <a>Administrar información</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Aseguradora/List.xhtml">Aseguradora</a> </li>
+                    <li class="AlternMenu-link"> <a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Banco/List.xhtml">Bancos</a> </li>                                        
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Contratistas/ListContratistas.xhtml">Contratistas</a></li>
+                    <li class="AlternMenu-link"><a>Contratos</a>
+                        <ul>
+                            <li><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Contratos/ListContrato.xhtml">Contrato</a></li>
+                            <li><a>Asignar contrato</a></li>
+                        </ul>
+                    </li>
+                    <li class="AlternMenu-link"><a>Polizas</a>
+                        <ul>
+                            <li><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/polizas/List.xhtml">Poliza</a></li>
+                            <li><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/AsignarPoliza/List.xhtml">Asignar poliza</a></li>                           
+                        </ul>            
+                    </li>
+                </ul>
+            </li>
+            <li class="MainMenu-item">
+                <a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/ImportarDocumentos/importarDocumentos.xhtml">Importar documentos</a>
+            </li>
+            <li class="MainMenu-item">
+                <a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Editor/Editor.xhtml">Editor de texto</a>
+            </li>
+        </ul>
+    </ui:composition>
+</html>

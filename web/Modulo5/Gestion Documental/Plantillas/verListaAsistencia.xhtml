@@ -14,9 +14,10 @@
             <section>
                 <h4>Lista de asistencia</h4>
                 <h:form>
-                    <h:commandButton value="Descargar en Word" action="/resources/documentos/Formato_Lista_de_Asistencia.xlsx"></h:commandButton>
+                    <h:commandButton value="Descargar en Excel" action="/resources/documentos/Formato_Lista_de_Asistencia.xlsx"></h:commandButton>
                 </h:form>
-                <embed class="Section-Embed" src="../../../../resources/documentos/Formato_Lista_de_Asistencia.pdf#toolbar=0" width="500" height="375"></embed>
+                <p:media value="/resources/documentos/Formato_Lista_de_Asistencia.pdf" width="100%" height="400"/>
+                
             </section>
             <h:form enctype="multipart/form-data">
                 <p:growl id="messages" showDetail="true" />
