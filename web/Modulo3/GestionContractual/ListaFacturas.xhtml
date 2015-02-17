@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Lista Contratos</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="#{bundle.ListPagosContratosTitle}"/></h1>
+                    <p:dataTable value="#{pagosContratosController.items}" var="item"
+                                 id="facturasTable" 
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15" >
+                        <f:facet name="header">
+                        Lista de Facturas
+                    </f:facet>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPagosContratosTitle_numFactura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numFactura}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPagosContratosTitle_fechaFactura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaFactura}">
+                                <f:convertDateTime pattern="dd-MMM-yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPagosContratosTitle_fechaDePago} "/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaDePago}">
+                                <f:convertDateTime pattern="dd-MMM-yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Dias Transcurridos" />
+                            </f:facet>
+                            <h:outputText value="#{item.restaFechas}" />
+                        </p:column>
+                        <p:column filterBy="#{item.idContrato.numeroDeContrato}" filterMatchMode="contains" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPagosContratosTitle_idContrato}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idContrato.numeroDeContrato}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPagosContratosTitle_valFactura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valFactura}">
+                                <f:convertNumber type="number" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="OPCIONES"/>
+                            </f:facet>
+                            
+                            <p:commandButton icon="ui-icon-search" title="Ver Detalles de Factura" action="#{pagosContratosController.prepareView()}">
+                                <f:setPropertyActionListener value="#{item}" target="#{pagosContratosController.selected}"/>
+                            </p:commandButton>
+                            
+                            <p:commandButton icon="ui-icon-pencil"  title="Editar Factura" action="#{pagosContratosController.prepareEdit()}">
+                                <f:setPropertyActionListener value="#{item}" target="#{pagosContratosController.selected}"/>
+                            </p:commandButton>
+
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+
+
+    
+        </ui:define>
+    </ui:composition>
+</html>
+

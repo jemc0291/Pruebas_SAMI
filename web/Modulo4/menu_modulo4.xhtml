@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition>
+        <ul class="MainMenu-list">
+            <li class="MainMenu-item"><a jsf:outcome="/modulo4/index_modulo4.xhtml">Inicio</a></li>
+            <li class="MainMenu-item"><a jsf:outcome="/modulo4/Gestion Talento Humano/Base de datos/Listar.xhtml">Base de datos</a></li>
+            <li class="MainMenu-item"><a jsf:outcome="/modulo4/Gestion Talento Humano/Comisiones/comision.xhtml">Comisiones</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo4/Gestion Talento Humano/Comisiones/informeComision.xhtml">Realizar informe de comision</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo4/Gestion Talento Humano/Comisiones/solicitudComision.xhtml">Realizar solicitud plan comision</a></li>
+                </ul>
+            </li>
+            <li class="MainMenu-item"><a jsf:outcome="/modulo4/Gestion Talento Humano/Solicitud cdp/Listar.xhtml">Solicitud CDP/CRP</a></li>
+            <li class="MainMenu-item"><a jsf:outcome="/modulo4/Gestion Talento Humano/Ordenes de viaje/ordenDeViaje.xhtml">Ordenes de viaje</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo4/Gestion Talento Humano/Ordenes de viaje/ordenDeViajeContratista.xhtml">Nueva orden de viaje funcionario contratista</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo4/Gestion Talento Humano/Ordenes de viaje/ordenDeViajePlanta.xhtml">Nueva orden de viaje funcionario de planta</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo4/Gestion Talento Humano/Ordenes de viaje/legalizar.xhtml">Legalizar orden de viaje</a></li>
+                </ul>
+            </li>
+            <li class="MainMenu-item"><a jsf:outcome="/modulo4/Gestion Talento Humano/Relacion gastos de transporte/relacionGastos.xhtml">Relacion gastos de transporte</a></li>
+            <li class="MainMenu-item"><a>Otros</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo4/Gestion Talento Humano/Otros/historialComision.xhtml">Comisiones legalizadas</a></li>
+                </ul>
+            </li>
+        </ul>        
+    </ui:composition>
+</html>
