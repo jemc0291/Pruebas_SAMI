@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "bancos")
@@ -132,7 +132,7 @@ public class Bancos implements Serializable {
 
     @Override
     public String toString() {
-        return nombreDeBanco;
+        return "co.edu.sena.sami.jpa.entities.Bancos[ idBanco=" + idBanco + " ]";
     }
     
 }

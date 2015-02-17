@@ -109,7 +109,7 @@ public class CdpController implements Serializable {
         }
     }
 
-    public Cdp getCdp(java.lang.String id) {
+    public Cdp getCdp(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
@@ -134,13 +134,13 @@ public class CdpController implements Serializable {
             return controller.getCdp(getKey(value));
         }
 
-        java.lang.String getKey(String value) {
-            java.lang.String key;
-            key = value;
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.String value) {
+        String getStringKey(java.lang.Integer value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();

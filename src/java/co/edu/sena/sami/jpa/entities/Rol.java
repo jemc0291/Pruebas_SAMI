@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "rol")
@@ -132,7 +132,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return nombreRol;
+        return "co.edu.sena.sami.jpa.entities.Rol[ idRol=" + idRol + " ]";
     }
     
 }

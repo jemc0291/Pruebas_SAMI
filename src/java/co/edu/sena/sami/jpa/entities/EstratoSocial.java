@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "estrato_social")
@@ -108,7 +108,7 @@ public class EstratoSocial implements Serializable {
 
     @Override
     public String toString() {
-        return nombreEstrato;
+        return "co.edu.sena.sami.jpa.entities.EstratoSocial[ idEstratoSocial=" + idEstratoSocial + " ]";
     }
     
 }

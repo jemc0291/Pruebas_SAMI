@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "tipo_documentos")
@@ -108,7 +108,7 @@ public class TipoDocumentos implements Serializable {
 
     @Override
     public String toString() {
-        return nombreTipoDoc;
+        return "co.edu.sena.sami.jpa.entities.TipoDocumentos[ idTipoDoc=" + idTipoDoc + " ]";
     }
     
 }

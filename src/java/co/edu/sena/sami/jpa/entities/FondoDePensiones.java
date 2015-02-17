@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "fondo_de_pensiones")
@@ -108,7 +108,7 @@ public class FondoDePensiones implements Serializable {
 
     @Override
     public String toString() {
-        return nombreFondoPensiones;
+        return "co.edu.sena.sami.jpa.entities.FondoDePensiones[ idFondoPensiones=" + idFondoPensiones + " ]";
     }
     
 }

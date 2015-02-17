@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "arl")
@@ -108,7 +108,7 @@ public class Arl implements Serializable {
 
     @Override
     public String toString() {
-        return nombreArl;
+        return "co.edu.sena.sami.jpa.entities.Arl[ idArl=" + idArl + " ]";
     }
     
 }

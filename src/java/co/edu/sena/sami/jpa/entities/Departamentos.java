@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "departamentos")
@@ -113,7 +113,7 @@ public class Departamentos implements Serializable {
 
     @Override
     public String toString() {
-        return nombreDpto;
+        return "co.edu.sena.sami.jpa.entities.Departamentos[ idDpto=" + idDpto + " ]";
     }
     
 }

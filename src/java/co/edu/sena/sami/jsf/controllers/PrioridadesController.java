@@ -109,7 +109,7 @@ public class PrioridadesController implements Serializable {
         }
     }
 
-    public Prioridades getPrioridades(java.lang.Short id) {
+    public Prioridades getPrioridades(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
@@ -134,13 +134,13 @@ public class PrioridadesController implements Serializable {
             return controller.getPrioridades(getKey(value));
         }
 
-        java.lang.Short getKey(String value) {
-            java.lang.Short key;
-            key = Short.valueOf(value);
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.Short value) {
+        String getStringKey(java.lang.Integer value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
