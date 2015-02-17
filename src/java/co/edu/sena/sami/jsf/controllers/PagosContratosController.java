@@ -19,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.event.SelectEvent;
 
 @Named("pagosContratosController")
 @SessionScoped
@@ -183,6 +184,9 @@ public class PagosContratosController implements Serializable {
             }
         }
 
+    }
+    public void updateFecha(SelectEvent event){
+        selected.setFechaDePago(selected.getFechaFactura());
     }
 
 }

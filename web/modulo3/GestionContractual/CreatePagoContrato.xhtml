@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Crear Informes</ui:define>
         <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
@@ -24,12 +25,13 @@
                             <h:message id="numFacturaMessage" for="numFactura" class="ErrorDupli"/>
 
                             <label value="#{bundle.CreatePagosContratosLabel_fechaFactura}" jsf:for="fechaFactura" class="FormLabelSCCSS" />
-                            <input type="date" jsf:id="fechaFactura" jsf:value="#{pagosContratosController.selected.fechaFactura}"
-                                   title="#{bundle.CreatePagosContratosTitle_fechaFactura}" required="true" class="FormInputDateSCCSS"
-                                   jsf:requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_fechaFactura}" min="2014-11-01" max="2016-12-31">
-                                <f:convertDateTime pattern="yyyy-MM-dd" />
-                                <f:ajax execute="@this" render="fechaFacturaMessage"/>
-                            </input>
+                            <p:calendar showOn="button" id="fechaFactura" value="#{pagosContratosController.selected.fechaFactura}"
+                                   title="#{bundle.CreatePagosContratosTitle_fechaFactura}" required="true" 
+                                   requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_fechaFactura}"  mindate="2014-11-01" maxdate="2016-12-31"
+                                   pattern="yyyy-MM-dd">
+                                <p:ajax process="@this" event="valueChange" listener="#{pagosContratosController.updateFecha}" update="fechaFacturaMessage fechaDePago"/>
+                                <p:ajax process="@this" event="dateSelect" listener="#{pagosContratosController.updateFecha}" update="fechaFacturaMessage fechaDePago"/>
+                            </p:calendar>
                             <h:message id="fechaFacturaMessage" for="fechaFactura" class="Error"/>
 
                             <label value="#{bundle.CreatePagosContratosLabel_valFactura}" jsf:for="valFactura" class="FormLabelSCCSS" />
@@ -41,12 +43,12 @@
                                    <h:message id="valFacturaMessage" for="valFactura" class="Error"/>
 
                             <label value="#{bundle.CreatePagosContratosLabel_fechaDePago}" jsf:for="fechaDePago" class="FormLabelSCCSS"/>
-                            <input  type="date" jsf:id="fechaDePago" jsf:value="#{pagosContratosController.selected.fechaDePago}"
-                                    title="#{bundle.CreatePagosContratosTitle_fechaDePago}" required="true" class="FormInputDateSCCSS"
-                                    jsf:requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_fechaDePago}" min="2014-11-01" max="2016-12-31">
-                                <f:convertDateTime pattern="yyyy-MM-dd" />
-                                <f:ajax execute="@this" render="fechaDePagoMessage"/>
-                            </input>
+                            <p:calendar  showOn="button" id="fechaDePago" value="#{pagosContratosController.selected.fechaDePago}"
+                                    title="#{bundle.CreatePagosContratosTitle_fechaDePago}" 
+                                    requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_fechaDePago}" mindate="#{pagosContratosController.selected.fechaFactura}"
+                                    pattern="yyyy-MM-dd">
+                                <p:ajax process="@this" update="fechaDePagoMessage fechaFacturaMessage"/>
+                            </p:calendar>
                             <h:message id="fechaDePagoMessage" for="fechaDePago" class="Error"/>
 
                             <label value="#{bundle.CreatePagosContratosLabel_idContrato}" jsf:for="idContrato" class="FormLabelSCCSS" />
