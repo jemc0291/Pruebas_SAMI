@@ -108,7 +108,7 @@ public class Eps implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Eps[ idEps=" + idEps + " ]";
+        return nombreEps;
     }
     
 }

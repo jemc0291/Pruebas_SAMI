@@ -108,7 +108,7 @@ public class Sexo implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Sexo[ idSexo=" + idSexo + " ]";
+        return nombreSexo;
     }
     
 }

@@ -689,7 +689,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Usuarios[ idUsuario=" + idUsuario + " ]";
+        return razonSocial;
     }
     
 }

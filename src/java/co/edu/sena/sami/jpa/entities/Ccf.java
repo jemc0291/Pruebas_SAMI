@@ -108,7 +108,7 @@ public class Ccf implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Ccf[ idCcf=" + idCcf + " ]";
+        return nombreCcf;
     }
     
 }

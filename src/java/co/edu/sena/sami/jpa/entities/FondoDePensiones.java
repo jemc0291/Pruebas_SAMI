@@ -108,7 +108,7 @@ public class FondoDePensiones implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.FondoDePensiones[ idFondoPensiones=" + idFondoPensiones + " ]";
+        return nombreFondoPensiones;
     }
     
 }

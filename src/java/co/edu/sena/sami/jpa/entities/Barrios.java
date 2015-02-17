@@ -99,7 +99,7 @@ public class Barrios implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Barrios[ idBarrio=" + idBarrio + " ]";
+        return nombreBarrio;
     }
     
 }

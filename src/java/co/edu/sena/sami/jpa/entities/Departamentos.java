@@ -113,7 +113,7 @@ public class Departamentos implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Departamentos[ idDpto=" + idDpto + " ]";
+        return nombreDpto;
     }
     
 }

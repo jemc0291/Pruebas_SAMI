@@ -132,7 +132,7 @@ public class Bancos implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Bancos[ idBanco=" + idBanco + " ]";
+        return nombreDeBanco;
     }
     
 }

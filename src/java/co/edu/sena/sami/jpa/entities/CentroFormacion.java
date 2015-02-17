@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "CentroFormacion.findAll", query = "SELECT c FROM CentroFormacion c"),
     @NamedQuery(name = "CentroFormacion.findByIdCentroFormacion", query = "SELECT c FROM CentroFormacion c WHERE c.idCentroFormacion = :idCentroFormacion"),
-    @NamedQuery(name = "CentroFormacion.findByNombreCentroFormacion", query = "SELECT c FROM CentroFormacion c WHERE c.nombreCentroFormacion = :nombreCentroFormacion"),
+    @NamedQuery(name = "CentroFormacion.findByNombreCentroFormacion", query = "SELECT c FROM CentroFormacion c WHERE c.nombreCentroFormacion LIKE :nombreCentroFormacion"),
     @NamedQuery(name = "CentroFormacion.findByDireccionCentroFormacion", query = "SELECT c FROM CentroFormacion c WHERE c.direccionCentroFormacion = :direccionCentroFormacion"),
     @NamedQuery(name = "CentroFormacion.findByTelefonoCentroFormacion", query = "SELECT c FROM CentroFormacion c WHERE c.telefonoCentroFormacion = :telefonoCentroFormacion")})
 public class CentroFormacion implements Serializable {
@@ -158,7 +158,7 @@ public class CentroFormacion implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.CentroFormacion[ idCentroFormacion=" + idCentroFormacion + " ]";
+        return nombreCentroFormacion;
     }
     
 }
