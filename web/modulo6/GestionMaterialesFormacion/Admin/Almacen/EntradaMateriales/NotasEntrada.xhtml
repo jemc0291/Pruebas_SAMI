@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Notas de Entrada</ui:define>
+        <ui:define name="menu"><ui:include src="/Modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <h:form>
+
+                <P>
+                    <h:button value="Agregar Nota" outcome="/Modulo6/Gestion de Materiales de Formacion/Admin/Almacen/Entrada de Materiales/CreateNota.xhtml"/>
+                    <h:commandButton action="#{notaEntradaController.update()}" value="Modificar Nota"/>
+                </P>
+
+                <p:outputPanel id="NotaEntradaPanel" >
+                    <p:dataTable value="#{notaEntradaController.items}" var="item"
+                                 rows="10" id="notaEntradaTable" 
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="20,40,60" >
+
+                        <p:column filterBy="#{item.idNota}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="IdNota"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNota}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        
+                        <p:column>
+                            <p:commandButton icon="ui-icon-trash" action="#{actaVerificacionController.destroy()}"
+                                             process="@this" update="NotaEntradaTable">
+                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta nota de entrada?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{item}" target="#{actaVerificacionController.selected}"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                    </p:outputPanel>
+                
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

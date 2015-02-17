@@ -48,6 +48,20 @@ public class PolizasController implements Serializable {
     private PolizasFacade getFacade() {
         return ejbFacade;
     }
+    
+     public String polizasModuloUnoPrepareCreate() {
+        selected = new Polizas();
+        initializeEmbeddableKey();
+        return "/modulo1/ContratacionPrestacionDeServicios/polizas/Create";
+    }
+   
+     public String prepareEditModuloUno() {
+        return "/modulo1/ContratacionPrestacionDeServicios/polizas/Edit";
+    }
+
+    public String prepareViewModuloUno() {
+        return "/modulo1/ContratacionPrestacionDeServicios/polizas/View";
+    }
 
     public Polizas prepareCreate() {
         selected = new Polizas();

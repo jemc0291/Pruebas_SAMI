@@ -100,7 +100,7 @@ public class TipoDeContrato implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.TipoDeContrato[ idTipoContrato=" + idTipoContrato + " ]";
+        return nombreTipoContrato;
     }
     
 }
