@@ -62,7 +62,26 @@ public class BancosController implements Serializable {
      public String prepareListBanco() {
         return "/Configuracion/Bancos/ListarBancos";
     }
+      public String ModuloUnoPrepareCreate() {
+        selected = new Bancos();
+        initializeEmbeddableKey();
+        return "/modulo1/ContratacionPrestacionDeServicios/Banco/Create";
+    }
+   
+     public String prepareEditModuloUno() {
+        return "/modulo1/ContratacionPrestacionDeServicios/Banco/Edit";
+    }
 
+    public String prepareViewModuloUno() {
+        return "/modulo1/ContratacionPrestacionDeServicios/Banco/View";
+    }
+     public String createModuloUno() {
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("BancosCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        return "/modulo1/ContratacionPrestacionDeServicios/Banco/List";
+    }
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("BancosCreated"));
         if (!JsfUtil.isValidationFailed()) {

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Gestion talento humano</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <section class="section-form">
+                <form jsf:id="cdpCreateForm">
+                    <p:panelGrid columns="3" layout="grid">
+                        <label class="Form-na">Numero CDP</label>
+                        <input type="Text" jsf:id="numeroCdp" required="true"
+                               jsf:requiredMessage="Por favor ingresa el numero de CDP"
+                               jsf:validatorMessage="Ingresa solo numeros y letras"
+                               jsf:converterMessage="Use solo numeros y letras"
+                               jsf:value="#{cdpController.selected.numeroCdp}" >
+                            <f:ajax execute="@this" render="numeroCdpMessage"/>
+                        </input>
+                        <h:message id="numeroCdpMessage" for="numeroCdpInputText" styleClass="error"/>
+
+                        <label class="Form-na">Fecha de solicitud</label>
+                        <input type="date" jsf:id="fechaExpedicion" required="true" 
+                               jsf:requiredMessage="Por favor ingrese la fecha de solicitud"
+                               jsf:value="#{cdpController.selected.fechaExpedicion}">
+                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+                            <f:ajax execute="@this" render="fechaExpedicionMessage"/>
+                        </input>
+                        <h:message id="fechaExpedicionMessage" for="fechaExpedicionInputText" styleClass="error"/>
+
+
+                        <label class="Form-na">Fecha Recepcion</label>
+                        <input type="date" jsf:id="fechaRecepcion" 
+                               jsf:value="#{cdpController.selected.fechaRecepcion}" 
+                               required="true" 
+                               requiredMessage="Por favor ingrese la fecha de recepcion">
+                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+                            <f:ajax execute="@this" render="fechaRecepcionMessage"/>
+                        </input>
+                        <h:message id="fechaRecepcionMessage" for="fechaRecepcionInputText" styleClass="error"/>
+
+                        <label class="Form-na">ObjetivoDelGasto </label>
+                        <input type="text" jsf:id="objetivoDelGasto" 
+                               jsf:value="#{cdpController.selected.objetivoDelGasto}" 
+                               required="true" 
+                               jsf:requiredMessage="Por favor ingrese el objetivo del gasto">
+                            <f:ajax execute="@this" render="objetivoDelGastoMessage"/>
+                        </input>
+                        <h:message id="objetivoDelGastoMessage" for="objetivoDelGastoInputText" styleClass="error"/>
+
+                        <label class="Form-na"> Total </label>
+                        <input type="number" jsf:id="total" 
+                               jsf:value="#{cdpController.selected.total}" 
+                               required="false" >
+                            <f:ajax execute="@this" render="totalMessage"/>
+                        </input>
+                        <h:message id="totalMessage" for="totalInputText" styleClass="error"/>
+
+                        <label class="Form-na"> Subtotal</label>
+                        <input type="number" jsf:id="subtotal" required="false"
+                               jsf:value="#{cdpController.selected.subtotal}">
+                            <f:ajax execute="@this" render="subtotalMessage"/>
+                        </input>
+                        <h:message id="subtotalMessage" for="subtotalInputText" styleClass="error"/>
+
+                        <label class="Form-na">Recursos</label>
+                        <h:selectOneMenu id="idRecursos" required="true"
+                                         value="#{cdpController.selected.idRecursos}" 
+                                         requiredMessage="Por favor Ingrese el recurso">
+                            <f:selectItems itemLabel="Seleccione"/>
+                            <f:ajax execute="@this" render="idRecursosMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="idRecursosMessage" for="idRecursosInputText" styleClass="error"/>
+
+                        <label class="Form-na"> Tipo de solicitud </label>
+                        <h:selectOneMenu id="idTipoSolicitud" value="#{cdpController.selected.idTipoSolicitud}" title="IdTipoSolicitud" required="true" requiredMessage="The IdTipoSolicitud field is required.">
+                           
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </p:panelGrid>
+                </form>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>

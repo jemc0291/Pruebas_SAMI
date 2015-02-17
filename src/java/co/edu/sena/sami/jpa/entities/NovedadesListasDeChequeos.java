@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "novedades_listas_de_chequeos")
@@ -39,12 +39,12 @@ public class NovedadesListasDeChequeos implements Serializable {
     @NotNull
     @Column(name = "valor_item")
     private boolean valorItem;
-    @JoinColumn(name = "id_lista_de_chequeo", referencedColumnName = "id_lista_de_chekeo", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private ListasDeChequeos listasDeChequeos;
     @JoinColumn(name = "id_novedad", referencedColumnName = "id_novedad", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Novedades novedades;
+    @JoinColumn(name = "id_lista_de_chequeo", referencedColumnName = "id_lista_de_chekeo", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private ListasDeChequeos listasDeChequeos;
 
     public NovedadesListasDeChequeos() {
     }
@@ -78,20 +78,20 @@ public class NovedadesListasDeChequeos implements Serializable {
         this.valorItem = valorItem;
     }
 
-    public ListasDeChequeos getListasDeChequeos() {
-        return listasDeChequeos;
-    }
-
-    public void setListasDeChequeos(ListasDeChequeos listasDeChequeos) {
-        this.listasDeChequeos = listasDeChequeos;
-    }
-
     public Novedades getNovedades() {
         return novedades;
     }
 
     public void setNovedades(Novedades novedades) {
         this.novedades = novedades;
+    }
+
+    public ListasDeChequeos getListasDeChequeos() {
+        return listasDeChequeos;
+    }
+
+    public void setListasDeChequeos(ListasDeChequeos listasDeChequeos) {
+        this.listasDeChequeos = listasDeChequeos;
     }
 
     @Override

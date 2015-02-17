@@ -84,7 +84,7 @@
             </article>
         </footer>
         
-         <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
+           <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
             <h:outputText value="" />
             <h:form>
     <p:panel header="Tienes un problema?, te ayudamos">
@@ -97,11 +97,11 @@
             <h:outputText value="#{emailController.to}" />
  
             <h:outputLabel for="subject" value="Asunto:" style="font-weight:bold"/>                    
-            <p:inputText id="subject" value="#{emailController.subject}" label="subject">
+            <p:inputText id="subject" value="#{emailController.asunto}" label="subject">
                 <f:validateDoubleRange minimum="5" maximum="8" />
             </p:inputText>
             <p:message for="subject" />
-            <h:outputText value="#{emailController.subject}" />
+            <h:outputText value="#{emailController.asunto}" />
  
             <h:outputLabel for="desc" value="Description" style="font-weight:bold"/>
             <p:inputTextarea id="desc" value="#{emailController.body}" required="true" label="Description">

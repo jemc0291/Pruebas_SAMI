@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Embeddable
 public class CiudadPK implements Serializable {

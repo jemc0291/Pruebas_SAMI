@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "contratos")
@@ -456,7 +456,7 @@ public class Contratos implements Serializable {
 
     @Override
     public String toString() {
-        return String.valueOf(numeroDeContrato);
+        return "co.edu.sena.sami.jpa.entities.Contratos[ idContrato=" + idContrato + " ]";
     }
     
 }

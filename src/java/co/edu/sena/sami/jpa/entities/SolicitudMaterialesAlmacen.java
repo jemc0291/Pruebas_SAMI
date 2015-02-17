@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "solicitud_materiales_almacen")
@@ -62,12 +62,12 @@ public class SolicitudMaterialesAlmacen implements Serializable {
     private Boolean aprobado;
     @Column(name = "no_aprobado")
     private Boolean noAprobado;
-    @JoinColumn(name = "id_area", referencedColumnName = "id_area")
-    @ManyToOne(optional = false)
-    private Areas idArea;
     @JoinColumn(name = "id_ficha_caracterizacion", referencedColumnName = "id_ficha_caracterizacion")
     @ManyToOne(optional = false)
     private FichaCaracterizacion idFichaCaracterizacion;
+    @JoinColumn(name = "id_area", referencedColumnName = "id_area")
+    @ManyToOne(optional = false)
+    private Areas idArea;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitudMaterialesAlmacen")
     private List<UsuariosSolicitudMaterialesAlmacen> usuariosSolicitudMaterialesAlmacenList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitudMaterialesAlmacen")
@@ -125,20 +125,20 @@ public class SolicitudMaterialesAlmacen implements Serializable {
         this.noAprobado = noAprobado;
     }
 
-    public Areas getIdArea() {
-        return idArea;
-    }
-
-    public void setIdArea(Areas idArea) {
-        this.idArea = idArea;
-    }
-
     public FichaCaracterizacion getIdFichaCaracterizacion() {
         return idFichaCaracterizacion;
     }
 
     public void setIdFichaCaracterizacion(FichaCaracterizacion idFichaCaracterizacion) {
         this.idFichaCaracterizacion = idFichaCaracterizacion;
+    }
+
+    public Areas getIdArea() {
+        return idArea;
+    }
+
+    public void setIdArea(Areas idArea) {
+        this.idArea = idArea;
     }
 
     @XmlTransient

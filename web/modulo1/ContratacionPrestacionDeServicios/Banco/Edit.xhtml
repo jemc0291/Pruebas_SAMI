@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Guardar Banco</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo1/menu_modulo1.xhtml"></ui:include></ui:define>
+        <ui:define name="body"> 
+
+            <f:view>
+                <h:form>
+                 
+                    <h:panelGrid columns="2">
+                        <label jsf:value="#{bundle.CreateBancosLabel_nitBanco}" for="nitBanco" />
+                        <input id="nitBanco" type="text" maxlength="15"  pattern="[0-9]*"  jsf:value="#{bancosController.selected.nitBanco}"  
+                               jsf:title="#{bundle.CreateBancosTitle_nitBanco}" required="true" jsf:requiredMessage="#{bundle.CreateBancosRequiredMessage_nitBanco}"/>
+                        <label jsf:value="#{bundle.CreateBancosLabel_nombreDeBanco}" for="nombreDeBanco" />
+                        <input id="nombreDeBanco" type="text"  pattern="[a-zA-Z Ã¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš]*"  maxlength="70" jsf:value="#{bancosController.selected.nombreDeBanco}" jsf:title="#{bundle.CreateBancosTitle_nombreDeBanco}"
+                               required="true" jsf:requiredMessage="#{bundle.CreateBancosRequiredMessage_nombreDeBanco}"/>
+                        
+                    </h:panelGrid>
+                    
+                    <h:commandButton p:class="Button-guardar" value ="#{bundle.Save}"
+                                     action="#{bancosController.createModuloUno}"/>
+                <h:button p:class="Button-cancelar" value="#{bundle.Cancel}" outcome="/modulo1/ContratacionPrestacionDeServicios/Banco/List"/>
+
+                </h:form>
+            </f:view>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

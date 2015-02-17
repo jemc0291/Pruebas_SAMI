@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "pais")
@@ -100,7 +100,7 @@ public class Pais implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Pais[ idPais=" + idPais + " ]";
+        return nombrepais;
     }
     
 }
