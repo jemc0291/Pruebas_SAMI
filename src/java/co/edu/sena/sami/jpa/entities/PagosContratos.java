@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.entities;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -39,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PagosContratos.findByValFactura", query = "SELECT p FROM PagosContratos p WHERE p.valFactura = :valFactura"),
     @NamedQuery(name = "PagosContratos.findByFechaDePago", query = "SELECT p FROM PagosContratos p WHERE p.fechaDePago = :fechaDePago")})
 public class PagosContratos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -151,5 +153,30 @@ public class PagosContratos implements Serializable {
     public String toString() {
         return "co.edu.sena.sami.jpa.entities.PagosContratos[ idPago=" + idPago + " ]";
     }
-    
+
+    public Long getRestaFechas() {
+        long resultado;
+
+        if (fechaDePago != null) {
+            DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            String fechaInicioString = df.format(fechaFactura);
+            try {
+                fechaFactura = df.parse(fechaInicioString);
+            } catch (ParseException ex) {
+            }
+            String fechaFinalString = df.format(fechaDePago);
+            try {
+                fechaDePago = df.parse(fechaFinalString);
+            } catch (ParseException ex) {
+            }
+            long fechaInicialMs = fechaFactura.getTime();
+            long fechaFinalMs = fechaDePago.getTime();
+            long diferencia = fechaFinalMs - fechaInicialMs;
+            double dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            resultado = ((int) dias);
+            return resultado;
+        } else {
+            return -1L;
+        }
+    }
 }
