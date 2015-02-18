@@ -13,13 +13,16 @@
         <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <h:form>
-                <h1 jsf:value="#{bundle.ListSoportesDeDocumentosTitle}"/>
+                <h1><h:outputText value="#{bundle.ListSoportesDeDocumentosTitle}"/></h1>
                 <p:outputPanel id="SoportesTablePanel">
                     <p:dataTable value="#{soportesDeDocumentosController.items}" var="item"
                                  rows="10" id="SoportesTable" 
                                  paginator="true"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">
+                        Lista de Soportes
+                        </f:facet>
 
                         <!--p:column>
                             <p:graphicImage value="#{facesContext.getCurrentInstace().getExternalContext}/avatar/#{item.idSoporte}.png">

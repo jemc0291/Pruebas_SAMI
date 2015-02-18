@@ -88,11 +88,12 @@ public class SoportesDeDocumentosController implements Serializable {
         items = null;
     }
 
-    public void create() {
+    public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SoportesDeDocumentosCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        return "ListaSoportes";
     }
 
     public void update() {
