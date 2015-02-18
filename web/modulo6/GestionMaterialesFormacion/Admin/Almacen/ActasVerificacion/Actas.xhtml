@@ -11,7 +11,7 @@
         <ui:define name="body">
 
             <h:form>
-                <h:commandButton action="#{actaVerificacionController.prepareCreate}" value="Agregar Acta"/>
+                <p:commandButton process="@this" action="#{actaVerificacionController.prepareCreate}" value="Agregar Acta"/>
                 <!--<h:commandButton action="# {actaVerificacionController.updateActa()}" value="Modificar Acta"/>-->
                 <p:outputPanel id="ActaVerificacionPanel">
                     <p:dataTable value="#{actaVerificacionController.items}" var="item"
@@ -95,7 +95,7 @@
                             </p:commandButton>
 
 
-<!--                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ActaVerificacionViewForm" oncomplete="PF('ActaVerificacionViewDialog').show()" disabled="#{empty actaVerificacionController.selected}"/>-->
+<!--                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="# {bundle.View}" update=":ActaVerificacionViewForm" oncomplete="PF('ActaVerificacionViewDialog').show()" disabled="#{empty actaVerificacionController.selected}"/>-->
                             <p:commandButton icon="ui-icon-trash" action="#{actaVerificacionController.destroy()}"
                                              process="@this" update="ActaVerificacionTable">
                                 <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta acta de verificacion?" icon="ui-icon-alert" />
