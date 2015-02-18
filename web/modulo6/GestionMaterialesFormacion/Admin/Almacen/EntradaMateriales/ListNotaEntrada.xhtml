@@ -7,14 +7,14 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Notas de Entrada</ui:define>
-        <ui:define name="menu"><ui:include src="/Modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
             <h:form>
 
                 <P>
-                    <h:button value="Agregar Nota" outcome="/Modulo6/Gestion de Materiales de Formacion/Admin/Almacen/Entrada de Materiales/CreateNota.xhtml"/>
-                    <h:commandButton action="#{notaEntradaController.update()}" value="Modificar Nota"/>
+                    <h:commandButton value="Agregar Nota" action="#{notaEntradaController.prepareCreate}"/>
+                    <!--<h:commandButton action="#{notaEntradaController.update()}" value="Modificar Nota"/>-->
                 </P>
 
                 <p:outputPanel id="NotaEntradaPanel" >
@@ -43,7 +43,7 @@
                         
                         <p:column>
                             <p:commandButton icon="ui-icon-trash" action="#{actaVerificacionController.destroy()}"
-                                             process="@this" update="NotaEntradaTable">
+                                             process="@this" update="notaEntradaTable">
                                 <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta nota de entrada?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{item}" target="#{actaVerificacionController.selected}"/>
                             </p:commandButton>

@@ -14,15 +14,15 @@
         <ui:define name="body">
             <section class="Section-form">
                 <h:form id="actaCreateForm">
-                    <p:panelGrid columns="3" >
-                        <label class="Form-na">ID Acta de verificacion</label>
+                    <p:panelGrid columns="3" layout="grid">
+                        <!--<label class="Form-na">ID Acta de verificacion</label>
                         <input type="number" jsf:id="idActaVerificacion" required="true"
                                jsf:value="#{actaVerificacionController.selected.idActaVerificacion}"
                                jsf:validatorMessage="Por favor ingrese numeros">
                             <f:validateLongRange minimum="1" maximum="10000"/>
                             <f:ajax execute="@this" render="idActaMessage"/>
                         </input>
-                        <h:message id="idActaMessage" for="idActaVerificacion" styleClass="error"/>
+                        <h:message id="idActaMessage" for="idActaVerificacion" styleClass="error"/>-->
 
                         <label class="Form-na">Proveedores</label>    
                         <input type="text" jsf:id="proveedores" required="true" 
@@ -84,7 +84,7 @@
                                required="true" 
                                jsf:value="#{actaVerificacionController.selected.hora}" 
                                jsf:requiredMessage="Por favor ingrese la hora HH:mm.">
-                            <f:convertDateTime pattern="yyyy-MM-dd-HH:mm" />
+                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
                             <f:ajax execute="@this" render="horaMessage"/>
                         </input>
                         <h:message id="horaMessage" for="hora" styleClass="error"/>
@@ -172,6 +172,7 @@
                                      action="#{actaVerificacionController.create()}"/>
                     <h:button value="Cancelar" 
                               outcome="/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/Actas.xhtml"/>
+                    
                 </h:form>
             </section>
         </ui:define>
