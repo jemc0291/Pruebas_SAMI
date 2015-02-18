@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -71,15 +72,22 @@ public class InformesController implements Serializable {
         items = null;
     }
 
-    public void create() {
+    public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("InformesCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        return "ListInformes";
     }
 
-    public void update() {
+    public String update() {
+        try{
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("InformesUpdated"));
+        return "ListInformes";
+        }catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return null;
+        }
     }
 
     public void destroy() {
@@ -176,6 +184,10 @@ public class InformesController implements Serializable {
             }
         }
 
+    }
+    private void addErrorMessage(String title, String msg) {
+        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
+        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
     }
 
 }
