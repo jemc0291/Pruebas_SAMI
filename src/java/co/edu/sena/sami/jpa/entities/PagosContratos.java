@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "pagos_contratos")
@@ -153,7 +153,7 @@ public class PagosContratos implements Serializable {
     public String toString() {
         return "co.edu.sena.sami.jpa.entities.PagosContratos[ idPago=" + idPago + " ]";
     }
-    public Long getRestaFechas(){
+     public Long getRestaFechas(){
         long resultado;
         
         DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);

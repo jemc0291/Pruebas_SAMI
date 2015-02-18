@@ -6,14 +6,9 @@
 
 package co.edu.sena.sami.jpa.entities;
 
-import co.edu.sena.sami.jsf.controllers.util.DigestUtil;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -39,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "usuarios")
@@ -181,33 +176,24 @@ public class Usuarios implements Serializable {
     private List<AvanceUsuarios> avanceUsuariosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<SolicitudServicios> solicitudServiciosList;
-    @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
-    @ManyToOne
-    private Bancos idBanco;
     @JoinColumn(name = "id_tipo_doc", referencedColumnName = "id_tipo_doc")
     @ManyToOne(optional = false)
     private TipoDocumentos idTipoDoc;
+    @JoinColumn(name = "id_sexo", referencedColumnName = "id_sexo")
+    @ManyToOne
+    private Sexo idSexo;
+    @JoinColumn(name = "id_fondo_pensiones", referencedColumnName = "id_fondo_pensiones")
+    @ManyToOne
+    private FondoDePensiones idFondoPensiones;
     @JoinColumn(name = "id_estrato_social", referencedColumnName = "id_estrato_social")
     @ManyToOne
     private EstratoSocial idEstratoSocial;
     @JoinColumn(name = "id_estado_civil", referencedColumnName = "id_estado_civil")
     @ManyToOne
     private EstadoCivil idEstadoCivil;
-    @JoinColumn(name = "id_sexo", referencedColumnName = "id_sexo")
-    @ManyToOne
-    private Sexo idSexo;
-    @JoinColumn(name = "id_ccf", referencedColumnName = "id_ccf")
-    @ManyToOne
-    private Ccf idCcf;
-    @JoinColumn(name = "id_fondo_pensiones", referencedColumnName = "id_fondo_pensiones")
-    @ManyToOne
-    private FondoDePensiones idFondoPensiones;
     @JoinColumn(name = "id_eps", referencedColumnName = "id_eps")
     @ManyToOne
     private Eps idEps;
-    @JoinColumn(name = "id_arl", referencedColumnName = "id_arl")
-    @ManyToOne
-    private Arl idArl;
     @JoinColumns({
         @JoinColumn(name = "id_ciudad_exp_doc", referencedColumnName = "id_ciudad"),
         @JoinColumn(name = "id_dpto_exp_doc", referencedColumnName = "id_dpto")})
@@ -221,6 +207,15 @@ public class Usuarios implements Serializable {
     @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
     @ManyToOne
     private CentroFormacion idCentroFormacion;
+    @JoinColumn(name = "id_ccf", referencedColumnName = "id_ccf")
+    @ManyToOne
+    private Ccf idCcf;
+    @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
+    @ManyToOne
+    private Bancos idBanco;
+    @JoinColumn(name = "id_arl", referencedColumnName = "id_arl")
+    @ManyToOne
+    private Arl idArl;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<UsuariosSolicitudMaterialesAlmacen> usuariosSolicitudMaterialesAlmacenList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
@@ -372,13 +367,7 @@ public class Usuarios implements Serializable {
     }
 
     public void setPassword(String password) {
-        try {
-            this.password = DigestUtil.generateDigest(password);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.password = password;
     }
 
     public String getGpRh() {
@@ -519,20 +508,28 @@ public class Usuarios implements Serializable {
         this.solicitudServiciosList = solicitudServiciosList;
     }
 
-    public Bancos getIdBanco() {
-        return idBanco;
-    }
-
-    public void setIdBanco(Bancos idBanco) {
-        this.idBanco = idBanco;
-    }
-
     public TipoDocumentos getIdTipoDoc() {
         return idTipoDoc;
     }
 
     public void setIdTipoDoc(TipoDocumentos idTipoDoc) {
         this.idTipoDoc = idTipoDoc;
+    }
+
+    public Sexo getIdSexo() {
+        return idSexo;
+    }
+
+    public void setIdSexo(Sexo idSexo) {
+        this.idSexo = idSexo;
+    }
+
+    public FondoDePensiones getIdFondoPensiones() {
+        return idFondoPensiones;
+    }
+
+    public void setIdFondoPensiones(FondoDePensiones idFondoPensiones) {
+        this.idFondoPensiones = idFondoPensiones;
     }
 
     public EstratoSocial getIdEstratoSocial() {
@@ -551,44 +548,12 @@ public class Usuarios implements Serializable {
         this.idEstadoCivil = idEstadoCivil;
     }
 
-    public Sexo getIdSexo() {
-        return idSexo;
-    }
-
-    public void setIdSexo(Sexo idSexo) {
-        this.idSexo = idSexo;
-    }
-
-    public Ccf getIdCcf() {
-        return idCcf;
-    }
-
-    public void setIdCcf(Ccf idCcf) {
-        this.idCcf = idCcf;
-    }
-
-    public FondoDePensiones getIdFondoPensiones() {
-        return idFondoPensiones;
-    }
-
-    public void setIdFondoPensiones(FondoDePensiones idFondoPensiones) {
-        this.idFondoPensiones = idFondoPensiones;
-    }
-
     public Eps getIdEps() {
         return idEps;
     }
 
     public void setIdEps(Eps idEps) {
         this.idEps = idEps;
-    }
-
-    public Arl getIdArl() {
-        return idArl;
-    }
-
-    public void setIdArl(Arl idArl) {
-        this.idArl = idArl;
     }
 
     public Ciudad getCiudad() {
@@ -613,6 +578,30 @@ public class Usuarios implements Serializable {
 
     public void setIdCentroFormacion(CentroFormacion idCentroFormacion) {
         this.idCentroFormacion = idCentroFormacion;
+    }
+
+    public Ccf getIdCcf() {
+        return idCcf;
+    }
+
+    public void setIdCcf(Ccf idCcf) {
+        this.idCcf = idCcf;
+    }
+
+    public Bancos getIdBanco() {
+        return idBanco;
+    }
+
+    public void setIdBanco(Bancos idBanco) {
+        this.idBanco = idBanco;
+    }
+
+    public Arl getIdArl() {
+        return idArl;
+    }
+
+    public void setIdArl(Arl idArl) {
+        this.idArl = idArl;
     }
 
     @XmlTransient

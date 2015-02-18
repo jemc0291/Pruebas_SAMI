@@ -6,6 +6,11 @@ import co.edu.sena.sami.jpa.sessions.ContratosFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.SoportesDeDocumentosFacade;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import java.io.Serializable;
 import java.util.List;
@@ -22,6 +27,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.validator.ValidatorException;
+import org.primefaces.model.UploadedFile;
 
 @Named("soportesDeDocumentosController")
 @SessionScoped
@@ -33,6 +39,8 @@ public class SoportesDeDocumentosController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.SoportesDeDocumentosFacade ejbFacade;
     private List<SoportesDeDocumentos> items = null;
     private SoportesDeDocumentos selected;
+     private UploadedFile file;
+    private String destination = "C:\\Temp\\";
 
     public SoportesDeDocumentosController() {
     }
@@ -80,11 +88,12 @@ public class SoportesDeDocumentosController implements Serializable {
         items = null;
     }
 
-    public void create() {
+    public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SoportesDeDocumentosCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        return "ListaSoportes";
     }
 
     public void update() {
@@ -199,6 +208,55 @@ public class SoportesDeDocumentosController implements Serializable {
             }
         }
 
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+     public void upload() {
+//        if (file != null) {
+//            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+//            FacesContext.getCurrentInstance().addMessage(null, message);
+        FacesMessage msg = new FacesMessage("Success! ", file.getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        // Do what you want with the file        
+        try {
+            copyFile(file.getFileName(), file.getInputstream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        }
+    
+
+//    public void upload(FileUploadEvent event) {
+//       
+//
+//    }
+    public void copyFile(String fileName, InputStream in) {
+        try {
+
+            // write the inputStream to a FileOutputStream
+            OutputStream out = new FileOutputStream(new File(destination + selected.getIdContrato().getNumeroDeContrato()+fileName));
+            selected.setUrlDocumento(destination + selected.getIdContrato().getNumeroDeContrato()+fileName);
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = in.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+
+            in.close();
+            out.flush();
+            out.close();
+
+            System.out.println("New file created!");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "comisiones")
@@ -143,35 +143,35 @@ public class Comisiones implements Serializable {
     private List<Ciudad> ciudadList;
     @OneToMany(mappedBy = "idComision")
     private List<Notificaciones> notificacionesList;
-    @JoinColumn(name = "id_grupo", referencedColumnName = "id_grupo")
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
-    private Grupos idGrupo;
+    private Usuarios idUsuario;
     @JoinColumn(name = "id_tipo_pasaje", referencedColumnName = "id_tipo_pasaje")
     @ManyToOne
     private TiposPasajes idTipoPasaje;
-    @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
+    @JoinColumn(name = "id_grupo", referencedColumnName = "id_grupo")
     @ManyToOne(optional = false)
-    private Bancos idBanco;
+    private Grupos idGrupo;
+    @JoinColumn(name = "id_ficha_caracterizacion", referencedColumnName = "id_ficha_caracterizacion")
+    @ManyToOne(optional = false)
+    private FichaCaracterizacion idFichaCaracterizacion;
     @JoinColumn(name = "id_descripcion", referencedColumnName = "id_descripcion")
     @ManyToOne(optional = false)
     private DescripcionesReferenciasViaticos idDescripcion;
     @JoinColumn(name = "id_contrato", referencedColumnName = "id_contrato")
     @ManyToOne(optional = false)
     private Contratos idContrato;
-    @JoinColumn(name = "id_ficha_caracterizacion", referencedColumnName = "id_ficha_caracterizacion")
-    @ManyToOne(optional = false)
-    private FichaCaracterizacion idFichaCaracterizacion;
-    @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
-    @ManyToOne(optional = false)
-    private CentroFormacion idCentroFormacion;
     @JoinColumns({
         @JoinColumn(name = "id_ciudad", referencedColumnName = "id_ciudad"),
         @JoinColumn(name = "id_dpto", referencedColumnName = "id_dpto")})
     @ManyToOne(optional = false)
     private Ciudad ciudad;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
     @ManyToOne(optional = false)
-    private Usuarios idUsuario;
+    private CentroFormacion idCentroFormacion;
+    @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
+    @ManyToOne(optional = false)
+    private Bancos idBanco;
 
     public Comisiones() {
     }
@@ -421,12 +421,12 @@ public class Comisiones implements Serializable {
         this.notificacionesList = notificacionesList;
     }
 
-    public Grupos getIdGrupo() {
-        return idGrupo;
+    public Usuarios getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdGrupo(Grupos idGrupo) {
-        this.idGrupo = idGrupo;
+    public void setIdUsuario(Usuarios idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public TiposPasajes getIdTipoPasaje() {
@@ -437,12 +437,20 @@ public class Comisiones implements Serializable {
         this.idTipoPasaje = idTipoPasaje;
     }
 
-    public Bancos getIdBanco() {
-        return idBanco;
+    public Grupos getIdGrupo() {
+        return idGrupo;
     }
 
-    public void setIdBanco(Bancos idBanco) {
-        this.idBanco = idBanco;
+    public void setIdGrupo(Grupos idGrupo) {
+        this.idGrupo = idGrupo;
+    }
+
+    public FichaCaracterizacion getIdFichaCaracterizacion() {
+        return idFichaCaracterizacion;
+    }
+
+    public void setIdFichaCaracterizacion(FichaCaracterizacion idFichaCaracterizacion) {
+        this.idFichaCaracterizacion = idFichaCaracterizacion;
     }
 
     public DescripcionesReferenciasViaticos getIdDescripcion() {
@@ -461,12 +469,12 @@ public class Comisiones implements Serializable {
         this.idContrato = idContrato;
     }
 
-    public FichaCaracterizacion getIdFichaCaracterizacion() {
-        return idFichaCaracterizacion;
+    public Ciudad getCiudad() {
+        return ciudad;
     }
 
-    public void setIdFichaCaracterizacion(FichaCaracterizacion idFichaCaracterizacion) {
-        this.idFichaCaracterizacion = idFichaCaracterizacion;
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
     }
 
     public CentroFormacion getIdCentroFormacion() {
@@ -477,20 +485,12 @@ public class Comisiones implements Serializable {
         this.idCentroFormacion = idCentroFormacion;
     }
 
-    public Ciudad getCiudad() {
-        return ciudad;
+    public Bancos getIdBanco() {
+        return idBanco;
     }
 
-    public void setCiudad(Ciudad ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public Usuarios getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuarios idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdBanco(Bancos idBanco) {
+        this.idBanco = idBanco;
     }
 
     @Override

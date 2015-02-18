@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "usuarios_solicitud_materiales_almacen")
@@ -35,12 +35,12 @@ public class UsuariosSolicitudMaterialesAlmacen implements Serializable {
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Rol rol;
-    @JoinColumn(name = "id_solicitud_material", referencedColumnName = "id_solicitud_material", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private SolicitudMaterialesAlmacen solicitudMaterialesAlmacen;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuarios usuarios;
+    @JoinColumn(name = "id_solicitud_material", referencedColumnName = "id_solicitud_material", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private SolicitudMaterialesAlmacen solicitudMaterialesAlmacen;
 
     public UsuariosSolicitudMaterialesAlmacen() {
     }
@@ -69,20 +69,20 @@ public class UsuariosSolicitudMaterialesAlmacen implements Serializable {
         this.rol = rol;
     }
 
-    public SolicitudMaterialesAlmacen getSolicitudMaterialesAlmacen() {
-        return solicitudMaterialesAlmacen;
-    }
-
-    public void setSolicitudMaterialesAlmacen(SolicitudMaterialesAlmacen solicitudMaterialesAlmacen) {
-        this.solicitudMaterialesAlmacen = solicitudMaterialesAlmacen;
-    }
-
     public Usuarios getUsuarios() {
         return usuarios;
     }
 
     public void setUsuarios(Usuarios usuarios) {
         this.usuarios = usuarios;
+    }
+
+    public SolicitudMaterialesAlmacen getSolicitudMaterialesAlmacen() {
+        return solicitudMaterialesAlmacen;
+    }
+
+    public void setSolicitudMaterialesAlmacen(SolicitudMaterialesAlmacen solicitudMaterialesAlmacen) {
+        this.solicitudMaterialesAlmacen = solicitudMaterialesAlmacen;
     }
 
     @Override

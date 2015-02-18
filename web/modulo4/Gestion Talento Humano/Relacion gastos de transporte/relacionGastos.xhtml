@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="IdRelacionesGastosDeTransporte:" for="idRelacionesGastosDeTransporte" />
+                        <h:inputText id="idRelacionesGastosDeTransporte" value="#{relacionesGastosDeTransporteController.selected.idRelacionesGastosDeTransporte}" title="IdRelacionesGastosDeTransporte" required="true" requiredMessage="The IdRelacionesGastosDeTransporte field is required."/>
+                        <h:outputLabel value="FechaDeCreacion:" for="fechaDeCreacion" />
+                        <h:inputText id="fechaDeCreacion" value="#{relacionesGastosDeTransporteController.selected.fechaDeCreacion}" title="FechaDeCreacion" required="true" requiredMessage="The FechaDeCreacion field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:inputText>
+                        <h:outputLabel value="ObjetivoRelacionGastosDeTransporte:" for="objetivoRelacionGastosDeTransporte" />
+                        <h:inputText id="objetivoRelacionGastosDeTransporte" value="#{relacionesGastosDeTransporteController.selected.objetivoRelacionGastosDeTransporte}" title="ObjetivoRelacionGastosDeTransporte" required="true" requiredMessage="The ObjetivoRelacionGastosDeTransporte field is required."/>
+                        <h:outputLabel value="TotalGastosDeTransporte:" for="totalGastosDeTransporte" />
+                        <h:inputText id="totalGastosDeTransporte" value="#{relacionesGastosDeTransporteController.selected.totalGastosDeTransporte}" title="TotalGastosDeTransporte" required="true" requiredMessage="The TotalGastosDeTransporte field is required."/>
+                        <h:outputLabel value="Dias:" for="dias" />
+                        <h:inputText id="dias" value="#{relacionesGastosDeTransporteController.selected.dias}" title="Dias" required="true" requiredMessage="The Dias field is required."/>
+                        <h:outputLabel value="FechaSalida:" for="fechaSalida" />
+                        <h:inputText id="fechaSalida" value="#{relacionesGastosDeTransporteController.selected.fechaSalida}" title="FechaSalida" required="true" requiredMessage="The FechaSalida field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:inputText>
+                        <h:outputLabel value="NumeroOrdendeviaje:" for="numeroOrdendeviaje" />
+                        <h:selectOneMenu id="numeroOrdendeviaje" value="#{relacionesGastosDeTransporteController.selected.numeroOrdendeviaje}" title="NumeroOrdendeviaje" required="true" requiredMessage="The NumeroOrdendeviaje field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdUsuario:" for="idUsuario" />
+                        <h:selectOneMenu id="idUsuario" value="#{relacionesGastosDeTransporteController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
+            </f:view>
+
+        </ui:define>
+    </ui:composition>
+</html>
+
+

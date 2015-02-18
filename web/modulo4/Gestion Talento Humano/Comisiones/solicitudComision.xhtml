@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="IdComision:" for="idComision" />
+                        <h:inputText id="idComision" value="#{aseguradoraController.selected.idComision}" title="IdComision" required="true" requiredMessage="The IdComision field is required."/>
+                        <h:outputLabel value="ObjetivoComision:" for="objetivoComision" />
+                        <h:inputText id="objetivoComision" value="#{aseguradoraController.selected.objetivoComision}" title="ObjetivoComision" required="true" requiredMessage="The ObjetivoComision field is required."/>
+                        <h:outputLabel value="FechaComision:" for="fechaComision" />
+                        <h:inputText id="fechaComision" value="#{aseguradoraController.selected.fechaComision}" title="FechaComision" required="true" requiredMessage="The FechaComision field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:inputText>
+                        <h:outputLabel value="FechaTramite:" for="fechaTramite" />
+                        <h:inputText id="fechaTramite" value="#{aseguradoraController.selected.fechaTramite}" title="FechaTramite" required="true" requiredMessage="The FechaTramite field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:inputText>
+                        <h:outputLabel value="IdAprobacion:" for="idAprobacion" />
+                        <h:selectOneMenu id="idAprobacion" value="#{aseguradoraController.selected.idAprobacion}" title="IdAprobacion" required="true" requiredMessage="The IdAprobacion field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdDescripcion:" for="idDescripcion" />
+                        <h:selectOneMenu id="idDescripcion" value="#{aseguradoraController.selected.idDescripcion}" title="IdDescripcion" required="true" requiredMessage="The IdDescripcion field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdContrato:" for="idContrato" />
+                        <h:selectOneMenu id="idContrato" value="#{aseguradoraController.selected.idContrato}" title="IdContrato" required="true" requiredMessage="The IdContrato field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdCuenta:" for="idCuenta" />
+                        <h:selectOneMenu id="idCuenta" value="#{aseguradoraController.selected.idCuenta}" title="IdCuenta" required="true" requiredMessage="The IdCuenta field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdFichaCaracterizacion:" for="idFichaCaracterizacion" />
+                        <h:selectOneMenu id="idFichaCaracterizacion" value="#{aseguradoraController.selected.idFichaCaracterizacion}" title="IdFichaCaracterizacion" required="true" requiredMessage="The IdFichaCaracterizacion field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdCentroFormacion:" for="idCentroFormacion" />
+                        <h:selectOneMenu id="idCentroFormacion" value="#{aseguradoraController.selected.idCentroFormacion}" title="IdCentroFormacion" required="true" requiredMessage="The IdCentroFormacion field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Ciudad:" for="ciudad" />
+                        <h:selectOneMenu id="ciudad" value="#{aseguradoraController.selected.ciudad}" title="Ciudad" required="true" requiredMessage="The Ciudad field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdUsuario:" for="idUsuario" />
+                        <h:selectOneMenu id="idUsuario" value="#{aseguradoraController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
+            </f:view>
+
+        </ui:define>
+    </ui:composition>
+</html>
+
+

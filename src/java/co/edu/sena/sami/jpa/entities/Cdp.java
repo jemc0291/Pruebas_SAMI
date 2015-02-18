@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "cdp")
@@ -69,6 +69,9 @@ public class Cdp implements Serializable {
         @JoinColumn(name = "id_comision", referencedColumnName = "id_comision")})
     @ManyToMany
     private List<Comisiones> comisionesList;
+    @JoinColumn(name = "id_tipo_solicitud", referencedColumnName = "id_tipo_solicitud")
+    @ManyToOne(optional = false)
+    private TiposDeSolicitudes idTipoSolicitud;
     @JoinColumn(name = "id_rubro", referencedColumnName = "id_rubro")
     @ManyToOne(optional = false)
     private Rubros idRubro;
@@ -78,9 +81,6 @@ public class Cdp implements Serializable {
     @JoinColumn(name = "codigo_de_dependencia", referencedColumnName = "codigo_de_dependencia")
     @ManyToOne(optional = false)
     private Dependencias codigoDeDependencia;
-    @JoinColumn(name = "id_tipo_solicitud", referencedColumnName = "id_tipo_solicitud")
-    @ManyToOne(optional = false)
-    private TiposDeSolicitudes idTipoSolicitud;
 
     public Cdp() {
     }
@@ -137,6 +137,14 @@ public class Cdp implements Serializable {
         this.comisionesList = comisionesList;
     }
 
+    public TiposDeSolicitudes getIdTipoSolicitud() {
+        return idTipoSolicitud;
+    }
+
+    public void setIdTipoSolicitud(TiposDeSolicitudes idTipoSolicitud) {
+        this.idTipoSolicitud = idTipoSolicitud;
+    }
+
     public Rubros getIdRubro() {
         return idRubro;
     }
@@ -159,14 +167,6 @@ public class Cdp implements Serializable {
 
     public void setCodigoDeDependencia(Dependencias codigoDeDependencia) {
         this.codigoDeDependencia = codigoDeDependencia;
-    }
-
-    public TiposDeSolicitudes getIdTipoSolicitud() {
-        return idTipoSolicitud;
-    }
-
-    public void setIdTipoSolicitud(TiposDeSolicitudes idTipoSolicitud) {
-        this.idTipoSolicitud = idTipoSolicitud;
     }
 
     @Override
