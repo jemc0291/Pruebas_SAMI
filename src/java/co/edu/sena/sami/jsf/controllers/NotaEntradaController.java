@@ -49,10 +49,10 @@ public class NotaEntradaController implements Serializable {
         return ejbFacade;
     }
 
-    public NotaEntrada prepareCreate() {
+    public String prepareCreate() {
         selected = new NotaEntrada();
         initializeEmbeddableKey();
-        return selected;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/EntradaMateriales/CreateNota.xhtml";
     }
 
     public void create() {

@@ -2,21 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-  <ui:composition template="/template.xhtml">
+    <ui:composition template="/template.xhtml">
         <ui:define name="title">Sami</ui:define>
         <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            
-            <h:form>
 
-                <P>
-                    <h:commandButton action="#{actaVerificacionController.prepareCreate}" value="Agregar Acta"/>
-                    <!--<h:commandButton action="# {actaVerificacionController.updateActa()}" value="Modificar Acta"/>-->
-                </P>
+            <h:form>
+                <p:commandButton process="@this" action="#{actaVerificacionController.prepareCreate}" value="Agregar Acta"/>
+                <!--<h:commandButton action="# {actaVerificacionController.updateActa()}" value="Modificar Acta"/>-->
                 <p:outputPanel id="ActaVerificacionPanel">
                     <p:dataTable value="#{actaVerificacionController.items}" var="item"
                                  rows="10" id="ActaVerificacionTable" 
@@ -93,20 +89,22 @@
                             </f:facet>
                             <h:outputText value="#{item.idUsuario}"/>
                         </p:column>
-                          <p:column>
-                              <!--<p:commandButton icon="ui-icon-pencil" action="# {actaVerificacionController.prepareEdit()}">
-                                  <f:setPropertyActionListener value="#{item}" target="#{actaVerificacionController.selected}"/>
-                        </p:commandButton>
--->
-<p:commandButton icon="ui-icon-trash" action="#{actaVerificacionController.destroy()}"
-                                         process="@this" update="ActaVerificacionTable">
-                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta acta de verificacion?" icon="ui-icon-alert" />
-                            <f:setPropertyActionListener value="#{item}" target="#{actaVerificacionController.selected}"/>
-                        </p:commandButton>
-                    </p:column>
+                        <p:column>
+                            <p:commandButton icon="ui-icon-pencil" action="#{actaVerificacionController.prepareEdit()}">
+                                <f:setPropertyActionListener value="#{item}" target="#{actaVerificacionController.selected}"/>
+                            </p:commandButton>
+
+
+<!--                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="# {bundle.View}" update=":ActaVerificacionViewForm" oncomplete="PF('ActaVerificacionViewDialog').show()" disabled="#{empty actaVerificacionController.selected}"/>-->
+                            <p:commandButton icon="ui-icon-trash" action="#{actaVerificacionController.destroy()}"
+                                             process="@this" update="ActaVerificacionTable">
+                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta acta de verificacion?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{item}" target="#{actaVerificacionController.selected}"/>
+                            </p:commandButton>
+                        </p:column>
                     </p:dataTable>
-                    </p:outputPanel>
-                </h:form>
+                </p:outputPanel>
+            </h:form>
         </ui:define>
-  </ui:composition>
+    </ui:composition>
 </html>
