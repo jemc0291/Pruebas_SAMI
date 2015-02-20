@@ -166,7 +166,9 @@
 
                     <label jsf:value="#{bundle.CreateContratosLabel_justificacion}"  for="justificacion" />
                     <textarea type="text" jsf:id="justificacion" maxlength="500" jsf:value="#{contratosModulo1Controller.selected.justificacion}" jsf:title="#{bundle.CreateContratosTitle_justificacion}" ></textarea>
-
+                    
+                    <label>Polizas</label>
+                    <p:commandButton onclick="PF('PolizasDialogo').show()" value="Poliza" process="@this" update=":polizasForm" />
                 </h:panelGrid>
 
                 <h:commandButton p:class="Button-guardar" value ="#{bundle.Save}"
@@ -174,6 +176,7 @@
                 <h:button p:class="Button-cancelar" value="#{bundle.Cancel}" outcome="/modulo1/ContratacionPrestacionDeServicios/Contratos/ListContrato"/>
 
             </h:form>
+            <ui:include src="/modulo1/ContratacionPrestacionDeServicios/Contratos/CreatePolizas.xhtml" />
 
         </ui:define>
     </ui:composition>
