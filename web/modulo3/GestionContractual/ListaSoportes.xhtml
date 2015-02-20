@@ -28,14 +28,14 @@
                             <p:graphicImage value="#{facesContext.getCurrentInstace().getExternalContext}/avatar/#{item.idSoporte}.png">
                         </p:column-->
                         
-                        <p:column>
+                        <p:column filterBy="#{item.idContrato}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSoportesDeDocumentosTitle_idContrato}"/>
                             </f:facet>
                             <h:outputText value="#{item.idContrato.numeroDeContrato}"/>
                         </p:column>
                         
-                        <p:column>
+                        <p:column filterBy="#{item.tipoSoporte}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSoportesDeDocumentosTitle_tipoSoporte}"/>
                             </f:facet>
