@@ -24,14 +24,7 @@
                                     </input>
                                     <h:message id="numeroFacturaMessage" for="numeroFactura" styleClass="error"/>
                                     
-                                    <label>Fecha:</label>
-                                    <input type="date" jsf:id="fecha" required="true" 
-                                           jsf:requiredMessage="Por favor ingrese la fecha."
-                                           jsf:value="#{facturasController.selected.fecha}">
-                                        <f:convertDateTime pattern="yyyy-MM-dd"/>
-                                        <f:ajax execute="@this" render="fechaMessage"/>
-                                    </input>
-                                    <h:message id="fechaMessage" for="fecha" styleClass="error"/>
+                                    
                                     
                                     <label>ID de usuario</label>
                                     <h:selectOneMenu id="idUsuario" value="#{facturasController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">

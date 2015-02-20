@@ -8,12 +8,17 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui">
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">Sami</ui:define>
-        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
-        <ui:define name="body">
-            <section class="Section-form">
-                <h:form id="actaCreateForm">
+     <p:dialog widgetVar="PolizasDialogo" 
+                  appendTo="@(body)"
+                  modal="true"
+                  resizable="false"
+                  header="Crear Poliza">
+            
+
+            <h:form id="ActaVerificacionForm" >
+                
+                        <h1><h:outputText value="Create/Edit"/></h1>
+                        
                     <p:panelGrid columns="3" layout="grid">
                   
                         <label class="Form-na">Proveedores</label>    
@@ -165,8 +170,8 @@
                     <h:button value="Cancelar" 
                               outcome="/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/Actas.xhtml"/>
                     
-                </h:form>
-            </section>
-        </ui:define>
-    </ui:composition>
+
+         </h:form>
+            </p:dialog>
+
 </html>
