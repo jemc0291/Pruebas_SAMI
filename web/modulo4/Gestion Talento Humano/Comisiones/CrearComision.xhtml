@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title"> Solicitud Comision</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <f:view>
+
+
+                <h:form>
+
+
+                    <h1><h:outputText value="Solicitud Comisión"/></h1>
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="IdCentroFormacion:" for="idCentroFormacion" />
+                        <h:selectOneMenu id="idCentroFormacion" value="#{comisionesController.selected.idCentroFormacion}" title="IdCentroFormacion" required="true" requiredMessage="The IdCentroFormacion field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneCentrosFormacion}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="FechaTramite:" for="fechaTramite" />
+                        <p:calendar id="fechaTramite" value="#{comisionesController.selected.fechaTramite}" title="FechaTramite" required="true" requiredMessage="The FechaTramite field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </p:calendar>
+                        <h:outputLabel  value="IdUsuario:" for="idUsuario" />
+                        <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="MesaPlanificar:" for="mesaPlanificar" />
+                        <h:inputText id="mesaPlanificar" value="#{comisionesController.selected.mesaPlanificar}" title="MesaPlanificar" />
+                        <h:outputLabel value="ObjetivoComision:" for="objetivoComision" />
+                        <h:inputText id="objetivoComision" value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision" required="true" requiredMessage="The ObjetivoComision field is required."/>
+                        <h:outputLabel value="Ciudad:" for="ciudad" />
+                        <h:selectOneMenu id="ciudad" value="#{comisionesController.selected.ciudad}" title="Ciudad" required="true" requiredMessage="The Ciudad field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneCiudad}"/>
+                        </h:selectOneMenu>
+
+                       
+                        <h:outputLabel value="IdDescripcion:" for="idDescripcion" />
+                        <h:selectOneMenu id="idDescripcion" value="#{comisionesController.selected.idDescripcion}" title="IdDescripcion" required="true" requiredMessage="The IdDescripcion field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneDescripciones}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="TranspIntermunicipal:" for="transpIntermunicipal" />
+                        <h:inputText id="transpIntermunicipal" value="#{comisionesController.selected.transpIntermunicipal}" title="TranspIntermunicipal" />
+                        <h:outputLabel value="IdFichaCaracterizacion:" for="idFichaCaracterizacion" />
+                        <h:selectOneMenu id="idFichaCaracterizacion" value="#{comisionesController.selected.idFichaCaracterizacion}" title="IdFichaCaracterizacion" required="true" requiredMessage="The IdFichaCaracterizacion field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneFichas}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdBanco:" for="idBanco" />
+                        <h:selectOneMenu id="idBanco" value="#{comisionesController.selected.idBanco}" title="IdBanco" required="true" requiredMessage="The IdBanco field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneBanco}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="IdContrato:" for="idContrato" />
+                        <h:selectOneMenu id="idContrato" value="#{comisionesController.selected.idContrato}" title="IdContrato" required="true" requiredMessage="The IdContrato field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneContratos}"/>
+                        </h:selectOneMenu>
+
+
+
+
+                    </p:panelGrid>
+                    <p:commandButton value="Guardar" action="#{comisionesController.create()}"/>
+                </h:form>
+            </f:view>
+
+        </ui:define>
+    </ui:composition>
+</html>
+
