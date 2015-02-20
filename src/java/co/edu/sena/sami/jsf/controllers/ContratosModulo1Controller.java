@@ -1,9 +1,13 @@
 package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.Contratos;
+import co.edu.sena.sami.jpa.entities.Polizas;
+import co.edu.sena.sami.jpa.entities.UsuariosContratos;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.ContratosFacade;
+import co.edu.sena.sami.jpa.sessions.PolizasFacade;
+import co.edu.sena.sami.jpa.sessions.UsuariosContratosFacade;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,14 +34,47 @@ import org.primefaces.model.UploadedFile;
 @Named("contratosModulo1Controller")
 @SessionScoped
 public class ContratosModulo1Controller implements Serializable {
-
+    
+    @EJB
+    private PolizasFacade polizasFacade;
+    @EJB
+    private UsuariosContratosFacade usuariosContratosFacade;
+    
     @EJB
     private co.edu.sena.sami.jpa.sessions.ContratosFacade ejbFacade;
     private List<Contratos> items = null;
     private Contratos selected;
+    private Polizas selectedPolizas;
+    private UsuariosContratos selectedUsuariosContratos;
 
     public ContratosModulo1Controller() {
     }
+
+    public Polizas getSelectedPolizas() {
+        return selectedPolizas;
+    }
+
+    public void setSelectedPolizas(Polizas selectedPolizas) {
+        this.selectedPolizas = selectedPolizas;
+    }
+
+    public UsuariosContratos getSelectedUsuariosContratos() {
+        return selectedUsuariosContratos;
+    }
+
+    public void setSelectedUsuariosContratos(UsuariosContratos selectedUsuariosContratos) {
+        this.selectedUsuariosContratos = selectedUsuariosContratos;
+    }
+
+    public PolizasFacade getPolizasFacade() {
+        return polizasFacade;
+    }
+
+    public UsuariosContratosFacade getUsuariosContratosFacade() {
+        return usuariosContratosFacade;
+    }
+    
+    
 
     public Contratos getSelected() {
         return selected;
@@ -59,6 +96,8 @@ public class ContratosModulo1Controller implements Serializable {
 
     public String prepareCreate() {
         selected = new Contratos();
+        selectedPolizas = new Polizas();
+        selectedUsuariosContratos = new UsuariosContratos();
         initializeEmbeddableKey();
         return "/modulo1/ContratacionPrestacionDeServicios/Contratos/CreateContrato";
     }
@@ -73,10 +112,23 @@ public class ContratosModulo1Controller implements Serializable {
 
     public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ContratosCreated"));
+        createPolizas();
+        selectedUsuariosContratos.setContratos(selected);
+        selectedUsuariosContratos.setPolizas(selectedPolizas);
+        
+        getUsuariosContratosFacade().create(selectedUsuariosContratos);
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
         return "/modulo1/ContratacionPrestacionDeServicios/Contratos/ListContrato";
+    }
+    
+    public void createPolizas(){
+        try{
+            getPolizasFacade().create(selectedPolizas);
+        }catch(Exception e){
+            
+        }
     }
 
     public String prepareListContratosModulo1() {
