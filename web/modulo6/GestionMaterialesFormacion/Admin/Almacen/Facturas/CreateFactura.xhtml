@@ -14,14 +14,6 @@
             <section class="Section-form">
                             <h:form>
                                 <p:panelGrid columns="3" layout="grid">
-                                    <label>ID Factura:</label>
-                                    <input type="number" jsf:id="idFactura" required="true" 
-                                           jsf:requiredMessage="El ID de factura es un campo requerido"
-                                           jsf:value="#{facturasController.selected.idFactura}">
-                                     <f:ajax execute="@this" render="idFacturaMessage"/>
-                                    </input>
-                                    <h:message id="idFacturaMessage" for="idFactura" styleClass="error"/>
-                                    
                                     <label>Numero Factura:</label>
                                     <input type="number" jsf:id="numeroFactura" required="true" 
                                            jsf:requiredMessage="Por favor digite el numero de factura."

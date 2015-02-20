@@ -10,54 +10,40 @@
         <ui:define name="title">Sami</ui:define>
         <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <section class="section-form">
-                <form jsf:id="informeComisionCreateForm">
-                    <h1>Informe de comision</h1>
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Create/Edit"/></h1>
                     <h:panelGrid columns="2">
-                        <h:outputLabel value="IdInformeComision:" for="idInformeComision" />
-                        <h:inputText id="idInformeComision" value="#{bancosController.selected.idInformeComision}" title="IdInformeComision" required="true" requiredMessage="The IdInformeComision field is required."/>
-
-                        <h:outputLabel value="Dias:" for="dias" />
-                        <h:inputText id="dias" value="#{bancosController.selected.dias}" title="Dias" required="true" requiredMessage="The Dias field is required."/>
-
+                        
+                        <h:outputLabel value="NumDias:" for="numDias" />
+                        <h:inputText id="numDias" value="#{comisionesController.selected.numDias}" title="NumDias" />
+                        
                         <h:outputLabel value="FechaEntregaInforme:" for="fechaEntregaInforme" />
-                        <h:inputText id="fechaEntregaInforme" value="#{bancosController.selected.fechaEntregaInforme}" title="FechaEntregaInforme" required="true" requiredMessage="The FechaEntregaInforme field is required.">
+                        <h:inputText id="fechaEntregaInforme" value="#{comisionesController.selected.fechaEntregaInforme}" title="FechaEntregaInforme" >
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:inputText>
-
-                        <h:outputLabel value="ActividadesTemasDesarrollados:" for="actividadesTemasDesarrollados" />
-                        <h:inputText id="actividadesTemasDesarrollados" value="#{bancosController.selected.actividadesTemasDesarrollados}" title="ActividadesTemasDesarrollados" />
-
-                        <h:outputLabel value="CompromisosSena:" for="compromisosSena" />
-                        <h:inputText id="compromisosSena" value="#{bancosController.selected.compromisosSena}" title="CompromisosSena" />
-
-                        <h:outputLabel value="ProductosEntregados:" for="productosEntregados" />
-                        <h:inputText id="productosEntregados" value="#{bancosController.selected.productosEntregados}" title="ProductosEntregados" />
-
-                        <h:outputLabel value="IdComision:" for="idComision" />
-                        <h:selectOneMenu id="idComision" value="#{bancosController.selected.idComision}" title="IdComision" required="true" requiredMessage="The IdComision field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{fixme}"/>
-                        </h:selectOneMenu>
-
-                        <label class="Form-datos">Ciudad</label>
-                        <p:selectOneMenu id="ciudad1" value="#{usuariosController.selected.ciudad1}" 
-                                         required="true" 
-                                         requiredMessage=" se requiere ciudad  ">
-                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"
-                                           var="ciudad1"
-                                           itemValue="#{ciudad1}"/>
-                        </p:selectOneMenu>
-                        <h:message id="ciudad1Message" for="Ciudad1InputText" styleClass="error"/>
-
+                        <h:outputLabel value="ActividadesOTemas:" for="actividadesOTemas" />
+                        <h:inputText id="actividadesOTemas" value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas" />
+                        <h:outputLabel value="CompromisoSena:" for="compromisoSena" />
+                        <h:inputText id="compromisoSena" value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena" />
+                        <h:outputLabel value="ProdEntragados:" for="prodEntragados" />
+                        
                         <h:outputLabel value="IdUsuario:" for="idUsuario" />
-                        <h:selectOneMenu id="idUsuario" value="#{bancosController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
+                        <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
                             <!-- TODO: update below reference to list of available items-->
                             <f:selectItems value="#{fixme}"/>
                         </h:selectOneMenu>
+                        
+                        <h:outputLabel value="IdGrupo:" for="idGrupo" />
+                        <h:selectOneMenu id="idGrupo" value="#{comisionesController.selected.idGrupo}" title="IdGrupo" required="true" requiredMessage="The IdGrupo field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        
                     </h:panelGrid>
-                </form>
-            </section>
+                </h:form>
+            </f:view>
+
         </ui:define>
     </ui:composition>
 </html>

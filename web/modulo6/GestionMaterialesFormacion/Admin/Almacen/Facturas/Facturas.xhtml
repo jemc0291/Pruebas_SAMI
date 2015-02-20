@@ -13,9 +13,7 @@
             <h:form>
 
                 <P>
-                    <h:form><h:commandButton action="#{facturasController.prepareCreate}" value="Crear Factura"/></h:form>
-                    <h:button value="Agregar Factura" outcome="/modulo6/GestionMaterialesFormacion/Admin/Almacen/Facturas/CreateFactura.xhtml"/>
-                    
+                    <p:commandButton value="Crear Factura" action="#{facturasController.prepareCreate}" />
                 </P>
                 <p:outputPanel>
                     <p:dataTable value="#{facturasController.items}" var="item"

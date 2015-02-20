@@ -10,13 +10,12 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Sami</ui:define>
-        <ui:define name="menu"><ui:include src="/Modulo6/menu_Instructor.xhtml"></ui:include></ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Instructor.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <section class="Section-form">
                 <h:form>
 
                     <p:panelGrid columns="3" layout="grid" id="panelSolicitud">
-                        
 
                         <label>Area</label>
                         <h:selectOneMenu id="idArea" pt:required="true" 
@@ -40,14 +39,16 @@
 
                         <Label>Observaciones</Label>
                         <textarea rows="5" jsf:id="observaciones" required="true" 
-                               jsf:requiredMessage="Por favor describa su material a solicitar y las especificaciones"
-                               jsf:value="#{solicitudMaterialesAlmacenController.selected.observaciones}" >
+                                  jsf:requiredMessage="Por favor describa su material a solicitar y las especificaciones"
+                                  jsf:value="#{solicitudMaterialesAlmacenController.selected.observaciones}" >
                             <f:ajax execute="@this" render="observacionesMessage"/>
-                        </textarea>>
+                        </textarea>
                         <h:message id="observacionesMessage" for="observaciones"/>
+                        
                     </p:panelGrid>
 
                     <h:panelGrid columns="5" id="panelMateriales">
+                        
                         <h:outputLabel value="Materiales:" for="materiales" />
                         <h:selectOneMenu id="materiales" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.materiales}" title="Materiales" required="true" requiredMessage="The Materiales field is required.">
                             <!-- TODO: update below reference to list of available items-->
@@ -57,6 +58,7 @@
                         <h:outputLabel value="Cantidad:" for="cantidad" />
                         <h:inputText id="cantidad" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.cantidad}" title="Cantidad" />
                         <p:commandButton value="Agregar Material" action="#{solicitudMaterialesAlmacenController.agregarMateriales}" process="@this panelMateriales" update="tablaMateriales panelMateriales"/>
+                        
                     </h:panelGrid>
 
                     <p:dataTable value="#{solicitudMaterialesAlmacenController.itemsSolMaterial}" var="item" id="tablaMateriales">
@@ -73,10 +75,45 @@
                             </f:facet>
                             <h:outputText value="#{item.cantidad}"/>
                         </p:column>
+                        
                     </p:dataTable>
 
+                            <h3><h:outputText value="Busqueda de materiales"/></h3>
+                            <p:dataTable value="#{materialesController.items}" var="item">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="IdMateriales"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idMateriales}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.nombreMaterial}" filterMatchMode="contains">
+                                    <f:facet name="header">
+                                        <h:outputText value="NombreMaterial"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nombreMaterial}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="UnidadMedida"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.unidadMedida}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="TipoMaterial"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.tipoMaterial}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Descripcionelemento"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.descripcionelemento}"/>
+                                </p:column>
+                            </p:dataTable>
+
                     <p:commandButton value="Guardar" action="#{solicitudMaterialesAlmacenController.create}" process="@this panelSolicitud" update="panelSolicitud"/>
-                    <h:button value="Cancelar" outcome="/Modulo6/GestionMaterialesFormacion/Instructor/MainPage.xhtml" />                               
+                    <p:button value="Cancelar" outcome="/modulo6/GestionMaterialesFormacion/Instructor/MainPage.xhtml" />                               
                 </h:form>
             </section>
         </ui:define>

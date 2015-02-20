@@ -2,7 +2,6 @@ package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.ActaVerificacion;
 import co.edu.sena.sami.jpa.entities.Facturas;
-import co.edu.sena.sami.jpa.entities.Rol;
 import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
@@ -108,7 +107,15 @@ public class ActaVerificacionController implements Serializable {
         initializeEmbeddableKey();
         return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/CreateActa.xhtml";
     }
+    
+    public String prepareEdit() {
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/EditActa.xhtml";
+    }
 
+    public String prepareView() {
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/ViewActa.xhtml";
+    }
+    
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ActaVerificacionCreated"));
         if (!JsfUtil.isValidationFailed()) {
