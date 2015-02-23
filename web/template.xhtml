@@ -38,8 +38,20 @@
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo4/index_modulo4.xhtml">Gestión y talento humano</a></li>
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo5/index_modulo5.xhtml">Gestión documental</a></li>
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo6/index_modulo6.xhtml">Gestión de materiales de formación</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/Programa Formacion/index_programa.xhtml">Programa Formacion</a></li>
-                                    <li class="HeaderList-link"><a  jsf:action="#{loginController.logout}">Cerrar Sesión</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/Programa Formacion/index_programa.xhtml">Programa Formacion</a></li>                                   
+                                    <h:form>           
+                                        <p:growl id="message" showDetail="true" />
+
+                                        <p:commandButton value="Cerrar Sesión" action="#{loginController.logout}" update="message" >
+                                            <p:confirm header="Desea Cerrar Sesion" message="SEÑOR USUARIO USTED ES PARTE FUNDAMETAL DE NUESTRA COMUNIDAD SAMI GRACIAS POR USAR NUESTRO APLICATIVO" icon="ui-icon-alert" />
+                                        </p:commandButton>
+
+                                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode"  >
+                                            <p:commandButton value="Yes" type="button" action="#{loginController.logout}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                        </p:confirmDialog>
+                                    </h:form>
+
                                 </ul>
                             </li>
                         </ul>
@@ -83,17 +95,17 @@
                 <a type="button" onclick="PF('dlg2').show();" class="icon-help" ></a>
             </article>
         </footer>
-        
-         <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
+
+        <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
             <h:outputText value="" />
             <h:form>
-    <p:panel header="Tienes un problema?, te ayudamos">
-        <p:messages autoUpdate="true"/>
- 
-       
-        <p:commandButton icon="ui-icon-mail-closed" value="Enviar" action="#{emailController.sendMail}"/>
-    </p:panel>
-</h:form> 
+                <p:panel header="Tienes un problema?, te ayudamos">
+                    <p:messages autoUpdate="true"/>
+
+
+                    <p:commandButton icon="ui-icon-mail-closed" value="Enviar" action="#{emailController.sendMail}"/>
+                </p:panel>
+            </h:form> 
         </p:dialog> 
 
         <form jsf:id="confirmForm">
