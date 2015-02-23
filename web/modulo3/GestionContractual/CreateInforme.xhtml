@@ -17,12 +17,11 @@
                         <h:panelGrid columns="3">
                             
                             <label class="FormLabelSCCSS" for="fechaInforme" jsf:value="#{bundle.CreateInformesLabel_fechaInforme}" />
-                            <input class="FormInputDateEditSCCSS" jsf:id="fechaInforme" type="date" jsf:required="true" 
-                                   jsf:value="#{informesController.selected.fechaInforme}" title="#{bundle.CreateInformesTitle_fechaInforme}"
-                                   jsf:requiredMessage="#{bundle.CreateInformesRequiredMessage_fechaInforme}" min="2014-11-01" >
-                                <f:convertDateTime pattern="yyyy-MM-dd" />
-                                <f:ajax execute="@this" render="fechaInformeMessage" />
-                            </input>
+                            <p:calendar showOn="button" id="fechaInforme" required="true" 
+                                   value="#{informesController.selected.fechaInforme}" title="#{bundle.CreateInformesTitle_fechaInforme}"
+                                   requiredMessage="#{bundle.CreateInformesRequiredMessage_fechaInforme}" mindate="#{informesController.selected.idContrato.fechaInicioContrato}" pattern="yyyy-MM-dd">
+                                <p:ajax process="@this" update="fechaInformeMessage" />
+                            </p:calendar>
                             <h:message id="fechaInformeMessage" for="fechaInforme" class="Error" />
 
                             <label class="FormLabelSCCSS"  jsf:for="observacionesTextArea" jsf:value="#{bundle.CreateInformesLabel_observaciones}" />
@@ -47,7 +46,7 @@
                         
                         <h:commandButton class="FormButtonSCCSS" value="#{bundle.CreateInformesSaveLink}" action="#{informesController.create()}" />
                         <h:button class="FormButtonSCCSS" value="Cancelar" outcome="ListInformes"/>
-                        <h:button class="FormButtonSCCSS" value="#{bundle.CreateInformesIndexLink}" outcome="/index"/>
+                        <h:button class="FormButtonSCCSS" value="#{bundle.CreateInformesIndexLink}" outcome="/modulo3/index_modulo3"/>
                     </h:form>
                 
         </ui:define>

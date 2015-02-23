@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "avance")
@@ -59,15 +59,15 @@ public class Avance implements Serializable {
     private Boolean fueAtendido;
     @Column(name = "fue_solucionado")
     private Boolean fueSolucionado;
-    @JoinColumn(name = "id_prioridades", referencedColumnName = "id_prioridades")
-    @ManyToOne(optional = false)
-    private Prioridades idPrioridades;
-    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
-    @ManyToOne(optional = false)
-    private Estados idEstado;
     @JoinColumn(name = "id_solicitud_servicio", referencedColumnName = "id_solicitud_servicio")
     @ManyToOne(optional = false)
     private SolicitudServicios idSolicitudServicio;
+    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
+    @ManyToOne(optional = false)
+    private Estados idEstado;
+    @JoinColumn(name = "id_prioridades", referencedColumnName = "id_prioridades")
+    @ManyToOne(optional = false)
+    private Prioridades idPrioridades;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "avance")
     private List<AvanceUsuarios> avanceUsuariosList;
 
@@ -118,12 +118,12 @@ public class Avance implements Serializable {
         this.fueSolucionado = fueSolucionado;
     }
 
-    public Prioridades getIdPrioridades() {
-        return idPrioridades;
+    public SolicitudServicios getIdSolicitudServicio() {
+        return idSolicitudServicio;
     }
 
-    public void setIdPrioridades(Prioridades idPrioridades) {
-        this.idPrioridades = idPrioridades;
+    public void setIdSolicitudServicio(SolicitudServicios idSolicitudServicio) {
+        this.idSolicitudServicio = idSolicitudServicio;
     }
 
     public Estados getIdEstado() {
@@ -134,12 +134,12 @@ public class Avance implements Serializable {
         this.idEstado = idEstado;
     }
 
-    public SolicitudServicios getIdSolicitudServicio() {
-        return idSolicitudServicio;
+    public Prioridades getIdPrioridades() {
+        return idPrioridades;
     }
 
-    public void setIdSolicitudServicio(SolicitudServicios idSolicitudServicio) {
-        this.idSolicitudServicio = idSolicitudServicio;
+    public void setIdPrioridades(Prioridades idPrioridades) {
+        this.idPrioridades = idPrioridades;
     }
 
     @XmlTransient

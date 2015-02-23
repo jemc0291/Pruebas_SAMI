@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.entities;
 
 import java.io.Serializable;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "pagos_contratos")
@@ -41,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PagosContratos.findByValFactura", query = "SELECT p FROM PagosContratos p WHERE p.valFactura = :valFactura"),
     @NamedQuery(name = "PagosContratos.findByFechaDePago", query = "SELECT p FROM PagosContratos p WHERE p.fechaDePago = :fechaDePago")})
 public class PagosContratos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -153,9 +153,9 @@ public class PagosContratos implements Serializable {
     public String toString() {
         return "co.edu.sena.sami.jpa.entities.PagosContratos[ idPago=" + idPago + " ]";
     }
-    public Long getRestaFechas(){
+     public Long getRestaFechas(){
         long resultado;
-        
+        if (fechaDePago != null) {
         DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
         String fechaInicioString = df.format(fechaFactura);
         try {
@@ -173,5 +173,8 @@ public class PagosContratos implements Serializable {
         double dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
         resultado=((int)dias);
         return resultado;
+        }else{
+            return -1L;
+        }
     }
 }

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "usuarios_contratos")
@@ -46,18 +46,18 @@ public class UsuariosContratos implements Serializable {
     @Size(max = 200)
     @Column(name = "observaciones")
     private String observaciones;
-    @JoinColumn(name = "numero_de_poliza", referencedColumnName = "numero_de_poliza", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Polizas polizas;
-    @JoinColumn(name = "id_rol", referencedColumnName = "id_rol", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Rol rol;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Usuarios usuarios;
     @JoinColumn(name = "id_contrato", referencedColumnName = "id_contrato", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Contratos contratos;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Usuarios usuarios;
+    @JoinColumn(name = "id_rol", referencedColumnName = "id_rol", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Rol rol;
+    @JoinColumn(name = "numero_de_poliza", referencedColumnName = "numero_de_poliza", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Polizas polizas;
 
     public UsuariosContratos() {
     }
@@ -94,20 +94,12 @@ public class UsuariosContratos implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public Polizas getPolizas() {
-        return polizas;
+    public Contratos getContratos() {
+        return contratos;
     }
 
-    public void setPolizas(Polizas polizas) {
-        this.polizas = polizas;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setContratos(Contratos contratos) {
+        this.contratos = contratos;
     }
 
     public Usuarios getUsuarios() {
@@ -118,12 +110,20 @@ public class UsuariosContratos implements Serializable {
         this.usuarios = usuarios;
     }
 
-    public Contratos getContratos() {
-        return contratos;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setContratos(Contratos contratos) {
-        this.contratos = contratos;
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    public Polizas getPolizas() {
+        return polizas;
+    }
+
+    public void setPolizas(Polizas polizas) {
+        this.polizas = polizas;
     }
 
     @Override

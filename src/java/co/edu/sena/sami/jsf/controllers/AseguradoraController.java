@@ -48,11 +48,31 @@ public class AseguradoraController implements Serializable {
     private AseguradoraFacade getFacade() {
         return ejbFacade;
     }
+     public String ModuloUnoPrepareCreate() {
+        selected = new Aseguradora();
+        initializeEmbeddableKey();
+        return "/modulo1/ContratacionPrestacionDeServicios/Aseguradora/Create";
+    }
+   
+     public String prepareEditModuloUno() {
+        return "/modulo1/ContratacionPrestacionDeServicios/Aseguradora/Edit";
+    }
+
+    public String prepareViewModuloUno() {
+        return "/modulo1/ContratacionPrestacionDeServicios/Aseguradora/View";
+    }
 
     public Aseguradora prepareCreate() {
         selected = new Aseguradora();
         initializeEmbeddableKey();
         return selected;
+    }
+     public String createModuloUno() {
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("AseguradoraCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        return "/modulo1/ContratacionPrestacionDeServicios/Aseguradora/List";
     }
 
     public void create() {

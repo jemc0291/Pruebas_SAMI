@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h:panelGrid columns="2">
+                        
+                        <h:outputLabel value="NumDias:" for="numDias" />
+                        <h:inputText id="numDias" value="#{comisionesController.selected.numDias}" title="NumDias" />
+                        
+                        <h:outputLabel value="FechaEntregaInforme:" for="fechaEntregaInforme" />
+                        <h:inputText id="fechaEntregaInforme" value="#{comisionesController.selected.fechaEntregaInforme}" title="FechaEntregaInforme" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="ActividadesOTemas:" for="actividadesOTemas" />
+                        <h:inputText id="actividadesOTemas" value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas" />
+                        <h:outputLabel value="CompromisoSena:" for="compromisoSena" />
+                        <h:inputText id="compromisoSena" value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena" />
+                        <h:outputLabel value="ProdEntragados:" for="prodEntragados" />
+                        
+                        <h:outputLabel value="IdUsuario:" for="idUsuario" />
+                        <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel value="IdGrupo:" for="idGrupo" />
+                        <h:selectOneMenu id="idGrupo" value="#{comisionesController.selected.idGrupo}" title="IdGrupo" required="true" requiredMessage="The IdGrupo field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        
+                    </h:panelGrid>
+                </h:form>
+            </f:view>
+
+        </ui:define>
+    </ui:composition>
+</html>
+
+

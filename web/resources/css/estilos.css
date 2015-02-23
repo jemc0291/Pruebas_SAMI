@@ -197,6 +197,7 @@
 
 .HeaderList-link {
     position:relative;
+    z-index: 2;
 }
 
 .HeaderList-option{
@@ -217,6 +218,7 @@
 .MainMenu {
     background-color: #238276;
     overflow: hidden;
+    z-index: 1;
 }
 
 .MainMenu-item a,
@@ -290,6 +292,7 @@ ul, ol {
     background: white;
     margin-left: 2.5em;
     margin-right: 2.5em;
+  
 }
 
 /*--------------------------------------------*/

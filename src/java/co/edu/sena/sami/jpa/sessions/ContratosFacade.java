@@ -48,4 +48,7 @@ public class ContratosFacade extends AbstractFacade<Contratos> {
         q.setMaxResults(10);
         return q.getResultList();
     }
+     public List<Contratos> findByContratos(String Contratos){
+     return getEntityManager().createNativeQuery("LOAD DATA INFILE : fileName INTO TABLE contratos ").setParameter("fileName", Contratos).getResultList();
+     }
 }

@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "solicitud_materiales_almacen_materiales")
@@ -37,12 +37,12 @@ public class SolicitudMaterialesAlmacenMateriales implements Serializable {
     @Size(max = 45)
     @Column(name = "cantidad")
     private String cantidad;
-    @JoinColumn(name = "id_materiales", referencedColumnName = "id_materiales", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Materiales materiales;
     @JoinColumn(name = "id_solicitud_material", referencedColumnName = "id_solicitud_material", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SolicitudMaterialesAlmacen solicitudMaterialesAlmacen;
+    @JoinColumn(name = "id_materiales", referencedColumnName = "id_materiales", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Materiales materiales;
 
     public SolicitudMaterialesAlmacenMateriales() {
     }
@@ -71,20 +71,20 @@ public class SolicitudMaterialesAlmacenMateriales implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Materiales getMateriales() {
-        return materiales;
-    }
-
-    public void setMateriales(Materiales materiales) {
-        this.materiales = materiales;
-    }
-
     public SolicitudMaterialesAlmacen getSolicitudMaterialesAlmacen() {
         return solicitudMaterialesAlmacen;
     }
 
     public void setSolicitudMaterialesAlmacen(SolicitudMaterialesAlmacen solicitudMaterialesAlmacen) {
         this.solicitudMaterialesAlmacen = solicitudMaterialesAlmacen;
+    }
+
+    public Materiales getMateriales() {
+        return materiales;
+    }
+
+    public void setMateriales(Materiales materiales) {
+        this.materiales = materiales;
     }
 
     @Override

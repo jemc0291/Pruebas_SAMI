@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Crear poliza</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo1/menu_modulo1.xhtml"></ui:include></ui:define>
+        <ui:define name="body"> 
+
+            <h:form>
+                <h1><h:outputText value="View"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputText value="NumeroDePoliza:"/>
+                    <h:outputText value="#{polizasController.selected.numeroDePoliza}" title="NumeroDePoliza"/>
+                    <h:outputText value="ValorDePoliza:"/>
+                    <h:outputText value="#{polizasController.selected.valorDePoliza}" title="ValorDePoliza"/>
+                    <h:outputText value="VigenciaDesde:"/>
+                    <h:outputText value="#{polizasController.selected.vigenciaDesde}" title="VigenciaDesde">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="VigenciaHasta:"/>
+                    <h:outputText value="#{polizasController.selected.vigenciaHasta}" title="VigenciaHasta">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="FechaAprobacion:"/>
+                    <h:outputText value="#{polizasController.selected.fechaAprobacion}" title="FechaAprobacion">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="IdAseguradora:"/>
+                    <h:outputText value="#{polizasController.selected.idAseguradora}" title="IdAseguradora"/>
+                </h:panelGrid>
+                <h:button p:class="Button-cancelar" value="Volver atras" outcome="/modulo1/ContratacionPrestacionDeServicios/polizas/List"/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

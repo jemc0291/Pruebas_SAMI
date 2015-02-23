@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "acta_verificacion")
@@ -115,12 +115,12 @@ public class ActaVerificacion implements Serializable {
     @Size(min = 1, max = 200)
     @Column(name = "observaciones")
     private String observaciones;
-    @JoinColumn(name = "id_factura", referencedColumnName = "id_factura")
-    @ManyToOne(optional = false)
-    private Facturas idFactura;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuarios idUsuario;
+    @JoinColumn(name = "id_factura", referencedColumnName = "id_factura")
+    @ManyToOne(optional = false)
+    private Facturas idFactura;
 
     public ActaVerificacion() {
     }
@@ -258,20 +258,20 @@ public class ActaVerificacion implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public Facturas getIdFactura() {
-        return idFactura;
-    }
-
-    public void setIdFactura(Facturas idFactura) {
-        this.idFactura = idFactura;
-    }
-
     public Usuarios getIdUsuario() {
         return idUsuario;
     }
 
     public void setIdUsuario(Usuarios idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Facturas getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(Facturas idFactura) {
+        this.idFactura = idFactura;
     }
 
     @Override

@@ -24,7 +24,7 @@
                         Lista de Facturas
                     </f:facet>
                         
-                        <p:column>
+                        <p:column filterBy="#{item.numFactura}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPagosContratosTitle_numFactura}"/>
                             </f:facet>
@@ -47,7 +47,7 @@
                                 <f:convertDateTime pattern="dd-MMM-yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.restaFechas}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="Dias Transcurridos" />
                             </f:facet>
@@ -60,7 +60,7 @@
                             <h:outputText value="#{item.idContrato.numeroDeContrato}"/>
                         </p:column>
                         
-                        <p:column>
+                        <p:column filterBy="#{item.valFactura}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPagosContratosTitle_valFactura}"/>
                             </f:facet>
@@ -79,6 +79,12 @@
                             </p:commandButton>
                             
                             <p:commandButton icon="ui-icon-pencil"  title="Editar Factura" action="#{pagosContratosController.prepareEdit()}">
+                                <f:setPropertyActionListener value="#{item}" target="#{pagosContratosController.selected}"/>
+                            </p:commandButton>
+                            
+                            <p:commandButton icon="ui-icon-trash" title="Eliminar Factura" action="#{pagosContratosController.destroy()}"
+                                             process="@this" update="facturasTable">
+                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar la factura?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{item}" target="#{pagosContratosController.selected}"/>
                             </p:commandButton>
 

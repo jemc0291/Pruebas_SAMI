@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author Snyck
  */
 @Entity
 @Table(name = "notificaciones")
@@ -52,15 +52,15 @@ public class Notificaciones implements Serializable {
     private String texto;
     @Column(name = "visto")
     private Boolean visto;
-    @JoinColumn(name = "id_comision", referencedColumnName = "id_comision")
-    @ManyToOne
-    private Comisiones idComision;
-    @JoinColumn(name = "id_contrato", referencedColumnName = "id_contrato")
-    @ManyToOne
-    private Contratos idContrato;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuarios idUsuario;
+    @JoinColumn(name = "id_contrato", referencedColumnName = "id_contrato")
+    @ManyToOne
+    private Contratos idContrato;
+    @JoinColumn(name = "id_comision", referencedColumnName = "id_comision")
+    @ManyToOne
+    private Comisiones idComision;
 
     public Notificaciones() {
     }
@@ -101,12 +101,12 @@ public class Notificaciones implements Serializable {
         this.visto = visto;
     }
 
-    public Comisiones getIdComision() {
-        return idComision;
+    public Usuarios getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdComision(Comisiones idComision) {
-        this.idComision = idComision;
+    public void setIdUsuario(Usuarios idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public Contratos getIdContrato() {
@@ -117,12 +117,12 @@ public class Notificaciones implements Serializable {
         this.idContrato = idContrato;
     }
 
-    public Usuarios getIdUsuario() {
-        return idUsuario;
+    public Comisiones getIdComision() {
+        return idComision;
     }
 
-    public void setIdUsuario(Usuarios idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdComision(Comisiones idComision) {
+        this.idComision = idComision;
     }
 
     @Override

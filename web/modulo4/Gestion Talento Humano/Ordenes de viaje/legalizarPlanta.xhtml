@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/Modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+             <f:view>
+                <h:form>
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="NumeroLegalizacion:" for="numeroLegalizacion" />
+                        <h:inputText id="numeroLegalizacion" value="#{legalizacionesController.selected.numeroLegalizacion}" title="NumeroLegalizacion" required="true" requiredMessage="The NumeroLegalizacion field is required."/>
+                        <h:outputLabel value="Subtotal:" for="subtotal" />
+                        <h:inputText id="subtotal" value="#{legalizacionesController.selected.subtotal}" title="Subtotal" required="true" requiredMessage="The Subtotal field is required."/>
+                        <h:outputLabel value="MenosRetefuente:" for="menosRetefuente" />
+                        <h:inputText id="menosRetefuente" value="#{legalizacionesController.selected.menosRetefuente}" title="MenosRetefuente" required="true" requiredMessage="The MenosRetefuente field is required."/>
+                        <h:outputLabel value="ValorNetoAReconocer:" for="valorNetoAReconocer" />
+                        <h:inputText id="valorNetoAReconocer" value="#{legalizacionesController.selected.valorNetoAReconocer}" title="ValorNetoAReconocer" />
+                        <h:outputLabel value="Saldo:" for="saldo" />
+                        <h:inputText id="saldo" value="#{legalizacionesController.selected.saldo}" title="Saldo" />
+                        <h:outputLabel value="SaldoAFavor:" for="saldoAFavor" />
+                        <h:inputText id="saldoAFavor" value="#{legalizacionesController.selected.saldoAFavor}" title="SaldoAFavor" />
+                        <h:outputLabel value="ValorAReintegrar:" for="valorAReintegrar" />
+                        <h:inputText id="valorAReintegrar" value="#{legalizacionesController.selected.valorAReintegrar}" title="ValorAReintegrar" />
+                        <h:outputLabel value="FechaSalida:" for="fechaSalida" />
+                        <h:inputText id="fechaSalida" value="#{legalizacionesController.selected.fechaSalida}" title="FechaSalida" required="true" requiredMessage="The FechaSalida field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="FechaLlegada:" for="fechaLlegada" />
+                        <h:inputText id="fechaLlegada" value="#{legalizacionesController.selected.fechaLlegada}" title="FechaLlegada" required="true" requiredMessage="The FechaLlegada field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="Dias:" for="dias" />
+                        <h:inputText id="dias" value="#{legalizacionesController.selected.dias}" title="Dias" required="true" requiredMessage="The Dias field is required."/>
+                        <h:outputLabel value="ValorLegalizar:" for="valorLegalizar" />
+                        <h:inputText id="valorLegalizar" value="#{legalizacionesController.selected.valorLegalizar}" title="ValorLegalizar" />
+                        <h:outputLabel value="MenosValorAnticipo:" for="menosValorAnticipo" />
+                        <h:inputText id="menosValorAnticipo" value="#{legalizacionesController.selected.menosValorAnticipo}" title="MenosValorAnticipo" />
+                        <h:outputLabel value="SaldooPositivo:" for="saldooPositivo" />
+                        <h:inputText id="saldooPositivo" value="#{legalizacionesController.selected.saldooPositivo}" title="SaldooPositivo" />
+                        <h:outputLabel value="Presupuesto:" for="presupuesto" />
+                        <h:inputText id="presupuesto" value="#{legalizacionesController.selected.presupuesto}" title="Presupuesto" />
+                        <h:outputLabel value="SolicitaOrdenaSaldo:" for="solicitaOrdenaSaldo" />
+                        <h:inputText id="solicitaOrdenaSaldo" value="#{legalizacionesController.selected.solicitaOrdenaSaldo}" title="SolicitaOrdenaSaldo" />
+                        <h:outputLabel value="NumeroCrp:" for="numeroCrp" />
+                        <h:selectOneMenu id="numeroCrp" value="#{legalizacionesController.selected.numeroCrp}" title="NumeroCrp" required="true" requiredMessage="The NumeroCrp field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Ciudad:" for="ciudad" />
+                        <h:selectOneMenu id="ciudad" value="#{legalizacionesController.selected.ciudad}" title="Ciudad" required="true" requiredMessage="The Ciudad field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="CodigoGasto:" for="codigoGasto" />
+                        <h:selectOneMenu id="codigoGasto" value="#{legalizacionesController.selected.codigoGasto}" title="CodigoGasto" required="true" requiredMessage="The CodigoGasto field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
+            </f:view>
+            
+        </ui:define>
+    </ui:composition>
+</html>
+
+
