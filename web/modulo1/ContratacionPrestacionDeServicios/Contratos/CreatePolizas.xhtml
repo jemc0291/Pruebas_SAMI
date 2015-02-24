@@ -13,9 +13,10 @@
                   resizable="false"
                   header="Crear Poliza">
 
-
             <h:form id="polizasForm" >
-
+                <h:panelGroup id="msgs">
+                <p:messages/>
+                </h:panelGroup>
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
                     <label jsf:value="#{bundle.CreatePolizasLabel_numeroDePoliza}" jsf:for="numeroDePoliza" />
@@ -51,7 +52,7 @@
                                        var="idAseguradoraItem"
                                        itemValue="#{idAseguradoraItem}"/>
                     </h:selectOneMenu>  
-                    <p:commandButton oncomplete="handleSubmit(arg,'PolizasDialogo')" value="Guardar" update="polizasForm :contratoForm" />
+                    <p:commandButton process="polizasForm" oncomplete="handleSubmit(arg,'PolizasDialogo')" value="Guardar" update="polizasForm msgs :contratoForm" />
                     <p:commandButton value="Cancelar" process="@this" onclick="PF('PolizasDialogo').hide()"/>
                 </h:panelGrid>
 
