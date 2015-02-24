@@ -31,7 +31,7 @@
                             <h:outputText value="#{item.numeroDeContrato}"/>
                         </p:column>
                         
-                        <p:column>
+                        <p:column filterBy="#{item.idTipoContrato}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListContratosTitle_idTipoContrato}"/>
                             </f:facet>
@@ -46,7 +46,7 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.fechaInicioContrato}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListContratosTitle_fechaInicioContrato}"/>
                             </f:facet>
@@ -63,7 +63,7 @@
                             </h:outputText>
                         </p:column>                        
                         
-                        <p:column>
+                        <p:column filterBy="#{item.objetoContractual}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListContratosTitle_objetoContractual}"/>
                             </f:facet>
@@ -88,7 +88,7 @@
                             <h:outputText value="#{item.adicionPresupuestal}"/>
                         </p:column>
                         
-                        <p:column>
+                        <p:column filterBy="#{item.valorContrato}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListContratosTitle_valorContrato}"/>
                             </f:facet>
