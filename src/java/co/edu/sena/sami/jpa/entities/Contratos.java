@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Contratos.findAll", query = "SELECT c FROM Contratos c"),
     @NamedQuery(name = "Contratos.findByIdContrato", query = "SELECT c FROM Contratos c WHERE c.idContrato = :idContrato"),
-    @NamedQuery(name = "Contratos.findByNumeroDeContrato", query = "SELECT c FROM Contratos c WHERE c.numeroDeContrato = :numeroDeContrato"),
+    @NamedQuery(name = "Contratos.findByNumeroDeContrato", query = "SELECT c FROM Contratos c WHERE c.numeroDeContrato LIKE :numeroDeContrato"),
     @NamedQuery(name = "Contratos.findByFechasuscripcion", query = "SELECT c FROM Contratos c WHERE c.fechasuscripcion = :fechasuscripcion"),
     @NamedQuery(name = "Contratos.findByFechaInicioContrato", query = "SELECT c FROM Contratos c WHERE c.fechaInicioContrato = :fechaInicioContrato"),
     @NamedQuery(name = "Contratos.findByFechaFinContrato", query = "SELECT c FROM Contratos c WHERE c.fechaFinContrato = :fechaFinContrato"),
@@ -72,7 +72,7 @@ public class Contratos implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "numero_de_contrato")
-    private int numeroDeContrato;
+    private String numeroDeContrato;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Fecha_suscripcion")
@@ -162,7 +162,7 @@ public class Contratos implements Serializable {
         this.idContrato = idContrato;
     }
 
-    public Contratos(Integer idContrato, int numeroDeContrato, Date fechasuscripcion, Date fechaInicioContrato, Date fechaFinContrato, String objetoContractual) {
+    public Contratos(Integer idContrato, String numeroDeContrato, Date fechasuscripcion, Date fechaInicioContrato, Date fechaFinContrato, String objetoContractual) {
         this.idContrato = idContrato;
         this.numeroDeContrato = numeroDeContrato;
         this.fechasuscripcion = fechasuscripcion;
@@ -179,11 +179,11 @@ public class Contratos implements Serializable {
         this.idContrato = idContrato;
     }
 
-    public int getNumeroDeContrato() {
+    public String getNumeroDeContrato() {
         return numeroDeContrato;
     }
 
-    public void setNumeroDeContrato(int numeroDeContrato) {
+    public void setNumeroDeContrato(String numeroDeContrato) {
         this.numeroDeContrato = numeroDeContrato;
     }
 

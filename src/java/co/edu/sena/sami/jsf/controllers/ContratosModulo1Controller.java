@@ -237,10 +237,10 @@ public class ContratosModulo1Controller implements Serializable {
 
     public void validarContrato(FacesContext contex, UIComponent component, Object value)
             throws ValidatorException {
-        if (getFacade().findByNumeroDeContrato((int) value) != null) {
+        if (getFacade().findByNumeroDeContrato((String) value) != null) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contrato ya existente", "El contrato ya existe en la base de datos !!!!"));
         } else {
-            selected.setNumeroDeContrato((int) value);
+            selected.setNumeroDeContrato((String) value);
         }
 
     }

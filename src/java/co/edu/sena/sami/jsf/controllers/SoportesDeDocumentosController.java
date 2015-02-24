@@ -258,5 +258,12 @@ public class SoportesDeDocumentosController implements Serializable {
             System.out.println(e.getMessage());
         }
     }
+    public void openFile(){
+        try {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + selected.getUrlDocumento());
+        } catch (IOException e) {
+                e.printStackTrace();
+}
+    }
 
 }

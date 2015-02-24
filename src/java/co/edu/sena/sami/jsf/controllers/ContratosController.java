@@ -1,9 +1,13 @@
 package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.Contratos;
+import co.edu.sena.sami.jpa.entities.Polizas;
+import co.edu.sena.sami.jpa.entities.UsuariosContratos;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.ContratosFacade;
+import co.edu.sena.sami.jpa.sessions.PolizasFacade;
+import co.edu.sena.sami.jpa.sessions.UsuariosContratosFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,9 +30,15 @@ import javax.faces.validator.ValidatorException;
 public class ContratosController implements Serializable {
 
     @EJB
+    private PolizasFacade polizasFacade;
+    @EJB
     private co.edu.sena.sami.jpa.sessions.ContratosFacade ejbFacade;
+    @EJB
+    private UsuariosContratosFacade usuariosContratosFacade;
     private List<Contratos> items = null;
     private Contratos selected;
+    private Polizas selectedPolizas;
+    private UsuariosContratos selectedUsuariosContratos;
 
     public ContratosController() {
     }
@@ -36,6 +46,23 @@ public class ContratosController implements Serializable {
     public Contratos getSelected() {
         return selected;
     }
+
+    public Polizas getSelectedPolizas() {
+        return selectedPolizas;
+    }
+
+    public void setSelectedPolizas(Polizas selectedPolizas) {
+        this.selectedPolizas = selectedPolizas;
+    }
+
+    public PolizasFacade getPolizasFacade() {
+        return polizasFacade;
+    }
+
+    public UsuariosContratosFacade getUsuariosContratosFacade() {
+        return usuariosContratosFacade;
+    }
+    
 
     public void setSelected(Contratos selected) {
         this.selected = selected;
@@ -54,7 +81,8 @@ public class ContratosController implements Serializable {
      
     public String prepareCreate() {
         selected = new Contratos();
-        //initializeEmbeddableKey();
+        selectedPolizas = new Polizas();
+        //initializeEmbeddableKey();        
         return "/modulo3/GestionContractual/CrearContrato";
     }
     
@@ -77,11 +105,19 @@ public class ContratosController implements Serializable {
 //    }
     public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ContratosCreated"));
+        createPolizas();
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
         return "ListaContratos";
 //return "/index";
+    }
+     public void createPolizas(){
+        try{
+            getPolizasFacade().create(selectedPolizas);
+        }catch(Exception e){
+            
+        }
     }
 
     public String update() {
@@ -149,8 +185,18 @@ public class ContratosController implements Serializable {
     public List<Contratos> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+    public List<Contratos> getListNumeroContratoAutoComplete(String query) {//se agrego metodo de autocompletar
+        try {
+            return getFacade().findByNumeroContratoCompletar(query);
+        } catch (Exception ex) {
+            Logger.getLogger(ContratosController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
-    @FacesConverter(forClass = Contratos.class)
+    @FacesConverter(forClass = Contratos.class, value = "contratosConverter")
     public static class ContratosControllerConverter implements Converter {
 
         @Override
@@ -198,10 +244,10 @@ public class ContratosController implements Serializable {
     
     public void validarContrato(FacesContext contex, UIComponent component, Object value)
             throws ValidatorException {
-        if (getFacade().findByNumeroDeContrato((int) value) != null) {
+        if (getFacade().findByNumeroDeContrato((String) value) != null) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contrato ya existente", "El contrato ya existe en la base de datos !!!!"));
         } else {
-            selected.setNumeroDeContrato((int) value);
+            selected.setNumeroDeContrato((String) value);
         }
 
     }

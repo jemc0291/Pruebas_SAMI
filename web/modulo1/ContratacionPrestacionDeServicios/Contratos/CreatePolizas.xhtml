@@ -18,34 +18,35 @@
 
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
-                    <label jsf:value="#{bundle.CreatePolizasLabel_numeroDePoliza}" for="numeroDePoliza" />
-                    <input type="text" maxlength="20" jsf:id="numeroDePoliza" pattern="[0-9]*"   jsf:value="#{polizasController.selected.numeroDePoliza}" 
+                    <label jsf:value="#{bundle.CreatePolizasLabel_numeroDePoliza}" jsf:for="numeroDePoliza" />
+                    <input type="text" maxlength="20" jsf:id="numeroDePoliza" pattern="[0-9]*"   jsf:value="#{contratosModulo1Controller.selectedPolizas.numeroDePoliza}" 
                            jsf:title="#{bundle.CreatePolizasTitle_numeroDePoliza}" required="true" jsf:requiredMessage="#{bundle.CreatePolizasRequiredMessage_numeroDePoliza}"></input>
 
-                    <label jsf:value="#{bundle.CreatePolizasLabel_valorDePoliza}"  for="valorDePoliza" />
-                    <input type="text" maxlength="20" jsf:id="numeroDeContrato" pattern="[0-9]*"  jsf:value="#{polizasController.selected.valorDePoliza}" 
+                    <label jsf:value="#{bundle.CreatePolizasLabel_valorDePoliza}"  jsf:for="valorDePoliza" />
+                    <input type="text" maxlength="20" jsf:id="valorDePoliza" pattern="[0-9]*"  jsf:value="#{contratosModulo1Controller.selectedPolizas.valorDePoliza}" 
                            jsf:title="#{bundle.CreatePolizasTitle_valorDePoliza}" required="true" jsf:requiredMessage="#{bundle.CreatePolizasRequiredMessage_valorDePoliza}"   ></input>
 
-                    <label jsf:value="#{bundle.CreatePolizasLabel_vigenciaDesde}"  for="vigenciaDesde" />
-                    <input type="date" id="vigenciaDesde" jsf:value="#{polizasController.selected.vigenciaDesde}" jsf:title="#{bundle.EditPolizasTitle_vigenciaDesde}" 
+                    <label jsf:value="#{bundle.CreatePolizasLabel_vigenciaDesde}"  jsf:for="vigenciaDesde" />
+                    <input type="date" jsf:id="vigenciaDesde" jsf:value="#{contratosModulo1Controller.selectedPolizas.vigenciaDesde}" jsf:title="#{bundle.EditPolizasTitle_vigenciaDesde}" 
                            required="true" jsf:requiredMessage="#{bundle.EditPolizasRequiredMessage_vigenciaDesde}">
                         <f:convertDateTime pattern="yyyy-MM-dd" />
                     </input>
 
-                    <label jsf:value="#{bundle.CreatePolizasLabel_vigenciaHasta}" for="vigenciaHasta" id="" />
-                    <input type="date" id="vigenciaHasta" jsf:value="#{polizasController.selected.vigenciaHasta}"
+                    <label jsf:value="#{bundle.CreatePolizasLabel_vigenciaHasta}" jsf:for="vigenciaHasta" id="" />
+                    <input type="date" jsf:id="vigenciaHasta" jsf:value="#{contratosModulo1Controller.selectedPolizas.vigenciaHasta}"
                            jsf:title="#{bundle.EditPolizasTitle_vigenciaHasta}" required="true" jsf:requiredMessage="#{bundle.EditPolizasRequiredMessage_vigenciaHasta}" >
                         <f:convertDateTime pattern="yyyy-MM-dd" />
                     </input>
 
-                    <label jsf:value="#{bundle.CreatePolizasLabel_fechaAprobacion}" for="fechaAprobacion" />
-                    <input type="date" id="fechaAprobacion" jsf:value="#{polizasController.selected.fechaAprobacion}" jsf:title="#{bundle.EditPolizasTitle_fechaAprobacion}" >
+                    <label jsf:value="#{bundle.CreatePolizasLabel_fechaAprobacion}" jsf:for="fechaAprobacion" />
+                    <input type="date" jsf:id="fechaAprobacion" jsf:value="#{contratosModulo1Controller.selectedPolizas.fechaAprobacion}" jsf:title="#{bundle.EditPolizasTitle_fechaAprobacion}" >
                         <f:convertDateTime pattern="yyyy-MM-dd" />
                     </input>
 
-                    <label jsf:value="#{bundle.CreatePolizasLabel_idAseguradora}"  for="idAseguradora" />
-                    <h:selectOneMenu id="idAseguradora" value="#{polizasController.selected.idAseguradora}" title="IdAseguradora" required="true" 
+                    <label jsf:value="#{bundle.CreatePolizasLabel_idAseguradora}"  jsf:for="idAseguradora" />
+                    <h:selectOneMenu id="idAseguradora" value="#{contratosModulo1Controller.selectedPolizas.idAseguradora}" title="IdAseguradora" required="true" 
                                      requiredMessage="#{bundle.EditPolizasRequiredMessage_idAseguradora}">
+                        <f:selectItem itemLabel="Seleccionar"/>
                         <f:selectItems value="#{aseguradoraController.itemsAvailableSelectOne}"
                                        var="idAseguradoraItem"
                                        itemValue="#{idAseguradoraItem}"/>
