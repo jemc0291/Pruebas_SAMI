@@ -4,23 +4,20 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
-     <p:dialog widgetVar="PolizasDialogo" 
-                  appendTo="@(body)"
-                  modal="true"
-                  resizable="false"
-                  header="Crear Poliza">
-            
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Actas de Verificacion</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h:form id="ActaCreateForm" >
 
-            <h:form id="ActaVerificacionForm" >
-                
-                        <h1><h:outputText value="Create/Edit"/></h1>
-                        
+                <h:panelGroup id="display">
                     <p:panelGrid columns="3" layout="grid">
-                  
+
+
                         <label class="Form-na">Proveedores</label>    
                         <input type="text" jsf:id="proveedores" required="true" 
                                jsf:requiredMessage="Por favor describa los proveedores"
@@ -63,28 +60,6 @@
                             <f:ajax execute="@this" render="lugarRecepcionMessage"/>
                         </input>
                         <h:message id="lugarRecepcionMessage" for="lugarRecepcion" styleClass="error"/>
-
-                        <label class="Form-na">Fecha</label>
-                        <input type="date" 
-                               jsf:id="fecha" 
-                               required="true"
-                               jsf:requiredMessage="Por favor ingrese la fecha"
-                               jsf:value="#{actaVerificacionController.selected.fecha}">
-                            <f:convertDateTime pattern="yyyy-MM-dd"/>
-                            <f:ajax execute="@this" render="fechaMessage"/>
-                        </input>
-                        <h:message id="fechaMessage" for="fecha" styleClass="error"/>
-
-                        <label class="Form-na">Hora:</label>
-                        <input type="datetime-local" 
-                               jsf:id="hora" 
-                               required="true" 
-                               jsf:value="#{actaVerificacionController.selected.hora}" 
-                               jsf:requiredMessage="Por favor ingrese la hora HH:mm.">
-                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
-                            <f:ajax execute="@this" render="horaMessage"/>
-                        </input>
-                        <h:message id="horaMessage" for="hora" styleClass="error"/>
 
                         <label class="Form-na">Valor:</label>
                         <input type="number" jsf:id="valor" required="true"                                
@@ -132,7 +107,7 @@
 
                         <label class="Form-na">Pendiente Entrega:</label>
                         <input type="checkbox" jsf:id="pendienteEntrega"
-                                               jsf:value="#{actaVerificacionController.selected.pendienteEntrega}">
+                               jsf:value="#{actaVerificacionController.selected.pendienteEntrega}">
                             <f:ajax execute="@this" render="pendienteEntregaMessage"/>
                         </input>
                         <h:message id="pendienteEntregaMessage" for="pendienteEntrega" styleClass="error"/>
@@ -147,31 +122,20 @@
 
                         <label>ID Factura:</label>
                         <h:selectOneMenu id="idFactura" pt:required="true" 
-                                       requiredMessage="Por favor seleccione la factura"
-                                       value="#{actaVerificacionController.selected.idFactura}" >
+                                         requiredMessage="Por favor seleccione la factura"
+                                         value="#{actaVerificacionController.selected.idFactura}" >
                             <f:selectItem itemLabel="Factura Número"/>
                             <f:selectItems value="#{actaVerificacionController.itemsAvailableSelectOneFacturas}"/>
                             <f:ajax execute="@this" render="idFacturaMessage"/>
                         </h:selectOneMenu>
                         <h:message id="idFacturaMessage" for="idFactura" styleClass="error"/>
-
-                        <label>ID Usuario</label> 
-                        <h:selectOneMenu id="idUsuario" pt:required="true" 
-                                         requiredMessage="Por favor seleccione un ID de usuario"
-                                         value="#{actaVerificacionController.selected.idUsuario}" >
-                            <f:selectItems value="#{actaVerificacionController.itemsAvailableSelectOneUsuarios}" />
-                            <f:ajax execute="@this" render="idUsuarioMessage"/>
-                        </h:selectOneMenu>
-                        <h:message id="idUsuarioMessage" for="idUsuario" styleClass="error"/>
-                        
                     </p:panelGrid>
-                    <h:commandButton value="Guardar" 
-                                     action="#{actaVerificacionController.create()}"/>
-                    <h:button value="Cancelar" 
-                              outcome="/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/Actas.xhtml"/>
-                    
-
-         </h:form>
-            </p:dialog>
-
+                    <p:commandButton value="Guardar" actionListener="#{actaVerificacionController.create}" 
+                                     action="#{actaVerificacionController.recargarLista}" update="@form" >
+                        <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                    </p:commandButton>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </html>

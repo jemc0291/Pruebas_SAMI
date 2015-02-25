@@ -174,7 +174,7 @@ public class Materiales implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Materiales[ idMateriales=" + idMateriales + " ]";
+        return idMateriales + "  " + nombreMaterial;
     }
     
 }

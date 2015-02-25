@@ -1,11 +1,14 @@
 package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.Facturas;
+import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.FacturasFacade;
+import co.edu.sena.sami.jpa.sessions.UsuariosFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -14,6 +17,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -27,7 +31,23 @@ public class FacturasController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.FacturasFacade ejbFacade;
     private List<Facturas> items = null;
     private Facturas selected;
+    
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.UsuariosFacade ejbFacadeUsuarios;
+    
+    private UsuariosFacade getFacadeUsuarios() {
+        return ejbFacadeUsuarios;
+    }
+    
+    public List<Usuarios> getItemsAvailableSelectManyUsuarios() {
+        return getFacadeUsuarios().findAll();
+    }
 
+    public List<Usuarios> getItemsAvailableSelectOneUsuarios() {
+        return getFacadeUsuarios().findAll();
+    }
+    
+   
     public FacturasController() {
     }
 
@@ -49,12 +69,26 @@ public class FacturasController implements Serializable {
         return ejbFacade;
     }
 
-    public String prepareCreate() {
+    public Facturas prepareCreate() {
         selected = new Facturas();
         initializeEmbeddableKey();
-        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/Facturas/CreateFactura.xhtml";
+        return selected;
     }
 
+    public String createDos() {
+        try {
+            selected.setFecha(new Date());
+            getFacade().create(selected);
+            addSuccessMessage("Crear Cliente", "Factura Creada Exitosamente");
+            items=null;
+            return"Facturas";
+            
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return null;
+        }
+    }
+    
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("FacturasCreated"));
         if (!JsfUtil.isValidationFailed()) {
@@ -161,5 +195,17 @@ public class FacturasController implements Serializable {
         }
 
     }
+    
+    private void addErrorMessage(String title, String msg) {
+        FacesMessage facesMsg
+                = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
+        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+    }
+
+    private void addSuccessMessage(String title, String msg) {
+        FacesMessage facesMsg
+                = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
+        FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
+    } 
 
 }

@@ -183,5 +183,9 @@ public class SolicitudMaterialesAlmacen implements Serializable {
     public String toString() {
         return "co.edu.sena.sami.jpa.entities.SolicitudMaterialesAlmacen[ idSolicitudMaterial=" + idSolicitudMaterial + " ]";
     }
+
+    public void setIdUsuario(Usuarios usuarios) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

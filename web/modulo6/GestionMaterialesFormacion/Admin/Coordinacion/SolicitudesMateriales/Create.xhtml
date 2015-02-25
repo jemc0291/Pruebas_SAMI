@@ -4,15 +4,16 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">Sami</ui:define>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/template.xhtml">
+        <ui:define name="title">Solicitudes</ui:define>
         <ui:define name="menu"><ui:include src="/modulo6/menu_Coordinacion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <section class="Section-form">
+        <section class="Section-form">
+
                 <h:form>
 
                     <p:panelGrid columns="3" layout="grid" id="panelSolicitud">
@@ -44,49 +45,31 @@
                             <f:ajax execute="@this" render="observacionesMessage"/>
                         </textarea>
                         <h:message id="observacionesMessage" for="observaciones"/>
-                        
+
                     </p:panelGrid>
 
                     <h:panelGrid columns="5" id="panelMateriales">
-                        
-                        <h:outputLabel value="Materiales:" for="materiales" />
-                        <h:selectOneMenu id="materiales" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.materiales}" title="Materiales" required="true" requiredMessage="The Materiales field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItem itemLabel="Selecciones uno"/>
-                            <f:selectItems value="#{materialesController.itemsAvailableSelectOne}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="Cantidad:" for="cantidad" />
-                        <h:inputText id="cantidad" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.cantidad}" title="Cantidad" />
-                        <p:commandButton value="Agregar Material" action="#{solicitudMaterialesAlmacenController.agregarMateriales}" process="@this panelMateriales" update="tablaMateriales panelMateriales"/>
-                        
-                    </h:panelGrid>
 
-                    <p:dataTable value="#{solicitudMaterialesAlmacenController.itemsSolMaterial}" var="item" id="tablaMateriales">
+                        <p:commandButton id="materialesButton" value="Materiales" type="button" />
+                        <p:overlayPanel id="materialesPanel" for="materialesButton" hideEffect="fade" dynamic="true" style="width:600px">
+                            
+                            <p:dataTable var="item" value="#{materialesController.items}" widgetVar="materialesTable"
+                                         emptyMessage="No cars found with given criteria" filteredValue="#{item}">
+                                
+                                <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="Search all fields:" />
+                                        <p:inputText id="globalFilter" onkeyup="PF('materialesTable').filter()" style="width:150px" placeholder="Material a Buscar"/>
+                                    </p:outputPanel>
+                                </f:facet>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Materiales"/>
-                            </f:facet>
-                            <h:outputText value="#{item.materiales}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Cantidad"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cantidad}"/>
-                        </p:column>
-                        
-                    </p:dataTable>
-
-                            <h3><h:outputText value="Busqueda de materiales"/></h3>
-                            <p:dataTable value="#{materialesController.items}" var="item">
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="IdMateriales"/>
                                     </f:facet>
                                     <h:outputText value="#{item.idMateriales}"/>
                                 </p:column>
-                                <p:column filterBy="#{item.nombreMaterial}" filterMatchMode="contains">
+                                <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="NombreMaterial"/>
                                     </f:facet>
@@ -110,13 +93,49 @@
                                     </f:facet>
                                     <h:outputText value="#{item.descripcionelemento}"/>
                                 </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="IdCategoria"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idCategoria}"/>
+                                </p:column>
                             </p:dataTable>
-              
+                        </p:overlayPanel>
+
+                        <h:selectOneMenu id="materiales" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.materiales}" title="Materiales" required="true" requiredMessage="The Materiales field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItem itemLabel="Selecciones uno"/>
+                            <f:selectItems value="#{materialesController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+
+                        <h:outputLabel value="Cantidad:" for="cantidad" />
+                        <h:inputText id="cantidad" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.cantidad}" title="Cantidad" />
+
+                        <p:commandButton value="Agregar Material" action="#{solicitudMaterialesAlmacenController.agregarMateriales}" process="@this panelMateriales" update="tablaMateriales panelMateriales"/>
+
+                    </h:panelGrid>
+
+                    <p:dataTable value="#{solicitudMaterialesAlmacenController.itemsSolMaterial}" var="item" id="tablaMateriales">
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Materiales"/>
+                            </f:facet>
+                            <h:outputText value="#{item.materiales}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cantidad"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </p:column>
+                    </p:dataTable>
+
                     <p:commandButton value="Guardar" 
                                      action="#{solicitudMaterialesAlmacenController.create}" 
                                      process="@this panelSolicitud" update="panelSolicitud"/>
-                    <p:button value="Cancelar" outcome="/modulo6/GestionMaterialesFormacion/Instructor/MainPage.xhtml" />                
-                
+                    <p:button value="Cancelar" outcome="/modulo6/GestionMaterialesFormacion/Coordinador/MainPage.xhtml" />                
                 </h:form>
             </section>
         </ui:define>

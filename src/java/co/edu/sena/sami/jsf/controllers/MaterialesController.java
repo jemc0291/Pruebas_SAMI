@@ -1,5 +1,6 @@
 package co.edu.sena.sami.jsf.controllers;
 
+import co.edu.sena.sami.jpa.entities.Categorias;
 import co.edu.sena.sami.jpa.entities.Materiales;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
@@ -27,6 +28,30 @@ public class MaterialesController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.MaterialesFacade ejbFacade;
     private List<Materiales> items = null;
     private Materiales selected;
+    
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.CategoriasFacade ejbFacadeCategorias;
+    
+    
+    /**
+     * @return the ejbFacadeCategorias
+     */
+    public co.edu.sena.sami.jpa.sessions.CategoriasFacade getFacadeCategorias() {
+        return ejbFacadeCategorias;
+    }
+
+    
+    public Categorias getCategorias(java.lang.Integer id) {
+        return getFacadeCategorias().find(id);
+    }
+
+    public List<Categorias> getItemsAvailableSelectManyCategorias() {
+        return getFacadeCategorias().findAll();
+    }
+
+    public List<Categorias> getItemsAvailableSelectOneCategorias() {
+        return getFacadeCategorias().findAll();
+    }
 
     public MaterialesController() {
     }

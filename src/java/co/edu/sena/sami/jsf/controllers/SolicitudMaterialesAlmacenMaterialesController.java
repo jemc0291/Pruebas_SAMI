@@ -1,5 +1,6 @@
 package co.edu.sena.sami.jsf.controllers;
 
+import co.edu.sena.sami.jpa.entities.Materiales;
 import co.edu.sena.sami.jpa.entities.SolicitudMaterialesAlmacenMateriales;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
@@ -14,20 +15,43 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 
 @Named("solicitudMaterialesAlmacenMaterialesController")
 @SessionScoped
 public class SolicitudMaterialesAlmacenMaterialesController implements Serializable {
 
     @EJB
-    private co.edu.sena.sami.jpa.sessions.SolicitudMaterialesAlmacenMaterialesFacade ejbFacade;
+    private co.edu.sena.sami.jpa.sessions.SolicitudMaterialesAlmacenMaterialesFacade ejbFacadeSolicitudMateriales;
     private List<SolicitudMaterialesAlmacenMateriales> items = null;
     private SolicitudMaterialesAlmacenMateriales selected;
 
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.MaterialesFacade ejbFacadeMateriales;
+    
+    public co.edu.sena.sami.jpa.sessions.MaterialesFacade getFacadeMateriales() {
+        return ejbFacadeMateriales;
+    }
+    
+    public Materiales getMateriales(java.lang.Integer id) {
+        return getFacadeMateriales().find(id);
+    }
+
+    public List<Materiales> getItemsAvailableSelectManyMateriales() {
+        return getFacadeMateriales().findAll();
+    }
+
+    public List<Materiales> getItemsAvailableSelectOneMateriales() {
+        return getFacadeMateriales().findAll();
+    }
+
+        
     public SolicitudMaterialesAlmacenMaterialesController() {
     }
 
@@ -49,7 +73,7 @@ public class SolicitudMaterialesAlmacenMaterialesController implements Serializa
     }
 
     private SolicitudMaterialesAlmacenMaterialesFacade getFacade() {
-        return ejbFacade;
+        return ejbFacadeSolicitudMateriales;
     }
 
     public SolicitudMaterialesAlmacenMateriales prepareCreate() {
@@ -173,4 +197,23 @@ public class SolicitudMaterialesAlmacenMaterialesController implements Serializa
 
     }
 
+     public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+         
+        if(newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
+    
+     public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Cantidad Editada", ((SolicitudMaterialesAlmacenMateriales) event.getObject()).getCantidad());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edicion Cancelada", ((SolicitudMaterialesAlmacenMateriales) event.getObject()).getCantidad());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 }

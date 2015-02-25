@@ -1,0 +1,58 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Actas de Verificacion</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="body">    <h:form id="ActaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{actaVerificacionController.selected != null}" layout="grid">
+
+                        <h:outputText value="IdActaVerificacion:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.idActaVerificacion}" title="IdActaVerificacion"/>
+                        <h:outputText value="Proveedores:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.proveedores}" title="Proveedores"/>
+                        <h:outputText value="NumContrato:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.numContrato}" title="NumContrato"/>
+                        <h:outputText value="Entrega:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.entrega}" title="Entrega"/>
+                        <h:outputText value="LugarRecepcion:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.lugarRecepcion}" title="LugarRecepcion"/>
+                        <h:outputText value="Fecha:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.fecha}" title="Fecha">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Hora:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.hora}" title="Hora">
+                            <f:convertDateTime pattern=" hh:mm:ss a" />
+                        </h:outputText>
+                        <h:outputText value="Valor:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.valor}" title="Valor"/>
+                        <h:outputText value="TotalRecibidoFactura:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.totalRecibidoFactura}" title="TotalRecibidoFactura"/>
+                        <h:outputText value="TipoVerificacion:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.tipoVerificacion}" title="TipoVerificacion"/>
+                        <h:outputText value="UnidadesRevisadas:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.unidadesRevisadas}" title="UnidadesRevisadas"/>
+                        <h:outputText value="Aprobo:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.aprobo}" title="Aprobo"/>
+                        <h:outputText value="PendienteEntrega:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.pendienteEntrega}" title="PendienteEntrega"/>
+                        <h:outputText value="Observaciones:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.observaciones}" title="Observaciones"/>
+                        <h:outputText value="IdUsuario:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.idUsuario}" title="IdUsuario"/>
+                        <h:outputText value="IdFactura:"/>
+                        <h:outputText value="#{actaVerificacionController.selected.idFactura}" title="IdFactura"/>
+                    </p:panelGrid>
+                </h:panelGroup>
+                <p:button value="Aceptar" outcome="/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/Actas.xhtml"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
