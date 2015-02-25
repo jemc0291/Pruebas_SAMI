@@ -32,7 +32,7 @@
                         <h:message id="TipoContratoMessage" for="idTipoContrato" />
                         
                         <label value="#{bundle.EditContratosLabel_fechaSuscripcion}" jsf:for="fechaSuscripcion" class="FormLabelSCCSS" />
-                        <input type="date" jsf:id="fechaSuscripcion" jsf:value="#{contratosController.selected.fechasuscripcion}" title="#{bundle.EditContratosTitle_fechaSuscripcion}" class="FormInputDateSCCSS"
+                        <input type="date" jsf:id="fechaSuscripcion" jsf:value="#{contratosController.selected.fechasuscripcion}" title="#{bundle.EditContratosTitle_fechaSuscripcion}" class="FormInputDateEditSCCSS"
                                required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_fechaSuscripcion}" disabled="true" >
                             <f:convertDateTime pattern="yyyy-MM-dd" />
                             <f:ajax execute="@this" render="FechaSuscripcionMessage" />
@@ -40,7 +40,7 @@
                         <h:message id="FechaSuscripcionMessage" for="fechaSuscripcion" />
                         
                         <label value="#{bundle.EditContratosLabel_fechaInicioContrato}" jsf:for="fechaInicioContrato" class="FormLabelSCCSS" />
-                        <input type="date" jsf:id="fechaInicioContrato" jsf:value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.EditContratosTitle_fechaInicioContrato}" class="FormInputDateSCCSS"
+                        <input type="date" jsf:id="fechaInicioContrato" jsf:value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.EditContratosTitle_fechaInicioContrato}" class="FormInputDateEditSCCSS"
                                required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_fechaInicioContrato}" disabled="true" >
                             <f:convertDateTime pattern="yyyy-MM-dd" />
                             <f:ajax execute="@this" render="FechaInicioMessage" />
@@ -48,7 +48,7 @@
                         <h:message id="FechaInicioMessage" for="fechaInicioContrato" />
                         
                         <label value="#{bundle.EditContratosLabel_fechaFinContrato}" jsf:for="fechaFinContrato" class="FormLabelSCCSS" />
-                        <input type="date" jsf:id="fechaFinContrato" jsf:value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.EditContratosTitle_fechaFinContrato}" class="FormInputDateSCCSS"
+                        <input type="date" jsf:id="fechaFinContrato" jsf:value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.EditContratosTitle_fechaFinContrato}" class="FormInputDateEditSCCSS"
                                required="true" jsf:requiredMessage="#{bundle.EditContratosRequiredMessage_fechaFinContrato}" disabled="true" >
                             <f:convertDateTime pattern="yyyy-MM-dd" />
                             <f:ajax execute="@this" render="FechaFinalMessage" />

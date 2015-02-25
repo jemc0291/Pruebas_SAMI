@@ -8,9 +8,11 @@
     <head jsf:id="head">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, minimun-scale=1,maximun=1"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/normalize.css"/>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'/>
-       <script type="text/javascript" src="../resources/html5gallery/html5gallery.js"></script>
+        <script type="text/javascript" src="../resources/html5gallery/html5gallery.js"></script>
         <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/estilos_index.css"/>
+
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/fonts.css"/>
         <title>Sami</title>               
     </head>
@@ -19,6 +21,7 @@
             <img src="#{request.contextPath}/resources/images/sami.png" width="280" height="100" class="Header-logo" />
             <p class="Header-title-inicio">SISTEMA ADMINISTRATIVO MODULAR INTEGRADO</p>
             <figure class="Menu-img">
+                <img src="#{request.contextPath}/resources/images/logo_sena.jpg" width="30"/>
                 <img src="#{request.contextPath}/resources/images/ministerio_trabajo.PNG" width="100"/>
                 <img src="#{request.contextPath}/resources/images/progreso_para_todos.PNG"/>
                 <img src="#{request.contextPath}/resources/images/mas trabajo.png" idth="100"/>
@@ -31,32 +34,36 @@
                 </ul>                        
             </nav>
             <div class="iniciar">
-             <h:panelGroup rendered="true">
-              <form jsf:id="LoginForm" class="Ingresar" name="inicioDatos">
-                  <img src="#{request.contextPath}/resources/images/login1.jpg" width="105" height="105"/>
-                <h:panelGroup id="messagePanel" layout="block">
-                    <p:messages/>
+                <h:panelGroup rendered="true">
+                    <form jsf:id="LoginForm" class="Ingresar" name="inicioDatos">
+                        <img src="#{request.contextPath}/resources/images/login1.jpg" width="105" height="105"/>
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <p:messages/>
+                        </h:panelGroup>
+                        <p class="Title-Enlaces">Iniciar Sesión</p>
+                        <input jsf:id="user" type="text" placeholder="Usuario" jsf:value="#{loginController.username}" required="true" />
+                        <br/><br/>
+                        <input jsf:id="password" type="password" placeholder="Contraseña" jsf:value="#{loginController.password}" required="true" />
+                        <br/> <br/> <br/>
+                        <input type="submit" value="Ingresar" jsf:action="#{loginController.login}">
+                            <f:ajax execute="@this @form" render="messagePanel"/>
+                        </input>                         
+                    </form>
                 </h:panelGroup>
-                <p class="Title-Enlaces">Iniciar Sesión</p>
-                <input jsf:id="user" type="text" placeholder="Usuario" jsf:value="#{loginController.username}" required="true" />
-                <br/><br/><br/>
-                <input jsf:id="password" type="password" placeholder="Contraseña" jsf:value="#{loginController.password}" required="true" />
-                <br/> <br/> <br/>
-                <input type="submit" value="Ingresar" jsf:action="#{loginController.login}">
-                    <f:ajax execute="@this @form" render="messagePanel"/>
-                </input>                         
-                </form>
-                </h:panelGroup>
-                </div>
-                
+            </div>
+
             <div class="main"> 
                 <div class="slides">
-                    <img src="#{request.contextPath}/resources/images/Almacem2.jpg" height="335px"/>
-                    <img src="#{request.contextPath}/resources/images/img2.jpg" height="335px"/>
-                    <img src="#{request.contextPath}/resources/images/img3.jpg" height="335px"/>
+                    <img src="#{request.contextPath}/resources/images/Almacem2.jpg" height="355px"/>
+                    <img src="#{request.contextPath}/resources/images/compra.jpg" height="355px"/>
+                    <img src="#{request.contextPath}/resources/images/Contrat1.jpg" height="355px"/>
+                    <img src="#{request.contextPath}/resources/images/Mant1.jpg" height="355px"/>
+                    <img src="#{request.contextPath}/resources/images/gestionD.jpg" height="355px"/>
+                    <img src="#{request.contextPath}/resources/images/document.jpg" height="355px"/>
+
                 </div>
             </div>
-          
+
             <figure class="img-enlaces-inicio">
                 <h3 class="Title-Enlaces">ENLACES</h3>
                 <a href="http://oferta.senasofiaplus.edu.co/" target="_black"><img src="#{request.contextPath}/resources/images/sena-sofia-plus.png" width="170" height="70" class="Figure-im"/></a>
@@ -64,72 +71,72 @@
                 <br/><br/><a href="http://siifsena.blogspot.com/" target="_black"><img src="#{request.contextPath}/resources/images/siif.jpg" width="170" height="70" class="Figure-im"/></a>
                 <br/><br/><a href="http://nuevo.fondoemprender.com/" target="_black"><img src="#{request.contextPath}/resources/images/fondoEmp.png" width="170" height="70" class="Figure-im"/></a>
             </figure> 
-          <aside class="work-video">
-               <h3 class="Title-Videos">NUESTRO APLICATIVO</h3>
-              <div class="videosGenral" styles="">
-                <div style="display:none;margin:0 auto;" class="html5gallery" data-skin="gallery" data-width="480" data-height="272" data-resizemode="fill"> 
-                   <a href="..resources/images/Colourful_Tulip_large.jpg">
-                   <img src="..resouces/images/Colourful_Tulip_small.jpg" alt="Colourful Tulips"/></a>
-                   <a href="..resources/images/Swan_large.jpg">
-                   <img src="..resources/images/Swan_small.jpg" alt="Swan on Lake"/></a>
-                   <a href="resources/images/Red_Tulip_large.jpg">
-                   <img src="..resources/images/Red_Tulip_small.jpg" alt="Red Tulips"/></a>
-                   <a href="..resources/images/Sakura_Tree_large.jpg">
-                   <img src="images/Sakura_Tree_small.jpg" alt="Sakura Trees"/></a>
-                   <a href="../resources/images/Big_Buck_Bunny.mp4" data-webm="../Resources/images/Big_Buck_Bunny.webm">
-                   <img src="../resources/images/Big_Buck_Bunny.jpg" alt="Big Buck Bunny, Copyright Blender Foundation"/></a>
-                   <a href="http://www.youtube.com/embed/YE7VzlLtp-4">
-                   <img src="http://img.youtube.com/vi/YE7VzlLtp-4/2.jpg" alt="Youtube Video"/></a>
-                   <a href="http://player.vimeo.com/video/1084537?title=0&amp;byline=0&amp;portrait=0">
-                   <img src="images/Big_Buck_Bunny.jpg" alt="Vimeo Video"/></a>
-                   </div>
+            <aside class="work-video">
+                <h3 class="Title-Videos">NUESTRO APLICATIVO</h3>
+                <div class="videosGenral" styles="">
+                    <div style="display:none;margin:0 auto;" class="html5gallery" data-skin="gallery" data-width="480" data-height="272" data-resizemode="fill"> 
+                        <a href="..resources/images/Colourful_Tulip_large.jpg">
+                            <img src="..resouces/images/Colourful_Tulip_small.jpg" alt="Colourful Tulips"/></a>
+                        <a href="..resources/images/Swan_large.jpg">
+                            <img src="..resources/images/Swan_small.jpg" alt="Swan on Lake"/></a>
+                        <a href="resources/images/Red_Tulip_large.jpg">
+                            <img src="..resources/images/Red_Tulip_small.jpg" alt="Red Tulips"/></a>
+                        <a href="..resources/images/Sakura_Tree_large.jpg">
+                            <img src="images/Sakura_Tree_small.jpg" alt="Sakura Trees"/></a>
+                        <a href="../resources/images/Big_Buck_Bunny.mp4" data-webm="../Resources/images/Big_Buck_Bunny.webm">
+                            <img src="../resources/images/Big_Buck_Bunny.jpg" alt="Big Buck Bunny, Copyright Blender Foundation"/></a>
+                        <a href="http://www.youtube.com/embed/YE7VzlLtp-4">
+                            <img src="http://img.youtube.com/vi/YE7VzlLtp-4/2.jpg" alt="Youtube Video"/></a>
+                        <a href="http://player.vimeo.com/video/1084537?title=0&amp;byline=0&amp;portrait=0">
+                            <img src="images/Big_Buck_Bunny.jpg" alt="Vimeo Video"/></a>
+                    </div>
                 </div>
                 <style type="text/css">
-                   div.videosGenral div {display: block;}     
+                    div.videosGenral div {display: block;}     
                 </style>   
-                </aside>                  
+            </aside>                  
         </header> 
-        <footer class="Footer">
-            <div id="contactos">
-                <h3 class="Footer-title">Contacto</h3>
-                <p align="left">
-                    <a href=""><li>Contactosami@gmail.com</li></a>
-                    <a href=""><li>contactosami@facebook.com</li></a>
-                    <a href=""><li>@interactuasami</li></a>
-                    <h3 class="Sami">SAMI</h3>
-                </p>
-            </div>
-            <p align="center">.:SAMI:. Sistema Administrativo Modular Intergrado 
-                <br/>Centro de Biotecnologia Industrial 
-                <br/>Palmira,Valle,Colombia 
-                <br/>Carrera 30 No.40-25 
-                <br/>Telefonos: 275 0968
-            </p>
-            <p align="right"> 
-                <img src="pendiente.png"/>
-                <img src="pendiente.png"/>
-                <img src="pendiente.png"/>
-            </p>
 
-        </footer>  
-         <script type="text/javascript" src="#{request.contextPath}/resources/js/jquery.slides.min.js"></script>
-         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-            <script src="#{request.contextPath}/resources/js/jquery.slides.js"></script>
-            <script>
-                        $(function() {
-                            $(".slides").slidesjs({
-                                play: {
-                                    active: true,
-                                    effect: "slide",
-                                    interval: 3000,
-                                    auto: true,
-                                    swap: true,
-                                    pauseOnHover: false,
-                                    restartDelay: 2500
-                                }
-                            });
-                        });
-            </script>
+        <script type="text/javascript" src="#{request.contextPath}/resources/js/jquery.slides.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/jquery.slides.js"></script>
+        <script>
+            $(function () {
+                $(".slides").slidesjs({
+                    play: {
+                        active: true,
+                        effect: "slide",
+                        interval: 3000,
+                        auto: true,
+                        swap: true,
+                        pauseOnHover: false,
+                        restartDelay: 2500
+                    }
+                });
+            });
+        </script>
+        <footer class="Footer" >
+            <article class="Footer-item">
+                <h4 class="Footer-title">Contacto</h4>
+                <a href="https://www.google.com.co"><p class="Footer-description">contactosami@gmail<br/>
+                        comfacebook.com/contactosami<br/>@interactuasami
+                        <br/>3173470178 - 3101234568<br/>SENA</p></a>
+            </article>
+            <article class="Footer-item">
+                <h4 class="Footer-title">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
+                <p class="Footer-descriptioncon">Centro de biotecnologia industrial<br/>Palmira Valle del Cauca
+                    <br/>Carrera 30 n° 40-25<br/>Telefono: 2750968<br/>Fax: 2750965</p>
+            </article>
+            <article class="item">
+                <a href="#"> <img src="#{request.contextPath}/resources/images/pregunta.PNG" width="50" /></a>
+                <a href="#"> <img src="#{request.contextPath}/resources/images/Configuracion.PNG" width="50"/></a>
+                <br/><br/>
+                <a href="#"> <img src="#{request.contextPath}/resources/images/Soporte.PNG" width="50"/></a>
+                <a href="#"> <img src="#{request.contextPath}/resources/images/sena_1.PNG" width="50"/></a>  
+                
+            </article>
+        </footer>
+       
     </body>   
 </html>
 

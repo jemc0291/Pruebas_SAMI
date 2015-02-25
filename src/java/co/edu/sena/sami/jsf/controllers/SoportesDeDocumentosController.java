@@ -39,7 +39,7 @@ public class SoportesDeDocumentosController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.SoportesDeDocumentosFacade ejbFacade;
     private List<SoportesDeDocumentos> items = null;
     private SoportesDeDocumentos selected;
-     private UploadedFile file;
+    private UploadedFile file;
     private String destination = "C:\\Temp\\";
 
     public SoportesDeDocumentosController() {
@@ -76,7 +76,7 @@ public class SoportesDeDocumentosController implements Serializable {
     }
 
     public String prepareView() {
-        return "/modulo3/GestionContractual/";
+        return "/modulo3/GestionContractual/VerSoporte";
     }
 
     public String prepareList() {
@@ -257,6 +257,13 @@ public class SoportesDeDocumentosController implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+    public void openFile(){
+        try {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + selected.getUrlDocumento());
+        } catch (IOException e) {
+                e.printStackTrace();
+}
     }
 
 }

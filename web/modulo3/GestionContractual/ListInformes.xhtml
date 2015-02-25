@@ -12,7 +12,7 @@
         <ui:define name="body">
             <h:form>
                 <h1><h:outputText value="Lista de Informes"/></h1>
-                <p:dataTable value="#{informesController.items}" var="item" id="InformesTable" paginator="true"
+                <p:dataTable value="#{informesController.items}" var="item" id="InformesTable" paginator="true" rows="10"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
                     <f:facet name="header">

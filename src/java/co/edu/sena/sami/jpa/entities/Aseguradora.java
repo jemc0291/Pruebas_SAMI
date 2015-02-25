@@ -109,7 +109,7 @@ public class Aseguradora implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Aseguradora[ idAseguradora=" + idAseguradora + " ]";
+        return nombreAseguradora;
     }
     
 }
