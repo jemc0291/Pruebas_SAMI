@@ -12,6 +12,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -46,8 +48,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Comisiones.findBySuministraVehiculo", query = "SELECT c FROM Comisiones c WHERE c.suministraVehiculo = :suministraVehiculo"),
     @NamedQuery(name = "Comisiones.findByObjetivos", query = "SELECT c FROM Comisiones c WHERE c.objetivos = :objetivos"),
     @NamedQuery(name = "Comisiones.findByMesaPlanificar", query = "SELECT c FROM Comisiones c WHERE c.mesaPlanificar = :mesaPlanificar"),
-    @NamedQuery(name = "Comisiones.findByLlegadaEstimada", query = "SELECT c FROM Comisiones c WHERE c.llegadaEstimada = :llegadaEstimada"),
-    @NamedQuery(name = "Comisiones.findBySalidaEstimada", query = "SELECT c FROM Comisiones c WHERE c.salidaEstimada = :salidaEstimada"),
+    
     @NamedQuery(name = "Comisiones.findByNumDias", query = "SELECT c FROM Comisiones c WHERE c.numDias = :numDias"),
     @NamedQuery(name = "Comisiones.findByAprobado", query = "SELECT c FROM Comisiones c WHERE c.aprobado = :aprobado"),
     @NamedQuery(name = "Comisiones.findByTransIntermunicipal", query = "SELECT c FROM Comisiones c WHERE c.transIntermunicipal = :transIntermunicipal"),
@@ -67,7 +68,7 @@ public class Comisiones implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_comision")
     private Integer idComision;
     @Basic(optional = false)
@@ -95,12 +96,7 @@ public class Comisiones implements Serializable {
     @Size(max = 45)
     @Column(name = "mesa_planificar")
     private String mesaPlanificar;
-    @Column(name = "llegada_estimada")
-    @Temporal(TemporalType.DATE)
-    private Date llegadaEstimada;
-    @Column(name = "salida_estimada")
-    @Temporal(TemporalType.DATE)
-    private Date salidaEstimada;
+  
     @Column(name = "num_dias")
     private Integer numDias;
     @Column(name = "aprobado")
@@ -150,7 +146,7 @@ public class Comisiones implements Serializable {
     @ManyToOne
     private TiposPasajes idTipoPasaje;
     @JoinColumn(name = "id_grupo", referencedColumnName = "id_grupo")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Grupos idGrupo;
     @JoinColumn(name = "id_ficha_caracterizacion", referencedColumnName = "id_ficha_caracterizacion")
     @ManyToOne(optional = false)
@@ -256,22 +252,6 @@ public class Comisiones implements Serializable {
 
     public void setMesaPlanificar(String mesaPlanificar) {
         this.mesaPlanificar = mesaPlanificar;
-    }
-
-    public Date getLlegadaEstimada() {
-        return llegadaEstimada;
-    }
-
-    public void setLlegadaEstimada(Date llegadaEstimada) {
-        this.llegadaEstimada = llegadaEstimada;
-    }
-
-    public Date getSalidaEstimada() {
-        return salidaEstimada;
-    }
-
-    public void setSalidaEstimada(Date salidaEstimada) {
-        this.salidaEstimada = salidaEstimada;
     }
 
     public Integer getNumDias() {

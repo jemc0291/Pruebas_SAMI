@@ -175,7 +175,7 @@ public class FichaCaracterizacion implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.FichaCaracterizacion[ idFichaCaracterizacion=" + idFichaCaracterizacion + " ]";
+        return  idFichaCaracterizacion + "";
     }
     
 }
