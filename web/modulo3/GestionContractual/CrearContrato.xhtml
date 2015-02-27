@@ -4,14 +4,15 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Registrar Contrato</ui:define>
         <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
 
-                <h:form>
+                <h:form id="contratoForm">
                     <h1><h:outputText value="#{bundle.CreateContratosTitle}"/></h1>
                     <h:panelGrid columns="3">
                         <label value="#{bundle.CreateContratosLabel_numeroDeContrato}" jsf:for="numeroDeContrato" class="FormLabelSCCSS" />
@@ -33,27 +34,30 @@
                         <h:message id="TipoContratoMessage" for="idTipoContrato" />
                         
                         <label value="#{bundle.CreateContratosLabel_fechaSuscripcion}" jsf:for="fechaSuscripcion" class="FormLabelSCCSS" />
-                        <input type="date" jsf:id="fechaSuscripcion" jsf:value="#{contratosController.selected.fechasuscripcion}" title="#{bundle.CreateContratosTitle_fechaSuscripcion}" class="FormInputDateSCCSS"
-                               required="true"  jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaSuscripcion}" min="2014-11-01" max="2016-12-31" >
-                            <f:convertDateTime pattern="yyyy-MM-dd" />
-                            <f:ajax execute="@this" render="FechaSuscripcionMessage" />
-                        </input>
+                        <p:calendar showOn="button" id="fechaSuscripcion" value="#{contratosController.selected.fechasuscripcion}" title="#{bundle.CreateContratosTitle_fechaSuscripcion}"
+                                    required="true"  requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaSuscripcion}" mindate="#{contratosController.selected.fechaInicioContrato}" maxdate="#{contratosController.selected.fechaInicioContrato}" 
+                                    pattern="yyyy-MM-dd">
+                            <p:ajax event="dateSelect" process="@this" update="FechaSuscripcionMessage fechaInicioContrato"/>
+                            <p:ajax event="valueChange" process="@this" update="FechaSuscripcionMessage fechaInicioContrato"/>
+                        </p:calendar>
                         <h:message id="FechaSuscripcionMessage" for="fechaSuscripcion" />
                         
                         <label value="#{bundle.CreateContratosLabel_fechaInicioContrato}" jsf:for="fechaInicioContrato" class="FormLabelSCCSS" />
-                        <input type="date" jsf:id="fechaInicioContrato" jsf:value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.CreateContratosTitle_fechaInicioContrato}" class="FormInputDateSCCSS"
-                               required="true" jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}" min="2014-11-01" max="2016-12-31" >
-                            <f:convertDateTime pattern="yyyy-MM-dd" />
-                            <f:ajax execute="@this" render="FechaInicioMessage" />
-                        </input>
+                        <p:calendar showOn="button" id="fechaInicioContrato" value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.CreateContratosTitle_fechaInicioContrato}"
+                                    required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}" mindate="#{contratosController.selected.fechasuscripcion}" maxdate="#{contratosController.selected.fechaFinContrato}" 
+                                    pattern="yyyy-MM-dd">
+                            <p:ajax event="dateSelect" process="@this" update="FechaInicioMessage fechaFinContrato"/>
+                            <p:ajax event="valueChange" process="@this" update="FechaInicioMessage fechaFinContrato"/>
+                        </p:calendar>
                         <h:message id="FechaInicioMessage" for="fechaInicioContrato" />
                         
                         <label value="#{bundle.CreateContratosLabel_fechaFinContrato}" jsf:for="fechaFinContrato" class="FormLabelSCCSS" />
-                        <input type="date" jsf:id="fechaFinContrato" jsf:value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.CreateContratosTitle_fechaFinContrato}" class="FormInputDateSCCSS"
-                               required="true" jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}" min="2014-11-01" max="2016-12-31" >
-                            <f:convertDateTime pattern="yyyy-MM-dd" />
-                            <f:ajax execute="@this" render="FechaFinalMessage" />
-                        </input>
+                        <p:calendar showOn="button" id="fechaFinContrato" value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.CreateContratosTitle_fechaFinContrato}"
+                                    required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}" mindate="#{contratosController.selected.fechaInicioContrato}"
+                                    pattern="yyyy-MM-dd">
+                            <p:ajax event="dateSelect" process="@this" update="FechaFinalMessage fechaInicioContrato"/>
+                            <p:ajax event="valueChange" process="@this" update="FechaFinalMessage fechaInicioContrato"/>
+                        </p:calendar>
                         <h:message id="FechaFinalMessage" for="fechaFinContrato" />
                         
                         <label value="#{bundle.CreateContratosLabel_objetoContractual}" jsf:for="objetoContractual" class="FormLabelSCCSS" />
@@ -77,12 +81,16 @@
                                   jsf:validatorMessage="Ingrese texto" maxlength="4999" >
                             <f:ajax execute="@this" render="ObservacionesMessage" />
                         </textarea>
-                        <h:message id="ObservacionesMessage" for="observaciones" />                        
+                        <h:message id="ObservacionesMessage" for="observaciones" />
+                        
+                        <label>Polizas</label>
+                    <p:commandButton onclick="PF('PolizasDialogo').show()" value="Poliza" process="@this" update=":polizasForm" />
                         
                     </h:panelGrid>
                     <h:commandButton value="#{bundle.CreateContratosSaveLink}" action="#{contratosController.create()}" class="FormButtonSCCSS"/>
                     <h:button value="Cancelar" outcome="ListaContratos" class="FormButtonSCCSS" />
                 </h:form>
+            <ui:include src="/modulo3/GestionContractual/CreatePolizas.xhtml" />
 
     </ui:define>
     </ui:composition>

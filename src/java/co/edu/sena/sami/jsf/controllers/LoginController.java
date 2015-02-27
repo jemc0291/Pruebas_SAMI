@@ -20,7 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@Named
+@Named("loginController")
 @SessionScoped
 public class LoginController implements Serializable {
 
@@ -138,7 +138,7 @@ public class LoginController implements Serializable {
             return "/index";
         } catch (ServletException e) {
             log.log(Level.SEVERE, "Failed to logout user!", e);
-            return "/sami_inicio";
+            return "/index";
         }
     }
 
