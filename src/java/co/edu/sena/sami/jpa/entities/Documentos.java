@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Snyck
+ * @author Adsim
  */
 @Entity
 @Table(name = "documentos")
@@ -34,7 +34,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Documentos.findAll", query = "SELECT d FROM Documentos d"),
     @NamedQuery(name = "Documentos.findByIdDocumentos", query = "SELECT d FROM Documentos d WHERE d.idDocumentos = :idDocumentos"),
-    @NamedQuery(name = "Documentos.findByTipoDocumento", query = "SELECT d FROM Documentos d WHERE d.tipoDocumento = :tipoDocumento"),
     @NamedQuery(name = "Documentos.findByUrl", query = "SELECT d FROM Documentos d WHERE d.url = :url"),
     @NamedQuery(name = "Documentos.findByFechaIngreso", query = "SELECT d FROM Documentos d WHERE d.fechaIngreso = :fechaIngreso"),
     @NamedQuery(name = "Documentos.findByActivo", query = "SELECT d FROM Documentos d WHERE d.activo = :activo")})
@@ -45,9 +44,6 @@ public class Documentos implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_documentos")
     private Integer idDocumentos;
-    @Size(max = 45)
-    @Column(name = "tipo_documento")
-    private String tipoDocumento;
     @Size(max = 100)
     @Column(name = "url")
     private String url;
@@ -59,6 +55,9 @@ public class Documentos implements Serializable {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuarios idUsuario;
+    @JoinColumn(name = "idtipos_documento_gd", referencedColumnName = "idtipos_documento_gd")
+    @ManyToOne(optional = false)
+    private TiposDocumentoGd idtiposDocumentoGd;
 
     public Documentos() {
     }
@@ -73,14 +72,6 @@ public class Documentos implements Serializable {
 
     public void setIdDocumentos(Integer idDocumentos) {
         this.idDocumentos = idDocumentos;
-    }
-
-    public String getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public void setTipoDocumento(String tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
     }
 
     public String getUrl() {
@@ -115,6 +106,14 @@ public class Documentos implements Serializable {
         this.idUsuario = idUsuario;
     }
 
+    public TiposDocumentoGd getIdtiposDocumentoGd() {
+        return idtiposDocumentoGd;
+    }
+
+    public void setIdtiposDocumentoGd(TiposDocumentoGd idtiposDocumentoGd) {
+        this.idtiposDocumentoGd = idtiposDocumentoGd;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -137,7 +136,7 @@ public class Documentos implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Documentos[ idDocumentos=" + idDocumentos + " ]";
+        return getIdtiposDocumentoGd().getNombreDocumento()+"";
     }
     
 }

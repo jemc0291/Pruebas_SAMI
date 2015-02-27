@@ -107,7 +107,7 @@ public class DescripcionesReferenciasViaticos implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.DescripcionesReferenciasViaticos[ idDescripcion=" + idDescripcion + " ]";
+        return  nombreDescripcion;
     }
     
 }

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">Solicitud</ui:define>  
+        <ui:define name="menu"><ui:include src="/modulo2/menu_modulo2.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <h2>Crear Nueva Solicitud</h2>
+
+            <h:form>
+
+                <p:panelGrid columns="3">
+
+                    <h1><h:outputText value="View"/></h1>
+                    <p:panelGrid columns="3">
+                        <h:outputText value="NumeroDoc:"/>
+                        <h:outputText value="#{loginController.userLogueado.numeroDoc}" title="NumeroDoc"/>
+
+                        <h:outputText value="RazonSocial:"/>
+                        <h:outputText value="#{loginController.userLogueado.razonSocial}" title="RazonSocial"/>
+
+                        <h:outputText value="SegundoNombre:"/>
+                        <h:outputText value="#{loginController.userLogueado.segundoNombre}" title="SegundoNombre"/>
+
+                        <h:outputText value="PrimerApellido:"/>
+                        <h:outputText value="#{loginController.userLogueado.primerApellido}" title="PrimerApellido"/>
+
+                        <h:outputText value="SegundoApellido:"/>
+                        <h:outputText value="#{loginController.userLogueado.segundoApellido}" title="SegundoApellido"/>
+
+                        <h:outputText value="IdCentroFormacion:"/>
+                        <h:outputText value="#{loginController.userLogueado.idCentroFormacion}" title="IdCentroFormacion"/>
+
+                    </p:panelGrid>
+
+                    <Label> Describa el problema </Label>
+                    <textarea type="text" jsf:id="descripcionServicioSolicitud" 
+                              required="true"
+                              jsf:requiredMessage="El campo Describa el problema es requerido."
+                              jsf:value="#{solicitudServiciosController.selected.descripcionservicioSolicitud}">
+                        <f:ajax execute="@this" render="descripcionServicioSolicitudMessage"/>
+                    </textarea>
+                    <h:message id="descripcionServicioSolicitudMessage" for="descripcionServicioSolicitud" styleClass="error"/>
+
+                    <Label> Ubicación: </Label>
+                    <input type="text" jsf:id="ubicacion" 
+                           jsf:value="#{solicitudServiciosController.selected.ubicacionSolicitud}" 
+                           jsf:requiredMessage="The Ubicacion field is required.">
+                    </input>
+
+                </p:panelGrid>
+
+                <p:commandButton value="Guardar" actionListener="#{solicitudServiciosController.addSolicitudServicios}" update="@this" >
+                <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                </p:commandButton>
+                
+
+                <p:button value="Cancelar" outcome="ListSolicitud"/>
+
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>

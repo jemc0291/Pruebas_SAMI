@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.entities;
 
 import java.io.Serializable;
@@ -39,10 +38,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "SolicitudServicios.findAll", query = "SELECT s FROM SolicitudServicios s"),
     @NamedQuery(name = "SolicitudServicios.findByIdSolicitudServicio", query = "SELECT s FROM SolicitudServicios s WHERE s.idSolicitudServicio = :idSolicitudServicio"),
+    @NamedQuery(name = "SolicitudServicios.findByIdTipoServ", query = "SELECT s FROM SolicitudServicios s WHERE s.idTipoServ = :idTipoServ"),
     @NamedQuery(name = "SolicitudServicios.findByDescripcionservicioSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.descripcionservicioSolicitud = :descripcionservicioSolicitud"),
     @NamedQuery(name = "SolicitudServicios.findByUbicacionSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.ubicacionSolicitud = :ubicacionSolicitud"),
     @NamedQuery(name = "SolicitudServicios.findByFechaSolicitudServicio", query = "SELECT s FROM SolicitudServicios s WHERE s.fechaSolicitudServicio = :fechaSolicitudServicio")})
 public class SolicitudServicios implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -165,5 +166,5 @@ public class SolicitudServicios implements Serializable {
     public String toString() {
         return "co.edu.sena.sami.jpa.entities.SolicitudServicios[ idSolicitudServicio=" + idSolicitudServicio + " ]";
     }
-    
+
 }

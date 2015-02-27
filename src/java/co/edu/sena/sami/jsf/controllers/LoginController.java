@@ -20,7 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@Named
+@Named("loginController")
 @SessionScoped
 public class LoginController implements Serializable {
 
@@ -82,7 +82,7 @@ public class LoginController implements Serializable {
         return getRequest().isUserInRole("webModulo1");
     }
 
-    public boolean isSupervisionContratos() {
+    public boolean isMantenimiento() {
         return getRequest().isUserInRole("webModulo2");
     }
 
