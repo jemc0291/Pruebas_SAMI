@@ -14,7 +14,7 @@
             
             <h:form enctype="multipart/form-data">
                         <h1><h:outputLabel value="#{bundle.CreateSoportesDeDocumentosTitle}"/></h1>
-                        <h:panelGrid columns="1">    
+                        <h:panelGrid columns="2">    
 
 
                             <label class="FormLabelSCCSS" jsf:for="observacion" value="#{bundle.CreateSoportesDeDocumentosLabel_observacion}"/>
@@ -33,7 +33,7 @@
                                              value="#{soportesDeDocumentosController.selected.tipoSoporte}">
                                 <f:selectItem itemLabel="Contrato" itemValue="Contrato"/>
                                 <f:selectItem itemLabel="Factura" itemValue="Factura"/>
-                                <f:selectItem itemLabel="Informe de supervisión" itemValue="Informe de supervisión"/>
+                                <f:selectItem itemLabel="Informe de supervision" itemValue="Informe de supervision"/>
                                 <f:selectItem itemLabel="Nota de entrada" itemValue="Nota de entrada"/>
 
                             </h:selectOneMenu>
