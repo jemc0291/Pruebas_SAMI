@@ -6,17 +6,17 @@
 
 package co.edu.sena.sami.jpa.sessions;
 
-import co.edu.sena.sami.jpa.entities.Empresa;
+import co.edu.sena.sami.jpa.entities.TiposDocumentoGd;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Adsim
+ * @author Usuario
  */
 @Stateless
-public class EmpresaFacade extends AbstractFacade<Empresa> {
+public class TiposDocumentoGdFacade extends AbstractFacade<TiposDocumentoGd> {
     @PersistenceContext(unitName = "SAMIPU")
     private EntityManager em;
 
@@ -25,8 +25,8 @@ public class EmpresaFacade extends AbstractFacade<Empresa> {
         return em;
     }
 
-    public EmpresaFacade() {
-        super(Empresa.class);
+    public TiposDocumentoGdFacade() {
+        super(TiposDocumentoGd.class);
     }
     
 }

@@ -42,7 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u"),
     @NamedQuery(name = "Usuarios.findByIdUsuario", query = "SELECT u FROM Usuarios u WHERE u.idUsuario = :idUsuario"),
-    @NamedQuery(name = "Usuarios.findByCodigodestinoONBASE", query = "SELECT u FROM Usuarios u WHERE u.codigodestinoONBASE = :codigodestinoONBASE"),
     @NamedQuery(name = "Usuarios.findByNumeroDoc", query = "SELECT u FROM Usuarios u WHERE u.numeroDoc = :numeroDoc"),
     @NamedQuery(name = "Usuarios.findByFechaExpedicionDoc", query = "SELECT u FROM Usuarios u WHERE u.fechaExpedicionDoc = :fechaExpedicionDoc"),
     @NamedQuery(name = "Usuarios.findByRazonSocial", query = "SELECT u FROM Usuarios u WHERE u.razonSocial = :razonSocial"),
@@ -69,8 +68,6 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_usuario")
     private Integer idUsuario;
-    @Column(name = "codigo_destino_ONBASE")
-    private Integer codigodestinoONBASE;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
@@ -226,11 +223,7 @@ public class Usuarios implements Serializable {
     private List<UsuariosContratos> usuariosContratosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Facturas> facturasList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarioAdmin")
-    private List<DatosOnbase> datosOnbaseList;
-    @OneToMany(mappedBy = "idUsuarioDestino")
-    private List<DatosOnbase> datosOnbaseList1;
-
+    
     public Usuarios() {
     }
 
@@ -256,14 +249,6 @@ public class Usuarios implements Serializable {
 
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public Integer getCodigodestinoONBASE() {
-        return codigodestinoONBASE;
-    }
-
-    public void setCodigodestinoONBASE(Integer codigodestinoONBASE) {
-        this.codigodestinoONBASE = codigodestinoONBASE;
     }
 
     public String getNumeroDoc() {
@@ -647,24 +632,6 @@ public class Usuarios implements Serializable {
 
     public void setFacturasList(List<Facturas> facturasList) {
         this.facturasList = facturasList;
-    }
-
-    @XmlTransient
-    public List<DatosOnbase> getDatosOnbaseList() {
-        return datosOnbaseList;
-    }
-
-    public void setDatosOnbaseList(List<DatosOnbase> datosOnbaseList) {
-        this.datosOnbaseList = datosOnbaseList;
-    }
-
-    @XmlTransient
-    public List<DatosOnbase> getDatosOnbaseList1() {
-        return datosOnbaseList1;
-    }
-
-    public void setDatosOnbaseList1(List<DatosOnbase> datosOnbaseList1) {
-        this.datosOnbaseList1 = datosOnbaseList1;
     }
 
     @Override
