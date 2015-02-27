@@ -1,9 +1,16 @@
 package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.Contratos;
+import co.edu.sena.sami.jpa.entities.Polizas;
+import co.edu.sena.sami.jpa.entities.Rol;
+import co.edu.sena.sami.jpa.entities.Usuarios;
+import co.edu.sena.sami.jpa.entities.UsuariosContratos;
+import co.edu.sena.sami.jpa.entities.UsuariosContratosPK;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.ContratosFacade;
+import co.edu.sena.sami.jpa.sessions.PolizasFacade;
+import co.edu.sena.sami.jpa.sessions.UsuariosContratosFacade;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,15 +18,17 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -27,17 +36,73 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.validator.ValidatorException;
 import org.primefaces.model.UploadedFile;
 
-@Named("contratosModulo1Controller")
+@ManagedBean(name = "contratosModulo1Controller")
 @SessionScoped
 public class ContratosModulo1Controller implements Serializable {
-
+    
+    @EJB
+    private PolizasFacade polizasFacade;
+    @EJB
+    private UsuariosContratosFacade usuariosContratosFacade;
+    
     @EJB
     private co.edu.sena.sami.jpa.sessions.ContratosFacade ejbFacade;
     private List<Contratos> items = null;
     private Contratos selected;
-
+    private Polizas selectedPolizas;
+    private UsuariosContratos selectedUsuariosContratos;
+    private Usuarios selectedUsuarios;
+    private Rol  selectedRol;
+    
+    
+    
+    
     public ContratosModulo1Controller() {
     }
+
+    public Polizas getSelectedPolizas() {
+        return selectedPolizas;
+    }
+
+    public void setSelectedPolizas(Polizas selectedPolizas) {
+        this.selectedPolizas = selectedPolizas;
+    }
+
+    public Usuarios getSelectedUsuarios() {
+        return selectedUsuarios;
+    }
+
+    public void setSelectedUsuarios(Usuarios selectedUsuarios) {
+        this.selectedUsuarios = selectedUsuarios;
+    }
+
+    public Rol getSelectedRol() {
+        return selectedRol;
+    }
+
+    public void setSelectedRol(Rol selectedRol) {
+        this.selectedRol = selectedRol;
+    }
+    
+    
+    
+    public UsuariosContratos getSelectedUsuariosContratos() {
+        return selectedUsuariosContratos;
+    }
+
+    public void setSelectedUsuariosContratos(UsuariosContratos selectedUsuariosContratos) {
+        this.selectedUsuariosContratos = selectedUsuariosContratos;
+    }
+
+    public PolizasFacade getPolizasFacade() {
+        return polizasFacade;
+    }
+
+    public UsuariosContratosFacade getUsuariosContratosFacade() {
+        return usuariosContratosFacade;
+    }
+    
+    
 
     public Contratos getSelected() {
         return selected;
@@ -59,6 +124,12 @@ public class ContratosModulo1Controller implements Serializable {
 
     public String prepareCreate() {
         selected = new Contratos();
+        selectedPolizas = new Polizas();
+        selectedUsuariosContratos = new UsuariosContratos();
+        selectedUsuariosContratos.setUsuariosContratosPK(new UsuariosContratosPK());
+        
+        selectedUsuarios = new Usuarios();
+        selectedRol = new Rol();
         initializeEmbeddableKey();
         return "/modulo1/ContratacionPrestacionDeServicios/Contratos/CreateContrato";
     }
@@ -73,10 +144,32 @@ public class ContratosModulo1Controller implements Serializable {
 
     public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ContratosCreated"));
+        createPolizas();
+        selectedUsuariosContratos.setContratos(selected);
+        selectedUsuariosContratos.setPolizas(selectedPolizas);
+        selectedUsuariosContratos.setRol(new Rol(1));
+        selectedUsuariosContratos.setUsuarios(selectedUsuarios);
+        selectedUsuariosContratos.getUsuariosContratosPK().setIdContrato(selectedUsuariosContratos.getContratos().getIdContrato());
+        selectedUsuariosContratos.getUsuariosContratosPK().setIdRol(selectedUsuariosContratos.getRol().getIdRol());
+        selectedUsuariosContratos.getUsuariosContratosPK().setIdUsuario(selectedUsuariosContratos.getUsuarios().getIdUsuario());
+        selectedUsuariosContratos.getUsuariosContratosPK().setNumeroDePoliza(selectedUsuariosContratos.getPolizas().getNumeroDePoliza());
+        try {
+            getUsuariosContratosFacade().create(selectedUsuariosContratos);        
+        }catch (Exception ex){
+             JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
+        }
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
         return "/modulo1/ContratacionPrestacionDeServicios/Contratos/ListContrato";
+    }
+    
+    public void createPolizas(){
+        try{
+            getPolizasFacade().create(selectedPolizas);
+        }catch(Exception e){
+            
+        }
     }
 
     public String prepareListContratosModulo1() {
@@ -185,10 +278,10 @@ public class ContratosModulo1Controller implements Serializable {
 
     public void validarContrato(FacesContext contex, UIComponent component, Object value)
             throws ValidatorException {
-        if (getFacade().findByNumeroDeContrato((int) value) != null) {
+        if (getFacade().findByNumeroDeContrato((String) value) != null) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contrato ya existente", "El contrato ya existe en la base de datos !!!!"));
         } else {
-            selected.setNumeroDeContrato((int) value);
+            selected.setNumeroDeContrato((String) value);
         }
 
     }

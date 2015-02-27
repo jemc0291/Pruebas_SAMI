@@ -82,7 +82,7 @@ public class LoginController implements Serializable {
         return getRequest().isUserInRole("webModulo1");
     }
 
-    public boolean isSupervisionContratos() {
+    public boolean isMantenimiento() {
         return getRequest().isUserInRole("webModulo2");
     }
 
@@ -138,7 +138,7 @@ public class LoginController implements Serializable {
             return "/index";
         } catch (ServletException e) {
             log.log(Level.SEVERE, "Failed to logout user!", e);
-            return "/sami_inicio";
+            return "/index";
         }
     }
 

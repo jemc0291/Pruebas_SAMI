@@ -12,7 +12,7 @@
         <ui:define name="body">
             <h:form>
                 
-                <p:commandButton action="#{solicitudMaterialesAlmacenController.prepareCreate}" value="Agregar Solicitud"/>
+                <h:commandButton action="#{solicitudMaterialesAlmacenController.prepareCreate}" value="Agregar Solicitud"/>
                 <p:outputPanel id="solicitudMaterialesAlmacenPanel">
                     <p:dataTable value="#{solicitudMaterialesAlmacenController.items}" var="item"
                                  rows="10" id="ActaVerificacionTable" 
@@ -47,12 +47,18 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="IdFichaCaracterizacion"/>
+                                <h:outputText value="Aprobado"/>
                             </f:facet>
-                            <h:outputText value="#{item.idFichaCaracterizacion}"/>
+                            <h:outputText value="#{item.aprobado}"/>
                         </p:column>
                         <p:column>
-                            <p:commandButton icon="ui-icon-pencil" action="#{solicitudMaterialesAlmacenController.prepareEdit}">
+                            <f:facet name="header">
+                                <h:outputText value="No Aprobado"/>
+                            </f:facet>
+                            <h:outputText value="#{item.noAprobado}"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton icon="ui-icon-pencil" action="#{solicitudMaterialesAlmacenController.prepareEdit()}">
                                 <f:setPropertyActionListener value="#{item}" target="#{solicitudMaterialesAlmacenController.selected}"/>
                             </p:commandButton>
                        </p:column>

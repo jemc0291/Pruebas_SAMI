@@ -30,16 +30,33 @@
                 <h:form>
                     <nav class="HeaderList">
                         <ul class="HeaderList-option">
-                            <li class="HeaderList-item"><h3 id="list-box">Modulos<span class="icon-triangle-down"></span></h3>
+                            <li class="HeaderList-item"><h3 id="list-box">Modulos<span class="icon-triangle-
+                                                                                       down"></span></h3>
                                 <ul>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo1/index_modulo1.xhtml">Contratación y cuentas de cobro</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo2/index_modulo2.xhtml">Supervisión de contratos y mantenimiento</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo1/index_modulo1.xhtml">Contratación de prestación de servicios</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo2/index_modulo2.xhtml">Mantenimiento</a></li>
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo3/index_modulo3.xhtml">Supervisión de contratos de compras, suministros y servicios</a></li>
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo4/index_modulo4.xhtml">Gestión y talento humano</a></li>
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo5/index_modulo5.xhtml">Gestión documental</a></li>
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo6/index_modulo6.xhtml">Gestión de materiales de formación</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/Programa Formacion/index_programa.xhtml">Programa Formacion</a></li>
-                                    <li class="HeaderList-link"><a  jsf:action="#{loginController.logout}">Cerrar Sesión</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/Programa Formacion/index_programa.xhtml">Programa Formacion</a></li>                                   
+                                    <h:form>           
+                                        <p:growl id="message" showDetail="true" />
+
+                                        <p:commandButton value="Cerrar Sesión" action="#{loginController.logout}" 
+                                                         update="message" >
+                                            <p:confirm header="Desea Cerrar Sesion" message="SEÑOR USUARIO USTED ES PARTE 
+                                                       FUNDAMENTAL DE NUESTRA COMUNIDAD SAMI GRACIAS POR USAR NUESTRO APLICATIVO" icon="ui-icon-alert" />
+                                        </p:commandButton>
+
+                                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode"  >
+                                            <p:commandButton value="Yes" type="button" action="#{loginController.logout}" 
+                                                             styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" 
+                                                             icon="ui-icon-close" />
+                                        </p:confirmDialog>
+                                    </h:form>
+
                                 </ul>
                             </li>
                         </ul>
@@ -84,46 +101,48 @@
             </article>
         </footer>
         
-           <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
-            <h:outputText value="" />
-            <h:form>
-    <p:panel header="Tienes un problema?, te ayudamos">
-        <p:messages autoUpdate="true"/>
- 
-        <h:panelGrid id="grid" columns="4" cellpadding="5">
-            <h:outputLabel for="to" value="Email:" style="font-weight:bold"/>                    
-            <p:inputText id="to" value="#{emailController.to}" required="true" label="to"/>
-            <p:message for="to" />
-            <h:outputText value="#{emailController.to}" />
- 
-            <h:outputLabel for="subject" value="Asunto:" style="font-weight:bold"/>                    
-            <p:inputText id="subject" value="#{emailController.asunto}" label="subject">
-                <f:validateDoubleRange minimum="5" maximum="8" />
-            </p:inputText>
-            <p:message for="subject" />
-            <h:outputText value="#{emailController.asunto}" />
- 
-            <h:outputLabel for="desc" value="Description" style="font-weight:bold"/>
-            <p:inputTextarea id="desc" value="#{emailController.body}" required="true" label="Description">
-                <f:validateLength minimum="3" maximum="10" /> 
-            </p:inputTextarea>
-            <p:message for="desc" />
-            <h:outputText value="#{emailController.body}" />
+            <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
+                <h:outputText value="" />
+                <h:form>
+                    <p:panel header="Tienes un problema?, te ayudamos">
+                        <p:messages autoUpdate="true"/>
 
-        </h:panelGrid>
-        <p:commandButton icon="ui-icon-mail-closed" value="Enviar" action="#{emailController.sendMail}"/>
-    </p:panel>
-</h:form> 
-        </p:dialog> 
+                        <h:panelGrid id="grid" columns="4" cellpadding="5">
+                            <h:outputLabel for="to" value="Email:" style="font-weight:bold"/>                    
+                            <p:inputText id="to" value="#{emailController.to}" required="true" label="to"/>
+                            <p:message for="to" />
+                            <h:outputText value="#{emailController.to}" />
 
-        <form jsf:id="confirmForm">
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-            </p:confirmDialog>
-        </form>
+                            <h:outputLabel for="subject" value="Asunto:" style="font-weight:bold"/>                    
+                            <p:inputText id="subject" value="#{emailController.asunto}" label="subject">
+                                <f:validateDoubleRange minimum="5" maximum="8" />
+                            </p:inputText>
+                            <p:message for="subject" />
+                            <h:outputText value="#{emailController.asunto}" />
+
+                            <h:outputLabel for="desc" value="Description" style="font-weight:bold"/>
+                            <p:inputTextarea id="desc" value="#{emailController.body}" required="true" label="Description">
+                                <f:validateLength minimum="3" maximum="10" /> 
+                            </p:inputTextarea>
+                            <p:message for="desc" />
+                            <h:outputText value="#{emailController.body}" />
+
+                        </h:panelGrid>
+                        <p:commandButton icon="ui-icon-mail-closed" value="Enviar" action="#{emailController.sendMail}"/>
+                    </p:panel>
+                </h:form> 
+            </p:dialog> 
+
+            <form jsf:id="confirmForm">
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+            </form>
 
 
     </body>
 
 </html>
+
+

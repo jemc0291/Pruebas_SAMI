@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition>
+        <p:dialog widgetVar="agregarDestinoDlg"
+                  modal="true"
+                  resizable="false"
+                  header="Agregar Destino">
+
+            <h:form id="formAgregarDestino">
+                <p:messages/>
+                <h1><h:outputText value="Agregar Destinos"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="SalidaEstimada:" for="salidaEstimada" />
+                    <p:calendar id="salidaEstimada" value="#{comisionesController.ciudadComisionesActual.salidaEstimada}"  pattern="MM/dd/yyyy" showOn="button" title="SalidaEstimada" required="true" requiredMessage="The SalidaEstimada field is required.">
+              
+                    </p:calendar>
+                    <h:outputLabel value="LlegadaEstimada:" for="llegadaEstimada" />
+                    <p:calendar id="llegadaEstimada" value="#{comisionesController.ciudadComisionesActual.llegadaEstimada}"  pattern="MM/dd/yyyy" showOn="button" title="LlegadaEstimada" required="true" requiredMessage="The LlegadaEstimada field is required.">
+                       
+                    </p:calendar>
+
+                    <h:outputLabel value="EmpresaVereda:" for="empresaVereda" />
+                    <h:inputText id="empresaVereda" value="#{comisionesController.ciudadComisionesActual.empresaVereda}" title="EmpresaVereda" />
+
+                    <label jsf:value="Ciudad" for="ciudad"></label>
+                    <p:autoComplete id="ciudad" value="#{comisionesController.ciudadComisionesActual.ciudad}" 
+                                  
+                                    completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 
+                                    var="ciudad" itemLabel="#{ciudad}" itemValue="#{ciudad}" 
+                                    converter="ciudadConverter" 
+                                    forceSelection="true" maxResults="10"/> 
+                 
+
+                    <p:commandButton process="formAgregarDestino" actionListener="#{comisionesController.adicionarCiudadComision}" oncomplete="PF('agregarDestinoDlg').hide()" value="Agregar" update="formAgregarDestino :formSolicitudComision:ComisionesTablePanel" />
+                    <p:commandButton value='Cancelar' action="@this" onclick="PF('agregarDestinoDlg').hide()"/>
+
+                </h:panelGrid>
+
+
+            </h:form>
+
+        </p:dialog>
+    </ui:composition>
+</html>
+

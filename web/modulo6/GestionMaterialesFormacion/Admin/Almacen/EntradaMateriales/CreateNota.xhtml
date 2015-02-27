@@ -10,7 +10,7 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Nota de Entrada</ui:define>
-        <ui:define name="menu"><ui:include src="/Modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <section class="Section-form">
                 <h:form>
@@ -40,7 +40,7 @@
                     <h:commandButton value="Guardar" 
                                      action="#{notaEntradaController.create()}"/>
                     <h:button value="Cancelar" 
-                              outcome="/Modulo6/Gestion de Materiales de Formacion/Admin/Almacen/Entrada de Materiales/Notas de Entrada.xhtml"/>
+                              outcome="/modulo6/GestionMaterialesFormacion/Admin/Almacen/EntradaMateriales/ListNotaEntrada.xhtml"/>
                 </h:form>
             </section>
         </ui:define>

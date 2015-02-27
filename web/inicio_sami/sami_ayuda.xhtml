@@ -21,6 +21,7 @@
             <img src="#{request.contextPath}/resources/images/sami.png" width="280" height="100" class="Header-logo" />
             <p class="Header-title-inicio">SISTEMA ADMINISTRATIVO MODULAR INTEGRADO</p>
             <figure class="Menu-img">
+                <img src="#{request.contextPath}/resources/images/logo_sena.jpg" width="30"/>
                 <img src="#{request.contextPath}/resources/images/ministerio_trabajo.PNG" width="100"/>
                 <img src="#{request.contextPath}/resources/images/progreso_para_todos.PNG"/>
                 <img src="#{request.contextPath}/resources/images/mas trabajo.png" idth="100"/>
@@ -97,7 +98,7 @@
                   <h:panelGrid columns="1" cellpadding="5">
                       <p:commandButton value="Enviar" type="button" onclick="PF('dlg1').show();" actionListener="#{emailController.sendMail()}" />
                   </h:panelGrid>
-                   <p:dialog header="Tu solicitud es muy importante para nosotro pronto estarmos dando una repuesta" widgetVar="dlg1" minHeight="40">
+                   <p:dialog header="AYUDA SAMI" widgetVar="dlg1" minHeight="40" height="300"  width="600px">
                <h:outputText value="ESTA SEGURO QUE SEDES ENVIAR EL MENSAJE" />
                <h:commandButton value="Confirmar" action="#{emailController.sendMail()}"/>
                </p:dialog>                               
@@ -106,9 +107,9 @@
                <figure class="img-enlaces-ayuda">
                 <h3 class="Title-Enlaces">ENLACES</h3>
                 <a href="http://oferta.senasofiaplus.edu.co/" target="_black"><img src="#{request.contextPath}/resources/images/sena-sofia-plus.png" width="170" height="70" class="Figure-im"/></a>
-                <br/><br/><a href="http://sis.senavirtual.edu.co/index.php" target="_black"><img src="#{request.contextPath}/resources/images/comunidad aprendizaje.png" width="170" height="70" class="Figure-im"/></a>
-                 <br/><br/><br/><a href="http://siifsena.blogspot.com/" target="_black"><img src="#{request.contextPath}/resources/images/siif.jpg" width="170" height="70" class="Figure-im"/></a>
-                <br/> <br/><br/><a href="http://nuevo.fondoemprender.com/" target="_black"><img src="#{request.contextPath}/resources/images/fondoEmp.png" width="170" height="70" class="Figure-im"/></a>
+                 <br/><a href="http://sis.senavirtual.edu.co/index.php" target="_black"><img src="#{request.contextPath}/resources/images/comunidad aprendizaje.png" width="170" height="70" class="Figure-im"/></a>
+                 <br/><br/><a href="http://siifsena.blogspot.com/" target="_black"><img src="#{request.contextPath}/resources/images/siif.jpg" width="170" height="70" class="Figure-im"/></a>
+                 <br/><br/><a href="http://nuevo.fondoemprender.com/" target="_black"><img src="#{request.contextPath}/resources/images/fondoEmp.png" width="170" height="70" class="Figure-im"/></a>
             </figure>
            
             <aside class="work-video-ayuda">
@@ -136,7 +137,27 @@
                 </style>   
                 </aside>             
         </header> 
-          
+          <footer class="Footer" >
+            <article class="Footer-item">
+                <h4 class="Footer-title">Contacto</h4>
+                <a href="https://www.google.com.co"><p class="Footer-description">contactosami@gmail<br/>
+                        comfacebook.com/contactosami<br/>@interactuasami
+                        <br/>3173470178 - 3101234568<br/>SENA</p></a>
+            </article>
+            <article class="Footer-item">
+                <h4 class="Footer-title">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
+                <p class="Footer-descriptioncon">Centro de biotecnologia industrial<br/>Palmira Valle del Cauca
+                    <br/>Carrera 30 n° 40-25<br/>Telefono: 2750968<br/>Fax: 2750965</p>
+            </article>
+            <article class="item">
+                <a href="#"> <img src="#{request.contextPath}/resources/images/pregunta.PNG" width="50" /></a>
+                <a href="#"> <img src="#{request.contextPath}/resources/images/Configuracion.PNG" width="50"/></a>
+                <br/><br/>
+                <a href="#"> <img src="#{request.contextPath}/resources/images/Soporte.PNG" width="50"/></a>
+                <a href="#"> <img src="#{request.contextPath}/resources/images/sena_1.PNG" width="50"/></a>  
+                
+            </article>
+        </footer> 
       </body>   
 </html>
 

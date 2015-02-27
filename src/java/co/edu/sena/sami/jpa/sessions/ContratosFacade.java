@@ -31,7 +31,7 @@ public class ContratosFacade extends AbstractFacade<Contratos> {
     public ContratosFacade() {
         super(Contratos.class);
     }
-    public Contratos findByNumeroDeContrato(int numeroDeContrato) {
+    public Contratos findByNumeroDeContrato(String numeroDeContrato) {
         Query q = getEntityManager().createNamedQuery("Contratos.findByNumeroDeContrato");
         q.setParameter("numeroDeContrato", numeroDeContrato);
         try {
@@ -42,7 +42,7 @@ public class ContratosFacade extends AbstractFacade<Contratos> {
             return null;
         }
     }
-    public List<Contratos> findByNumeroContratoCompletar(int numeroContrato){
+    public List<Contratos> findByNumeroContratoCompletar(String numeroContrato){
         Query q = getEntityManager().createNamedQuery("Contratos.findByNumeroDeContrato");
         q.setParameter("numeroDeContrato", numeroContrato + "%");
         q.setMaxResults(10);
