@@ -78,6 +78,7 @@ public class Avance implements Serializable {
         this.idAvance = idAvance;
     }
 
+
     public Integer getIdAvance() {
         return idAvance;
     }

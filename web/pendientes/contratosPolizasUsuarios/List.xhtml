@@ -16,10 +16,10 @@
         <ui:define name="body">
             <h:form id="ContratosPolizasUsuariosListForm">
                 <p:panel header="#{bundle.ListContratosPolizasUsuariosTitle}">
-                    <p:dataTable id="datalist" value="#{contratosPolizasUsuariosController.items}" var="item"
-                                 selectionMode="single" selection="#{contratosPolizasUsuariosController.selected}"
+                    <p:dataTable id="datalist" value="#{solicitudServiciosController.items}" var="item"
+                                 selectionMode="single" selection="#{solicitudServiciosController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.contratosPolizasUsuariosPK}"
+                                 rowKey="#{item.idSolicitudServicio}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
