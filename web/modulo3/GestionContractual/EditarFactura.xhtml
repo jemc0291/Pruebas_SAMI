@@ -34,7 +34,7 @@
                             <h:message id="fechaFacturaMessage" for="fechaFactura" class="Error"/>
 
                             <label value="#{bundle.CreatePagosContratosLabel_valFactura}" jsf:for="valFactura" class="FormLabelSCCSS" />
-                            <h:inputText  value="#{pagosContratosController.selected.valFactura}" class="FormInputSCCSS" disabled="true">
+                            <h:inputText id="valFactura" value="#{pagosContratosController.selected.valFactura}" class="FormInputSCCSS" disabled="true">
                                      <f:convertNumber type="number" />
                             </h:inputText>
                                    <h:message id="valFacturaMessage" for="valFactura" class="Error"/>
@@ -49,11 +49,10 @@
                             <h:message id="fechaDePagoMessage" for="fechaDePago" class="Error"/>
 
                             <label value="#{bundle.CreatePagosContratosLabel_idContrato}" jsf:for="idContrato" class="FormLabelSCCSS" />
-                            <input value="#{pagosContratosController.selected.idContrato}"
-                                       title="IdContrato" class="FormInputSCCSS" disabled="true">
+                            <input jsf:id="idContrato" value="#{pagosContratosController.selected.idContrato}"
+                                   title="IdContrato" class="FormInputSCCSS" disabled="true">
                                     <!-- TODO: update below reference to list of available items-->
                             </input>
-                            <h:message id="idContratoMessage" for="idContrato" class="Error"/>
                         </h:panelGrid>
                         <h:commandButton class="FormButtonSCCSS" value="#{bundle.CreatePagosContratosSaveLink}" action="#{pagosContratosController.update()}" />
                         <h:button class="FormButtonSCCSS" value="Cancelar" outcome="ListaFacturas"/>

@@ -18,9 +18,9 @@
 
 
                             <label class="FormLabelSCCSS" jsf:for="observacion" value="#{bundle.CreateSoportesDeDocumentosLabel_observacion}"/>
-                            <textarea type="text" class="FormInputSCCSS" jsf:id="observacion"
+                            <textarea type="text" class="FormTextAreaSCCSS" jsf:id="observacion"
                                       jsf:value="#{soportesDeDocumentosController.selected.observacion}"
-                                      jsf:rows="4" jsf:cols="30">
+                                      jsf:rows="4" jsf:cols="24">
                             </textarea>
 
                             
@@ -29,7 +29,7 @@
                                 <p:fileUpload value="#{soportesDeDocumentosController.file}" mode="simple"/>                 
 
                             <label class="FormLabelSCCSS" jsf:for="tipoSoporte" value="#{bundle.CreateSoportesDeDocumentosLabel_tipoSoporte}"/>
-                            <h:selectOneMenu class="" id="tipoSoporte" required="true"
+                            <h:selectOneMenu styleClass="FormSelectSCCSS" id="tipoSoporte" required="true"
                                              value="#{soportesDeDocumentosController.selected.tipoSoporte}">
                                 <f:selectItem itemLabel="Contrato" itemValue="Contrato"/>
                                 <f:selectItem itemLabel="Factura" itemValue="Factura"/>
