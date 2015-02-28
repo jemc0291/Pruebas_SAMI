@@ -148,6 +148,10 @@ public class SolicitudMaterialesAlmacenMaterialesController implements Serializa
         return getFacade().findAll();
     }
 
+    public String prepareEdit() {
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/EditSinDialog.xhtml";
+    }
+    
     @FacesConverter(forClass = SolicitudMaterialesAlmacenMateriales.class)
     public static class SolicitudMaterialesAlmacenMaterialesControllerConverter implements Converter {
 

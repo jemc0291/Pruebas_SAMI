@@ -4,28 +4,23 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/template.xhtml">
         <ui:define name="title"> Solicitud Comision</ui:define>
         <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <f:view>
-
-
-                <h:form>
-
-
+                <h:form id='formSolicitudComision'>
                     <h1><h:outputText value="Solicitud Comisión"/></h1>
                     <p:panelGrid columns="2">
-                        <h:outputLabel value="IdCentroFormacion:" for="idCentroFormacion" />
-                        <h:selectOneMenu id="idCentroFormacion" value="#{comisionesController.selected.idCentroFormacion}" title="IdCentroFormacion" required="true" requiredMessage="The IdCentroFormacion field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneCentrosFormacion}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="FechaTramite:" for="fechaTramite" />
-                        <p:calendar id="fechaTramite" value="#{comisionesController.selected.fechaTramite}" title="FechaTramite" required="true" requiredMessage="The FechaTramite field is required.">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </p:calendar>
+                        <label jsf:value="#{bundle.CreateComisionesLabel_idCentroFormacion}" jsf:for="centroFormacion"></label> 
+                        <p:autoComplete id="centroFormacion" value="#{comisionesController.selected.idCentroFormacion}" 
+                                         completeMethod="#{usuariosController.getListCentroFormacionAutoComplete}" 
+                                         var="centroFormacion" itemLabel="#{centroFormacion}" itemValue="#{centroFormacion}" 
+                                        converter="centroFormacionConverter" 
+                                        forceSelection="true" maxResults="10"/> 
+                        
                         <h:outputLabel  value="IdUsuario:" for="idUsuario" />
                         <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
                             <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
@@ -34,13 +29,9 @@
                         <h:inputText id="mesaPlanificar" value="#{comisionesController.selected.mesaPlanificar}" title="MesaPlanificar" />
                         <h:outputLabel value="ObjetivoComision:" for="objetivoComision" />
                         <h:inputText id="objetivoComision" value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision" required="true" requiredMessage="The ObjetivoComision field is required."/>
-                        <h:outputLabel value="Ciudad:" for="ciudad" />
-                        <h:selectOneMenu id="ciudad" value="#{comisionesController.selected.ciudad}" title="Ciudad" required="true" requiredMessage="The Ciudad field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneCiudad}"/>
-                        </h:selectOneMenu>
 
-                       
+
+
                         <h:outputLabel value="IdDescripcion:" for="idDescripcion" />
                         <h:selectOneMenu id="idDescripcion" value="#{comisionesController.selected.idDescripcion}" title="IdDescripcion" required="true" requiredMessage="The IdDescripcion field is required.">
                             <!-- TODO: update below reference to list of available items-->
@@ -63,15 +54,61 @@
                             <!-- TODO: update below reference to list of available items-->
                             <f:selectItems value="#{comisionesController.itemsAvailableSelectOneContratos}"/>
                         </h:selectOneMenu>
-
-
-
-
                     </p:panelGrid>
-                    <p:commandButton value="Guardar" action="#{comisionesController.create()}"/>
+
+                        <p:commandButton value="Agregar Destinos" onclick="PF('agregarDestinoDlg').show()"></p:commandButton>
+                     
+
+                        <p:outputPanel id="ComisionesTablePanel" >
+                            <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
+                                         rows="10" id="comisionesTable" 
+                                         paginator="true"
+                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="20,40,60">
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.ciudad}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.empresaVereda}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.salidaEstimada}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.llegadaEstimada}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">Opciones</f:facet>
+                                    <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
+                                                     process="@this" update="comisionesTable">
+                                        <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el usuario?" icon="ui-icon-alert" />
+                                        <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
+                                    </p:commandButton>
+                                </p:column>       
+                            </p:dataTable>
+                        </p:outputPanel>
+                    
+                    <h:commandButton value="Guardar" action="#{comisionesController.create()}"/>
                 </h:form>
             </f:view>
-
+            <ui:include src="/modulo4/Gestion_Talento_Humano/Comisiones/AgregarDestinosDlg.xhtml"/>
         </ui:define>
     </ui:composition>
 </html>

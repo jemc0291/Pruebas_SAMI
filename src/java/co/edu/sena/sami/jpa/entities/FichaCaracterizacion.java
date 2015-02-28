@@ -175,7 +175,7 @@ public class FichaCaracterizacion implements Serializable {
 
     @Override
     public String toString() {
-        return "[" + idFichaCaracterizacion + "]       " + idProgramaFormacion.getNombreprogramaformacion();
+        return  idFichaCaracterizacion + "";
     }
     
 }

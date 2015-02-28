@@ -7,6 +7,7 @@ package co.edu.sena.sami.jpa.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -125,19 +126,42 @@ public class CiudadComisiones implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CiudadComisiones)) {
-            return false;
-        }
-        CiudadComisiones other = (CiudadComisiones) object;
-        if ((this.ciudadComisionesPK == null && other.ciudadComisionesPK != null) || (this.ciudadComisionesPK != null && !this.ciudadComisionesPK.equals(other.ciudadComisionesPK))) {
-            return false;
-        }
-        return true;
-    }
+//<<<<<<< HEAD
+//    public boolean equals(Object object) {
+//        // TODO: Warning - this method won't work in the case the id fields are not set
+//        if (!(object instanceof CiudadComisiones)) {
+//            return false;
+//        }
+//        CiudadComisiones other = (CiudadComisiones) object;
+//        if ((this.ciudadComisionesPK == null && other.ciudadComisionesPK != null) || (this.ciudadComisionesPK != null && !this.ciudadComisionesPK.equals(other.ciudadComisionesPK))) {
+//////=======
+//    public boolean equals(Object obj) {
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        final CiudadComisiones other = (CiudadComisiones) obj;
+//        if (!Objects.equals(this.salidaEstimada, other.salidaEstimada)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.llegadaEstimada, other.llegadaEstimada)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.ciudad, other.ciudad)) {
+////>>>>>>> origin/master
+//            return false;
+//        }
+//        return true;
+//    }
 
-    @Override
+////<<<<<<< HEAD
+//=======
+//    
+//
+//>>>>>>> origin/master
+
     public String toString() {
         return "co.sena.sami.edu.jpa.entities.CiudadComisiones[ ciudadComisionesPK=" + ciudadComisionesPK + " ]";
     }

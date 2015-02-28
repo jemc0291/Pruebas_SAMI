@@ -15,7 +15,7 @@
 
                 <h:form>
                     <h1><h:outputText value="#{bundle.ListPagosContratosTitle}"/></h1>
-                    <p:dataTable value="#{pagosContratosController.items}" var="item"
+                    <p:dataTable value="#{pagosContratosController.items}" var="item" rows="10"
                                  id="facturasTable" 
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -24,7 +24,7 @@
                         Lista de Facturas
                     </f:facet>
                         
-                        <p:column>
+                        <p:column filterBy="#{item.numFactura}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPagosContratosTitle_numFactura}"/>
                             </f:facet>
@@ -47,7 +47,7 @@
                                 <f:convertDateTime pattern="dd-MMM-yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.restaFechas}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="Dias Transcurridos" />
                             </f:facet>
@@ -60,7 +60,7 @@
                             <h:outputText value="#{item.idContrato.numeroDeContrato}"/>
                         </p:column>
                         
-                        <p:column>
+                        <p:column filterBy="#{item.valFactura}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPagosContratosTitle_valFactura}"/>
                             </f:facet>

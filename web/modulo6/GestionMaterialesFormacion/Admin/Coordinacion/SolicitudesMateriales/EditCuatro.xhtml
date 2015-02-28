@@ -10,7 +10,7 @@
         <ui:define name="title">Solicitudes</ui:define>
         <ui:define name="menu"><ui:include src="/modulo6/menu_Coordinacion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h:form id="SolicitudEditForm">
+            <h:form id="solicitudEditForm">
                 <p:growl id="msgs" showDetail="true"/>
 
                 <h:panelGroup id="display">
@@ -40,7 +40,20 @@
 
                 </h:panelGroup>
 
-                <p:dataTable id="solicitudEditTable" value="#{solicitudMaterialesAlmacenController.itemsSolicitudMateriales}" var="item" >
+                <p:contextMenu for="cars2" widgetVar="cMenu">   
+       <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();return false;"/>  
+       <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
+   </p:contextMenu>
+                
+                <p:dataTable id="cars2" value="#{solicitudMaterialesAlmacenController.itemsSolicitudMateriales}" var="item" editable="true" 
+                             editMode="cell" widgetVar="cellCars">
+
+                    <f:facet name="header">
+                        Cell Editing with Click and RightClick
+                    </f:facet>
+                    
+                    <p:ajax event="cellEdit" listener="#{solicitudMaterialesAlmacenMaterialesController.onCellEdit}" update=":solicitudEditForm:msgs" />
+                    
 
                     <p:column>
                         <f:facet name="header">
@@ -54,20 +67,15 @@
                         </f:facet>
                         <h:outputText value="#{item.materiales.nombreMaterial}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Cantidad a Solicitar"/>
-                        </f:facet>
-                        <h:outputText value="#{item.cantidad}"/>
-                    </p:column>
-                    <p:column>
-                        <p:commandButton  id="editButton" icon="ui-icon-pencil" update="solicitudEditTable" action="#{solicitudMaterialesAlmacenMaterialesController.prepareEdit}">
-                            <f:setPropertyActionListener value="#{item}" target="#{solicitudMaterialesAlmacenMaterialesController.selected}"/>
-                        </p:commandButton>
+                    <p:column headerText="Editar">
+                        <p:cellEditor >
+                            <f:facet name="output"><h:outputText value="#{item.cantidad}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInput" value="#{item.cantidad}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
                     </p:column>
                 </p:dataTable>
                 <p:commandButton value="Guardar" 
-                                 action="#{solicitudMaterialesAlmacenController.update}" 
+                                 action="#{solicitudMaterialesAlmacenController.update()}" 
                                  process="@this panelSolicitud" update="panelSolicitud"/>
 
             </h:form>

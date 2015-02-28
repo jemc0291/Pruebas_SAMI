@@ -12,19 +12,19 @@
             <h:form id="SolicitudListForm">
 
                 <p:commandButton id="createButton" icon="ui-icon-plus"   action="#{solicitudMaterialesAlmacenController.prepareCreateDos}"/>
-                
+
                 <p:outputPanel id="solicitudMaterialesAlmacenPanel">
                     <p:panel header="#{bundle.ListSolicitudMaterialesAlmacenTitle}">
                         <p:dataTable id="datalist" value="#{solicitudMaterialesAlmacenController.items}" var="item"
-                                     selectionMode="single" selection="#{solicitudMaterialesAlmacenController.selected}"
-                                     rowKey="#{item.idSolicitudMaterial}"
-                                     rows="10" 
+                                     editable="true" selectionMode="single" 
+                                     selection="#{solicitudMaterialesAlmacenController.selected}"
+                                     rowKey="#{item.idSolicitudMaterial}" rows="10" 
                                      paginator="true"
                                      paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="20,40,60">
-                            
-                            <p:ajax event="rowSelect"   update="viewButton editButton"/>
-                        <p:ajax event="rowUnselect" update="viewButton editButton"/>
+
+                            <p:ajax event="rowSelect"   update="editButton"/>
+                            <p:ajax event="rowUnselect" update="editButton"/>
 
                             <p:column filterBy="#{item.idSolicitudMaterial}" filterMatchMode="contains">
                                 <f:facet name="header">
@@ -83,8 +83,7 @@
                             <p:column>
                                 <f:facet name="footer">
                                     <h:outputText value="Opciones"/>
-                                    <p:commandButton id="viewButton"  icon="ui-icon-pencil"  action="#{solicitudMaterialesAlmacenController.prepareEdit}"/>
-                                    <p:commandButton id="editButton"  icon="ui-icon-search"  action="#{solicitudMaterialesAlmacenController.prepareView}"/>
+                                    <p:commandButton id="editButton"  icon="ui-icon-pencil"  action="#{solicitudMaterialesAlmacenController.prepareEdit}"/>
                                 </f:facet>
                             </p:column>
                         </p:dataTable>
