@@ -6,13 +6,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <ui:composition template="/template.xhtml">
+     <ui:composition template="/template.xhtml">
         <ui:define name="title">Sami</ui:define>
         <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <h:form>
-                <p:outputPanel id="ComisionesTablePanel" >
+                <p:outputPanel id="OrdenDeViajeTablePanel" >
                     <p:dataTable value="#{comisionesController.items}" var="item"
                                  rows="10" id="ComisionesTable" 
                                  paginator="true"
