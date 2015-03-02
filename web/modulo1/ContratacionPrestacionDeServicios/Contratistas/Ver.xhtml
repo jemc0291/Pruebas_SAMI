@@ -3,82 +3,97 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListPolizasTitle}"></h:outputText>
+            <h:outputText value="#{bundle.ViewUsuariosTitle}"></h:outputText>
         </ui:define>
         <ui:define name="menu"><ui:include src="/modulo1/menu_modulo1.xhtml"></ui:include></ui:define>
         <ui:define name="body">
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="View"/></h1>
+                    <p:panelGrid columns="2">
+                        
+                        <h:outputText value="NumeroDoc:"/>
+                        <h:outputText value="#{usuariosController.selected.numeroDoc}" title="NumeroDoc"/>
+                        <h:outputText value="FechaExpedicionDoc:"/>
+                        <h:outputText value="#{usuariosController.selected.fechaExpedicionDoc}" title="FechaExpedicionDoc">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="RazonSocial:"/>
+                        <h:outputText value="#{usuariosController.selected.razonSocial}" title="RazonSocial"/>
+                        <h:outputText value="SegundoNombre:"/>
+                        <h:outputText value="#{usuariosController.selected.segundoNombre}" title="SegundoNombre"/>
+                        <h:outputText value="PrimerApellido:"/>
+                        <h:outputText value="#{usuariosController.selected.primerApellido}" title="PrimerApellido"/>
+                        <h:outputText value="SegundoApellido:"/>
+                        <h:outputText value="#{usuariosController.selected.segundoApellido}" title="SegundoApellido"/>
+                        <h:outputText value="NombreRepreLegal:"/>
+                        <h:outputText value="#{usuariosController.selected.nombreRepreLegal}" title="NombreRepreLegal"/>
+                        <h:outputText value="FechaNac:"/>
+                        <h:outputText value="#{usuariosController.selected.fechaNac}" title="FechaNac">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Email:"/>
+                        <h:outputText value="#{usuariosController.selected.email}" title="Email"/>
+                        <h:outputText value="TelefonoPrincipalUsu:"/>
+                        <h:outputText value="#{usuariosController.selected.telefonoPrincipalUsu}" title="TelefonoPrincipalUsu"/>
+                        <h:outputText value="TelefonoAlternoUsu:"/>
+                        <h:outputText value="#{usuariosController.selected.telefonoAlternoUsu}" title="TelefonoAlternoUsu"/>
+                        <h:outputText value="DireccionUsu:"/>
+                        <h:outputText value="#{usuariosController.selected.direccionUsu}" title="DireccionUsu"/>
+                        <h:outputText value="Password:"/>
+                        <h:outputText value="#{usuariosController.selected.password}" title="Password"/>
+                        <h:outputText value="GpRh:"/>
+                        <h:outputText value="#{usuariosController.selected.gpRh}" title="GpRh"/>
+                        <h:outputText value="Calificacion:"/>
+                        <h:outputText value="#{usuariosController.selected.calificacion}" title="Calificacion"/>
+                        <h:outputText value="FechaDeCreacion:"/>
+                        <h:outputText value="#{usuariosController.selected.fechaDeCreacion}" title="FechaDeCreacion">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="Estado:"/>
+                        <h:outputText value="#{usuariosController.selected.estado}" title="Estado"/>
+                        <h:outputText value="NumCuentaBanco:"/>
+                        <h:outputText value="#{usuariosController.selected.numCuentaBanco}" title="NumCuentaBanco"/>
+                        <h:outputText value="NombreTipoCuenta:"/>
+                        <h:outputText value="#{usuariosController.selected.nombreTipoCuenta}" title="NombreTipoCuenta"/>
+                        <h:outputText value="IdTipoDoc:"/>
+                        <h:outputText value="#{usuariosController.selected.idTipoDoc}" title="IdTipoDoc"/>
+                        <h:outputText value="IdSexo:"/>
+                        <h:outputText value="#{usuariosController.selected.idSexo}" title="IdSexo"/>
+                        <h:outputText value="IdFondoPensiones:"/>
+                        <h:outputText value="#{usuariosController.selected.idFondoPensiones}" title="IdFondoPensiones"/>
+                        <h:outputText value="IdEstratoSocial:"/>
+                        <h:outputText value="#{usuariosController.selected.idEstratoSocial}" title="IdEstratoSocial"/>
+                        <h:outputText value="IdEstadoCivil:"/>
+                        <h:outputText value="#{usuariosController.selected.idEstadoCivil}" title="IdEstadoCivil"/>
+                        <h:outputText value="IdEps:"/>
+                        <h:outputText value="#{usuariosController.selected.idEps}" title="IdEps"/>
+                        <h:outputText value="Ciudad:"/>
+                        <h:outputText value="#{usuariosController.selected.ciudad}" title="Ciudad"/>
+                        <h:outputText value="Ciudad1:"/>
+                        <h:outputText value="#{usuariosController.selected.ciudad1}" title="Ciudad1"/>
+                        <h:outputText value="IdCentroFormacion:"/>
+                        <h:outputText value="#{usuariosController.selected.idCentroFormacion}" title="IdCentroFormacion"/>
+                        <h:outputText value="IdCcf:"/>
+                        <h:outputText value="#{usuariosController.selected.idCcf}" title="IdCcf"/>
+                        <h:outputText value="IdBanco:"/>
+                        <h:outputText value="#{usuariosController.selected.idBanco}" title="IdBanco"/>
+                        <h:outputText value="IdArl:"/>
+                        <h:outputText value="#{usuariosController.selected.idArl}" title="IdArl"/>
+                    </p:panelGrid>
+                </h:form>
+            </f:view>
 
 
 
-            <h:form>
-                <h1><h:outputText value="View"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputText value="IdUsuario:"/>
-                    <h:outputText value="#{usuariosController.selected.idUsuario}" title="IdUsuario"/>
-                    <h:outputText value="CodigodestinoONBASE:"/>
-                    <h:outputText value="#{usuariosController.selected.codigodestinoONBASE}" title="CodigodestinoONBASE"/>
-                    <h:outputText value="NumeroDoc:"/>
-                    <h:outputText value="#{usuariosController.selected.numeroDoc}" title="NumeroDoc"/>
-                    <h:outputText value="FechaExpedicionDoc:"/>
-                    <h:outputText value="#{usuariosController.selected.fechaExpedicionDoc}" title="FechaExpedicionDoc">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="RazonSocial:"/>
-                    <h:outputText value="#{usuariosController.selected.razonSocial}" title="RazonSocial"/>
-                    <h:outputText value="SegundoNombre:"/>
-                    <h:outputText value="#{usuariosController.selected.segundoNombre}" title="SegundoNombre"/>
-                    <h:outputText value="PrimerApellido:"/>
-                    <h:outputText value="#{usuariosController.selected.primerApellido}" title="PrimerApellido"/>
-                    <h:outputText value="SegundoApellido:"/>
-                    <h:outputText value="#{usuariosController.selected.segundoApellido}" title="SegundoApellido"/>
-                    <h:outputText value="NombreRepreLegal:"/>
-                    <h:outputText value="#{usuariosController.selected.nombreRepreLegal}" title="NombreRepreLegal"/>
-                    <h:outputText value="FechaNac:"/>
-                    <h:outputText value="#{usuariosController.selected.fechaNac}" title="FechaNac">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="Email:"/>
-                    <h:outputText value="#{usuariosController.selected.email}" title="Email"/>
-                    <h:outputText value="TelefonoPrincipalUsu:"/>
-                    <h:outputText value="#{usuariosController.selected.telefonoPrincipalUsu}" title="TelefonoPrincipalUsu"/>
-                    <h:outputText value="TelefonoAlternoUsu:"/>
-                    <h:outputText value="#{usuariosController.selected.telefonoAlternoUsu}" title="TelefonoAlternoUsu"/>
-                    <h:outputText value="DireccionUsu:"/>
-                    <h:outputText value="#{usuariosController.selected.direccionUsu}" title="DireccionUsu"/>
-                    <h:outputText value="Password:"/>
-                    <h:outputText value="#{usuariosController.selected.password}" title="Password"/>
-                    <h:outputText value="GpRh:"/>
-                    <h:outputText value="#{usuariosController.selected.gpRh}" title="GpRh"/>
-                    <h:outputText value="Calificacion:"/>
-                    <h:outputText value="#{usuariosController.selected.calificacion}" title="Calificacion"/>
-                    <h:outputText value="IdTipoDoc:"/>
-                    <h:outputText value="#{usuariosController.selected.idTipoDoc.toString()}" title="IdTipoDoc"/>
-                    <h:outputText value="IdEstratoSocial:"/>
-                    <h:outputText value="#{usuariosController.selected.idEstratoSocial.toString()}" title="IdEstratoSocial"/>
-                    <h:outputText value="IdEstadoCivil:"/>
-                    <h:outputText value="#{usuariosController.selected.idEstadoCivil.toString}" title="IdEstadoCivil"/>
-                    <h:outputText value="IdSexo:"/>
-                    <h:outputText value="#{usuariosController.selected.idSexo.toString()}" title="IdSexo"/>
-                    <h:outputText value="IdCcf:"/>
-                    <h:outputText value="#{usuariosController.selected.idCcf.toString()}" title="IdCcf"/>
-                    <h:outputText value="IdFondoPensiones:"/>
-                    <h:outputText value="#{usuariosController.selected.idFondoPensiones.toString()}" title="IdFondoPensiones"/>
-                    <h:outputText value="IdEps:"/>
-                    <h:outputText value="#{usuariosController.selected.idEps.toString()}" title="IdEps"/>
-                    <h:outputText value="IdArl:"/>
-                    <h:outputText value="#{usuariosController.selected.idArl.toString()}" title="IdArl"/>
-                    <h:outputText value="Ciudad:"/>
-                    <h:outputText value="#{usuariosController.selected.ciudad.toString()}" title="Ciudad"/>
-                    <h:outputText value="Ciudad1:"/>
-                    <h:outputText value="#{usuariosController.selected.ciudad1.toString()}" title="Ciudad1"/>
-                    <h:outputText value="IdCentroFormacion:"/>
-                    <h:outputText value="#{usuariosController.selected.idCentroFormacion.toString()}" title="IdCentroFormacion"/>
-                </h:panelGrid>
-            </h:form>
+          
         </ui:define>
     </ui:composition>
 
