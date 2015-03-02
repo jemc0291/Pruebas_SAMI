@@ -13,98 +13,127 @@
             <f:view>
                 <h:form id='formSolicitudComision'>
                     <h1><h:outputText value="Solicitud Comisión"/></h1>
-                    <p:panelGrid columns="2">
+                    <p:panelGrid columns="3" layout="grid">
                         <label jsf:value="#{bundle.CreateComisionesLabel_idCentroFormacion}" jsf:for="centroFormacion"></label> 
                         <p:autoComplete id="centroFormacion" value="#{comisionesController.selected.idCentroFormacion}" 
-                                         completeMethod="#{usuariosController.getListCentroFormacionAutoComplete}" 
-                                         var="centroFormacion" itemLabel="#{centroFormacion}" itemValue="#{centroFormacion}" 
+                                        completeMethod="#{usuariosController.getListCentroFormacionAutoComplete}" 
+                                        var="centroFormacion" itemLabel="#{centroFormacion}" itemValue="#{centroFormacion}" 
                                         converter="centroFormacionConverter" 
-                                        forceSelection="true" maxResults="10"/> 
-                        
-                        <h:outputLabel  value="IdUsuario:" for="idUsuario" />
+                                        forceSelection="true" maxResults="10"
+                                        requiredMessage="Este campo es requerido" scrollHeight="150" 
+                                        validatorMessage="Este campo solo admite letras">
+                        </p:autoComplete>
+                        <p:message id="centroFormacionMessage" for="centroFormacion" styleClass="error"/>
+
+                        <label  jsf:value="Usuario" jsf:for="idUsuario" />
                         <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
                             <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
                         </h:selectOneMenu>
-                        <h:outputLabel value="MesaPlanificar:" for="mesaPlanificar" />
-                        <h:inputText id="mesaPlanificar" value="#{comisionesController.selected.mesaPlanificar}" title="MesaPlanificar" />
-                        <h:outputLabel value="ObjetivoComision:" for="objetivoComision" />
-                        <h:inputText id="objetivoComision" value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision" required="true" requiredMessage="The ObjetivoComision field is required."/>
+                        <p:message id="idUsuarioMessage" for="idUsuario" styleClass="error"/>
+
+                        <label jsf:value="Mes a planificar" jsf:for="mesaPlanificar" />
+                        <input type="text" maxlength="45"  required="true" 
+                               jsf:id="mesaPlanificar" jsf:value="#{comisionesController.selected.mesaPlanificar}" 
+                               title="MesaPlanificar" 
+                               jsf:validatorMessage="Este campo solo admite letras">
+                            <f:validateRegex pattern="[a-zA-Z ñÑ]*"/>
+                            <f:ajax execute="@this" render="mesaPlanificarMessage"/>
+                        </input>
+                        <p:message id="mesaPlanificarMessage" for="mesaPlanificar" styleClass="error"/>
+
+                        <label jsf:value="Objetivo Comision:" jsf:for="objetivoComision" />
+                        <input type="text"  maxlength="100" required="true"
+                               jsf:id="objetivoComision" jsf:value="#{comisionesController.selected.objetivoComision}" 
+                               title="ObjetivoComision"  
+                               jsf:validatorMessage="Este campo debe ser completado">
+                            <f:validateRegex pattern="[a-zA-Z ñÑ]*"/>
+                            <f:ajax execute="@this" render="objetivoComisionMessage"/>
+                        </input>
+                        <p:message id="objetivoComisionMessage" for="objetivoComision" styleClass="error"/>
 
 
-
-                        <h:outputLabel value="IdDescripcion:" for="idDescripcion" />
+                        <label jsf:value="#{bundle.CreateComisionesLabel_idDescripcion}" jsf:for="idDescripcion" />
                         <h:selectOneMenu id="idDescripcion" value="#{comisionesController.selected.idDescripcion}" title="IdDescripcion" required="true" requiredMessage="The IdDescripcion field is required.">
                             <!-- TODO: update below reference to list of available items-->
                             <f:selectItems value="#{comisionesController.itemsAvailableSelectOneDescripciones}"/>
                         </h:selectOneMenu>
-                        <h:outputLabel value="TranspIntermunicipal:" for="transpIntermunicipal" />
+                        <p:message id="idDescripcionMessage" for="idDescripcion" styleClass="error"/>
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_transpIntermunicipal}" jsf:for="transpIntermunicipal" />
                         <h:inputText id="transpIntermunicipal" value="#{comisionesController.selected.transpIntermunicipal}" title="TranspIntermunicipal" />
-                        <h:outputLabel value="IdFichaCaracterizacion:" for="idFichaCaracterizacion" />
+                        <p:message id="transpIntermunicipalMessage" for="transpIntermunicipal" styleClass="error"/>
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_idFichaCaracterizacion}" jsf:for="idFichaCaracterizacion" />
                         <h:selectOneMenu id="idFichaCaracterizacion" value="#{comisionesController.selected.idFichaCaracterizacion}" title="IdFichaCaracterizacion" required="true" requiredMessage="The IdFichaCaracterizacion field is required.">
-                            <!-- TODO: update below reference to list of available items-->
                             <f:selectItems value="#{comisionesController.itemsAvailableSelectOneFichas}"/>
                         </h:selectOneMenu>
-                        <h:outputLabel value="IdBanco:" for="idBanco" />
+                        <p:message id="idFichaCaracterizacionMessage" for="idFichaCaracterizacion" styleClass="error"/>
+
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_idBanco}" jsf:for="idBanco" />
                         <h:selectOneMenu id="idBanco" value="#{comisionesController.selected.idBanco}" title="IdBanco" required="true" requiredMessage="The IdBanco field is required.">
                             <!-- TODO: update below reference to list of available items-->
                             <f:selectItems value="#{comisionesController.itemsAvailableSelectOneBanco}"/>
                         </h:selectOneMenu>
-                        <h:outputLabel value="IdContrato:" for="idContrato" />
+                        <p:message id="idBancoMessage" for="idBanco" styleClass="error"/>
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_idContrato}" jsf:for="idContrato" />
                         <h:selectOneMenu id="idContrato" value="#{comisionesController.selected.idContrato}" title="IdContrato" required="true" requiredMessage="The IdContrato field is required.">
                             <!-- TODO: update below reference to list of available items-->
                             <f:selectItems value="#{comisionesController.itemsAvailableSelectOneContratos}"/>
                         </h:selectOneMenu>
+                        <p:message id="idContratoMessage" for="idContrato" styleClass="error"/>
                     </p:panelGrid>
 
-                        <p:commandButton value="Agregar Destinos" onclick="PF('agregarDestinoDlg').show()"></p:commandButton>
-                     
+                    <p:commandButton value="Agregar Destinos" onclick="PF('agregarDestinoDlg').show()"></p:commandButton>
 
-                        <p:outputPanel id="ComisionesTablePanel" >
-                            <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
-                                         rows="10" id="comisionesTable" 
-                                         paginator="true"
-                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="20,40,60">
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.ciudad}"/>
-                                </p:column>
+                    <p:outputPanel id="ComisionesTablePanel" >
+                        <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
+                                     rows="10" id="comisionesTable" 
+                                     paginator="true"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="20,40,60">
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.empresaVereda}"/>
-                                </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ciudad}"/>
+                            </p:column>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.salidaEstimada}"/>
-                                </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.empresaVereda}"/>
+                            </p:column>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.llegadaEstimada}"/>
-                                </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.salidaEstimada}"/>
+                            </p:column>
 
-                                <p:column>
-                                    <f:facet name="header">Opciones</f:facet>
-                                    <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
-                                                     process="@this" update="comisionesTable">
-                                        <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el usuario?" icon="ui-icon-alert" />
-                                        <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
-                                    </p:commandButton>
-                                </p:column>       
-                            </p:dataTable>
-                        </p:outputPanel>
-                    
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.llegadaEstimada}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">Opciones</f:facet>
+                                <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
+                                                 process="@this" update="comisionesTable">
+                                    <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el usuario?" icon="ui-icon-alert" />
+                                    <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
+                                </p:commandButton>
+                            </p:column>       
+                        </p:dataTable>
+                    </p:outputPanel>
+
                     <h:commandButton value="Guardar" action="#{comisionesController.create()}"/>
                 </h:form>
             </f:view>

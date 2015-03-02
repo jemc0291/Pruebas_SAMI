@@ -39,12 +39,12 @@ import org.primefaces.model.UploadedFile;
 @ManagedBean(name = "contratosModulo1Controller")
 @SessionScoped
 public class ContratosModulo1Controller implements Serializable {
-    
+
     @EJB
     private PolizasFacade polizasFacade;
     @EJB
     private UsuariosContratosFacade usuariosContratosFacade;
-    
+
     @EJB
     private co.edu.sena.sami.jpa.sessions.ContratosFacade ejbFacade;
     private List<Contratos> items = null;
@@ -52,11 +52,8 @@ public class ContratosModulo1Controller implements Serializable {
     private Polizas selectedPolizas;
     private UsuariosContratos selectedUsuariosContratos;
     private Usuarios selectedUsuarios;
-    private Rol  selectedRol;
-    
-    
-    
-    
+    private Rol selectedRol;
+
     public ContratosModulo1Controller() {
     }
 
@@ -83,9 +80,7 @@ public class ContratosModulo1Controller implements Serializable {
     public void setSelectedRol(Rol selectedRol) {
         this.selectedRol = selectedRol;
     }
-    
-    
-    
+
     public UsuariosContratos getSelectedUsuariosContratos() {
         return selectedUsuariosContratos;
     }
@@ -101,8 +96,6 @@ public class ContratosModulo1Controller implements Serializable {
     public UsuariosContratosFacade getUsuariosContratosFacade() {
         return usuariosContratosFacade;
     }
-    
-    
 
     public Contratos getSelected() {
         return selected;
@@ -127,7 +120,7 @@ public class ContratosModulo1Controller implements Serializable {
         selectedPolizas = new Polizas();
         selectedUsuariosContratos = new UsuariosContratos();
         selectedUsuariosContratos.setUsuariosContratosPK(new UsuariosContratosPK());
-        
+
         selectedUsuarios = new Usuarios();
         selectedRol = new Rol();
         initializeEmbeddableKey();
@@ -154,21 +147,21 @@ public class ContratosModulo1Controller implements Serializable {
         selectedUsuariosContratos.getUsuariosContratosPK().setIdUsuario(selectedUsuariosContratos.getUsuarios().getIdUsuario());
         selectedUsuariosContratos.getUsuariosContratosPK().setNumeroDePoliza(selectedUsuariosContratos.getPolizas().getNumeroDePoliza());
         try {
-            getUsuariosContratosFacade().create(selectedUsuariosContratos);        
-        }catch (Exception ex){
-             JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
+            getUsuariosContratosFacade().create(selectedUsuariosContratos);
+        } catch (Exception ex) {
+            JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
         }
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
         return "/modulo1/ContratacionPrestacionDeServicios/Contratos/ListContrato";
     }
-    
-    public void createPolizas(){
-        try{
+
+    public void createPolizas() {
+        try {
             getPolizasFacade().create(selectedPolizas);
-        }catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
     }
 
@@ -199,10 +192,16 @@ public class ContratosModulo1Controller implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
-                } else {
-                    getFacade().remove(selected);
+                switch (persistAction) {
+                    case CREATE:
+                        getFacade().create(selected);
+                        break;
+                    case UPDATE:
+                        getFacade().edit(selected);
+                        break;
+                    case DELETE:
+                        getFacade().remove(selected);
+                        break;
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -285,7 +284,7 @@ public class ContratosModulo1Controller implements Serializable {
         }
 
     }
-        //boton importar los datos
+    //boton importar los datos
     //boton para importar los datos//
     private UploadedFile file;
     private String destination = "C:\\temp\\Archivos";
