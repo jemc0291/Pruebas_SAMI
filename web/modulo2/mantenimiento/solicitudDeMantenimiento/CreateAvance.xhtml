@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="menu"><ui:include src="/modulo2/menu_modulo2.xhtml"></ui:include></ui:define>
+        <ui:define name="title">Registro</ui:define>        
+
+        <ui:define name="body">
+
+            <h2>Crear Avance</h2>
+            <section class="Section-form">
+
+                <form jsf:id="createAvance">
+
+                    <p:panelGrid columns="3" layout="grid">
+
+                        <Label> *Descripción del Servicio Prestado </Label>
+                        <textarea cols="70" rows="10" type="text" jsf:id="descripcionServicioPrestado" 
+                                  jsf:value="#{solicitudServiciosController.avanceActual.descripcion}">
+                        </textarea>
+                        <h:message id="descripcionServicioPrestadoMessage" for="descripcionServicioPrestado" styleClass="error"/>
+
+                        <h:outputLabel value="Estado:" for="nombre_estado" />
+                        <h:selectOneMenu id="nombre_estado" value="#{solicitudServiciosController.avanceActual.idEstado}" title="Nombre_Estado" >
+                            <f:selectItem itemLabel="Seleccione uno..."/>
+                            <f:selectItems value="#{solicitudServiciosController.listEstado}"/>
+                        </h:selectOneMenu>
+                        <h:message id="nombre_estadoMessage" for="nombre_estado" styleClass="error"/>
+
+                        <h:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
+                        <h:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" title="Nombre_Servicio" >
+                            <f:selectItem itemLabel="Seleccione uno..."/>
+                            <f:selectItems value="#{tipoDeServiciosController.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="nombre_servicioMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="nombre_servicioMessage" for="nombre_servicio" styleClass="error"/>
+
+                        <h:outputLabel value="Prioridades:" for="nombre_prioridades" />
+                        <h:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" title="Nombre_Prioridades" >
+                            <f:selectItem itemLabel="Seleccione uno..."/>
+                            <f:selectItems value="#{solicitudServiciosController.listPrioridades}"/>
+                        </h:selectOneMenu>
+                        <h:message id="nombre_prioridadMessage" for="nombre_prioridades" styleClass="error"/>
+
+                        <h:outputLabel value="Fue Atendido" for="tipoSolicitud1" />
+                        <h:selectBooleanCheckbox id="tipoSolicitud1" value="#{solicitudServiciosController.avanceActual.fueAtendido}"/>
+                        <h:message id="tipoSolicitud2Message" for="tipoSolicitud2" styleClass="error"/>
+
+                        <h:outputLabel value="Fue Solucionado" for="tipoSolicitud2" />
+                        <h:selectBooleanCheckbox id="tipoSolicitud2" value="#{solicitudServiciosController.avanceActual.fueSolucionado}"/>
+                        <h:message id="tipoSolicitud1Message" for="tipoSolicitud1" styleClass="error"/>
+
+                    </p:panelGrid>
+
+                    <p:commandButton  value="Crear Avance" action="#{solicitudServiciosController.addAvance}" update="createAvance"/>
+
+                    <p:dataTable value="#{solicitudServiciosController.listAvance}" var="item"
+                                 rows="10" id="formulario1Table" 
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} 
+                                 {PreviousPageLink} {PageLinks} {NextPageLink} 
+                                 {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+
+                        <p:column>                            
+                            <f:facet name="header">
+                                <h:outputText value="IdAvance"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAvance}"/>                            
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha Avance"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaAvance}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Descripción Servicio Solicitado"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+
+
+                    <p:button value="Regresar" outcome="ListSolicitud"/>
+
+                </form>
+            </section>
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>

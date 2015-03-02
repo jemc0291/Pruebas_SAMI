@@ -107,7 +107,7 @@ public class TipoDeServicios implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.TipoDeServicios[ idTipoServ=" + idTipoServ + " ]";
+        return nombreServicio;
     }
     
 }
