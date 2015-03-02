@@ -82,7 +82,7 @@ public class LoginController implements Serializable {
         return getRequest().isUserInRole("webModulo1");
     }
 
-    public boolean isSupervisionContratos() {
+    public boolean isMantenimiento() {
         return getRequest().isUserInRole("webModulo2");
     }
 

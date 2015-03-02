@@ -135,7 +135,7 @@ public class SoportesDeDocumentos implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.SoportesDeDocumentos[ idSoporte=" + idSoporte + " ]";
+        return tipoSoporte;
     }
     
 }

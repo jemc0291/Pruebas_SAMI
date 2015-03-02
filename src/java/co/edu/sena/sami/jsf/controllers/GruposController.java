@@ -1,9 +1,9 @@
 package co.edu.sena.sami.jsf.controllers;
 
-import co.edu.sena.sami.jpa.entities.Empresa;
+import co.edu.sena.sami.jpa.entities.Grupos;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
-import co.edu.sena.sami.jpa.sessions.EmpresaFacade;
+import co.edu.sena.sami.jpa.sessions.GruposFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("empresaController")
+@Named("gruposController")
 @SessionScoped
-public class EmpresaController implements Serializable {
+public class GruposController implements Serializable {
 
     @EJB
-    private co.edu.sena.sami.jpa.sessions.EmpresaFacade ejbFacade;
-    private List<Empresa> items = null;
-    private Empresa selected;
+    private co.edu.sena.sami.jpa.sessions.GruposFacade ejbFacade;
+    private List<Grupos> items = null;
+    private Grupos selected;
 
-    public EmpresaController() {
+    public GruposController() {
     }
 
-    public Empresa getSelected() {
+    public Grupos getSelected() {
         return selected;
     }
 
-    public void setSelected(Empresa selected) {
+    public void setSelected(Grupos selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class EmpresaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private EmpresaFacade getFacade() {
+    private GruposFacade getFacade() {
         return ejbFacade;
     }
 
-    public Empresa prepareCreate() {
-        selected = new Empresa();
+    public Grupos prepareCreate() {
+        selected = new Grupos();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("EmpresaCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("GruposCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("EmpresaUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("GruposUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/resources/Bundle").getString("EmpresaDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("GruposDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Empresa> getItems() {
+    public List<Grupos> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -100,38 +100,38 @@ public class EmpresaController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
     }
 
-    public Empresa getEmpresa(java.lang.Integer id) {
+    public Grupos getGrupos(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<Empresa> getItemsAvailableSelectMany() {
+    public List<Grupos> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Empresa> getItemsAvailableSelectOne() {
+    public List<Grupos> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Empresa.class)
-    public static class EmpresaControllerConverter implements Converter {
+    @FacesConverter(forClass = Grupos.class)
+    public static class GruposControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            EmpresaController controller = (EmpresaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "empresaController");
-            return controller.getEmpresa(getKey(value));
+            GruposController controller = (GruposController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "gruposController");
+            return controller.getGrupos(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -151,11 +151,11 @@ public class EmpresaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Empresa) {
-                Empresa o = (Empresa) object;
-                return getStringKey(o.getIdEmpresa());
+            if (object instanceof Grupos) {
+                Grupos o = (Grupos) object;
+                return getStringKey(o.getIdGrupo());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Empresa.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Grupos.class.getName()});
                 return null;
             }
         }
