@@ -109,7 +109,7 @@ public class Estados implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Estados[ idEstado=" + idEstado + " ]";
+        return nombreEstado;
     }
     
 }

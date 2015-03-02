@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -27,6 +28,9 @@ public class TipoDeServiciosController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.TipoDeServiciosFacade ejbFacade;
     private List<TipoDeServicios> items = null;
     private TipoDeServicios selected;
+    private List<TipoDeServicios> listTipoDeServicios = null;
+    @EJB
+    private TipoDeServiciosFacade tipoDeServiciosFacade;
 
     public TipoDeServiciosController() {
     }
@@ -48,12 +52,29 @@ public class TipoDeServiciosController implements Serializable {
     private TipoDeServiciosFacade getFacade() {
         return ejbFacade;
     }
+    
+     public TipoDeServiciosFacade getTipoDeServiciosFacade() {
+        return tipoDeServiciosFacade;
+    }
+     
+    public List<TipoDeServicios> getListTipoDeServicios() {
+        if (listTipoDeServicios == null) {
+            try {
+                listTipoDeServicios = getTipoDeServiciosFacade().findAll();
+            } catch (Exception e) {
+                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            }
+        }
+        return listTipoDeServicios;
+    }
 
     public TipoDeServicios prepareCreate() {
         selected = new TipoDeServicios();
         initializeEmbeddableKey();
         return selected;
     }
+    
+    
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("TipoDeServiciosCreated"));
@@ -161,5 +182,10 @@ public class TipoDeServiciosController implements Serializable {
         }
 
     }
-
+    
+     private void addErrorMessage(String title, String msg) {
+        FacesMessage faceMsg
+                = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
+        FacesContext.getCurrentInstance().addMessage(null, faceMsg);
+    }
 }

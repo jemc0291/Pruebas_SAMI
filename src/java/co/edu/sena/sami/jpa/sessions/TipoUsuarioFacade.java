@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.sessions;
 
-import co.edu.sena.sami.jpa.entities.Empresa;
+import co.edu.sena.sami.jpa.entities.TipoUsuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Adsim
  */
 @Stateless
-public class EmpresaFacade extends AbstractFacade<Empresa> {
+public class TipoUsuarioFacade extends AbstractFacade<TipoUsuario> {
     @PersistenceContext(unitName = "SAMIPU")
     private EntityManager em;
 
@@ -25,8 +24,8 @@ public class EmpresaFacade extends AbstractFacade<Empresa> {
         return em;
     }
 
-    public EmpresaFacade() {
-        super(Empresa.class);
+    public TipoUsuarioFacade() {
+        super(TipoUsuario.class);
     }
     
 }

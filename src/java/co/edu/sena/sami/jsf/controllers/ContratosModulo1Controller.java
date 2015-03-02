@@ -138,15 +138,15 @@ public class ContratosModulo1Controller implements Serializable {
     public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ContratosCreated"));
         createPolizas();
+        selectedUsuariosContratos.setContratos(selected);
+        selectedUsuariosContratos.setPolizas(selectedPolizas);
+        selectedUsuariosContratos.setRol(new Rol(1));
+        selectedUsuariosContratos.setUsuarios(selectedUsuarios);
+        selectedUsuariosContratos.getUsuariosContratosPK().setIdContrato(selectedUsuariosContratos.getContratos().getIdContrato());
+        selectedUsuariosContratos.getUsuariosContratosPK().setIdRol(selectedUsuariosContratos.getRol().getIdRol());
+        selectedUsuariosContratos.getUsuariosContratosPK().setIdUsuario(selectedUsuariosContratos.getUsuarios().getIdUsuario());
+        selectedUsuariosContratos.getUsuariosContratosPK().setNumeroDePoliza(selectedUsuariosContratos.getPolizas().getNumeroDePoliza());
         try {
-            selectedUsuariosContratos.setContratos(selected);
-            selectedUsuariosContratos.setPolizas(selectedPolizas);
-            selectedUsuariosContratos.setRol(new Rol(1));
-            selectedUsuariosContratos.setUsuarios(selectedUsuarios);
-            selectedUsuariosContratos.getUsuariosContratosPK().setIdContrato(selectedUsuariosContratos.getContratos().getIdContrato());
-            selectedUsuariosContratos.getUsuariosContratosPK().setIdRol(selectedUsuariosContratos.getRol().getIdRol());
-            selectedUsuariosContratos.getUsuariosContratosPK().setIdUsuario(selectedUsuariosContratos.getUsuarios().getIdUsuario());
-            selectedUsuariosContratos.getUsuariosContratosPK().setNumeroDePoliza(selectedUsuariosContratos.getPolizas().getNumeroDePoliza());
             getUsuariosContratosFacade().create(selectedUsuariosContratos);
         } catch (Exception ex) {
             JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
@@ -192,10 +192,16 @@ public class ContratosModulo1Controller implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
-                } else {
-                    getFacade().remove(selected);
+                switch (persistAction) { //aqui se acomodo el codigo para que guardara en la tabla intermedia usuario roles
+                    case CREATE:
+                        getFacade().create(selected);
+                        break;
+                    case UPDATE:
+                        getFacade().edit(selected);
+                        break;
+                    case DELETE:
+                        getFacade().remove(selected);
+                        break;
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
