@@ -13,157 +13,13 @@
 
 
                 <h:form>
-                    <h1><h:outputText value="List"/></h1>
+                    <h1><h:outputText value="Lista comisiones"/></h1>
                     <p:dataTable value="#{comisionesController.items}" var="item">
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="IdComision"/>
+                                <h:outputText value="IdCentroFormacion"/>
                             </f:facet>
-                            <h:outputText value="#{item.idComision}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="ObjetivoComision"/>
-                            </f:facet>
-                            <h:outputText value="#{item.objetivoComision}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="FechaTramite"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaTramite}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="TranspIntermunicipal"/>
-                            </f:facet>
-                            <h:outputText value="#{item.transpIntermunicipal}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="NumComServicios"/>
-                            </f:facet>
-                            <h:outputText value="#{item.numComServicios}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="ObservacionesOrden"/>
-                            </f:facet>
-                            <h:outputText value="#{item.observacionesOrden}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="SuministraVehiculo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.suministraVehiculo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Objetivos"/>
-                            </f:facet>
-                            <h:outputText value="#{item.objetivos}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="MesaPlanificar"/>
-                            </f:facet>
-                            <h:outputText value="#{item.mesaPlanificar}"/>
-                        </p:column>
-                        
-                       
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="NumDias"/>
-                            </f:facet>
-                            <h:outputText value="#{item.numDias}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Aprobado"/>
-                            </f:facet>
-                            <h:outputText value="#{item.aprobado}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="TransIntermunicipal"/>
-                            </f:facet>
-                            <h:outputText value="#{item.transIntermunicipal}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="TransComision"/>
-                            </f:facet>
-                            <h:outputText value="#{item.transComision}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="OtrosGastos"/>
-                            </f:facet>
-                            <h:outputText value="#{item.otrosGastos}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="VehiculoSena"/>
-                            </f:facet>
-                            <h:outputText value="#{item.vehiculoSena}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="VehiculoComisionado"/>
-                            </f:facet>
-                            <h:outputText value="#{item.vehiculoComisionado}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="AuxilioManutencion"/>
-                            </f:facet>
-                            <h:outputText value="#{item.auxilioManutencion}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="FechaEntregaInforme"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaEntregaInforme}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="ActividadesOTemas"/>
-                            </f:facet>
-                            <h:outputText value="#{item.actividadesOTemas}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="CompromisoSena"/>
-                            </f:facet>
-                            <h:outputText value="#{item.compromisoSena}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="ProdEntragados"/>
-                            </f:facet>
-                            <h:outputText value="#{item.prodEntragados}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="SaldoNegativo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.saldoNegativo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="SaldoPositivo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.saldoPositivo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Presupuesto"/>
-                            </f:facet>
-                            <h:outputText value="#{item.presupuesto}"/>
+                            <h:outputText value="#{item.idCentroFormacion}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -173,15 +29,27 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="IdTipoPasaje"/>
+                                <h:outputText value="MesaPlanificar"/>
                             </f:facet>
-                            <h:outputText value="#{item.idTipoPasaje}"/>
+                            <h:outputText value="#{item.mesaPlanificar}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="IdGrupo"/>
+                                <h:outputText value="ObjetivoComision"/>
                             </f:facet>
-                            <h:outputText value="#{item.idGrupo}"/>
+                            <h:outputText value="#{item.objetivoComision}"/>
+                        </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdDescripcion"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDescripcion}"/>
+                        </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="TranspIntermunicipal"/>
+                            </f:facet>
+                            <h:outputText value="#{item.transpIntermunicipal}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -189,43 +57,15 @@
                             </f:facet>
                             <h:outputText value="#{item.idFichaCaracterizacion}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdDescripcion"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idDescripcion}"/>
-                        </p:column>
-                        <p:column>
+                       <p:column>
                             <f:facet name="header">
                                 <h:outputText value="IdContrato"/>
                             </f:facet>
                             <h:outputText value="#{item.idContrato}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Ciudad"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ciudad}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdCentroFormacion"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idCentroFormacion}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdBanco"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idBanco}"/>
-                        </p:column>
                     </p:dataTable>
                 </h:form>
             </f:view>
-
-
-                
-
         </ui:define>
     </ui:composition>
 

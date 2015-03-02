@@ -12,7 +12,7 @@
         <ui:define name="body">
             <f:view>
                 <h:form>
-                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h1><h:outputText value="Informe de Comision"/></h1>
                     <h:panelGrid columns="2">
                         
                         <h:outputLabel value="NumDias:" for="numDias" />
@@ -31,7 +31,7 @@
                         <h:outputLabel value="IdUsuario:" for="idUsuario" />
                         <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
                             <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{fixme}"/>
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
                         </h:selectOneMenu>
                         
                         <h:outputLabel value="IdGrupo:" for="idGrupo" />
@@ -44,6 +44,7 @@
                 </h:form>
             </f:view>
 
+            
         </ui:define>
     </ui:composition>
 </html>
