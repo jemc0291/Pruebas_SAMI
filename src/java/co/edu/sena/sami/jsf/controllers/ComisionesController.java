@@ -222,8 +222,24 @@ public class ComisionesController implements Serializable {
         initializeEmbeddableKey();
         return "/modulo4/Gestion_Talento_Humano/Comisiones/CrearComision.xhtml";
     }
+    
+    public String prepareCreateInformeComision() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/informeComision.xhtml";
+    }
 
     public void adicionarCiudadComision() {
+        for (CiudadComisiones item : ciudadComisionesList) {
+            if (item.equals(ciudadComisionesActual)) {
+                JsfUtil.addErrorMessage("Elemento ya existe.");
+                return;
+            }
+        }
+        ciudadComisionesList.add(ciudadComisionesActual);
+        ciudadComisionesActual = new CiudadComisiones();
+        JsfUtil.addSuccessMessage("Destino agregado correctamente");
+    }
+    
+     public void adicionarSitioComision() {
         for (CiudadComisiones item : ciudadComisionesList) {
             if (item.equals(ciudadComisionesActual)) {
                 JsfUtil.addErrorMessage("Elemento ya existe.");
