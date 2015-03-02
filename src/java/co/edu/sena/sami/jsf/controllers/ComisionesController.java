@@ -214,6 +214,14 @@ public class ComisionesController implements Serializable {
         return ejbFacade;
     }
 
+    public String prepareListComision() {
+       return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
+   }
+    
+    public String prepareConsultarComision() {
+       return "VerComision";
+   }
+    
     public String prepareCreate() {
         selected = new Comisiones();
         ciudadComisionesList = new ArrayList<>();
@@ -252,7 +260,7 @@ public class ComisionesController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "/modulo4/Gestion_Talento_Humano/Comisiones/VerComisiones.xhtml";
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
     }
 
     public void update() {
