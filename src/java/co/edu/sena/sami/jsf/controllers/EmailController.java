@@ -15,7 +15,7 @@ import javax.naming.NamingException;
  *
  * @author Adsim
  */
-@Named(value = "emailController")
+@Named("emailController")
 @SessionScoped
 public class EmailController implements Serializable {
     private String body;

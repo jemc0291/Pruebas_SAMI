@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo5/menu_modulo5.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+  
+         <h:form>
+                <p>
+                    <p:commandButton icon="ui-icon-plusthick" action="#{documentosController.prepareCreate}" value="#{bundle.Cargar}"/>
+                    
+                </p>
+            
+                <p:outputPanel id="NormasTablePanel">
+                    <p:dataTable value="#{documentosController.items}" var="item"
+                               
+                                rows="10" id="NormasTable" 
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="20,40,60">
+
+                        <p:column filterBy="#{item.idtiposDocumentoGd}" filterMatchMode="contains">
+                            <f:facet name="header">
+                            <h:outputText value="#{bundle.ListTiposDocumentoGdTitle_idtiposDocumentoGd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idtiposDocumentoGd.nombreDocumento}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDocumentosTitle_fechaIngreso}"/>
+                            </f:facet> 
+                            <h:outputText value="#{item.fechaIngreso}" p:pattern="yyyy-MM-dd"/>
+                        </p:column>
+                        
+                        <p:column >
+                            <f:facet name="header">
+                             <h:outputText value="#{bundle.ListDocumentosTitle_activo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.activo}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">Opciones</f:facet>
+                            
+                            <p:commandButton icon="ui-icon-search"  action="#{documentosController.prepareConsultar}">
+                                <f:setPropertyActionListener value="#{item}" target="#{documentosController.documentoActual}"/>
+                            </p:commandButton>
+                            
+                            <p:commandButton icon="ui-icon-trash"  action="#{documentosController.destroy}"
+                                             process="@this" update="NormasTable">
+                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{item}" target="#{documentosController.documentoActual}"/>
+                            </p:commandButton>
+                        </p:column>      
+                               
+                    </p:dataTable>
+                </p:outputPanel>
+             
+         </h:form>
+        </ui:define>
+  </ui:composition>
+</html>

@@ -1,11 +1,22 @@
 package co.edu.sena.sami.jsf.controllers;
 
+import co.edu.sena.sami.jpa.entities.Avance;
+import co.edu.sena.sami.jpa.entities.Estados;
+import co.edu.sena.sami.jpa.entities.Prioridades;
 import co.edu.sena.sami.jpa.entities.SolicitudServicios;
+import co.edu.sena.sami.jpa.entities.TipoDeServicios;
+import co.edu.sena.sami.jpa.entities.TipoUsuario;
+import co.edu.sena.sami.jpa.entities.Usuarios;
+import co.edu.sena.sami.jpa.sessions.AvanceFacade;
+import co.edu.sena.sami.jpa.sessions.EstadosFacade;
+import co.edu.sena.sami.jpa.sessions.PrioridadesFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.SolicitudServiciosFacade;
-
+import co.edu.sena.sami.jpa.sessions.TipoDeServiciosFacade;
+import co.edu.sena.sami.jpa.sessions.TipoUsuarioFacade;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -14,19 +25,125 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ActionEvent;
 
 @Named("solicitudServiciosController")
 @SessionScoped
 public class SolicitudServiciosController implements Serializable {
 
+    private Avance avanceActual;
+
+    private List<Prioridades> listPrioridades = null;
+
+    private List<Avance> listAvance = null;
+
+    private List<Estados> listEstado = null;
+
     @EJB
     private co.edu.sena.sami.jpa.sessions.SolicitudServiciosFacade ejbFacade;
     private List<SolicitudServicios> items = null;
     private SolicitudServicios selected;
+
+    @EJB
+    private AvanceFacade avanceFacade;
+
+    @EJB
+    private TipoUsuarioFacade tipoUsarioFacade;
+
+    @EJB
+    private PrioridadesFacade prioridadesFacade;
+
+    @EJB
+    private EstadosFacade estadosFacade;
+
+
+    public List<SolicitudServicios> getItems() {
+        if (items == null) {
+            try {
+                items = getFacade().findAll();
+            } catch (Exception e) {
+                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            }
+        }
+        return items;
+    }
+
+    public List<Estados> getListEstado() {
+        if (listEstado == null) {
+            try {
+                listEstado = getEstadosFacade().findAll();
+            } catch (Exception e) {
+                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            }
+        }
+        return listEstado;
+    }
+
+    public List<Prioridades> getListPrioridades() {
+        if (listPrioridades == null) {
+            try {
+                listPrioridades = getPrioridadesFacade().findAll();
+            } catch (Exception e) {
+                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            }
+        }
+        return listPrioridades;
+    }
+
+    public List<Prioridades> getListPrioridadesSelectOne() {
+        return getPrioridadesFacade().findAll();
+    }
+
+    public List<Avance> getListAvance() {  
+        if (listAvance == null) {
+            listAvance = getAvanceFacade().findBySolicitud(selected);
+        }
+        return listAvance;
+    }
+
+    public List<TipoUsuario> getListTipoUsusarioSelectOne() {
+        return getTipoUsarioFacade().findAll();
+    }
+
+    public List<SolicitudServicios> getItemsAvailableSelectMany() {
+        return getFacade().findAll();
+    }
+
+    public List<SolicitudServicios> getItemsAvailableSelectOne() {
+        return getFacade().findAll();
+    }
+
+    public AvanceFacade getAvanceFacade() {
+        return avanceFacade;
+    }
+
+    public TipoUsuarioFacade getTipoUsarioFacade() {
+        return tipoUsarioFacade;
+    }
+
+    public PrioridadesFacade getPrioridadesFacade() {
+        return prioridadesFacade;
+    }
+
+    public EstadosFacade getEstadosFacade() {
+        return estadosFacade;
+    }
+
+    public Avance getAvanceActual() {
+        if (avanceActual == null) {
+            avanceActual = new Avance();
+        }
+        return avanceActual;
+    }
+
+    public void setAvanceActual(Avance avanceActual) {
+        this.avanceActual = avanceActual;
+    }
 
     public SolicitudServiciosController() {
     }
@@ -49,10 +166,26 @@ public class SolicitudServiciosController implements Serializable {
         return ejbFacade;
     }
 
-    public SolicitudServicios prepareCreate() {
+    public String prepareCreate() {
         selected = new SolicitudServicios();
         initializeEmbeddableKey();
-        return selected;
+        return "/modulo2/mantenimiento/solicitudDeMantenimiento/CreateSolicitud.xhtml";
+    }
+
+    public String prepareCreateAvance() {
+        avanceActual = new Avance();
+        recargarListaAvance();
+        return "/modulo2/mantenimiento/solicitudDeMantenimiento/CreateAvance.xhtml";
+    }
+
+    public String prepareEdit() {
+        return "Edit";
+
+    }
+
+    public String prepareView() {
+        return "/modulo2/mantenimiento/solicitudDeMantenimiento/View.xhtml";
+
     }
 
     public void create() {
@@ -72,13 +205,6 @@ public class SolicitudServiciosController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
-    }
-
-    public List<SolicitudServicios> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
-        return items;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -113,15 +239,69 @@ public class SolicitudServiciosController implements Serializable {
         return getFacade().find(id);
     }
 
-    public List<SolicitudServicios> getItemsAvailableSelectMany() {
-        return getFacade().findAll();
+    public String cargarLista() {
+        return "ListSolicitudAvance";
     }
 
-    public List<SolicitudServicios> getItemsAvailableSelectOne() {
-        return getFacade().findAll();
+    private void recargarListaAvance() {
+        listAvance = null;
     }
 
-    @FacesConverter(forClass = SolicitudServicios.class)
+    private void recargarListaSolicitud() {
+        items = null;
+    }
+
+    public String addSolicitudServicios(ActionEvent event) {
+        try {
+            selected.setIdUsuario((Usuarios) event.getComponent().getAttributes().get("usuario"));
+            selected.setFechaSolicitudServicio(new Date());
+            getFacade().create(selected);
+            recargarListaSolicitud();
+            addSuccesMessage("Crear Solocitud", "Solicitud Creada Exitosamente");
+            return "ListSolicitud";
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return "ListSolicitud";
+        }
+    }
+
+    public void addAvance() {
+        try {
+            avanceActual.setFechaAvance(new Date());
+            avanceActual.setIdSolicitudServicio(selected);
+            getAvanceFacade().create(avanceActual);
+            avanceActual = new Avance();
+            recargarListaAvance();
+            addSuccesMessage("Crear Avance", "Avance Creado Exitosamente");
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+        }
+    }
+
+    public String updateAvance() {
+        try {
+            getAvanceFacade().edit(avanceActual);
+            recargarListaAvance();
+            addSuccesMessage("Actualizar Solicitud", "Avance Actualizado Exitosamente");
+            return "View";
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public String deleteAvance() {
+        try {
+            getAvanceFacade().remove(avanceActual);
+            recargarListaAvance();
+            addSuccesMessage("Borrar Avance", "Avance Borrado Exitosamente");
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+        }
+        return "List";
+    }
+
+    @FacesConverter(forClass = SolicitudServicios.class, value = "solicitudConverter")
     public static class SolicitudServiciosControllerConverter implements Converter {
 
         @Override
@@ -160,6 +340,17 @@ public class SolicitudServiciosController implements Serializable {
             }
         }
 
+    }
+
+    private void addErrorMessage(String title, String msg) {
+        FacesMessage faceMsg
+                = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
+        FacesContext.getCurrentInstance().addMessage(null, faceMsg);
+    }
+
+    private void addSuccesMessage(String title, String msg) {
+        FacesMessage facesMessage
+                = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
     }
 
 }

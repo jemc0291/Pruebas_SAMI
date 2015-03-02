@@ -13,19 +13,20 @@
                 <p:growl id="messages" showDetail="true" />
 
                 <p:fileUpload value="#{datosOnbaseController.file}" mode="simple"/>
-
-                <p:commandButton value="Importar" ajax="false" actionListener="#{datosOnbaseController.upload}" />
-
+                
+                <h:commandButton value="Cargar Archivo"
+                                 actionListener="#{datosOnbaseController.upload}" action="#{datosOnbaseController.create}"/>                   
+                    
                 <p:outputPanel id="OnBaseTablePanel">
-                    <p:dataTable value="#{datosOnbaseController.items}" var="item"
+                    <p:dataTable value="#{datosOnbaseController.itemsProducidas}" var="item"
                                  rows="10" id="OnBaseTable" 
                                  paginator="true"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="20,40,60">
 
-                        <p:column filterBy="#{item.numRadicadoRecibida}" filterMatchMode="contains">
-                            <f:facet name="header">No. radicado Recibida</f:facet>
-                            <h:outputText value="#{item.numRadicadoRecibida}"/>
+                        <p:column filterBy="#{item.numeroRadicadoOrigen}" filterMatchMode="contains">
+                            <f:facet name="header">No. radicado Producida</f:facet>
+                            <h:outputText value="#{item.numeroRadicadoOrigen}"/>
                         </p:column>
 
                         <p:column >
@@ -52,24 +53,9 @@
                             <f:facet name="header">Fecha Respuesta</f:facet>
                             <h:outputText value="#{item.fechaRespuesta}"/>
                         </p:column>
-
-                        <p:column >
-                            <f:facet name="header">Entidad Remitente</f:facet>
-                            <h:outputText value="#{item.empresaList}"/>
-                        </p:column>
-
-                        <p:column >
-                            <f:facet name="header">Nombre Persona</f:facet>
-                            <h:outputText value="#{item.idUsuarioAdmin}"/>
-                        </p:column>
-
-                        <p:column filterBy="#{item.idUsuarioDestino}" filterMatchMode="contains">
-                            <f:facet name="header">Funcionario Destino</f:facet>
-                            <h:outputText value="#{item.idUsuarioDestino}"/>
-                        </p:column>           
+               
                     </p:dataTable>
                 </p:outputPanel>
-                
                 <h:form>
                     <p:commandButton value="Descargar Reporte" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
                         <p:fileDownload value="#{fileDownloadView.file}" />
