@@ -11,11 +11,10 @@ import co.edu.sena.sami.jpa.entities.FichaCaracterizacion;
 import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jpa.sessions.CentroFormacionFacade;
 import co.edu.sena.sami.jpa.sessions.CiudadComisionesFacade;
-import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
-import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.ComisionesFacade;
 import co.edu.sena.sami.jpa.sessions.UsuariosFacade;
-
+import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
+import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,12 +24,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ActionEvent;
+import javax.inject.Named;
 
 @Named("comisionesController")
 @SessionScoped
@@ -255,8 +255,13 @@ public class ComisionesController implements Serializable {
         ciudadComisionesActual = new CiudadComisiones();
         JsfUtil.addSuccessMessage("Destino agregado correctamente");
     }
-
-    public String create() {
+     
+    public String loadCreate(){
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
+    }
+    
+    public void create(ActionEvent event) {
+        selected.setIdUsuario((Usuarios) event.getComponent().getAttributes().get("usuario"));
         selected.setFechaTramite(new Date());
         selected.setCiudad(selected.getIdCentroFormacion().getCiudad());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ComisionesCreated"));
@@ -273,7 +278,6 @@ public class ComisionesController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
     }
 
     public void update() {
