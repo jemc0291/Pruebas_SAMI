@@ -12,11 +12,37 @@
         <ui:define name="body">
                 <h:form id="formInformeComision">
 
-                    <h1><h:outputText value="INFORME DE COMISIÓN"/></h1>
+                    <h1><h:outputText value="Informe de comisión"/></h1>
 
-                    <h3><h:outputText value="DETALLE DE LA COMISIÓN DE SERVICIOS"/></h3>
+                    <h3><h:outputText value="Detalle de la comision de servicios"/></h3>
+                    <br>
+                     <p:outputPanel id="InformeComisionesTablePanel">
+           
+                        <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
+                                     rows="10" id="InformeComisionesTable" 
+                                     paginator="true"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="20,40,60">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ciudad}"/>
+                            </p:column>
 
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.empresaVereda}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:outputPanel>
+               
+                    </br>
+       
                     <p:panelGrid columns="3" layout="grid" rendered="#{comisionesController.selected != null}">
+                        
 
                         <label jsf:value="#{bundle.CreateComisionesLabel_comisionado}" for="idUsuario" />
                         <h:outputText id="idUsuario" value="#{comisionesController.selected.idUsuario.razonSocial}"/>
@@ -45,7 +71,7 @@
                         <h:message id="objetivocomisionMessage" for="objetivocomision" />
                     </p:panelGrid>
 
-                    <h3><h:outputText value="DESCRIPCION DE ACTIVIDADES"/></h3>
+                    <h3><h:outputText value="Descripción de actividades"/></h3>
 
                     <p:panelGrid columns="3" layout="grid" rendered="#{comisionesController.selected != null}">
 
@@ -69,39 +95,6 @@
                         <h:message id="productosEntregadosMessage" for="productosEntregadoscomision"/>
                     </p:panelGrid>
 
-                    <p:commandButton value="Agregar Sitios de accion de la comision" onclick="PF('agregarSitiosDlg').show()"/>
-
-                    <p:outputPanel id="InformeComisionesTablePanel">
-
-                        <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
-                                     rows="10" id="InformeComisionesTable" 
-                                     paginator="true"
-                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rowsPerPageTemplate="20,40,60">
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.ciudad}"/>
-                            </p:column>
-
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.empresaVereda}"/>
-                            </p:column>
-
-                            <p:column>
-                                <f:facet name="header">Opciones</f:facet>                                
-                                <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
-                                                 process="@this" update="InformeComisionesTable">
-                                    <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el usuario?" icon="ui-icon-alert" />
-                                    <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
-                                </p:commandButton>
-                            </p:column>       
-                        </p:dataTable>
-                    </p:outputPanel>
                     <h:commandButton value="Guardar" action="#{comisionesController.update}"/>
                 </h:form>
             <ui:include src="/modulo4/Gestion_Talento_Humano/Comisiones/AgregarSitiosDlg.xhtml"/>
