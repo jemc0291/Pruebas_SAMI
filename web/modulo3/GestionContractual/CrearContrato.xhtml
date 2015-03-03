@@ -62,7 +62,8 @@
                         
                         <label value="#{bundle.CreateContratosLabel_objetoContractual}" jsf:for="objetoContractual" class="FormLabelSCCSS" />
                         <textarea type="text" jsf:id="objetoContractual" jsf:value="#{contratosController.selected.objetoContractual}" title="#{bundle.CreateContratosTitle_objetoContractual}" class="FormTextAreaSCCSS"
-                               required="true" jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_objetoContractual}" maxlength="499" >
+                               required="true" jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_objetoContractual}" maxlength="499" 
+                               jsf:rows="4">
                             <f:ajax execute="@this" render="ObjetoContractualMessage" />
                         </textarea>
                         <h:message id="ObjetoContractualMessage" for="objetoContractual" />
@@ -78,13 +79,23 @@
                                                 
                         <label value="#{bundle.CreateContratosLabel_observaciones}" jsf:for="observaciones" class="FormLabelSCCSS" />
                         <textarea type="text" jsf:id="observaciones" jsf:value="#{contratosController.selected.observaciones}" title="#{bundle.CreateContratosTitle_observaciones}" class="FormTextAreaSCCSS"
-                                  jsf:validatorMessage="Ingrese texto" maxlength="4999" >
+                                  jsf:validatorMessage="Ingrese texto" maxlength="4999" 
+                                  jsf:rows="4">
                             <f:ajax execute="@this" render="ObservacionesMessage" />
                         </textarea>
                         <h:message id="ObservacionesMessage" for="observaciones" />
                         
+                        <label value="#{bundle.CreateUsuariosContratosLabel_usuarios}" jsf:for="Usuario" class="FormLabelSCCSS" />
+                        <h:selectOneMenu id="Usuario" value="#{contratosController.selectedUsuarios}" title="Usuario" required="true" requiredMessage="Usuario requerido">
+                            <f:selectItem itemLabel="Seleccionar" />
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                       var="idUsuario"
+                                       itemValue="#{idUsuario}"/>
+                        </h:selectOneMenu>
+                        <h:message id="UsuarioMessage" for="Usuario" />
+                        
                         <label>Polizas</label>
-                    <p:commandButton onclick="PF('PolizasDialogo').show()" value="Poliza" process="@this" update=":polizasForm" />
+                        <p:commandButton onclick="PF('PolizasDialogo').show()" value="Poliza" process="@this" update=":polizasForm" />
                         
                     </h:panelGrid>
                     <h:commandButton value="#{bundle.CreateContratosSaveLink}" action="#{contratosController.create()}" class="FormButtonSCCSS"/>

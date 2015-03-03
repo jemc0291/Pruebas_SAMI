@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <h:form>
+
+                <h1><h:outputText value="Lista Comisiones"/></h1>
+
+                <p:dataTable id="comisionesTable" value="#{comisionesController.items}" var="item">
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Comisionado"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idUsuario}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Días de la Comisión"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numDias}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Numero de C.C."/>
+                        </f:facet>
+                        <h:outputText value="#{item.idUsuario.numeroDoc}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Fecha de Entrega del Informe"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaEntregaInforme}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Objetivo de la Comision"/>
+                        </f:facet>
+                        <h:outputText value="#{item.objetivoComision}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Actividades y/o Temas a Desarrollar"/>
+                        </f:facet>
+                        <h:outputText value="#{item.actividadesOTemas}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Compromiso Sena"/>
+                        </f:facet>
+                        <h:outputText value="#{item.compromisoSena}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Producots Entregados"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prodEntragados}"/>
+                    </p:column> 
+                    <p:column>
+                        <f:facet name="header"><h:outputText value="Opcion"/></f:facet>
+                        <p:commandButton  value="Editar Informe" id="editButton" icon="ui-icon-pencil" update="comisionesTable" action="#{comisionesController.prepareCreateInformeComision()}">
+                            <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

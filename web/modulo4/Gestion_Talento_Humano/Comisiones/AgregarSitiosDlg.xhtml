@@ -13,14 +13,21 @@
                   header="Agregar Destino">
 
             <h:form id="formAgregarSitios">
+<<<<<<< HEAD
                 <p:messages/>
+=======
+>>>>>>> origin/master
                 <h1><h:outputText value="Agregar Sitios de accion de la comision"/></h1>
                 <h:panelGrid columns="2">
                     
                     <h:outputLabel value="EmpresaVereda:" for="empresaVereda" />
                     <h:inputText id="empresaVereda" value="#{comisionesController.ciudadComisionesActual.empresaVereda}" title="EmpresaVereda" />
 
+<<<<<<< HEAD
                     <label jsf:value="Ciudad" for="ciudad"></label>
+=======
+                    <label value="Ciudad" for="ciudad"></label>
+>>>>>>> origin/master
                     <p:autoComplete id="ciudad" value="#{comisionesController.ciudadComisionesActual.ciudad}" 
                                   
                                     completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 
@@ -30,7 +37,11 @@
                  
 
                     <p:commandButton process="formAgregarSitios" actionListener="#{comisionesController.adicionarSitioComision}" oncomplete="PF('agregarSitiosDlg').hide()" value="Agregar" update="formAgregarSitios :formInformeComision:InformeComisionesTablePanel" />
+<<<<<<< HEAD
                     <p:commandButton value='Cancelar' action="@this" onclick="PF('agregarSitiosDlg').hide()"/>
+=======
+                    <p:commandButton value="Cancelar" action="@this" onclick="PF('agregarSitiosDlg').hide()"/>
+>>>>>>> origin/master
 
                 </h:panelGrid>
 

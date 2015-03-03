@@ -72,7 +72,7 @@ public class SoportesDeDocumentosController implements Serializable {
     }
 
     public String prepareEdit() {
-        return "/modulo3/GestionContractual/";
+        return "/modulo3/GestionContractual/EditarSoporte";
     }
 
     public String prepareView() {

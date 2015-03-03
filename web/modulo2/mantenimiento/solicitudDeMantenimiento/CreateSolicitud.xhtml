@@ -58,10 +58,11 @@
 
                 </p:panelGrid>
 
-                <p:commandButton value="Guardar" actionListener="#{solicitudServiciosController.addSolicitudServicios}" update="@this" >
-                <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                <p:commandButton value="Guardar" actionListener="#{solicitudServiciosController.addSolicitudServicios}"
+                                 action="#{solicitudServiciosController.prepareView}" update="@this" >
+                    <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
                 </p:commandButton>
-                
+
 
                 <p:button value="Cancelar" outcome="ListSolicitud"/>
 

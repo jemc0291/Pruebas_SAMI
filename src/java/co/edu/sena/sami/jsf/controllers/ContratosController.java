@@ -2,7 +2,10 @@ package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.Contratos;
 import co.edu.sena.sami.jpa.entities.Polizas;
+import co.edu.sena.sami.jpa.entities.Rol;
+import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jpa.entities.UsuariosContratos;
+import co.edu.sena.sami.jpa.entities.UsuariosContratosPK;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.ContratosFacade;
@@ -39,6 +42,8 @@ public class ContratosController implements Serializable {
     private Contratos selected;
     private Polizas selectedPolizas;
     private UsuariosContratos selectedUsuariosContratos;
+    private Usuarios selectedUsuarios;
+    private Rol selectedRol;
 
     public ContratosController() {
     }
@@ -68,6 +73,23 @@ public class ContratosController implements Serializable {
         this.selected = selected;
     }
 
+    public Usuarios getSelectedUsuarios() {
+        return selectedUsuarios;
+    }
+
+    public void setSelectedUsuarios(Usuarios selectedUsuarios) {
+        this.selectedUsuarios = selectedUsuarios;
+    }
+
+    public Rol getSelectedRol() {
+        return selectedRol;
+    }
+
+    public void setSelectedRol(Rol selectedRol) {
+        this.selectedRol = selectedRol;
+    }
+    
+
     protected void setEmbeddableKeys() {
     }
 
@@ -82,6 +104,11 @@ public class ContratosController implements Serializable {
     public String prepareCreate() {
         selected = new Contratos();
         selectedPolizas = new Polizas();
+        selectedUsuariosContratos = new UsuariosContratos();
+        selectedUsuariosContratos.setUsuariosContratosPK(new UsuariosContratosPK());
+
+        selectedUsuarios = new Usuarios();
+        selectedRol = new Rol();
         //initializeEmbeddableKey();        
         return "/modulo3/GestionContractual/CrearContrato";
     }
@@ -106,6 +133,19 @@ public class ContratosController implements Serializable {
     public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ContratosCreated"));
         createPolizas();
+        selectedUsuariosContratos.setContratos(selected);
+        selectedUsuariosContratos.setPolizas(selectedPolizas);
+        selectedUsuariosContratos.setRol(new Rol(1));
+        selectedUsuariosContratos.setUsuarios(selectedUsuarios);
+        selectedUsuariosContratos.getUsuariosContratosPK().setIdContrato(selectedUsuariosContratos.getContratos().getIdContrato());
+        selectedUsuariosContratos.getUsuariosContratosPK().setIdRol(selectedUsuariosContratos.getRol().getIdRol());
+        selectedUsuariosContratos.getUsuariosContratosPK().setIdUsuario(selectedUsuariosContratos.getUsuarios().getIdUsuario());
+        selectedUsuariosContratos.getUsuariosContratosPK().setNumeroDePoliza(selectedUsuariosContratos.getPolizas().getNumeroDePoliza());
+        try {
+            getUsuariosContratosFacade().create(selectedUsuariosContratos);
+        } catch (Exception ex) {
+            JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
+        }
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
@@ -150,10 +190,16 @@ public class ContratosController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
-                } else {
-                    getFacade().remove(selected);
+               switch (persistAction) {
+                    case CREATE:
+                        getFacade().create(selected);
+                        break;
+                    case UPDATE:
+                        getFacade().edit(selected);
+                        break;
+                    case DELETE:
+                        getFacade().remove(selected);
+                        break;
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
