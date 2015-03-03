@@ -25,12 +25,6 @@
                         </p:autoComplete>
                         <p:message id="centroFormacionMessage" for="centroFormacion" styleClass="error"/>
 
-                        <label  jsf:value="Usuario" jsf:for="idUsuario" />
-                        <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
-                        </h:selectOneMenu>
-                        <p:message id="idUsuarioMessage" for="idUsuario" styleClass="error"/>
-
                         <label jsf:value="Mes a planificar" jsf:for="mesaPlanificar" />
                         <input type="text" maxlength="45"  required="true" 
                                jsf:id="mesaPlanificar" jsf:value="#{comisionesController.selected.mesaPlanificar}" 
@@ -134,7 +128,10 @@
                             </p:dataTable>
                         </p:outputPanel>
                     
-                        <h:commandButton value="Guardar" action="#{comisionesController.create()}" />
+                        <h:commandButton value="Guardar" actionListener="#{comisionesController.create}"
+                                         action="#{comisionesController.loadCreate}">
+                            <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                        </h:commandButton>
                 </h:form>
             </f:view>
             <ui:include src="/modulo4/Gestion_Talento_Humano/Comisiones/AgregarDestinosDlg.xhtml"/>
