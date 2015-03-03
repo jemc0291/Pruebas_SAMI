@@ -239,14 +239,37 @@
                         </h:selectOneMenu>
                         <h:message id="IdCcfMessage" for="IdCcfInputText" styleClass="error"/>
 
-                        <label jsf:for="rol"> Rol </label>
-                        <h:selectManyCheckbox id="rol" value="#{usuariosController.listaRoles}" layout="grid" 
-                                              converter="rolConverter"
-                                              requiredMessage="Requerido">  
-                            <f:selectItems value="#{usuariosController.listRolSelectOne}"/>
-                            <f:ajax execute="@this" render="rolMessage"/>
-                        </h:selectManyCheckbox> 
-                        <p:message id="rolMessage" for="rol"/>
+                        <label jsf:value="IdBanco:" jsf:for="idBanco" />
+                        <h:selectOneMenu class="Form-datos" id="idBanco" value="#{usuariosController.selected.idBanco}" >
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems value="#{bancosController.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="bancoMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="bancoMessage" for="idBanco" styleClass="error"/>
+
+                        <label jsf:value="NumCuentaBanco:" jsf:for="numCuentaBanco" />
+                        <p:inputText id="numCuentaBanco" value="#{usuariosController.selected.numCuentaBanco}" 
+                                     title="NumCuentaBanco"  pt:pattern="[0-999]*" >
+                            <f:ajax execute="@this" render="numCuentaBancoMessage"/>
+                        </p:inputText>
+                        <h:message id="numCuentaBancoMessage" for="numCuentaBanco" styleClass="error"/>
+
+                        <label jsf:value="NombreTipoCuenta:" jsf:for="nombreTipoCuenta" />
+                        <p:inputText id="nombreTipoCuenta" value="#{usuariosController.selected.nombreTipoCuenta}" 
+                                     title="NombreTipoCuenta" >
+                            <f:validateRegex pattern="[A-Za-z 0-9áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="nombreTipoCuentaMessage"/>
+                        </p:inputText>
+                        <h:message id="nombreTipoCuentaMessage" for="nombreTipoCuenta" styleClass="error"/>
+
+                        <!-- <label jsf:for="rol"> Rol </label>
+                         <h:selectManyCheckbox id="rol" value="# {usuariosController.listaRoles}" layout="grid" 
+                                               converter="rolConverter"
+                                               requiredMessage="Requerido">  
+                             <f:selectItems value="# {usuariosController.listRolSelectOne}"/>
+                             <f:ajax execute="@this" render="rolMessage"/>
+                         </h:selectManyCheckbox> 
+                         <p:message id="rolMessage" for="rol"/>-->
 
                     </p:panelGrid>
                     <h:commandButton  action="#{usuariosController.createModuloUno}" value="#{bundle.Save}"/>

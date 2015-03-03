@@ -656,7 +656,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return  numeroDoc  + " " +  razonSocial + " " + primerApellido + " " + segundoApellido;
+        return razonSocial + "  " + segundoNombre + " " + primerApellido + " " + segundoApellido + " / " + numeroDoc;
     }
     
 }
