@@ -85,56 +85,56 @@
                         <p:message id="idContratoMessage" for="idContrato" styleClass="error"/>
                     </p:panelGrid>
 
-                    <p:commandButton value="Agregar Destinos" onclick="PF('agregarDestinoDlg').show()"></p:commandButton>
+                        <p:commandButton value="Agregar Destinos" onclick="PF('agregarDestinoDlg').show()"></p:commandButton>
+                     
 
+                        <p:outputPanel id="ComisionesTablePanel" >
+                            <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
+                                         rows="10" id="comisionesTable" 
+                                         paginator="true"
+                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="20,40,60">
 
-                    <p:outputPanel id="ComisionesTablePanel" >
-                        <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
-                                     rows="10" id="comisionesTable" 
-                                     paginator="true"
-                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rowsPerPageTemplate="20,40,60">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.ciudad}"/>
+                                </p:column>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.ciudad}"/>
-                            </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.empresaVereda}"/>
+                                </p:column>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.empresaVereda}"/>
-                            </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.salidaEstimada}"/>
+                                </p:column>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.salidaEstimada}"/>
-                            </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.llegadaEstimada}"/>
+                                </p:column>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.llegadaEstimada}"/>
-                            </p:column>
-
-                            <p:column>
-                                <f:facet name="header">Opciones</f:facet>
-                                <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
-                                                 process="@this" update="comisionesTable">
-                                    <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el usuario?" icon="ui-icon-alert" />
-                                    <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
-                                </p:commandButton>
-                            </p:column>       
-                        </p:dataTable>
-                    </p:outputPanel>
-
-                    <h:commandButton value="Guardar" action="#{comisionesController.create()}"/>
+                                <p:column>
+                                    <f:facet name="header">Opciones</f:facet>
+                                    <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
+                                                     process="@this" update="comisionesTable">
+                                        <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar los destinos?" icon="ui-icon-alert" />
+                                        <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
+                                    </p:commandButton>
+                                </p:column>       
+                            </p:dataTable>
+                        </p:outputPanel>
+                    
+                        <h:commandButton value="Guardar" action="#{comisionesController.create()}" />
                 </h:form>
             </f:view>
             <ui:include src="/modulo4/Gestion_Talento_Humano/Comisiones/AgregarDestinosDlg.xhtml"/>

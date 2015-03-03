@@ -84,6 +84,14 @@ public class ContratosModulo1Controller implements Serializable {
     public UsuariosContratos getSelectedUsuariosContratos() {
         return selectedUsuariosContratos;
     }
+    
+   public UsuariosContratos getUsuariosByContratos(Contratos contrato) {
+        if (getUsuariosContratosFacade().findByIdContrato(contrato)== null){
+            return new UsuariosContratos();
+        } else {
+        return getUsuariosContratosFacade().findByIdContrato(contrato);
+        }
+    }
 
     public void setSelectedUsuariosContratos(UsuariosContratos selectedUsuariosContratos) {
         this.selectedUsuariosContratos = selectedUsuariosContratos;
@@ -192,7 +200,7 @@ public class ContratosModulo1Controller implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                switch (persistAction) {
+                switch (persistAction) { //aqui se acomodo el codigo para que guardara en la tabla intermedia usuario roles
                     case CREATE:
                         getFacade().create(selected);
                         break;

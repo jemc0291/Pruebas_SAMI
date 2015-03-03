@@ -36,10 +36,10 @@
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rows="10"
                              rowsPerPageTemplate="10,20,30,40,50"
-                        
-                            >
-                     <!--    scrollable="true" scrollWidth="500"
-                             style="width:3400px" -->
+
+                             >
+                    <!--    scrollable="true" scrollWidth="500"
+                            style="width:3400px" -->
 
                     <f:facet name="header">
 
@@ -48,7 +48,9 @@
                         <p:columnToggler datasource="contratosModulo1Table" trigger="toggler" transient="false"/>
                     </f:facet>
 
-
+                    <p:column style="width:16px" exportable="false" >
+                        <p:rowToggler />
+                    </p:column>
                     <p:column   filterBy="#{item.numeroDeContrato}" filterMatchMode="contains" toggleable="false" >
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_numeroDeContrato}"/>
@@ -230,7 +232,15 @@
                         </f:facet>
                         <h:outputText value="#{item.idTipoContrato}"/>
                     </p:column>
-                     
+
+                    <p:rowExpansion>
+                        <p:dataTable value="#{item.usuariosContratosList}" var="usuContrato">
+                            <p:column headerText="Documento">
+                                <h:outputText value="#{usuContrato.idUsuario}"/>
+                            </p:column>
+                        </p:dataTable>
+                      
+                    </p:rowExpansion>
 
 
 
@@ -253,82 +263,7 @@
                     </p:column> 
 
                 </p:dataTable>
-                <p:dataTable id="datalist" value="#{usuariosController.items}" var="item"
-                             selectionMode="single" selection="#{usuariosController.selected}"
-                             paginator="true"
-                             rowKey="#{item.idUsuario}"
-                             rows="10"
-                             rowsPerPageTemplate="10,20,30,40,50"
-                             >
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListUsuariosTitle_numeroDoc}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.numeroDoc}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListUsuariosTitle_segundoNombre}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.segundoNombre}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListUsuariosTitle_primerApellido}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.primerApellido}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListUsuariosTitle_segundoApellido}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.segundoApellido}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListUsuariosTitle_email}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.email}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListUsuariosTitle_telefonoPrincipalUsu}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.telefonoPrincipalUsu}"/>
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListUsuariosTitle_direccionUsu}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.direccionUsu}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListUsuariosTitle_ciudad1}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.ciudad1.toString()}"/>
-                    </p:column>
-                    <p:column exportable="false" > 
-                        <f:facet name="header">Opciones</f:facet>
-                        <p:commandButton id="viewButton" icon="ui-icon-search" update="datalist" action="#{usuariosController.prepareViewModuloUno()}">
-                            <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selected}"/>
-                        </p:commandButton>
-                        <p:commandButton  id="editButton" icon="ui-icon-pencil" update="datalist" action="#{usuariosController.prepareEditModuloUno}">
-                            <f:setPropertyActionListener value="#{item}" target="#{usuariosContratosController.selected}"/>
-                        </p:commandButton>
-                        <p:commandButton id="deleteButton" icon="ui-icon-trash" action="#{usuariosController.destroy}"
-                                         process="@this" update="datalist">
-                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el contratista?" icon="ui-icon-alert" />
-                            <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selected}"/>
-                        </p:commandButton>
-
-                    </p:column>
-
-                  
-
-                </p:dataTable>
 
                 <h3>Export Page Data Only</h3>
                 <h:commandLink>

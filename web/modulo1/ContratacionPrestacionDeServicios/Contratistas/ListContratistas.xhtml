@@ -12,8 +12,8 @@
             <h:form id="UsuariosListForm">
 
                 <P>
-                    <h:commandButton action="#{usuariosController.prepareCreate}" value="Agregar Usuario"/>
-                    <h:commandButton action="#{usuariosController.update}" value="Modificar Usuario"/>
+                    <h:commandButton action="#{usuariosController.moduloUnoPrepareCreate}" value="Agregar Usuario"/>
+                    
                 </P>
 
                 <h3>Export Data Complete</h3>
@@ -91,11 +91,11 @@
                     </p:column>
                     <p:column exportable="false" > 
                         <f:facet name="header">Opciones</f:facet>
-                        <p:commandButton id="viewButton" icon="ui-icon-search" update="datalist" action="#{usuariosController.prepareViewModuloUno()}">
+                        <p:commandButton id="viewButton" icon="ui-icon-search" update="datalist" action="#{usuariosController.prepareViewModuloUno}">
                             <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selected}"/>
                         </p:commandButton>
                         <p:commandButton  id="editButton" icon="ui-icon-pencil" update="datalist" action="#{usuariosController.prepareEditModuloUno}">
-                            <f:setPropertyActionListener value="#{item}" target="#{usuariosContratosController.selected}"/>
+                            <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selected}"/>
                         </p:commandButton>
                         <p:commandButton id="deleteButton" icon="ui-icon-trash" action="#{usuariosController.destroy}"
                                          process="@this" update="datalist">
