@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition>
+        <p:dialog widgetVar="agregarSitiosDlg"
+                  modal="true"
+                  resizable="false"
+                  header="Agregar Destino">
+
+            <h:form id="formAgregarSitios">
+                <p:messages/>
+                <h1><h:outputText value="Agregar Sitios de accion de la comision"/></h1>
+                <h:panelGrid columns="2">
+                    
+                    <h:outputLabel value="EmpresaVereda:" for="empresaVereda" />
+                    <h:inputText id="empresaVereda" value="#{comisionesController.ciudadComisionesActual.empresaVereda}" title="EmpresaVereda" />
+
+                    <label jsf:value="Ciudad" for="ciudad"></label>
+                    <p:autoComplete id="ciudad" value="#{comisionesController.ciudadComisionesActual.ciudad}" 
+                                  
+                                    completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 
+                                    var="ciudad" itemLabel="#{ciudad}" itemValue="#{ciudad}" 
+                                    converter="ciudadConverter" 
+                                    forceSelection="true" maxResults="10"/> 
+                 
+
+                    <p:commandButton process="formAgregarSitios" actionListener="#{comisionesController.adicionarSitioComision}" oncomplete="PF('agregarSitiosDlg').hide()" value="Agregar" update="formAgregarSitios :formInformeComision:InformeComisionesTablePanel" />
+                    <p:commandButton value='Cancelar' action="@this" onclick="PF('agregarSitiosDlg').hide()"/>
+
+                </h:panelGrid>
+
+
+            </h:form>
+
+        </p:dialog>
+    </ui:composition>
+</html>

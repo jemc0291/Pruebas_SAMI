@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DatosOnbase.findAll", query = "SELECT d FROM DatosOnbase d"),
-    @NamedQuery(name = "DatosOnbase.findByNumRadicadoRecibida", query = "SELECT d FROM DatosOnbase d WHERE d.numRadicadoRecibida = :numRadicadoRecibida"),
+    @NamedQuery(name = "DatosOnbase.findByNumRadicadoRecibida", query = "SELECT d FROM DatosOnbase d WHERE d.numRadicadoRecibida LIKE :numRadicadoRecibida"),
     @NamedQuery(name = "DatosOnbase.findByNis", query = "SELECT d FROM DatosOnbase d WHERE d.nis = :nis"),
     @NamedQuery(name = "DatosOnbase.findByCodigoRegional", query = "SELECT d FROM DatosOnbase d WHERE d.codigoRegional = :codigoRegional"),
     @NamedQuery(name = "DatosOnbase.findByModoIngreso", query = "SELECT d FROM DatosOnbase d WHERE d.modoIngreso = :modoIngreso"),
@@ -98,6 +98,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DatosOnbase.findByCodDependenciaRemitenteInterno", query = "SELECT d FROM DatosOnbase d WHERE d.codDependenciaRemitenteInterno = :codDependenciaRemitenteInterno"),
     @NamedQuery(name = "DatosOnbase.findByDependenciaRemitenteInterna", query = "SELECT d FROM DatosOnbase d WHERE d.dependenciaRemitenteInterna = :dependenciaRemitenteInterna"),
     @NamedQuery(name = "DatosOnbase.findByFechaDelDocumento", query = "SELECT d FROM DatosOnbase d WHERE d.fechaDelDocumento = :fechaDelDocumento")})
+    
 public class DatosOnbase implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

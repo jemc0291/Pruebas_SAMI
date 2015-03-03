@@ -234,6 +234,18 @@ public class ComisionesController implements Serializable {
         ciudadComisionesActual = new CiudadComisiones();
         JsfUtil.addSuccessMessage("Destino agregado correctamente");
     }
+    
+     public void adicionarSitioComision() {
+        for (CiudadComisiones item : ciudadComisionesList) {
+            if (item.equals(ciudadComisionesActual)) {
+                JsfUtil.addErrorMessage("Elemento ya existe.");
+                return;
+            }
+        }
+        ciudadComisionesList.add(ciudadComisionesActual);
+        ciudadComisionesActual = new CiudadComisiones();
+        JsfUtil.addSuccessMessage("Destino agregado correctamente");
+    }
 
     public String create() {
         selected.setFechaTramite(new Date());

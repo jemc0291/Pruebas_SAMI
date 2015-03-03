@@ -9,14 +9,9 @@
         <ui:define name="title">Gestion Documental</ui:define>
         <ui:define name="menu"><ui:include src="/modulo5/menu_modulo5.xhtml"></ui:include></ui:define>    
         <ui:define name="body">          
-            <h:form enctype="multipart/form-data">
-                <p:growl id="messages" showDetail="true" />
+            <h:form >
 
-                <p:fileUpload value="#{datosOnbaseController.file}" mode="simple"/>
-                
-                <h:commandButton value="Cargar Archivo"
-                                 actionListener="#{datosOnbaseController.upload}" action="#{datosOnbaseController.create}"/>                   
-                    
+                <h2>Lista De Radicaciones Producidas</h2> 
                 <p:outputPanel id="OnBaseTablePanel">
                     <p:dataTable value="#{datosOnbaseController.itemsProducidas}" var="item"
                                  rows="10" id="OnBaseTable" 
@@ -24,43 +19,66 @@
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="20,40,60">
 
-                        <p:column filterBy="#{item.numeroRadicadoOrigen}" filterMatchMode="contains">
+                        <p:column filterBy="#{item.numRadicadoRecibida}" filterMatchMode="contains">
                             <f:facet name="header">No. radicado Producida</f:facet>
-                            <h:outputText value="#{item.numeroRadicadoOrigen}"/>
+                            <h:outputText value="#{item.numRadicadoRecibida}"/>
                         </p:column>
 
                         <p:column >
                             <f:facet name="header">N.I.S</f:facet>
                             <h:outputText value="#{item.nis}"/>
                         </p:column>
-
+           
                         <p:column filterBy="#{item.asunto}" filterMatchMode="contains">
                             <f:facet name="header">Asunto</f:facet>
                             <h:outputText value="#{item.asunto}"/>
                         </p:column>
-
+                        
                         <p:column >
-                            <f:facet name="header">Fecha Procedencia</f:facet>
-                            <h:outputText value="#{item.fechaProcedencia}"/>
+                            <f:facet name="header">Descripcion Asunto</f:facet>
+                            <h:outputText value="#{item.descripcionAsunto}"/>
+                        </p:column>
+                        
+                    
+                        <p:column filterBy="#{item.remitenteNombreEntidadExterna}" filterMatchMode="contains">
+                            <f:facet name="header">Remitente</f:facet>
+                            <h:outputText value="#{item.remitenteNombreEntidadExterna}"/>
+                        </p:column>
+                        
+                        <p:column >
+                            <f:facet name="header">Nombre Persona</f:facet>
+                            <h:outputText value="#{item.nombrePersona}"/>
+                        </p:column>
+                        
+                        <p:column >
+                            <f:facet name="header">Cargo Persona</f:facet>
+                            <h:outputText value="#{item.cargoPersonaODependencia}"/>
+                        </p:column>
+                        
+                         <p:column >
+                            <f:facet name="header">Municipio</f:facet>
+                            <h:outputText value="#{item.municipio}"/>
                         </p:column>
 
+                        <p:column filterBy="#{item.funcionarioDestino}" filterMatchMode="contains">
+                            <f:facet name="header">Funcionario Destino</f:facet>
+                            <h:outputText value="#{item.funcionarioDestino}"/>
+                        </p:column>
+                
                         <p:column >
-                            <f:facet name="header">Tiempo de Respuesta</f:facet>
-                            <h:outputText value="#{item.tiempoRespuestaDias}"/>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{item.fechaHora}"/>
                         </p:column>
 
-                        <p:column >
-                            <f:facet name="header">Fecha Respuesta</f:facet>
-                            <h:outputText value="#{item.fechaRespuesta}"/>
-                        </p:column>
-               
+                        <p:column>
+                            <f:facet name="header">Consultar</f:facet>
+                            <p:commandButton icon="ui-icon-search"  action="#{datosOnbaseController.prepareConsultar}">
+                                <f:setPropertyActionListener value="#{item}" target="#{datosOnbaseController.selected}"/>
+                            </p:commandButton>
+                        </p:column> 
                     </p:dataTable>
                 </p:outputPanel>
-                <h:form>
-                    <p:commandButton value="Descargar Reporte" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
-                        <p:fileDownload value="#{fileDownloadView.file}" />
-                    </p:commandButton>
-                </h:form>
+              
             </h:form>
         </ui:define>
     </ui:composition>
