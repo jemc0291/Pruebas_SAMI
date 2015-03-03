@@ -184,7 +184,7 @@ public class SolicitudServiciosController implements Serializable {
     }
 
     public String prepareView() {
-        return "/modulo2/mantenimiento/solicitudDeMantenimiento/View.xhtml";
+        return "/modulo2/mantenimiento/solicitudDeMantenimiento/ListSolicitud.xhtml";
 
     }
 

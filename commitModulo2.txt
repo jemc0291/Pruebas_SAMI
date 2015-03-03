@@ -1,0 +1,425 @@
+commit 17645724d9692f18773f5b36660a6c0d8e029e1e
+Author: makerson <makerson@misena.edu.co>
+Date:   Mon Mar 2 10:28:03 2015 -0500
+
+    modulo2 entidad Avance actualizada
+
+commit e1c9454b7f330985279245011cd00f2b13c91007
+Author: makerson <makerson@misena.edu.co>
+Date:   Mon Mar 2 09:43:32 2015 -0500
+
+    modulo2 salvado de Avance y Solicitud - yohooo
+
+commit 27079e08c52acd4cb222c8301bd31d6a0d37468f
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Fri Feb 27 16:58:52 2015 -0500
+
+    Commit modulo 3 arreglo formularios
+
+commit 954aed3650dc63c3f2a48d127a0b7c4caf0a9954
+Merge: d1e51f1 d661d02
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Fri Feb 27 11:28:39 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit d1e51f1b545152a576176d1e841463a68383ed2e
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Fri Feb 27 11:28:17 2015 -0500
+
+    Commit modulo 3 Arreglo formulario crear soporte
+
+commit d661d02dd7993c8dd607811cda699495c207ef40
+Merge: e3251e7 a43e947
+Author: Geovany <gacaicedo2@misena.edu.co>
+Date:   Fri Feb 27 10:31:58 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e3251e7de083f2e99fb3ca45ab9ca80fcdfc1818
+Author: Geovany <gacaicedo2@misena.edu.co>
+Date:   Fri Feb 27 10:31:28 2015 -0500
+
+    Commit modulo 5 carga de archivos y otros
+
+commit 84c424ee52e64c0128924171e4a5760cc73af74a
+Author: Geovany <gacaicedo2@misena.edu.co>
+Date:   Fri Feb 27 10:15:21 2015 -0500
+
+    Commit modulo 5 controlador datos Onbase carga archivos
+
+commit a43e9471142355cf8154bc47ab9840f6656e3ab2
+Merge: fd80387 53334a2
+Author: makerson <makerson@misena.edu.co>
+Date:   Fri Feb 27 08:52:19 2015 -0500
+
+    Commit modulo 2 a revision
+
+commit fd803876595a8f3c8f960feb77ac3a9901689b77
+Author: makerson <makerson@misena.edu.co>
+Date:   Fri Feb 27 08:38:01 2015 -0500
+
+    Commit modulo 2
+
+commit 53334a2d78ab41c9e559a21e530320f58eb8e06f
+Merge: 7994dda cea3b64
+Author: unknown <dabolanos53@miesna.edu.co>
+Date:   Wed Feb 25 07:59:54 2015 -0500
+
+    Commit formulario Solicitud Comision
+
+commit 7994dda114cd347267c83715653fd9eba8de2e21
+Author: unknown <dabolanos53@miesna.edu.co>
+Date:   Wed Feb 25 07:53:09 2015 -0500
+
+    Commit Formulario Comisiones
+
+commit cea3b641c0723768b59c8fd8224ed48057e2d029
+Merge: 7fb07cd 75315f8
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Tue Feb 24 17:57:03 2015 -0500
+
+    Commit Modulo 3 Guardar polizas y autocompletar
+
+commit 7fb07cd105662eff61ab919f8667be0589ebd75e
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Tue Feb 24 17:27:30 2015 -0500
+
+    Commit modulo 3 Campos con autocompletar creacion de polizas
+
+commit 75315f8bff92be88213d6cf8aa2d5c623009114e
+Merge: 9654bc3 1d2ba9a
+Author: miketascon <mike.tascon@gmail.com>
+Date:   Tue Feb 24 17:02:08 2015 -0500
+
+    Se actualizo el formulario de contratos y guarda la poliza y el contrato falta la intermedia
+
+commit 9654bc3afd673ebef10c41d89465aa06080c832d
+Author: miketascon <mike.tascon@gmail.com>
+Date:   Tue Feb 24 16:54:54 2015 -0500
+
+    Se actualizo el formulario de contratos y guarda la poliza y el contrato
+
+commit 1d2ba9a42afee7b755407a49aa5e062e12097b60
+Merge: 472fab3 b37222f
+Author: makerson <makerson@misena.edu.co>
+Date:   Mon Feb 23 17:23:23 2015 -0500
+
+    template actualizado
+
+commit 472fab3b7333b088b5c6b5c3f4f6d2b238d8a8e1
+Author: makerson <makerson@misena.edu.co>
+Date:   Mon Feb 23 17:14:23 2015 -0500
+
+    confirmacion cerrar sesion
+
+commit b37222f0c278caa4f79af9c08e2fed007d570a33
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Fri Feb 20 17:20:49 2015 -0500
+
+    Commit modulo 3 cambio inputs type date a P Calendar y otros
+
+commit 0c8a759f7a87700f0335cc5af21407e1f5a44066
+Merge: 7fa53a2 977678f
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Fri Feb 20 13:16:41 2015 -0500
+
+    Commit modulo 3
+
+commit 977678f83c35537acfdaa24a4bb74b60c7e5acbe
+Merge: 0ab1b56 d20d7ef
+Author: miketascon <mike.tascon@gmail.com>
+Date:   Fri Feb 20 08:32:17 2015 -0500
+
+    Se adelanto el formulario de contratos creando un cuadro de dialogo de la tabla polizas
+
+commit 0ab1b569ef186beeaa8c7376bdcb8ffe038f38c7
+Author: miketascon <mike.tascon@gmail.com>
+Date:   Fri Feb 20 08:25:47 2015 -0500
+
+    Se adelanto el formulario de contratos creando un cuadro de dialogo de la tabla polizas
+
+commit d20d7ef20cd8316c7da1deae73968750a433380c
+Author: unknown <dabolanos53@miesna.edu.co>
+Date:   Thu Feb 19 16:14:09 2015 -0500
+
+    Commit Formulario Comisiones
+
+commit 7fa53a28b55336d38ca6dcb1e042348cbfc016c5
+Merge: 3fc8023 32d6d65
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Wed Feb 18 10:14:55 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 3fc8023145fba02e21cb064728940b71baca4ed8
+Merge: 9527a4d 59774d7
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Wed Feb 18 10:14:27 2015 -0500
+
+    Commit modulo 3
+
+commit 32d6d65e4b62833d0d3250782adc7adc3e4f4276
+Author: jeison <jlenim@gmail.com>
+Date:   Wed Feb 18 09:49:59 2015 -0500
+
+    Modificados menus con conflictos
+
+commit dc405c57271e16897316a19ccbb60af72045b6ff
+Merge: e022ac0 59774d7
+Author: jeison <jlenim@gmail.com>
+Date:   Wed Feb 18 08:54:20 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e022ac02d5897c13d6c757716253aad4af96f140
+Author: jeison <jlenim@gmail.com>
+Date:   Wed Feb 18 08:53:47 2015 -0500
+
+    modificaciones de controladores como: actaverificacion, nota entrada
+
+commit 59774d7768210a575ca9d7fe590fbdc8a5fbab77
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Tue Feb 17 23:23:46 2015 -0500
+
+    Commit modulo 3 Actualizacion de metodos y formularios
+
+commit 9527a4de555885be7f25d17a517dad9f02b8b7a0
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Tue Feb 17 18:15:00 2015 -0500
+
+    Corrección entida pagos facturas
+
+commit b846b20b7d90d1bbd3dc29c42f286c96cd54167d
+Merge: 408ea6a 43450da
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Tue Feb 17 17:53:56 2015 -0500
+
+    Commit Modulo 3 Formulario cargar soportes y crear factura
+
+commit 43450da8f4cbfd0c41254f59c7a0558dd0f3a5cf
+Author: omarvelasco <vdomar@misena.edu.co>
+Date:   Tue Feb 17 17:43:52 2015 -0500
+
+    Actualziacion de toString en entidades
+
+commit 408ea6a7079805279a20908d84086863fcdc7c8c
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Tue Feb 17 17:41:59 2015 -0500
+
+    Commit Modulo 3 Formulario carga de archivos y crear Factura
+
+commit 5d406a59ed413db571eaadcf4a96f24c297a7f76
+Author: brayan <brayans_@hotmail.com>
+Date:   Tue Feb 17 15:48:36 2015 -0500
+
+    Commit de actualizacion talento humano
+
+commit c75470db31cba8a2a7ec5b33e04af3583e2d04bb
+Author: brayan <brayans_@hotmail.com>
+Date:   Tue Feb 17 14:05:36 2015 -0500
+
+    cuarto commit talento humano
+
+commit 58b3fc2696fbd7bc53aea859bfcd20d0fe39fca4
+Merge: 0cb7bed 4da0ce5
+Author: brayan <brayans_@hotmail.com>
+Date:   Tue Feb 17 14:03:20 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 0cb7bed7c6ccfe162265dec6461712f5ee9652a5
+Author: brayan <brayans_@hotmail.com>
+Date:   Tue Feb 17 14:00:54 2015 -0500
+
+    tercer commit talento humano
+
+commit 33a4a935a85412040b7f417203f19d88afbc94c5
+Author: brayan <brayans_@hotmail.com>
+Date:   Tue Feb 17 13:57:26 2015 -0500
+
+    commit segundo talento humano
+
+commit 4da0ce5ab282ec0000632ed0fd66cf7e7d27038e
+Merge: f13eecc 8a51789
+Author: crhistian <crhistian.p@misena.edu.co>
+Date:   Mon Feb 16 18:00:27 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 8a51789152fa0ace943339f3ec44825cc1e51b3e
+Author: omarvelasco <vdomar@misena.edu.co>
+Date:   Mon Feb 16 17:48:02 2015 -0500
+
+    Actualizaron la ubicacion de usuario en configuracion
+
+commit f13eecc08d37d1312e1425e41d4ad6843c99becf
+Merge: 7c0115e 3955128
+Author: crhistian <crhistian.p@misena.edu.co>
+Date:   Mon Feb 16 17:42:22 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 7c0115e0f507f02f3240df7d2c43c6da1ae0c745
+Author: crhistian <crhistian.p@misena.edu.co>
+Date:   Mon Feb 16 17:41:59 2015 -0500
+
+    modificado formularios y lista de contratos
+
+commit 3955128336f5ba162cfc9bc522afa1ae693f0e11
+Author: makerson <makerson@misena.edu.co>
+Date:   Mon Feb 16 15:51:20 2015 -0500
+
+    Actualizado css, envio de mensajes en el inicio e información de modulos
+
+commit 16fcfbf5eaec2a1c5024b0fb938b6a5b6d3b0092
+Merge: 9b0dc5c 1578340
+Author: crhistian <crhistian.p@misena.edu.co>
+Date:   Mon Feb 16 10:13:53 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 9b0dc5c085903f4eee99142b4130344a91863560
+Author: crhistian <crhistian.p@misena.edu.co>
+Date:   Mon Feb 16 10:13:19 2015 -0500
+
+    primer commit modulo 1
+
+commit 1578340322e22a7a317a98345591cc6e9065960c
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Sun Feb 15 21:38:28 2015 -0500
+
+    Commit modulo 3 modificacion entidades contratos-pagos contratos y tipo contrato
+
+commit bbf94d2c2bea98410bf73bcf1241f9d98e722bb9
+Author: omarvelasco <vdomar@misena.edu.co>
+Date:   Fri Feb 13 11:11:40 2015 -0500
+
+    Actualizacion de toString y autocompletar
+
+commit 64ae52e37260c65d21b912c3d684980ce4937466
+Author: omarvelasco <vdomar@misena.edu.co>
+Date:   Thu Feb 12 20:47:08 2015 -0500
+
+    Actualizaron las entidades con la ultima version de la base de datos
+
+commit c2cd135d4b367c84bef6f6c98a3f8f56dd95006d
+Merge: bc24eb9 df1c23c
+Author: omarvelasco <vdomar@misena.edu.co>
+Date:   Wed Feb 11 12:09:24 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit bc24eb9be1e0c6b0a3714bcde07492be875583d3
+Author: omarvelasco <vdomar@misena.edu.co>
+Date:   Wed Feb 11 12:08:17 2015 -0500
+
+    se actualizaron las entidades con la nueva base de datos
+
+commit df1c23ca3100f5586ca7741cc4205d238f10f89f
+Author: Gustavo Ramirez <gramirez59@misena.edu.co>
+Date:   Wed Feb 11 11:51:34 2015 -0500
+
+    Commit inicial modulo 3 formularios basicos
+
+commit f367bf91b0c27e5e22325d77dda7317193244a46
+Merge: c1df103 c83679e
+Author: aula115 <aula115@localhost.localdomain>
+Date:   Mon Feb 9 11:10:12 2015 -0500
+
+    correción merge
+
+commit c1df1036a53c4012d8f210e93dfba01073638996
+Author: Usuario <Usuario@10.72.199.86>
+Date:   Mon Feb 9 10:20:46 2015 -0500
+
+    el formulario de usuario cumple con las condiciones de agregar, consultar, modificar y eliminar, tambien los iconfonts tienen su respectivo link de direccionamiento y en la lista de seleccion no esta la parte de configuracion se encuentra en el iconfont de la herramienta.
+
+commit c83679e51ae517931cd5972782a73d40dc754c6c
+Author: leoandresm <leoandresm@freya-asus>
+Date:   Wed Feb 4 10:11:03 2015 -0500
+
+    Formulario usuario y login
+
+commit 2cfbebf134a3b798bd18752027901abc1b27402a
+Author: Aprendiz <Aprendiz@10.72.196.186>
+Date:   Mon Nov 24 12:11:36 2014 -0500
+
+commit 86fda7bac79ccd05a4c60b3e4b7a5b96dd020b6f
+Author: Adsim <Adsim@Aula115-PC>
+Date:   Thu Nov 13 12:32:25 2014 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+    	.gitignore
+    	lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar
+    	lib/nblibraries.properties
+    	nbproject/project.properties
+
+commit 98b4b25270241dd16ae60a654867db697ff66d55
+Merge: 41aa62a 4eb7475
+Author: Adsim <Adsim@Aula115-PC>
+Date:   Thu Nov 13 12:10:17 2014 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+    	.gitignore
+    	lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar
+    	lib/nblibraries.properties
+    	nbproject/project.properties
+
+commit 41aa62a29701ac0ed7cd69100c98b852cae2cab9
+Author: Adsim <Adsim@Aula115-PC>
+Date:   Thu Nov 13 12:07:09 2014 -0500
+
+    Desarrollo Modulo configuración
+
+commit b727fe8df7332e27cfd2a646b70014ad1959fe42
+Author: Adsim <Adsim@10.72.254.194>
+Date:   Thu Nov 13 11:41:13 2014 -0500
+
+    Desarrollo Modulo configuración
+
+commit 078eb9309b5603f0173a664be428a1a547e60635
+Author: Adsim <Adsim@10.72.254.194>
+Date:   Thu Nov 13 11:34:32 2014 -0500
+
+    Desarrollo Modulo configuración
+
+commit 4eb7475fbda8bb287513581ec51ad5e8ce021bd7
+Author: leoandresm <leoandresm@debian-laptop>
+Date:   Fri Nov 7 09:14:39 2014 -0500
+
+    Corrección Librerías
+
+commit d45b46bd49c7312c9caa6ce3bcb354f92c947d52
+Author: leoandresm <leoandresm@gmail.com>
+Date:   Fri Nov 7 09:13:46 2014 -0500
+
+    Update .gitignore
+
+commit cd9e0f0a30b6144a4b9557d177e10a0970192e77
+Author: leoandresm <leoandresm@debian-laptop>
+Date:   Fri Nov 7 09:12:18 2014 -0500
+
+    Corrección Librerías
+
+commit 9cfc9f439536d4a879d70f81c19f12023e373266
+Author: Adsim <Adsim@10.72.196.157>
+Date:   Thu Nov 6 11:14:52 2014 -0500
+
+    version 1
+
+commit 1b0cf04cbcbc57c8a416fa68fcb71514b62c87fb
+Author: PipeCano <andresorejuela@misena.edu.co>
+Date:   Thu Nov 6 06:46:34 2014 -0500
+
+    Create README.md
+
+commit 9d69f06cedd5fb25c19d0b10d64cd525d5b3e174
+Author: PipeCano <andresorejuela@misena.edu.co>
+Date:   Thu Nov 6 06:41:59 2014 -0500
+
+    Initial commit

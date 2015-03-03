@@ -20,7 +20,7 @@
 
                     <p:panelGrid columns="3" layout="grid">
 
-                        <Label> *Descripción del Servicio Prestado </Label>
+                        <Label> *Descripción del Avance </Label>
                         <textarea cols="70" rows="10" type="text" jsf:id="descripcionServicioPrestado" 
                                   jsf:value="#{solicitudServiciosController.avanceActual.descripcion}">
                         </textarea>
@@ -33,6 +33,13 @@
                         </h:selectOneMenu>
                         <h:message id="nombre_estadoMessage" for="nombre_estado" styleClass="error"/>
 
+                        <h:outputLabel value="Prioridades:" for="nombre_prioridades" />
+                        <h:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" title="Nombre_Prioridades" >
+                            <f:selectItem itemLabel="Seleccione uno..."/>
+                            <f:selectItems value="#{solicitudServiciosController.listPrioridades}"/>
+                        </h:selectOneMenu>
+                        <h:message id="nombre_prioridadMessage" for="nombre_prioridades" styleClass="error"/>
+
                         <h:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
                         <h:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" title="Nombre_Servicio" >
                             <f:selectItem itemLabel="Seleccione uno..."/>
@@ -41,12 +48,13 @@
                         </h:selectOneMenu>
                         <h:message id="nombre_servicioMessage" for="nombre_servicio" styleClass="error"/>
 
-                        <h:outputLabel value="Prioridades:" for="nombre_prioridades" />
-                        <h:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" title="Nombre_Prioridades" >
+                        <h:outputLabel value="Tipo de usuario:" for="nombre_usuario" />
+                        <h:selectOneMenu id="nombre_usuario" value="#{tipoUsuarioController.selected.idtipoUsuario}" title="Nombre_Usuario" >
                             <f:selectItem itemLabel="Seleccione uno..."/>
-                            <f:selectItems value="#{solicitudServiciosController.listPrioridades}"/>
+                            <f:selectItems value="#{tipoUsuarioController.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="nombre_usuarioMessage"/>
                         </h:selectOneMenu>
-                        <h:message id="nombre_prioridadMessage" for="nombre_prioridades" styleClass="error"/>
+                        <h:message id="nombre_usuarioMessage" for="nombre_usuario" styleClass="error"/>
 
                         <h:outputLabel value="Fue Atendido" for="tipoSolicitud1" />
                         <h:selectBooleanCheckbox id="tipoSolicitud1" value="#{solicitudServiciosController.avanceActual.fueAtendido}"/>
