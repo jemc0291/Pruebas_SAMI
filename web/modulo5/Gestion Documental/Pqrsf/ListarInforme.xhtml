@@ -11,16 +11,17 @@
         <ui:define name="body">          
             <h:form >
 
-                <h2>Lista De Radicaciones Recibidas</h2> 
-                <p:outputPanel id="OnBaseTablePanel">
-                    <p:dataTable value="#{datosOnbaseController.itemsRecibidas}" var="item"
-                                 rows="10" id="OnBaseTable" 
+                <h2>Lista Informe Diario Mes</h2>
+                
+                <p:outputPanel id="OnBaseTablePanels">
+                    <p:dataTable value="#{datosOnbaseController.consulta()}" var="item"
+                                 rows="10" id="OnBaseTables" 
                                  paginator="true"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="20,40,60">
 
                         <p:column filterBy="#{item.numRadicadoRecibida}" filterMatchMode="contains">
-                            <f:facet name="header">No. radicado Recibida</f:facet>
+                            <f:facet name="header">No. radicado Producida</f:facet>
                             <h:outputText value="#{item.numRadicadoRecibida}"/>
                         </p:column>
 
@@ -28,59 +29,56 @@
                             <f:facet name="header">N.I.S</f:facet>
                             <h:outputText value="#{item.nis}"/>
                         </p:column>
-           
+
+
                         <p:column filterBy="#{item.asunto}" filterMatchMode="contains">
                             <f:facet name="header">Asunto</f:facet>
                             <h:outputText value="#{item.asunto}"/>
-                        </p:column>
+                        </p:column>}
+                        
                         
                         <p:column >
                             <f:facet name="header">Descripcion Asunto</f:facet>
-                            <h:outputText value="#{item.descripcionAsunto}"/>
+                            <h:outputText value="#{item.descripcionAsunto }"/>
                         </p:column>
-                        
-                    
+
                         <p:column filterBy="#{item.remitenteNombreEntidadExterna}" filterMatchMode="contains">
                             <f:facet name="header">Remitente</f:facet>
                             <h:outputText value="#{item.remitenteNombreEntidadExterna}"/>
                         </p:column>
                         
+                        
                         <p:column >
                             <f:facet name="header">Nombre Persona</f:facet>
-                            <h:outputText value="#{item.nombrePersona}"/>
+                            <h:outputText value="#{item.nombrePersona }"/>
                         </p:column>
+                        
                         
                         <p:column >
-                            <f:facet name="header">Cargo Persona</f:facet>
-                            <h:outputText value="#{item.cargoPersonaODependencia}"/>
-                        </p:column>
-                        
-                         <p:column >
-                            <f:facet name="header">Municipio</f:facet>
-                            <h:outputText value="#{item.municipio}"/>
+                            <f:facet name="header">Cargo o Dependencia</f:facet>
+                            <h:outputText value="#{item.cargoPersonaODependencia }"/>
                         </p:column>
 
                         <p:column filterBy="#{item.funcionarioDestino}" filterMatchMode="contains">
-                            <f:facet name="header">Funcionario Destino</f:facet>
+                            <f:facet name="header">Destinatario</f:facet>
                             <h:outputText value="#{item.funcionarioDestino}"/>
                         </p:column>
-                
-                        <p:column >
-                            <f:facet name="header">Fecha</f:facet>
-                            <h:outputText value="#{item.fechaHora}"/>
-                        </p:column>
                         
-                          <p:column>
-                            <f:facet name="header">Consultar</f:facet>
+
+                        <p:column>
+                            <f:facet name="header">Fecha Procedencia</f:facet>
+                            <h:outputText value="#{item.fechaProcedencia}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Opciones</f:facet>
                             <p:commandButton icon="ui-icon-search"  action="#{datosOnbaseController.prepareConsultar}">
                                 <f:setPropertyActionListener value="#{item}" target="#{datosOnbaseController.selected}"/>
                             </p:commandButton>
-
                         </p:column> 
                     </p:dataTable>
                 </p:outputPanel>
-            
-
+                
             </h:form>
         </ui:define>
     </ui:composition>
