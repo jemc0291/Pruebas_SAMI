@@ -85,8 +85,17 @@
                         </textarea>
                         <h:message id="ObservacionesMessage" for="observaciones" />
                         
+                        <label value="#{bundle.CreateUsuariosContratosLabel_usuarios}" jsf:for="Usuario" class="FormLabelSCCSS" />
+                        <h:selectOneMenu id="Usuario" value="#{contratosController.selectedUsuarios}" title="Usuario" required="true" requiredMessage="Usuario requerido">
+                            <f:selectItem itemLabel="Seleccionar" />
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                       var="idUsuario"
+                                       itemValue="#{idUsuario}"/>
+                        </h:selectOneMenu>
+                        <h:message id="UsuarioMessage" for="Usuario" />
+                        
                         <label>Polizas</label>
-                    <p:commandButton onclick="PF('PolizasDialogo').show()" value="Poliza" process="@this" update=":polizasForm" />
+                        <p:commandButton onclick="PF('PolizasDialogo').show()" value="Poliza" process="@this" update=":polizasForm" />
                         
                     </h:panelGrid>
                     <h:commandButton value="#{bundle.CreateContratosSaveLink}" action="#{contratosController.create()}" class="FormButtonSCCSS"/>

@@ -1,51 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Sami</ui:define>
+        <ui:define name="title"> Informe Comision</ui:define>
         <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <f:view>
-                <h:form>
-                    <h1><h:outputText value="Create/Edit"/></h1>
-                    <h:panelGrid columns="2">
-                        
-                        <h:outputLabel value="NumDias:" for="numDias" />
-                        <h:inputText id="numDias" value="#{comisionesController.selected.numDias}" title="NumDias" />
-                        
-                        <h:outputLabel value="FechaEntregaInforme:" for="fechaEntregaInforme" />
-                        <h:inputText id="fechaEntregaInforme" value="#{comisionesController.selected.fechaEntregaInforme}" title="FechaEntregaInforme" >
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:inputText>
-                        <h:outputLabel value="ActividadesOTemas:" for="actividadesOTemas" />
-                        <h:inputText id="actividadesOTemas" value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas" />
-                        <h:outputLabel value="CompromisoSena:" for="compromisoSena" />
-                        <h:inputText id="compromisoSena" value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena" />
-                        <h:outputLabel value="ProdEntragados:" for="prodEntragados" />
-                        
-                        <h:outputLabel value="IdUsuario:" for="idUsuario" />
-                        <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{fixme}"/>
-                        </h:selectOneMenu>
-                        
-                        <h:outputLabel value="IdGrupo:" for="idGrupo" />
-                        <h:selectOneMenu id="idGrupo" value="#{comisionesController.selected.idGrupo}" title="IdGrupo" required="true" requiredMessage="The IdGrupo field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{fixme}"/>
-                        </h:selectOneMenu>
-                        
-                    </h:panelGrid>
-                </h:form>
-            </f:view>
+                <h:form id="formInformeComision">
 
+                    <h1><h:outputText value="INFORME DE COMISIÓN"/></h1>
+
+                    <h3><h:outputText value="DETALLE DE LA COMISIÓN DE SERVICIOS"/></h3>
+
+                    <p:panelGrid columns="3" layout="grid" rendered="#{comisionesController.selected != null}">
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_comisionado}" for="idUsuario" />
+                        <h:outputText id="idUsuario" value="#{comisionesController.selected.idUsuario.razonSocial}"/>
+                        <h:message id="idUsuarioMessage"  for="idUsuario" styleClass="error"/> 
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_numerodias}" for="numeroInputText"></label>
+                        <p:inputText id="numeroInputText"
+                                     required="true"
+                                     requiredMessage="El numero de dias es obligatorio"
+                                     value="#{comisionesController.selected.numDias}">
+                        </p:inputText>
+                        <h:message id="numeroMessage" for="numeroInputText" styleClass="error"/>
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_fechaEntrega}" for="fechaInputText"></label>
+                        <p:calendar id="fechaInputText" required="true" yearRange="c-100:c+100"                            
+                                    value="#{comisionesController.selected.fechaEntregaInforme}"
+                                    locale="de" navigator="true" pattern="yyyy-MM-dd"
+                                    showOn="button">
+                        </p:calendar>
+                        <h:message id="fechaMessage" for="fechaInputText"/>
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_obejtivodelacomision}" for="objetivocomision" />
+                        <textarea type="text" jsf:id="objetivocomision" jsf:value="#{comisionesController.selected.objetivoComision}"
+                                  required="true"  maxlength="499" >
+                        </textarea>
+                        <h:message id="objetivocomisionMessage" for="objetivocomision" />
+                    </p:panelGrid>
+
+                    <h3><h:outputText value="DESCRIPCION DE ACTIVIDADES"/></h3>
+
+                    <p:panelGrid columns="3" layout="grid" rendered="#{comisionesController.selected != null}">
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_Actividades}" for="actividadescomision"  />
+                        <textarea type="text" jsf:id="actividadescomision" jsf:value="#{comisionesController.selected.actividadesOTemas}"
+                                  required="true"  maxlength="499" >
+                        </textarea>
+                        <h:message id="actividadesMessage" for="actividadescomision" />
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_Compromiso}" for="compromisoSenacomision"  />
+                        <textarea type="text" jsf:id="compromisoSenacomision" jsf:value="#{comisionesController.selected.compromisoSena}"
+                                  required="true"  maxlength="499" >
+                        </textarea>
+                        <h:message id="compromisoSenaMessage" for="compromisoSenacomision" />
+
+                        <label jsf:value="#{bundle.CreateComisionesLabel_Productos}" for="productosEntregadoscomision"  />
+                        <textarea type="text" jsf:id="productosEntregadoscomision" 
+                                  jsf:value="#{comisionesController.selected.prodEntragados}"
+                                  required="true"  maxlength="499" >
+                        </textarea>
+                        <h:message id="productosEntregadosMessage" for="productosEntregadoscomision"/>
+                    </p:panelGrid>
+
+                    <p:commandButton value="Agregar Sitios de accion de la comision" onclick="PF('agregarSitiosDlg').show()"/>
+
+                    <p:outputPanel id="InformeComisionesTablePanel">
+
+                        <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
+                                     rows="10" id="InformeComisionesTable" 
+                                     paginator="true"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="20,40,60">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ciudad}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.empresaVereda}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">Opciones</f:facet>                                
+                                <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
+                                                 process="@this" update="InformeComisionesTable">
+                                    <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el usuario?" icon="ui-icon-alert" />
+                                    <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
+                                </p:commandButton>
+                            </p:column>       
+                        </p:dataTable>
+                    </p:outputPanel>
+                    <h:commandButton value="Guardar" action="#{comisionesController.update}"/>
+                </h:form>
+            <ui:include src="/modulo4/Gestion_Talento_Humano/Comisiones/AgregarSitiosDlg.xhtml"/>
         </ui:define>
     </ui:composition>
 </html>
-
-
