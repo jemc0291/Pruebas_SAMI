@@ -66,28 +66,29 @@
                         <h:outputText value="IdTipoDoc:"/>
                         <h:outputText value="#{usuariosController.selected.idTipoDoc}" title="IdTipoDoc"/>
                         <h:outputText value="IdSexo:"/>
-                        <h:outputText value="#{usuariosController.selected.idSexo}" title="IdSexo"/>
+                        <h:outputText value="#{usuariosController.selected.idSexo.nombreSexo}" title="IdSexo"/>
                         <h:outputText value="IdFondoPensiones:"/>
-                        <h:outputText value="#{usuariosController.selected.idFondoPensiones}" title="IdFondoPensiones"/>
+                        <h:outputText value="#{usuariosController.selected.idFondoPensiones.nombreFondoPensiones}" title="IdFondoPensiones"/>
                         <h:outputText value="IdEstratoSocial:"/>
-                        <h:outputText value="#{usuariosController.selected.idEstratoSocial}" title="IdEstratoSocial"/>
+                        <h:outputText value="#{usuariosController.selected.idEstratoSocial.nombreEstrato}" title="IdEstratoSocial"/>
                         <h:outputText value="IdEstadoCivil:"/>
-                        <h:outputText value="#{usuariosController.selected.idEstadoCivil}" title="IdEstadoCivil"/>
+                        <h:outputText value="#{usuariosController.selected.idEstadoCivil.nombreEstadoCivil}" title="IdEstadoCivil"/>
                         <h:outputText value="IdEps:"/>
-                        <h:outputText value="#{usuariosController.selected.idEps}" title="IdEps"/>
+                        <h:outputText value="#{usuariosController.selected.idEps.nombreEps}" title="IdEps"/>
                         <h:outputText value="Ciudad:"/>
-                        <h:outputText value="#{usuariosController.selected.ciudad}" title="Ciudad"/>
+                        <h:outputText value="#{usuariosController.selected.ciudad.nombreCiudad}" title="Ciudad"/>
                         <h:outputText value="Ciudad1:"/>
-                        <h:outputText value="#{usuariosController.selected.ciudad1}" title="Ciudad1"/>
+                        <h:outputText value="#{usuariosController.selected.ciudad1.nombreCiudad}" title="Ciudad1"/>
                         <h:outputText value="IdCentroFormacion:"/>
-                        <h:outputText value="#{usuariosController.selected.idCentroFormacion}" title="IdCentroFormacion"/>
+                        <h:outputText value="#{usuariosController.selected.idCentroFormacion.nombreCentroFormacion}" title="IdCentroFormacion"/>
                         <h:outputText value="IdCcf:"/>
-                        <h:outputText value="#{usuariosController.selected.idCcf}" title="IdCcf"/>
+                        <h:outputText value="#{usuariosController.selected.idCcf.nombreCcf}" title="IdCcf"/>
                         <h:outputText value="IdBanco:"/>
-                        <h:outputText value="#{usuariosController.selected.idBanco}" title="IdBanco"/>
+                        <h:outputText value="#{usuariosController.selected.idBanco.nombreDeBanco}" title="IdBanco"/>
                         <h:outputText value="IdArl:"/>
-                        <h:outputText value="#{usuariosController.selected.idArl}" title="IdArl"/>
+                        <h:outputText value="#{usuariosController.selected.idArl.nombreArl}" title="IdArl"/>
                     </p:panelGrid>
+                     <h:button p:class="Button-cancelar" value="Volver atras" outcome="/modulo1/ContratacionPrestacionDeServicios/Contratistas/ListContratistas"/>
                 </h:form>
             </f:view>
 
