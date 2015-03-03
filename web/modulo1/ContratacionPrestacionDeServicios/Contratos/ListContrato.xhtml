@@ -48,7 +48,7 @@
                         <p:columnToggler datasource="contratosModulo1Table" trigger="toggler" transient="false"/>
                     </f:facet>
 
-                    <p:column style="width:16px" exportable="false" >
+                    <p:column style="width:16px" exportable="false" headerText="Ver" toggleable="false">
                         <p:rowToggler />
                     </p:column>
                     <p:column   filterBy="#{item.numeroDeContrato}" filterMatchMode="contains" toggleable="false" >
@@ -58,7 +58,7 @@
                         <h:outputText value="#{item.numeroDeContrato}"/>
                     </p:column>
 
-                    <p:column >
+                    <p:column toggleable="false">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_fechaInicioContrato}"/>
                         </f:facet>
@@ -66,7 +66,7 @@
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                     </p:column>
-                    <p:column>
+                    <p:column toggleable="false">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_fechaFinContrato}"/>
                         </f:facet>
@@ -75,27 +75,27 @@
                         </h:outputText>
                     </p:column>
 
-                    <p:column>
+                    <p:column toggleable="false">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_valorContrato}"/>
                         </f:facet>
                         <h:outputText value="#{item.valorContrato}"/>
                     </p:column>
-                    <p:column rendered="false" exportable="true">
+                    <p:column rendered="false" exportable="true" toggleable="false">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_valorContrato}"/>
                         </f:facet>
                         <h:outputText value="#{item.fechaDeIdoneidad}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
+                    <p:column toggleable="false">
+                        <f:facet name="header" >
                             <h:outputText value="#{bundle.ListContratosTitle_valorMensual}"/>
                         </f:facet>
                         <h:outputText value="#{item.valorMensual}"/>
                     </p:column>
 
-                    <p:column>
+                    <p:column toggleable="false">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_fechaDeAutorizacion}"/>
                         </f:facet>
@@ -105,7 +105,7 @@
                     </p:column>
 
 
-                    <p:column>
+                    <p:column toggleable="false">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_fechaSuscripcion}"/>
                         </f:facet>
@@ -114,18 +114,7 @@
                         </h:outputText>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_plazoDias}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.plazoDias}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_plazoMeses}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.plazoMeses}"/>
-                    </p:column>
+                   
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_objetoContractual}"/>
@@ -139,107 +128,29 @@
                         <h:outputText value="#{item.obligaciones}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_primerPago}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.primerPago}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_ultimoPago}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.ultimoPago}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_numeroDeMensualidades}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.numeroDeMensualidades}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_valorMensual}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.valorMensual}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_fechaAnexo}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.fechaAnexo}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_fechaDeEstudioPrevio}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.fechaDeEstudioPrevio}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_fechaDeIdoneidad}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.fechaDeIdoneidad}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                    </p:column>
+                   
+                    
+                    
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_adicionPresupuestal}"/>
                         </f:facet>
                         <h:outputText value="#{item.adicionPresupuestal}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_adicionPlazoNuevaFecha}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.adicionPlazoNuevaFecha}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_idPoliza}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.idPoliza}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_idCuentasBancarias}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.idCuentasBancarias}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_observaciones}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.observaciones}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListContratosTitle_justificacion}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.justificacion}"/>
-                    </p:column>
+                    
+                   
+                   
+                    
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_idTipoContrato}"/>
                         </f:facet>
-                        <h:outputText value="#{item.idTipoContrato}"/>
+                        <h:outputText value="#{item.idTipoContrato.nombreTipoContrato}"/>
                     </p:column>
 
-                    <p:rowExpansion>
-                        <p:dataTable value="#{item.usuariosContratosList}" var="usuContrato">
-                            <p:column headerText="Documento">
-                                <h:outputText value="#{usuContrato.idUsuario}"/>
-                            </p:column>
-                        </p:dataTable>
-                      
+                    <p:rowExpansion >
+                        <h:outputText value="#{contratosModulo1Controller.getUsuariosByContratos(item).toString()}"/>
+                        
                     </p:rowExpansion>
 
 

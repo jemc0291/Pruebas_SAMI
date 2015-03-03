@@ -13,7 +13,7 @@
 
                 <P>
                     <h:commandButton action="#{usuariosController.moduloUnoPrepareCreate}" value="Agregar Usuario"/>
-                    
+
                 </P>
 
                 <h3>Export Data Complete</h3>
@@ -33,7 +33,7 @@
                 </h:commandLink>
 
                 <p:dataTable id="datalist" value="#{usuariosController.items}" var="item"
-                             selectionMode="single" selection="#{usuariosController.selected}"
+
                              paginator="true"
                              rowKey="#{item.idUsuario}"
                              rows="10"
@@ -45,6 +45,12 @@
                             <h:outputText value="#{bundle.ListUsuariosTitle_numeroDoc}"/>
                         </f:facet>
                         <h:outputText value="#{item.numeroDoc}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListUsuariosTitle_razonSocial}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.razonSocial}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -105,7 +111,7 @@
 
                     </p:column>
 
-                  
+
 
                 </p:dataTable>
 
