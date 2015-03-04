@@ -15,13 +15,8 @@
                     <p:panelGrid columns="3" layout="grid">
 
                         <label value="#{bundle.CreateComisionesLabel_idUsuario}" jsf:for="usuariosInputText"></label> 
-                        <h:selectOneMenu id="usuariosInputText" 
-                                         value="#{comisionesController.selected.idUsuario}"
-                                         title="#{bundle.CreateComisionesTitle_idUsuario}">
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
-                            <f:ajax execute="@this" render="usuariosMessage"/>
-                        </h:selectOneMenu>
-                        <h:message id="usuariosMessage" for="usuariosInputText" styleClass="error"/>
+                        <h:outputText id="idUsuario" value="#{comisionesController.selected.idUsuario.razonSocial}"/>
+                        <h:message id="idUsuarioMessage"  for="idUsuario" styleClass="error"/> 
 
 
                         <label value="#{bundle.CreateComisionesLabel_idCentroFormacion}" jsf:for="EstratoSocialInputText"></label>

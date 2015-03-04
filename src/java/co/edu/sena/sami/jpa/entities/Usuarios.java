@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findByIdUsuario", query = "SELECT u FROM Usuarios u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuarios.findByNumeroDoc", query = "SELECT u FROM Usuarios u WHERE u.numeroDoc = :numeroDoc"),
     @NamedQuery(name = "Usuarios.findByFechaExpedicionDoc", query = "SELECT u FROM Usuarios u WHERE u.fechaExpedicionDoc = :fechaExpedicionDoc"),
-    @NamedQuery(name = "Usuarios.findByRazonSocial", query = "SELECT u FROM Usuarios u WHERE u.razonSocial = :razonSocial"),
+    @NamedQuery(name = "Usuarios.findByRazonSocial", query = "SELECT u FROM Usuarios u WHERE u.razonSocial LIKE :razonSocial"),
     @NamedQuery(name = "Usuarios.findBySegundoNombre", query = "SELECT u FROM Usuarios u WHERE u.segundoNombre = :segundoNombre"),
     @NamedQuery(name = "Usuarios.findByPrimerApellido", query = "SELECT u FROM Usuarios u WHERE u.primerApellido = :primerApellido"),
     @NamedQuery(name = "Usuarios.findBySegundoApellido", query = "SELECT u FROM Usuarios u WHERE u.segundoApellido = :segundoApellido"),
@@ -656,7 +656,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return razonSocial + "  " + segundoNombre + " " + primerApellido + " " + segundoApellido + " / " + numeroDoc;
+        return razonSocial;
     }
     
 }

@@ -243,8 +243,17 @@ public class UsuariosController implements Serializable {
     public List<Rol> getListRolSelectOne() {
         return getRolFacade().findAll();
     }
+    public List<Usuarios> getListRazonSocialAutoComplete(String query) {//se agrego metodo de autocompletar
+        try {
+            return getFacade().findByRazonSocialCompletar(query);
+        } catch (Exception ex) {
+            Logger.getLogger(ContratosController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
-    @FacesConverter(forClass = Usuarios.class)
+    @FacesConverter(forClass = Usuarios.class, value = "usuariosConverter")
     public static class UsuariosControllerConverter implements Converter {
 
         @Override

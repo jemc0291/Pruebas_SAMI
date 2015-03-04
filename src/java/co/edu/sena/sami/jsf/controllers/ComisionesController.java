@@ -232,6 +232,10 @@ public class ComisionesController implements Serializable {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/informeComision.xhtml";
     }
 
+    public String prepareCreateOrdenDeViaje() {
+        return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/crearOrdenDeViaje.xhtml";
+    }
+        
     public void adicionarCiudadComision() {
         for (CiudadComisiones item : ciudadComisionesList) {
             if (item.equals(ciudadComisionesActual)) {
@@ -292,6 +296,11 @@ public class ComisionesController implements Serializable {
         }
     }
 
+   public void eliminarDestino (){
+       ciudadComisionesList.remove(ciudadComisionesActual);
+  
+   }
+   
     public List<Comisiones> getItems() {
         if (items == null) {
             items = getFacade().findAll();

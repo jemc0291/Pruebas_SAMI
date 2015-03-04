@@ -21,21 +21,21 @@
 
                         <p:column filterBy="#{item.idUsuario.numeroDoc}" filterMatchMode="contains">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListComisionesTitle_idUsuario}"/>
+                                <h:outputText value="#{bundle.ListUsuariosTitle_numeroDoc}"/>
                             </f:facet>
                             <h:outputText value="#{item.idUsuario.numeroDoc}"/>
                         </p:column>
 
                         <p:column >
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListComisionesTitle_idUsuario}"/>
+                                <h:outputText value="#{bundle.ListUsuariosTitle_razonSocial}"/>
                             </f:facet>
                             <h:outputText value="#{item.idUsuario.razonSocial}"/>
                         </p:column>
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListComisionesTitle_idUsuario}"/>
+                                <h:outputText value="#{bundle.ListUsuariosTitle_primerApellido}"/>
                             </f:facet>
                             <h:outputText value="#{item.idUsuario.primerApellido}"/>
                         </p:column>
@@ -61,7 +61,7 @@
                             <h:outputText value="#{item.idDescripcion.nombreDescripcion}"/>
                         </p:column>
 
-                        <p:column>
+                        <p:column sortBy="#{item.fechaTramite}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListComisionesTitle_fechaTramite}"/>
                             </f:facet>
@@ -78,6 +78,7 @@
                                 <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta Comision?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
                             </p:commandButton>
+                            <p:commandButton value="Mostrar destinos" action="/modulo4/Gestion_Talento_Humano/Comisiones/DestinosComision.xhtml"></p:commandButton>
                         </p:column>       
                     </p:dataTable>
                 </p:outputPanel>
