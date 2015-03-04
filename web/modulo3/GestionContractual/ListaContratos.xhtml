@@ -29,13 +29,20 @@
                                 <h:outputText value="Proveedor"/>
                             </f:facet>
                             <h:outputText value="#{contratosController.getUsuariosByContratos(item).usuarios.toString()}"/>
-                        </p:column>
+                        </p:column>                       
                         
                         <p:column filterBy="#{item.numeroDeContrato}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListContratosTitle_numeroDeContrato}"/>
                             </f:facet>
                             <h:outputText value="#{item.numeroDeContrato}"/>
+                        </p:column>
+                        
+                        <p:column filterBy="#{contratosController.getUsuariosByContratos(item).polizas.toString()}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Número Poliza"/>
+                            </f:facet>
+                            <h:outputText value="#{contratosController.getUsuariosByContratos(item).polizas.toString()}"/>
                         </p:column>
                         
                         <p:column filterBy="#{item.idTipoContrato}" filterMatchMode="contains">
@@ -75,9 +82,7 @@
                                 <h:outputText value="#{bundle.ListContratosTitle_objetoContractual}"/>
                             </f:facet>
                             <h:outputText value="#{item.objetoContractual}"/>
-                        </p:column>
-                        
-                                            
+                        </p:column>                                            
                                                 
                         <p:column>
                             <f:facet name="header">
