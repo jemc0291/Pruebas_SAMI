@@ -43,16 +43,16 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.SolicitudMaterialesAlmacenMaterialesFacade ejbSolMaterial;
     private List<SolicitudMaterialesAlmacenMateriales> itemsSolMaterial = null;
     private SolicitudMaterialesAlmacenMateriales selectedSolMaterial;
-    
+
     @EJB
     private co.edu.sena.sami.jpa.sessions.SolicitudMaterialesAlmacenMaterialesFacade ejbFacadeSolicitudMateriales;
-    
+
     @EJB
     private co.edu.sena.sami.jpa.sessions.AreasFacade areaFacade;
 
     @EJB
     private co.edu.sena.sami.jpa.sessions.FichaCaracterizacionFacade fichaFacade;
-    
+
     @EJB
     private co.edu.sena.sami.jpa.sessions.MaterialesFacade ejbFacadeMateriales;
 
@@ -75,7 +75,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     private AreasFacade getAreaFacade() {
         return areaFacade;
     }
-    
+
     private SolicitudMaterialesAlmacenMaterialesFacade getSolicitudMaterialesFacade() {
         return ejbFacadeSolicitudMateriales;
     }
@@ -91,11 +91,13 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     public List<Areas> getAreasAvailableSelectOne() {
         return getAreaFacade().findAll();
     }
-    
-    public List<SolicitudMaterialesAlmacenMateriales> getItemsSolicitudMateriales(){
-        return getSolicitudMaterialesFacade().findByIdSolicitud(selected);
-    }
 
+    public List<SolicitudMaterialesAlmacenMateriales> getItemsSolicitudMateriales() {
+        if (itemsSolMaterial == null) {
+            itemsSolMaterial = getSolicitudMaterialesFacade().findByIdSolicitud(selected);
+        }
+        return itemsSolMaterial;
+    }
 
     public SolicitudMaterialesAlmacenController() {
     }
@@ -147,7 +149,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         itemsSolMaterial = new ArrayList<>();
         return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Create.xhtml";
     }
-    
+
     public String prepareCreateDos() {
         selected = new SolicitudMaterialesAlmacen();
         initializeEmbeddableKey();
@@ -158,13 +160,14 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     }
 
     public String prepareEdit() {
-        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/EditDos.xhtml";
+        itemsSolMaterial = null;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Edit.xhtml";
     }
-    
-    public  String prepareView() {
+
+    public String prepareView() {
         return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/View";
     }
-    
+
     public void agregarMateriales() {
         itemsSolMaterial.add(selectedSolMaterial);
         selectedSolMaterial = new SolicitudMaterialesAlmacenMateriales();
@@ -174,7 +177,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     public List<SolicitudMaterialesAlmacenMateriales> getItemsSolMaterial() {
         return itemsSolMaterial;
     }
-
+    
     public String create() {
         selected.setFechaDeSolicitud(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenCreated"));
@@ -186,11 +189,32 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Solicitudes.xhtml";
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/View.xhtml";
     }
 
-    public void update() {
+    public String createDos() {
+        selected.setFechaDeSolicitud(new Date());
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenCreated"));
+        for (SolicitudMaterialesAlmacenMateriales item : itemsSolMaterial) {
+            selectedSolMaterial = item;
+            selectedSolMaterial.setSolicitudMaterialesAlmacen(selected);
+            persistSolMaterial(PersistAction.CREATE, null);
+        }
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/View.xhtml";
+    }
+    
+    public String update() {
+        selected.setSolicitudMaterialesAlmacenMaterialesList(itemsSolMaterial);
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenUpdated"));
+        for (SolicitudMaterialesAlmacenMateriales item : itemsSolMaterial) {
+            selectedSolMaterial = item;
+            persistSolMaterial(PersistAction.UPDATE, null);
+        }
+        items=null;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Solicitudes.xhtml";
     }
 
     public void destroy() {
@@ -286,7 +310,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     public co.edu.sena.sami.jpa.sessions.MaterialesFacade getFacadeMateriales() {
         return ejbFacadeMateriales;
     }
-    
+
     public Materiales getMateriales(java.lang.Integer id) {
         return getFacadeMateriales().find(id);
     }
@@ -339,12 +363,12 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         }
 
     }
-    
+
     public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
-         
-        if(newValue != null && !newValue.equals(oldValue)) {
+
+        if (newValue != null && !newValue.equals(oldValue)) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }

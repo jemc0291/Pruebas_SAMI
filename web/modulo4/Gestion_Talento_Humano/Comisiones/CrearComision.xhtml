@@ -21,7 +21,7 @@
                                         converter="centroFormacionConverter" 
                                         forceSelection="true" maxResults="10"/> 
                         
-                        <h:outputLabel  value="IdUsuario:" for="idUsuario" />
+                        <label  value="" for="idUsuario" />
                         <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
                             <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
                         </h:selectOneMenu>

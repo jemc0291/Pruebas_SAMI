@@ -10,7 +10,7 @@
         <ui:define name="title">Solicitudes</ui:define>
         <ui:define name="menu"><ui:include src="/modulo6/menu_Coordinacion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h:form id="SolicitudEditForm">
+            <h:form id="solicitudEditForm">
                 <p:growl id="msgs" showDetail="true"/>
 
                 <h:panelGroup id="display">
@@ -32,15 +32,25 @@
                         <p:selectBooleanCheckbox value="#{solicitudMaterialesAlmacenController.selected.aprobado}">
                         </p:selectBooleanCheckbox>
 
-                        <Label>No Aprobado</Label>
-                        <p:selectBooleanCheckbox value="#{solicitudMaterialesAlmacenController.selected.noAprobado}">
-                        </p:selectBooleanCheckbox>
-
                     </p:panelGrid>
 
                 </h:panelGroup>
 
-                <p:dataTable value="#{solicitudMaterialesAlmacenController.itemsSolicitudMateriales}" var="item" >
+                <p:contextMenu for="cars2" widgetVar="cMenu">   
+                    <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();
+                            return false;"/>  
+                    <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
+                </p:contextMenu>
+
+                <p:dataTable id="cars2" value="#{solicitudMaterialesAlmacenController.itemsSolicitudMateriales}" var="item" editable="true" 
+                             editMode="cell" widgetVar="cellCars">
+
+                    <f:facet name="header">
+                        Cantidad de materiales por pedido
+                    </f:facet>
+
+                    <p:ajax event="cellEdit" listener="#{solicitudMaterialesAlmacenController.onCellEdit}" update=":solicitudEditForm:msgs" />
+
 
                     <p:column>
                         <f:facet name="header">
@@ -54,21 +64,104 @@
                         </f:facet>
                         <h:outputText value="#{item.materiales.nombreMaterial}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Cantidad a Solicitar"/>
-                        </f:facet>
-                        <h:outputText value="#{item.cantidad}"/>
+                    <p:column headerText="Editar Cantidad">
+                        <p:cellEditor >
+                            <f:facet name="output"><h:outputText value="#{item.cantidad}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInput" value="#{item.cantidad}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
                     </p:column>
-                    <p:column>
-                        
+                    <p:column headerText="Aprobado">
+                        <p:cellEditor >
+                            <f:facet name="output"><p:selectBooleanCheckbox value="#{item.aprobado}"/></f:facet>
+                            <f:facet name="input"><p:selectBooleanCheckbox value="#{item.aprobado}" style="width:100%">
+                                    <p:ajax event="change" update="cars2"/>
+                                </p:selectBooleanCheckbox></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Observación de este pedido">
+                        <p:cellEditor >
+                            <f:facet name="output"><h:outputText value="#{item.observaciones}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{item.observaciones}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
                     </p:column>
                 </p:dataTable>
                 <p:commandButton value="Guardar" 
-                                 action="#{solicitudMaterialesAlmacenController.create}" 
+                                 action="#{solicitudMaterialesAlmacenController.update()}" 
                                  process="@this panelSolicitud" update="panelSolicitud"/>
 
             </h:form>
         </ui:define>
     </ui:composition>
 </html>
+<!--<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es"
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Solicitudes</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Coordinacion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <h:form id="SolicitudEditForm">
+
+                <p:growl id="msgs" showDetail="true"/>
+
+                <h:panelGroup id="display">
+
+                    <p:panelGrid columns="2" layout="grid" id="panelSolicitud" rendered="# {solicitudMaterialesAlmacenController.selected != null}" >
+
+                        <label>Solicitud Número:</label>
+                        <h:outputText value="# {solicitudMaterialesAlmacenController.selected.idSolicitudMaterial}"/>
+
+                        <label>Area</label>
+                        <h:outputText value="# {solicitudMaterialesAlmacenController.selected.idArea.nombreArea}"/>
+
+                        <label>Ficha de Caracterizacion</label>
+                        <h:outputText value="# {solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}"/>
+
+                        <Label>Aprobado</Label>
+                        <p:selectBooleanCheckbox value="# {solicitudMaterialesAlmacenController.selected.aprobado}"/>
+                    </p:panelGrid>
+
+                </h:panelGroup>
+
+                <p:dataTable id="materialesTable" 
+                             value="# {solicitudMaterialesAlmacenController.itemsSolicitudMateriales}" 
+                             var="item" 
+                             editable="true">                    
+                    <p:column headerText="Nombre de Material">
+                        <h:outputText value="# {item.materiales.nombreMaterial}"/>
+                    </p:column>
+
+                    <p:column headerText="Cantidad">
+                        <p:cellEditor >
+                            <f:facet name="output"><h:outputText value="# {item.cantidad}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="# {item.cantidad}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Aprobado">
+                        <p:cellEditor >
+                            <f:facet name="output"><p:selectBooleanCheckbox value="# {item.aprobado}" disabled="true"/></f:facet>
+                            <f:facet name="input"><p:selectBooleanCheckbox value="# {item.aprobado}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Observación">
+                        <p:cellEditor >
+                            <f:facet name="output"><h:outputText value="# {item.observaciones}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="# {item.observaciones}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column>
+                        <p:rowEditor/>
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Guardar" 
+                                 action="# {solicitudMaterialesAlmacenController.update}" 
+                                 process="@this panelSolicitud" update="panelSolicitud"/>
+                </h:form>
+        </ui:define>
+    </ui:composition>
+</html>-->

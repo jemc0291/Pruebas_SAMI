@@ -212,7 +212,7 @@ public class SolicitudMaterialesAlmacenMaterialesController implements Serializa
     }
     
      public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Cantidad Editada", ((SolicitudMaterialesAlmacenMateriales) event.getObject()).getCantidad());
+        FacesMessage msg = new FacesMessage("FIla Editada", ((SolicitudMaterialesAlmacenMateriales) event.getObject()).getCantidad());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
      

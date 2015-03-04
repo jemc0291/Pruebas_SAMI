@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
@@ -24,10 +23,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Named;
-import javax.servlet.ServletContext;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
+
 import org.primefaces.model.UploadedFile;
 
 @Named("datosOnbaseController")
@@ -66,9 +62,12 @@ public class DatosOnbaseController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
+    
+    
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("DatosOnbaseCreated"));
+            getFacade().loadDatosOnBase(destination);
+//        persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("DatosOnbaseCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
@@ -91,6 +90,14 @@ public class DatosOnbaseController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+    
+    public List<DatosOnbase> getItemsRecibidas(){
+        return getFacade().findByRecibidas();
+    }
+    
+    public List<DatosOnbase> getItemsProducidas(){
+        return getFacade().findByProducidas();
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -121,7 +128,7 @@ public class DatosOnbaseController implements Serializable {
         }
     }
 
-    public DatosOnbase getDatosOnbase(java.lang.Integer id) {
+    public DatosOnbase getDatosOnbase(java.lang.String id) {
         return getFacade().find(id);
     }
 
@@ -146,13 +153,13 @@ public class DatosOnbaseController implements Serializable {
             return controller.getDatosOnbase(getKey(value));
         }
 
-        java.lang.Integer getKey(String value) {
-            java.lang.Integer key;
-            key = Integer.valueOf(value);
+        java.lang.String getKey(String value) {
+            java.lang.String key;
+            key = String.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.Integer value) {
+        String getStringKey(java.lang.String value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -165,7 +172,7 @@ public class DatosOnbaseController implements Serializable {
             }
             if (object instanceof DatosOnbase) {
                 DatosOnbase o = (DatosOnbase) object;
-                return getStringKey(o.getIdDatosOnbase());
+                return getStringKey(o.getNumRadicadoRecibida());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), DatosOnbase.class.getName()});
                 return null;

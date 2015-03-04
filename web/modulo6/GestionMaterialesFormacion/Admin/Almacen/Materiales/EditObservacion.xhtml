@@ -1,12 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Solicitudes</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Coordinacion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
 
+            <h:form id="SolicitudEditForm">
+
+                <p:growl id="msgs" showDetail="true"/>
+
+                <h:panelGroup id="display">
+
+                    <p:panelGrid columns="2" layout="grid" id="panelSolicitud" rendered="#{solicitudMaterialesAlmacenController.selected != null}" >
+
+                        <label>Solicitud Número:</label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idSolicitudMaterial}"/>
+
+                        <label>Area</label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idArea}"/>
+
+                        <label>Ficha de Caracterizacion</label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}"/>
+
+                        <label>Aprobado</label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.aprobado}"/>
+                        
+                        <label>Observación</label>
+                        <p:inputText value="#{solicitudMaterialesAlmacenController.selected.observaciones}"/>
+                        
+                        
+                    </p:panelGrid>
+
+                </h:panelGroup>
+
+                <p:dataTable id="materialesTable" 
+                             value="#{solicitudMaterialesAlmacenController.itemsSolicitudMateriales}" 
+                             var="item" 
+                             editable="true">                    
+                    <p:column headerText="Nombre de Material">
+                        <h:outputText value="#{item.materiales.nombreMaterial}"/>
+                    </p:column>
+
+                    <p:column headerText="Cantidad">
+                        <h:outputText value="#{item.cantidad}"/>
+                    </p:column>
+
+                    <p:column headerText="Aprobado">
+                        <h:outputText value="#{item.aprobado}"/>
+                    </p:column>
+
+                    <p:column headerText="Observación">
+                        <h:outputText value="#{item.observaciones}"/>
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Guardar" 
+                                 action="#{solicitudMaterialesAlmacenController.update}" 
+                                 process="@this panelSolicitud" update="panelSolicitud"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

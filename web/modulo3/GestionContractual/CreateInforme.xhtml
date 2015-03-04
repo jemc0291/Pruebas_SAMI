@@ -29,7 +29,7 @@
                             <textarea class="FormTextAreaSCCSS" jsf:id="observacionesTextArea" title="#{bundle.CreateInformesTitle_observaciones}"
                                       jsf:required="true"  jsf:requiredMessage="Este es un campo obligatorio, por favor digite las observaciones"
                                       jsf:value="#{informesController.selected.observaciones}"
-                                      maxlength="4999" >
+                                      maxlength="4999" jsf:rows="4" jsf:cols="24">
                                 <f:ajax execute="@this" render="observacionesMessage"/>
                             </textarea>
                             <h:message id="observacionesMessage" for="observacionesTextArea" class="Error"/>                   
