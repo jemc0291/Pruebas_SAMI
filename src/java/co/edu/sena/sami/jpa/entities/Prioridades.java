@@ -107,7 +107,7 @@ public class Prioridades implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Prioridades[ idPrioridades=" + idPrioridades + " ]";
+        return nombrePrioridad;
     }
     
 }

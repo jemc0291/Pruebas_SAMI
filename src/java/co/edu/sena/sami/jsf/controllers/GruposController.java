@@ -1,9 +1,9 @@
 package co.edu.sena.sami.jsf.controllers;
 
-import co.edu.sena.sami.jpa.entities.TipoDeServicios;
+import co.edu.sena.sami.jpa.entities.Grupos;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
-import co.edu.sena.sami.jpa.sessions.TipoDeServiciosFacade;
+import co.edu.sena.sami.jpa.sessions.GruposFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,32 +14,28 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("tipoDeServiciosController")
+@Named("gruposController")
 @SessionScoped
-public class TipoDeServiciosController implements Serializable {
+public class GruposController implements Serializable {
 
     @EJB
-    private co.edu.sena.sami.jpa.sessions.TipoDeServiciosFacade ejbFacade;
-    private List<TipoDeServicios> items = null;
-    private TipoDeServicios selected;
-    private List<TipoDeServicios> listTipoDeServicios = null;
-    @EJB
-    private TipoDeServiciosFacade tipoDeServiciosFacade;
+    private co.edu.sena.sami.jpa.sessions.GruposFacade ejbFacade;
+    private List<Grupos> items = null;
+    private Grupos selected;
 
-    public TipoDeServiciosController() {
+    public GruposController() {
     }
 
-    public TipoDeServicios getSelected() {
+    public Grupos getSelected() {
         return selected;
     }
 
-    public void setSelected(TipoDeServicios selected) {
+    public void setSelected(Grupos selected) {
         this.selected = selected;
     }
 
@@ -49,53 +45,36 @@ public class TipoDeServiciosController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private TipoDeServiciosFacade getFacade() {
+    private GruposFacade getFacade() {
         return ejbFacade;
     }
-    
-     public TipoDeServiciosFacade getTipoDeServiciosFacade() {
-        return tipoDeServiciosFacade;
-    }
-     
-    public List<TipoDeServicios> getListTipoDeServicios() {
-        if (listTipoDeServicios == null) {
-            try {
-                listTipoDeServicios = getTipoDeServiciosFacade().findAll();
-            } catch (Exception e) {
-                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            }
-        }
-        return listTipoDeServicios;
-    }
 
-    public TipoDeServicios prepareCreate() {
-        selected = new TipoDeServicios();
+    public Grupos prepareCreate() {
+        selected = new Grupos();
         initializeEmbeddableKey();
         return selected;
     }
-    
-    
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("TipoDeServiciosCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("GruposCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("TipoDeServiciosUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("GruposUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/resources/Bundle").getString("TipoDeServiciosDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("GruposDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<TipoDeServicios> getItems() {
+    public List<Grupos> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -121,38 +100,38 @@ public class TipoDeServiciosController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
     }
 
-    public TipoDeServicios getTipoDeServicios(java.lang.Integer id) {
+    public Grupos getGrupos(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<TipoDeServicios> getItemsAvailableSelectMany() {
+    public List<Grupos> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<TipoDeServicios> getItemsAvailableSelectOne() {
+    public List<Grupos> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = TipoDeServicios.class)
-    public static class TipoDeServiciosControllerConverter implements Converter {
+    @FacesConverter(forClass = Grupos.class)
+    public static class GruposControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            TipoDeServiciosController controller = (TipoDeServiciosController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "tipoDeServiciosController");
-            return controller.getTipoDeServicios(getKey(value));
+            GruposController controller = (GruposController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "gruposController");
+            return controller.getGrupos(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -172,20 +151,15 @@ public class TipoDeServiciosController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof TipoDeServicios) {
-                TipoDeServicios o = (TipoDeServicios) object;
-                return getStringKey(o.getIdTipoServ());
+            if (object instanceof Grupos) {
+                Grupos o = (Grupos) object;
+                return getStringKey(o.getIdGrupo());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), TipoDeServicios.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Grupos.class.getName()});
                 return null;
             }
         }
 
     }
-    
-     private void addErrorMessage(String title, String msg) {
-        FacesMessage faceMsg
-                = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
-        FacesContext.getCurrentInstance().addMessage(null, faceMsg);
-    }
+
 }

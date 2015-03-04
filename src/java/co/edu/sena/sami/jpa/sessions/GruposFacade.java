@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package co.edu.sena.sami.jpa.sessions;
 
-import co.edu.sena.sami.jpa.entities.Avance;
-import co.edu.sena.sami.jpa.entities.SolicitudServicios;
-import java.util.List;
+import co.edu.sena.sami.jpa.entities.Grupos;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
  * @author Adsim
  */
 @Stateless
-public class AvanceFacade extends AbstractFacade<Avance> {
+public class GruposFacade extends AbstractFacade<Grupos> {
     @PersistenceContext(unitName = "SAMIPU")
     private EntityManager em;
 
@@ -27,14 +25,8 @@ public class AvanceFacade extends AbstractFacade<Avance> {
         return em;
     }
 
-    public AvanceFacade() {
-        super(Avance.class);
-    }
-    
-    public List<Avance> findBySolicitud(SolicitudServicios solicitud) {
-        Query q = getEntityManager().createNamedQuery("Avance.findByIdSolicitud");
-        q.setParameter("idSolicitudServicio", solicitud);
-        return q.getResultList();
+    public GruposFacade() {
+        super(Grupos.class);
     }
     
 }

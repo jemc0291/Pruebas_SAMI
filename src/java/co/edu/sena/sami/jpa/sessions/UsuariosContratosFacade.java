@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.sessions;
 
+import co.edu.sena.sami.jpa.entities.Contratos;
 import co.edu.sena.sami.jpa.entities.UsuariosContratos;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,6 +20,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UsuariosContratosFacade extends AbstractFacade<UsuariosContratos> {
+
     @PersistenceContext(unitName = "SAMIPU")
     private EntityManager em;
 
@@ -28,5 +32,16 @@ public class UsuariosContratosFacade extends AbstractFacade<UsuariosContratos> {
     public UsuariosContratosFacade() {
         super(UsuariosContratos.class);
     }
-    
+
+    public UsuariosContratos findByIdContrato(Contratos contrato) {
+        Query q = getEntityManager().createNamedQuery("UsuariosContratos.findByIdContrato");
+        q.setParameter("idContrato", contrato.getIdContrato());
+        try {
+            return (UsuariosContratos) q.getSingleResult();
+        } catch (NonUniqueResultException ex) {
+            throw ex;
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
 }

@@ -52,7 +52,7 @@
                                        var="idAseguradoraItem"
                                        itemValue="#{idAseguradoraItem}"/>
                     </h:selectOneMenu>  
-                    <p:commandButton process="polizasForm" oncomplete="handleSubmit(arg,'PolizasDialogo')" value="Guardar" update="polizasForm msgs :contratoForm" />
+                    <p:commandButton process="polizasForm" oncomplete="handleSubmit(arg,'PolizasDialogo')" value="Guardar" update="polizasForm" onclick="PF('PolizasDialogo').hide()"/>
                     <p:commandButton value="Cancelar" process="@this" onclick="PF('PolizasDialogo').hide()"/>
                 </h:panelGrid>
 

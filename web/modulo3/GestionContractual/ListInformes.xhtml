@@ -35,13 +35,13 @@
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Observaciones">
+                    <!--<p:column headerText="Observaciones">
                         <h:outputText value="#{item.observaciones}"/>
-                    </p:column>
+                    </p:column>-->
 
                     <p:rowExpansion>
                         
-                            <p:panelGrid columns="2" columnClasses="label,value" style="width:600px" >
+                            <p:panelGrid columns="2" columnClasses="label,value" style="width:650px" >
                                 <f:facet name="header">
                                     Contrato Seleccionado
                                 </f:facet>
@@ -74,7 +74,7 @@
 
                                 <label jsf:value="#{bundle.ViewContratosLabel_objetoContractual}" class="FormLabelSCCSS" />
                                 <textarea jsf:value="#{item.idContrato.objetoContractual}" title="#{bundle.ViewContratosTitle_objetoContractual}" class="FormTextAreaSCCSS"
-                                          disabled="true" >                           
+                                          rows="6" cols="45" disabled="true" >                           
                                 </textarea>
 
                                 <label jsf:value="#{bundle.ViewContratosLabel_valorContrato}" class="FormLabelSCCSS" />
@@ -84,7 +84,7 @@
 
                                 <label jsf:value="#{bundle.ViewContratosLabel_observaciones}" class="FormLabelSCCSS" />
                                 <textarea jsf:value="#{item.idContrato.observaciones.toString()}" title="#{bundle.ViewContratosTitle_observaciones}" class="FormTextAreaSCCSS"
-                                          disabled="true" >                           
+                                          rows="6" cols="45" disabled="true" >                           
                                 </textarea>
                             </p:panelGrid>
                     </p:rowExpansion>

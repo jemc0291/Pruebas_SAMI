@@ -7,6 +7,7 @@
 package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.Usuarios;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -43,5 +44,16 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
             return null;
         }
     }
-    
+     public List<Usuarios> findByNumeroDoc(String numeroDoc) {
+        Query q= getEntityManager().createNamedQuery("Usuarios.findByNumeroDoc");
+        q.setParameter("numeroDoc", numeroDoc + "%");
+        return q.getResultList();
+
+    }
+     public List<Usuarios> findByRazonSocialCompletar(String razonSocial) {
+        Query q = getEntityManager().createNamedQuery("Usuarios.findByRazonSocial");
+        q.setParameter("razonSocial", razonSocial + "%");
+        //q.setMaxResults(10);
+        return q.getResultList();
+    }
 }

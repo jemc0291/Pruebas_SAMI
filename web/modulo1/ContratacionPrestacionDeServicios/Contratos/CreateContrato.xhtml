@@ -13,9 +13,9 @@
 
 
             <h:form id="contratoForm" >
-                
+                <p:messages id="MensajeContratos"/>
                 <h1><h:outputText value="Create/Edit"/></h1>
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="2" id="PanelGrid">
 
                     <label jsf:value="#{bundle.CreateContratosLabel_idTipoContrato}" for="idTipoContrato" />
                     <h:selectOneMenu id="idTipoContrato" value="#{contratosModulo1Controller.selected.idTipoContrato}" title="IdTipoContrato" required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_idTipoContrato}">
@@ -40,16 +40,18 @@
                                  value="#{contratosModulo1Controller.selected.fechasuscripcion}" 
                                  title="#{bundle.CreateContratosTitle_fechaSuscripcion}"
                                  showOn="button"
-
+                                effect="fold"
                                  maxdate="#{contratosModulo1Controller.selected.fechaInicioContrato}"
                                  required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}">
-                        <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="fechasuscripcion"/>
+                        <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="contratoForm"/>
+                        
 
-                        <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="fechasuscripcion"/>
+                        <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="contratoForm"/>
 
                     </p:calendar>
                     <label jsf:value="#{bundle.CreateContratosLabel_fechaInicioContrato}" for="fechaInicioContrato" />
                     <p:calendar  id="fechaInicioContrato" 
+                                 effect="fold"
                                  pattern="yyyy-MM-dd"
                                  value="#{contratosModulo1Controller.selected.fechaInicioContrato}" 
                                  title="#{bundle.CreateContratosTitle_fechaInicioContrato}"
@@ -57,8 +59,9 @@
                                  mindate="#{contratosModulo1Controller.selected.fechasuscripcion}"
                                  maxdate="#{contratosModulo1Controller.selected.fechaFinContrato}"
                                  required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}">
-                        <p:ajax event="dateSelect" process="@this fechaFinContrato" update="fechaInicioContrato"/>
-                        <p:ajax  event="valueChange"  process="@this fechaFinContrato" update="fechaInicioContrato"/>
+                        <p:ajax event="dateSelect" process="@this fechaFinContrato" update="contratoForm"/>
+                        <p:ajax  event="valueChange"  process="@this fechaFinContrato" update="contratoForm"/>
+                       
 
 
                     </p:calendar>
@@ -68,18 +71,22 @@
                                  title="#{bundle.CreateContratosTitle_fechaFinContrato}"
                                  pattern="yyyy-MM-dd"
                                  showOn="button"
+                                 effect="fold"
                                  mindate="#{contratosModulo1Controller.selected.fechaInicioContrato}"
                                  required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}"  >
-                        <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="fechaFinContrato"/>
+                        <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="contratoForm"/>
+                       
 
-                        <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="fechaFinContrato"/>
+                        <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="contratoForm"/>
                     </p:calendar>
 
                     <label  jsf:value="#{bundle.CreateContratosLabel_plazoDias}" for="plazoDias" />
                     <input type="text"  pattern="[0-9]*" jsf:id="plazoDias" maxlength="11" jsf:value="#{contratosModulo1Controller.selected.plazoDias}" jsf:title="#{bundle.CreateContratosTitle_plazoDias}" ></input>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_plazoMeses}" for="plazoMeses" />
-                    <input type="text" pattern="[0-9]*" maxlength="8" jsf:id="plazoMeses" jsf:value="#{contratosModulo1Controller.selected.plazoMeses}" jsf:title="#{bundle.CreateContratosTitle_plazoMeses}" ></input>
+                    <input type="text" pattern="[0-9]*" maxlength="8" 
+                           jsf:id="plazoMeses" jsf:value="#{contratosModulo1Controller.selected.plazoMeses}" 
+                           jsf:title="#{bundle.CreateContratosTitle_plazoMeses}" ></input>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_objetoContractual}" for="objetoContractual" />
                     <textarea type="text" jsf:id="objetoContractual" maxlength="500" jsf:value="#{contratosModulo1Controller.selected.objetoContractual}" jsf:title="#{bundle.CreateContratosTitle_objetoContractual}" 
@@ -167,18 +174,18 @@
 
                     <label jsf:value="#{bundle.CreateContratosLabel_justificacion}"  for="justificacion" />
                     <textarea type="text" jsf:id="justificacion" maxlength="500" jsf:value="#{contratosModulo1Controller.selected.justificacion}" jsf:title="#{bundle.CreateContratosTitle_justificacion}" ></textarea>
-                    
-                     <label jsf:value="Usuario" for="idTipoContrato" />
-                     <h:selectOneMenu id="Usuario" value="#{contratosModulo1Controller.selectedUsuarios}" title="Usuario" required="true" requiredMessage="Usuario requerido">
+
+                    <label jsf:value="Usuario" for="idTipoContrato" />
+                    <h:selectOneMenu id="Usuario" value="#{contratosModulo1Controller.selectedUsuarios}" title="Usuario" required="true" requiredMessage="Usuario requerido">
 
 
-                         <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
                                        var="idUsuario"
                                        itemValue="#{idUsuario}"/>
 
 
                     </h:selectOneMenu>
-                    
+
                     <label>Polizas</label>
                     <p:commandButton onclick="PF('PolizasDialogo').show()" value="Poliza" process="@this" update=":polizasForm" />
                 </h:panelGrid>
