@@ -53,10 +53,14 @@
                         </h:selectOneMenu>
                         <p:message id="idDescripcionMessage" for="idDescripcion" styleClass="error"/>
 
-                        <label jsf:value="#{bundle.CreateComisionesLabel_transpIntermunicipal}" jsf:for="transpIntermunicipal" />
-                        <h:inputText id="transpIntermunicipal" value="#{comisionesController.selected.transpIntermunicipal}" title="TranspIntermunicipal" />
-                        <p:message id="transpIntermunicipalMessage" for="transpIntermunicipal" styleClass="error"/>
-
+                        <label jsf:for="transpIntermunicipal"> Liquidar transporte intermunicipal: </label>
+                        <h:selectBooleanCheckbox
+                            id="transpIntermunicipal" requiredMessage="Requerido"
+                            value="#{comisionesController.selected.transpIntermunicipal}">   
+                        <f:ajax execute="@this" render="transpIntermunicipalMessage"/>
+                        </h:selectBooleanCheckbox>
+                        <p:message id="transpIntermunicipalMessage" for="transpIntermunicipal"/>
+                        
                         <label jsf:value="#{bundle.CreateComisionesLabel_idFichaCaracterizacion}" jsf:for="idFichaCaracterizacion" />
                         <h:selectOneMenu id="idFichaCaracterizacion" value="#{comisionesController.selected.idFichaCaracterizacion}" title="IdFichaCaracterizacion" required="true" requiredMessage="The IdFichaCaracterizacion field is required.">
                             <f:selectItems value="#{comisionesController.itemsAvailableSelectOneFichas}"/>
@@ -119,10 +123,11 @@
 
                                 <p:column>
                                     <f:facet name="header">Opciones</f:facet>
-                                    <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
+                                    <p:commandButton icon="ui-icon-trash"  action="#{comisionesController.eliminarDestino}"
                                                      process="@this" update="comisionesTable">
                                         <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar los destinos?" icon="ui-icon-alert" />
-                                        <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
+                                        <f:setPropertyActionListener value="#{item}" target="#{comisionesController.ciudadComisionesActual}"/>
+                                        <p:ajax process="@this" update="comisionesTable"/>
                                     </p:commandButton>
                                 </p:column>       
                             </p:dataTable>
