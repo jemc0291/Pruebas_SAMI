@@ -659,4 +659,10 @@ public class Usuarios implements Serializable {
         return razonSocial;
     }
     
+    
+      public String toStringModuloUno() {
+        return razonSocial + " " + segundoNombre + " " + primerApellido + " " + segundoApellido + " CC " + numeroDoc;
+    }
+      
+    
 }
