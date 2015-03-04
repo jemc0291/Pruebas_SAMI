@@ -16,10 +16,10 @@
                 <h1><h:outputText value="Agregar Sitios de accion de la comision"/></h1>
                 <h:panelGrid columns="2">
                     
-                    <h:outputLabel value="EmpresaVereda:" for="empresaVereda" />
+                    <h:outputLabel value="Empresa Vereda:" for="empresaVereda" />
                     <h:inputText id="empresaVereda" value="#{comisionesController.ciudadComisionesActual.empresaVereda}" title="EmpresaVereda" />
 
-                    <label value="Ciudad" for="ciudad"></label>
+                    <label value="Ciudad" for="ciudad">Ciudad:</label>
                     <p:autoComplete id="ciudad" value="#{comisionesController.ciudadComisionesActual.ciudad}" 
                                   
                                     completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 

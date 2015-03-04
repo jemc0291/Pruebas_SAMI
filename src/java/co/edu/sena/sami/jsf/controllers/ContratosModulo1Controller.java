@@ -84,12 +84,12 @@ public class ContratosModulo1Controller implements Serializable {
     public UsuariosContratos getSelectedUsuariosContratos() {
         return selectedUsuariosContratos;
     }
-    
-   public UsuariosContratos getUsuariosByContratos(Contratos contrato) {
-        if (getUsuariosContratosFacade().findByIdContrato(contrato)== null){
-            return new UsuariosContratos();
+
+    public Usuarios getUsuariosByContratos(Contratos contrato) {
+        if (getUsuariosContratosFacade().findByIdContrato(contrato) == null) {
+            return new UsuariosContratos().getUsuarios();
         } else {
-        return getUsuariosContratosFacade().findByIdContrato(contrato);
+            return getUsuariosContratosFacade().findByIdContrato(contrato).getUsuarios();
         }
     }
 

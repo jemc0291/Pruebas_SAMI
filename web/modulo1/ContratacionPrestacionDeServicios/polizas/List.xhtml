@@ -80,9 +80,7 @@
                     </p:column>
                     <p:column exportable="false" > 
                         <f:facet name="header">Opciones</f:facet>
-                        <p:commandButton id="viewButton" icon="ui-icon-search" update="datalist" action="#{polizasController.prepareViewModuloUno}">
-                            <f:setPropertyActionListener value="#{item}" target="#{polizasController.selected}"/>
-                        </p:commandButton>
+                       
                         <p:commandButton  id="editButton" icon="ui-icon-pencil" update="datalist" action="#{polizasController.prepareEditModuloUno}">
                             <f:setPropertyActionListener value="#{item}" target="#{polizasController.selected}"/>
                         </p:commandButton>

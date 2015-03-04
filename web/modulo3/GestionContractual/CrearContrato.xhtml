@@ -5,6 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Registrar Contrato</ui:define>
@@ -86,12 +87,12 @@
                         <h:message id="ObservacionesMessage" for="observaciones" />
                         
                         <label value="#{bundle.CreateUsuariosContratosLabel_usuarios}" jsf:for="Usuario" class="FormLabelSCCSS" />
-                        <h:selectOneMenu id="Usuario" value="#{contratosController.selectedUsuarios}" title="Usuario" required="true" requiredMessage="Usuario requerido">
-                            <f:selectItem itemLabel="Seleccionar" />
-                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
-                                       var="idUsuario"
-                                       itemValue="#{idUsuario}"/>
-                        </h:selectOneMenu>
+                        <p:autoComplete id="Usuario" value="#{contratosController.selectedUsuarios}" 
+                                        required="true" requiredMessage="#{bundle.CreateUsuariosContratosRequiredMessage_usuarios}"
+                                        completeMethod="#{usuariosController.getListRazonSocialAutoComplete}" 
+                                        var="razonSocial" itemLabel="#{razonSocial}" itemValue="#{razonSocial}" 
+                                    converter="usuariosConverter" pt:required="true"
+                                    forceSelection="true" maxResults="10"/> 
                         <h:message id="UsuarioMessage" for="Usuario" />
                         
                         <label>Polizas</label>

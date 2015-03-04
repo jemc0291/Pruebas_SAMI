@@ -24,6 +24,13 @@
                         Lista de Contratos
                         </f:facet>
                         
+                        <p:column filterBy="#{contratosController.getUsuariosByContratos(item).usuarios.toString()}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Proveedor"/>
+                            </f:facet>
+                            <h:outputText value="#{contratosController.getUsuariosByContratos(item).usuarios.toString()}"/>
+                        </p:column>
+                        
                         <p:column filterBy="#{item.numeroDeContrato}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListContratosTitle_numeroDeContrato}"/>
