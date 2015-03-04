@@ -163,7 +163,7 @@ public class Polizas implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Polizas[ numeroDePoliza=" + numeroDePoliza + " ]";
+        return String.valueOf(numeroDePoliza);
     }
     
 }
