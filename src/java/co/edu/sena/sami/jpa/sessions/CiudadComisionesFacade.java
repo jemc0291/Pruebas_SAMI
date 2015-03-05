@@ -6,9 +6,12 @@
 package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.CiudadComisiones;
+import co.edu.sena.sami.jpa.entities.Comisiones;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +29,13 @@ public class CiudadComisionesFacade extends AbstractFacade<CiudadComisiones> {
 
     public CiudadComisionesFacade() {
         super(CiudadComisiones.class);
+    }
+    
+    public List<CiudadComisiones>findByDestinos(Comisiones comisiones){
+    
+        Query q= getEntityManager().createNamedQuery("CiudadComisiones.findByIdComision");
+        q.setParameter("idComision", comisiones.getIdComision());
+        return q.getResultList();
     }
     
 }

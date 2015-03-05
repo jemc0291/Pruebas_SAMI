@@ -10,56 +10,56 @@
         <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
-    <h:form>
-   <p:outputPanel id="ComisionesTablePanel" >
-                            <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
-                                         rows="10" id="comisionesTable" 
-                                         paginator="true"
-                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="20,40,60">
+            <h:form>
+                <p:outputPanel id="ComisionesTablePanel" >
+                    <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
+                                 rows="10" id="comisionesTable" 
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="20,40,60">
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.ciudad}"/>
-                                </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ciudad}"/>
+                        </p:column>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.empresaVereda}"/>
-                                </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.empresaVereda}"/>
+                        </p:column>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.salidaEstimada}"/>
-                                </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salidaEstimada}"/>
+                        </p:column>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.llegadaEstimada}"/>
-                                </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.llegadaEstimada}"/>
+                        </p:column>
 
-                                <p:column>
-                                    <f:facet name="header">Opciones</f:facet>
-                                    <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
-                                                     process="@this" update="comisionesTable">
-                                        <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar los destinos?" icon="ui-icon-alert" />
-                                        <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
-                                    </p:commandButton>
-                                    <p:commandButton value="Crear informe de comision" action="/modulo4/Gestion_Talento_Humano/Comisiones/informeComision.xhtml"></p:commandButton>
-                                    
-                                </p:column>       
-                            </p:dataTable>
-                    </p:outputPanel>
-                  </h:form>
-            </ui:define>
+                        <p:column>
+                            <f:facet name="header">Opciones</f:facet>
+                            <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
+                                             process="@this" update="comisionesTable">
+                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar los destinos?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
+                            </p:commandButton>
+                            <p:commandButton value="Crear informe de comision" action="/modulo4/Gestion_Talento_Humano/Comisiones/informeComision.xhtml"></p:commandButton>
+
+                        </p:column>       
+                    </p:dataTable>
+                </p:outputPanel>
+            </h:form>
+        </ui:define>
     </ui:composition>
 </html>
 

@@ -48,7 +48,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Comisiones.findBySuministraVehiculo", query = "SELECT c FROM Comisiones c WHERE c.suministraVehiculo = :suministraVehiculo"),
     @NamedQuery(name = "Comisiones.findByObjetivos", query = "SELECT c FROM Comisiones c WHERE c.objetivos = :objetivos"),
     @NamedQuery(name = "Comisiones.findByMesaPlanificar", query = "SELECT c FROM Comisiones c WHERE c.mesaPlanificar = :mesaPlanificar"),
-    
     @NamedQuery(name = "Comisiones.findByNumDias", query = "SELECT c FROM Comisiones c WHERE c.numDias = :numDias"),
     @NamedQuery(name = "Comisiones.findByAprobado", query = "SELECT c FROM Comisiones c WHERE c.aprobado = :aprobado"),
     @NamedQuery(name = "Comisiones.findByTransIntermunicipal", query = "SELECT c FROM Comisiones c WHERE c.transIntermunicipal = :transIntermunicipal"),
