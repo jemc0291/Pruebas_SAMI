@@ -8,12 +8,15 @@
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Gestion Documental</ui:define>
         <ui:define name="menu"><ui:include src="/modulo5/menu_modulo5.xhtml"></ui:include></ui:define>    
-        <ui:define name="body">          
+        <ui:define name="body">
+            
+            <h2>  Cargar Archivos  </h2>
+            
             <h:form enctype="multipart/form-data">
                 <p:growl id="messages" showDetail="true" />
 
                 <p:fileUpload value="#{datosOnbaseController.file}" mode="simple"
-                              allowTypes="/(\.|\/)(doc|docxs|xls|pdf)$/"/>
+                              allowTypes="*.csv"/>
 
                 <h:commandButton value="Cargar Archivo"
                                  actionListener="#{datosOnbaseController.upload}" action="#{datosOnbaseController.create}"/> 

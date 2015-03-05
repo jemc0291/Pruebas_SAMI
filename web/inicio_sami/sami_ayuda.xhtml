@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, minimun-scale=1,maximun=1"/>
@@ -17,7 +18,7 @@
      <title>Sami</title>
     </h:head>
       <body class="body" jsf:id="body">
-        <header class="Header">
+        <header class="HeaderAyuda">
             <img src="#{request.contextPath}/resources/images/sami.png" width="280" height="100" class="Header-logo" />
             <p class="Header-title-inicio">SISTEMA ADMINISTRATIVO MODULAR INTEGRADO</p>
             <figure class="Menu-img">
@@ -35,7 +36,7 @@
               </nav>
                   <div class="iniciar">
              <h:panelGroup rendered="true">
-              <form jsf:id="LoginForm" class="Ingresar" name="inicioDatos">
+              <form jsf:id="LoginForm" class="Ingresar3" name="inicioDatos">
                    <img src="#{request.contextPath}/resources/images/login1.jpg" width="105" height="105"/>
                 <h:panelGroup id="messagePanel" layout="block">
                     <p:messages/>
@@ -54,7 +55,7 @@
             <div id="contact-form">  
               <h3 class="Title-ayuda">AYUDA SAMI</h3>  
                
-              <h:form>  
+              <h:form class="FormularioAyuda">  
                   <br/>
                    <td>Nombre:</td>
                    <td>  
@@ -94,10 +95,10 @@
                        required="true"/>
                     <h:message for="detalle" />
                    </td>
-                                    
-                  <h:panelGrid columns="1" cellpadding="5">
-                      <p:commandButton value="Enviar" type="button" onclick="PF('dlg1').show();" actionListener="#{emailController.sendMail()}" />
-                  </h:panelGrid>
+                    <div class="enviarAyuda">               
+                    <h:panelGrid columns="1" cellpadding="5">
+                      <p:commandButton  value="Enviar" type="button" onclick="PF('dlg1').show();" actionListener="#{emailController.sendMail()}" />
+                  </h:panelGrid></div>
                    <p:dialog header="AYUDA SAMI" widgetVar="dlg1" minHeight="40" height="300"  width="600px">
                <h:outputText value="ESTA SEGURO QUE SEDES ENVIAR EL MENSAJE" />
                <h:commandButton value="Confirmar" action="#{emailController.sendMail()}"/>
@@ -137,27 +138,8 @@
                 </style>   
                 </aside>             
         </header> 
-          <footer class="Footer" >
-            <article class="Footer-item">
-                <h4 class="Footer-title">Contacto</h4>
-                <a href="https://www.google.com.co"><p class="Footer-description">contactosami@gmail<br/>
-                        comfacebook.com/contactosami<br/>@interactuasami
-                        <br/>3173470178 - 3101234568<br/>SENA</p></a>
-            </article>
-            <article class="Footer-item">
-                <h4 class="Footer-title">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
-                <p class="Footer-descriptioncon">Centro de biotecnologia industrial<br/>Palmira Valle del Cauca
-                    <br/>Carrera 30 n° 40-25<br/>Telefono: 2750968<br/>Fax: 2750965</p>
-            </article>
-            <article class="item">
-                <a href="#"> <img src="#{request.contextPath}/resources/images/pregunta.PNG" width="50" /></a>
-                <a href="#"> <img src="#{request.contextPath}/resources/images/Configuracion.PNG" width="50"/></a>
-                <br/><br/>
-                <a href="#"> <img src="#{request.contextPath}/resources/images/Soporte.PNG" width="50"/></a>
-                <a href="#"> <img src="#{request.contextPath}/resources/images/sena_1.PNG" width="50"/></a>  
-                
-            </article>
-        </footer> 
+     <ui:composition template="/footer.xhtml">
+    </ui:composition>
       </body>   
 </html>
 
