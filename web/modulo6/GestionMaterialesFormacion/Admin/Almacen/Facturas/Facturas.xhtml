@@ -10,32 +10,31 @@
         <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
-            <h:form>
-
-                <P>
-                    <p:commandButton value="Crear Factura" action="#{facturasController.prepareCreate}" />
-                </P>
-                <p:outputPanel>
-                    <p:dataTable value="#{facturasController.items}" var="item"
-                                 rows="10" id="FacturasTable" 
+            <h:form id="FacturaListForm">
+                
+                <p:panel header="#{bundle.ListFacturasTitle}">
+                    
+                    <p:dataTable id="datalist" value="#{facturasController.items}" var="item"
+                                 selectionMode="single" selection="#{facturasController.selected}"
                                  paginator="true"
-                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="20,40,60">
+                                 rowKey="#{item.idFactura}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50">
+                        <p:ajax event="rowSelect"   update="createButton editButton"/>
+                        <p:ajax event="rowUnselect" update="createButton editButton"/>
 
-                        <p:column  filterBy="#{item.idFactura}" filterMatchMode="contains">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="IdFactura"/>
                             </f:facet>
                             <h:outputText value="#{item.idFactura}"/>
                         </p:column>
-
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="NumeroFactura"/>
                             </f:facet>
                             <h:outputText value="#{item.numeroFactura}"/>
                         </p:column>
-
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Fecha"/>
@@ -44,32 +43,24 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="IdUsuario"/>
                             </f:facet>
                             <h:outputText value="#{item.idUsuario}"/>
                         </p:column>
-
-
-
-
                         <p:column>
-                            <!--<p:commandButton icon="ui-icon-pencil" action="# {facturasController.prepareEdit()}">
-                            <f:setPropertyActionListener value="#{item}" target="#{facturasController.selected}"/>
-                            </p:commandButton>-->
-<h:commandButton action="#{facturasController.update()}" value="Modificar Factura"/>
-                            <p:commandButton icon="ui-icon-trash" action="#{facturasController.destroy()}"
-                                             process="@this" update="FacturasTable">
-                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta factura?" icon="ui-icon-alert" />
-                                <f:setPropertyActionListener value="#{item}" target="#{facturasController.selected}"/>
-                            </p:commandButton>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus" actionListener="#{facturasController.prepareCreate}" update=":FacturaCreateForm" oncomplete="PF('FacturaCreateDialog').show()"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" update=":FacturaEditForm" oncomplete="PF('FacturaEditDialog').show()" disabled="#{empty facturasController.selected}"/>
+                            </f:facet>
                         </p:column>
-
                     </p:dataTable>
-                </p:outputPanel>
+                </p:panel>
             </h:form>
+            
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
         </ui:define>
     </ui:composition>
 </html>
