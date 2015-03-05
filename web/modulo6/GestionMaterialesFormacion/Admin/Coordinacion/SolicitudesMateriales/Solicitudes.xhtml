@@ -11,7 +11,7 @@
         <ui:define name="body">
             <h:form id="SolicitudListForm">
 
-                <p:commandButton id="createButton" icon="ui-icon-plus"   action="#{solicitudMaterialesAlmacenController.prepareCreate}"/>
+                <p:commandButton id="createButton" value="Crear Solicitud" icon="ui-icon-plus"   action="#{solicitudMaterialesAlmacenController.prepareCreate}"/>
 
                 <p:outputPanel id="solicitudMaterialesAlmacenPanel">
                     <p:panel header="#{bundle.ListSolicitudMaterialesAlmacenTitle}">
@@ -72,7 +72,7 @@
                             </p:column>
                             
                             <p:column>
-                                <p:commandButton id="editButton"  icon="ui-icon-pencil" update="datalist" action="#{solicitudMaterialesAlmacenController.prepareEdit}">
+                                <p:commandButton id="editButton" value="" icon="ui-icon-pencil" update="datalist" action="#{solicitudMaterialesAlmacenController.prepareEdit}">
                                     <f:setPropertyActionListener value="#{item}" for="datalist" target="#{solicitudMaterialesAlmacenController.selected}"/>
                                 </p:commandButton>                                
                             </p:column>
