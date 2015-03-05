@@ -14,71 +14,75 @@
                 <h2>Lista Informe Diario Mes</h2>
                 
                 <p:outputPanel id="OnBaseTablePanels">
-                    <p:dataTable value="#{datosOnbaseController.consulta()}" var="item"
+                    <p:dataTable value="#{datosOnbaseController.consulta()}" var="InformeDiarioMes"
                                  rows="10" id="OnBaseTables" 
                                  paginator="true"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="20,40,60">
+                                 rowsPerPageTemplate="60,80,100">
 
-                        <p:column filterBy="#{item.numRadicadoRecibida}" filterMatchMode="contains">
+                        <p:column filterBy="#{InformeDiarioMes.numRadicadoRecibida}" filterMatchMode="contains">
                             <f:facet name="header">No. radicado Producida</f:facet>
-                            <h:outputText value="#{item.numRadicadoRecibida}"/>
+                            <h:outputText value="#{InformeDiarioMes.numRadicadoRecibida}"/>
                         </p:column>
 
                         <p:column >
                             <f:facet name="header">N.I.S</f:facet>
-                            <h:outputText value="#{item.nis}"/>
+                            <h:outputText value="#{InformeDiarioMes.nis}"/>
                         </p:column>
 
 
-                        <p:column filterBy="#{item.asunto}" filterMatchMode="contains">
+                        <p:column filterBy="#{InformeDiarioMes.asunto}" filterMatchMode="contains">
                             <f:facet name="header">Asunto</f:facet>
-                            <h:outputText value="#{item.asunto}"/>
+                            <h:outputText value="#{InformeDiarioMes.asunto}"/>
                         </p:column>}
                         
                         
                         <p:column >
                             <f:facet name="header">Descripcion Asunto</f:facet>
-                            <h:outputText value="#{item.descripcionAsunto }"/>
+                            <h:outputText value="#{InformeDiarioMes.descripcionAsunto }"/>
                         </p:column>
 
-                        <p:column filterBy="#{item.remitenteNombreEntidadExterna}" filterMatchMode="contains">
+                        <p:column filterBy="#{InformeDiarioMes.remitenteNombreEntidadExterna}" filterMatchMode="contains">
                             <f:facet name="header">Remitente</f:facet>
-                            <h:outputText value="#{item.remitenteNombreEntidadExterna}"/>
+                            <h:outputText value="#{InformeDiarioMes.remitenteNombreEntidadExterna}"/>
                         </p:column>
                         
                         
                         <p:column >
                             <f:facet name="header">Nombre Persona</f:facet>
-                            <h:outputText value="#{item.nombrePersona }"/>
+                            <h:outputText value="#{InformeDiarioMes.nombrePersona }"/>
                         </p:column>
                         
                         
                         <p:column >
                             <f:facet name="header">Cargo o Dependencia</f:facet>
-                            <h:outputText value="#{item.cargoPersonaODependencia }"/>
+                            <h:outputText value="#{InformeDiarioMes.cargoPersonaODependencia }"/>
                         </p:column>
 
-                        <p:column filterBy="#{item.funcionarioDestino}" filterMatchMode="contains">
+                        <p:column filterBy="#{InformeDiarioMes.funcionarioDestino}" filterMatchMode="contains">
                             <f:facet name="header">Destinatario</f:facet>
-                            <h:outputText value="#{item.funcionarioDestino}"/>
+                            <h:outputText value="#{InformeDiarioMes.funcionarioDestino}"/>
                         </p:column>
                         
 
                         <p:column>
                             <f:facet name="header">Fecha Procedencia</f:facet>
-                            <h:outputText value="#{item.fechaProcedencia}"/>
+                            <h:outputText value="#{InformeDiarioMes.fechaProcedencia}"/>
                         </p:column>
 
                         <p:column>
-                            <f:facet name="header">Opciones</f:facet>
-                            <p:commandButton icon="ui-icon-search"  action="#{datosOnbaseController.prepareConsultar}">
-                                <f:setPropertyActionListener value="#{item}" target="#{datosOnbaseController.selected}"/>
+                            <f:facet name="header">Consultar</f:facet>
+                            <p:commandButton icon="ui-icon-search"  action="#{datosOnbaseController.prepareConsultarInforme}">
+                                <f:setPropertyActionListener value="#{InformeDiarioMes}" target="#{datosOnbaseController.selected}"/>
                             </p:commandButton>
                         </p:column> 
                     </p:dataTable>
                 </p:outputPanel>
-                
+                <h:commandLink>
+                   <p:commandButton value="Descargar" icon="ui-icon-arrowthickstop-1-s"/>                  
+                    <p:dataExporter type="xls" target="OnBaseTables" fileName="InformeDiarioMes"/>
+                </h:commandLink>
+
             </h:form>
         </ui:define>
     </ui:composition>

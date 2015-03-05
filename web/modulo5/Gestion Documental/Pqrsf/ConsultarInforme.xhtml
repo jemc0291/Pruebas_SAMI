@@ -16,13 +16,13 @@
             <section class="section-form">
                 <form jsf:id="datosOnBaseCreateForm">
                     <p:panelGrid columns="3" layout="grid">
-                        <label value="#{bundle.ViewDatosOnbaseLabel_numRadicadoRecibida}" jsf:for="numeroRadicadoRecibidaInputText"></label> 
-                        <h:inputText  id="numeroRadicadoRecibidaInputText" required="true"
+                        <label value="#{bundle.ViewDatosOnbaseLabel_numRadicadoProducida}" jsf:for="numeroRadicadoProducidaInputText"></label> 
+                        <h:inputText  id="numeroRadicadoProducidaInputText" required="true"
                                value="#{datosOnbaseController.selected.numRadicadoRecibida}" maxlength="30"
-                               title="#{bundle.ViewDatosOnbaseLabel_numRadicadoRecibida}"
+                               title="#{bundle.ViewDatosOnbaseLabel_numRadicadoProducida}"
                                disabled="true">
                         </h:inputText>
-                        <p:message id="numeroRadicadoRecibidaMessage" for="numeroRadicadoRecibidaInputText" styleClass="error"/>
+                        <p:message id="numeroRadicadoProducidaMessage" for="numeroRadicadoProducidaInputText" styleClass="error"/>
                         
                         <label value="#{bundle.ViewDatosOnbaseLabel_nis}" jsf:for="nisInputText"></label> 
                         <h:inputText id="nisInputText" required="true"
@@ -588,7 +588,7 @@
                         <p:message id="fechaDelDocumentoMessage" for="fechaDelDocumentoInputText" styleClass="error"/>
           
                     </p:panelGrid>
-                   
+          
                 </form>
             </section>
         </ui:define>

@@ -21,7 +21,7 @@
                 <form jsf:id="BarrioCreateForm">
                     <p:panelGrid columns="3" layout="grid">
                         
-                        <label>Id</label> 
+                        <label>Id: </label> 
                         <input type="text" jsf:id="idInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el numero de id" 
                                jsf:validatorMessage="Use solo numeros"
@@ -31,7 +31,7 @@
                         </input>
                         <h:message id="idMessage" for="idInputText" styleClass="error"/>
 
-                        <label class="Form-na" value="#{bundle.CreateBarriosLabel_nombreBarrio}" for="NombreBarrio">Nombre Barrio: </label> 
+                        <label class="Form-na" value="#{bundle.CreateBarriosLabel_nombreBarrio}" for="NombreBarrio"> </label> 
                         <input type="text" jsf:id="NombreBarrioInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre del Barrio" 
                                jsf:validatorMessage="Use solo letras"
