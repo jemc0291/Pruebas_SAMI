@@ -42,12 +42,11 @@
                                     <li class="HeaderList-link"><a  jsf:outcome="/Programa Formacion/index_programa.xhtml">Programa Formacion</a></li>                                   
                                     <h:form>           
                                         <p:growl id="message" showDetail="true" />
-
-                                        <p:commandButton value="Cerrar Sesión" action="#{loginController.logout}" 
-                                                         update="message" >
+                                        <p:commandButton  value="Cerrar Sesión" action="#{loginController.logout}" 
+                                                         update="message" style="color: black; border-color: black; background:rgba(75, 118, 109, 0.82);">
                                             <p:confirm header="Desea Cerrar Sesion" message="SEÑOR USUARIO USTED ES PARTE 
-                                                       FUNDAMENTAL DE NUESTRA COMUNIDAD SAMI GRACIAS POR USAR NUESTRO APLICATIVO" icon="ui-icon-alert" />
-                                        </p:commandButton>
+                                                       FUNDAMENTAL DE NUESTRA COMUNIDAD SAMI GRACIAS POR USAR NUESTRO APLICATIVO"  icon="ui-icon-alert" />
+                                        </p:commandButton>                                     
 
                                         <p:confirmDialog global="true" showEffect="fade" hideEffect="explode"  >
                                             <p:commandButton value="Yes" type="button" action="#{loginController.logout}" 

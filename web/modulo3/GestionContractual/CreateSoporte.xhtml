@@ -31,10 +31,13 @@
                             <label class="FormLabelSCCSS" jsf:for="tipoSoporte" value="#{bundle.CreateSoportesDeDocumentosLabel_tipoSoporte}"/>
                             <h:selectOneMenu styleClass="FormSelectSCCSS" id="tipoSoporte" required="true"
                                              value="#{soportesDeDocumentosController.selected.tipoSoporte}">
+                                <f:selectItem itemLabel="Seleccionar" />
                                 <f:selectItem itemLabel="Contrato" itemValue="Contrato"/>
                                 <f:selectItem itemLabel="Factura" itemValue="Factura"/>
                                 <f:selectItem itemLabel="Informe de supervision" itemValue="Informe de supervision"/>
                                 <f:selectItem itemLabel="Nota de entrada" itemValue="Nota de entrada"/>
+                                <f:selectItem itemLabel="Poliza" itemValue="Poliza"/>
+                                <f:selectItem itemLabel="Evidencia" itemValue="Evidencia"/>
 
                             </h:selectOneMenu>
 

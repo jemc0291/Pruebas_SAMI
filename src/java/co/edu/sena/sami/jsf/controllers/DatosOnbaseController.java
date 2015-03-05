@@ -64,10 +64,17 @@ public class DatosOnbaseController implements Serializable {
         return selected;
     }
 
-    public String prepareConsultar() {
-        return "Consultar";
+    public String prepareConsultarRecibidas() {
+        return "ConsultarRecibidas";
     }
-
+    
+    public String prepareConsultarProducidas() {
+        return "ConsultarProducidas";
+    }
+    
+     public String prepareConsultarInforme() {
+        return "ConsultarInforme";
+    }
 
     public String prepareListaRecibidas() {
         return "modulo5/Gestion Documental/Pqrsf/ListarRecibidas";
