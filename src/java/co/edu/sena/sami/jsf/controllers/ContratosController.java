@@ -88,7 +88,21 @@ public class ContratosController implements Serializable {
     public void setSelectedRol(Rol selectedRol) {
         this.selectedRol = selectedRol;
     }
-    
+
+    public UsuariosContratos getSelectedUsuariosContratos() {
+        return selectedUsuariosContratos;
+    }
+
+    public void setSelectedUsuariosContratos(UsuariosContratos selectedUsuariosContratos) {
+        this.selectedUsuariosContratos = selectedUsuariosContratos;
+    }
+    public UsuariosContratos getUsuariosByContratos(Contratos contrato) {
+        if (getUsuariosContratosFacade().findByIdContrato(contrato)== null){
+            return new UsuariosContratos();
+        } else {
+        return getUsuariosContratosFacade().findByIdContrato(contrato);
+        }
+    }
 
     protected void setEmbeddableKeys() {
     }
@@ -106,7 +120,6 @@ public class ContratosController implements Serializable {
         selectedPolizas = new Polizas();
         selectedUsuariosContratos = new UsuariosContratos();
         selectedUsuariosContratos.setUsuariosContratosPK(new UsuariosContratosPK());
-
         selectedUsuarios = new Usuarios();
         selectedRol = new Rol();
         //initializeEmbeddableKey();        

@@ -64,7 +64,7 @@
                     </h:selectOneMenu>
                     <h:message id="idAseguradoraMessage" for="idAseguradora" />
                     
-                    <p:commandButton oncomplete="handleSubmit(arg,'PolizasDialogo')" value="Guardar" update="polizasForm :contratoForm" />
+                    <p:commandButton oncomplete="handleSubmit(arg,'PolizasDialogo')" value="Guardar" update="polizasForm" onclick="PF('PolizasDialogo').hide()" />
                     <p:commandButton value="Cancelar" process="@this" onclick="PF('PolizasDialogo').hide()"/>
                 </h:panelGrid>
 

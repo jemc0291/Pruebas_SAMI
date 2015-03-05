@@ -152,5 +152,7 @@ public class CiudadComisiones implements Serializable {
     public String toString() {
         return "co.sena.sami.edu.jpa.entities.CiudadComisiones[ ciudadComisionesPK=" + ciudadComisionesPK + " ]";
     }
+
+    
     
 }
