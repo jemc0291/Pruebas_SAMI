@@ -142,7 +142,7 @@ public class Facturas implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Facturas[ idFactura=" + idFactura + " ]";
+        return "" + numeroFactura ;
     }
     
 }

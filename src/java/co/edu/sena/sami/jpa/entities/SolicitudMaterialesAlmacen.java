@@ -41,8 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SolicitudMaterialesAlmacen.findByIdSolicitudMaterial", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.idSolicitudMaterial = :idSolicitudMaterial"),
     @NamedQuery(name = "SolicitudMaterialesAlmacen.findByFechaDeSolicitud", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.fechaDeSolicitud = :fechaDeSolicitud"),
     @NamedQuery(name = "SolicitudMaterialesAlmacen.findByObservaciones", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.observaciones = :observaciones"),
-    @NamedQuery(name = "SolicitudMaterialesAlmacen.findByAprobado", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.aprobado = :aprobado"),
-    @NamedQuery(name = "SolicitudMaterialesAlmacen.findByNoAprobado", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.noAprobado = :noAprobado")})
+    @NamedQuery(name = "SolicitudMaterialesAlmacen.findByAprobado", query = "SELECT s FROM SolicitudMaterialesAlmacen s WHERE s.aprobado = :aprobado")})
 public class SolicitudMaterialesAlmacen implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -60,8 +59,6 @@ public class SolicitudMaterialesAlmacen implements Serializable {
     private String observaciones;
     @Column(name = "aprobado")
     private Boolean aprobado;
-    @Column(name = "no_aprobado")
-    private Boolean noAprobado;
     @JoinColumn(name = "id_ficha_caracterizacion", referencedColumnName = "id_ficha_caracterizacion")
     @ManyToOne(optional = false)
     private FichaCaracterizacion idFichaCaracterizacion;
@@ -115,14 +112,6 @@ public class SolicitudMaterialesAlmacen implements Serializable {
 
     public void setAprobado(Boolean aprobado) {
         this.aprobado = aprobado;
-    }
-
-    public Boolean getNoAprobado() {
-        return noAprobado;
-    }
-
-    public void setNoAprobado(Boolean noAprobado) {
-        this.noAprobado = noAprobado;
     }
 
     public FichaCaracterizacion getIdFichaCaracterizacion() {
@@ -182,6 +171,10 @@ public class SolicitudMaterialesAlmacen implements Serializable {
     @Override
     public String toString() {
         return "co.edu.sena.sami.jpa.entities.SolicitudMaterialesAlmacen[ idSolicitudMaterial=" + idSolicitudMaterial + " ]";
+    }
+
+    public void setIdUsuario(Usuarios usuarios) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

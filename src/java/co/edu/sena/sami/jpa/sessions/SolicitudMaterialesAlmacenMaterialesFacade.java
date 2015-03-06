@@ -6,10 +6,13 @@
 
 package co.edu.sena.sami.jpa.sessions;
 
+import co.edu.sena.sami.jpa.entities.SolicitudMaterialesAlmacen;
 import co.edu.sena.sami.jpa.entities.SolicitudMaterialesAlmacenMateriales;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,12 @@ public class SolicitudMaterialesAlmacenMaterialesFacade extends AbstractFacade<S
 
     public SolicitudMaterialesAlmacenMaterialesFacade() {
         super(SolicitudMaterialesAlmacenMateriales.class);
+    }
+    
+    public List<SolicitudMaterialesAlmacenMateriales> findByIdSolicitud(SolicitudMaterialesAlmacen solicitud){
+        Query q = getEntityManager().createNamedQuery("SolicitudMaterialesAlmacenMateriales.findByIdSolicitudMaterial");
+        q.setParameter("idSolicitudMaterial", solicitud.getIdSolicitudMaterial());
+        return q.getResultList();        
     }
     
 }

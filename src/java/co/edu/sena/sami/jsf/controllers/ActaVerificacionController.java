@@ -8,6 +8,7 @@ import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.ActaVerificacionFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,6 +21,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ActionEvent;
 
 @Named("actaVerificacionController")
 @SessionScoped
@@ -102,29 +104,37 @@ public class ActaVerificacionController implements Serializable {
         return ejbFacade;
     }
 
+    public String recargarLista(){
+    return "Actas";
+    }
+    
     public String prepareCreate() {
         selected = new ActaVerificacion();
         initializeEmbeddableKey();
-        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/CreateActa.xhtml";
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/Create.xhtml";
     }
     
     public String prepareEdit() {
-        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/EditActa.xhtml";
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/Edit.xhtml";
     }
 
     public String prepareView() {
-        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/ViewActa.xhtml";
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/View.xhtml";
     }
     
-    public void create() {
+    public void create(ActionEvent event) {
+        selected.setIdUsuario((Usuarios) event.getComponent().getAttributes().get("usuario"));
+        selected.setHora(new Date());
+        selected.setFecha(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ActaVerificacionCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public void update() {
+    public String update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("ActaVerificacionUpdated"));
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/View.xhtml";
     }
 
     public void destroy() {
