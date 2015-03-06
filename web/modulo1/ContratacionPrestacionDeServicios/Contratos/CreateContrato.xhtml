@@ -40,14 +40,13 @@
                                  value="#{contratosModulo1Controller.selected.fechasuscripcion}" 
                                  title="#{bundle.CreateContratosTitle_fechaSuscripcion}"
                                  showOn="button"
-                                effect="fold"
+                                 effect="fold"
                                  maxdate="#{contratosModulo1Controller.selected.fechaInicioContrato}"
                                  required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}">
-                        <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="contratoForm"/>
-                        
-
-                        <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="contratoForm"/>
-
+                        <!--  <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="fechasuscripcion"/>
+                         <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="fechasuscripcion"/>-->
+                        <p:ajax event="dateSelect" process="@this fechasuscripcion" update="fechaInicioContrato"/>
+                        <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="fechasuscripcion"/>
                     </p:calendar>
                     <label jsf:value="#{bundle.CreateContratosLabel_fechaInicioContrato}" for="fechaInicioContrato" />
                     <p:calendar  id="fechaInicioContrato" 
@@ -59,11 +58,10 @@
                                  mindate="#{contratosModulo1Controller.selected.fechasuscripcion}"
                                  maxdate="#{contratosModulo1Controller.selected.fechaFinContrato}"
                                  required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}">
-                        <p:ajax event="dateSelect" process="@this fechaFinContrato" update="contratoForm"/>
-                        <p:ajax  event="valueChange"  process="@this fechaFinContrato" update="contratoForm"/>
-                       
 
-
+                        <!-- <p:ajax  event="valueChange"  process="@this fechaFinContrato" update="fechaInicioContrato"/>-->
+                        <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="fechaFinContrato"/>
+                        <p:ajax event="dateSelect" process="@this fechaFinContrato" update="fechaInicioContrato"/>
                     </p:calendar>
 
                     <label  jsf:value="#{bundle.CreateContratosLabel_fechaFinContrato}" for="fechaFinContrato" />
@@ -74,10 +72,10 @@
                                  effect="fold"
                                  mindate="#{contratosModulo1Controller.selected.fechaInicioContrato}"
                                  required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}"  >
-                        <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="contratoForm"/>
-                       
 
-                        <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="contratoForm"/>
+                        <p:ajax event="dateSelect" process="@this fechaFinContrato" update="fechaInicioContrato"/>
+
+                        <!-- <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="fechaFinContrato"/>-->
                     </p:calendar>
 
                     <label  jsf:value="#{bundle.CreateContratosLabel_plazoDias}" for="plazoDias" />
