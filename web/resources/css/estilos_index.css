@@ -725,14 +725,36 @@ input:required, textarea:required {
     border: solid 10px rgba(102, 123, 112, 0.4);
     padding-bottom: 2em;
 }
+.linea-mensaje-sami {border: 0; height: 0; border-top: 4px double black; text-align:center;}   
+.linea-mensaje-sami:after {content:"SAMI"; position: relative; top: -17px; display: inline-block; width: 36px; height: 24px; padding: 0;border: 2px solid #119178; border-radius: 20px; background: #119178; color: white; font-size: 12px; line-height: 24px; }
+
+.linea {border: 0; height: 0; border-top: 4px double black; text-align:center;}
+.linea:after {content:"SAMI"; position: relative; top: -17px; display: inline-block; width: 36px; height: 24px; padding: 0;border: 2px solid #119178; border-radius: 20px; background: #119178; color: white; font-size: 12px; line-height: 24px; }
+.hr{
+    position: relative;
+    top: 1000px;
+}
+.divMensajeSami{
+    position: relative;
+    left: 350px;
+    width: 60%;  
+    top: 30px;
+    border-radius: 5px;
+    border: solid #747D7E;
+    background: #E5E6E7;
+}
+.introducion-sami{
+    text-align: center;
+}
 .Footer {
     background-image: url("../images/footer.png");
     background-position: center; 
     width: 100%;
     position: relative;
-    top: 60em;
+    top: 75em;
     /* left: 12px; */
     text-align: center;
+    height: 450px;
 }
 
 .Footer-item,
@@ -752,12 +774,13 @@ input:required, textarea:required {
     position: relative;
     right: 30px;
     display: block;
+    top: 100px;
 }
 .item{
     position: relative;
     left: 400px;
-    width: 100%;
-    top: -150px;
+    width: 100%;    
+    top: -140px;
 }
 
 .Header-imageContainer{

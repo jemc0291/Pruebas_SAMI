@@ -785,4 +785,6 @@ table, th, td {
         }
 
     }
-    
+    .body{
+         font-family: 'Open Sans', sans-serif;
+    }

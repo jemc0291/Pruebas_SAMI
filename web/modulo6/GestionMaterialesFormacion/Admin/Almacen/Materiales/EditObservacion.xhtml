@@ -5,18 +5,16 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Solicitudes</ui:define>
-        <ui:define name="menu"><ui:include src="/modulo6/menu_Coordinacion.xhtml"></ui:include></ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-
-            <h:form id="SolicitudEditForm">
-
+            <h:form id="solicitudEditForm">
                 <p:growl id="msgs" showDetail="true"/>
 
                 <h:panelGroup id="display">
-
                     <p:panelGrid columns="2" layout="grid" id="panelSolicitud" rendered="#{solicitudMaterialesAlmacenController.selected != null}" >
 
                         <label>Solicitud Número:</label>
@@ -28,40 +26,53 @@
                         <label>Ficha de Caracterizacion</label>
                         <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}"/>
 
-                        <label>Aprobado</label>
-                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.aprobado}"/>
+                        <Label>Observaciones</Label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.observaciones}"/>
+
+                        <Label>Aprobado</Label>
+                        <p:selectBooleanCheckbox value="#{solicitudMaterialesAlmacenController.selected.aprobado}" disabled="true"/>
                         
                         <label>Observación</label>
-                        <p:inputText value="#{solicitudMaterialesAlmacenController.selected.observaciones}"/>
-                        
-                        
+                        <textarea jsf:id="observacion" jsf:value="#{solicitudMaterialesAlmacenController.selected.observaciones}" jsf:requiredMessage="Este campo de observaciones es requerido por favor ingrese la descripción"
+                                  >
+                            <f:ajax execute="@this" rendered="observacionMessage"/>
+                        </textarea>
+                        <p:message id="observacionMessage" for="observacion" styleClass="error"/>
                     </p:panelGrid>
 
                 </h:panelGroup>
+                <p:dataTable id="cars2" value="#{solicitudMaterialesAlmacenController.itemsSolicitudMateriales}" var="item" editable="false" 
+                             widgetVar="cellCars" >
 
-                <p:dataTable id="materialesTable" 
-                             value="#{solicitudMaterialesAlmacenController.itemsSolicitudMateriales}" 
-                             var="item" 
-                             editable="true">                    
-                    <p:column headerText="Nombre de Material">
+                    <f:facet name="header">
+                        Cantidad de materiales por pedido
+                    </f:facet>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Solicitud Numero:"/>
+                        </f:facet>
+                        <h:outputText value="#{item.solicitudMaterialesAlmacen}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre de Material"/>
+                        </f:facet>
                         <h:outputText value="#{item.materiales.nombreMaterial}"/>
                     </p:column>
-
-                    <p:column headerText="Cantidad">
-                        <h:outputText value="#{item.cantidad}"/>
+                    <p:column headerText="Editar Cantidad">
+                            <h:outputText value="#{item.cantidad}"/>
                     </p:column>
-
                     <p:column headerText="Aprobado">
-                        <h:outputText value="#{item.aprobado}"/>
+                        <p:selectBooleanCheckbox value="#{item.aprobado}" disabled="true"/>
                     </p:column>
 
-                    <p:column headerText="Observación">
-                        <h:outputText value="#{item.observaciones}"/>
+                    <p:column headerText="Observación de este pedido">
+                            <h:outputText value="#{item.observaciones}" />
                     </p:column>
                 </p:dataTable>
-                <p:commandButton value="Guardar" 
-                                 action="#{solicitudMaterialesAlmacenController.update}" 
-                                 process="@this panelSolicitud" update="panelSolicitud"/>
+                <p:commandButton value="Guardar Observación"  action="#{solicitudMaterialesAlmacenController.update()}"/>
+
             </h:form>
         </ui:define>
     </ui:composition>
