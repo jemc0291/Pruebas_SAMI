@@ -107,7 +107,7 @@ public class Areas implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Areas[ idArea=" + idArea + " ]";
+        return " " + nombreArea ;
     }
     
 }

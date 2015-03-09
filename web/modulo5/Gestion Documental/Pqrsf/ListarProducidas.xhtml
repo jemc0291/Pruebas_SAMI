@@ -9,58 +9,80 @@
         <ui:define name="title">Gestion Documental</ui:define>
         <ui:define name="menu"><ui:include src="/modulo5/menu_modulo5.xhtml"></ui:include></ui:define>    
         <ui:define name="body">          
-            <h:form enctype="multipart/form-data">
-                <p:growl id="messages" showDetail="true" />
+            <h:form >
 
-                <p:fileUpload value="#{datosOnbaseController.file}" mode="simple"/>
-                
-                <h:commandButton value="Cargar Archivo"
-                                 actionListener="#{datosOnbaseController.upload}" action="#{datosOnbaseController.create}"/>                   
-                    
+                <h2>Lista De Radicaciones Producidas</h2> 
                 <p:outputPanel id="OnBaseTablePanel">
-                    <p:dataTable value="#{datosOnbaseController.itemsProducidas}" var="item"
+                    <p:dataTable value="#{datosOnbaseController.itemsProducidas}" var="InformeProducidas"
                                  rows="10" id="OnBaseTable" 
                                  paginator="true"
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="20,40,60">
+                                 rowsPerPageTemplate="100,200,300">
 
-                        <p:column filterBy="#{item.numeroRadicadoOrigen}" filterMatchMode="contains">
+                        <p:column filterBy="#{InformeProducidas.numRadicadoRecibida}" filterMatchMode="contains">
                             <f:facet name="header">No. radicado Producida</f:facet>
-                            <h:outputText value="#{item.numeroRadicadoOrigen}"/>
+                            <h:outputText value="#{InformeProducidas.numRadicadoRecibida}"/>
                         </p:column>
 
                         <p:column >
                             <f:facet name="header">N.I.S</f:facet>
-                            <h:outputText value="#{item.nis}"/>
+                            <h:outputText value="#{InformeProducidas.nis}"/>
                         </p:column>
-
-                        <p:column filterBy="#{item.asunto}" filterMatchMode="contains">
+           
+                        <p:column filterBy="#{InformeProducidas.asunto}" filterMatchMode="contains">
                             <f:facet name="header">Asunto</f:facet>
-                            <h:outputText value="#{item.asunto}"/>
+                            <h:outputText value="#{InformeProducidas.asunto}"/>
+                        </p:column>
+                        
+                        <p:column >
+                            <f:facet name="header">Descripcion Asunto</f:facet>
+                            <h:outputText value="#{InformeProducidas.descripcionAsunto}"/>
+                        </p:column>
+                        
+                    
+                        <p:column filterBy="#{InformeProducidas.remitenteNombreEntidadExterna}" filterMatchMode="contains">
+                            <f:facet name="header">Remitente</f:facet>
+                            <h:outputText value="#{InformeProducidas.remitenteNombreEntidadExterna}"/>
+                        </p:column>
+                        
+                        <p:column >
+                            <f:facet name="header">Nombre Persona</f:facet>
+                            <h:outputText value="#{InformeProducidas.nombrePersona}"/>
+                        </p:column>
+                        
+                        <p:column >
+                            <f:facet name="header">Cargo Persona</f:facet>
+                            <h:outputText value="#{InformeProducidas.cargoPersonaODependencia}"/>
+                        </p:column>
+                        
+                         <p:column >
+                            <f:facet name="header">Municipio</f:facet>
+                            <h:outputText value="#{InformeProducidas.municipio}"/>
                         </p:column>
 
+                        <p:column filterBy="#{InformeProducidas.funcionarioDestino}" filterMatchMode="contains">
+                            <f:facet name="header">Funcionario Destino</f:facet>
+                            <h:outputText value="#{InformeProducidas.funcionarioDestino}"/>
+                        </p:column>
+                
                         <p:column >
-                            <f:facet name="header">Fecha Procedencia</f:facet>
-                            <h:outputText value="#{item.fechaProcedencia}"/>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{InformeProducidas.fechaHora}"/>
                         </p:column>
 
-                        <p:column >
-                            <f:facet name="header">Tiempo de Respuesta</f:facet>
-                            <h:outputText value="#{item.tiempoRespuestaDias}"/>
-                        </p:column>
-
-                        <p:column >
-                            <f:facet name="header">Fecha Respuesta</f:facet>
-                            <h:outputText value="#{item.fechaRespuesta}"/>
-                        </p:column>
-               
+                        <p:column>
+                            <f:facet name="header">Consultar</f:facet>
+                            <p:commandButton icon="ui-icon-search"  action="#{datosOnbaseController.prepareConsultarRecibidas}">
+                                <f:setPropertyActionListener value="#{InformeProducidas}" target="#{datosOnbaseController.selected}"/>
+                            </p:commandButton>
+                        </p:column> 
                     </p:dataTable>
                 </p:outputPanel>
-                <h:form>
-                    <p:commandButton value="Descargar Reporte" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
-                        <p:fileDownload value="#{fileDownloadView.file}" />
-                    </p:commandButton>
-                </h:form>
+               <h:commandLink>
+                   <p:commandButton value="Descargar" icon="ui-icon-arrowthickstop-1-s"/>                  
+                    <p:dataExporter type="xls" target="OnBaseTable" fileName="InformeProducidas"/>
+                </h:commandLink>
+
             </h:form>
         </ui:define>
     </ui:composition>

@@ -11,11 +11,10 @@ import co.edu.sena.sami.jpa.entities.FichaCaracterizacion;
 import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jpa.sessions.CentroFormacionFacade;
 import co.edu.sena.sami.jpa.sessions.CiudadComisionesFacade;
-import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
-import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.ComisionesFacade;
 import co.edu.sena.sami.jpa.sessions.UsuariosFacade;
-
+import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
+import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,12 +24,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ActionEvent;
+import javax.inject.Named;
 
 @Named("comisionesController")
 @SessionScoped
@@ -42,6 +42,18 @@ public class ComisionesController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.CiudadComisionesFacade ciudadComisionesFacade;
     @EJB
     private co.edu.sena.sami.jpa.sessions.ContratosFacade ejbFacadeContratos;
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.BancosFacade ejbFacadeBanco;
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.CentroFormacionFacade ejbFacadeCentrosFormacion;
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.CiudadFacade ejbFacadeCiudad;
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.DescripcionesReferenciasViaticosFacade ejbFacadeDescripciones;
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.FichaCaracterizacionFacade ejbFacadeFichas;
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.UsuariosFacade ejbFacadeUsuarios;
 
     private List<Comisiones> items = null;
     private Comisiones selected;
@@ -49,11 +61,20 @@ public class ComisionesController implements Serializable {
     private CiudadComisiones ciudadComisionesActual;
     private List<Contratos> itemsContratos = null;
     private Contratos selectedContratos;
-
-    @EJB
-    private co.edu.sena.sami.jpa.sessions.BancosFacade ejbFacadeBanco;
     private List<Bancos> itemsBanco = null;
     private Bancos selectedBanco;
+    private List<CentroFormacion> itemsCentrosFormacion = null;
+    private CentroFormacion selectedCentrosFormcion;
+    private List<Ciudad> itemsCiudad = null;
+    private Ciudad selectedCiudad;
+    private List<DescripcionesReferenciasViaticos> itemsDescripciones = null;
+    private DescripcionesReferenciasViaticos selectedDescripciones;
+    private List<FichaCaracterizacion> itemsFichas = null;
+    private FichaCaracterizacion selectedFichas;
+    private List<Usuarios> itemsUsuarios = null;
+    private Usuarios selectedUsuarios;
+    @EJB
+    private CiudadComisionesFacade getFacade;
 
     public Contratos getContratos(java.lang.Integer id) {
         return getEjbFacadeContratos().find(id);
@@ -66,11 +87,6 @@ public class ComisionesController implements Serializable {
     public List<Contratos> getItemsAvailableSelectOneContratos() {
         return getEjbFacadeContratos().findAll();
     }
-
-    @EJB
-    private co.edu.sena.sami.jpa.sessions.CentroFormacionFacade ejbFacadeCentrosFormacion;
-    private List<CentroFormacion> itemsCentrosFormacion = null;
-    private CentroFormacion selectedCentrosFormcion;
 
     public CentroFormacion getCentroFormacion(java.lang.Integer id) {
         return getFacadeCentrosFormacion().find(id);
@@ -87,10 +103,6 @@ public class ComisionesController implements Serializable {
     public List<CentroFormacion> getItemsAvailableSelectOneCentrosFormacion() {
         return getFacadeCentrosFormacion().findAll();
     }
-    @EJB
-    private co.edu.sena.sami.jpa.sessions.CiudadFacade ejbFacadeCiudad;
-    private List<Ciudad> itemsCiudad = null;
-    private Ciudad selectedCiudad;
 
     public Ciudad getCiudad(co.edu.sena.sami.jpa.entities.CiudadPK id) {
         return getFacadeCiudad().find(id);
@@ -104,11 +116,6 @@ public class ComisionesController implements Serializable {
         return getFacadeCiudad().findAll();
     }
 
-    @EJB
-    private co.edu.sena.sami.jpa.sessions.DescripcionesReferenciasViaticosFacade ejbFacadeDescripciones;
-    private List<DescripcionesReferenciasViaticos> itemsDescripciones = null;
-    private DescripcionesReferenciasViaticos selectedDescripciones;
-
     public DescripcionesReferenciasViaticos getDescripcionesReferenciasViaticos(java.lang.Integer id) {
         return getFacadeDescripciones().find(id);
     }
@@ -120,11 +127,6 @@ public class ComisionesController implements Serializable {
     public List<DescripcionesReferenciasViaticos> getItemsAvailableSelectOneDescripciones() {
         return getFacadeDescripciones().findAll();
     }
-
-    @EJB
-    private co.edu.sena.sami.jpa.sessions.FichaCaracterizacionFacade ejbFacadeFichas;
-    private List<FichaCaracterizacion> itemsFichas = null;
-    private FichaCaracterizacion selectedFichas;
 
     public FichaCaracterizacion getFichaCaracterizacion(java.lang.Integer id) {
         return getFacadeFichas().find(id);
@@ -147,6 +149,9 @@ public class ComisionesController implements Serializable {
     }
 
     public List<CiudadComisiones> getCiudadComisionesList() {
+        if (ciudadComisionesList == null) {
+            ciudadComisionesList = getCiudadComisionesFacade().findByDestinos(selected);
+        }
         return ciudadComisionesList;
     }
 
@@ -166,14 +171,9 @@ public class ComisionesController implements Serializable {
         return getFacadeBanco().findAll();
     }
 
-    @EJB
-    private co.edu.sena.sami.jpa.sessions.UsuariosFacade ejbFacadeUsuarios;
-
     public UsuariosFacade getFacadeUsuarios() {
         return ejbFacadeUsuarios;
     }
-    private List<Usuarios> itemsUsuarios = null;
-    private Usuarios selectedUsuarios;
 
     public List<Usuarios> getItemsAvailableSelectManyUsuarios() {
         return getFacadeUsuarios().findAll();
@@ -214,6 +214,15 @@ public class ComisionesController implements Serializable {
         return ejbFacade;
     }
 
+    public String prepareListComision() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
+    }
+
+    public String prepareConsultarComision() {
+        ciudadComisionesList = null;
+        return "DestinosComision";
+    }
+
     public String prepareCreate() {
         selected = new Comisiones();
         ciudadComisionesList = new ArrayList<>();
@@ -221,6 +230,14 @@ public class ComisionesController implements Serializable {
         initializeEmbeddableKeyCiuComisiones();
         initializeEmbeddableKey();
         return "/modulo4/Gestion_Talento_Humano/Comisiones/CrearComision.xhtml";
+    }
+
+    public String prepareCreateInformeComision() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/informeComision.xhtml";
+    }
+
+    public String prepareCreateOrdenDeViaje() {
+        return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/crearOrdenDeViaje.xhtml";
     }
 
     public void adicionarCiudadComision() {
@@ -235,7 +252,24 @@ public class ComisionesController implements Serializable {
         JsfUtil.addSuccessMessage("Destino agregado correctamente");
     }
 
-    public String create() {
+    public void adicionarSitioComision() {
+        for (CiudadComisiones item : ciudadComisionesList) {
+            if (item.equals(ciudadComisionesActual)) {
+                JsfUtil.addErrorMessage("Elemento ya existe.");
+                return;
+            }
+        }
+        ciudadComisionesList.add(ciudadComisionesActual);
+        ciudadComisionesActual = new CiudadComisiones();
+        JsfUtil.addSuccessMessage("Destino agregado correctamente");
+    }
+
+    public String loadCreate() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
+    }
+
+    public void create(ActionEvent event) {
+        selected.setIdUsuario((Usuarios) event.getComponent().getAttributes().get("usuario"));
         selected.setFechaTramite(new Date());
         selected.setCiudad(selected.getIdCentroFormacion().getCiudad());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ComisionesCreated"));
@@ -252,7 +286,6 @@ public class ComisionesController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "/modulo4/Gestion_Talento_Humano/Comisiones/VerComisiones.xhtml";
     }
 
     public void update() {
@@ -265,6 +298,11 @@ public class ComisionesController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+    }
+
+    public void eliminarDestino() {
+        ciudadComisionesList.remove(ciudadComisionesActual);
+
     }
 
     public List<Comisiones> getItems() {

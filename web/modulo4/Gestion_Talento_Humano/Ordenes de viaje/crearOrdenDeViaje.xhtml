@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <section class="section-form">
+                <form jsf:id="ordenDeViajeCreateForm">
+                    <p:panelGrid columns="3" layout="grid">
+
+                        <label value="#{bundle.CreateComisionesLabel_idUsuario}" jsf:for="usuariosInputText"></label> 
+                        <h:outputText id="idUsuario" value="#{comisionesController.selected.idUsuario.razonSocial}"/>
+                        <h:message id="idUsuarioMessage"  for="idUsuario" styleClass="error"/> 
+
+
+                        <label value="#{bundle.CreateComisionesLabel_idCentroFormacion}" jsf:for="EstratoSocialInputText"></label>
+                        <p:autoComplete  id="centroFormacionInputText" 
+                                         value="#{comisionesController.selected.idCentroFormacion}"
+                                         required="true" requiredMessage="#{bundle.CreateComisionesLabel_idCentroFormacion}"
+                                         completeMethod="#{usuariosController.getListCentroFormacionAutoComplete}" 
+                                         var="centroFormacion" itemLabel="#{centroFormacion}" itemValue="#{centroFormacion}" 
+                                        converter="centroFormacionConverter" 
+                                        forceSelection="true" maxResults="10">
+                        </p:autoComplete>
+                        <h:message id="centroFormacionMessage" for="centroFormacionInputText" />
+                        
+                        <label value="#{bundle.CreateComisionesLabel_numComServicios}" jsf:for="numeroidInputText"></label> 
+                        <p:inputText type="text" id="numeroidInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesLabelRequiredMessage_numComServicios}"
+                               value="#{comisionesController.selected.numComServicios}"
+                               title="#{bundle.CreateComisionesLabelTitle_numComServicios}" >
+                            <f:ajax execute="@this" render="numeroidMessage"/>
+                        </p:inputText>
+                        <h:message id="numeroidMessage" for="numeroidInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.CreateComisionesLabel_objetivos}" jsf:for="objetivosInputText"></label> 
+                        <p:inputText type="text" id="objetivosInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesRequiredMessage_objetivos}"
+                               value="#{comisionesController.selected.objetivos}"
+                               title="#{bundle.CreateComisionesTitle_objetivos}" >
+                            <f:ajax execute="@this" render="objetivosMessage"/>
+                        </p:inputText>
+                        <h:message id="objetivosMessage" for="objetivosInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.CreateComisionesLabel_observacionesOrden}" jsf:for="objetivosInputText"></label> 
+                        <p:inputText type="text" id="observacionesOrdenInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesRequiredMessage_observacionesOrden}"
+                               value="#{comisionesController.selected.observacionesOrden}"
+                               title="#{bundle.CreateComisionesTitle_observacionesOrden}" >
+                            <f:ajax execute="@this" render="observacionesOrdenMessage"/>
+                        </p:inputText>
+                        <h:message id="observacionesOrdenMessage" for="observacionesOrdenInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.CreateComisionesLabel_suministraVehiculo}" jsf:for="objetivosInputText"></label> 
+                        <p:inputText type="text" id="suministraVehiculoInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesRequiredMessage_suministraVehiculo}"
+                               value="#{comisionesController.selected.suministraVehiculo}"
+                               title="#{bundle.CreateComisionesTitle_suministraVehiculo}" >
+                            <f:ajax execute="@this" render="suministraVehiculoMessage"/>
+                        </p:inputText>
+                        <h:message id="suministraVehiculoMessage" for="suministraVehiculoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.CreateComisionesLabel_transIntermunicipal}" jsf:for="objetivosInputText"></label> 
+                        <p:inputText type="text" id="transIntermunicipalInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesRequiredMessage_transIntermunicipal}"
+                               value="#{comisionesController.selected.transIntermunicipal}"
+                               title="#{bundle.CreateComisionesTitle_transIntermunicipal}" >
+                            <f:ajax execute="@this" render="transIntermunicipalMessage"/>
+                        </p:inputText>
+                        <h:message id="transIntermunicipalMessage" for="transIntermunicipalInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.CreateComisionesLabel_transtransComision}" jsf:for="transComisionInputText"></label> 
+                        <p:inputText type="text" id="transComisionInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesRequiredMessage_transComision}"
+                               value="#{comisionesController.selected.transComision}"
+                               title="#{bundle.CreateComisionesTitle_transComision}" >
+                            <f:ajax execute="@this" render="transComisionMessage"/>
+                        </p:inputText>
+                        <h:message id="transComisionMessage" for="transComisionInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.CreateComisionesLabel_otrosGastos}" jsf:for="transComisionInputText"></label> 
+                        <p:inputText type="text" id="otrosGastosInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesRequiredMessage_otrosGastos}"
+                               value="#{comisionesController.selected.otrosGastos}"
+                               title="#{bundle.CreateComisionesTitle_otrosGastos}" >
+                            <f:ajax execute="@this" render="otrosGastosMessage"/>
+                        </p:inputText>
+                        <h:message id="otrosGastosMessage" for="otrosGastosInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.CreateComisionesLabel_vehiculoSena}" jsf:for="transComisionInputText"></label> 
+                        <p:inputText type="text" id="vehiculoSenaInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesRequiredMessage_vehiculoSena}"
+                               value="#{comisionesController.selected.vehiculoSena}"
+                               title="#{bundle.CreateComisionesTitle_vehiculoSena}" >
+                            <f:ajax execute="@this" render="vehiculoSenaMessage"/>
+                        </p:inputText>
+                        <h:message id="vehiculoSenaMessage" for="vehiculoSenaInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.CreateComisionesLabel_vehiculoComisionado}" jsf:for="vehiculoComisionadoInputText"></label> 
+                        <p:inputText type="text" id="vehiculoComisionadoInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesRequiredMessage_vehiculoComisionado}"
+                               value="#{comisionesController.selected.vehiculoComisionado}"
+                               title="#{bundle.CreateComisionesTitle_vehiculoComisionado}" >
+                            <f:ajax execute="@this" render="vehiculoComisionadoMessage"/>
+                        </p:inputText>
+                        <h:message id="vehiculoComisionadoMessage" for="vehiculoComisionadoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.CreateComisionesLabel_auxilioManutencion}" jsf:for="vehiculoComisionadoInputText"></label> 
+                        <p:inputText type="text" id="auxilioManutencionInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesRequiredMessage_auxilioManutencion}"
+                               value="#{comisionesController.selected.auxilioManutencion}"
+                               title="#{bundle.CreateComisionesTitle_auxilioManutencion}" >
+                            <f:ajax execute="@this" render="auxilioManutencionMessage"/>
+                        </p:inputText>
+                        <h:message id="auxilioManutencionMessage" for="auxilioManutencionInputText" styleClass="error"/>
+                        
+                         <label value="#{bundle.CreateComisionesLabel_numDias}" jsf:for="numDiasInputText"></label> 
+                        <p:inputText type="text" id="numDiasInputText"
+                               required="true"
+                               requiredMessage="#{bundle.CreateComisionesRequiredMessage_numDias}"
+                               value="#{comisionesController.selected.numDias}"
+                               title="#{bundle.CreateComisionesTitle_numDias}" >
+                            <f:ajax execute="@this" render="numDiasMessage"/>
+                        </p:inputText>
+                        <h:message id="numDiasMessage" for="numDiasInputText" styleClass="error"/>
+                        
+                    </p:panelGrid>
+                    
+                    <p:outputPanel id="ComisionesTablePanel">
+                            <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
+                                         rows="10" id="comisionesTable" 
+                                         paginator="true"
+                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="20,40,60">
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.ciudad}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.empresaVereda}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.salidaEstimada}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.llegadaEstimada}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">Opciones</f:facet>
+                                    <p:commandButton icon="ui-icon-trash"  action="#{ciudadComisionesController.destroy}"
+                                                     process="@this" update="comisionesTable">
+                                        <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar los destinos?" icon="ui-icon-alert" />
+                                        <f:setPropertyActionListener value="#{item}" target="#{ciudadComisionesController.selected}"/>
+                                    </p:commandButton>
+                                </p:column>       
+                            </p:dataTable>
+                        </p:outputPanel>
+                    <h:commandButton value="Guardar" action="#{comisionesController.create()}" />
+                </form>  
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>

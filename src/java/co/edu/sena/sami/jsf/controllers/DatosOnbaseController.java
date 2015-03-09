@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -32,7 +33,7 @@ public class DatosOnbaseController implements Serializable {
 
     @EJB
     private co.edu.sena.sami.jpa.sessions.DatosOnbaseFacade ejbFacade;
-    
+
     private List<DatosOnbase> items = null;
     private DatosOnbase selected;
 
@@ -62,11 +63,29 @@ public class DatosOnbaseController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
+
+    public String prepareConsultarRecibidas() {
+        return "ConsultarRecibidas";
+    }
     
+    public String prepareConsultarProducidas() {
+        return "ConsultarProducidas";
+    }
     
+     public String prepareConsultarInforme() {
+        return "ConsultarInforme";
+    }
+
+    public String prepareListaRecibidas() {
+        return "modulo5/Gestion Documental/Pqrsf/ListarRecibidas";
+    }
+
+    public String prepareListaProducidas() {
+        return "modulo5/Gestion Documental/Pqrsf/ListarProducidas";
+    }
 
     public void create() {
-            getFacade().loadDatosOnBase(destination);
+        getFacade().loadDatosOnBase(urlFileName);
 //        persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("DatosOnbaseCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -91,12 +110,12 @@ public class DatosOnbaseController implements Serializable {
         }
         return items;
     }
-    
-    public List<DatosOnbase> getItemsRecibidas(){
+
+    public List<DatosOnbase> getItemsRecibidas() {
         return getFacade().findByRecibidas();
     }
-    
-    public List<DatosOnbase> getItemsProducidas(){
+
+    public List<DatosOnbase> getItemsProducidas() {
         return getFacade().findByProducidas();
     }
 
@@ -180,10 +199,27 @@ public class DatosOnbaseController implements Serializable {
         }
 
     }
+
+    public List<DatosOnbase> consulta() {
+        List<DatosOnbase> dob = new ArrayList<>();
+        for (DatosOnbase d1 : getFacade().findByRecibidas()) {
+            boolean x = false;
+            for (DatosOnbase d2 : getFacade().findByProducidas()) {
+                if (d1.getNumRadicadoRecibida().substring(2, 13).equals(d2.getNumRadicadoRecibida().substring(2, 13))) {
+                    x = true;
+                }
+            }
+            if (!x) {
+                dob.add(d1);
+            }
+        }
+        return dob;
+    }
+
     //boton para importar los datos//
     private UploadedFile file;
-    private String destination = "C:\\Temp\\Archivo";
-//
+    private String destination = "C:/Temp/";
+    private String urlFileName = "";
 
     public UploadedFile getFile() {
         return file;
@@ -216,7 +252,8 @@ public class DatosOnbaseController implements Serializable {
         try {
 
             // write the inputStream to a FileOutputStream
-            OutputStream out = new FileOutputStream(new File(destination + fileName));
+            urlFileName = destination + fileName;
+            OutputStream out = new FileOutputStream(new File(urlFileName));
 
             int read = 0;
             byte[] bytes = new byte[1024];
@@ -247,4 +284,3 @@ public class DatosOnbaseController implements Serializable {
 //        return file;
 //    }
 }
-

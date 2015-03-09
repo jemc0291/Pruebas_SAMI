@@ -131,7 +131,7 @@ public class DocumentosController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "listaNormas";
+        return "listaDocumentos";
     }
     
       public void destroy() {

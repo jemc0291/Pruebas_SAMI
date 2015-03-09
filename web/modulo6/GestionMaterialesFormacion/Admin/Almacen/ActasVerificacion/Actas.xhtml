@@ -6,19 +6,36 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Sami</ui:define>
+        
+        <ui:define name="title">Actas de Verificacion</ui:define>
         <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
-            <h:form>
-                <p:commandButton process="@this" action="#{actaVerificacionController.prepareCreate}" value="Agregar Acta"/>
-                <!--<h:commandButton action="# {actaVerificacionController.updateActa()}" value="Modificar Acta"/>-->
-                <p:outputPanel id="ActaVerificacionPanel">
-                    <p:dataTable value="#{actaVerificacionController.items}" var="item"
-                                 rows="10" id="ActaVerificacionTable" 
+            <h:form id="ActaListForm">
+                
+                <p:commandButton id="createButton" icon="ui-icon-plus" value="Crear Acta de Verificación"  action="#{actaVerificacionController.prepareCreate}"/>
+
+                <p:panel header="#{bundle.ListActaVerificacionTitle}">
+                    
+                    <p:dataTable id="datalist"  value="#{actaVerificacionController.items}" var="item"
+                                 selectionMode="single" selection="#{actaVerificacionController.selected}"
                                  paginator="true"
-                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="20,40,60">
+                                 rowKey="#{item.idActaVerificacion}"
+                                 rows="10"
+                                 rowsPerPageTemplate="20,40,60"
+                                 style="width:130%"
+                                 scrollable="true" scrollWidth="1200">
+                        <p:ajax event="rowSelect"   update="editButton viewButton"/>
+                        <p:ajax event="rowUnselect" update="editButton viewButton"/>
+                        
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Opciones"/>
+                                
+                                <p:commandButton id="editButton" icon="ui-icon-pencil" value="Modificar Acta Seleccionada" action="#{actaVerificacionController.prepareEdit}"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver Acta de Verificación"  action="#{actaVerificacionController.prepareView}"/>
+                            </f:facet>
+                        </p:column>
                         <p:column filterBy="#{item.idActaVerificacion}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="IdActaVerificacion"/>
@@ -62,7 +79,7 @@
                                 <h:outputText value="Hora"/>
                             </f:facet>
                             <h:outputText value="#{item.hora}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="hh:mm:ss a" />
                             </h:outputText>
                         </p:column>
                         <p:column>
@@ -89,21 +106,8 @@
                             </f:facet>
                             <h:outputText value="#{item.idUsuario}"/>
                         </p:column>
-                        <p:column>
-                            <p:commandButton icon="ui-icon-pencil" action="#{actaVerificacionController.prepareEdit()}">
-                                <f:setPropertyActionListener value="#{item}" target="#{actaVerificacionController.selected}"/>
-                            </p:commandButton>
-
-
-<!--                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="# {bundle.View}" update=":ActaVerificacionViewForm" oncomplete="PF('ActaVerificacionViewDialog').show()" disabled="#{empty actaVerificacionController.selected}"/>-->
-                            <p:commandButton icon="ui-icon-trash" action="#{actaVerificacionController.destroy()}"
-                                             process="@this" update="ActaVerificacionTable">
-                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta acta de verificacion?" icon="ui-icon-alert" />
-                                <f:setPropertyActionListener value="#{item}" target="#{actaVerificacionController.selected}"/>
-                            </p:commandButton>
-                        </p:column>
                     </p:dataTable>
-                </p:outputPanel>
+                </p:panel>
             </h:form>
         </ui:define>
     </ui:composition>

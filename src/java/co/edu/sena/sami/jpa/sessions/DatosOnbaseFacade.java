@@ -32,10 +32,10 @@ public class DatosOnbaseFacade extends AbstractFacade<DatosOnbase> {
     }
 
     public boolean loadDatosOnBase(String fileName) {
-        return  getEntityManager()
-                .createNativeQuery("LOAD DATA INFILE :fileName INTO TABLE datos_onbase "
-                        + "FIELDS TERMINATED BY ','  ENCLOSED BY '\"' LINES TERMINATED BY '\\r\\n'  ")
-                .setParameter("fileName", fileName).executeUpdate()>0;     
+        String query = "LOAD DATA INFILE '"+ fileName +"' INTO TABLE datos_onbase "
+                        + "FIELDS TERMINATED BY ','  ENCLOSED BY '\"' LINES TERMINATED BY '\\r\\n'";
+        Query q = getEntityManager().createNativeQuery(query);
+        return q.executeUpdate()>0;     
     }
 
     

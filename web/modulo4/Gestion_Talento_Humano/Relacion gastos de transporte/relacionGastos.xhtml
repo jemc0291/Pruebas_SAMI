@@ -13,36 +13,28 @@
 
 
                 <h:form>
-                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h1><h:outputText value="Relación gastos de transporte"/></h1>
                     <h:panelGrid columns="2">
-                        <h:outputLabel value="IdRelacionesGastosDeTransporte:" for="idRelacionesGastosDeTransporte" />
-                        <h:inputText id="idRelacionesGastosDeTransporte" value="#{relacionesGastosDeTransporteController.selected.idRelacionesGastosDeTransporte}" title="IdRelacionesGastosDeTransporte" required="true" requiredMessage="The IdRelacionesGastosDeTransporte field is required."/>
-                        <h:outputLabel value="FechaDeCreacion:" for="fechaDeCreacion" />
-                        <h:inputText id="fechaDeCreacion" value="#{relacionesGastosDeTransporteController.selected.fechaDeCreacion}" title="FechaDeCreacion" required="true" requiredMessage="The FechaDeCreacion field is required.">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:inputText>
-                        <h:outputLabel value="ObjetivoRelacionGastosDeTransporte:" for="objetivoRelacionGastosDeTransporte" />
-                        <h:inputText id="objetivoRelacionGastosDeTransporte" value="#{relacionesGastosDeTransporteController.selected.objetivoRelacionGastosDeTransporte}" title="ObjetivoRelacionGastosDeTransporte" required="true" requiredMessage="The ObjetivoRelacionGastosDeTransporte field is required."/>
-                        <h:outputLabel value="TotalGastosDeTransporte:" for="totalGastosDeTransporte" />
-                        <h:inputText id="totalGastosDeTransporte" value="#{relacionesGastosDeTransporteController.selected.totalGastosDeTransporte}" title="TotalGastosDeTransporte" required="true" requiredMessage="The TotalGastosDeTransporte field is required."/>
-                        <h:outputLabel value="Dias:" for="dias" />
-                        <h:inputText id="dias" value="#{relacionesGastosDeTransporteController.selected.dias}" title="Dias" required="true" requiredMessage="The Dias field is required."/>
-                        <h:outputLabel value="FechaSalida:" for="fechaSalida" />
-                        <h:inputText id="fechaSalida" value="#{relacionesGastosDeTransporteController.selected.fechaSalida}" title="FechaSalida" required="true" requiredMessage="The FechaSalida field is required.">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:inputText>
-                        <h:outputLabel value="NumeroOrdendeviaje:" for="numeroOrdendeviaje" />
-                        <h:selectOneMenu id="numeroOrdendeviaje" value="#{relacionesGastosDeTransporteController.selected.numeroOrdendeviaje}" title="NumeroOrdendeviaje" required="true" requiredMessage="The NumeroOrdendeviaje field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{fixme}"/>
-                        </h:selectOneMenu>
                         <h:outputLabel value="IdUsuario:" for="idUsuario" />
-                        <h:selectOneMenu id="idUsuario" value="#{relacionesGastosDeTransporteController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
+                        <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
                             <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{fixme}"/>
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
                         </h:selectOneMenu>
+                        
+                        <h:outputLabel value="ObjetivoComision:" for="objetivoComision" />
+                        <h:inputText id="objetivoComision" value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision" required="true" requiredMessage="The ObjetivoComision field is required."/>
+                        
+                        <h:outputLabel value="NumComServicios:" for="numComServicios" />
+                        <h:inputText id="numComServicios" value="#{comisionesController.selected.numComServicios}" title="NumComServicios" />
+                        
+                        <h:outputLabel value="MesaPlanificar:" for="mesaPlanificar" />
+                        <h:inputText id="mesaPlanificar" value="#{comisionesController.selected.mesaPlanificar}" title="MesaPlanificar" />
+                       
+                        
                     </h:panelGrid>
                 </h:form>
+
+
             </f:view>
 
         </ui:define>

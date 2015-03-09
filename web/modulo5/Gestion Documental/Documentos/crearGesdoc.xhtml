@@ -26,7 +26,8 @@
                                    itemValue="#{Doc}"/>        
                 </h:selectOneMenu>
 
-                <p:fileUpload value="#{documentosController.archivo}" mode="simple">
+                <p:fileUpload value="#{documentosController.archivo}" mode="simple"
+                              allowTypes="/(\.|\/)(doc|docx|xls|xlsx|pdf)$/">
                    
                 </p:fileUpload>
 
