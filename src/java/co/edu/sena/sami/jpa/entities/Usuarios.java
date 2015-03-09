@@ -270,6 +270,10 @@ public class Usuarios implements Serializable {
     public String getRazonSocial() {
         return razonSocial;
     }
+    
+    public String getRazonSocial2() {
+        return razonSocial + " " + primerApellido + " " + segundoApellido;
+    }
 
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
