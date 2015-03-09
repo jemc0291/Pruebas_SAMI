@@ -1,12 +1,16 @@
 package co.edu.sena.sami.jsf.controllers;
 
+import co.edu.sena.sami.jpa.entities.Cargo;
 import co.edu.sena.sami.jpa.entities.CentroFormacion;
 import co.edu.sena.sami.jpa.entities.Ciudad;
 import co.edu.sena.sami.jpa.entities.Rol;
+import co.edu.sena.sami.jpa.entities.TipoContrato;
 import co.edu.sena.sami.jpa.entities.Usuarios;
+import co.edu.sena.sami.jpa.sessions.CargoFacade;
 import co.edu.sena.sami.jpa.sessions.CentroFormacionFacade;
 import co.edu.sena.sami.jpa.sessions.CiudadFacade;
 import co.edu.sena.sami.jpa.sessions.RolFacade;
+import co.edu.sena.sami.jpa.sessions.TipoContratoFacade;
 import co.edu.sena.sami.jpa.sessions.UsuariosFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
@@ -37,6 +41,7 @@ public class UsuariosController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.UsuariosFacade ejbFacade;
     private List<Usuarios> items = null;
     private List<Rol> listaRoles = null;
+    private List<Cargo> listaCargo = null;
     private Usuarios selected;
     @EJB
     private RolFacade rolFacade;
@@ -44,6 +49,11 @@ public class UsuariosController implements Serializable {
     private CiudadFacade ciudadFacade;
     @EJB
     private CentroFormacionFacade centroFormacionFacade;
+    @EJB
+    private CargoFacade cargoFacade;
+    @EJB
+    private TipoContratoFacade tipoContratoFacade;
+
 
     public UsuariosController() {
     }
@@ -56,6 +66,14 @@ public class UsuariosController implements Serializable {
         return ciudadFacade;
     }
 
+    public CargoFacade getCargoFacade() {
+        return cargoFacade;
+    }
+
+    public TipoContratoFacade getTipoContratoFacade() {
+        return tipoContratoFacade;
+    }
+
     public CentroFormacionFacade getCentroFormacionFacade() {
         return centroFormacionFacade;
     }
@@ -66,6 +84,14 @@ public class UsuariosController implements Serializable {
 
     public List<Rol> getListaRoles() {
         return listaRoles;
+    }
+
+    public List<Cargo> getListaCargo() {
+        return listaCargo;
+    }
+
+    public void setListaCargo(List<Cargo> listaCargo) {
+        this.listaCargo = listaCargo;
     }
 
     public void setListaRoles(List<Rol> listaRoles) {
@@ -86,6 +112,7 @@ public class UsuariosController implements Serializable {
         return ejbFacade;
     }
 
+ 
     public String prepareCreate() {
         selected = new Usuarios();
         listaRoles = new ArrayList<>();
@@ -128,6 +155,7 @@ public class UsuariosController implements Serializable {
             selected.setFechaDeCreacion(new Date());
             selected.setEstado(true);
             selected.setRolList(listaRoles);
+            selected.setCargoList(listaCargo);
             getFacade().create(selected);
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
@@ -243,6 +271,11 @@ public class UsuariosController implements Serializable {
     public List<Rol> getListRolSelectOne() {
         return getRolFacade().findAll();
     }
+
+    public List<Cargo> getListCargoSelectOne() {
+        return getCargoFacade().findAll();
+    }
+
     public List<Usuarios> getListRazonSocialAutoComplete(String query) {//se agrego metodo de autocompletar
         try {
             return getFacade().findByRazonSocialCompletar(query);

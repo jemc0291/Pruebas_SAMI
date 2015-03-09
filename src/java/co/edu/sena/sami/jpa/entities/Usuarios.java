@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Snyck
+ * @author Adsim
  */
 @Entity
 @Table(name = "usuarios")
@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findByIdUsuario", query = "SELECT u FROM Usuarios u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuarios.findByNumeroDoc", query = "SELECT u FROM Usuarios u WHERE u.numeroDoc = :numeroDoc"),
     @NamedQuery(name = "Usuarios.findByFechaExpedicionDoc", query = "SELECT u FROM Usuarios u WHERE u.fechaExpedicionDoc = :fechaExpedicionDoc"),
-    @NamedQuery(name = "Usuarios.findByRazonSocial", query = "SELECT u FROM Usuarios u WHERE u.razonSocial LIKE :razonSocial"),
+    @NamedQuery(name = "Usuarios.findByRazonSocial", query = "SELECT u FROM Usuarios u WHERE u.razonSocial = :razonSocial"),
     @NamedQuery(name = "Usuarios.findBySegundoNombre", query = "SELECT u FROM Usuarios u WHERE u.segundoNombre = :segundoNombre"),
     @NamedQuery(name = "Usuarios.findByPrimerApellido", query = "SELECT u FROM Usuarios u WHERE u.primerApellido = :primerApellido"),
     @NamedQuery(name = "Usuarios.findBySegundoApellido", query = "SELECT u FROM Usuarios u WHERE u.segundoApellido = :segundoApellido"),
@@ -146,6 +146,8 @@ public class Usuarios implements Serializable {
         @JoinColumn(name = "id_formacion", referencedColumnName = "id_formacion")})
     @ManyToMany
     private List<FormacionAcademica> formacionAcademicaList;
+    @ManyToMany(mappedBy = "usuariosList")
+    private List<Cargo> cargoList;
     @JoinTable(name = "usuarios_ficha_caracterizacion", joinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
         @JoinColumn(name = "id_ficha_caracterizacion", referencedColumnName = "id_ficha_caracterizacion")})
@@ -173,46 +175,49 @@ public class Usuarios implements Serializable {
     private List<AvanceUsuarios> avanceUsuariosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<SolicitudServicios> solicitudServiciosList;
-    @JoinColumn(name = "id_tipo_doc", referencedColumnName = "id_tipo_doc")
-    @ManyToOne(optional = false)
-    private TipoDocumentos idTipoDoc;
-    @JoinColumn(name = "id_sexo", referencedColumnName = "id_sexo")
+    @JoinColumn(name = "id_tipo_contrato", referencedColumnName = "id_tipo_contrato")
     @ManyToOne
-    private Sexo idSexo;
-    @JoinColumn(name = "id_fondo_pensiones", referencedColumnName = "id_fondo_pensiones")
+    private TipoContrato idTipoContrato;
+    @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
     @ManyToOne
-    private FondoDePensiones idFondoPensiones;
-    @JoinColumn(name = "id_estrato_social", referencedColumnName = "id_estrato_social")
-    @ManyToOne
-    private EstratoSocial idEstratoSocial;
-    @JoinColumn(name = "id_estado_civil", referencedColumnName = "id_estado_civil")
-    @ManyToOne
-    private EstadoCivil idEstadoCivil;
-    @JoinColumn(name = "id_eps", referencedColumnName = "id_eps")
-    @ManyToOne
-    private Eps idEps;
-    @JoinColumns({
-        @JoinColumn(name = "id_ciudad_exp_doc", referencedColumnName = "id_ciudad"),
-        @JoinColumn(name = "id_dpto_exp_doc", referencedColumnName = "id_dpto")})
-    @ManyToOne
-    private Ciudad ciudad;
+    private CentroFormacion idCentroFormacion;
     @JoinColumns({
         @JoinColumn(name = "id_ciudad_residencia", referencedColumnName = "id_ciudad"),
         @JoinColumn(name = "id_dpto_residencia", referencedColumnName = "id_dpto")})
     @ManyToOne(optional = false)
+    private Ciudad ciudad;
+    @JoinColumns({
+        @JoinColumn(name = "id_ciudad_exp_doc", referencedColumnName = "id_ciudad"),
+        @JoinColumn(name = "id_dpto_exp_doc", referencedColumnName = "id_dpto")})
+    @ManyToOne
     private Ciudad ciudad1;
-    @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
-    @ManyToOne
-    private CentroFormacion idCentroFormacion;
-    @JoinColumn(name = "id_ccf", referencedColumnName = "id_ccf")
-    @ManyToOne
-    private Ccf idCcf;
-    @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
-    @ManyToOne
-    private Bancos idBanco;
     @JoinColumn(name = "id_arl", referencedColumnName = "id_arl")
     @ManyToOne
     private Arl idArl;
+    @JoinColumn(name = "id_eps", referencedColumnName = "id_eps")
+    @ManyToOne
+    private Eps idEps;
+    @JoinColumn(name = "id_fondo_pensiones", referencedColumnName = "id_fondo_pensiones")
+    @ManyToOne
+    private FondoDePensiones idFondoPensiones;
+    @JoinColumn(name = "id_ccf", referencedColumnName = "id_ccf")
+    @ManyToOne
+    private Ccf idCcf;
+    @JoinColumn(name = "id_sexo", referencedColumnName = "id_sexo")
+    @ManyToOne
+    private Sexo idSexo;
+    @JoinColumn(name = "id_estado_civil", referencedColumnName = "id_estado_civil")
+    @ManyToOne
+    private EstadoCivil idEstadoCivil;
+    @JoinColumn(name = "id_estrato_social", referencedColumnName = "id_estrato_social")
+    @ManyToOne
+    private EstratoSocial idEstratoSocial;
+    @JoinColumn(name = "id_tipo_doc", referencedColumnName = "id_tipo_doc")
+    @ManyToOne(optional = false)
+    private TipoDocumentos idTipoDoc;
+    @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
+    @ManyToOne
+    private Bancos idBanco;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<UsuariosSolicitudMaterialesAlmacen> usuariosSolicitudMaterialesAlmacenList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
@@ -223,7 +228,7 @@ public class Usuarios implements Serializable {
     private List<UsuariosContratos> usuariosContratosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Facturas> facturasList;
-    
+
     public Usuarios() {
     }
 
@@ -413,6 +418,15 @@ public class Usuarios implements Serializable {
     }
 
     @XmlTransient
+    public List<Cargo> getCargoList() {
+        return cargoList;
+    }
+
+    public void setCargoList(List<Cargo> cargoList) {
+        this.cargoList = cargoList;
+    }
+
+    @XmlTransient
     public List<FichaCaracterizacion> getFichaCaracterizacionList() {
         return fichaCaracterizacionList;
     }
@@ -493,52 +507,20 @@ public class Usuarios implements Serializable {
         this.solicitudServiciosList = solicitudServiciosList;
     }
 
-    public TipoDocumentos getIdTipoDoc() {
-        return idTipoDoc;
+    public TipoContrato getIdTipoContrato() {
+        return idTipoContrato;
     }
 
-    public void setIdTipoDoc(TipoDocumentos idTipoDoc) {
-        this.idTipoDoc = idTipoDoc;
+    public void setIdTipoContrato(TipoContrato idTipoContrato) {
+        this.idTipoContrato = idTipoContrato;
     }
 
-    public Sexo getIdSexo() {
-        return idSexo;
+    public CentroFormacion getIdCentroFormacion() {
+        return idCentroFormacion;
     }
 
-    public void setIdSexo(Sexo idSexo) {
-        this.idSexo = idSexo;
-    }
-
-    public FondoDePensiones getIdFondoPensiones() {
-        return idFondoPensiones;
-    }
-
-    public void setIdFondoPensiones(FondoDePensiones idFondoPensiones) {
-        this.idFondoPensiones = idFondoPensiones;
-    }
-
-    public EstratoSocial getIdEstratoSocial() {
-        return idEstratoSocial;
-    }
-
-    public void setIdEstratoSocial(EstratoSocial idEstratoSocial) {
-        this.idEstratoSocial = idEstratoSocial;
-    }
-
-    public EstadoCivil getIdEstadoCivil() {
-        return idEstadoCivil;
-    }
-
-    public void setIdEstadoCivil(EstadoCivil idEstadoCivil) {
-        this.idEstadoCivil = idEstadoCivil;
-    }
-
-    public Eps getIdEps() {
-        return idEps;
-    }
-
-    public void setIdEps(Eps idEps) {
-        this.idEps = idEps;
+    public void setIdCentroFormacion(CentroFormacion idCentroFormacion) {
+        this.idCentroFormacion = idCentroFormacion;
     }
 
     public Ciudad getCiudad() {
@@ -557,12 +539,28 @@ public class Usuarios implements Serializable {
         this.ciudad1 = ciudad1;
     }
 
-    public CentroFormacion getIdCentroFormacion() {
-        return idCentroFormacion;
+    public Arl getIdArl() {
+        return idArl;
     }
 
-    public void setIdCentroFormacion(CentroFormacion idCentroFormacion) {
-        this.idCentroFormacion = idCentroFormacion;
+    public void setIdArl(Arl idArl) {
+        this.idArl = idArl;
+    }
+
+    public Eps getIdEps() {
+        return idEps;
+    }
+
+    public void setIdEps(Eps idEps) {
+        this.idEps = idEps;
+    }
+
+    public FondoDePensiones getIdFondoPensiones() {
+        return idFondoPensiones;
+    }
+
+    public void setIdFondoPensiones(FondoDePensiones idFondoPensiones) {
+        this.idFondoPensiones = idFondoPensiones;
     }
 
     public Ccf getIdCcf() {
@@ -573,20 +571,44 @@ public class Usuarios implements Serializable {
         this.idCcf = idCcf;
     }
 
+    public Sexo getIdSexo() {
+        return idSexo;
+    }
+
+    public void setIdSexo(Sexo idSexo) {
+        this.idSexo = idSexo;
+    }
+
+    public EstadoCivil getIdEstadoCivil() {
+        return idEstadoCivil;
+    }
+
+    public void setIdEstadoCivil(EstadoCivil idEstadoCivil) {
+        this.idEstadoCivil = idEstadoCivil;
+    }
+
+    public EstratoSocial getIdEstratoSocial() {
+        return idEstratoSocial;
+    }
+
+    public void setIdEstratoSocial(EstratoSocial idEstratoSocial) {
+        this.idEstratoSocial = idEstratoSocial;
+    }
+
+    public TipoDocumentos getIdTipoDoc() {
+        return idTipoDoc;
+    }
+
+    public void setIdTipoDoc(TipoDocumentos idTipoDoc) {
+        this.idTipoDoc = idTipoDoc;
+    }
+
     public Bancos getIdBanco() {
         return idBanco;
     }
 
     public void setIdBanco(Bancos idBanco) {
         this.idBanco = idBanco;
-    }
-
-    public Arl getIdArl() {
-        return idArl;
-    }
-
-    public void setIdArl(Arl idArl) {
-        this.idArl = idArl;
     }
 
     @XmlTransient

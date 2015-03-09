@@ -18,9 +18,9 @@
                     <p:panelGrid columns="3" layout="grid">
                         <label value="#{bundle.CreateUsuariosLabel_razonSocial}" jsf:for="primerNombreInputText"></label> 
                         <p:inputText type="text" id="primerNombreInputText" required="true" 
-                               requiredMessage="#{bundle.CreateUsuariosRequiredMessage_razonSocial}"
-                               value="#{usuariosController.selected.razonSocial}" maxlength="30"
-                               title="#{bundle.CreateUsuariosTitle_razonSocial}">
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_razonSocial}"
+                                     value="#{usuariosController.selected.razonSocial}" maxlength="30"
+                                     title="#{bundle.CreateUsuariosTitle_razonSocial}">
                             <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
                             <f:ajax execute="@this" render="primerNombreMessage"/>
                         </p:inputText>
@@ -28,8 +28,8 @@
 
                         <label value="#{bundle.CreateUsuariosLabel_segundoNombre}" jsf:for="segundoNombreInputText"></label> 
                         <p:inputText type="text" id="segundoNombreInputText"
-                               value="#{usuariosController.selected.segundoNombre}" maxlength="30"
-                               title="#{bundle.CreateUsuariosTitle_segundoNombre}">
+                                     value="#{usuariosController.selected.segundoNombre}" maxlength="30"
+                                     title="#{bundle.CreateUsuariosTitle_segundoNombre}">
                             <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
                             <f:ajax execute="@this" render="segundoNombreMessage"/>
                         </p:inputText>
@@ -38,10 +38,10 @@
 
                         <label value="#{bundle.CreateUsuariosLabel_primerApellido}" jsf:for="primerApellidoInputText"></label> 
                         <p:inputText type="text" id="primerApellidoInputText" 
-                               required="true" 
-                               requiredMessage="#{bundle.CreateUsuariosRequiredMessage_primerApellido}"
-                               value="#{usuariosController.selected.primerApellido}" maxlength="30"
-                               title="#{bundle.CreateUsuariosTitle_primerApellido}">
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_primerApellido}"
+                                     value="#{usuariosController.selected.primerApellido}" maxlength="30"
+                                     title="#{bundle.CreateUsuariosTitle_primerApellido}">
                             <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
                             <f:ajax execute="@this" render="primerApellidoMessage"/>
                         </p:inputText>
@@ -49,8 +49,8 @@
 
                         <label value="#{bundle.CreateUsuariosLabel_segundoApellido}" jsf:for="segundoApellidoInputText"></label> 
                         <p:inputText type="text" id="segundoApellidoInputText" 
-                               value="#{usuariosController.selected.segundoApellido}" maxlength="30"
-                               title="#{bundle.CreateUsuariosTitle_segundoApellido}">
+                                     value="#{usuariosController.selected.segundoApellido}" maxlength="30"
+                                     title="#{bundle.CreateUsuariosTitle_segundoApellido}">
                             <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
                             <f:ajax execute="@this" render="segundoApellidoMessage"/>
                         </p:inputText>
@@ -69,21 +69,21 @@
 
                         <label value="#{bundle.CreateUsuariosLabel_numeroDoc}" jsf:for="numeroidInputText"></label> 
                         <p:inputText type="text" id="numeroidInputText"
-                               required="true"
-                               requiredMessage="#{bundle.CreateUsuariosRequiredMessage_numeroDoc}"
-                               value="#{usuariosController.selected.numeroDoc}"
-                               title="#{bundle.CreateUsuariosTitle_numeroDoc}"
-                               pt:pattern="[0-999]*">
+                                     required="true"
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_numeroDoc}"
+                                     value="#{usuariosController.selected.numeroDoc}"
+                                     title="#{bundle.CreateUsuariosTitle_numeroDoc}"
+                                     pt:pattern="[0-999]*">
                             <f:ajax execute="@this" render="numeroidMessage"/>
                         </p:inputText>
                         <h:message id="numeroidMessage" for="numeroidInputText" styleClass="error"/>
 
                         <label value="#{bundle.CreateUsuariosLabel_fechaExpedicionDoc}" jsf:for="expedicionInputText"></label>
                         <p:calendar id="expedicionInputText" required="true" yearRange="c-100:c+100"                            
-                               value="#{usuariosController.selected.fechaExpedicionDoc}"
-                               title="#{bundle.CreateUsuariosTitle_fechaExpedicionDoc}"
-                               locale="de" navigator="true" pattern="yyyy-MM-dd"
-                               showOn="button">
+                                    value="#{usuariosController.selected.fechaExpedicionDoc}"
+                                    title="#{bundle.CreateUsuariosTitle_fechaExpedicionDoc}"
+                                    locale="de" navigator="true" pattern="yyyy-MM-dd"
+                                    showOn="button">
                             <f:ajax execute="@this" render="expedicionMessage"/>
                         </p:calendar>
                         <h:message id="expedicionMessage" for="expedicionInputText" styleClass="error"/>
@@ -99,11 +99,11 @@
 
                         <label value="#{bundle.CreateUsuariosLabel_fechaNac}" jsf:for="fechaInputText"></label>
                         <p:calendar id="fechaInputText" required="true" yearRange="c-100:c+100"
-                               requiredMessage="Por favor ingrese la fecha de Nacimiento"
-                               value="#{usuariosController.selected.fechaNac}"
-                               title="#{bundle.CreateUsuariosTitle_fechaNac}"
-                               locale="de" navigator="true" pattern="yyyy-MM-dd"
-                               showOn="button">
+                                    requiredMessage="Por favor ingrese la fecha de Nacimiento"
+                                    value="#{usuariosController.selected.fechaNac}"
+                                    title="#{bundle.CreateUsuariosTitle_fechaNac}"
+                                    locale="de" navigator="true" pattern="yyyy-MM-dd"
+                                    showOn="button">
                             <f:ajax execute="@this" render="fechaMessage"/>
                         </p:calendar>
                         <h:message id="fechaMessage" for="fechaInputText" styleClass="error"/>
@@ -128,10 +128,10 @@
 
                         <label value="#{bundle.CreateUsuariosLabel_password}" jsf:for="passwordInputText"></label> 
                         <p:inputText type="password" id="passwordInputText"
-                               required="true" 
-                               requiredMessage="#{bundle.CreateUsuariosRequiredMessage_password}"
-                               value="#{usuariosController.selected.password}"
-                               title="#{bundle.CreateUsuariosTitle_password}">
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_password}"
+                                     value="#{usuariosController.selected.password}"
+                                     title="#{bundle.CreateUsuariosTitle_password}">
                             <f:validateRegex pattern="[A-Za-z 0-9áéíóúÁÉÍÓÚÑñ]*"/>
                             <f:ajax execute="@this" render="passwordMessage"/>
                         </p:inputText>
@@ -139,10 +139,10 @@
 
                         <label value="#{bundle.CreateUsuariosLabel_direccionUsu}" jsf:for="direccionInputText"></label> 
                         <p:inputText type="text" id="direccionInputText"
-                               required="true" 
-                               requiredMessage="#{bundle.CreateUsuariosRequiredMessage_direccionUsu}"
-                               value="#{usuariosController.selected.direccionUsu}"
-                               title="#{bundle.CreateUsuariosTitle_direccionUsu}">
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_direccionUsu}"
+                                     value="#{usuariosController.selected.direccionUsu}"
+                                     title="#{bundle.CreateUsuariosTitle_direccionUsu}">
                             <f:validateRegex pattern="[A-Za-z 0-9áéíóúÁÉÍÓÚÑñ]*"/>
                             <f:ajax execute="@this" render="direccionMessage"/>
                         </p:inputText>
@@ -150,28 +150,28 @@
 
                         <label value="#{bundle.CreateUsuariosLabel_telefonoPrincipalUsu}" jsf:for="movilInputText"></label>
                         <p:inputText type="tel" id="movilInputText" 
-                               required="true" 
-                               requiredMessage="#{bundle.CreateUsuariosRequiredMessage_telefonoPrincipalUsu}"
-                               value="#{usuariosController.selected.telefonoPrincipalUsu}"
-                               title="#{bundle.CreateUsuariosTitle_telefonoPrincipalUsu}">
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_telefonoPrincipalUsu}"
+                                     value="#{usuariosController.selected.telefonoPrincipalUsu}"
+                                     title="#{bundle.CreateUsuariosTitle_telefonoPrincipalUsu}">
                             <f:ajax execute="@this" render="movilMessage"/>
                         </p:inputText>
                         <h:message id="movilMessage" for="movilInputText" styleClass="error"/>
 
                         <label value="#{bundle.CreateUsuariosLabel_telefonoAlternoUsu}" jsf:for="TelefonoInputText"></label>
                         <p:inputText type="tel" id="TelefonoInputText"
-                               value="#{usuariosController.selected.telefonoAlternoUsu}"
-                               title="#{bundle.CreateUsuariosTitle_telefonoAlternoUsu}">
+                                     value="#{usuariosController.selected.telefonoAlternoUsu}"
+                                     title="#{bundle.CreateUsuariosTitle_telefonoAlternoUsu}">
                             <f:ajax execute="@this" render="TelefonoMessage"/>
                         </p:inputText>
                         <h:message id="TelefonoMessage" for="TelefonoInputText" styleClass="error"/>
 
                         <label value="#{bundle.CreateUsuariosLabel_email}" jsf:for="emailInputText"></label> 
                         <p:inputText type="email" id="emailInputText" 
-                               required="true" 
-                               requiredMessage="#{bundle.CreateUsuariosRequiredMessage_email}"
-                               value="#{usuariosController.selected.email}"
-                               title="#{bundle.CreateUsuariosTitle_email}">
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_email}"
+                                     value="#{usuariosController.selected.email}"
+                                     title="#{bundle.CreateUsuariosTitle_email}">
                             <f:ajax execute="@this" render= "emailMessage"/>
                         </p:inputText>
                         <h:message id="emailMessage" for="emailInputText" styleClass="error"/>
@@ -184,10 +184,11 @@
                                         forceSelection="true" maxResults="10"/> 
                         <p:message id="centrodeformacionMessage" for="centroFormacion"/>
 
+
                         <label value="#{bundle.CreateUsuariosLabel_gpRh}" jsf:for="FactorInputText"></label>
                         <p:inputText type="text" id="FactorInputText" 
-                               value="#{usuariosController.selected.gpRh}"
-                               title="#{bundle.CreateUsuariosTitle_gpRh}">
+                                     value="#{usuariosController.selected.gpRh}"
+                                     title="#{bundle.CreateUsuariosTitle_gpRh}">
                             <f:ajax execute="@this" render="FactorMessage"/>
                         </p:inputText>
                         <h:message id="FactorMessage" for="FactorInputText" styleClass="error"/>
@@ -231,6 +232,7 @@
                         </h:selectOneMenu>
                         <h:message id="IDArlMessage" for="IDArlInputText" styleClass="error"/>
 
+                        
                         <label value="#{bundle.CreateUsuariosLabel_idCcf}" jsf:for="IdCcfInputText"></label>
                         <h:selectOneMenu class="Form-datos" id="IdCcfInputText" 
                                          value="#{usuariosController.selected.idCcf}">
@@ -241,17 +243,32 @@
                         <h:message id="IdCcfMessage" for="IdCcfInputText" styleClass="error"/>
 
                         <label jsf:for="rol"> Rol </label>
-                        <h:selectManyCheckbox id="rol" value="#{usuariosController.listaRoles}" layout="grid" 
+                        <p:selectManyCheckbox id="rol" value="#{usuariosController.listaRoles}" layout="grid" 
                                               converter="rolConverter"
-                                              requiredMessage="Requerido">  
+                                              requiredMessage="Requerido"
+                                              columns="3">  
                             <f:selectItems value="#{usuariosController.listRolSelectOne}"/>
                             <f:ajax execute="@this" render="rolMessage"/>
-                        </h:selectManyCheckbox> 
+                        </p:selectManyCheckbox> 
                         <p:message id="rolMessage" for="rol"/>
+                        
+                        <label  jsf:for="Tipo de Contrato"> Tipo de Contrato </label>
+                        <h:selectOneMenu class="Form-datos" id="ContratoInputText" 
+                                         value="#{usuariosController.selected.idTipoContrato}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems value="#{tipoContratoControlller.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="ContratoMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="ContratoMessage" for="ContratoInputText" styleClass="error"/>
+
+                        <h:outputText value="Cargo:" />
+                        <p:selectManyCheckbox id="grid" value="#{usuariosController.listaCargo}" layout="grid" columns="3">
+                            <f:selectItems value="#{cargoController.itemsAvailableSelectOne}" var="item" itemLabel="#{item}" itemValue="#{item}" />
+                        </p:selectManyCheckbox>
 
                     </p:panelGrid>
-                   <h:commandButton  action="#{usuariosController.create}" value="#{bundle.Save}"/>
-                   
+                    <h:commandButton  action="#{usuariosController.create}" value="#{bundle.Save}"/>
+
                 </form>
             </section>
         </ui:define>
