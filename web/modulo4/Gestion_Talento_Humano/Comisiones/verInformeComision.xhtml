@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <fieldset><img src="#{request.contextPath}/resources/images/logo_sena.jpg" />
+                    <figcaption>Modelo de Mejora <br/>Continua</figcaption>
+                    <div class="titleComicion">
+                    <center><p>Regional Valle del Cauca</p>
+                    <h3>INFORME DE COMISIÓN</h3></center>
+                    </div>   
+                    <div id="divpg">
+                        <p align="right">Codigo:<br/> Fecha:<br/> Hora:<br/> Versión:<br/> Pag:</p>
+                    </div>
+                </fieldset>  
+                <fieldset>  
+                    <h3>DETALLES DE LA COMISIÓN DE SERVICIOS</h3>
+                    <div>
+                        <b><label for="Ciudad">Lugar de la comisión:</label></b>
+                        <u><h:outputText value="#{comisionesController.selected.ciudad}" title="Ciudad"/></u>
+                    </div>
+                    <br/>
+                    <div>
+                         <b><label for="NumDias">Días de la comisión:</label></b>
+                        <u><h:outputText value="#{comisionesController.selected.numDias}" title="NumDias"/></u>
+                    </div>
+                    <br/>
+                    <div>
+                         <b><label for="IdUsuario">Comisionado:</label></b>
+                         <u><h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="IdUsuario"/></u>
+                    </div>
+                    <br/>
+                    <div>
+                         <b><label for="numeroDo">Cedula de ciudadania N°:</label></b>
+                        <u><h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="numeroDoc"/></u>
+                    </div>
+                    <br/>
+                    <div>
+                         <b><label for="FechaEntregaInforme:">fecha de Entrega del informe:</label></b>
+                        <u><h:outputText value="#{comisionesController.selected.fechaEntregaInforme}" title="FechaTramite">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText></u>
+                    </div>
+                    <HR />
+                    <br/>
+                    <div>
+                         <b><label for="ObjetivoComision">OBJETIVO DE LA COMICION:</label></b>
+                         <u><h:outputText value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision"/></u>
+                    </div> 
+                    <br/><HR />
+                    <br/> <br/>
+                    <div>
+                         <b><label for="ActividadesOTemas">DESCRIPCION DE ACTIVIDADES:</label></b>
+                         <u><h:outputText value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas"/></u>
+                    </div>
+                    <br/> <br/> <br/>
+                    <div>
+                         <b><label for="CompromisoSena">Compromiso SENA:</label></b>
+                         <u><h:outputText value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena"/></u> 
+                    </div>
+                    <br/> <br/> <br/>
+                    <div>
+                         <b><label for="ProdEntragados">Produtos Entragados:</label></b>
+                         <u><h:outputText value="#{comisionesController.selected.prodEntragados}" title="ProdEntragados"/></u>
+                    </div>                    
+                </fieldset>
+
+
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

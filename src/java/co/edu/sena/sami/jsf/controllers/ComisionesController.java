@@ -222,6 +222,11 @@ public class ComisionesController implements Serializable {
         ciudadComisionesList = null;
         return "DestinosComision";
     }
+    
+    public String prepareVisualizarComision() {
+        ciudadComisionesList = null;
+        return "VerComision";
+    }
 
     public String prepareCreate() {
         selected = new Comisiones();
@@ -235,9 +240,21 @@ public class ComisionesController implements Serializable {
     public String prepareCreateInformeComision() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/informeComision.xhtml";
     }
+    
+    public String prepareCreateInformeComision2() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/verInformeComision.xhtml";
+    }
 
     public String prepareCreateOrdenDeViaje() {
         return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/crearOrdenDeViaje.xhtml";
+    }
+    
+    public String volverComision() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
+    }
+    
+    public String prepareConsultarOrdenDeViaje() {
+        return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/verOrdenDeViaje.xhtml";
     }
 
     public void adicionarCiudadComision() {
