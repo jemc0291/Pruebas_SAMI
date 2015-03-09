@@ -38,11 +38,15 @@ public class SolicitudServiciosController implements Serializable {
 
     private Avance avanceActual;
 
+    private Usuarios usuario;
+
     private List<Prioridades> listPrioridades = null;
 
     private List<Avance> listAvance = null;
 
     private List<Estados> listEstado = null;
+
+    private List<SolicitudServicios> listSolicituServiciosByUsuario = null;
 
     @EJB
     private co.edu.sena.sami.jpa.sessions.SolicitudServiciosFacade ejbFacade;
@@ -61,7 +65,6 @@ public class SolicitudServiciosController implements Serializable {
     @EJB
     private EstadosFacade estadosFacade;
 
-
     public List<SolicitudServicios> getItems() {
         if (items == null) {
             try {
@@ -71,6 +74,13 @@ public class SolicitudServiciosController implements Serializable {
             }
         }
         return items;
+    }
+
+    public List<SolicitudServicios> getListSolicituServiciosByUsuario() {
+        if (listSolicituServiciosByUsuario == null) {
+            listSolicituServiciosByUsuario = getFacade().consultaUsuario(usuario);
+        }
+        return listSolicituServiciosByUsuario;
     }
 
     public List<Estados> getListEstado() {
@@ -99,7 +109,7 @@ public class SolicitudServiciosController implements Serializable {
         return getPrioridadesFacade().findAll();
     }
 
-    public List<Avance> getListAvance() {  
+    public List<Avance> getListAvance() {
         if (listAvance == null) {
             listAvance = getAvanceFacade().findBySolicitud(selected);
         }
@@ -184,7 +194,7 @@ public class SolicitudServiciosController implements Serializable {
     }
 
     public String prepareView() {
-        return "/modulo2/mantenimiento/solicitudDeMantenimiento/ListSolicitud.xhtml";
+        return "/modulo2/mantenimiento/solicitudDeMantenimiento/View.xhtml";
 
     }
 
@@ -258,10 +268,10 @@ public class SolicitudServiciosController implements Serializable {
             getFacade().create(selected);
             recargarListaSolicitud();
             addSuccesMessage("Crear Solocitud", "Solicitud Creada Exitosamente");
-            return "ListSolicitud";
+            return "View";
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            return "ListSolicitud";
+            return "View";
         }
     }
 
@@ -271,6 +281,7 @@ public class SolicitudServiciosController implements Serializable {
             avanceActual.setIdSolicitudServicio(selected);
             getAvanceFacade().create(avanceActual);
             avanceActual = new Avance();
+            update();
             recargarListaAvance();
             addSuccesMessage("Crear Avance", "Avance Creado Exitosamente");
         } catch (Exception e) {
