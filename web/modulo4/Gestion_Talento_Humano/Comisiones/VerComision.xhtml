@@ -7,96 +7,60 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title"> Consultar Solicitud Comision</ui:define>
+        <ui:define name="title"> informe de comision</ui:define>
         <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <f:view>
-                <h:form id='formSolicitudComision'>
-                    <h1><h:outputText value="Solicitud Comisión"/></h1>
-                    <p:panelGrid columns="2">
-                        <label jsf:value="#{bundle.CreateComisionesLabel_idCentroFormacion}" jsf:for="centroFormacion"></label> 
-                        <p:autoComplete id="centroFormacion" value="#{comisionesController.selected.idCentroFormacion}" 
-                                         completeMethod="#{usuariosController.getListCentroFormacionAutoComplete}" 
-                                         var="centroFormacion" itemLabel="#{centroFormacion}" itemValue="#{centroFormacion}" 
-                                        converter="centroFormacionConverter" 
-                                        forceSelection="true" maxResults="10" disabled="true"/> 
-                        
-                        <h:outputLabel  value="IdUsuario:" for="idUsuario" />
-                        <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required." disabled="true">
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="MesaPlanificar:" for="mesaPlanificar" />
-                        <h:inputText id="mesaPlanificar" value="#{comisionesController.selected.mesaPlanificar}" title="MesaPlanificar" disabled="true" />
-                        <h:outputLabel value="ObjetivoComision:" for="objetivoComision" />
-                        <h:inputText id="objetivoComision" value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision" required="true" requiredMessage="The ObjetivoComision field is required." disabled="true"/>
-
-
-
-                        <h:outputLabel value="IdDescripcion:" for="idDescripcion" />
-                        <h:selectOneMenu id="idDescripcion" value="#{comisionesController.selected.idDescripcion}" title="IdDescripcion" required="true" requiredMessage="The IdDescripcion field is required." disabled="true">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneDescripciones}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="TranspIntermunicipal:" for="transpIntermunicipal" />
-                        <h:inputText id="transpIntermunicipal" value="#{comisionesController.selected.transpIntermunicipal}" title="TranspIntermunicipal" disabled="true"/>
-                        <h:outputLabel value="IdFichaCaracterizacion:" for="idFichaCaracterizacion" />
-                        <h:selectOneMenu id="idFichaCaracterizacion" value="#{comisionesController.selected.idFichaCaracterizacion}" title="IdFichaCaracterizacion" required="true" requiredMessage="The IdFichaCaracterizacion field is required." disabled="true">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneFichas}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="IdBanco:" for="idBanco" />
-                        <h:selectOneMenu id="idBanco" value="#{comisionesController.selected.idBanco}" title="IdBanco" required="true" requiredMessage="The IdBanco field is required." disabled="true">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneBanco}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="IdContrato:" for="idContrato" />
-                        <h:selectOneMenu id="idContrato" value="#{comisionesController.selected.idContrato}" title="IdContrato" required="true" requiredMessage="The IdContrato field is required." disabled="true">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneContratos}"/>
-                        </h:selectOneMenu>
-                    </p:panelGrid>
-                        <p:outputPanel id="ComisionesTablePanel" >
-                            <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
-                                         rows="10" id="comisionesTable" 
-                                         paginator="true"
-                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="20,40,60">
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.ciudad}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.empresaVereda}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.salidaEstimada}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.llegadaEstimada}"/>
-                                </p:column>
-  
-                            </p:dataTable>
-                        </p:outputPanel>
-                    
-                    <h:commandButton  action="#{comisionesController.prepareListComision()}" value="#{bundle.ListComisionesIndexLink}"/>
-                </h:form>
-            </f:view>
-            <ui:include src="/modulo4/Gestion_Talento_Humano/Comisiones/AgregarDestinosDlg.xhtml"/>
+            <h:form>
+                  <h1><h:outputText value="Solicitud Comision"/></h1>
+                  <h:panelGrid columns="2">
+                    <h:outputText value="Regional:"/>
+                    <h:outputText value="#{departamentosController.selected.nombreDpto}" title="Regional"/>
+                    <h:outputText value="Centro:"/>
+                    <h:outputText value="#{centroFormacionController.selected.nombreCentroFormacion}" title="Centro"/>
+                    <h:outputText value="Fecha:"/>
+                    <h:outputText value="#{informesController.selected.fechaInforme}" title="Fecha:">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="FuncionarioSolicitante:"/>
+                    <h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="FuncionarioSolicitante"/>
+                    <h:outputText value="NumeroCedula:"/>
+                    <h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="NumeroCedula"/>
+                    <h:outputText value="MesAPlanificar:"/>
+                    <h:outputText value="#{comisionesController.selected.mesaPlanificar}" title="MesAPlanificar"/>
+                    <h:outputText value="Objetivos:"/>
+                    <h:outputText value="#{comisionesController.selected.objetivos}" title="Objetivos"/>
+                    <h:outputText value="Destino:"/>
+                    <h:outputText value="#{comisionesController.selected.ciudad}" title="Destino"/>
+                    <h:outputText value="EmpresaVeredad:"/>
+                    <h:outputText value="#{ciudadComisionesController.selected.empresaVereda}" title="EmpresaVeredad"/>
+                     <h:outputText value="FechasDeSalida:"/>
+                    <h:outputText value="#{ciudadComisionesController.selected.salidaEstimada}" title="FechasDeSalida">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                     <h:outputText value="FechasDellegada:"/>
+                     <h:outputText value="#{ciudadComisionesController.selected.llegadaEstimada}" title="FechasDeLlegada">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Descripcion:"/>
+                    <h:outputText value="#{comisionesController.selected.idDescripcion}" title="Descripcion"/>
+                    <h:outputText value="NumeroFichaDeCaracterizacion:"/>
+                    <h:outputText value="#{comisionesController.selected.idFichaCaracterizacion}" title="NumeroFichaDeCaracterizacion"/>
+                    <h:outputText value="Banco:"/>
+                    <h:outputText value="#{bancosController.selected.nombreDeBanco}" title="Banco"/>
+                    <h:outputText value="Tipo"/>
+                    <h:outputText value="#{usuariosController.selected.nombreTipoCuenta}" title="Tipo"/>
+                    <h:outputText value="Cuenta:"/>
+                    <h:outputText value="#{usuariosController.selected.numCuentaBanco}" title="Cuenta"/>
+                    <h:outputText value="Contrato:"/>
+                    <h:outputText value="#{contratosController.selected.numeroDeContrato}" title="Contrato"/>
+                    <h:outputText value="FechaInicio:"/>
+                    <h:outputText value="#{contratosController.selected.fechaInicioContrato}" title="FechaInicio"/>
+                    <h:outputText value="FechaFin:"/>
+                    <h:outputText value="#{contratosController.selected.fechaFinContrato}" title="FechaFin"/>
+                </h:panelGrid>
+      </h:form>
+        </f:view>
         </ui:define>
     </ui:composition>
 </html>

@@ -13,14 +13,32 @@
 
         <ui:define name="body">
 
-            <h2>Crear Avance</h2>
+
             <section class="Section-form">
 
                 <form jsf:id="createAvance">
-
+                    <p:panelGrid columns="2" rendered="#{solicitudServiciosController.selected != null}" layout="grid">
+                        <h:outputText value="IdSolicitudServicio:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.idSolicitudServicio}" title="IdSolicitudServicio"/>
+                        <h:outputText value="DescripcionservicioSolicitud:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.descripcionservicioSolicitud}" title="DescripcionservicioSolicitud"/>
+                        <h:outputText value="UbicacionSolicitud:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.ubicacionSolicitud}" title="UbicacionSolicitud"/>
+                        <h:outputText value="FechaSolicitudServicio:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.fechaSolicitudServicio}" title="FechaSolicitudServicio">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="IdUsuario:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.idUsuario}" title="IdUsuario"/>
+                        <h:outputText value="IdTipoServ:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.idTipoServ}" title="IdTipoServ"/>
+                    </p:panelGrid>
+                    
+                    <h2>Crear Avance</h2>
+                    
                     <p:panelGrid columns="3" layout="grid">
 
-                        <Label> *Descripción del Servicio Prestado </Label>
+                        <Label> *Descripción del Avance </Label>
                         <textarea cols="70" rows="10" type="text" jsf:id="descripcionServicioPrestado" 
                                   jsf:value="#{solicitudServiciosController.avanceActual.descripcion}">
                         </textarea>
