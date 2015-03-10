@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Solicitudes</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h:form id="solicitudEditForm">
+                <p:growl id="msgs" showDetail="true"/>
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" layout="grid" id="panelSolicitud" rendered="#{solicitudMaterialesAlmacenController.selected != null}" >
+
+                        <label>Solicitud Número:</label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idSolicitudMaterial}"/>
+
+                        <label>Area</label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idArea}"/>
+
+                        <label>Ficha de Caracterizacion</label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}"/>
+
+                        <Label>Observaciones</Label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.observaciones}"/>
+
+                        <Label>Aprobado</Label>
+                        <p:selectBooleanCheckbox value="#{solicitudMaterialesAlmacenController.selected.aprobado}" disabled="true"/>
+                        
+                        <label>Observación</label>
+                        <textarea jsf:id="observacion" jsf:value="#{solicitudMaterialesAlmacenController.selected.observaciones}" jsf:requiredMessage="Este campo de observaciones es requerido por favor ingrese la descripción"
+                                  >
+                            <f:ajax execute="@this" rendered="observacionMessage"/>
+                        </textarea>
+                        <p:message id="observacionMessage" for="observacion" styleClass="error"/>
+                    </p:panelGrid>
+
+                </h:panelGroup>
+                <p:dataTable id="cars2" value="#{solicitudMaterialesAlmacenController.itemsSolicitudMateriales}" var="item" editable="false" 
+                             widgetVar="cellCars" >
+
+                    <f:facet name="header">
+                        Cantidad de materiales por pedido
+                    </f:facet>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Solicitud Numero:"/>
+                        </f:facet>
+                        <h:outputText value="#{item.solicitudMaterialesAlmacen}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre de Material"/>
+                        </f:facet>
+                        <h:outputText value="#{item.materiales.nombreMaterial}"/>
+                    </p:column>
+                    <p:column headerText="Editar Cantidad">
+                            <h:outputText value="#{item.cantidad}"/>
+                    </p:column>
+                    <p:column headerText="Aprobado">
+                        <p:selectBooleanCheckbox value="#{item.aprobado}" disabled="true"/>
+                    </p:column>
+
+                    <p:column headerText="Observación de este pedido">
+                            <h:outputText value="#{item.observaciones}" />
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Guardar Observación"  action="#{solicitudMaterialesAlmacenController.update()}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

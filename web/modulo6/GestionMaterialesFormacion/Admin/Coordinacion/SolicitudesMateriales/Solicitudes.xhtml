@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Solicitudes</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Coordinacion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h:form id="SolicitudListForm">
+
+                <p:commandButton id="createButton" value="Crear Solicitud" icon="ui-icon-plus"   action="#{solicitudMaterialesAlmacenController.prepareCreate}"/>
+
+                <p:outputPanel id="solicitudMaterialesAlmacenPanel">
+                    <p:panel header="#{bundle.ListSolicitudMaterialesAlmacenTitle}">
+                        <p:dataTable id="datalist" value="#{solicitudMaterialesAlmacenController.items}" var="item"
+                                     editable="true"  widgetVar="itemsTable"
+                                     rowKey="#{item.idSolicitudMaterial}" rows="10" 
+                                     paginator="true"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="20,40,60">
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Solicitud Numero:"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idSolicitudMaterial}"/>
+                            </p:column>
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Ficha de Caracterización"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idFichaCaracterizacion}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha de Solicitud"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaDeSolicitud}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Hora de solicitud"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaDeSolicitud}">
+                                    <f:convertDateTime pattern="hh:mm a" />
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Observaciones"/>
+                                </f:facet>
+                                <h:outputText value="#{item.observaciones}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Area"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idArea.nombreArea}"/>
+                            </p:column>
+                            <!--<p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Aprobado"/>
+                                </f:facet>
+                                <p:selectBooleanCheckbox value="# {item.aprobado}" disabled="true"/>
+                            </p:column>   -->
+                            <p:column filterBy="#{item.aprobado}" headerText="Aprobado" filterMatchMode="equals">
+                                <f:facet name="filter">
+                                    <p:selectOneButton onchange="PF('itemsTable').filter()">
+                                        <f:converter converterId="javax.faces.Boolean" />
+                                        <f:selectItem itemLabel="Todas" itemValue="" />
+                                        <f:selectItem itemLabel="Si" itemValue="true" />
+                                        <f:selectItem itemLabel="No" itemValue="false" />
+                                    </p:selectOneButton>
+                                </f:facet>
+                                <h:outputText value="#{item.aprobado ? 'Si': 'No'}" />
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="editButton" value="Editar Solicitud" icon="ui-icon-pencil" update="datalist" action="#{solicitudMaterialesAlmacenController.prepareEdit}">
+                                    <f:setPropertyActionListener value="#{item}" for="datalist" target="#{solicitudMaterialesAlmacenController.selected}"/>
+                                </p:commandButton>                                
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </p:outputPanel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

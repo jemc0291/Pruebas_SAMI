@@ -46,16 +46,14 @@ public class ComisionesController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.BancosFacade ejbFacadeBanco;
     @EJB
     private co.edu.sena.sami.jpa.sessions.CentroFormacionFacade ejbFacadeCentrosFormacion;
-     @EJB
+    @EJB
     private co.edu.sena.sami.jpa.sessions.CiudadFacade ejbFacadeCiudad;
-     @EJB
+    @EJB
     private co.edu.sena.sami.jpa.sessions.DescripcionesReferenciasViaticosFacade ejbFacadeDescripciones;
-     @EJB
+    @EJB
     private co.edu.sena.sami.jpa.sessions.FichaCaracterizacionFacade ejbFacadeFichas;
-     @EJB
+    @EJB
     private co.edu.sena.sami.jpa.sessions.UsuariosFacade ejbFacadeUsuarios;
-     
-    
 
     private List<Comisiones> items = null;
     private Comisiones selected;
@@ -75,7 +73,8 @@ public class ComisionesController implements Serializable {
     private FichaCaracterizacion selectedFichas;
     private List<Usuarios> itemsUsuarios = null;
     private Usuarios selectedUsuarios;
-
+    @EJB
+    private CiudadComisionesFacade getFacade;
 
     public Contratos getContratos(java.lang.Integer id) {
         return getEjbFacadeContratos().find(id);
@@ -104,8 +103,8 @@ public class ComisionesController implements Serializable {
     public List<CentroFormacion> getItemsAvailableSelectOneCentrosFormacion() {
         return getFacadeCentrosFormacion().findAll();
     }
-   
-     public Ciudad getCiudad(co.edu.sena.sami.jpa.entities.CiudadPK id) {
+
+    public Ciudad getCiudad(co.edu.sena.sami.jpa.entities.CiudadPK id) {
         return getFacadeCiudad().find(id);
     }
 
@@ -116,6 +115,7 @@ public class ComisionesController implements Serializable {
     public List<Ciudad> getItemsAvailableSelectOneCiudad() {
         return getFacadeCiudad().findAll();
     }
+
     public DescripcionesReferenciasViaticos getDescripcionesReferenciasViaticos(java.lang.Integer id) {
         return getFacadeDescripciones().find(id);
     }
@@ -149,6 +149,9 @@ public class ComisionesController implements Serializable {
     }
 
     public List<CiudadComisiones> getCiudadComisionesList() {
+        if (ciudadComisionesList == null) {
+            ciudadComisionesList = getCiudadComisionesFacade().findByDestinos(selected);
+        }
         return ciudadComisionesList;
     }
 
@@ -171,7 +174,7 @@ public class ComisionesController implements Serializable {
     public UsuariosFacade getFacadeUsuarios() {
         return ejbFacadeUsuarios;
     }
-    
+
     public List<Usuarios> getItemsAvailableSelectManyUsuarios() {
         return getFacadeUsuarios().findAll();
     }
@@ -212,13 +215,19 @@ public class ComisionesController implements Serializable {
     }
 
     public String prepareListComision() {
-       return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
-   }
-    
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
+    }
+
     public String prepareConsultarComision() {
-       return "VerComision";
-   }
+        ciudadComisionesList = null;
+        return "DestinosComision";
+    }
     
+    public String prepareVisualizarComision() {
+        ciudadComisionesList = null;
+        return "VerComision";
+    }
+
     public String prepareCreate() {
         selected = new Comisiones();
         ciudadComisionesList = new ArrayList<>();
@@ -227,15 +236,27 @@ public class ComisionesController implements Serializable {
         initializeEmbeddableKey();
         return "/modulo4/Gestion_Talento_Humano/Comisiones/CrearComision.xhtml";
     }
-    
+
     public String prepareCreateInformeComision() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/informeComision.xhtml";
+    }
+    
+    public String prepareCreateInformeComision2() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/verInformeComision.xhtml";
     }
 
     public String prepareCreateOrdenDeViaje() {
         return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/crearOrdenDeViaje.xhtml";
     }
-        
+    
+    public String volverComision() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
+    }
+    
+    public String prepareConsultarOrdenDeViaje() {
+        return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/verOrdenDeViaje.xhtml";
+    }
+
     public void adicionarCiudadComision() {
         for (CiudadComisiones item : ciudadComisionesList) {
             if (item.equals(ciudadComisionesActual)) {
@@ -247,8 +268,8 @@ public class ComisionesController implements Serializable {
         ciudadComisionesActual = new CiudadComisiones();
         JsfUtil.addSuccessMessage("Destino agregado correctamente");
     }
-    
-     public void adicionarSitioComision() {
+
+    public void adicionarSitioComision() {
         for (CiudadComisiones item : ciudadComisionesList) {
             if (item.equals(ciudadComisionesActual)) {
                 JsfUtil.addErrorMessage("Elemento ya existe.");
@@ -259,11 +280,11 @@ public class ComisionesController implements Serializable {
         ciudadComisionesActual = new CiudadComisiones();
         JsfUtil.addSuccessMessage("Destino agregado correctamente");
     }
-     
-    public String loadCreate(){
+
+    public String loadCreate() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
     }
-    
+
     public void create(ActionEvent event) {
         selected.setIdUsuario((Usuarios) event.getComponent().getAttributes().get("usuario"));
         selected.setFechaTramite(new Date());
@@ -296,11 +317,11 @@ public class ComisionesController implements Serializable {
         }
     }
 
-   public void eliminarDestino (){
-       ciudadComisionesList.remove(ciudadComisionesActual);
-  
-   }
-   
+    public void eliminarDestino() {
+        ciudadComisionesList.remove(ciudadComisionesActual);
+
+    }
+
     public List<Comisiones> getItems() {
         if (items == null) {
             items = getFacade().findAll();

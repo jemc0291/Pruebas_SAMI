@@ -139,7 +139,7 @@ public class LoginController implements Serializable {
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             session.invalidate();
             limpiar();
-            return "/index";
+            return "/inicio_sami/mensaje_sami.xhtml";
         } catch (ServletException e) {
             log.log(Level.SEVERE, "Failed to logout user!", e);
             return "/index";

@@ -4,7 +4,9 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+     
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, minimun-scale=1,maximun=1"/>
@@ -17,7 +19,7 @@
         <title>Sami</title>  
     </h:head>
     <body class="body" jsf:id="body">
-        <header class="Header">
+        <header class="HeaderModulos">
             <img src="#{request.contextPath}/resources/images/sami.png" width="280" height="100" class="Header-logo" />
             <p class="Header-title-inicio">SISTEMA ADMINISTRATIVO MODULAR INTEGRADO</p>
             <figure class="Menu-img">
@@ -34,8 +36,8 @@
                 </ul>                        
             </nav>
             <div class="iniciar">
-                <form jsf:id="LoginForm" class="Ingresar" >
-                     <img src="#{request.contextPath}/resources/images/login1.jpg" width="105" height="105"/>
+                <form jsf:id="LoginForm" class="Ingresar2" >
+                    <img src="#{request.contextPath}/resources/images/login1.jpg" width="105" height="105"/>
                     <h:panelGroup rendered="true">
 
                         <h:panelGroup id="messagePanel" layout="block">
@@ -55,28 +57,27 @@
             </div>
             <div class="Modulos">
                 <h2 class="Title-ayuda-boton">INTRODUCCIÓN DE MÓDULOS ADMINISTRATIVOS SENA</h2>
-                
-                    <form jsf:id="botonModulos">
+
+                <form jsf:id="botonModulos">
                     <h:panelGrid columns="1" cellpadding="5">
-                        <p:commandButton value="Contratación" type="button" onclick="PF('dlg1').show();" />
-                        <p:commandButton value="Mantenimiento" type="button" onclick="PF('dlg2').show();" />
-                        <p:commandButton value="Gestion Talento Humano" type="button" onclick="PF('dlg3').show();" /> 
-                        
-                        <p:commandButton value="Gestion Documental" type="button" onclick="PF('dlg4').show();" />
-                        <p:commandButton value="Supervisión De Contratos De Compras Suministros y Servicios" type="button" onclick="PF('dlg5').show();" />
-                        <p:commandButton value="Gestion De Materiales" type="button" onclick="PF('dlg6').show();" />
+                        <p:commandButton  value="Contratación Prestación de Servicios" type="button" onclick="PF('dlg1').show();" style="color: black; border-color: black;"/>
+                        <p:commandButton value="Mantenimiento" type="button" onclick="PF('dlg10').show();" style="color: black; border-color: black;"/>
+                        <p:commandButton value="Gestion Talento Humano" type="button" onclick="PF('dlg3').show();" style="color: black; border-color: black;"/> 
+                        <p:commandButton value="Gestion Documental" type="button" onclick="PF('dlg4').show();" style="color: black; border-color: black;"/>
+                        <p:commandButton value="Supervisión De Contratos De Compras Suministros y Servicios" type="button" onclick="PF('dlg5').show();" style="color: black; border-color: black;"/>
+                        <p:commandButton value="Gestion De Materiales" type="button" onclick="PF('dlg6').show();" style="color: black; border-color: black;"/>
                     </h:panelGrid>
-                    </form>
-                
+                </form>
+
                 <p:dialog header="Contratación Prestación de Servicios" widgetVar="dlg1" minHeight="40"
-                         height="150" width="600px">
+                          height="150" width="600px">
                     <h:outputText value="obtendrá la facilidad de elaboración, control, generación de contratos ,actas, importar 
                                   y digitalizar documentos a demás seguimiento en el proceso de la contratación debidamente relacionados 
                                   con la prestación de servicios, se tiene una completa organización en el manejo de la información con lo 
                                   cual optimiza y agiliza el funcionamiento del módulo" />
                 </p:dialog>
 
-                <p:dialog header="Mantenimiento" widgetVar="dlg2" modal="true" height="300"  width="600px">
+                <p:dialog header="Mantenimiento" widgetVar="dlg10" modal="true" height="300"  width="600px">
                     <h:outputText value="tiene como objetivo administrar la gestión que se realiza al momento de solicitar y ejecutar 
                                   el mantenimiento de la infraestructura del CBI. Se requiere hacer solicitudes de diferentes
                                   niveles como correctivo, predictivo, preventivo, con la complejidad de tareas realizadas por 
@@ -111,7 +112,7 @@
                                   dicha oficina; la cual puede ser consultada en cualquier periodo de tiempo o cuando el líder lo
                                   requiere." />
                 </p:dialog> 
-                <p:dialog header="Supervisión de contratos de compras,suministros y servicios" widgetVar="dlg5" modal="true" height="250"  width="600px">
+                <p:dialog header="Supervisión De Contratos De Compras Suministros y Servicios" widgetVar="dlg5" modal="true" height="250"  width="600px">
                     <h:outputText value="El módulo de supervisión de Contratos De Compras, Suministros Y Servicios, realiza un seguimiento 
                                   y control al cumplimiento de las obligaciones por parte del proveedor contratista con la finalidad
                                   de controlar la ejecución satisfactoria de cada uno de los contratos, de esta manera evitar 
@@ -137,8 +138,8 @@
             <figure class="img-enlaces-infoM">
                 <h3 class="Title-Enlaces">ENLACES</h3>
                 <a href="http://oferta.senasofiaplus.edu.co/" target="_black"><img src="#{request.contextPath}/resources/images/sena-sofia-plus.png" width="170" height="70" class="Figure-im"/></a>
-               <br/><br/><a href="http://sis.senavirtual.edu.co/index.php" target="_black"><img src="#{request.contextPath}/resources/images/comunidad aprendizaje.png" width="170" height="70" class="Figure-im"/></a>
-               <br/><br/><a href="http://siifsena.blogspot.com/" target="_black"><img src="#{request.contextPath}/resources/images/siif.jpg" width="170" height="70" class="Figure-im"/></a>
+                <br/><br/><a href="http://sis.senavirtual.edu.co/index.php" target="_black"><img src="#{request.contextPath}/resources/images/comunidad aprendizaje.png" width="170" height="70" class="Figure-im"/></a>
+                <br/><br/><a href="http://siifsena.blogspot.com/" target="_black"><img src="#{request.contextPath}/resources/images/siif.jpg" width="170" height="70" class="Figure-im"/></a>
                 <br/><br/><a href="http://nuevo.fondoemprender.com/" target="_black"><img src="#{request.contextPath}/resources/images/fondoEmp.png" width="170" height="70" class="Figure-im"/></a>
             </figure>
             <aside class="work-video-Modulos">
@@ -162,28 +163,9 @@
                     </div>
                 </div>
             </aside> 
-        </header>
-         <footer class="Footer-modulos" >
-            <article class="Footer-item">
-                <h4 class="Footer-title-modu">Contacto</h4>
-                <a href="https://www.google.com.co"><p class="Footer-description">contactosami@gmail<br/>
-                        comfacebook.com/contactosami<br/>@interactuasami
-                        <br/>3173470178 - 3101234568<br/>SENA</p></a>
-            </article>
-            <article class="Footer-mdu">
-                <h4 class="Footer-title-modu">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
-                <p class="Footer-descriptioncon-modu">Centro de biotecnologia industrial<br/>Palmira Valle del Cauca
-                    <br/>Carrera 30 n° 40-25<br/>Telefono: 2750968<br/>Fax: 2750965</p>
-            </article>
-            <article class="item.modu">
-                <a href="#"> <img src="#{request.contextPath}/resources/images/pregunta.PNG" width="50" /></a>
-                <a href="#"> <img src="#{request.contextPath}/resources/images/Configuracion.PNG" width="50"/></a>
-                <br/><br/>
-                <a href="#"> <img src="#{request.contextPath}/resources/images/Soporte.PNG" width="50"/></a>
-                <a href="#"> <img src="#{request.contextPath}/resources/images/sena_1.PNG" width="50"/></a>  
-                
-            </article>
-        </footer>
+        </header>        
     </body>
+    <ui:composition template="/footer.xhtml">
+    </ui:composition>
 </html>
 

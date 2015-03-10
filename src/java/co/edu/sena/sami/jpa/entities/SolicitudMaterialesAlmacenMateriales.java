@@ -37,6 +37,11 @@ public class SolicitudMaterialesAlmacenMateriales implements Serializable {
     @Size(max = 45)
     @Column(name = "cantidad")
     private String cantidad;
+    @Column (name = "aprobado")
+    private Boolean aprobado;
+    @Size(max = 200)
+    @Column(name = "observaciones")
+    private String observaciones;
     @JoinColumn(name = "id_solicitud_material", referencedColumnName = "id_solicitud_material", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SolicitudMaterialesAlmacen solicitudMaterialesAlmacen;
@@ -87,6 +92,22 @@ public class SolicitudMaterialesAlmacenMateriales implements Serializable {
         this.materiales = materiales;
     }
 
+    public Boolean getAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(Boolean aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+        
     @Override
     public int hashCode() {
         int hash = 0;

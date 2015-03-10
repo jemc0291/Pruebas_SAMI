@@ -2,7 +2,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
@@ -10,59 +9,69 @@
         <ui:define name="title">Solicitudes</ui:define>
         <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
         <ui:define name="body">
+        
             <h:form>
-                
-                <h:commandButton action="#{solicitudMaterialesAlmacenController.prepareCreate}" value="Agregar Solicitud"/>
+            
                 <p:outputPanel id="solicitudMaterialesAlmacenPanel">
-                    <p:dataTable value="#{solicitudMaterialesAlmacenController.items}" var="item"
-                                 rows="10" id="ActaVerificacionTable" 
-                                 paginator="true"
-                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="20,40,60">
-                        <p:column filterBy="#{item.idSolicitudMaterial}" filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="IdSolicitudMaterial"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idSolicitudMaterial}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="FechaDeSolicitud"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaDeSolicitud}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Observaciones"/>
-                            </f:facet>
-                            <h:outputText value="#{item.observaciones}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdArea"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idArea}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Aprobado"/>
-                            </f:facet>
-                            <h:outputText value="#{item.aprobado}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="No Aprobado"/>
-                            </f:facet>
-                            <h:outputText value="#{item.noAprobado}"/>
-                        </p:column>
-                        <p:column>
-                            <p:commandButton icon="ui-icon-pencil" action="#{solicitudMaterialesAlmacenController.prepareEdit()}">
-                                <f:setPropertyActionListener value="#{item}" target="#{solicitudMaterialesAlmacenController.selected}"/>
-                            </p:commandButton>
-                       </p:column>
-                    </p:dataTable>
+                
+                    <p:panel header="#{bundle.ListSolicitudMaterialesAlmacenTitleDos}">
+                    
+                        <p:dataTable value="#{solicitudMaterialesAlmacenController.items}" var="item"
+                                     rows="10" id="ObservacionesTable" 
+                                     paginator="true"
+                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="20,40,60">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Solicitud Numero:"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idSolicitudMaterial}"/>
+                            </p:column>
+                            <p:column filterBy="#{item.idFichaCaracterizacion}" filterMatchMode="contains">
+                                <f:facet name="header">
+                                    <h:outputText value="Ficha de Caracterización"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idFichaCaracterizacion}"/>
+                            </p:column>
+
+                            <p:column headerText="Fecha de Solicitud">
+                                <h:outputText value="#{item.fechaDeSolicitud}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Hora de Solicitud"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaDeSolicitud}">
+                                    <f:convertDateTime pattern="hh:mm:ss a" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Observaciones"/>
+                                </f:facet>
+                                <h:outputText value="#{item.observaciones}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Area"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idArea.nombreArea}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Aprobado"/>
+                                </f:facet>
+                                <p:selectBooleanCheckbox value="#{item.aprobado}" disabled="true"/>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="viewButton" icon="ui-icon-search" update="ObservacionesTable" action="#{solicitudMaterialesAlmacenController.prepareEditAlmacenista()}">
+                                    <f:setPropertyActionListener value="#{item}" target="#{solicitudMaterialesAlmacenController.selected}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
                 </p:outputPanel>
             </h:form>
         </ui:define>

@@ -2,6 +2,7 @@ package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.Areas;
 import co.edu.sena.sami.jpa.entities.FichaCaracterizacion;
+import co.edu.sena.sami.jpa.entities.Materiales;
 import co.edu.sena.sami.jpa.entities.SolicitudMaterialesAlmacen;
 import co.edu.sena.sami.jpa.entities.SolicitudMaterialesAlmacenMateriales;
 import co.edu.sena.sami.jpa.sessions.AreasFacade;
@@ -22,10 +23,12 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.event.CellEditEvent;
 
 @Named("solicitudMaterialesAlmacenController")
 @SessionScoped
@@ -42,10 +45,16 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     private SolicitudMaterialesAlmacenMateriales selectedSolMaterial;
 
     @EJB
+    private co.edu.sena.sami.jpa.sessions.SolicitudMaterialesAlmacenMaterialesFacade ejbFacadeSolicitudMateriales;
+
+    @EJB
     private co.edu.sena.sami.jpa.sessions.AreasFacade areaFacade;
 
     @EJB
     private co.edu.sena.sami.jpa.sessions.FichaCaracterizacionFacade fichaFacade;
+
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.MaterialesFacade ejbFacadeMateriales;
 
     private FichaCaracterizacionFacade getFichaFacade() {
         return fichaFacade;
@@ -67,6 +76,10 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         return areaFacade;
     }
 
+    private SolicitudMaterialesAlmacenMaterialesFacade getSolicitudMaterialesFacade() {
+        return ejbFacadeSolicitudMateriales;
+    }
+
     public Areas getAreas(java.lang.Integer id) {
         return getAreaFacade().find(id);
     }
@@ -77,6 +90,13 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
 
     public List<Areas> getAreasAvailableSelectOne() {
         return getAreaFacade().findAll();
+    }
+
+    public List<SolicitudMaterialesAlmacenMateriales> getItemsSolicitudMateriales() {
+        if (itemsSolMaterial == null) {
+            itemsSolMaterial = getSolicitudMaterialesFacade().findByIdSolicitud(selected);
+        }
+        return itemsSolMaterial;
     }
 
     public SolicitudMaterialesAlmacenController() {
@@ -127,13 +147,37 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         selectedSolMaterial = new SolicitudMaterialesAlmacenMateriales();
         initializeEmbeddableKeySolMaterial();
         itemsSolMaterial = new ArrayList<>();
-        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/SolicitudMateriales";
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Create.xhtml";
+    }
+
+    public String prepareCreateDos() {
+        selected = new SolicitudMaterialesAlmacen();
+        initializeEmbeddableKey();
+        selectedSolMaterial = new SolicitudMaterialesAlmacenMateriales();
+        initializeEmbeddableKeySolMaterial();
+        itemsSolMaterial = new ArrayList<>();
+        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/SolicitudMateriales.xhtml";
     }
 
     public String prepareEdit() {
-        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/SolicitudMateriales";
+        itemsSolMaterial = null;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Edit.xhtml";
     }
-    
+
+    public String prepareEditAlmacenista() {
+        itemsSolMaterial = null;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/Materiales/EditObservacion.xhtml";
+    }
+
+    public String prepareViewIns() {
+        itemsSolMaterial = null;
+        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/View.xhtml";
+    }
+
+    public String prepareView() {
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/View";
+    }
+
     public void agregarMateriales() {
         itemsSolMaterial.add(selectedSolMaterial);
         selectedSolMaterial = new SolicitudMaterialesAlmacenMateriales();
@@ -144,7 +188,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         return itemsSolMaterial;
     }
 
-    public void create() {
+    public String create() {
         selected.setFechaDeSolicitud(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenCreated"));
         for (SolicitudMaterialesAlmacenMateriales item : itemsSolMaterial) {
@@ -155,10 +199,36 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Solicitudes.xhtml";
     }
 
-    public void update() {
+    public void eliminar() {
+        itemsSolMaterial.remove(selectedSolMaterial);
+    }
+
+    public String createDos() {
+        selected.setFechaDeSolicitud(new Date());
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenCreated"));
+        for (SolicitudMaterialesAlmacenMateriales item : itemsSolMaterial) {
+            selectedSolMaterial = item;
+            selectedSolMaterial.setSolicitudMaterialesAlmacen(selected);
+            persistSolMaterial(PersistAction.CREATE, null);
+        }
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/SolicitudesUsuario.xhtml";
+    }
+
+    public String update() {
+        selected.setSolicitudMaterialesAlmacenMaterialesList(itemsSolMaterial);
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenUpdated"));
+        for (SolicitudMaterialesAlmacenMateriales item : itemsSolMaterial) {
+            selectedSolMaterial = item;
+            persistSolMaterial(PersistAction.UPDATE, null);
+        }
+        items = null;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Solicitudes.xhtml";
     }
 
     public void destroy() {
@@ -248,6 +318,25 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         return getFacade().findAll();
     }
 
+    /**
+     * @return the ejbFacadeMateriales
+     */
+    public co.edu.sena.sami.jpa.sessions.MaterialesFacade getFacadeMateriales() {
+        return ejbFacadeMateriales;
+    }
+
+    public Materiales getMateriales(java.lang.Integer id) {
+        return getFacadeMateriales().find(id);
+    }
+
+    public List<Materiales> getItemsAvailableSelectManyMateriales() {
+        return getFacadeMateriales().findAll();
+    }
+
+    public List<Materiales> getItemsAvailableSelectOneMateriales() {
+        return getFacadeMateriales().findAll();
+    }
+
     @FacesConverter(forClass = SolicitudMaterialesAlmacen.class)
     public static class SolicitudMaterialesAlmacenControllerConverter implements Converter {
 
@@ -287,6 +376,16 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
             }
         }
 
+    }
+
+    public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+
+        if (newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 
 }
