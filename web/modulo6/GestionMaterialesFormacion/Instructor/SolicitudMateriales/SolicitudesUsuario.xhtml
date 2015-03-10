@@ -7,44 +7,36 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Solicitudes</ui:define>
-        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Instructor.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-        
             <h:form>
-            
                 <p:outputPanel id="solicitudMaterialesAlmacenPanel">
-                
                     <p:panel header="#{bundle.ListSolicitudMaterialesAlmacenTitleDos}">
-                    
                         <p:dataTable value="#{solicitudMaterialesAlmacenController.items}" var="item"
-                                     rows="10" id="ObservacionesTable" 
-                                     paginator="true"
+                                     id="solicitudesUsuarioTable"
+                                     rows="10" paginator="true"
                                      paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="20,40,60">
-                            <p:column>
+
+                            <p:column filterBy="#{item.idSolicitudMaterial}" filterMatchMode="contains">
                                 <f:facet name="header">
-                                    <h:outputText value="Solicitud Numero:"/>
+                                    <h:outputText value="IdSolicitudMaterial"/>
                                 </f:facet>
                                 <h:outputText value="#{item.idSolicitudMaterial}"/>
                             </p:column>
-                            <p:column filterBy="#{item.idFichaCaracterizacion}" filterMatchMode="contains">
+                            <p:column >
                                 <f:facet name="header">
-                                    <h:outputText value="Ficha de Caracterización"/>
+                                    <h:outputText value="IdFicha"/>
                                 </f:facet>
                                 <h:outputText value="#{item.idFichaCaracterizacion}"/>
                             </p:column>
 
-                            <p:column headerText="Fecha de Solicitud">
-                                <h:outputText value="#{item.fechaDeSolicitud}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                </h:outputText>
-                            </p:column>
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Hora de Solicitud"/>
+                                    <h:outputText value="FechaDeSolicitud"/>
                                 </f:facet>
                                 <h:outputText value="#{item.fechaDeSolicitud}">
-                                    <f:convertDateTime pattern="hh:mm:ss a" />
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
                                 </h:outputText>
                             </p:column>
                             <p:column>
@@ -55,9 +47,9 @@
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Area"/>
+                                    <h:outputText value="IdArea"/>
                                 </f:facet>
-                                <h:outputText value="#{item.idArea.nombreArea}"/>
+                                <h:outputText value="#{item.idArea}"/>
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
@@ -66,7 +58,7 @@
                                 <p:selectBooleanCheckbox value="#{item.aprobado}" disabled="true"/>
                             </p:column>
                             <p:column>
-                                <p:commandButton id="viewButton" icon="ui-icon-search" update="ObservacionesTable" action="#{solicitudMaterialesAlmacenController.prepareEditAlmacenista()}">
+                                <p:commandButton id="viewButton" icon="ui-icon-search" update="solicitudesUsuarioTable" action="#{solicitudMaterialesAlmacenController.prepareViewIns()}">
                                     <f:setPropertyActionListener value="#{item}" target="#{solicitudMaterialesAlmacenController.selected}"/>
                                 </p:commandButton>
                             </p:column>

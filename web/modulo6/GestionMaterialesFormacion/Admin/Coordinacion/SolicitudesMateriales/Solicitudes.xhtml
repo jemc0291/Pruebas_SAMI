@@ -16,7 +16,7 @@
                 <p:outputPanel id="solicitudMaterialesAlmacenPanel">
                     <p:panel header="#{bundle.ListSolicitudMaterialesAlmacenTitle}">
                         <p:dataTable id="datalist" value="#{solicitudMaterialesAlmacenController.items}" var="item"
-                                     editable="true" 
+                                     editable="true"  widgetVar="itemsTable"
                                      rowKey="#{item.idSolicitudMaterial}" rows="10" 
                                      paginator="true"
                                      paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -64,15 +64,25 @@
                                 </f:facet>
                                 <h:outputText value="#{item.idArea.nombreArea}"/>
                             </p:column>
-                            <p:column>
+                            <!--<p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Aprobado"/>
                                 </f:facet>
-                                <h:outputText value="#{item.aprobado}"/>
+                                <p:selectBooleanCheckbox value="# {item.aprobado}" disabled="true"/>
+                            </p:column>   -->
+                            <p:column filterBy="#{item.aprobado}" headerText="Aprobado" filterMatchMode="equals">
+                                <f:facet name="filter">
+                                    <p:selectOneButton onchange="PF('itemsTable').filter()">
+                                        <f:converter converterId="javax.faces.Boolean" />
+                                        <f:selectItem itemLabel="Todas" itemValue="" />
+                                        <f:selectItem itemLabel="Si" itemValue="true" />
+                                        <f:selectItem itemLabel="No" itemValue="false" />
+                                    </p:selectOneButton>
+                                </f:facet>
+                                <h:outputText value="#{item.aprobado ? 'Si': 'No'}" />
                             </p:column>
-                            
                             <p:column>
-                                <p:commandButton id="editButton" value="" icon="ui-icon-pencil" update="datalist" action="#{solicitudMaterialesAlmacenController.prepareEdit}">
+                                <p:commandButton id="editButton" value="Editar Solicitud" icon="ui-icon-pencil" update="datalist" action="#{solicitudMaterialesAlmacenController.prepareEdit}">
                                     <f:setPropertyActionListener value="#{item}" for="datalist" target="#{solicitudMaterialesAlmacenController.selected}"/>
                                 </p:commandButton>                                
                             </p:column>
