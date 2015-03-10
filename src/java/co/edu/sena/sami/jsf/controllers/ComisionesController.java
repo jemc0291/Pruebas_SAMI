@@ -256,6 +256,10 @@ public class ComisionesController implements Serializable {
     public String prepareConsultarOrdenDeViaje() {
         return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/verOrdenDeViaje.xhtml";
     }
+    
+    public String prepareConsultarOrdenDeViajeC() {
+        return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/verOrdenDeViajeC.xhtml";
+    }
 
     public void adicionarCiudadComision() {
         for (CiudadComisiones item : ciudadComisionesList) {

@@ -12,7 +12,7 @@
         <ui:define name="body">
             <f:view>
                 <h:form>
-                <h1><h:outputText value="View"/></h1>
+                <h1><h:outputText value="Orden De Viaje Planta"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputText value="RegionalValle:"/>
                     <h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="RegionalValle"/>
@@ -22,11 +22,11 @@
                     <h:outputText value="#{comisionesController.selected.fechaTramite}" title="FechaTramite">
                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:outputText>
-                      <h:outputText value="COMISIONASEA:"/>
-                    <h:outputText value="#{comisionesController.selected.idComision}" title="COMISIONASEA"/>
+                      <h:outputText value="comisionaseA:"/>
+                    <h:outputText value="#{comisionesController.selected.idComision}" title="comisionaseA"/>
                      <h:outputText value="ceduladeciudadania:"/>
                     <h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="ceduladeciudadania"/>
-                     <h:outputText value="Dependencia:"/>
+                     <h:outputText value="Dependencia:"/>       
                     <h:outputText value="#{centroFormacionController.selected.nombreCentroFormacion}" title="Dependencia"/>
                      <h:outputText value="AsignacionMensual:"/>
                      <h:outputText value="#{contratosController.selected.valorMensual}" title="AsignacionMensual"/>
@@ -50,71 +50,10 @@
                     <h:outputText value="#{comisionesController.selected.vehiculoSena}" title="VehiculoSena"/> 
                     <h:outputText value="VehiculoComisionado:"/>
                     <h:outputText value="#{comisionesController.selected.vehiculoComisionado}" title="VehiculoComisionado"/>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                   
-                    <h:outputText value="ObjetivoComision:"/>
-                    <h:outputText value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision"/>
-                   
-                   
-                    <h:outputText value="NumComServicios:"/>
-                    <h:outputText value="#{comisionesController.selected.numComServicios}" title="NumComServicios"/>
-                    <h:outputText value="ObservacionesOrden:"/>
-                    <h:outputText value="#{comisionesController.selected.observacionesOrden}" title="ObservacionesOrden"/>
-                   
-                    <h:outputText value="Objetivos:"/>
-                    <h:outputText value="#{comisionesController.selected.objetivos}" title="Objetivos"/>
-                    <h:outputText value="MesaPlanificar:"/>
-                    <h:outputText value="#{comisionesController.selected.mesaPlanificar}" title="MesaPlanificar"/>
-                   
-                    <h:outputText value="Aprobado:"/>
-                    <h:outputText value="#{comisionesController.selected.aprobado}" title="Aprobado"/>
-                   
-                    <h:outputText value="TransComision:"/>
-                    <h:outputText value="#{comisionesController.selected.transComision}" title="TransComision"/>
-                    
-                    
-                    
-                    <h:outputText value="AuxilioManutencion:"/>
+                      <h:outputText value="AuxilioManutencion:"/>
                     <h:outputText value="#{comisionesController.selected.auxilioManutencion}" title="AuxilioManutencion"/>
-                    <h:outputText value="FechaEntregaInforme:"/>
-                    <h:outputText value="#{comisionesController.selected.fechaEntregaInforme}" title="FechaEntregaInforme">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="ActividadesOTemas:"/>
-                    <h:outputText value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas"/>
-                    <h:outputText value="CompromisoSena:"/>
-                    <h:outputText value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena"/>
-                    <h:outputText value="ProdEntragados:"/>
-                    <h:outputText value="#{comisionesController.selected.prodEntragados}" title="ProdEntragados"/>
-                    <h:outputText value="SaldoNegativo:"/>
-                    <h:outputText value="#{comisionesController.selected.saldoNegativo}" title="SaldoNegativo"/>
-                    <h:outputText value="SaldoPositivo:"/>
-                    <h:outputText value="#{comisionesController.selected.saldoPositivo}" title="SaldoPositivo"/>
-                    <h:outputText value="Presupuesto:"/>
-                    <h:outputText value="#{comisionesController.selected.presupuesto}" title="Presupuesto"/>
-                    <h:outputText value="IdUsuario:"/>
-                    <h:outputText value="#{comisionesController.selected.idUsuario}" title="IdUsuario"/>
-                    <h:outputText value="IdTipoPasaje:"/>
-                    <h:outputText value="#{comisionesController.selected.idTipoPasaje}" title="IdTipoPasaje"/>
-                    <h:outputText value="IdGrupo:"/>
-                    <h:outputText value="#{comisionesController.selected.idGrupo}" title="IdGrupo"/>
-                    <h:outputText value="IdFichaCaracterizacion:"/>
-                    <h:outputText value="#{comisionesController.selected.idFichaCaracterizacion}" title="IdFichaCaracterizacion"/>
-                    <h:outputText value="IdDescripcion:"/>
-                    <h:outputText value="#{comisionesController.selected.idDescripcion}" title="IdDescripcion"/>
-                    <h:outputText value="IdContrato:"/>
-                    <h:outputText value="#{comisionesController.selected.idContrato}" title="IdContrato"/>
-                    
-                    
-                    <h:outputText value="IdBanco:"/>
-                    <h:outputText value="#{comisionesController.selected.idBanco}" title="IdBanco"/>
+                     <h:outputText value="ObservacionesOrden:"/>
+                    <h:outputText value="#{comisionesController.selected.observacionesOrden}" title="ObservacionesOrden"/>
                 </h:panelGrid>
             </h:form>
         </f:view>
