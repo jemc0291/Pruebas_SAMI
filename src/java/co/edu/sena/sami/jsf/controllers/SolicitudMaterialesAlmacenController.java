@@ -164,6 +164,16 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Edit.xhtml";
     }
 
+    public String prepareEditAlmacenista() {
+        itemsSolMaterial = null;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/Materiales/EditObservacion.xhtml";
+    }
+
+    public String prepareViewIns() {
+        itemsSolMaterial = null;
+        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/View.xhtml";
+    }
+
     public String prepareView() {
         return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/View";
     }
@@ -177,7 +187,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     public List<SolicitudMaterialesAlmacenMateriales> getItemsSolMaterial() {
         return itemsSolMaterial;
     }
-    
+
     public String create() {
         selected.setFechaDeSolicitud(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenCreated"));
@@ -192,6 +202,10 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Solicitudes.xhtml";
     }
 
+    public void eliminar() {
+        itemsSolMaterial.remove(selectedSolMaterial);
+    }
+
     public String createDos() {
         selected.setFechaDeSolicitud(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenCreated"));
@@ -203,9 +217,9 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/View.xhtml";
+        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/ViewRedireccion.xhtml";
     }
-    
+
     public String update() {
         selected.setSolicitudMaterialesAlmacenMaterialesList(itemsSolMaterial);
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenUpdated"));
@@ -213,7 +227,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
             selectedSolMaterial = item;
             persistSolMaterial(PersistAction.UPDATE, null);
         }
-        items=null;
+        items = null;
         return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Solicitudes.xhtml";
     }
 
