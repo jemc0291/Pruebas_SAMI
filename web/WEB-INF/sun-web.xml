@@ -25,6 +25,10 @@
     <role-name>webModulo6</role-name>
     <group-name>6</group-name>
   </security-role-mapping>
+  <security-role-mapping>
+    <role-name>webConfiguracion</role-name>
+    <group-name>7</group-name>
+  </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>
     <property name="keepgenerated" value="true">
