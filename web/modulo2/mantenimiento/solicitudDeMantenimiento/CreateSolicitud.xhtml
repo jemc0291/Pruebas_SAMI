@@ -69,7 +69,6 @@
 
                 <h3>Solicitudes Realizadas</h3>
                 <p:dataTable value="#{solicitudServiciosController.listSolicituServiciosByUsuario}" var="item"
-
                              rows="10" id="solicitudTable" 
                              paginator="true"
                              paginatorTemplate="{FirstPageLink} 
@@ -107,27 +106,22 @@
                         <h:outputText value="#{item.ubicacionSolicitud}"/>
                     </p:column>
 
-                    <p:subTable value="#{solicitudServiciosController.listAvance}" var="item2">
-
+                    <p:rowExpansion>
                         <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">
-                            <f:facet name="header"> 
-                            </f:facet>
 
                             <h:outputText value="Estado:" />
-                            <h:outputText value="#{item2.idEstado}" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.idEstado}" />
 
-                            <h:outputText value="Prioridad" />
-                            <h:outputText value="#{item2.idPrioridades}" />
+                            <h:outputText value="Prioridad:" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.idPrioridades}" />
 
                             <h:outputText value="Fue Atendido?" />
-                            <h:outputText value="#{item2.fueAtendido}" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.fueAtendido}" />
 
                             <h:outputText value="Fue Solucionado?" />
-                            <h:outputText value="#{item2.fueSolucionado}" />
-                            
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.fueSolucionado}" />
                         </p:panelGrid>
-                        
-                    </p:subTable>
+                    </p:rowExpansion>
 
                 </p:dataTable>
 
