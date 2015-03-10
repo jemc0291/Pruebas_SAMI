@@ -33,7 +33,7 @@ public class CentroFormacionFacade extends AbstractFacade<CentroFormacion> {
     
      public List<CentroFormacion> findByNombre(String nombre) {
         Query q= getEntityManager().createNamedQuery("CentroFormacion.findByNombreCentroFormacion");
-        q.setParameter("nombreCentroFormacion", nombre + "%");
+        q.setParameter("nombreCentroFormacion","%" + nombre + "%");
         return q.getResultList();
 
     }

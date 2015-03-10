@@ -202,10 +202,13 @@ public class DatosOnbaseController implements Serializable {
 
     public List<DatosOnbase> consulta() {
         List<DatosOnbase> dob = new ArrayList<>();
+        boolean x = false;
+        String subStringNis;
         for (DatosOnbase d1 : getFacade().findByRecibidas()) {
-            boolean x = false;
+            x = false;
             for (DatosOnbase d2 : getFacade().findByProducidas()) {
-                if (d1.getNumRadicadoRecibida().substring(2, 13).equals(d2.getNumRadicadoRecibida().substring(2, 13))) {
+                subStringNis = d1.getNis().substring(5, 7);
+                if ((d1.getNumRadicadoRecibida().substring(2, 13).equals(d2.getNumRadicadoRecibida().substring(2, 13))) && (subStringNis.equals("05")||subStringNis.equals("06")||subStringNis.equals("07"))) {
                     x = true;
                 }
             }

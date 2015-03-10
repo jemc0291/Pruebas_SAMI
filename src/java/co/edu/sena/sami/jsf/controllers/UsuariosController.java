@@ -115,6 +115,7 @@ public class UsuariosController implements Serializable {
  
     public String prepareCreate() {
         selected = new Usuarios();
+        listaCargo = new ArrayList<>();
         listaRoles = new ArrayList<>();
         initializeEmbeddableKey();
         return "Agregar";
@@ -150,7 +151,7 @@ public class UsuariosController implements Serializable {
         return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/Ver";
     }
 
-    public void create() {
+    public String create() {
         try {
             selected.setFechaDeCreacion(new Date());
             selected.setEstado(true);
@@ -159,14 +160,14 @@ public class UsuariosController implements Serializable {
             getFacade().create(selected);
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-
+            
         }
-
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("UsuariosCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-
+        return "/Configuracion/Usuarios/Listar";
+      
     }
 
     public String createModuloUno() {

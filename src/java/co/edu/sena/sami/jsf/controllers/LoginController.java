@@ -101,6 +101,10 @@ public class LoginController implements Serializable {
     public boolean isGestionMateriales() {
         return getRequest().isUserInRole("webModulo6");
     }
+    
+    public boolean isConfiguracion() {
+        return getRequest().isUserInRole("webconfiguracion");
+    }
 
     public String login() {
         try {

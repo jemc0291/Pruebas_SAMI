@@ -29,9 +29,9 @@ import javax.inject.Named;
  *
  * @author Adsim
  */
-@Named(value = "tipoContratoControlller")
+@Named(value = "tipoContratoController")
 @SessionScoped
-public class TipoContratoControlller implements Serializable {
+public class TipoContratoController implements Serializable {
 
     @EJB
     private co.edu.sena.sami.jpa.sessions.TipoContratoFacade ejbFacade;
@@ -42,7 +42,7 @@ public class TipoContratoControlller implements Serializable {
     /**
      * Creates a new instance of TipoContratoControlller
      */
-    public TipoContratoControlller() {
+    public TipoContratoController() {
     }
     
       public TipoContrato getSelected() {
@@ -152,7 +152,7 @@ public class TipoContratoControlller implements Serializable {
     }
 
 
-     @FacesConverter(forClass = TipoContrato.class)
+@FacesConverter(forClass = TipoContrato.class)
     public static class TipoContratoControllerConverter implements Converter {
 
         @Override
@@ -160,7 +160,7 @@ public class TipoContratoControlller implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            TipoContratoControlller controller = (TipoContratoControlller) facesContext.getApplication().getELResolver().
+            TipoContratoController controller = (TipoContratoController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "tipoContratoController");
             return controller.getTipoContrato(getKey(value));
         }
@@ -186,12 +186,10 @@ public class TipoContratoControlller implements Serializable {
                 TipoContrato o = (TipoContrato) object;
                 return getStringKey(o.getIdTipoContrato());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), TipoContrato.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), TipoContratoController.class.getName()});
                 return null;
             }
         }
-
     }
-
 }
 
