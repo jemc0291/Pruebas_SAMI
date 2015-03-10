@@ -60,16 +60,15 @@
                         </p:inputText>
                         <h:message id="observacionesOrdenMessage" for="observacionesOrdenInputText" styleClass="error"/>
                         
-                        <label value="#{bundle.CreateComisionesLabel_suministraVehiculo}" jsf:for="objetivosInputText"></label> 
-                        <p:inputText type="text" id="suministraVehiculoInputText"
-                               required="true"
+                        <label jsf:for="suministraVehiculo"> Suministra Vehiculo</label> 
+                        <h:selectBooleanCheckbox
+                            id="suministraVehiculo"
                                requiredMessage="#{bundle.CreateComisionesRequiredMessage_suministraVehiculo}"
-                               value="#{comisionesController.selected.suministraVehiculo}"
-                               title="#{bundle.CreateComisionesTitle_suministraVehiculo}" >
+                               value="#{comisionesController.selected.suministraVehiculo}">
                             <f:ajax execute="@this" render="suministraVehiculoMessage"/>
-                        </p:inputText>
-                        <h:message id="suministraVehiculoMessage" for="suministraVehiculoInputText" styleClass="error"/>
-                        
+                        </h:selectBooleanCheckbox>
+                        <h:message id="suministraVehiculoMessage" for="suministraVehiculoInputText"/>
+                         
                         <label value="#{bundle.CreateComisionesLabel_transIntermunicipal}" jsf:for="objetivosInputText"></label> 
                         <p:inputText type="text" id="transIntermunicipalInputText"
                                required="true"
@@ -187,7 +186,7 @@
                                 </p:column>       
                             </p:dataTable>
                         </p:outputPanel>
-                    <h:commandButton value="Guardar" action="#{comisionesController.create()}" />
+                    <h:commandButton value="Guardar" action="#{comisionesController.update2}" />
                 </form>  
             </section>
         </ui:define>
