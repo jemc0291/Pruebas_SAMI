@@ -184,14 +184,21 @@
                                         converter="centroFormacionConverter" pt:required="true"
                                         forceSelection="true" maxResults="10"/> 
                         <p:message id="centrodeformacionMessage" for="centroFormacion"/>
-
-
+                        
                         <label value="#{bundle.CreateUsuariosLabel_gpRh}" jsf:for="FactorInputText"></label>
-                        <p:inputText type="text" id="FactorInputText" 
-                                     value="#{usuariosController.selected.gpRh}"
-                                     title="#{bundle.CreateUsuariosTitle_gpRh}">
+                        <h:selectOneMenu class="Form-datos" id="FactorInputText" 
+                                         value="#{usuariosController.selected.gpRh}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItem itemLabel="A+" itemValue="A+"/>
+                            <f:selectItem itemLabel="A-" itemValue="A-"/>
+                            <f:selectItem itemLabel="O+" itemValue="O+"/>
+                            <f:selectItem itemLabel="O-" itemValue="O-"/>
+                            <f:selectItem itemLabel="B+" itemValue="B+"/>
+                            <f:selectItem itemLabel="B-" itemValue="B-"/>
+                            <f:selectItem itemLabel="AB+" itemValue="AB+"/>
+                            <f:selectItem itemLabel="AB-" itemValue="AB-"/>
                             <f:ajax execute="@this" render="FactorMessage"/>
-                        </p:inputText>
+                        </h:selectOneMenu>
                         <h:message id="FactorMessage" for="FactorInputText" styleClass="error"/>
 
                         <label value="#{bundle.CreateUsuariosLabel_idEstadoCivil}" jsf:for="EstadoCivilInputText"></label>

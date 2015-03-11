@@ -75,6 +75,11 @@
                             <p:commandButton icon="ui-icon-search"  action="#{datosOnbaseController.prepareConsultarRecibidas}">
                                 <f:setPropertyActionListener value="#{InformeProducidas}" target="#{datosOnbaseController.selected}"/>
                             </p:commandButton>
+                            <p:commandButton icon="ui-icon-trash"  action="#{datosOnbaseController.destroy}"
+                                             process="@this" update="OnBaseTable">
+                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{item}" target="#{datosOnbaseController.selected}"/>
+                            </p:commandButton>
                         </p:column> 
                     </p:dataTable>
                 </p:outputPanel>
