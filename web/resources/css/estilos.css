@@ -672,9 +672,12 @@ table, th, td {
     margin-right: 1em;
 
 }
+.estilo {
+
+font-size: 18px;
+}
 
 /*---------MODULO5----------*/
-
 
 
 .SubMenu-item{/*Gestion Documental*/
@@ -789,4 +792,23 @@ table, th, td {
     }
     .body{
          font-family: 'Open Sans', sans-serif;
+    }
+
+    .titleComision{
+        display: inline-block;
+        margin-left: 17em;
+        position: relative;
+        bottom: 6em;
+    }
+    
+    .descripcion{
+        font-size: 1em;
+        display: inline-block;
+        float: left ;
+        margin-left: 2.7em;
+    }
+    .image-Container{
+      margin-bottom: 0;
+      
+
     }
