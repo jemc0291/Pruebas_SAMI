@@ -66,11 +66,28 @@
                          <b><label for="CompromisoSena">Compromiso SENA:</label></b>
                          <u><h:outputText value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena"/></u> 
                     </div>
-                    <br/> <br/> <br/>
+                    <br/> <br/>
                     <div>
                          <b><label for="ProdEntragados">Produtos Entragados:</label></b>
                          <u><h:outputText value="#{comisionesController.selected.prodEntragados}" title="ProdEntragados"/></u>
-                    </div>                    
+                    </div> 
+                   
+                      <br/>
+                    <div>
+                         <b><label for="nombreDeBanco">Banco:</label></b>
+                         <u><h:outputText value="#{bancosController.selected.nombreDeBanco}" title="nombreDeBanco"/></u>
+                    </div>  
+                        <br/>
+                    <div>
+                         <b><label for="nombreTipoCuenta">Tipo:</label></b>
+                         <u><h:outputText value="#{usuariosController.selected.nombreTipoCuenta}" title="nombreTipoCuenta"/></u>
+                    </div> 
+                          <br/>
+                    <div>
+                         <b><label for="numCuentaBanco">Cuenta:</label></b>
+                         <u><h:outputText value="#{usuariosController.selected.numCuentaBanco}" title="numCuentaBanco"/></u>
+                    </div> 
+                          <h3>solo para los contratistas</h3>
                 </fieldset>
 
 

@@ -30,19 +30,16 @@
                         </fieldset>
                     </fieldset>  
                     <fieldset>  
-                        <form>
-                            <label for="nomDepartamento">Regional:</label>
-                            <hr size="8" align="rigt" heiht="50"></hr>
+                        <div >
+                            <b><label for="nomDepartamento">Regional:</label></b>
                             <u><h:outputText value="#{departamentosController.selected.nombreDpto}" title="nomDepartamento"/></u>
-                        </form> 
-                            
+
+                        </div>
                         <br/>
-                         <form>
-                            <label for="idCentroFormacions">centro:</label>
-                            <hr size="8" align="rigt" heiht="50"></hr>
-                            <u><h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="nomDepartamento"/></u>
-                        </form> 
-                        
+                        <div>
+                            <b><label for="idCentroFormacions">Centro:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="idCentroFormacion"/></u>
+                        </div>
                         <br/>
                         <div>
                             <b><label for="FechaTramite">Fecha:</label></b>
@@ -81,7 +78,7 @@
                             <u><h:outputText value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision"/></u>
                         </div> 
                         <br/>
-                        
+                        <HR/>
                         <br/> 
                         
 
@@ -117,12 +114,13 @@
                                 <h:outputText value="#{item.llegadaEstimada}"/>
                             </p:column>     
                         </p:dataTable>
-                        <br>
-                         <div>
+
+
+                        <HR/>
+                        <div>
                             <b><label for="ActividadesOTemas">DESCRIPCION:</label></b>
                             <u><h:outputText value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas"/></u>
                         </div>
-                            </br>
 
                         <br/>
                         <HR/>
