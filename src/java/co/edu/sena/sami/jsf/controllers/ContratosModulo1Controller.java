@@ -349,4 +349,54 @@ public class ContratosModulo1Controller implements Serializable {
 
         }
     }
+     public List<Contratos> getListNumeroContratoAutoComplete(String query) {//se agrego metodo de autocompletar
+        try {
+            return getFacade().findByNumeroContratoCompletar(query);
+        } catch (Exception ex) {
+            Logger.getLogger(ContratosController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+     @FacesConverter(forClass = Contratos.class, value = "contratosConverter")
+    public static class ContratosControllerConverter implements Converter {
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            ContratosController controller = (ContratosController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "contratosController");
+            return controller.getContratos(getKey(value));
+        }
+
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
+            return key;
+        }
+
+        String getStringKey(java.lang.Integer value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof Contratos) {
+                Contratos o = (Contratos) object;
+                return getStringKey(o.getIdContrato());
+            } else {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Contratos.class.getName()});
+                return null;
+            }
+        }
+
+    }
+   
 }
