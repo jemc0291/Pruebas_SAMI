@@ -176,20 +176,15 @@
                 </p:dataTable>
 
 
-                <h3>Export Page Data Only</h3>
-                <h:commandLink>
-                    <img src="../Recursos/Imagenes/excel.png" width="26"/>                   
-                    <p:dataExporter type="xls" target="contratosModulo1Table" fileName="item" pageOnly="true"/>
+                <h3>Reporte Talento Humano</h3>
+                <h:commandLink id="excel">
+                <img src="../Recursos/Imagenes/excel.png" />
+                <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS}" />
                 </h:commandLink>
-
-                <h:commandLink>
-                    <img src="../Recursos/Imagenes/pdf.png" width="26"/>
-                    <p:dataExporter type="pdf" target="contratosModulo1Table" fileName="item" pageOnly="true" />
-                </h:commandLink>
-
-                <h:commandLink>
-                    <img src="../Recursos/Imagenes/csv.png" width="26"/>
-                    <p:dataExporter type="csv" target="contratosModulo1Table" fileName="item" pageOnly="true" />
+                
+                <h:commandLink id="pdf">
+                <img src="../Recursos/Imagenes/pdf.png" />
+                <p:dataExporter type="pdf" target="contratosModulo1Table" fileName="Reporte" preProcessor="#{contratosModulo1Controller.preProcessPDF}" />
                 </h:commandLink>
             </h:form>
 

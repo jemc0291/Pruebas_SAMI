@@ -286,6 +286,16 @@ public class UsuariosController implements Serializable {
             return null;
         }
     }
+    
+     public List<Usuarios> getListNumeroDocumentoAutoComplete(String query) {//se agrego metodo de autocompletar
+        try {
+            return getFacade().findByNumeroDoc(query);
+        } catch (Exception ex) {
+            Logger.getLogger(ContratosModulo1Controller.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     @FacesConverter(forClass = Usuarios.class, value = "usuariosConverter")
     public static class UsuariosControllerConverter implements Converter {

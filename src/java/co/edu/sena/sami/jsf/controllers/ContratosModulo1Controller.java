@@ -6,17 +6,21 @@ import co.edu.sena.sami.jpa.entities.Rol;
 import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jpa.entities.UsuariosContratos;
 import co.edu.sena.sami.jpa.entities.UsuariosContratosPK;
-import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
-import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.ContratosFacade;
 import co.edu.sena.sami.jpa.sessions.PolizasFacade;
 import co.edu.sena.sami.jpa.sessions.UsuariosContratosFacade;
+import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
+import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Image;
+import com.lowagie.text.PageSize;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
@@ -34,6 +38,15 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.validator.ValidatorException;
+import javax.servlet.ServletContext;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
 import org.primefaces.model.UploadedFile;
 
 @ManagedBean(name = "contratosModulo1Controller")
@@ -44,19 +57,27 @@ public class ContratosModulo1Controller implements Serializable {
     private PolizasFacade polizasFacade;
     @EJB
     private UsuariosContratosFacade usuariosContratosFacade;
-
     @EJB
     private co.edu.sena.sami.jpa.sessions.ContratosFacade ejbFacade;
+    
     private List<Contratos> items = null;
     private Contratos selected;
     private Polizas selectedPolizas;
     private UsuariosContratos selectedUsuariosContratos;
     private Usuarios selectedUsuarios;
     private Rol selectedRol;
+    private List<UsuariosContratos> listaUsuariosContratos ;
 
     public ContratosModulo1Controller() {
     }
 
+    public List<UsuariosContratos> getListaUsuariosContratos() {
+         if (listaUsuariosContratos == null) {
+            listaUsuariosContratos = getUsuariosContratosFacade().findAll();
+         }
+        return listaUsuariosContratos;
+    }
+    
     public Polizas getSelectedPolizas() {
         return selectedPolizas;
     }
@@ -349,4 +370,152 @@ public class ContratosModulo1Controller implements Serializable {
 
         }
     }
+    public void postProcessXLS(Object document) {
+        HSSFWorkbook wb = (HSSFWorkbook) document;
+        wb.removeSheetAt(0);
+       
+        HSSFSheet sheet = wb.createSheet("datos");
+        List<UsuariosContratos> selectUsuariosContratos = getUsuariosContratosFacade().findAll();
+        HSSFRow header = sheet.createRow(0);
+        HSSFCell cellHeader = header.createCell(0);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListInformesTitle_idContrato"));
+        cellHeader = header.createCell(1);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_fechaSuscripcion"));
+        cellHeader = header.createCell(2);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_fechaInicioContrato"));
+        cellHeader = header.createCell(3);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_razonSocial"));
+        cellHeader = header.createCell(4);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_numeroDoc"));
+        cellHeader = header.createCell(5);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_objetoContractual"));
+        cellHeader = header.createCell(6);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_valorContrato"));
+        cellHeader = header.createCell(7);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_direccionUsu"));
+        cellHeader = header.createCell(8);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListSexoTitle_nombreSexo"));
+        cellHeader = header.createCell(9);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_telefonoPrincipalUsu"));
+        cellHeader = header.createCell(10);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_telefonoAlternoUsu"));
+        cellHeader = header.createCell(11);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_email"));
+        cellHeader = header.createCell(12);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_fechaNac"));
+        cellHeader = header.createCell(13);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListEpsTitle_nombreEps"));
+        cellHeader = header.createCell(14);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListFondoDePensionesTitle_nombreFondoPensiones"));
+        cellHeader = header.createCell(15);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListCrpTitle_numeroCrp"));
+        cellHeader = header.createCell(16);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_plazoMeses"));
+        cellHeader = header.createCell(17);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_fechaInicioContrato"));
+        cellHeader = header.createCell(18);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_fechaFinContrato"));
+        cellHeader = header.createCell(19);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_razonSocial"));
+        cellHeader = header.createCell(20);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_razonSocial"));
+        cellHeader = header.createCell(21);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_idCuentasBancarias"));
+        cellHeader = header.createCell(22);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListBancosTitle_nombreDeBanco"));
+        cellHeader = header.createCell(23);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListTipoDeCuentaTitle_nombreTipoDeCuenta"));
+
+        /*Estilos para que quede con un color de fondo*/
+        HSSFCellStyle cellStyle = wb.createCellStyle();
+        cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
+        cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+
+        for (int i = 0; i < header.getPhysicalNumberOfCells(); i++) {
+            HSSFCell cell = header.getCell(i);
+
+            cell.setCellStyle(cellStyle);
+        }
+        /*Formatos para las fechas */
+        CreationHelper createHelper = wb.getCreationHelper();
+        CellStyle cellStyleDate = wb.createCellStyle();
+        CellStyle cellStyleTime = wb.createCellStyle();
+        CellStyle cellStyleDateTime = wb.createCellStyle();
+        cellStyleDate.setDataFormat(
+                createHelper.createDataFormat().getFormat("m/d/yy"));
+        cellStyleTime.setDataFormat(
+                createHelper.createDataFormat().getFormat("h:mm:SS"));
+        cellStyleDateTime.setDataFormat(
+                createHelper.createDataFormat().getFormat("dd/mm/yyyy h:mm:SS"));
+
+        /* Llenar el reporte */
+        for (int rowNum = 1; rowNum <= selectUsuariosContratos.size(); rowNum++) {
+            HSSFRow row = sheet.createRow(rowNum);
+
+            UsuariosContratos item = selectUsuariosContratos.get(rowNum-1);
+            HSSFCell cell = row.createCell(0);
+            cell.setCellValue(item.getContratos().getNumeroDeContrato());
+            cell = row.createCell(1);
+            cell.setCellValue(item.getContratos().getFechasuscripcion());
+            cell.setCellStyle(cellStyleDateTime);
+            cell = row.createCell(2);
+            cell.setCellValue(item.getContratos().getFechaInicioContrato());
+            cell = row.createCell(3);
+            cell.setCellValue(item.getUsuarios().getRazonSocial());
+            cell = row.createCell(4);
+            cell.setCellValue(item.getUsuarios().getNumeroDoc());
+            cell = row.createCell(5);
+            cell.setCellValue(item.getContratos().getObjetoContractual()== null? "":item.getContratos().getObjetoContractual());
+            cell = row.createCell(6);
+            cell.setCellValue(item.getContratos().getValorContrato());
+            cell = row.createCell(7);
+            cell.setCellValue(item.getUsuarios().getDireccionUsu());
+            cell = row.createCell(8);
+            cell.setCellValue(item.getUsuarios().getIdSexo().getNombreSexo());
+            cell = row.createCell(9);
+            cell.setCellValue(item.getUsuarios().getTelefonoPrincipalUsu() == null? "":item.getUsuarios().getTelefonoPrincipalUsu());
+            cell = row.createCell(10);
+            cell.setCellValue(item.getUsuarios().getTelefonoAlternoUsu() == null? "":item.getUsuarios().getTelefonoAlternoUsu());
+            cell = row.createCell(11);
+            cell.setCellValue(item.getUsuarios().getEmail());
+            cell = row.createCell(12);
+            cell.setCellValue(item.getUsuarios().getFechaNac());
+            cell = row.createCell(13);
+            cell.setCellValue(item.getUsuarios().getIdEps().getNombreEps() == null? "":item.getUsuarios().getIdEps().getNombreEps());
+            cell = row.createCell(14);
+            cell.setCellValue(item.getUsuarios().getIdFondoPensiones().getNombreFondoPensiones());
+            cell = row.createCell(15);
+            cell.setCellValue(item.getUsuarios().getIdCcf().getNombreCcf() == null? "":item.getUsuarios().getIdCcf().getNombreCcf());
+            cell = row.createCell(16);
+            cell.setCellValue(item.getContratos().getPlazoMeses());
+            cell = row.createCell(17);
+            cell.setCellValue(item.getContratos().getFechaInicioContrato());
+            cell = row.createCell(18);
+            cell.setCellValue(item.getContratos().getFechaFinContrato());
+            cell = row.createCell(19);
+            cell.setCellValue(item.getUsuarios().getRazonSocial() == null? "":item.getUsuarios().getRazonSocial());
+            cell = row.createCell(20);
+            cell.setCellValue(item.getUsuarios().getRazonSocial() == null? "":item.getUsuarios().getRazonSocial());
+            cell = row.createCell(21);
+            cell.setCellValue(item.getUsuarios().getNumCuentaBanco() == null? "":item.getUsuarios().getNumCuentaBanco());
+            cell = row.createCell(22);           
+            cell.setCellValue(item.getUsuarios().getIdBanco() == null? "":item.getUsuarios().getIdBanco().getNombreDeBanco());
+            cell = row.createCell(23);
+            cell.setCellValue(item.getUsuarios().getNombreTipoCuenta() == null? "":item.getUsuarios().getNombreTipoCuenta());
+
+        }
+    }
+
+    public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
+        Document pdf = (Document) document;
+        pdf.open();
+        pdf.setPageSize(PageSize.A4);
+
+        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        String logo = servletContext.getRealPath("") + File.separator + "" + File.separator + "Imagenes" + File.separator + "pdf.png";
+
+        pdf.add(Image.getInstance(logo));
+    }
+
+
 }

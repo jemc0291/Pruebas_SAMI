@@ -175,16 +175,17 @@
                     <label jsf:value="#{bundle.CreateContratosLabel_justificacion}"  for="justificacion" />
                     <textarea type="text" jsf:id="justificacion" maxlength="500" jsf:value="#{contratosModulo1Controller.selected.justificacion}" jsf:title="#{bundle.CreateContratosTitle_justificacion}" ></textarea>
 
+                    <label value="#{bundle.CreateUsuariosContratosLabel_usuarios}" jsf:for="Usuario" class="FormLabelSCCSS" />
+                    <p:autoComplete id="Usuario" value="#{contratosModulo1Controller.selectedUsuarios}" 
+                                        required="true" requiredMessage="#{bundle.CreateUsuariosContratosRequiredMessage_usuarios}"
+                                        completeMethod="#{usuariosController.getListNumeroDocumentoAutoComplete}" 
+                                        var="usuario" itemLabel="#{usuario.informacionUsuario()}" itemValue="#{usuario}" 
+                                    converter="usuariosConverter" 
+                                    forceSelection="true" maxResults="10"/> 
+                        <h:message id="UsuarioMessage" for="Usuario" />
+                    
                     <label jsf:value="Usuario" for="idTipoContrato" />
-                    <h:selectOneMenu id="Usuario" value="#{contratosModulo1Controller.selectedUsuarios}" title="Usuario" required="true" requiredMessage="Usuario requerido">
-
-
-                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
-                                       var="idUsuario"
-                                       itemValue="#{idUsuario}"/>
-
-
-                    </h:selectOneMenu>
+                  
 
                     <label>Polizas</label>
                     <p:commandButton onclick="PF('PolizasDialogo').show()" value="Poliza" process="@this" update=":polizasForm" />
