@@ -13,6 +13,7 @@ import co.edu.sena.sami.jpa.sessions.PolizasFacade;
 import co.edu.sena.sami.jpa.sessions.UsuariosContratosFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -102,6 +103,26 @@ public class ContratosController implements Serializable {
         } else {
         return getUsuariosContratosFacade().findByIdContrato(contrato);
         }
+    }
+    public List<Contratos> contratosConInforme() {
+        List<Contratos> csi = new ArrayList<>();
+        for (Contratos c : getItems()) {
+            if (!c.getInformesList().isEmpty()) {
+                csi.add(c);
+            }
+        }
+        return csi;
+    }
+
+    public List<Contratos> contratosSinInforme() {
+        List<Contratos> csi = new ArrayList<>();
+        items = null;
+        for (Contratos c : getItems()) {
+            if (c.getInformesList().isEmpty()) {
+                csi.add(c);
+            }
+        }
+        return csi;
     }
 
     protected void setEmbeddableKeys() {

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title"> Solicitud Comision</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <f:view>
+                <h:form>
+                <h1><h:outputText value="Orden De Viaje Planta"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputText value="RegionalValle:"/>
+                    <h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="RegionalValle"/>
+                    <h:outputText value="Ciudad:"/>
+                    <h:outputText value="#{comisionesController.selected.ciudad}" title="Ciudad"/>
+                     <h:outputText value="FechaTramite:"/>
+                     <h:outputText value="#{comisionesController.selected.fechaTramite}" title="FechaTramite">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                      <h:outputText value="comisionaseA:"/>
+                    <h:outputText value="#{comisionesController.selected.idComision}" title="comisionaseA"/>
+                     <h:outputText value="ceduladeciudadania:"/>
+                    <h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="ceduladeciudadania"/>
+                     <h:outputText value="Dependencia:"/>       
+                    <h:outputText value="#{centroFormacionController.selected.nombreCentroFormacion}" title="Dependencia"/>
+                     <h:outputText value="AsignacionMensual:"/>
+                     <h:outputText value="#{contratosController.selected.valorMensual}" title="AsignacionMensual"/>
+                    <h:outputText value="Ciudad:"/>
+                    <h:outputText value="#{comisionesController.selected.ciudad}" title="Ciudad"/>
+                     <h:outputText value="SalidaEstimada:"/>
+                    <h:outputText value="#{ciudadComisionesController.selected.salidaEstimada}" title="SalidaEstimada">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                     <h:outputText value="LlegadaEstimada:"/>
+                     <h:outputText value="#{ciudadComisionesController.selected.llegadaEstimada}" title="LlegadaEstimada">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                      <h:outputText value="Dias:"/>
+                    <h:outputText value="#{comisionesController.selected.numDias}" title="Dias"/>
+                    <h:outputText value="GastosDeViaje:"/>
+                    <h:outputText value="#{comisionesController.selected.otrosGastos}" title="GastosDeViaje"/>
+                     <h:outputText value="GastosTransporteIntermunicipal:"/>
+                    <h:outputText value="#{comisionesController.selected.transIntermunicipal}" title="GastosTransporteIntermunicipal"/>
+                    <h:outputText value="VehiculoSena:"/>
+                    <h:outputText value="#{comisionesController.selected.vehiculoSena}" title="VehiculoSena"/> 
+                    <h:outputText value="VehiculoComisionado:"/>
+                    <h:outputText value="#{comisionesController.selected.vehiculoComisionado}" title="VehiculoComisionado"/>
+                      <h:outputText value="AuxilioManutencion:"/>
+                    <h:outputText value="#{comisionesController.selected.auxilioManutencion}" title="AuxilioManutencion"/>
+                     <h:outputText value="ObservacionesOrden:"/>
+                    <h:outputText value="#{comisionesController.selected.observacionesOrden}" title="ObservacionesOrden"/>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+        </ui:define>
+    </ui:composition>
+</html>

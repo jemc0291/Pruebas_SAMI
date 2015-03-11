@@ -69,15 +69,15 @@
 
                         <p:column>
                             <f:facet name="header">Opciones</f:facet>
-                            <p:commandButton icon="ui-icon-search"  action="#{comisionesController.prepareConsultarComision}">
+                            <p:commandButton icon="ui-icon-search"  action="#{comisionesController.prepareConsultarOrdenDeViaje}">
                                 <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-trash"  action="#{comisionesController.destroy}"
-                                             process="@this" update="ComisionesTable">
-                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta Comision?" icon="ui-icon-alert" />
+                            <p:commandButton icon="ui-icon-search"  action="#{comisionesController.prepareConsultarOrdenDeViajeC}">
                                 <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
                             </p:commandButton>
-                            
+                            <p:commandButton icon="ui-icon-plus"  action="#{comisionesController.prepareCreateOrdenDeViaje}">
+                                <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
+                            </p:commandButton>                                                       
                         </p:column>       
                     </p:dataTable>
                 </p:outputPanel>

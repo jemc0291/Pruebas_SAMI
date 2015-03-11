@@ -35,18 +35,25 @@
                             <h:message id="observacionesMessage" for="observacionesTextArea" class="Error"/>                   
                          
                             
-                            <label class="FormLabelSCCSS"  jsf:for="idContrato" jsf:value="#{bundle.CreateInformesLabel_idContrato}"/>                    
-                            <p:autoComplete id="idContrato" value="#{informesController.selected.idContrato}" 
-                                    required="true" requiredMessage="#{bundle.CreateInformesRequiredMessage_idContrato}"
-                                    completeMethod="#{contratosController.getListNumeroContratoAutoComplete}" 
-                                    var="idContrato" itemLabel="#{idContrato}" itemValue="#{idContrato}" 
+                            <!--<label class="FormLabelSCCSS"  jsf:for="idContrato" jsf:value="# {bundle.CreateInformesLabel_idContrato}"/>                    
+                            <p:autoComplete id="idContrato" value="# {informesController.selected.idContrato}" 
+                                    required="true" requiredMessage="# {bundle.CreateInformesRequiredMessage_idContrato}"
+                                    completeMethod="# {contratosController.getListNumeroContratoAutoComplete}" 
+                                    var="idContrato" itemLabel="# {idContrato}" itemValue="# {idContrato}" 
                                     converter="contratosConverter" pt:required="true"
                                     forceSelection="true" maxResults="10"/> 
-                            <p:message id="selectmessage" for="idContrato"/>
+                            <p:message id="selectmessage" for="idContrato"/>-->
                        
                         </h:panelGrid>
                         
-                        <h:commandButton class="FormButtonSCCSS" value="#{bundle.CreateInformesSaveLink}" action="#{informesController.create()}" />
+                        <h:commandButton class="FormButtonSCCSS" 
+                                 value="#{bundle.CreateInformesSaveLink}" 
+                                 actionListener="#{informesController.create}" 
+                                 action="#{informesController.prepareList()}"
+                                 p:update="@this">
+                                <f:attribute name="contrato" 
+                                 value="#{contratosController.selected}"/>
+                         </h:commandButton>
                         <h:button class="FormButtonSCCSS" value="Cancelar" outcome="ListInformes"/>
                         <h:button class="FormButtonSCCSS" value="#{bundle.CreateInformesIndexLink}" outcome="/modulo3/index_modulo3"/>
                     </h:form>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title"> Solicitud Comision</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <f:view>
+            <h:form>
+                <h1><h:outputText value=""/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Solicitud Numero:"/>
+                    <h:outputText value="#{cdpController.selected.numeroCdp}" title="Solicitud Numero"/>
+                    <h:outputText value="FechaSolicitud:"/>
+                    <h:outputText value="#{cdpController.selected.fechaSolicitud}" title="FechaSolicitud">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="FechaRecepcion:"/>
+                    <h:outputText value="#{cdpController.selected.fechaRecepcion}" title="FechaRecepcion">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                     <h:outputText value="Tipo De Solicitud:"/>
+                    <h:outputText value="#{cdpController.selected.idTipoSolicitud}" title="Tipo De Solicitud"/>
+                    <h:outputText value="Nombre De Dependencia:"/>
+                    <h:outputText value="#{cdpController.selected.codigoDeDependencia}" title="Nombre De Dependencia"/>
+                    <h:outputText value="Nombre Del Solicitante:"/>
+                    <h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="Nombre Del Solicitant"/>
+                    <h:outputText value="Objetivo Del Gasto:"/>
+                    <h:outputText value="#{cdpController.selected.objetivoDelGasto}" title="Objetivo Del Gasto"/>
+                    <h:outputText value="Codigo Dependencia:"/>
+                    <h:outputText value="#{cdpController.selected.codigoDeDependencia}" title="Codigo Dependencia"/>
+                    <h:outputText value="Codigo Gestion:"/>
+                    <h:outputText value="#{cdpController.selected.codigoGestion}" title="Codigo Gestion"/>
+                    <h:outputText value="IdRubro:"/>
+                    <h:outputText value="#{cdpController.selected.idRubro}" title="IdRubro"/> 
+                    <h:outputText value="Subtotal:"/>
+                    <h:outputText value="Concepto Del Gasto:"/>             
+                    <h:outputText value="#{comisionesController.selected.otrosGastos}" title="Concepto Del Gasto"/>
+                    <h:outputText value="ValorDisponibilidadPresupuestalSolicitada:"/>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+        </ui:define>
+    </ui:composition>
+</html>
+

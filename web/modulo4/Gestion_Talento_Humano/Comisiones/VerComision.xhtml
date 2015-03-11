@@ -4,99 +4,157 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title"> Consultar Solicitud Comision</ui:define>
+        <ui:define name="title"> solicitud plan comision</ui:define>
         <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <f:view>
-                <h:form id='formSolicitudComision'>
-                    <h1><h:outputText value="Solicitud Comisión"/></h1>
-                    <p:panelGrid columns="2">
-                        <label jsf:value="#{bundle.CreateComisionesLabel_idCentroFormacion}" jsf:for="centroFormacion"></label> 
-                        <p:autoComplete id="centroFormacion" value="#{comisionesController.selected.idCentroFormacion}" 
-                                         completeMethod="#{usuariosController.getListCentroFormacionAutoComplete}" 
-                                         var="centroFormacion" itemLabel="#{centroFormacion}" itemValue="#{centroFormacion}" 
-                                        converter="centroFormacionConverter" 
-                                        forceSelection="true" maxResults="10" disabled="true"/> 
+                <h:form id="PlanDeComision">
+                    <fieldset class="row panel">
+                        <fieldset>
+                        <figure class="image-Container">
+                        <img src="#{request.contextPath}/resources/images/logo_sena.jpg" />
+                        </figure>
+                        <figcaption class="descripcion">Sistema de <br/>Gestion de la<br/>Calidad</figcaption>
+                        </fieldset>
+                        <div class="titleComision"  columns="6">
+                            <center><p>servicio nacional de aprendizaje sena<br>
+                                        centro de biotecnologia industrial</br></p>
+                                <h3>Solicitud Plan De Comision</h3></center>
+                        </div>
+                        <fieldset>
+                        <div  id="divpg" columns="3" style="display: inline-block">
+                            <p align="right" style="position: relative;bottom: 113.5px;left: 16em;">Codigo:<br/> F0-9544-015-06-08:<br/>Versión:<br/></p>
+                        </div>
+                        </fieldset>
+                    </fieldset>  
+                    <fieldset>  
+                        <form>
+                            <label for="nomDepartamento">Regional:</label>
+                            <hr size="8" align="rigt" heiht="50"></hr>
+                            <u><h:outputText value="#{departamentosController.selected.nombreDpto}" title="nomDepartamento"/></u>
+                        </form> 
+                            
+                        <br/>
+                         <form>
+                            <label for="idCentroFormacions">centro:</label>
+                            <hr size="8" align="rigt" heiht="50"></hr>
+                            <u><h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="nomDepartamento"/></u>
+                        </form> 
                         
-                        <h:outputLabel  value="IdUsuario:" for="idUsuario" />
-                        <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required." disabled="true">
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="MesaPlanificar:" for="mesaPlanificar" />
-                        <h:inputText id="mesaPlanificar" value="#{comisionesController.selected.mesaPlanificar}" title="MesaPlanificar" disabled="true" />
-                        <h:outputLabel value="ObjetivoComision:" for="objetivoComision" />
-                        <h:inputText id="objetivoComision" value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision" required="true" requiredMessage="The ObjetivoComision field is required." disabled="true"/>
+                        <br/>
+                        <div>
+                            <b><label for="FechaTramite">Fecha:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.fechaTramite}" title="FechaTramite"/></u>
+                        </div>
+                        <br/>
+                        <div>
+                            <b><label for="IdUsuario">Funcionario Solicitante:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="IdUsuario"/></u>
+                        </div>
+                        <br/>
+                        <div>
+                            <b><label for="nomCargo">Cargo Y Grado:</label></b>
+                            <u><h:outputText value="#{cargoController.selected.nombreCargo}" title="nomCargo"/></u>
+                        </div>
+                        <br/>
+                        <div>
+                            <b><label for="numeroDo">Cedula de ciudadania N°:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="numeroDoc"/></u>
+                        </div>
+                        <br/>
+                        <div>
+                            <b><label for="valorMensual">Ingreso Mes:</label></b>
+                            <u><h:outputText value="#{contratosController.selected.valorMensual}" title="valorMensual"/></u>
+                        </div>
+                        <br/>
+                        <div>
+                            <b><label for="mesaPlanificar">Mes A Planificar:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.mesaPlanificar}" title="mesaPlanificar"/></u>
+                        </div>
+                        <br/>
+                        <HR />
+                        <br/>
+                        <div>
+                            <b><label for="ObjetivoComision">OBJETIVO DE LA COMISION:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision"/></u>
+                        </div> 
+                        <br/>
+                        
+                        <br/> 
+                        
+
+                        <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
+                                     id="comisionesTable" 
+                                     >
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ciudad}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.empresaVereda}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.salidaEstimada}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.llegadaEstimada}"/>
+                            </p:column>     
+                        </p:dataTable>
+                        <br>
+                         <div>
+                            <b><label for="ActividadesOTemas">DESCRIPCION:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas"/></u>
+                        </div>
+                            </br>
+
+                        <br/>
+                        <HR/>
+                        <h3>Observaciones</h3>
+                        <div>
+                            <b><label for="idFichaCaracterizacion">Nº Ficha De Caracterizacion:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.idFichaCaracterizacion}" title="idFichaCaracterizacion"/></u>
+                        </div>
+                        <br/>
+                        <HR/>
 
 
 
-                        <h:outputLabel value="IdDescripcion:" for="idDescripcion" />
-                        <h:selectOneMenu id="idDescripcion" value="#{comisionesController.selected.idDescripcion}" title="IdDescripcion" required="true" requiredMessage="The IdDescripcion field is required." disabled="true">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneDescripciones}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="TranspIntermunicipal:" for="transpIntermunicipal" />
-                        <h:inputText id="transpIntermunicipal" value="#{comisionesController.selected.transpIntermunicipal}" title="TranspIntermunicipal" disabled="true"/>
-                        <h:outputLabel value="IdFichaCaracterizacion:" for="idFichaCaracterizacion" />
-                        <h:selectOneMenu id="idFichaCaracterizacion" value="#{comisionesController.selected.idFichaCaracterizacion}" title="IdFichaCaracterizacion" required="true" requiredMessage="The IdFichaCaracterizacion field is required." disabled="true">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneFichas}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="IdBanco:" for="idBanco" />
-                        <h:selectOneMenu id="idBanco" value="#{comisionesController.selected.idBanco}" title="IdBanco" required="true" requiredMessage="The IdBanco field is required." disabled="true">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneBanco}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="IdContrato:" for="idContrato" />
-                        <h:selectOneMenu id="idContrato" value="#{comisionesController.selected.idContrato}" title="IdContrato" required="true" requiredMessage="The IdContrato field is required." disabled="true">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneContratos}"/>
-                        </h:selectOneMenu>
-                    </p:panelGrid>
-                        <p:outputPanel id="ComisionesTablePanel" >
-                            <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
-                                         rows="10" id="comisionesTable" 
-                                         paginator="true"
-                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowsPerPageTemplate="20,40,60">
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.ciudad}"/>
-                                </p:column>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.empresaVereda}"/>
-                                </p:column>
+                        <div>
+                            <b><label for="CompromisoSena">Compromiso SENA:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena"/></u> 
+                        </div>
+                        <br/> <br/> <br/>
+                        <div>
+                            <b><label for="ProdEntragados">Produtos Entragados:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.prodEntragados}" title="ProdEntragados"/></u>
+                        </div>                    
+                    </fieldset>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.salidaEstimada}"/>
-                                </p:column>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.llegadaEstimada}"/>
-                                </p:column>
-  
-                            </p:dataTable>
-                        </p:outputPanel>
-                    
-                    <h:commandButton  action="#{comisionesController.prepareListComision()}" value="#{bundle.ListComisionesIndexLink}"/>
                 </h:form>
+                <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+                <p:printer target="PlanDeComision" />
+                </p:commandButton>
             </f:view>
-            <ui:include src="/modulo4/Gestion_Talento_Humano/Comisiones/AgregarDestinosDlg.xhtml"/>
         </ui:define>
     </ui:composition>
 </html>

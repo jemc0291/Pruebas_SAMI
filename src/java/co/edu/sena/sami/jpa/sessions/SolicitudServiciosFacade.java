@@ -7,9 +7,12 @@
 package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.SolicitudServicios;
+import co.edu.sena.sami.jpa.entities.Usuarios;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,17 @@ public class SolicitudServiciosFacade extends AbstractFacade<SolicitudServicios>
 
     public SolicitudServiciosFacade() {
         super(SolicitudServicios.class);
+    }
+    
+        /**
+     *
+     * @param u
+     * @return
+     */
+    public List<SolicitudServicios> consultaUsuario(Usuarios u){
+        Query q = getEntityManager().createNamedQuery("SolicitudServicios.consultaUsuario");
+        q.setParameter("idUsuario", u);
+        return  q.getResultList();
     }
     
 }

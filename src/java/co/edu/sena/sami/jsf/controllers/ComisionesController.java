@@ -222,6 +222,11 @@ public class ComisionesController implements Serializable {
         ciudadComisionesList = null;
         return "DestinosComision";
     }
+    
+    public String prepareVisualizarComision() {
+        ciudadComisionesList = null;
+        return "VerComision";
+    }
 
     public String prepareCreate() {
         selected = new Comisiones();
@@ -235,9 +240,25 @@ public class ComisionesController implements Serializable {
     public String prepareCreateInformeComision() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/informeComision.xhtml";
     }
+    
+    public String prepareCreateInformeComision2() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/verInformeComision.xhtml";
+    }
 
     public String prepareCreateOrdenDeViaje() {
         return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/crearOrdenDeViaje.xhtml";
+    }
+    
+    public String volverComision() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
+    }
+    
+    public String prepareConsultarOrdenDeViaje() {
+        return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/verOrdenDeViaje.xhtml";
+    }
+    
+    public String prepareConsultarOrdenDeViajeC() {
+        return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/verOrdenDeViajeC.xhtml";
     }
 
     public void adicionarCiudadComision() {
@@ -442,3 +463,22 @@ public class ComisionesController implements Serializable {
     }
 
 }
+// <p:panelGrid columns="3" >
+//                        
+//                    
+//                        <div>
+//                        
+//                         <b><label for="Ciudad" class="estilo">Destino:</label></b>
+//                         <u><h:outputText value="#{comisionesController.selected.ciudad}" title="Ciudad" class="estilo"/></u>
+//                    </div>
+//                    <br/> 
+//                    <div>
+//                         <b><label for="EmpresaVeredad" class="estilo">Empresa/Veredad:</label></b>
+//                         <u><h:outputText value="#{ciudadComisionesController.selected.empresaVereda}" title="EmpresaVeredad" class="estilo"/></u>
+//                    </div>
+//                    <br/>
+//                     <div>
+//                         <b><label for="fechaEntregaInforme" class="estilo">Fechas De Comision:</label></b>
+//                         <u><h:outputText value="#{comisionesController.selected.fechaEntregaInforme}" title="fechaEntregaInforme" class="estilo"/></u>
+//                    </div>
+//                    </p:panelGrid>

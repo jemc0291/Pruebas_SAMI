@@ -70,7 +70,10 @@
 
                         <p:column>
                             <f:facet name="header">Opciones</f:facet>
-                            <p:commandButton icon="ui-icon-search"  action="#{comisionesController.prepareConsultarComision}">
+                            <p:commandButton icon="ui-icon-search"  action="#{comisionesController.prepareVisualizarComision}">
+                                <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
+                            </p:commandButton>
+                            <p:commandButton icon="ui-icon-plus"  action="#{comisionesController.prepareConsultarComision}">
                                 <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
                             </p:commandButton>
                             <p:commandButton icon="ui-icon-trash"  action="#{comisionesController.destroy}"
@@ -78,12 +81,11 @@
                                 <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta Comision?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-search"  action="#{comisionesController.prepareConsultarComision}">
-                                <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
-                            </p:commandButton>
+                            
                         </p:column>       
                     </p:dataTable>
                 </p:outputPanel>
+                
             </h:form>
         </ui:define>
     </ui:composition>
