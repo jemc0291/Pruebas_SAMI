@@ -34,12 +34,12 @@ public class SolicitudServiciosFacade extends AbstractFacade<SolicitudServicios>
     
         /**
      *
-     * @param i
+     * @param u
      * @return
      */
-    public List<SolicitudServicios> consultaUsuario(Usuarios i){
+    public List<SolicitudServicios> consultaUsuario(Usuarios u){
         Query q = getEntityManager().createNamedQuery("SolicitudServicios.consultaUsuario");
-        q.setParameter("idUsuario", i.getIdUsuario());
+        q.setParameter("idUsuario", u);
         return  q.getResultList();
     }
     
