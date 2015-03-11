@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.entities;
 
 import java.io.Serializable;
@@ -62,8 +61,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Comisiones.findByProdEntragados", query = "SELECT c FROM Comisiones c WHERE c.prodEntragados = :prodEntragados"),
     @NamedQuery(name = "Comisiones.findBySaldoNegativo", query = "SELECT c FROM Comisiones c WHERE c.saldoNegativo = :saldoNegativo"),
     @NamedQuery(name = "Comisiones.findBySaldoPositivo", query = "SELECT c FROM Comisiones c WHERE c.saldoPositivo = :saldoPositivo"),
-    @NamedQuery(name = "Comisiones.findByPresupuesto", query = "SELECT c FROM Comisiones c WHERE c.presupuesto = :presupuesto")})
+    @NamedQuery(name = "Comisiones.findByPresupuesto", query = "SELECT c FROM Comisiones c WHERE c.presupuesto = :presupuesto"),
+    @NamedQuery(name = "Comisiones.findByFechaOrden", query = "SELECT c FROM Comisiones c WHERE c.fechaOrden = :fechaOrden")})
+
 public class Comisiones implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -95,7 +97,7 @@ public class Comisiones implements Serializable {
     @Size(max = 45)
     @Column(name = "mesa_planificar")
     private String mesaPlanificar;
-  
+
     @Column(name = "num_dias")
     private Integer numDias;
     @Column(name = "aprobado")
@@ -132,6 +134,9 @@ public class Comisiones implements Serializable {
     @Size(max = 45)
     @Column(name = "presupuesto")
     private String presupuesto;
+    @Column(name = "fecha_orden")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaOrden;
     @ManyToMany(mappedBy = "comisionesList")
     private List<Cdp> cdpList;
     @ManyToMany(mappedBy = "comisionesList")
@@ -373,10 +378,22 @@ public class Comisiones implements Serializable {
         this.presupuesto = presupuesto;
     }
 
-    @XmlTransient
-    public List<Cdp> getCdpList() {
-        return cdpList;
+    public Date getFechaOrden() {
+        return fechaOrden;
     }
+
+    public void setFechaOrden(Date fechaOrden) {
+        this.fechaOrden = fechaOrden;
+    }
+
+        @XmlTransient
+        public List<Cdp> getCdpList
+        
+            () {
+        return cdpList;
+        }
+
+    
 
     public void setCdpList(List<Cdp> cdpList) {
         this.cdpList = cdpList;
@@ -496,5 +513,5 @@ public class Comisiones implements Serializable {
     public String toString() {
         return "co.edu.sena.sami.jpa.entities.Comisiones[ idComision=" + idComision + " ]";
     }
-    
+
 }
