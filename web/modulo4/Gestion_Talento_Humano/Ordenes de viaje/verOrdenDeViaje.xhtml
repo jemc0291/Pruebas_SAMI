@@ -12,21 +12,21 @@
         <ui:define name="body">
             <f:view>
                 <h:form>
-                <h1><h:outputText value="View"/></h1>
+                <h1><h:outputText value="Orden De Viaje Planta"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputText value="RegionalValle:"/>
                     <h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="RegionalValle"/>
                     <h:outputText value="Ciudad:"/>
                     <h:outputText value="#{comisionesController.selected.ciudad}" title="Ciudad"/>
-                     <h:outputText value="FechaTramite:"/>
-                    <h:outputText value="#{comisionesController.selected.fechaTramite}" title="FechaTramite">
+                     <h:outputText value="FechaOrden:"/>
+                     <h:outputText value="#{comisionesController.selected.fechaOrden}" title="FechaOrden">
                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:outputText>
-                      <h:outputText value="COMISIONASEA:"/>
-                    <h:outputText value="#{comisionesController.selected.idComision}" title="COMISIONASEA"/>
+                      <h:outputText value="comisionaseA:"/>
+                    <h:outputText value="#{comisionesController.selected.idComision}" title="comisionaseA"/>
                      <h:outputText value="ceduladeciudadania:"/>
                     <h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="ceduladeciudadania"/>
-                     <h:outputText value="Dependencia:"/>
+                     <h:outputText value="Dependencia:"/>       
                     <h:outputText value="#{centroFormacionController.selected.nombreCentroFormacion}" title="Dependencia"/>
                      <h:outputText value="AsignacionMensual:"/>
                      <h:outputText value="#{contratosController.selected.valorMensual}" title="AsignacionMensual"/>
@@ -50,38 +50,7 @@
                     <h:outputText value="#{comisionesController.selected.vehiculoSena}" title="VehiculoSena"/> 
                     <h:outputText value="VehiculoComisionado:"/>
                     <h:outputText value="#{comisionesController.selected.vehiculoComisionado}" title="VehiculoComisionado"/>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                   
-                    <h:outputText value="ObjetivoComision:"/>
-                    <h:outputText value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision"/>
-                   
-                   
-                    <h:outputText value="NumComServicios:"/>
-                    <h:outputText value="#{comisionesController.selected.numComServicios}" title="NumComServicios"/>
-                    <h:outputText value="ObservacionesOrden:"/>
-                    <h:outputText value="#{comisionesController.selected.observacionesOrden}" title="ObservacionesOrden"/>
-                   
-                    <h:outputText value="Objetivos:"/>
-                    <h:outputText value="#{comisionesController.selected.objetivos}" title="Objetivos"/>
-                    <h:outputText value="MesaPlanificar:"/>
-                    <h:outputText value="#{comisionesController.selected.mesaPlanificar}" title="MesaPlanificar"/>
-                   
-                    <h:outputText value="Aprobado:"/>
-                    <h:outputText value="#{comisionesController.selected.aprobado}" title="Aprobado"/>
-                   
-                    <h:outputText value="TransComision:"/>
-                    <h:outputText value="#{comisionesController.selected.transComision}" title="TransComision"/>
-                    
-                    
-                    
-                    <h:outputText value="AuxilioManutencion:"/>
+                      <h:outputText value="AuxilioManutencion:"/>
                     <h:outputText value="#{comisionesController.selected.auxilioManutencion}" title="AuxilioManutencion"/>
                     <h:outputText value="FechaEntregaInforme:"/>
                     <h:outputText value="#{comisionesController.selected.fechaEntregaInforme}" title="FechaEntregaInforme">
@@ -111,8 +80,8 @@
                     <h:outputText value="#{comisionesController.selected.idDescripcion}" title="IdDescripcion"/>
                     <h:outputText value="IdContrato:"/>
                     <h:outputText value="#{comisionesController.selected.idContrato}" title="IdContrato"/>
-                    
-                    
+                    <h:outputText value="fechaOrden"/>
+                    <h:outputText value="#{comisionesController.selected.fechaOrden}" title="fechaOrden"/>
                     <h:outputText value="IdBanco:"/>
                     <h:outputText value="#{comisionesController.selected.idBanco}" title="IdBanco"/>
                 </h:panelGrid>
