@@ -17,6 +17,14 @@
                         <label value="#{bundle.CreateComisionesLabel_idUsuario}" jsf:for="usuariosInputText"></label> 
                         <h:outputText id="idUsuario" value="#{comisionesController.selected.idUsuario.razonSocial2}"/>
                         <h:message id="idUsuarioMessage"  for="idUsuario" styleClass="error"/> 
+                        
+                        <label value="#{bundle.ViewUsuariosLabel_numeroDoc}" jsf:for="numeroCedulaInputText"></label> 
+                        <h:outputText id="numeroCedula" value="#{comisionesController.selected.idUsuario.numeroDoc}"/>
+                        <h:message id="numeroCedulaMessage"  for="numeroCedula" styleClass="error"/> 
+                        
+                        <label value="#{bundle.CreateContratosLabel_valorMensual}" jsf:for="valorMensualInputText"></label> 
+                        <h:outputText id="valorMensual" value="#{comisionesController.selected.idContrato.valorMensual}"/>
+                        <h:message id="valorMensualMessage"  for="valorMensual" styleClass="error"/> 
 
 
                         <label value="#{bundle.CreateComisionesLabel_idCentroFormacion}" jsf:for="EstratoSocialInputText"></label>
