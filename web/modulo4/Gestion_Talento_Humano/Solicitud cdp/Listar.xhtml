@@ -11,40 +11,9 @@
         <ui:define name="body">
             <h:form>
 
-                <P>
-                    <h:commandButton action="#{cdpController.prepareCreate}" value="Nueva Solicitud"/>
-                </P>
-                <p:outputPanel id="CdpCrpTablePanel">
-                    <p:dataTable value="#{cdpController.items}" var="item"
-                                 rows="13" id="CdpCrpTable" 
-                                 paginator="true"
-                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="20,40,60">
-
-                        <p:column filterBy="#{item.numeroCdp}" filterMatchMode="contains">
-                            <f:facet name="header">Solicitud No</f:facet>
-                            <h:outputText value="#{item.numeroCdp}"/>
-                        </p:column>
+               
                         
-                        <p:column>
-                            <f:facet name="header">Fecha de recepcion</f:facet>
-                            <h:outputText value="#{item.fechaRecepcion}"/>
-                        </p:column>
-                        
-                         <p:column>
-                             <p:commandButton icon="ui-icon-pencil" action="#{usuarioController.prepareModificar}">
-                                 <f:setPropertyActionListener value="#{item}" target="#{usuarioController.usuarioActual}"/>
-                        </p:commandButton>
-
-                             <p:commandButton icon="ui-icon-trash" action="#{usuarioController.deleteUsuario}"
-                                         process="@this" update="UsuarioTable">
-                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el usuario?" icon="ui-icon-alert" />
-                            <f:setPropertyActionListener value="#{item}" target="#{usuarioController.usuarioActual}"/>
-                        </p:commandButton>
-                    </p:column>
-                        
-                    </p:dataTable>
-                </p:outputPanel>
+                   
             </h:form>                               
         </ui:define>
     </ui:composition>
