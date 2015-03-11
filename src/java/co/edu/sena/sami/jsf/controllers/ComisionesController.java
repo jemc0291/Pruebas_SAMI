@@ -463,3 +463,22 @@ public class ComisionesController implements Serializable {
     }
 
 }
+// <p:panelGrid columns="3" >
+//                        
+//                    
+//                        <div>
+//                        
+//                         <b><label for="Ciudad" class="estilo">Destino:</label></b>
+//                         <u><h:outputText value="#{comisionesController.selected.ciudad}" title="Ciudad" class="estilo"/></u>
+//                    </div>
+//                    <br/> 
+//                    <div>
+//                         <b><label for="EmpresaVeredad" class="estilo">Empresa/Veredad:</label></b>
+//                         <u><h:outputText value="#{ciudadComisionesController.selected.empresaVereda}" title="EmpresaVeredad" class="estilo"/></u>
+//                    </div>
+//                    <br/>
+//                     <div>
+//                         <b><label for="fechaEntregaInforme" class="estilo">Fechas De Comision:</label></b>
+//                         <u><h:outputText value="#{comisionesController.selected.fechaEntregaInforme}" title="fechaEntregaInforme" class="estilo"/></u>
+//                    </div>
+//                    </p:panelGrid>

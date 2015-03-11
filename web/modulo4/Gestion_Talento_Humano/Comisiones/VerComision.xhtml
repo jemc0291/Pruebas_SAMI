@@ -5,89 +5,156 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-   <ui:composition template="/template.xhtml">
+    <ui:composition template="/template.xhtml">
         <ui:define name="title"> solicitud plan comision</ui:define>
         <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <f:view>
-            <h:form>
-                <fieldset><img src="#{request.contextPath}/resources/images/logo_sena.jpg" />
-                    <figcaption>Sistema de <br/>Gestion de la<br/>Calidad</figcaption>
-                    <div class="titleComision">
-                        <center><p>servicio nacional de aprendizaje sena<br>
-                         centro de biotecnologia industrial</br></p>
-                        <h3>Solicitud Plan De Comision</h3></center>
-                    </div>
-                    
-                    <div id="divpg">
-                        <p align="right">Codigo:<br/> F0-9544-015-06-08:<br/>Versión:<br/></p>
-                    </div>
-                </fieldset>  
-                <fieldset>  
-                   <div>
-                        <b><label for="nomDepartamento">Regional:</label></b>
-                        <u><h:outputText value="#{departamentosController.selected.nombreDpto}" title="nomDepartamento"/></u>
-                           
-                    </div>
-                    <br/>
-                    <div>
-                          <b><label for="idCentroFormacions">Centro:</label></b>
-                        <u><h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="idCentroFormacion"/></u>
-                    </div>
-                    <br/>
-                    <div>
-                         <b><label for="FechaTramite">Fecha:</label></b>
-                         <u><h:outputText value="#{comisionesController.selected.fechaTramite}" title="FechaTramite"/></u>
-                    </div>
-                    <br/>
-                    <div>
-                         <b><label for="IdUsuario">Funcionario Solicitante:</label></b>
-                         <u><h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="IdUsuario"/></u>
-                    </div>
-                    <br/>
-                    <div>
-                         <b><label for="IdUsuario">Funcionario Solicitante:</label></b>
-                         <u><h:outputText value="#{comisionesController.selected}" title="IdUsuario"/></u>
-                    </div>
-                    <br/>
-                    <div>
-                         <b><label for="numeroDo">Cedula de ciudadania N°:</label></b>
-                        <u><h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="numeroDoc"/></u>
-                    </div>
-                    <br/>
-                    <div>
-                         <b><label for="FechaEntregaInforme:">fecha de Entrega del informe:</label></b>
-                        <u><h:outputText value="#{comisionesController.selected.fechaEntregaInforme}" title="FechaTramite">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText></u>
-                    </div>
-                    <HR />
-                    <br/>
-                    <div>
-                         <b><label for="ObjetivoComision">OBJETIVO DE LA COMICION:</label></b>
-                         <u><h:outputText value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision"/></u>
-                    </div> 
-                    <br/><HR />
-                    <br/> <br/>
-                    <div>
-                         <b><label for="ActividadesOTemas">DESCRIPCION DE ACTIVIDADES:</label></b>
-                         <u><h:outputText value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas"/></u>
-                    </div>
-                    <br/> <br/> <br/>
-                    <div>
-                         <b><label for="CompromisoSena">Compromiso SENA:</label></b>
-                         <u><h:outputText value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena"/></u> 
-                    </div>
-                    <br/> <br/> <br/>
-                    <div>
-                         <b><label for="ProdEntragados">Produtos Entragados:</label></b>
-                         <u><h:outputText value="#{comisionesController.selected.prodEntragados}" title="ProdEntragados"/></u>
-                    </div>                    
-                </fieldset>
+                <h:form id="PlanDeComision">
+                    <fieldset class="row panel">
+                        <fieldset>
+                        <figure class="image-Container">
+                        <img src="#{request.contextPath}/resources/images/logo_sena.jpg" />
+                        </figure>
+                        <figcaption class="descripcion">Sistema de <br/>Gestion de la<br/>Calidad</figcaption>
+                        </fieldset>
+                        <div class="titleComision"  columns="6">
+                            <center><p>servicio nacional de aprendizaje sena<br>
+                                        centro de biotecnologia industrial</br></p>
+                                <h3>Solicitud Plan De Comision</h3></center>
+                        </div>
+                        <fieldset>
+                        <div  id="divpg" columns="3" style="display: inline-block">
+                            <p align="right" style="position: relative;bottom: 113.5px;left: 16em;">Codigo:<br/> F0-9544-015-06-08:<br/>Versión:<br/></p>
+                        </div>
+                        </fieldset>
+                    </fieldset>  
+                    <fieldset>  
+                        <form>
+                            <label for="nomDepartamento">Regional:</label>
+                            <hr size="8" align="rigt" heiht="50"></hr>
+                            <u><h:outputText value="#{departamentosController.selected.nombreDpto}" title="nomDepartamento"/></u>
+                        </form> 
+                            
+                        <br/>
+                         <form>
+                            <label for="idCentroFormacions">centro:</label>
+                            <hr size="8" align="rigt" heiht="50"></hr>
+                            <u><h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="nomDepartamento"/></u>
+                        </form> 
+                        
+                        <br/>
+                        <div>
+                            <b><label for="FechaTramite">Fecha:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.fechaTramite}" title="FechaTramite"/></u>
+                        </div>
+                        <br/>
+                        <div>
+                            <b><label for="IdUsuario">Funcionario Solicitante:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="IdUsuario"/></u>
+                        </div>
+                        <br/>
+                        <div>
+                            <b><label for="nomCargo">Cargo Y Grado:</label></b>
+                            <u><h:outputText value="#{cargoController.selected.nombreCargo}" title="nomCargo"/></u>
+                        </div>
+                        <br/>
+                        <div>
+                            <b><label for="numeroDo">Cedula de ciudadania N°:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="numeroDoc"/></u>
+                        </div>
+                        <br/>
+                        <div>
+                            <b><label for="valorMensual">Ingreso Mes:</label></b>
+                            <u><h:outputText value="#{contratosController.selected.valorMensual}" title="valorMensual"/></u>
+                        </div>
+                        <br/>
+                        <div>
+                            <b><label for="mesaPlanificar">Mes A Planificar:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.mesaPlanificar}" title="mesaPlanificar"/></u>
+                        </div>
+                        <br/>
+                        <HR />
+                        <br/>
+                        <div>
+                            <b><label for="ObjetivoComision">OBJETIVO DE LA COMISION:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision"/></u>
+                        </div> 
+                        <br/>
+                        
+                        <br/> 
+                        
+
+                        <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
+                                     id="comisionesTable" 
+                                     >
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ciudad}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_empresaVereda}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.empresaVereda}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_salidaEstimada}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.salidaEstimada}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_llegadaEstimada}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.llegadaEstimada}"/>
+                            </p:column>     
+                        </p:dataTable>
+                        <br>
+                         <div>
+                            <b><label for="ActividadesOTemas">DESCRIPCION:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas"/></u>
+                        </div>
+                            </br>
+
+                        <br/>
+                        <HR/>
+                        <h3>Observaciones</h3>
+                        <div>
+                            <b><label for="idFichaCaracterizacion">Nº Ficha De Caracterizacion:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.idFichaCaracterizacion}" title="idFichaCaracterizacion"/></u>
+                        </div>
+                        <br/>
+                        <HR/>
 
 
-            </h:form>
-        </f:view>
+
+
+
+                        <div>
+                            <b><label for="CompromisoSena">Compromiso SENA:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena"/></u> 
+                        </div>
+                        <br/> <br/> <br/>
+                        <div>
+                            <b><label for="ProdEntragados">Produtos Entragados:</label></b>
+                            <u><h:outputText value="#{comisionesController.selected.prodEntragados}" title="ProdEntragados"/></u>
+                        </div>                    
+                    </fieldset>
+
+
+                </h:form>
+                <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+                <p:printer target="PlanDeComision" />
+                </p:commandButton>
+            </f:view>
         </ui:define>
     </ui:composition>
 </html>
