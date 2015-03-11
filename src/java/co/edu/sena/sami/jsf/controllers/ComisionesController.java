@@ -312,6 +312,11 @@ public class ComisionesController implements Serializable {
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("ComisionesUpdated"));
     }
+    
+    public void update2() {
+        selected.setFechaOrden(new Date());
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("ComisionesUpdated"));
+    }
 
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/resources/Bundle").getString("ComisionesDeleted"));
