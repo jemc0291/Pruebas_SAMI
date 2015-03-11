@@ -38,11 +38,15 @@ public class SolicitudServiciosController implements Serializable {
 
     private Avance avanceActual;
 
+    private Usuarios usuarioActual;
+
     private List<Prioridades> listPrioridades = null;
 
     private List<Avance> listAvance = null;
 
     private List<Estados> listEstado = null;
+
+    private List<SolicitudServicios> listSolicituServiciosByUsuario = null;
 
     @EJB
     private co.edu.sena.sami.jpa.sessions.SolicitudServiciosFacade ejbFacade;
@@ -61,7 +65,6 @@ public class SolicitudServiciosController implements Serializable {
     @EJB
     private EstadosFacade estadosFacade;
 
-
     public List<SolicitudServicios> getItems() {
         if (items == null) {
             try {
@@ -71,6 +74,17 @@ public class SolicitudServiciosController implements Serializable {
             }
         }
         return items;
+    }
+
+    public List<SolicitudServicios> getListSolicituServiciosByUsuario() {
+        if (listSolicituServiciosByUsuario == null) {
+            try {
+                listSolicituServiciosByUsuario = getFacade().consultaUsuario(usuarioActual);
+            } catch (Exception e) {
+                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            }
+        }
+        return listSolicituServiciosByUsuario;
     }
 
     public List<Estados> getListEstado() {
@@ -99,7 +113,7 @@ public class SolicitudServiciosController implements Serializable {
         return getPrioridadesFacade().findAll();
     }
 
-    public List<Avance> getListAvance() {  
+    public List<Avance> getListAvance() {
         if (listAvance == null) {
             listAvance = getAvanceFacade().findBySolicitud(selected);
         }
@@ -247,6 +261,11 @@ public class SolicitudServiciosController implements Serializable {
         listAvance = null;
     }
 
+    public void cargarUsuario(ActionEvent event) {
+        usuarioActual = (Usuarios) event.getComponent().getAttributes().get("usuario");
+        listSolicituServiciosByUsuario = null;
+    }
+
     private void recargarListaSolicitud() {
         items = null;
     }
@@ -257,11 +276,12 @@ public class SolicitudServiciosController implements Serializable {
             selected.setFechaSolicitudServicio(new Date());
             getFacade().create(selected);
             recargarListaSolicitud();
+            getListSolicituServiciosByUsuario();
             addSuccesMessage("Crear Solocitud", "Solicitud Creada Exitosamente");
-            return "ListSolicitud";
+            return "View";
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            return "ListSolicitud";
+            return "View";
         }
     }
 
@@ -271,6 +291,7 @@ public class SolicitudServiciosController implements Serializable {
             avanceActual.setIdSolicitudServicio(selected);
             getAvanceFacade().create(avanceActual);
             avanceActual = new Avance();
+            update();
             recargarListaAvance();
             addSuccesMessage("Crear Avance", "Avance Creado Exitosamente");
         } catch (Exception e) {

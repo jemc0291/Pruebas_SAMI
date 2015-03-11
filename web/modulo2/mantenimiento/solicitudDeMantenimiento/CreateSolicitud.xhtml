@@ -16,55 +16,114 @@
             <h2>Crear Nueva Solicitud</h2>
 
             <h:form>
+                <h1><h:outputText value=""/></h1>
 
-                <p:panelGrid columns="3">
+                <p:panelGrid columns="2">
+                    <h:outputText value="Numero Documento:"/>
+                    <h:outputText value="#{loginController.userLogueado.numeroDoc}" title="NumeroDoc"/>
 
-                    <h1><h:outputText value="View"/></h1>
-                    <p:panelGrid columns="3">
-                        <h:outputText value="NumeroDoc:"/>
-                        <h:outputText value="#{loginController.userLogueado.numeroDoc}" title="NumeroDoc"/>
+                    <h:outputText value="Primer Nombre:"/>
+                    <h:outputText value="#{loginController.userLogueado.razonSocial}" title="RazonSocial"/>
 
-                        <h:outputText value="RazonSocial:"/>
-                        <h:outputText value="#{loginController.userLogueado.razonSocial}" title="RazonSocial"/>
+                    <h:outputText value="Segundo Nombre:"/>
+                    <h:outputText value="#{loginController.userLogueado.segundoNombre}" title="SegundoNombre"/>
 
-                        <h:outputText value="SegundoNombre:"/>
-                        <h:outputText value="#{loginController.userLogueado.segundoNombre}" title="SegundoNombre"/>
+                    <h:outputText value="Primer Apellido:"/>
+                    <h:outputText value="#{loginController.userLogueado.primerApellido}" title="PrimerApellido"/>
 
-                        <h:outputText value="PrimerApellido:"/>
-                        <h:outputText value="#{loginController.userLogueado.primerApellido}" title="PrimerApellido"/>
+                    <h:outputText value="Segundo Apellido:"/>
+                    <h:outputText value="#{loginController.userLogueado.segundoApellido}" title="SegundoApellido"/>
 
-                        <h:outputText value="SegundoApellido:"/>
-                        <h:outputText value="#{loginController.userLogueado.segundoApellido}" title="SegundoApellido"/>
+                    <h:outputText value="Centro de Formacion:"/>
+                    <h:outputText value="#{loginController.userLogueado.idCentroFormacion}" title="IdCentroFormacion"/>
 
-                        <h:outputText value="IdCentroFormacion:"/>
-                        <h:outputText value="#{loginController.userLogueado.idCentroFormacion}" title="IdCentroFormacion"/>
-
-                    </p:panelGrid>
-
-                    <Label> Describa el problema </Label>
-                    <textarea type="text" jsf:id="descripcionServicioSolicitud" 
-                              required="true"
-                              jsf:requiredMessage="El campo Describa el problema es requerido."
-                              jsf:value="#{solicitudServiciosController.selected.descripcionservicioSolicitud}">
-                        <f:ajax execute="@this" render="descripcionServicioSolicitudMessage"/>
-                    </textarea>
-                    <h:message id="descripcionServicioSolicitudMessage" for="descripcionServicioSolicitud" styleClass="error"/>
-
-                    <Label> Ubicación: </Label>
-                    <input type="text" jsf:id="ubicacion" 
-                           jsf:value="#{solicitudServiciosController.selected.ubicacionSolicitud}" 
-                           jsf:requiredMessage="The Ubicacion field is required.">
-                    </input>
+                    <p>
+                    </p>
 
                 </p:panelGrid>
+
+                <Label> Describa el problema </Label>
+                <textarea type="text" jsf:id="descripcionServicioSolicitud" 
+                          required="true"
+                          jsf:requiredMessage="El campo Describa el problema es requerido."
+                          jsf:value="#{solicitudServiciosController.selected.descripcionservicioSolicitud}">
+                    <f:ajax execute="@this" render="descripcionServicioSolicitudMessage"/>
+                </textarea>
+                <h:message id="descripcionServicioSolicitudMessage" for="descripcionServicioSolicitud" styleClass="error"/>
+
+                <Label> Ubicación: </Label>
+                <input type="text" jsf:id="ubicacion" 
+                       jsf:value="#{solicitudServiciosController.selected.ubicacionSolicitud}" 
+                       jsf:requiredMessage="The Ubicacion field is required.">
+                </input>
+
+                <p>
+                </p>
 
                 <p:commandButton value="Guardar" actionListener="#{solicitudServiciosController.addSolicitudServicios}"
                                  action="#{solicitudServiciosController.prepareView}" update="@this" >
                     <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
                 </p:commandButton>
 
-
                 <p:button value="Cancelar" outcome="ListSolicitud"/>
+
+                <h3>Solicitudes Realizadas</h3>
+                <p:dataTable value="#{solicitudServiciosController.listSolicituServiciosByUsuario}" var="item"
+                             rows="10" id="solicitudTable" 
+                             paginator="true"
+                             paginatorTemplate="{FirstPageLink} 
+                             {PreviousPageLink} {PageLinks} {NextPageLink} 
+                             {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+
+                    <f:facet name="header">
+                        Pulse la flecha para ver detalles
+                    </f:facet>
+
+
+                    <p:column style="width:16px">
+                        <p:rowToggler />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Fecha Solicitud"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaSolicitudServicio}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripción Servicio Solicitado"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripcionservicioSolicitud}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ubicación de Solicitud"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ubicacionSolicitud}"/>
+                    </p:column>
+
+                    <p:rowExpansion>
+                        <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">
+
+                            <h:outputText value="Estado:" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.idEstado}" />
+
+                            <h:outputText value="Prioridad:" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.idPrioridades}" />
+
+                            <h:outputText value="Fue Atendido?" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.fueAtendido}" />
+
+                            <h:outputText value="Fue Solucionado?" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.fueSolucionado}" />
+                        </p:panelGrid>
+                    </p:rowExpansion>
+
+                </p:dataTable>
 
             </h:form>
 

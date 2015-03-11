@@ -101,6 +101,10 @@ public class LoginController implements Serializable {
     public boolean isGestionMateriales() {
         return getRequest().isUserInRole("webModulo6");
     }
+    
+    public boolean isConfiguracion() {
+        return getRequest().isUserInRole("webconfiguracion");
+    }
 
     public String login() {
         try {
@@ -135,7 +139,7 @@ public class LoginController implements Serializable {
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             session.invalidate();
             limpiar();
-            return "/index";
+            return "/inicio_sami/mensaje_sami.xhtml";
         } catch (ServletException e) {
             log.log(Level.SEVERE, "Failed to logout user!", e);
             return "/index";

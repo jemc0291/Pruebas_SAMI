@@ -7,9 +7,11 @@
 package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.Comisiones;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,7 @@ public class ComisionesFacade extends AbstractFacade<Comisiones> {
     public ComisionesFacade() {
         super(Comisiones.class);
     }
+    
+    
     
 }
