@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Solicitudes de Materiales</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Instructor.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h1><h:outputText value="Su Solicitud a Sido Creada"/></h1>
+                <p:panelGrid columns="2" layout="grid">
+                    <h:outputText value="Solicitud Numero:"/>
+                    <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idSolicitudMaterial}" title="IdSolicitudMaterial"/>
+                    <h:outputText value="Fecha de Solicitud:"/>
+                    <h:outputText value="#{solicitudMaterialesAlmacenController.selected.fechaDeSolicitud}" title="FechaDeSolicitud">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Hora:"/>
+                    <h:outputText value="#{solicitudMaterialesAlmacenController.selected.fechaDeSolicitud}" title="FechaDeSolicitud">
+                        <f:convertDateTime pattern="HH:mm a" />
+                    </h:outputText>
+                    <h:outputText value="IdFichaCaracterizacion:"/>
+                    <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}" title="IdFichaCaracterizacion"/>
+                    <h:outputText value="IdArea:"/>
+                    <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idArea.nombreArea}" title="IdArea"/>
+                </p:panelGrid>
+                <p:commandButton value="Nueva Solicitud" action="#{solicitudMaterialesAlmacenController.prepareCreateDos()}"/>
+                <p:button value="Cancelar" outcome="/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/SolicitudesUsuario.xhtml"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

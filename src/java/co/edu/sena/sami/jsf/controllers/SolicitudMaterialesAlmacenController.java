@@ -217,7 +217,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/SolicitudesUsuario.xhtml";
+        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/ViewRedireccion.xhtml";
     }
 
     public String update() {

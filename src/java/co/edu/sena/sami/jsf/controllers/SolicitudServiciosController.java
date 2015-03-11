@@ -26,6 +26,7 @@ import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -38,7 +39,7 @@ public class SolicitudServiciosController implements Serializable {
 
     private Avance avanceActual;
 
-    private Usuarios usuario;
+    private Usuarios usuarioActual;
 
     private List<Prioridades> listPrioridades = null;
 
@@ -78,7 +79,11 @@ public class SolicitudServiciosController implements Serializable {
 
     public List<SolicitudServicios> getListSolicituServiciosByUsuario() {
         if (listSolicituServiciosByUsuario == null) {
-            listSolicituServiciosByUsuario = getFacade().consultaUsuario(usuario);
+            try {
+                listSolicituServiciosByUsuario = getFacade().consultaUsuario(usuarioActual);
+            } catch (Exception e) {
+                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            }
         }
         return listSolicituServiciosByUsuario;
     }
@@ -114,6 +119,10 @@ public class SolicitudServiciosController implements Serializable {
             listAvance = getAvanceFacade().findBySolicitud(selected);
         }
         return listAvance;
+    }
+
+    public List<Avance> getListAvance(SolicitudServicios solicitud) {
+        return getAvanceFacade().findBySolicitud(solicitud);
     }
 
     public List<TipoUsuario> getListTipoUsusarioSelectOne() {
@@ -257,6 +266,11 @@ public class SolicitudServiciosController implements Serializable {
         listAvance = null;
     }
 
+    public void cargarUsuario(ActionEvent event) {
+        usuarioActual = (Usuarios) event.getComponent().getAttributes().get("usuario");
+        listSolicituServiciosByUsuario = null;
+    }
+
     private void recargarListaSolicitud() {
         items = null;
     }
@@ -267,6 +281,7 @@ public class SolicitudServiciosController implements Serializable {
             selected.setFechaSolicitudServicio(new Date());
             getFacade().create(selected);
             recargarListaSolicitud();
+            getListSolicituServiciosByUsuario();
             addSuccesMessage("Crear Solocitud", "Solicitud Creada Exitosamente");
             return "View";
         } catch (Exception e) {

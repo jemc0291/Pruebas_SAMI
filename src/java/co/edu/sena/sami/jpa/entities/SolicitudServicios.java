@@ -54,7 +54,7 @@ public class SolicitudServicios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 500)
-    @Column(name = "descripcion_servicio_Solicitud")
+    @Column(name = "descripcion_servicio_solicitud")
     private String descripcionservicioSolicitud;
     @Size(max = 40)
     @Column(name = "ubicacion_solicitud")

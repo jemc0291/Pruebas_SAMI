@@ -12,58 +12,67 @@
 
         <ui:define name="body">
 
-            <h2>Nueva Búsqueda</h2>
+            <h2>Búsqueda</h2>
+            <h3>Por Solicitud</h3>
 
-            <form>
+            <h:form>
+                <p:dataTable id="solicitudTable" value="#{solicitudServiciosController.items}" var="item" >
 
-                <p:panelGrid columns="3">
+                    <p:column style="width: 120px" filterBy="#{item.idSolicitudServicio}" 
+                              headerText="Número de Solicitud" footerText="contiene" filterMatchMode="contains">
+                        <h:outputText value="#{item.idSolicitudServicio}"/>
+                    </p:column>
 
+                    <p:column style="width: 120px" filterBy="#{item.idUsuario.razonSocial}" 
+                              headerText="Nombre Solicitante" footerText="contiene" filterMatchMode="contains">
+                        <h:outputText value="#{item.idUsuario.razonSocial}  "/>
+                    </p:column>
 
-                    <Label>Número de Cédula</Label>
-                    <input type="text" jsf:id="numeroDoc" jsf:required="true"
-                           jsf:requiredMessage="El campo Número de Cédula es obligatorio"
-                           jsf:value="#{historialController.usuarioActual.numeroDoc}">
-                        <f:ajax execute="@this" render="numeroDocMessage"/>
-                    </input>
-                    <h:message id="numeroDocMessage" for="numeroDoc" styleClass="error"/>
+                    <p:column style="width: 120px" filterBy="#{item.idUsuario.primerApellido}" 
+                              headerText="Apellido Solicitante" footerText="contiene" filterMatchMode="contains">
+                        <h:outputText value="#{item.idUsuario.primerApellido}"/>
+                    </p:column>
 
-                    <label>Fecha de Servicio</label>
-                    <input type="date" jsf:id="fechaServicio" jsf:required="true"
-                           jsf:requiredMessage="Por favor ingrese su Fecha de servicio:"
-                           jsf:value="#{historialController.historialActual.fechaServicio}">
-                        <f:convertDateTime pattern="yyyy-MM-d"/>
-                        <f:ajax execute="@this" render="fechaServicioMessage"/>
-                    </input>
-                    <h:message id="fechaServicioMessage" for="fechaServicio" styleClass="error"/>
+                    <p:column style="width: 120px" filterBy="#{item.idUsuario.numeroDoc}" 
+                              headerText="Número documento" footerText="contiene" filterMatchMode="contains">
+                        <h:outputText value="#{item.idUsuario.numeroDoc}"/>
+                    </p:column>
 
-                    <Label>Ubicación</Label>
-                    <input type="text" jsf:id="ubicacionServicioPrestadoInputText" jsf:required="true"
-                           jsf:requiredMessage="Por favor ingrese la ubicacion: Utilice letras y números"
-                           jsf:value="#{historialController.historialActual.ubicacionServicioPrestado}">
-                        <f:validateRegex pattern="[a-zA-Z 0-9áéíóúÁÉÍÓÚÑñ]*"/>
-                        <f:ajax execute="@this" render="ubicacionServicioPrestadoMessage"/>
-                    </input>
-                    <h:message id="ubicacionServicioPrestadoMessage" for="ubicacionServicioPrestadoInputText" styleClass="error"/>
-                </p:panelGrid>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripción"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripcionservicioSolicitud}"/>
+                    </p:column>
 
-                <p:panelGrid columns="2">
+                    <p:column filterBy="#{item.ubicacionSolicitud}" headerText="Ubicación" 
+                              footerText="contiene" filterMatchMode="contains">
+                        <h:outputText value="#{item.ubicacionSolicitud}"/>
+                    </p:column>
 
-                    <h:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
-                    <h:selectOneMenu id="nombre_servicio" value="#{historialController.historialActual}" title="Nombre_Servicio" >
-                        <f:selectItem itemLabel="Seleccione uno..."/>
-                        <f:selectItems value="#{historialController.listTipoDeServicios}"/>
-                    </h:selectOneMenu>
+                    <p:column style="width: 120px" filterBy="#{item.fechaSolicitudServicio}" 
+                              headerText="Fecha y Hora" footerText="contiene" filterMatchMode="contains">
+                        <h:outputText value="#{item.fechaSolicitudServicio}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
 
-                </p:panelGrid>
+                <p></p>
 
-                <p:button value="Iniciar Busqueda" outcome="List" />
-                <p:commandButton value="Guardar Busqueda" action="#{historialController.addSolicitudServicios()}" />
+                <h3>Por Avance</h3>
 
-                <p:button value="Cancelar" outcome="/modulo2/index_modulo2.xhtml"/>
+                <p:dataTable id="avanceTable" value="#{solicitudServiciosController.getListAvance(item)}" var="avance" >
 
-                <p:button value="Inicio" outcome="/index"/>
+                    <p:column style="width: 120px" filterBy="#{avance.idAvance}" 
+                              headerText="Referencia de Avance" footerText="contiene" filterMatchMode="contains">
+                        <h:outputText value="#{avance.idAvance}"/>
+                    </p:column>
 
-            </form>
+                </p:dataTable>
+                <p:button value="Regresar" outcome="/modulo2/index_modulo2.xhtml"/>
+
+            </h:form>
 
         </ui:define>
     </ui:composition>
