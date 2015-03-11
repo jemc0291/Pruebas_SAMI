@@ -13,11 +13,11 @@
         <ui:define name="body">
 
             <h2>Nueva Búsqueda</h2>
+            <h3>Por Solicitud</h3>
 
-            <form>
+            <h:form>
 
-                <p:panelGrid columns="3">
-
+                <p:panelGrid columns="3" layout="grid">
 
                     <Label>Número de Cédula</Label>
                     <input type="text" jsf:id="numeroDoc" jsf:required="true"
@@ -44,9 +44,6 @@
                         <f:ajax execute="@this" render="ubicacionServicioPrestadoMessage"/>
                     </input>
                     <h:message id="ubicacionServicioPrestadoMessage" for="ubicacionServicioPrestadoInputText" styleClass="error"/>
-                </p:panelGrid>
-
-                <p:panelGrid columns="2">
 
                     <h:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
                     <h:selectOneMenu id="nombre_servicio" value="#{historialController.historialActual}" title="Nombre_Servicio" >
@@ -63,7 +60,7 @@
 
                 <p:button value="Inicio" outcome="/index"/>
 
-            </form>
+            </h:form>
 
         </ui:define>
     </ui:composition>

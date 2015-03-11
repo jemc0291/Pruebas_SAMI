@@ -17,23 +17,24 @@
 
             <h:form>
                 <h1><h:outputText value=""/></h1>
-                <p:panelGrid columns="3">
-                    <h:outputText value="NumeroDoc:"/>
+
+                <p:panelGrid columns="2">
+                    <h:outputText value="Numero Documento:"/>
                     <h:outputText value="#{loginController.userLogueado.numeroDoc}" title="NumeroDoc"/>
 
-                    <h:outputText value="RazonSocial:"/>
+                    <h:outputText value="Primer Nombre:"/>
                     <h:outputText value="#{loginController.userLogueado.razonSocial}" title="RazonSocial"/>
 
-                    <h:outputText value="SegundoNombre:"/>
+                    <h:outputText value="Segundo Nombre:"/>
                     <h:outputText value="#{loginController.userLogueado.segundoNombre}" title="SegundoNombre"/>
 
-                    <h:outputText value="PrimerApellido:"/>
+                    <h:outputText value="Primer Apellido:"/>
                     <h:outputText value="#{loginController.userLogueado.primerApellido}" title="PrimerApellido"/>
 
-                    <h:outputText value="SegundoApellido:"/>
+                    <h:outputText value="Segundo Apellido:"/>
                     <h:outputText value="#{loginController.userLogueado.segundoApellido}" title="SegundoApellido"/>
 
-                    <h:outputText value="IdCentroFormacion:"/>
+                    <h:outputText value="Centro de Formacion:"/>
                     <h:outputText value="#{loginController.userLogueado.idCentroFormacion}" title="IdCentroFormacion"/>
 
                     <p>
@@ -66,16 +67,23 @@
 
                 <p:button value="Cancelar" outcome="ListSolicitud"/>
 
-
                 <h3>Solicitudes Realizadas</h3>
-                <p:dataTable value="#{solicitudServiciosController.items}" var="item"
-
+                <p:dataTable value="#{solicitudServiciosController.listSolicituServiciosByUsuario}" var="item"
                              rows="10" id="solicitudTable" 
                              paginator="true"
                              paginatorTemplate="{FirstPageLink} 
                              {PreviousPageLink} {PageLinks} {NextPageLink} 
                              {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15">
+
+                    <f:facet name="header">
+                        Pulse la flecha para ver detalles
+                    </f:facet>
+
+
+                    <p:column style="width:16px">
+                        <p:rowToggler />
+                    </p:column>
 
                     <p:column>
                         <f:facet name="header">
@@ -98,7 +106,22 @@
                         <h:outputText value="#{item.ubicacionSolicitud}"/>
                     </p:column>
 
+                    <p:rowExpansion>
+                        <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">
 
+                            <h:outputText value="Estado:" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.idEstado}" />
+
+                            <h:outputText value="Prioridad:" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.idPrioridades}" />
+
+                            <h:outputText value="Fue Atendido?" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.fueAtendido}" />
+
+                            <h:outputText value="Fue Solucionado?" />
+                            <h:outputText value="#{solicitudServiciosController.avanceActual.fueSolucionado}" />
+                        </p:panelGrid>
+                    </p:rowExpansion>
 
                 </p:dataTable>
 
