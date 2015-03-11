@@ -15,7 +15,7 @@
 
             <h:form id="polizasForm" >
                 <h:panelGroup id="msgs">
-                <p:messages/>
+                    <p:messages/>
                 </h:panelGroup>
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
@@ -27,22 +27,52 @@
                     <input type="text" maxlength="20" jsf:id="valorDePoliza" pattern="[0-9]*"  jsf:value="#{contratosModulo1Controller.selectedPolizas.valorDePoliza}" 
                            jsf:title="#{bundle.CreatePolizasTitle_valorDePoliza}" required="true" jsf:requiredMessage="#{bundle.CreatePolizasRequiredMessage_valorDePoliza}"   ></input>
 
-                    <label jsf:value="#{bundle.CreatePolizasLabel_vigenciaDesde}"  jsf:for="vigenciaDesde" />
-                    <input type="date" jsf:id="vigenciaDesde" jsf:value="#{contratosModulo1Controller.selectedPolizas.vigenciaDesde}" jsf:title="#{bundle.EditPolizasTitle_vigenciaDesde}" 
-                           required="true" jsf:requiredMessage="#{bundle.EditPolizasRequiredMessage_vigenciaDesde}">
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
-
-                    <label jsf:value="#{bundle.CreatePolizasLabel_vigenciaHasta}" jsf:for="vigenciaHasta" id="" />
-                    <input type="date" jsf:id="vigenciaHasta" jsf:value="#{contratosModulo1Controller.selectedPolizas.vigenciaHasta}"
-                           jsf:title="#{bundle.EditPolizasTitle_vigenciaHasta}" required="true" jsf:requiredMessage="#{bundle.EditPolizasRequiredMessage_vigenciaHasta}" >
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
-
                     <label jsf:value="#{bundle.CreatePolizasLabel_fechaAprobacion}" jsf:for="fechaAprobacion" />
-                    <input type="date" jsf:id="fechaAprobacion" jsf:value="#{contratosModulo1Controller.selectedPolizas.fechaAprobacion}" jsf:title="#{bundle.EditPolizasTitle_fechaAprobacion}" >
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </input>
+                    <p:calendar  id="fechaAprobacion" 
+                                 pattern="yyyy-MM-dd"
+                                 value="#{contratosModulo1Controller.selectedPolizas.fechaAprobacion}" 
+                                 title="#{bundle.CreatePolizasTitle_fechaAprobacion}"
+                                 showOn="button"
+                                 effect="fold"
+                                 maxdate="#{contratosModulo1Controller.selectedPolizas.vigenciaDesde}"
+                                 required="true" >
+                        <!--  <p:ajax event="dateSelect" process="@this fechaInicioContrato" update="fechasuscripcion"/>
+                         <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="fechasuscripcion"/>-->
+                        <p:ajax event="dateSelect" process="@this fechaAprobacion" update="vigenciaDesde"/>
+                        <p:ajax event="dateSelect" process="@this vigenciaDesde" update="fechaAprobacion"/>
+                    </p:calendar>
+                    <label jsf:value="#{bundle.CreatePolizasLabel_vigenciaDesde}"  jsf:for="vigenciaDesde" />
+
+                    <p:calendar  id="vigenciaDesde" 
+                                 effect="fold"
+                                 pattern="yyyy-MM-dd"
+                                 value="#{contratosModulo1Controller.selectedPolizas.vigenciaDesde}" 
+                                 title="#{bundle.CreatePolizasTitle_vigenciaDesde}"
+                                 showOn="button"
+                                 mindate="#{contratosModulo1Controller.selectedPolizas.fechaAprobacion}"
+                                 maxdate="#{contratosModulo1Controller.selectedPolizas.vigenciaHasta}"
+                                 required="true" requiredMessage="#{bundle.CreatePolizasRequiredMessage_vigenciaDesde}">
+
+                        <!-- <p:ajax  event="valueChange"  process="@this fechaFinContrato" update="fechaInicioContrato"/>-->
+                        <p:ajax event="dateSelect" process="@this vigenciaDesde" update="vigenciaHasta"/>
+                        <p:ajax event="dateSelect" process="@this vigenciaHasta" update="vigenciaDesde"/>
+                    </p:calendar>
+                    <label jsf:value="#{bundle.CreatePolizasLabel_vigenciaHasta}" jsf:for="vigenciaHasta" />
+
+
+                    <p:calendar  id="vigenciaHasta" value="#{contratosModulo1Controller.selectedPolizas.vigenciaHasta}" 
+                                 title="#{bundle.CreatePolizasTitle_vigenciaHasta}"
+                                 pattern="yyyy-MM-dd"
+                                 showOn="button"
+                                 effect="fold"
+                                 mindate="#{contratosModulo1Controller.selectedPolizas.vigenciaDesde}"
+                                 required="true" requiredMessage="#{bundle.CreatePolizasRequiredMessage_vigenciaHasta}"  >
+
+                        <p:ajax event="dateSelect" process="@this vigenciaHasta" update="vigenciaDesde"/>
+
+                        <!-- <p:ajax  event="valueChange"  process="@this fechaInicioContrato" update="fechaFinContrato"/>-->
+                    </p:calendar>
+
 
                     <label jsf:value="#{bundle.CreatePolizasLabel_idAseguradora}"  jsf:for="idAseguradora" />
                     <h:selectOneMenu id="idAseguradora" value="#{contratosModulo1Controller.selectedPolizas.idAseguradora}" title="IdAseguradora" required="true" 
@@ -52,7 +82,7 @@
                                        var="idAseguradoraItem"
                                        itemValue="#{idAseguradoraItem}"/>
                     </h:selectOneMenu>  
-                    <p:commandButton process="polizasForm" oncomplete="handleSubmit(arg,'PolizasDialogo')" value="Guardar" update="polizasForm msgs :contratoForm" />
+                    <p:commandButton process="polizasForm" oncomplete="handleSubmit(arg,'PolizasDialogo')" onclick="PF('PolizasDialogo').hide()" value="Guardar" update="polizasForm msgs" />
                     <p:commandButton value="Cancelar" process="@this" onclick="PF('PolizasDialogo').hide()"/>
                 </h:panelGrid>
 

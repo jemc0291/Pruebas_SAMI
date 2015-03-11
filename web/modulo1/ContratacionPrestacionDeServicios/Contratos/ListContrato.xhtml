@@ -48,10 +48,15 @@
                         <p:columnToggler datasource="contratosModulo1Table" trigger="toggler" transient="false"/>
                     </f:facet>
 
-                    <p:column style="width:16px" exportable="false" headerText="Ver" toggleable="false">
+                   <!-- <p:column style="width:16px" exportable="true" headerText="Contratista" toggleable="false">
                         <p:rowToggler />
+                    </p:column>-->
+                   <p:column  toggleable="false" filterBy="#{contratosModulo1Controller.getUsuariosByContratos(item).toStringModuloUno()}">
+                        <f:facet name="header">
+                            <h:outputText value="Contratista"/>
+                        </f:facet>
+                        <h:outputText value="#{contratosModulo1Controller.getUsuariosByContratos(item).toStringModuloUno()}"/>
                     </p:column>
-
                     <p:column   filterBy="#{item.numeroDeContrato}" filterMatchMode="contains" toggleable="false" >
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_numeroDeContrato}"/>
@@ -59,7 +64,7 @@
                         <h:outputText value="#{item.numeroDeContrato}"/>
                     </p:column>
 
-                    <p:column filterBy="#{contratosController.getUsuariosByContratos(item).polizas.toString()}" filterMatchMode="contains">
+                    <p:column  toggleable="false" filterBy="#{contratosController.getUsuariosByContratos(item).polizas.toString()}" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="Poliza"/>
                         </f:facet>
@@ -157,10 +162,10 @@
                         <h:outputText value="#{item.idTipoContrato.nombreTipoContrato}"/>
                     </p:column>
 
-                    <p:rowExpansion >
-                        <h:outputText value="#{contratosModulo1Controller.getUsuariosByContratos(item).toStringModuloUno()}"/>
+                   <!-- <p:rowExpansion >
+                        <h:outputText value="# {contratosModulo1Controller.getUsuariosByContratos(item).toStringModuloUno()}"/>
 
-                    </p:rowExpansion>
+                    </p:rowExpansion>-->
 
 
 

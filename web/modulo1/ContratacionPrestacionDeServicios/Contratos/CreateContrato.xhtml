@@ -79,10 +79,11 @@
                     </p:calendar>
 
                     <label  jsf:value="#{bundle.CreateContratosLabel_plazoDias}" for="plazoDias" />
-                    <input type="text"  pattern="[0-9]*" jsf:id="plazoDias" maxlength="11" jsf:value="#{contratosModulo1Controller.selected.plazoDias}" jsf:title="#{bundle.CreateContratosTitle_plazoDias}" ></input>
+                    <input type="text"  pattern="[0-9]*" jsf:id="plazoDias" maxlength="11" jsf:value="#{contratosModulo1Controller.selected.plazoDias}" 
+                           jsf:title="#{bundle.CreateContratosTitle_plazoDias}" required="true" ></input>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_plazoMeses}" for="plazoMeses" />
-                    <input type="text" pattern="[0-9]*" maxlength="8" 
+                    <input type="text" pattern="[0-9]*" maxlength="8" required="true"
                            jsf:id="plazoMeses" jsf:value="#{contratosModulo1Controller.selected.plazoMeses}" 
                            jsf:title="#{bundle.CreateContratosTitle_plazoMeses}" ></input>
 
@@ -91,23 +92,23 @@
                               required="true" jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_objetoContractual}"></textarea>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_obligaciones}" for="obligaciones" />
-                    <textarea type="text" jsf:id="obligaciones" maxlength="4000" jsf:value="#{contratosModulo1Controller.selected.obligaciones}" jsf:title="#{bundle.CreateContratosTitle_obligaciones}" ></textarea>
+                    <textarea type="text" jsf:id="obligaciones" maxlength="4000" jsf:value="#{contratosModulo1Controller.selected.obligaciones}" jsf:title="#{bundle.CreateContratosTitle_obligaciones}" required="true"></textarea>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_valorContrato}"  for="valorContrato"/> 
-                    <input type="text" pattern="[0-9]*" maxlength="10" jsf:id="valorContrato"  jsf:value="#{contratosModulo1Controller.selected.valorContrato}" jsf:title="#{bundle.CreateContratosTitle_valorContrato}"></input>
+                    <input type="text" pattern="[0-9]*" maxlength="10" jsf:id="valorContrato"  jsf:value="#{contratosModulo1Controller.selected.valorContrato}" jsf:title="#{bundle.CreateContratosTitle_valorContrato}" required="true"></input>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_primerPago}" for="primerPago" />
-                    <input type="text" pattern="[0-9]*" maxlength="9" jsf:id="primerPago" jsf:value="#{contratosModulo1Controller.selected.primerPago}" jsf:title="#{bundle.CreateContratosTitle_primerPago}" ></input>
+                    <input type="text" pattern="[0-9]*" maxlength="9" jsf:id="primerPago" jsf:value="#{contratosModulo1Controller.selected.primerPago}" jsf:title="#{bundle.CreateContratosTitle_primerPago}" required="true" ></input>
 
                     <label  jsf:value="#{bundle.CreateContratosLabel_ultimoPago}" for="ultimoPago" />
-                    <input type="text" pattern="[0-9]*" maxlength="10" jsf:id="ultimoPago" jsf:value="#{contratosModulo1Controller.selected.ultimoPago}" jsf:title="#{bundle.CreateContratosTitle_ultimoPago}" ></input>
+                    <input type="text" pattern="[0-9]*" maxlength="10" jsf:id="ultimoPago" jsf:value="#{contratosModulo1Controller.selected.ultimoPago}" jsf:title="#{bundle.CreateContratosTitle_ultimoPago}"  required="true"></input>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_numeroDeMensualidades}" for="numeroDeMensualidades" />
                     <input type="text" pattern="[0-9]*" maxlength="8" jsf:id="numeroDeMensualidades" jsf:value="#{contratosModulo1Controller.selected.numeroDeMensualidades}" 
                            jsf:title="#{bundle.CreateContratosTitle_numeroDeMensualidades}" ></input>
 
                     <label jsf:value="#{bundle.CreateContratosLabel_valorMensual}" for="valorMensual" />
-                    <input type="text" pattern="[0-9]*" maxlength="9" jsf:id="valorMensual" jsf:value="#{contratosModulo1Controller.selected.valorMensual}" 
+                    <input type="text" pattern="[0-9]*" maxlength="9" jsf:id="valorMensual" jsf:value="#{contratosModulo1Controller.selected.valorMensual}" required="true" 
                            jsf:title="#{bundle.CreateContratosTitle_valorMensual}" />
 
                     <label jsf:value="#{bundle.CreateContratosLabel_fechaAnexo}" for="fechaAnexo" />
