@@ -240,7 +240,7 @@
                         </h:selectOneMenu>
                         <h:message id="IDArlMessage" for="IDArlInputText" styleClass="error"/>
 
-                        
+                        <h:panelGroup rendered="#{!usuariosController.contratista}">
                         <label value="#{bundle.CreateUsuariosLabel_idCcf}" jsf:for="IdCcfInputText"></label>
                         <h:selectOneMenu class="Form-datos" id="IdCcfInputText" 
                                          value="#{usuariosController.selected.idCcf}">
@@ -249,6 +249,7 @@
                             <f:ajax execute="@this" render="IdCcfMessage"/>
                         </h:selectOneMenu>
                         <h:message id="IdCcfMessage" for="IdCcfInputText" styleClass="error"/>
+                        </h:panelGroup>
                         
                         <label value="#{bundle.CreateUsuariosLabel_idFondoPensiones}" jsf:for="IdFondoInputText"></label>
                         <h:selectOneMenu class="Form-datos" id="IdFondoInputText" 
@@ -274,7 +275,7 @@
                                          value="#{usuariosController.selected.idTipoContrato}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{tipoContratoController.itemsAvailableSelectOne}"/>
-                            <f:ajax execute="@this" render="ContratoMessage"/>
+                            <f:ajax execute="@this" render="ContratoMessage usuarioCreateForm"/>
                         </h:selectOneMenu>
                         <h:message id="ContratoMessage" for="ContratoInputText" styleClass="error"/>
 
