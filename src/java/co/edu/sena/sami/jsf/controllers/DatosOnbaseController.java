@@ -202,17 +202,21 @@ public class DatosOnbaseController implements Serializable {
 
     public List<DatosOnbase> consulta() {
         List<DatosOnbase> dob = new ArrayList<>();
-        boolean x = false;
-        String subStringNis;
+        boolean x ;
+        String nis=null;
+        String r1;
+        String r2=null;
         for (DatosOnbase d1 : getFacade().findByRecibidas()) {
-            x = false;
+            r1=d1.getNumRadicadoRecibida().substring(2, 13);
+            x = true;
             for (DatosOnbase d2 : getFacade().findByProducidas()) {
-                subStringNis = d1.getNis().substring(5, 7);
-                if ((d1.getNumRadicadoRecibida().substring(2, 13).equals(d2.getNumRadicadoRecibida().substring(2, 13))) && (subStringNis.equals("05")||subStringNis.equals("06")||subStringNis.equals("07"))) {
-                    x = true;
+                r2=d2.getNumRadicadoRecibida().substring(2, 13);
+                nis = d1.getNis().substring(5, 7);
+                if ((r1.equals(r2))|| nis.equals("01")||nis.equals("02")) {
+                    x = false;
                 }
             }
-            if (!x) {
+            if (x) {
                 dob.add(d1);
             }
         }
@@ -221,7 +225,7 @@ public class DatosOnbaseController implements Serializable {
 
     //boton para importar los datos//
     private UploadedFile file;
-    private String destination = "C:/Temp/";
+private String destination = "/var/sami/ges_doc";
     private String urlFileName = "";
 
     public UploadedFile getFile() {

@@ -60,13 +60,6 @@
                 <p>
                 </p>
 
-                <p:commandButton value="Guardar" actionListener="#{solicitudServiciosController.addSolicitudServicios}"
-                                 action="#{solicitudServiciosController.prepareView}" update="@this" >
-                    <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
-                </p:commandButton>
-
-                <p:button value="Cancelar" outcome="ListSolicitud"/>
-
                 <h3>Solicitudes Realizadas</h3>
                 <p:dataTable value="#{solicitudServiciosController.listSolicituServiciosByUsuario}" var="item"
                              rows="10" id="solicitudTable" 
@@ -107,23 +100,44 @@
                     </p:column>
 
                     <p:rowExpansion>
-                        <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">
+                        <p:dataTable value="#{solicitudServiciosController.getListAvance(item)}" var="avance">
 
-                            <h:outputText value="Estado:" />
-                            <h:outputText value="#{solicitudServiciosController.avanceActual.idEstado}" />
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Estado:" />
+                                </f:facet>
+                                <h:outputText value="#{avance.idEstado.nombreEstado}" />
+                            </p:column>
 
-                            <h:outputText value="Prioridad:" />
-                            <h:outputText value="#{solicitudServiciosController.avanceActual.idPrioridades}" />
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Prioridad:" />
+                                </f:facet>
+                                <h:outputText value="#{avance.idPrioridades.nombrePrioridad}" />
+                            </p:column>
 
-                            <h:outputText value="Fue Atendido?" />
-                            <h:outputText value="#{solicitudServiciosController.avanceActual.fueAtendido}" />
+                            <p:column headerText="Fue Atendido?">                                                               
+                                <h:outputText rendered="#{avance.fueAtendido}" value="Si" />
+                                <h:outputText rendered="#{!avance.fueAtendido}" value="No" />
+                            </p:column>
 
-                            <h:outputText value="Fue Solucionado?" />
-                            <h:outputText value="#{solicitudServiciosController.avanceActual.fueSolucionado}" />
-                        </p:panelGrid>
+                            <p:column headerText="Fue Solucionado?">                                                               
+                                <h:outputText rendered="#{avance.fueSolucionado}" value="Si" />
+                                <h:outputText rendered="#{!avance.fueSolucionado}" value="No" />
+                            </p:column>
+
+                        </p:dataTable>
+
                     </p:rowExpansion>
 
                 </p:dataTable>
+                
+                <p:commandButton value="Guardar" actionListener="#{solicitudServiciosController.addSolicitudServicios}"
+                                 action="#{solicitudServiciosController.prepareView}" update="@this" >
+                    <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                </p:commandButton>
+
+                <p:button value="Regresar" outcome="ListSolicitud"/>
 
             </h:form>
 
