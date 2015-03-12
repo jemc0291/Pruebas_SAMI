@@ -7,6 +7,8 @@
 package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.PagosContratos;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -41,5 +43,12 @@ public class PagosContratosFacade extends AbstractFacade<PagosContratos> {
         } catch (NoResultException ex) {
             return null;
         }
+    }
+    public List<PagosContratos> rangoFechas(Date fechaInicio, Date fechaFin) {
+        Query q = getEntityManager().createNamedQuery("PagosContratos.findByFechaFactura");
+        q.setParameter("fechaInicio", fechaInicio);
+        q.setParameter("fechaFin", fechaFin);
+        return q.getResultList();
+
     }
 }
