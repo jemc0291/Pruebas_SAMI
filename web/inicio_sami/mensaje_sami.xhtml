@@ -4,10 +4,37 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 800px)" href="style800.css" />
+        <meta name="viewport" content="width=device-width, minimun-scale=1,maximun=1"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/normalize.css"/>   
+      
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/estilos_index.css"/>
+
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/fonts.css"/>
     </h:head>
     <h:body>
-        <p:button value="regresar al inicio" outcome="/index"/>
+         <img src="#{request.contextPath}/resources/images/template/logo.png" width="280" height="100" class="Header-logo" />
+            <p class="Header-title-inicio">SISTEMA ADMINISTRATIVO MODULAR INTEGRADO</p>
+            <figure class="Menu-img">
+                <img src="#{request.contextPath}/resources/images/logo_sena.jpg" width="30"/>
+                <img src="#{request.contextPath}/resources/images/ministerio_trabajo.PNG" width="100"/>
+                <img src="#{request.contextPath}/resources/images/progreso_para_todos.PNG"/>
+                <img src="#{request.contextPath}/resources/images/mas trabajo.png" idth="100"/>
+            </figure>
+       <hr class="linea-mensaje-sami"/>
+       <div class="divMensajeSami">
+           <h3> Señor usuario:</h3>
+        
+        <h4> Gracias por usar los servicios de SAMI</h4>         
+        <P> Los invitamos a conocer mas de nuestra informacion acerca de el manejo de nuestro aplicativo 
+        el cual esta conformado por 6 mudulos administrativos
+        Sistema que brindará solución al personal administrativo del CBI Palmira - agilizando 
+        los procesos del dia a dia en diferentes departamentos como lo son: -Contratacion de prestacion de serviciosm,mantenimiento,
+        Supervision compras administrativas,Gestion talento humano,Gestion Documental y  
+        Gestion entrega de materiales de formación</P>
+        </div>
+        <p:button value="regresar al inicio" outcome="/index" />
     </h:body>
 </html>
 

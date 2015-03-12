@@ -9,8 +9,7 @@
 
     <head jsf:id="head">
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, minimum-scale=1,maximun-scale=1" />   
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'/>
+        <meta name="viewport" content="width=device-width, minimum-scale=1,maximun-scale=1" />      
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/normalize.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/estilos.css"/>
         <title><ui:insert name="title">Default Title</ui:insert></title>
@@ -33,13 +32,13 @@
                             <li class="HeaderList-item"><h3 id="list-box">Modulos<span class="icon-triangle-
                                                                                        down"></span></h3>
                                 <ul>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo1/index_modulo1.xhtml">Contratación de prestación de servicios</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo2/index_modulo2.xhtml">Mantenimiento</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo3/index_modulo3.xhtml">Supervisión de contratos de compras, suministros y servicios</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo4/index_modulo4.xhtml">Gestión y talento humano</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo5/index_modulo5.xhtml">Gestión documental</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo6/index_modulo6.xhtml">Gestión de materiales de formación</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/Programa Formacion/index_programa.xhtml">Programa Formacion</a></li>                                   
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo1/index_modulo1.xhtml" jsf:rendered="#{loginController.contratacion}" >Contratación de prestación de servicios</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo2/index_modulo2.xhtml" jsf:rendered="#{loginController.mantenimiento}" >Mantenimiento</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo3/index_modulo3.xhtml" jsf:rendered="#{loginController.supervisionSuministros}" >Supervisión de contratos de compras, suministros y servicios</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo4/index_modulo4.xhtml" jsf:rendered="#{loginController.gestionTalento}" >Gestión y talento humano</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo5/index_modulo5.xhtml" jsf:rendered="#{loginController.gestionDocumental}" >Gestión documental</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo6/index_modulo6.xhtml" jsf:rendered="#{loginController.gestionMateriales}" >Gestión de materiales de formación</a></li>
+                                                                       
                                     <h:form>           
                                         <p:growl id="message" showDetail="true" />
                                         <p:commandButton  value="Cerrar Sesión" action="#{loginController.logout}" 
@@ -73,7 +72,6 @@
             </article>
         </section>
 
-
         <footer class="Footer" >
             <article class="Footer-item">
                 <h4 class="Footer-title">Contacto</h4>
@@ -95,7 +93,7 @@
 
                 <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/" class="icon-icon-sofia-01" target="_blank"></a>
                 <a href="http://www.sena.edu.co/Paginas/Inicio.aspx" class="icon-icon-sena0" target="_blank"></a>
-                <a jsf:outcome="/Configuracion/index_configuracion.xhtml" class="icon-cog"></a>
+                <a jsf:outcome="/Configuracion/index_configuracion.xhtml" class="icon-cog" jsf:rendered="#{loginController.configuracion}" ></a>
                 <a type="button" onclick="PF('dlg2').show();" class="icon-help" ></a>
             </article>
         </footer>

@@ -48,16 +48,16 @@ public class Documentos implements Serializable {
     @Column(name = "url")
     private String url;
     @Column(name = "fecha_ingreso")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaIngreso;
     @Column(name = "activo")
     private Boolean activo;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    @ManyToOne(optional = false)
-    private Usuarios idUsuario;
     @JoinColumn(name = "idtipos_documento_gd", referencedColumnName = "idtipos_documento_gd")
     @ManyToOne(optional = false)
     private TiposDocumentoGd idtiposDocumentoGd;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuarios idUsuario;
 
     public Documentos() {
     }
@@ -98,20 +98,20 @@ public class Documentos implements Serializable {
         this.activo = activo;
     }
 
-    public Usuarios getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuarios idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public TiposDocumentoGd getIdtiposDocumentoGd() {
         return idtiposDocumentoGd;
     }
 
     public void setIdtiposDocumentoGd(TiposDocumentoGd idtiposDocumentoGd) {
         this.idtiposDocumentoGd = idtiposDocumentoGd;
+    }
+
+    public Usuarios getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuarios idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override
@@ -136,7 +136,7 @@ public class Documentos implements Serializable {
 
     @Override
     public String toString() {
-        return getIdtiposDocumentoGd().getNombreDocumento()+"";
+        return "Entidades.Documentos[ idDocumentos=" + idDocumentos + " ]";
     }
     
 }

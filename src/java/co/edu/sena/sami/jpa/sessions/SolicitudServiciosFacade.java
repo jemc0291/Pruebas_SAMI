@@ -8,6 +8,7 @@ package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.SolicitudServicios;
 import co.edu.sena.sami.jpa.entities.Usuarios;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -34,13 +35,19 @@ public class SolicitudServiciosFacade extends AbstractFacade<SolicitudServicios>
     
         /**
      *
-     * @param i
+     * @param u
      * @return
      */
-    public List<SolicitudServicios> consultaUsuario(Usuarios i){
+    public List<SolicitudServicios> consultaUsuario(Usuarios u){
         Query q = getEntityManager().createNamedQuery("SolicitudServicios.consultaUsuario");
-        q.setParameter("idUsuario", i.getIdUsuario());
+        q.setParameter("idUsuario", u);
         return  q.getResultList();
     }
     
+     public List<SolicitudServicios> rangoFecha(Date fechaInicio, Date fechaFin){
+        Query q = getEntityManager().createNamedQuery("SolicitudServicios.findByFechaSolicitudInicioFin");
+        q.setParameter("fechaInicio", fechaInicio);
+        q.setParameter("fechaFin", fechaFin);
+        return  q.getResultList();
+    }
 }

@@ -15,8 +15,11 @@
                 <h1>SOLICITUD DE MANTENIMIENTO</h1>
 
                 <p>
-                    <p:commandButton  value="Crear Solicitud" action="#{solicitudServiciosController.prepareCreate}" />
-                    
+                    <p:commandButton  value="Crear Solicitud" actionListener="#{solicitudServiciosController.cargarUsuario}" 
+                                      action="#{solicitudServiciosController.prepareCreate}" update="@this">
+                        <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                    </p:commandButton>
+
                 </p>
 
                 <p:dataTable value="#{solicitudServiciosController.items}" var="item"

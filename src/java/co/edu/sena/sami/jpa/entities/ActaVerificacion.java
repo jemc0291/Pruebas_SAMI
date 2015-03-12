@@ -53,7 +53,7 @@ public class ActaVerificacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idActa_Verificacion")
+    @Column(name = "id_acta_verificacion")
     private Integer idActaVerificacion;
     @Basic(optional = false)
     @NotNull

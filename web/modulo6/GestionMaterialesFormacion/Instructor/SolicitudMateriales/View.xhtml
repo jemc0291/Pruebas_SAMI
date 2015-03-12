@@ -1,47 +1,70 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Solicitudes de Materiales</ui:define>
+        <ui:define name="title">Solicitudes</ui:define>
         <ui:define name="menu"><ui:include src="/modulo6/menu_Instructor.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h:form>
-                <h1><h:outputText value="Su Solicitud a Sido Creada"/></h1>
-                <p:panelGrid columns="2">
-                    <h:outputText value="Solicitud Numero:"/>
-                    <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idSolicitudMaterial}" title="IdSolicitudMaterial"/>
-                    <h:outputText value="Fecha de Solicitud:"/>
-                    <h:outputText value="#{solicitudMaterialesAlmacenController.selected.fechaDeSolicitud}" title="FechaDeSolicitud">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="Hora:"/>
-                    <h:outputText value="#{solicitudMaterialesAlmacenController.selected.fechaDeSolicitud}" title="FechaDeSolicitud">
-                        <f:convertDateTime pattern="HH:mm a" />
-                    </h:outputText>
-                    <h:outputText value="IdFichaCaracterizacion:"/>
-                    <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}" title="IdFichaCaracterizacion"/>
-                    <h:outputText value="IdArea:"/>
-                    <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idArea.nombreArea}" title="IdArea"/>
-                </p:panelGrid>
-                <f:view>
+            <h:form id="solicitudEditForm">
+                <p:growl id="msgs" showDetail="true"/>
 
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" layout="grid" id="panelSolicitud" rendered="#{solicitudMaterialesAlmacenController.selected != null}" >
 
-                    <h:form>
-                        <h1><h:outputText value="Materiales"/></h1>
-                        <p:panelGrid columns="2" rendered="#{solicitudMaterialesAlmacenController.itemsSolicitudMateriales}">
-                            <h:outputText value="Cantidad:"/>
-                            <h:outputText value="#{solicitudMaterialesAlmacenMaterialesController.selected.cantidad}" title="Cantidad"/>
-                            <h:outputText value="SolicitudMaterialesAlmacen:"/>
-                            <h:outputText value="#{solicitudMaterialesAlmacenMaterialesController.selected.solicitudMaterialesAlmacen}" title="SolicitudMaterialesAlmacen"/>
-                            <h:outputText value="Materiales:"/>
-                            <h:outputText value="#{solicitudMaterialesAlmacenMaterialesController.selected.materiales}" title="Materiales"/>
-                        </p:panelGrid>
-                    </h:form>
-                </f:view>
+                        <label>Solicitud Número:</label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idSolicitudMaterial}"/>
+
+                        <label>Area</label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idArea}"/>
+
+                        <label>Ficha de Caracterizacion</label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}"/>
+
+                        <Label>Observaciones</Label>
+                        <h:outputText value="#{solicitudMaterialesAlmacenController.selected.observaciones}"/>
+
+                        <Label>Aprobado</Label>
+                        <p:selectBooleanCheckbox value="#{solicitudMaterialesAlmacenController.selected.aprobado}" disabled="true"/>
+                    </p:panelGrid>
+
+                </h:panelGroup>
+                <p:dataTable id="cars2" value="#{solicitudMaterialesAlmacenController.itemsSolicitudMateriales}" var="item" editable="false" 
+                             widgetVar="cellCars" >
+
+                    <f:facet name="header">
+                        Cantidad de materiales por pedido
+                    </f:facet>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Solicitud Numero:"/>
+                        </f:facet>
+                        <h:outputText value="#{item.solicitudMaterialesAlmacen}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre de Material"/>
+                        </f:facet>
+                        <h:outputText value="#{item.materiales.nombreMaterial}"/>
+                    </p:column>
+                    <p:column headerText="Editar Cantidad">
+                            <h:outputText value="#{item.cantidad}"/>
+                    </p:column>
+                    <p:column headerText="Aprobado">
+                        <p:selectBooleanCheckbox value="#{item.aprobado}" disabled="true"/>
+                    </p:column>
+
+                    <p:column headerText="Observación de este pedido">
+                            <h:outputText value="#{item.observaciones}" />
+                    </p:column>
+                </p:dataTable>
+                <p:button value="Aceptar" 
+                          outcome="/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/SolicitudesUsuario.xhtml"/>
 
             </h:form>
         </ui:define>

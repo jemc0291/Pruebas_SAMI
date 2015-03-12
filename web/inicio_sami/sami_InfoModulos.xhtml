@@ -20,7 +20,7 @@
     </h:head>
     <body class="body" jsf:id="body">
         <header class="HeaderModulos">
-            <img src="#{request.contextPath}/resources/images/sami.png" width="280" height="100" class="Header-logo" />
+            <img src="#{request.contextPath}/resources/images/template/logo.png" width="280" height="100" class="Header-logo" />
             <p class="Header-title-inicio">SISTEMA ADMINISTRATIVO MODULAR INTEGRADO</p>
             <figure class="Menu-img">
                 <img src="#{request.contextPath}/resources/images/logo_sena.jpg" width="30"/>
@@ -61,7 +61,7 @@
                 <form jsf:id="botonModulos">
                     <h:panelGrid columns="1" cellpadding="5">
                         <p:commandButton  value="Contratación Prestación de Servicios" type="button" onclick="PF('dlg1').show();" style="color: black; border-color: black;"/>
-                        <p:commandButton value="Mantenimiento" type="button" onclick="PF('dlg2').show();" style="color: black; border-color: black;"/>
+                        <p:commandButton value="Mantenimiento" type="button" onclick="PF('dlg10').show();" style="color: black; border-color: black;"/>
                         <p:commandButton value="Gestion Talento Humano" type="button" onclick="PF('dlg3').show();" style="color: black; border-color: black;"/> 
                         <p:commandButton value="Gestion Documental" type="button" onclick="PF('dlg4').show();" style="color: black; border-color: black;"/>
                         <p:commandButton value="Supervisión De Contratos De Compras Suministros y Servicios" type="button" onclick="PF('dlg5').show();" style="color: black; border-color: black;"/>
@@ -77,7 +77,7 @@
                                   cual optimiza y agiliza el funcionamiento del módulo" />
                 </p:dialog>
 
-                <p:dialog header="Mantenimiento" widgetVar="dlg2" modal="true" height="300"  width="600px">
+                <p:dialog header="Mantenimiento" widgetVar="dlg10" modal="true" height="300"  width="600px">
                     <h:outputText value="tiene como objetivo administrar la gestión que se realiza al momento de solicitar y ejecutar 
                                   el mantenimiento de la infraestructura del CBI. Se requiere hacer solicitudes de diferentes
                                   niveles como correctivo, predictivo, preventivo, con la complejidad de tareas realizadas por 

@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
+        <param-value>Production</param-value>
     </context-param>
     <context-param>
         <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
@@ -49,14 +49,14 @@
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
         <filter-class>
             org.primefaces.webapp.filter.FileUploadFilter
-        </filter-class> 
+        </filter-class>
         <init-param>
             <param-name>thresholdSize</param-name>
             <param-value>51200</param-value>
         </init-param>
         <init-param>
             <param-name>uploadDirectory</param-name>
-            <param-value>C:\Users\Adsim\AppData\Local\Temp</param-value>
+            <param-value>c:\Users\Adsim\AppData\Local\Temp</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -135,12 +135,20 @@
             <role-name>webModulo6</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <display-name>webConfiguracion</display-name>
+        <web-resource-collection>
+            <web-resource-name>webConfiguracion</web-resource-name>
+            <description>Configuracion Sami</description>
+            <url-pattern>/faces/modulo6/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>sami-realm</realm-name>
         <form-login-config>
-            <form-login-page>/index.xhtml</form-login-page>
-            <form-error-page>/index.xhtml</form-error-page>
+            <form-login-page>/inicio_sami/mensaje_sami.xhtml</form-login-page>
+            <form-error-page>/inicio_sami/mensaje_sami.xhtml</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>
@@ -170,5 +178,10 @@
     <security-role>
         <description>Gestion de materiales</description>
         <role-name>webModulo6</role-name>
+    </security-role>
+    <security-role>
+        <description>Configuracion
+</description>
+        <role-name>webConfiguracion</role-name>
     </security-role>
 </web-app>
