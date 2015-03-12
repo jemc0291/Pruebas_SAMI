@@ -38,10 +38,10 @@ public class Pais implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 3)
-    @Column(name = "id_Pais")
+    @Column(name = "id_pais")
     private String idPais;
     @Size(max = 45)
-    @Column(name = "Nombre_pais")
+    @Column(name = "nombre_pais")
     private String nombrepais;
     @OneToMany(mappedBy = "idPais")
     private List<Departamentos> departamentosList;

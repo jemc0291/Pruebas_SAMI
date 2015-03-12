@@ -49,7 +49,7 @@ public class DocumentosController implements Serializable {
     @EJB
     private TiposDocumentoGdFacade tiposDocumentoGdFacade;
     private UploadedFile archivo;
-    private String destination = "C:\\Temp\\Archivo";
+    private String destination = "/var/sami/ges_doc";
  
 
     public DocumentosController() {

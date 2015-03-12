@@ -184,14 +184,21 @@
                                         converter="centroFormacionConverter" pt:required="true"
                                         forceSelection="true" maxResults="10"/> 
                         <p:message id="centrodeformacionMessage" for="centroFormacion"/>
-
-
+                        
                         <label value="#{bundle.CreateUsuariosLabel_gpRh}" jsf:for="FactorInputText"></label>
-                        <p:inputText type="text" id="FactorInputText" 
-                                     value="#{usuariosController.selected.gpRh}"
-                                     title="#{bundle.CreateUsuariosTitle_gpRh}">
+                        <h:selectOneMenu class="Form-datos" id="FactorInputText" 
+                                         value="#{usuariosController.selected.gpRh}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItem itemLabel="A+" itemValue="A+"/>
+                            <f:selectItem itemLabel="A-" itemValue="A-"/>
+                            <f:selectItem itemLabel="O+" itemValue="O+"/>
+                            <f:selectItem itemLabel="O-" itemValue="O-"/>
+                            <f:selectItem itemLabel="B+" itemValue="B+"/>
+                            <f:selectItem itemLabel="B-" itemValue="B-"/>
+                            <f:selectItem itemLabel="AB+" itemValue="AB+"/>
+                            <f:selectItem itemLabel="AB-" itemValue="AB-"/>
                             <f:ajax execute="@this" render="FactorMessage"/>
-                        </p:inputText>
+                        </h:selectOneMenu>
                         <h:message id="FactorMessage" for="FactorInputText" styleClass="error"/>
 
                         <label value="#{bundle.CreateUsuariosLabel_idEstadoCivil}" jsf:for="EstadoCivilInputText"></label>
@@ -233,7 +240,7 @@
                         </h:selectOneMenu>
                         <h:message id="IDArlMessage" for="IDArlInputText" styleClass="error"/>
 
-                        
+                        <h:panelGroup rendered="#{!usuariosController.contratista}">
                         <label value="#{bundle.CreateUsuariosLabel_idCcf}" jsf:for="IdCcfInputText"></label>
                         <h:selectOneMenu class="Form-datos" id="IdCcfInputText" 
                                          value="#{usuariosController.selected.idCcf}">
@@ -242,6 +249,7 @@
                             <f:ajax execute="@this" render="IdCcfMessage"/>
                         </h:selectOneMenu>
                         <h:message id="IdCcfMessage" for="IdCcfInputText" styleClass="error"/>
+                        </h:panelGroup>
                         
                         <label value="#{bundle.CreateUsuariosLabel_idFondoPensiones}" jsf:for="IdFondoInputText"></label>
                         <h:selectOneMenu class="Form-datos" id="IdFondoInputText" 
@@ -267,7 +275,7 @@
                                          value="#{usuariosController.selected.idTipoContrato}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{tipoContratoController.itemsAvailableSelectOne}"/>
-                            <f:ajax execute="@this" render="ContratoMessage"/>
+                            <f:ajax execute="@this" render="ContratoMessage usuarioCreateForm"/>
                         </h:selectOneMenu>
                         <h:message id="ContratoMessage" for="ContratoInputText" styleClass="error"/>
 
