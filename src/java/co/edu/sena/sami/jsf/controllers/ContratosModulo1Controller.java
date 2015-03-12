@@ -408,7 +408,7 @@ public class ContratosModulo1Controller implements Serializable {
         cellHeader = header.createCell(14);
         cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListFondoDePensionesTitle_nombreFondoPensiones"));
         cellHeader = header.createCell(15);
-        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListCrpTitle_numeroCrp"));
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_crp"));
         cellHeader = header.createCell(16);
         cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_plazoMeses"));
         cellHeader = header.createCell(17);
@@ -439,10 +439,13 @@ public class ContratosModulo1Controller implements Serializable {
         /*Formatos para las fechas */
         CreationHelper createHelper = wb.getCreationHelper();
         CellStyle cellStyleDate = wb.createCellStyle();
+        CellStyle cellStyleDateMes = wb.createCellStyle();
         CellStyle cellStyleTime = wb.createCellStyle();
         CellStyle cellStyleDateTime = wb.createCellStyle();
         cellStyleDate.setDataFormat(
-                createHelper.createDataFormat().getFormat("m/d/yy"));
+                createHelper.createDataFormat().getFormat("dd/mm/yyyy"));
+        cellStyleDateMes.setDataFormat(
+                createHelper.createDataFormat().getFormat("dd/MMMM/yyyy"));
         cellStyleTime.setDataFormat(
                 createHelper.createDataFormat().getFormat("h:mm:SS"));
         cellStyleDateTime.setDataFormat(
@@ -457,11 +460,13 @@ public class ContratosModulo1Controller implements Serializable {
             cell.setCellValue(item.getContratos().getNumeroDeContrato());
             cell = row.createCell(1);
             cell.setCellValue(item.getContratos().getFechasuscripcion());
-            cell.setCellStyle(cellStyleDateTime);
+            cell.setCellStyle(cellStyleDate);
             cell = row.createCell(2);
             cell.setCellValue(item.getContratos().getFechaInicioContrato());
+            cell.setCellStyle(cellStyleDateMes);
             cell = row.createCell(3);
-            cell.setCellValue(item.getUsuarios().getRazonSocial());
+            cell.setCellValue(item.getUsuarios().getRazonSocial()+ item.getUsuarios().getSegundoNombre() + item.getUsuarios().getPrimerApellido() + item.getUsuarios().getSegundoApellido()
+                    == null? "":item.getUsuarios().getRazonSocial() + " " + item.getUsuarios().getSegundoNombre() + " " + item.getUsuarios().getPrimerApellido() + " " + item.getUsuarios().getSegundoApellido());
             cell = row.createCell(4);
             cell.setCellValue(item.getUsuarios().getNumeroDoc());
             cell = row.createCell(5);
@@ -480,6 +485,7 @@ public class ContratosModulo1Controller implements Serializable {
             cell.setCellValue(item.getUsuarios().getEmail());
             cell = row.createCell(12);
             cell.setCellValue(item.getUsuarios().getFechaNac());
+            cell.setCellStyle(cellStyleDate);
             cell = row.createCell(13);
             cell.setCellValue(item.getUsuarios().getIdEps().getNombreEps() == null? "":item.getUsuarios().getIdEps().getNombreEps());
             cell = row.createCell(14);
@@ -490,8 +496,10 @@ public class ContratosModulo1Controller implements Serializable {
             cell.setCellValue(item.getContratos().getPlazoMeses());
             cell = row.createCell(17);
             cell.setCellValue(item.getContratos().getFechaInicioContrato());
+            cell.setCellStyle(cellStyleDate);
             cell = row.createCell(18);
             cell.setCellValue(item.getContratos().getFechaFinContrato());
+            cell.setCellStyle(cellStyleDate);
             cell = row.createCell(19);
             cell.setCellValue(item.getUsuarios().getRazonSocial() == null? "":item.getUsuarios().getRazonSocial());
             cell = row.createCell(20);
@@ -505,17 +513,5 @@ public class ContratosModulo1Controller implements Serializable {
 
         }
     }
-
-    public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
-        Document pdf = (Document) document;
-        pdf.open();
-        pdf.setPageSize(PageSize.A4);
-
-        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        String logo = servletContext.getRealPath("") + File.separator + "" + File.separator + "Imagenes" + File.separator + "pdf.png";
-
-        pdf.add(Image.getInstance(logo));
-    }
-
 
 }

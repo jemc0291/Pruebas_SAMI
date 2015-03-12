@@ -111,7 +111,10 @@ public class UsuariosController implements Serializable {
     private UsuariosFacade getFacade() {
         return ejbFacade;
     }
-
+    
+    public boolean isContratista(){
+        return selected.getIdTipoContrato() == null? false : selected.getIdTipoContrato().getIdTipoContrato() == (short) 2;
+    }
  
     public String prepareCreate() {
         selected = new Usuarios();

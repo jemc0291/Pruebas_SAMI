@@ -48,14 +48,14 @@
                         <p:columnToggler datasource="contratosModulo1Table" trigger="toggler" transient="false"/>
                     </f:facet>
 
-                   <!-- <p:column style="width:16px" exportable="true" headerText="Contratista" toggleable="false">
+                   <!--<p:column style="width:16px" exportable="true" headerText="Contratista" toggleable="false">
                         <p:rowToggler />
                     </p:column>-->
-                   <p:column  toggleable="false" filterBy="#{contratosModulo1Controller.getUsuariosByContratos(item).toStringModuloUno()}">
+                   <p:column  toggleable="false" filterBy="#{contratosModulo1Controller.getUsuariosByContratos(item).informacionUsuario()}">
                         <f:facet name="header">
                             <h:outputText value="Contratista"/>
                         </f:facet>
-                        <h:outputText value="#{contratosModulo1Controller.getUsuariosByContratos(item).toStringModuloUno()}"/>
+                       <h:outputText value="#{contratosModulo1Controller.getUsuariosByContratos(item).informacionUsuario()}"/>
                     </p:column>
                     <p:column   filterBy="#{item.numeroDeContrato}" filterMatchMode="contains" toggleable="false" >
                         <f:facet name="header">
@@ -191,11 +191,7 @@
                 <img src="../Recursos/Imagenes/excel.png" />
                 <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS}" />
                 </h:commandLink>
-                
-                <h:commandLink id="pdf">
-                <img src="../Recursos/Imagenes/pdf.png" />
-                <p:dataExporter type="pdf" target="contratosModulo1Table" fileName="Reporte" preProcessor="#{contratosModulo1Controller.preProcessPDF}" />
-                </h:commandLink>
+
             </h:form>
 
         </ui:define>
