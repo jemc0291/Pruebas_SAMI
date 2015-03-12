@@ -43,7 +43,7 @@ public class TipoDeServicios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "nombre_Servicio")
+    @Column(name = "nombre_servicio")
     private String nombreServicio;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoServ")
     private List<SolicitudServicios> solicitudServiciosList;

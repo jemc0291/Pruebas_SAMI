@@ -17,7 +17,8 @@
             <section class="Section-form">
 
                 <form jsf:id="createAvance">
-                    <p:panelGrid columns="2" rendered="#{solicitudServiciosController.selected != null}" layout="grid">
+                     <h3>Datos de Solicitud</h3>
+                    <p:panelGrid columns="2" rendered="#{solicitudServiciosController.selected != null}" layout="grid" style="width: 380px">
                         <h:outputText value="IdSolicitudServicio:"/>
                         <h:outputText value="#{solicitudServiciosController.selected.idSolicitudServicio}" title="IdSolicitudServicio"/>
                         <h:outputText value="DescripcionservicioSolicitud:"/>
@@ -34,24 +35,24 @@
                         <h:outputText value="#{solicitudServiciosController.selected.idTipoServ}" title="IdTipoServ"/>
                     </p:panelGrid>
                     
-                    <h2>Crear Avance</h2>
+                    <h3>Crear Avance</h3>
                     
-                    <p:panelGrid columns="3" layout="grid">
+                    <p:panelGrid columns="3" layout="grid" style="width: 320px">
 
                         <Label> *Descripción del Avance </Label>
-                        <textarea cols="70" rows="10" type="text" jsf:id="descripcionServicioPrestado" 
+                        <textarea cols="25" rows="5" type="text" jsf:id="descripcionServicioPrestado" 
                                   jsf:value="#{solicitudServiciosController.avanceActual.descripcion}">
                         </textarea>
                         <h:message id="descripcionServicioPrestadoMessage" for="descripcionServicioPrestado" styleClass="error"/>
 
-                        <h:outputLabel value="Estado:" for="nombre_estado" />
+                        <h:outputLabel value="*Estado:" for="nombre_estado" />
                         <h:selectOneMenu id="nombre_estado" value="#{solicitudServiciosController.avanceActual.idEstado}" title="Nombre_Estado" >
                             <f:selectItem itemLabel="Seleccione uno..."/>
                             <f:selectItems value="#{solicitudServiciosController.listEstado}"/>
                         </h:selectOneMenu>
                         <h:message id="nombre_estadoMessage" for="nombre_estado" styleClass="error"/>
 
-                        <h:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
+                        <h:outputLabel value="*Tipo de Servicio:" for="nombre_servicio" />
                         <h:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" title="Nombre_Servicio" >
                             <f:selectItem itemLabel="Seleccione uno..."/>
                             <f:selectItems value="#{tipoDeServiciosController.itemsAvailableSelectOne}"/>
@@ -59,18 +60,18 @@
                         </h:selectOneMenu>
                         <h:message id="nombre_servicioMessage" for="nombre_servicio" styleClass="error"/>
 
-                        <h:outputLabel value="Prioridades:" for="nombre_prioridades" />
+                        <h:outputLabel value="*Prioridades:" for="nombre_prioridades" />
                         <h:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" title="Nombre_Prioridades" >
                             <f:selectItem itemLabel="Seleccione uno..."/>
                             <f:selectItems value="#{solicitudServiciosController.listPrioridades}"/>
                         </h:selectOneMenu>
                         <h:message id="nombre_prioridadMessage" for="nombre_prioridades" styleClass="error"/>
 
-                        <h:outputLabel value="Fue Atendido" for="tipoSolicitud1" />
+                        <h:outputLabel value="*Fue Atendido" for="tipoSolicitud1" />
                         <h:selectBooleanCheckbox id="tipoSolicitud1" value="#{solicitudServiciosController.avanceActual.fueAtendido}"/>
                         <h:message id="tipoSolicitud2Message" for="tipoSolicitud2" styleClass="error"/>
 
-                        <h:outputLabel value="Fue Solucionado" for="tipoSolicitud2" />
+                        <h:outputLabel value="*Fue Solucionado" for="tipoSolicitud2" />
                         <h:selectBooleanCheckbox id="tipoSolicitud2" value="#{solicitudServiciosController.avanceActual.fueSolucionado}"/>
                         <h:message id="tipoSolicitud1Message" for="tipoSolicitud1" styleClass="error"/>
 
