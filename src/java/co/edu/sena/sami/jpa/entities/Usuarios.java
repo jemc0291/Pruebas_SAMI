@@ -696,6 +696,7 @@ public class Usuarios implements Serializable {
         return razonSocial;
     }
     
+    
     public String informacionUsuario(){
         return (numeroDoc==null?"":numeroDoc + " - ") 
                 + (razonSocial==null?"": razonSocial) 

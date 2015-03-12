@@ -118,7 +118,7 @@ public class UsuariosController implements Serializable {
         listaCargo = new ArrayList<>();
         listaRoles = new ArrayList<>();
         initializeEmbeddableKey();
-        return "Agregar";
+        return "/Configuracion/Usuarios/Agregar";
     }
 
     public String prepareModificarUsuario() {

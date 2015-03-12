@@ -6,6 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition>
+        <h:form>
         <ul class="MainMenu-list">
 
 
@@ -17,7 +18,7 @@
                 <ul>
                     <li class="AlternMenu-link"><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Aseguradora/List.xhtml">Aseguradora</a> </li>
                                        
-                    <li class="AlternMenu-link"><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Contratistas/ListContratistas.xhtml">Contratistas</a></li>
+                    <li class="AlternMenu-link"><a jsf:action="#{usuariosController.prepareCreate}">Contratistas</a></li>
                     <li class="AlternMenu-link"><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Contratos/ListContrato.xhtml">Contratos</a>
                        
                     </li>
@@ -33,5 +34,6 @@
                 <a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Editor/Editor.xhtml">Editor de texto</a>
             </li>
         </ul>
+    </h:form>
     </ui:composition>
 </html>

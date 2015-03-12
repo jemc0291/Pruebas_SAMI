@@ -408,7 +408,7 @@ public class ContratosModulo1Controller implements Serializable {
         cellHeader = header.createCell(14);
         cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListFondoDePensionesTitle_nombreFondoPensiones"));
         cellHeader = header.createCell(15);
-        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListCrpTitle_numeroCrp"));
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuarioTitle_crp"));
         cellHeader = header.createCell(16);
         cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_plazoMeses"));
         cellHeader = header.createCell(17);
