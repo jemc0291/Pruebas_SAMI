@@ -6,12 +6,12 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
     <ui:composition template="/template.xhtml">
 
-        <ui:define name="title">HISTORIAL</ui:define>        
-
+        <ui:define name="title">Solicitud</ui:define>  
+        <ui:define name="menu"><ui:include src="/modulo2/menu_modulo2.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-
             <h2>Búsqueda</h2>
 
 
@@ -20,31 +20,31 @@
             <h:form id="formSolicitud">
 
                 <h:outputText value="Fecha Inicio:"/>
-                <p:calendar showOn="button" value="#{solicitudServiciosController.fechaInicio}"  pattern="yyyy-MM-dd HH:mm:ss" />
-                
-                <h:outputText value="                        Fecha Fin:"/>
-                <p:calendar showOn="button" value="#{solicitudServiciosController.fechaFin}"  pattern="yyyy-MM-dd HH:mm:ss" />
+                <p:calendar showOn="button" value="#{solicitudServiciosController.fechaInicio}"  pattern="yyyy-MM-dd hh:mm:ss a" />
+
+                <h:outputText value="Fecha Fin:"/>
+                <p:calendar showOn="button" value="#{solicitudServiciosController.fechaFin}"  pattern="yyyy-MM-dd hh:mm:ss a" />
 
                 <p></p>
 
                 <p:dataTable id="solicitudTableConsulta" value="#{solicitudServiciosController.itemsRango}" var="item1" >
 
-                    <p:column style="width: 120px" filterBy="#{item.idSolicitudServicio}" 
+                    <p:column style="width: 120px" filterBy="#{item1.idSolicitudServicio}" 
                               headerText="Número de Solicitud" footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item1.idSolicitudServicio}"/>
                     </p:column>
 
-                    <p:column style="width: 120px" filterBy="#{item.idUsuario.razonSocial}" 
+                    <p:column style="width: 120px" filterBy="#{item1.idUsuario.razonSocial}" 
                               headerText="Nombre Solicitante" footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item1.idUsuario.razonSocial}  "/>
                     </p:column>
 
-                    <p:column style="width: 120px" filterBy="#{item.idUsuario.primerApellido}" 
+                    <p:column style="width: 120px" filterBy="#{item1.idUsuario.primerApellido}" 
                               headerText="Apellido Solicitante" footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item1.idUsuario.primerApellido}"/>
                     </p:column>
 
-                    <p:column style="width: 120px" filterBy="#{item.idUsuario.numeroDoc}" 
+                    <p:column style="width: 120px" filterBy="#{item1.idUsuario.numeroDoc}" 
                               headerText="Número documento" footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item1.idUsuario.numeroDoc}"/>
                     </p:column>
@@ -56,22 +56,22 @@
                         <h:outputText value="#{item1.descripcionservicioSolicitud}"/>
                     </p:column>
 
-                    <p:column filterBy="#{item.ubicacionSolicitud}" headerText="Ubicación" 
+                    <p:column filterBy="#{item1.ubicacionSolicitud}" headerText="Ubicación" 
                               footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item1.ubicacionSolicitud}"/>
                     </p:column>
 
-                    <p:column style="width: 120px" filterBy="#{item.fechaSolicitudServicio}" 
+                    <p:column style="width: 120px" filterBy="#{item1.fechaSolicitudServicio}" 
                               headerText="Fecha y Hora" footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item1.fechaSolicitudServicio}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
                         </h:outputText>
                     </p:column>
                 </p:dataTable>
 
                 <p></p>
                 <p:commandButton value="Consultar" actionListener="#{solicitudServiciosController.itemsRango()}">
-                    <p:ajax process="@this formSolicitud" update="formSolicitud"/>
+                    <p:ajax process="@this formSolicitud solicitudTableConsulta" update="formSolicitud solicitudTableConsulta"/>
                 </p:commandButton>
                 <p></p>
 
@@ -114,7 +114,7 @@
                     <p:column style="width: 120px" filterBy="#{item.fechaSolicitudServicio}" 
                               headerText="Fecha y Hora" footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item.fechaSolicitudServicio}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="yyyy/MM/dd hh:mm:ss" />
                         </h:outputText>
                     </p:column>
                 </p:dataTable>
