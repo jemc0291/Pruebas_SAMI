@@ -26,6 +26,7 @@ import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -64,6 +65,10 @@ public class SolicitudServiciosController implements Serializable {
 
     @EJB
     private EstadosFacade estadosFacade;
+
+    private Date fechaInicio;
+
+    private Date fechaFin;
 
     public List<SolicitudServicios> getItems() {
         if (items == null) {
@@ -120,6 +125,10 @@ public class SolicitudServiciosController implements Serializable {
         return listAvance;
     }
 
+    public List<Avance> getListAvance(SolicitudServicios solicitud) {
+        return getAvanceFacade().findBySolicitud(solicitud);
+    }
+
     public List<TipoUsuario> getListTipoUsusarioSelectOne() {
         return getTipoUsarioFacade().findAll();
     }
@@ -130,6 +139,26 @@ public class SolicitudServiciosController implements Serializable {
 
     public List<SolicitudServicios> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+    
+    public List<SolicitudServicios> getItemsRango () {
+        return getFacade().rangoFecha(fechaInicio, fechaFin);
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public AvanceFacade getAvanceFacade() {

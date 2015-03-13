@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Lista Contratos</ui:define>
         <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
@@ -13,9 +14,26 @@
             <f:view>
 
 
-                <h:form>
+                <h:form id="tableFacturas">
                     <h1><h:outputText value="#{bundle.ListPagosContratosTitle}"/></h1>
-                    <p:dataTable value="#{pagosContratosController.items}" var="item" rows="10"
+                    <h3><h:outputText value="*Ingrese las dos fechas para realizar la consulta*" class="ErrorDupli"/></h3>
+                    <p:panelGrid columns="5">
+                     <label value="*Fecha Inicio" jsf:for="fechaInicio" class="FormLabelSCCSS" />
+                     <p:calendar showOn="button" id="fechaInicio" value="#{pagosContratosController.fechaInicio}" title="#{bundle.CreateContratosTitle_fechaFinContrato}"
+                                    required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}" mindate="#{contratosController.selected.fechaInicioContrato}"
+                                    pattern="yyyy-MM-dd">
+                     </p:calendar>
+                     <label value="*Fecha Final" jsf:for="fechaFin" class="FormLabelSCCSS" />
+                     <p:calendar showOn="button" id="fechaFin" value="#{pagosContratosController.fechaFin}" title="#{bundle.CreateContratosTitle_fechaFinContrato}"
+                                    required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}" mindate="#{contratosController.selected.fechaInicioContrato}"
+                                    pattern="yyyy-MM-dd">
+                     </p:calendar>
+                     <p:commandButton value="Consultar" actionListener="#{pagosContratosController.facturasRango()}" >
+                         <p:ajax process="@this tableFacturas" update="tableFacturas" />
+                     </p:commandButton>
+                     </p:panelGrid>
+                    
+                    <p:dataTable value="#{pagosContratosController.facturasRango}" var="item" rows="10"
                                  id="facturasTable" 
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

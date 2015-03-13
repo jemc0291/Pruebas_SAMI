@@ -111,7 +111,10 @@ public class UsuariosController implements Serializable {
     private UsuariosFacade getFacade() {
         return ejbFacade;
     }
-
+    
+    public boolean isContratista(){
+        return selected.getIdTipoContrato() == null? false : selected.getIdTipoContrato().getIdTipoContrato() == (short) 2;
+    }
  
     public String prepareCreate() {
         selected = new Usuarios();
@@ -282,6 +285,16 @@ public class UsuariosController implements Serializable {
             return getFacade().findByRazonSocialCompletar(query);
         } catch (Exception ex) {
             Logger.getLogger(ContratosController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+     public List<Usuarios> getListNumeroDocumentoAutoComplete(String query) {//se agrego metodo de autocompletar
+        try {
+            return getFacade().findByNumeroDoc(query);
+        } catch (Exception ex) {
+            Logger.getLogger(ContratosModulo1Controller.class
                     .getName()).log(Level.SEVERE, null, ex);
             return null;
         }
