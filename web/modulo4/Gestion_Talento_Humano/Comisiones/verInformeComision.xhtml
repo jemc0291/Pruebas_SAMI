@@ -10,88 +10,103 @@
         <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <f:view>
-            <h:form>
-                <fieldset><img src="#{request.contextPath}/resources/images/logo_sena.jpg" />
-                    <figcaption>Modelo de Mejora <br/>Continua</figcaption>
-                    <div class="titleComicion">
-                    <center><p>Regional Valle del Cauca</p>
-                    <h3>INFORME DE COMISIÓN</h3></center>
-                    </div>   
-                    <div id="divpg">
-                        <p align="right">Codigo:<br/> Fecha:<br/> Hora:<br/> Versión:<br/> Pag:</p>
-                    </div>
-                </fieldset>  
-                <fieldset>  
+         <h:form id="InformeDeComision">
+             <fieldset>
+                        <figure class="image-Container">
+                        <img src="#{request.contextPath}/resources/images/logo_sena.jpg" />
+                        </figure>
+                        <figcaption class="descripcion">Modelo de Mejora<br/>Continua<br/></figcaption>
+                        
+                        <div class="titleComision"  columns="3">
+                            <center><p>Regional Valle del Cauca</p>
+                        <h3>INFORME DE COMISIÓN</h3></center>
+                        </div>
+                        
+                        <div  id="divpg" columns="3" style="display: inline-block">
+                            <p  class="Codigo" align="right" style="position: absolute; bottom: -10em;left: 68em;">Codigo:<br/><br/> Fecha:<br/><br/>Hora:<br/><br/>Versión:<br/><br/>Pag:</p>
+                        </div>
+                        </fieldset>
+                      
+             
+                    <fieldset>
                     <h3>DETALLES DE LA COMISIÓN DE SERVICIOS</h3>
                     <div>
-                        <b><label for="Ciudad">Lugar de la comisión:</label></b>
+                        <label for="Ciudad">Lugar de la comisión:</label>
                         <u><h:outputText value="#{comisionesController.selected.ciudad}" title="Ciudad"/></u>
                     </div>
                     <br/>
                     <div>
-                         <b><label for="NumDias">Días de la comisión:</label></b>
+                         <label for="NumDias">Días de la comisión:</label>
                         <u><h:outputText value="#{comisionesController.selected.numDias}" title="NumDias"/></u>
                     </div>
                     <br/>
                     <div>
-                         <b><label for="IdUsuario">Comisionado:</label></b>
+                         <label for="IdUsuario">Comisionado:</label>
                          <u><h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="IdUsuario"/></u>
                     </div>
                     <br/>
                     <div>
-                         <b><label for="numeroDo">Cedula de ciudadania N°:</label></b>
+                         <label for="numeroDo">Cedula de ciudadania N°:</label>
                         <u><h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="numeroDoc"/></u>
                     </div>
                     <br/>
                     <div>
-                         <b><label for="FechaEntregaInforme:">fecha de Entrega del informe:</label></b>
+                         <label for="FechaEntregaInforme:">fecha de Entrega del informe:</label>
                         <u><h:outputText value="#{comisionesController.selected.fechaEntregaInforme}" title="FechaTramite">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText></u>
                     </div>
-                    <HR />
-                    <br/>
+                    </fieldset>
+                 <fieldset>
                     <div>
-                         <b><label for="ObjetivoComision">OBJETIVO DE LA COMICION:</label></b>
+                         <label for="ObjetivoComision">OBJETIVO DE LA COMICION:</label>
                          <u><h:outputText value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision"/></u>
                     </div> 
-                    <br/><HR />
-                    <br/> <br/>
+                        </fieldset>
+                 <fieldset>
                     <div>
-                         <b><label for="ActividadesOTemas">DESCRIPCION DE ACTIVIDADES:</label></b>
+                         <label for="ActividadesOTemas">DESCRIPCION DE ACTIVIDADES:</label>
                          <u><h:outputText value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas"/></u>
                     </div>
-                    <br/> <br/> <br/>
+                    <br/> 
                     <div>
-                         <b><label for="CompromisoSena">Compromiso SENA:</label></b>
+                         <label for="CompromisoSena">Compromiso SENA:</label>
                          <u><h:outputText value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena"/></u> 
                     </div>
-                    <br/> <br/>
+                    <br/> 
                     <div>
-                         <b><label for="ProdEntragados">Produtos Entragados:</label></b>
+                         <label for="ProdEntragados">Produtos Entragados:</label>
                          <u><h:outputText value="#{comisionesController.selected.prodEntragados}" title="ProdEntragados"/></u>
-                    </div> 
-                   
-                      <br/>
+                    </div>
+                    </fieldset>
+                 <fieldset>
                     <div>
-                         <b><label for="nombreDeBanco">Banco:</label></b>
-                         <u><h:outputText value="#{bancosController.selected.nombreDeBanco}" title="nombreDeBanco"/></u>
-                    </div>  
-                        <br/>
+                         <label>aprobacion de las actividades y su objetivo</label>
+                    </div>
+                     <br/>
+                       
                     <div>
-                         <b><label for="nombreTipoCuenta">Tipo:</label></b>
-                         <u><h:outputText value="#{usuariosController.selected.nombreTipoCuenta}" title="nombreTipoCuenta"/></u>
+                       <label>comisionado</label>
                     </div> 
-                          <br/>
-                    <div>
-                         <b><label for="numCuentaBanco">Cuenta:</label></b>
-                         <u><h:outputText value="#{usuariosController.selected.numCuentaBanco}" title="numCuentaBanco"/></u>
+                     <br/>
+                     <div>
+                           <label for="IdUsuario">Nombre:</label>
+                            <u><h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="IdUsuario"/></u>
+                    </div>
+                     <br/>
+                     <div>
+                         <label>Firma:</label>
                     </div> 
-                          <h3>solo para los contratistas</h3>
-                </fieldset>
-
-
+                     <br/>
+                     <div>
+                         <label>Vo.Bo.Jefe<br/>inmediato</label>
+                    </div>
+                     </fieldset>
+                
             </h:form>
+                <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+                <p:printer target="InformeDeComision" />
+                </p:commandButton>
         </f:view>
         </ui:define>
     </ui:composition>

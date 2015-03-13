@@ -11,80 +11,76 @@
         <ui:define name="body">
             <f:view>
                 <h:form id="PlanDeComision">
-                    <fieldset class="row panel">
-                        <fieldset>
+                    <fieldset>
+                        
                         <figure class="image-Container">
                         <img src="#{request.contextPath}/resources/images/logo_sena.jpg" />
                         </figure>
                         <figcaption class="descripcion">Sistema de <br/>Gestion de la<br/>Calidad</figcaption>
-                        </fieldset>
-                        <div class="titleComision"  columns="6">
+                        
+                        <div class="titleComision"  columns="3">
                             <center><p>servicio nacional de aprendizaje sena<br>
                                         centro de biotecnologia industrial</br></p>
                                 <h3>Solicitud Plan De Comision</h3></center>
                         </div>
-                        <fieldset>
-                        <div  id="divpg" columns="3" style="display: inline-block">
-                            <p align="right" style="position: relative;bottom: 113.5px;left: 16em;">Codigo:<br/> F0-9544-015-06-08:<br/>Versión:<br/></p>
+                        
+                        <div   id="divpg" columns="3" style="display:block">
+                            <p class="Codigo" align="right" style="position: absolute; bottom: -10em;left: 68em;">Codigo:<br/><br/>F06-9544-015-06-08<br/><br/>Versión:</p>
                         </div>
-                        </fieldset>
-                    </fieldset>  
-                    <fieldset>  
+                        
+                    </fieldset>
+                    
+                    <br/>
                         <div >
-                            <b><label for="nomDepartamento">Regional:</label></b>
+                            <label for="nomDepartamento">Regional:</label>
                             <u><h:outputText value="#{departamentosController.selected.nombreDpto}" title="nomDepartamento"/></u>
 
                         </div>
                         <br/>
                         <div>
-                            <b><label for="idCentroFormacions">Centro:</label></b>
+                            <label for="idCentroFormacions">Centro:</label>
                             <u><h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="idCentroFormacion"/></u>
                         </div>
                         <br/>
                         <div>
-                            <b><label for="FechaTramite">Fecha:</label></b>
+                            <label for="FechaTramite">Fecha:</label>
                             <u><h:outputText value="#{comisionesController.selected.fechaTramite}" title="FechaTramite"/></u>
                         </div>
                         <br/>
                         <div>
-                            <b><label for="IdUsuario">Funcionario Solicitante:</label></b>
+                            <label for="IdUsuario">Funcionario Solicitante:</label>
                             <u><h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="IdUsuario"/></u>
                         </div>
                         <br/>
                         <div>
-                            <b><label for="nomCargo">Cargo Y Grado:</label></b>
+                            <label for="nomCargo">Cargo Y Grado:</label>
                             <u><h:outputText value="#{cargoController.selected.nombreCargo}" title="nomCargo"/></u>
                         </div>
                         <br/>
                         <div>
-                            <b><label for="numeroDo">Cedula de ciudadania N°:</label></b>
+                            <label for="numeroDo">Cedula de ciudadania N°:</label>
                             <u><h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="numeroDoc"/></u>
                         </div>
                         <br/>
                         <div>
-                            <b><label for="valorMensual">Ingreso Mes:</label></b>
+                            <label for="valorMensual">Ingreso Mes:</label>
                             <u><h:outputText value="#{contratosController.selected.valorMensual}" title="valorMensual"/></u>
                         </div>
                         <br/>
                         <div>
-                            <b><label for="mesaPlanificar">Mes A Planificar:</label></b>
+                            <label for="mesaPlanificar">Mes A Planificar:</label>
                             <u><h:outputText value="#{comisionesController.selected.mesaPlanificar}" title="mesaPlanificar"/></u>
                         </div>
                         <br/>
-                        <HR />
-                        <br/>
+                        
+                        <fieldset>
                         <div>
-                            <b><label for="ObjetivoComision">OBJETIVO DE LA COMISION:</label></b>
+                            <label for="ObjetivoComision">OBJETIVO DE LA COMISION:</label>
                             <u><h:outputText value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision"/></u>
                         </div> 
+                            </fieldset>
                         <br/>
-                        <HR/>
-                        <br/> 
-                        
-
-                        <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item"
-                                     id="comisionesTable" 
-                                     >
+                        <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item" id="comisionesTable" >
 
                             <p:column>
                                 <f:facet name="header">
@@ -114,40 +110,61 @@
                                 <h:outputText value="#{item.llegadaEstimada}"/>
                             </p:column>     
                         </p:dataTable>
+                        
+                        <br/>
 
-
-                        <HR/>
+                        <fieldset>
                         <div>
                             <b><label for="ActividadesOTemas">DESCRIPCION:</label></b>
                             <u><h:outputText value="#{comisionesController.selected.actividadesOTemas}" title="ActividadesOTemas"/></u>
                         </div>
-
-                        <br/>
-                        <HR/>
-                        <h3>Observaciones</h3>
+                            </fieldset>
+                            <br/>
+                        
+                        <fieldset>
+                            
                         <div>
+                            <h3>Observaciones</h3>
                             <b><label for="idFichaCaracterizacion">Nº Ficha De Caracterizacion:</label></b>
                             <u><h:outputText value="#{comisionesController.selected.idFichaCaracterizacion}" title="idFichaCaracterizacion"/></u>
                         </div>
-                        <br/>
-                        <HR/>
-
-
-
-
-
+                            </fieldset>
+                       <br/>
                         <div>
-                            <b><label for="CompromisoSena">Compromiso SENA:</label></b>
-                            <u><h:outputText value="#{comisionesController.selected.compromisoSena}" title="CompromisoSena"/></u> 
+                            <label for="nombreDeBanco">BANCO:</label>
+                            <u><h:outputText value="#{bancosController.selected.nombreDeBanco}" title="nombreDeBanco"/></u>
                         </div>
-                        <br/> <br/> <br/>
+                        <br/>              
                         <div>
-                            <b><label for="ProdEntragados">Produtos Entragados:</label></b>
-                            <u><h:outputText value="#{comisionesController.selected.prodEntragados}" title="ProdEntragados"/></u>
-                        </div>                    
+                            <label for="nombreTipoCuenta">tipo:</label>
+                            <u><h:outputText value="#{usuariosController.selected.nombreTipoCuenta}" title="nombreTipoCuenta}"/></u>
+                        </div>
+                        <br/>      
+                        <br/>              
+                        <div>
+                            <label for="numCuentaBanco}">CUENTA:</label>
+                            <u><h:outputText value="#{usuariosController.selected.numCuentaBanco}" title="numCuentaBanco}"/></u>
+                        </div>
+                        <br/>
+                        <fieldset>
+                        <div>
+                            <h3>SOLO PARA LOS CONTRATISTAS</h3>
+                            <label for="numeroDeContrato">CONTRATO:</label>
+                            <u><h:outputText value="#{contratosController.selected.numeroDeContrato}" title="numeroDeContrato"/></u>
+                        </div>
+                         <br/> 
+                        <div>
+                            
+                            <label for="fechasuscripcion">FECHA:</label>
+                            <u><h:outputText value="#{contratosController.selected.fechasuscripcion}" title="fechasuscripcion"/></u>
+                        </div>
                     </fieldset>
-
-
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h4>FIRMA DEL(A) SOLICITANTE:</h4>
+                    <br/>
+                    <h4>Vo.Bo:</h4>
                 </h:form>
                 <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
                 <p:printer target="PlanDeComision" />
