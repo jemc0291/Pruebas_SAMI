@@ -62,7 +62,14 @@ public class InformesController implements Serializable {
         return ejbFacade;
     }
 
-   public String prepareCreate() {
+   public void prepareCreate(ActionEvent e) {
+        Informes temp = (Informes) e.getComponent().getAttributes().get("informe");
+        selected.setIdContrato(temp.getIdContrato());
+        selected = new Informes();
+
+    }
+
+    public String loadCreate() {
         selected = new Informes();
         return "/modulo3/GestionContractual/CreateInforme";
     }
@@ -96,6 +103,7 @@ public class InformesController implements Serializable {
             c.getInformesList().add(selected);
             getContratosFacade().edit(c);
             selected = null;
+            items=null;
             recargarLista();
             addSuccesMessage("Crear Informe", "Informe Creado Exitosamente.");
             return "ListInformes";

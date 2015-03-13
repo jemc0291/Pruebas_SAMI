@@ -106,6 +106,10 @@
                                 <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el Informe?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{item}" target="#{informesController.selected}"/>
                             </p:commandButton>
+                            
+                            <p:commandButton icon="ui-icon-star" value="Nuevo informe contrato" title="Crear nuevo informe de este contrato" action="#{informesController.loadCreate}" actionListener="#{informesController.prepareCreate}">
+                                <f:attribute value="#{item}" name="informe"/>
+                            </p:commandButton>
                         </p:column>
                 </p:dataTable>
 
