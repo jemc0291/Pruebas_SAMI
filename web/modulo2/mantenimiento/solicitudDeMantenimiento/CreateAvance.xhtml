@@ -42,6 +42,7 @@
 
                     <h3>Crear Avance</h3>
 
+                    <p:panel header="formAvance">
                     <p:panelGrid columns="3" layout="grid" style="width: 580px">
 
                         <Label> *Descripción del Avance </Label>
@@ -50,33 +51,33 @@
                         </textarea>
                         <h:message id="descripcionServicioPrestadoMessage" for="descripcionServicioPrestado" styleClass="error"/>
 
-                        <h:outputLabel value="*Estado:" for="nombre_estado"/>
-                        <h:selectOneMenu id="nombre_estado" value="#{solicitudServiciosController.avanceActual.idEstado}" 
+                        <p:outputLabel value="Estado:" for="nombre_estado"/>
+                        <p:selectOneMenu id="nombre_estado" value="#{solicitudServiciosController.avanceActual.idEstado}" 
                                          required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
-                                         title="Nombre_Estado" >
+                                         style="width:125px">
                             <f:selectItem itemLabel="Seleccione uno..."/>
                             <f:selectItems value="#{solicitudServiciosController.listEstado}"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                         <h:message id="nombre_estadoMessage" for="nombre_estado" styleClass="error"/>
 
-                        <h:outputLabel value="*Tipo de Servicio:" for="nombre_servicio" />
-                        <h:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" 
+                        <p:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
+                        <p:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" 
                                          required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
-                                         title="Nombre_Servicio" >
+                                         style="width:125px">
                             <f:selectItem itemLabel="Seleccione uno..."/>
                             <f:selectItems value="#{tipoDeServiciosController.itemsAvailableSelectOne}"/>
                             <f:ajax execute="@this" render="nombre_servicioMessage"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                         <h:message id="nombre_servicioMessage" for="nombre_servicio" styleClass="error"/>
 
-                        <h:outputLabel value="*Prioridades:" for="nombre_prioridades" />
-                        <h:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" 
+                        <p:outputLabel value="Prioridades:" for="nombre_prioridades" />
+                        <p:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" 
                                          required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida."
-                                         title="Nombre_Prioridades" >
+                                         style="width:125px" >
                             <f:selectItem itemLabel="Seleccione uno..."/>
                             <f:selectItems value="#{solicitudServiciosController.listPrioridades}" />
                             <f:ajax execute="@this" render="nombre_prioridadMessage"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                         <h:message id="nombre_prioridadMessage" for="nombre_prioridades" styleClass="error"/>
 
                         <h:outputLabel value="Fue Atendido" for="tipoSolicitud1" />
@@ -88,9 +89,13 @@
                         <h:message id="tipoSolicitud1Message" for="tipoSolicitud1" styleClass="error"/>
 
                     </p:panelGrid>
+                    </p:panel>
+                    <p></p>
 
                     <p:commandButton  value="Crear Avance" action="#{solicitudServiciosController.addAvance}" update="createAvance"/>
 
+                    <p></p>
+                    
                     <p:dataTable value="#{solicitudServiciosController.listAvance}" var="item"
                                  rows="10" id="formulario1Table" 
                                  paginator="true"
