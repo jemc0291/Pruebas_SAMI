@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SolicitudServicios.consultaUsuario", query = "SELECT s FROM SolicitudServicios s WHERE s.idUsuario = :idUsuario"),
     @NamedQuery(name = "SolicitudServicios.findByIdTipoServ", query = "SELECT s FROM SolicitudServicios s WHERE s.idTipoServ = :idTipoServ"),
     @NamedQuery(name = "SolicitudServicios.findByDescripcionservicioSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.descripcionservicioSolicitud = :descripcionservicioSolicitud"),
-    @NamedQuery(name = "SolicitudServicios.findByUbicacionSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.ubicacionSolicitud = :ubicacionSolicitud"),
+    @NamedQuery(name = "SolicitudServicios.findByUbicacionSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.ubicacionSolicitud = :ubicacionSolicitud"),    
+    @NamedQuery(name = "SolicitudServicios.findByFechaSolicitudInicioFin", query = "SELECT s FROM SolicitudServicios s WHERE s.fechaSolicitudServicio BETWEEN :fechaInicio AND :fechaFin"),
     @NamedQuery(name = "SolicitudServicios.findByFechaSolicitudServicio", query = "SELECT s FROM SolicitudServicios s WHERE s.fechaSolicitudServicio = :fechaSolicitudServicio")})
 public class SolicitudServicios implements Serializable {
 

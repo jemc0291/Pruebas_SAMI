@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PagosContratos.findAll", query = "SELECT p FROM PagosContratos p"),
     @NamedQuery(name = "PagosContratos.findByIdPago", query = "SELECT p FROM PagosContratos p WHERE p.idPago = :idPago"),
     @NamedQuery(name = "PagosContratos.findByNumFactura", query = "SELECT p FROM PagosContratos p WHERE p.numFactura = :numFactura"),
-    @NamedQuery(name = "PagosContratos.findByFechaFactura", query = "SELECT p FROM PagosContratos p WHERE p.fechaFactura = :fechaFactura"),
+    @NamedQuery(name = "PagosContratos.findByFechaFactura", query = "SELECT p FROM PagosContratos p WHERE p.fechaFactura BETWEEN :fechaInicio AND :fechaFin"),
     @NamedQuery(name = "PagosContratos.findByValFactura", query = "SELECT p FROM PagosContratos p WHERE p.valFactura = :valFactura"),
     @NamedQuery(name = "PagosContratos.findByFechaDePago", query = "SELECT p FROM PagosContratos p WHERE p.fechaDePago = :fechaDePago")})
 public class PagosContratos implements Serializable {

@@ -7,6 +7,7 @@ import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.PagosContratosFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -32,6 +33,8 @@ public class PagosContratosController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.PagosContratosFacade ejbFacade;
     private List<PagosContratos> items = null;
     private PagosContratos selected;
+    private Date fechaInicio;
+    private Date fechaFin;
 
     public PagosContratosController() {
     }
@@ -42,6 +45,22 @@ public class PagosContratosController implements Serializable {
 
     public void setSelected(PagosContratos selected) {
         this.selected = selected;
+    }
+    
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     protected void setEmbeddableKeys() {
@@ -150,6 +169,10 @@ public class PagosContratosController implements Serializable {
 
     public List<PagosContratos> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+    
+    public List<PagosContratos> getFacturasRango() {
+        return getFacade().rangoFechas(fechaInicio,fechaFin);
     }
 
     @FacesConverter(forClass = PagosContratos.class)
