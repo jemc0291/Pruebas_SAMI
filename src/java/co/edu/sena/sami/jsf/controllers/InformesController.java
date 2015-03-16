@@ -31,6 +31,7 @@ public class InformesController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.InformesFacade ejbFacade;
     private List<Informes> items = null;
     private Informes selected;
+    private Informes temp;
     @EJB
     private co.edu.sena.sami.jpa.sessions.ContratosFacade contratosFacade;
 
@@ -62,7 +63,42 @@ public class InformesController implements Serializable {
         return ejbFacade;
     }
 
+    public Informes getTemp() {
+        return temp;
+    }
+
+    public void setTemp(Informes temp) {
+        this.temp = temp;
+    }
+    
+    
+
    public String prepareCreate() {
+       try{ 
+        selected.setIdContrato(temp.getIdContrato());
+        getFacade().create(selected);
+        selected = null;
+        items=null;
+            recargarLista();
+            addSuccesMessage("Crear Informe", "Informe Creado Exitosamente.");
+            return "ListInformes";
+        } catch (Exception ex) {
+            JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
+            return "ListInformes";
+        
+        //selected = new Informes();
+
+    }
+       
+       
+   }
+   
+   public String openCreate(){
+       selected = new Informes();
+       return "/modulo3/GestionContractual/NuevoInforme";
+   }
+
+    public String loadCreate() {
         selected = new Informes();
         return "/modulo3/GestionContractual/CreateInforme";
     }
@@ -96,6 +132,7 @@ public class InformesController implements Serializable {
             c.getInformesList().add(selected);
             getContratosFacade().edit(c);
             selected = null;
+            items=null;
             recargarLista();
             addSuccesMessage("Crear Informe", "Informe Creado Exitosamente.");
             return "ListInformes";

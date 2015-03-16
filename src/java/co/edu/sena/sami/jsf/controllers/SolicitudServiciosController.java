@@ -66,6 +66,10 @@ public class SolicitudServiciosController implements Serializable {
     @EJB
     private EstadosFacade estadosFacade;
 
+    private Date fechaInicio;
+
+    private Date fechaFin;
+
     public List<SolicitudServicios> getItems() {
         if (items == null) {
             try {
@@ -135,6 +139,26 @@ public class SolicitudServiciosController implements Serializable {
 
     public List<SolicitudServicios> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+    
+    public List<SolicitudServicios> getItemsRango () {
+        return getFacade().rangoFecha(fechaInicio, fechaFin);
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public AvanceFacade getAvanceFacade() {

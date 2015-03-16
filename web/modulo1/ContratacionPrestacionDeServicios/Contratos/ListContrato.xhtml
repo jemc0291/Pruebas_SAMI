@@ -12,7 +12,7 @@
 
             <h:form >
 
-                
+
                 <h:commandButton value="Agregar contrato" action="#{contratosModulo1Controller.prepareCreate}"/>
 
                 <h3>Export Data Complete</h3>
@@ -162,10 +162,10 @@
                         <h:outputText value="#{item.idTipoContrato.nombreTipoContrato}"/>
                     </p:column>
 
-                    <!-- <p:rowExpansion >
-                         <h:outputText value="# {contratosModulo1Controller.getUsuariosByContratos(item).toStringModuloUno()}"/>
- 
-                     </p:rowExpansion>-->
+                   <!-- <p:rowExpansion >
+                        <h:outputText value="# {contratosModulo1Controller.getUsuariosByContratos(item).toStringModuloUno()}"/>
+
+                    </p:rowExpansion>-->
 
 
 
@@ -186,11 +186,13 @@
                 </p:dataTable>
 
 
-                <h3>Reporte Talento Humano</h3>
+                <h3>Informe Talento Humano</h3>
                 <h:commandLink id="excel">
                 <img src="../Recursos/Imagenes/excel.png" />
                 <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS}" />
                 </h:commandLink>
+                
+                
 
             </h:form>
 
