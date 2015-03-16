@@ -11,12 +11,12 @@
                   appendTo="@(body)"
                   modal="true"
                   resizable="false"
-                  header="Crear Poliza">
+                  header="Crear Póliza">
 
 
             <h:form id="polizasForm" >
 
-                <h1><h:outputText value="Create/Edit"/></h1>
+                <h1><h:outputText value="#{bundle.CreatePolizasTitle}"/></h1>
                 <h:panelGrid columns="3">
                     <label jsf:value="#{bundle.CreatePolizasLabel_numeroDePoliza}" jsf:for="numeroDePoliza" />
                     <input type="text" maxlength="20" jsf:id="numeroDePoliza" pattern="[0-9]*"   jsf:value="#{contratosController.selectedPolizas.numeroDePoliza}" 
