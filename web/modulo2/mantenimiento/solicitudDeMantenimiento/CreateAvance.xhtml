@@ -40,8 +40,8 @@
                         </p:panelGrid>
                     </p:carousel>
 
-                    <p:panel header="Crear Avance">
-                        <div style="width: 590px">
+                    <p:panel header="Crear Avance" styleClass="Avance-mant">
+                        <div style="width: 50%">
                             <p:panelGrid columns="3" layout="grid" style="width: 580px">
 
                                 <Label> *Descripción del Avance </Label>
@@ -51,32 +51,32 @@
                                 <h:message id="descripcionServicioPrestadoMessage" for="descripcionServicioPrestado" styleClass="error"/>
 
                                 <p:outputLabel value="Estado:" for="nombre_estado"/>
-                                <p:selectOneMenu id="nombre_estado" value="#{solicitudServiciosController.avanceActual.idEstado}" 
+                                <h:selectOneMenu id="nombre_estado" value="#{solicitudServiciosController.avanceActual.idEstado}" 
                                                  required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
                                                  style="width:125px">
                                     <f:selectItem itemLabel="Seleccione uno..."/>
                                     <f:selectItems value="#{solicitudServiciosController.listEstado}"/>
-                                </p:selectOneMenu>
+                                </h:selectOneMenu>
                                 <h:message id="nombre_estadoMessage" for="nombre_estado" styleClass="error"/>
 
                                 <p:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
-                                <p:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" 
+                                <h:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" 
                                                  required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
                                                  style="width:125px">
                                     <f:selectItem itemLabel="Seleccione uno..."/>
                                     <f:selectItems value="#{tipoDeServiciosController.itemsAvailableSelectOne}"/>
                                     <f:ajax execute="@this" render="nombre_servicioMessage"/>
-                                </p:selectOneMenu>
+                                </h:selectOneMenu>
                                 <h:message id="nombre_servicioMessage" for="nombre_servicio" styleClass="error"/>
 
                                 <p:outputLabel value="Prioridades:" for="nombre_prioridades" />
-                                <p:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" 
+                                <h:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" 
                                                  required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida."
                                                  style="width:125px" >
                                     <f:selectItem itemLabel="Seleccione uno..."/>
                                     <f:selectItems value="#{solicitudServiciosController.listPrioridades}" />
                                     <f:ajax execute="@this" render="nombre_prioridadMessage"/>
-                                </p:selectOneMenu>
+                                </h:selectOneMenu>
                                 <h:message id="nombre_prioridadMessage" for="nombre_prioridades" styleClass="error"/>
 
                                 <h:outputLabel value="Fue Atendido" for="tipoSolicitud1" />
@@ -91,8 +91,19 @@
 
                             <p:commandButton  value="Crear Avance" action="#{solicitudServiciosController.addAvance}" update="createAvance"/>
                         </div>
+
+                        <div class="mainImage-mant" style="width: 50%">
+                            <div class="slides" style="width: 580px; height: 239px">
+                                <img src="#{request.contextPath}/resources/images/mantenimiento2/mant1.jpg" />
+                                <img src="#{request.contextPath}/resources/images/mantenimiento2/mant2.jpg" />
+                                <img src="#{request.contextPath}/resources/images/mantenimiento2/mant3.jpg" />
+                                <img src="#{request.contextPath}/resources/images/mantenimiento2/mant4.jpg" />
+
+                            </div>
+
+                        </div>
                     </p:panel>
-                    
+
                     <p></p>
                     <p></p>
 
@@ -170,6 +181,25 @@
 
                 </form>
             </section>
+
+            <script type="text/javascript" src="#{request.contextPath}/resources/js/jquery.slides.min.js"></script>
+            <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+            <script src="#{request.contextPath}/resources/js/jquery.slides.js"></script>
+            <script>
+                $(function () {
+                    $(".slides").slidesjs({
+                        play: {
+                            active: true,
+                            effect: "slide",
+                            interval: 3000,
+                            auto: true,
+                            swap: true,
+                            pauseOnHover: false,
+                            restartDelay: 2500
+                        }
+                    });
+                });
+            </script>
 
         </ui:define>
 

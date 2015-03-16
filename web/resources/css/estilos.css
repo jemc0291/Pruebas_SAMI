@@ -374,6 +374,22 @@ table, th, td {
     margin-top: 2em
 }
 
+.mainImage-mant{
+    position: absolute;
+    top: 35px;
+    right: 0;
+    display: inline-block !important;
+    width: 50%;
+}
+
+.Avance-mant{
+    position: relative;
+}
+
+.slides-mant{
+    width: 100%;
+}
+
 .soli-exter{
     background-color: #238276;
     border: solid 1px black ;
