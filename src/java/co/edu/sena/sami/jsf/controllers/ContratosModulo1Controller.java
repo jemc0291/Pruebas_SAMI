@@ -370,6 +370,18 @@ public class ContratosModulo1Controller implements Serializable {
 
         }
     }
+    
+    //Metodo para la validacion de un numero de contrato repetido
+     public void validarContratoModuloUno(FacesContext contex, UIComponent component, Object value)
+            throws ValidatorException {
+        if (getFacade().findByNumeroDeContrato((String) value) != null) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contrato ya existente", "El contrato ya existe en la base de datos"));
+        } else {
+            selected.setNumeroDeContrato((String) value);
+        }
+
+    }
+    
     public void postProcessXLS(Object document) {
         HSSFWorkbook wb = (HSSFWorkbook) document;
         wb.removeSheetAt(0);
@@ -511,6 +523,151 @@ public class ContratosModulo1Controller implements Serializable {
             cell = row.createCell(23);
             cell.setCellValue(item.getUsuarios().getNombreTipoCuenta() == null? "":item.getUsuarios().getNombreTipoCuenta());
 
+        }
+    }
+    
+     //--------------------------------------------------------------------------------------------------------------------
+    /*segundo reporte*/
+    public void postProcessXLS1(Object document) {
+        HSSFWorkbook wb = (HSSFWorkbook) document;
+        wb.removeSheetAt(0);
+
+        HSSFSheet sheet = wb.createSheet("datos");
+        List<UsuariosContratos> selectUsuariosContratos = getUsuariosContratosFacade().findAll();
+        HSSFRow header = sheet.createRow(0);
+        HSSFCell cellHeader = header.createCell(0);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_numeroDeContrato"));
+        cellHeader = header.createCell(1);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_fechaSuscripcion"));
+        cellHeader = header.createCell(2);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_fechaInicioContrato"));
+        cellHeader = header.createCell(3);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListPolizasTitle_valorDePoliza"));
+//         cellHeader = header.createCell(3);
+//        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString(""));
+//         cellHeader = header.createCell(3);
+//        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString(""));
+        cellHeader = header.createCell(4);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_razonSocial"));
+        cellHeader = header.createCell(5);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_segundoNombre"));
+        cellHeader = header.createCell(6);//=============
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_razonSocial"));
+        cellHeader = header.createCell(7);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_numeroDoc"));
+        cellHeader = header.createCell(8);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListUsuariosTitle_fechaExpedicionDoc"));
+        cellHeader = header.createCell(9);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_fechaDeEstudioPrevio"));
+        cellHeader = header.createCell(10);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_fechaAnexo"));
+        cellHeader = header.createCell(11);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_fechaDeAutorizacion"));
+        cellHeader = header.createCell(12);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_fechaDeIdoneidad"));
+        cellHeader = header.createCell(13);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_idCuentasBancarias"));
+        cellHeader = header.createCell(14);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListBancosTitle_nombreDeBanco"));
+        cellHeader = header.createCell(15);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_objetoContractual"));
+        cellHeader = header.createCell(16);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_obligaciones"));
+        cellHeader = header.createCell(17);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_primerPago"));
+        cellHeader = header.createCell(18);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_ultimoPago"));
+        cellHeader = header.createCell(19);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_numeroDeMensualidades"));
+        cellHeader = header.createCell(20);
+        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString("ListContratosTitle_valorMensual"));
+//        cellHeader = header.createCell(18);
+//        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString(""));
+        //         cellHeader = header.createCell(8);
+//        cellHeader.setCellValue(ResourceBundle.getBundle("/resources/Bundle").getString(""));
+        
+        /*Estilos para que quede con un color de fondo*/
+        HSSFCellStyle cellStyle = wb.createCellStyle();
+        cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
+        cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+
+        for (int i = 0; i < header.getPhysicalNumberOfCells(); i++) {
+            HSSFCell cell = header.getCell(i);
+
+            cell.setCellStyle(cellStyle);
+        }
+
+        /*Formatos para las fechas */
+        CreationHelper createHelper = wb.getCreationHelper();
+        CellStyle cellStyleDate = wb.createCellStyle();
+        CellStyle cellStyleTime = wb.createCellStyle();
+        CellStyle cellStyleDateTime = wb.createCellStyle();
+        cellStyleDate.setDataFormat(
+                createHelper.createDataFormat().getFormat("m/d/yy"));
+        cellStyleTime.setDataFormat(
+                createHelper.createDataFormat().getFormat("h:mm:SS"));
+        cellStyleDateTime.setDataFormat(
+                createHelper.createDataFormat().getFormat("dd/mm/yyyy h:mm:SS"));
+
+        /* Llenar el reporte */
+        for (int rowNum = 1; rowNum <= selectUsuariosContratos.size(); rowNum++) {
+            HSSFRow row = sheet.createRow(rowNum);
+
+
+            UsuariosContratos item = selectUsuariosContratos.get(rowNum - 1);
+            HSSFCell cell = row.createCell(0);
+            cell.setCellValue(item.getContratos().getNumeroDeContrato());
+            cell = row.createCell(1);
+            cell.setCellValue(item.getContratos().getFechasuscripcion());
+            cell = row.createCell(2);
+            cell.setCellValue(item.getContratos().getFechaInicioContrato());
+            cell = row.createCell(3);
+            cell.setCellValue(item.getPolizas().getValorDePoliza());
+//            cell = row.createCell(3);//=============
+//            cell.setCellValue(item.getContratos().get());
+//            cell = row.createCell(3);//================
+//            cell.setCellValue(item.getContratos().getValorDePoliza());
+            cell = row.createCell(4);
+            cell.setCellValue(item.getUsuarios().getRazonSocial()+ " " +item.getUsuarios().getSegundoNombre());
+            cell = row.createCell(5);
+            cell.setCellValue(item.getUsuarios().getPrimerApellido()+ " " +item.getUsuarios().getSegundoApellido());
+            cell = row.createCell(6);
+            cell.setCellValue(item.getUsuarios().getRazonSocial()+ " " +item.getUsuarios().getSegundoNombre()+ " " +item.getUsuarios().getPrimerApellido()+ " " +item.getUsuarios().getSegundoApellido());
+            cell = row.createCell(7);
+            cell.setCellValue(item.getUsuarios().getNumeroDoc());
+            cell = row.createCell(8);
+            cell.setCellValue(item.getUsuarios().getFechaExpedicionDoc());
+            cell = row.createCell(9);
+            cell.setCellValue(item.getContratos().getFechaDeEstudioPrevio());
+            cell = row.createCell(10);
+            cell.setCellValue(item.getContratos().getFechaAnexo());
+            cell = row.createCell(11);
+            cell.setCellValue(item.getContratos().getFechaDeAutorizacion());
+            cell = row.createCell(12);
+            cell.setCellValue(item.getContratos().getFechaDeIdoneidad());
+            cell = row.createCell(13);
+            cell.setCellValue(item.getUsuarios().getNumCuentaBanco()== null? "":item.getUsuarios().getNumCuentaBanco());
+            cell = row.createCell(14);
+            cell.setCellValue(item.getUsuarios().getIdBanco() == null? "":item.getUsuarios().getIdBanco().getNombreDeBanco());
+            cell = row.createCell(15);
+            cell.setCellValue(item.getContratos().getObjetoContractual()== null? "":item.getContratos().getObjetoContractual());
+            cell = row.createCell(16);
+            cell.setCellValue(item.getContratos().getObligaciones());
+            cell = row.createCell(17);
+            cell.setCellValue(item.getContratos().getPrimerPago());
+            cell = row.createCell(18);
+            cell.setCellValue(item.getContratos().getUltimoPago());
+            cell = row.createCell(19);
+            cell.setCellValue(item.getContratos().getNumeroDeMensualidades());
+            cell = row.createCell(20);
+            cell.setCellValue(item.getContratos().getValorMensual());
+            cell = row.createCell(21);
+            cell.setCellValue(item.getPolizas().getIdAseguradora().toString());
+                           //            cell = row.createCell(10);
+//          cell.setCellValue(item.get().get());
+ 
+            
+            
         }
     }
 

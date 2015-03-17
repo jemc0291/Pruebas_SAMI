@@ -186,11 +186,18 @@
                 </p:dataTable>
 
 
-                <h3>Reporte Talento Humano</h3>
+                <h3>Informe Talento Humano</h3>
                 <h:commandLink id="excel">
                 <img src="../Recursos/Imagenes/excel.png" />
                 <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS}" />
                 </h:commandLink>
+                
+                 <h3>Reporte General</h3>
+                <h:commandLink id="excel2">
+                <img src="../Recursos/Imagenes/excel.png" />
+                <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS1}" />
+                </h:commandLink>
+               
 
             </h:form>
 

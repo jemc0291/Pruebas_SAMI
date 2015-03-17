@@ -107,8 +107,9 @@
                                 <f:setPropertyActionListener value="#{item}" target="#{informesController.selected}"/>
                             </p:commandButton>
                             
-                            <p:commandButton icon="ui-icon-star" value="Nuevo informe contrato" title="Crear nuevo informe de este contrato" action="#{informesController.loadCreate}" actionListener="#{informesController.prepareCreate}">
-                                <f:attribute value="#{item}" name="informe"/>
+                            <p:commandButton icon="ui-icon-star" value="Nuevo informe contrato" title="Crear nuevo informe de este contrato" 
+                                             action="#{informesController.openCreate()}">
+                                <f:setPropertyActionListener value="#{item}" target="#{informesController.temp}"/>
                             </p:commandButton>
                         </p:column>
                 </p:dataTable>
