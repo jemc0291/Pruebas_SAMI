@@ -370,6 +370,18 @@ public class ContratosModulo1Controller implements Serializable {
 
         }
     }
+    
+    //Metodo para la validacion de un numero de contrato repetido
+     public void validarContratoModuloUno(FacesContext contex, UIComponent component, Object value)
+            throws ValidatorException {
+        if (getFacade().findByNumeroDeContrato((String) value) != null) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contrato ya existente", "El contrato ya existe en la base de datos"));
+        } else {
+            selected.setNumeroDeContrato((String) value);
+        }
+
+    }
+    
     public void postProcessXLS(Object document) {
         HSSFWorkbook wb = (HSSFWorkbook) document;
         wb.removeSheetAt(0);
@@ -649,8 +661,8 @@ public class ContratosModulo1Controller implements Serializable {
             cell.setCellValue(item.getContratos().getNumeroDeMensualidades());
             cell = row.createCell(20);
             cell.setCellValue(item.getContratos().getValorMensual());
-//            cell = row.createCell(21);
-//            cell.setCellValue(item.getPolizas().get);
+            cell = row.createCell(21);
+            cell.setCellValue(item.getPolizas().getIdAseguradora().toString());
                            //            cell = row.createCell(10);
 //          cell.setCellValue(item.get().get());
  
