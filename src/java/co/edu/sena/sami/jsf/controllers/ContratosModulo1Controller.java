@@ -370,6 +370,18 @@ public class ContratosModulo1Controller implements Serializable {
 
         }
     }
+    
+    
+     public void validarContratoModuloUno(FacesContext contex, UIComponent component, Object value)
+            throws ValidatorException {
+        if (getFacade().findByNumeroDeContrato((String) value) != null) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contrato ya existente", "El contrato ya existe en la base de datos !!!!"));
+        } else {
+            selected.setNumeroDeContrato((String) value);
+        }
+
+    }
+    
     public void postProcessXLS(Object document) {
         HSSFWorkbook wb = (HSSFWorkbook) document;
         wb.removeSheetAt(0);

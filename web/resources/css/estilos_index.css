@@ -6,6 +6,11 @@
 .body{
     font-family: verdana;
     background: #ffffff;
+    width: 100%;
+    margin:auto;
+    min-width:600px;
+    max-width:2000px;
+
 }
 #botonModulos{
     position: relative;
@@ -397,7 +402,7 @@ a{
 .work-video-Modulos{
     position: relative;
     top: -935px;
-    right: 73px;
+    right: 77px;
     display: none;
     text-align: center;
     display: inline-block;
@@ -405,7 +410,7 @@ a{
     border-radius: 5px;
     width: 70%;
     height: 469px;
-    padding: 6px;
+    padding: 7px;
     float: right;
 }
 .Title-Video-Modulos{
@@ -594,7 +599,7 @@ a{
 #contact-form input,  
 #contact-form select,  
 #contact-form textarea {  
-    width: 300px;
+    width: 30%;
     background: #fff;
     border: 0;
     -moz-border-radius: 5px;  
@@ -736,12 +741,16 @@ input:required, textarea:required {
 }
 .divMensajeSami{
     position: relative;
-    left: 350px;
+    left: 300px;
     width: 60%;  
-    top: 30px;
+    top: 20px;
     border-radius: 5px;
     border: solid #747D7E;
     background: #E5E6E7;
+}
+.divMensjeTex{
+    background: gray;
+    border: solid #000;
 }
 .introducion-sami{
     text-align: center;
@@ -756,6 +765,8 @@ input:required, textarea:required {
     text-align: center;
     height: 450px;
 }
+
+
 
 .Footer-item,
 .Footer-title,
@@ -774,13 +785,12 @@ input:required, textarea:required {
     position: relative;
     right: 30px;
     display: block;
-    top: 100px;
 }
 .item{
     position: relative;
     left: 400px;
-    width: 100%;    
-    top: -140px;
+    width: 100%;
+    top: -150px;
 }
 
 .Header-imageContainer{
@@ -794,41 +804,75 @@ input:required, textarea:required {
     margin-left: 19em;
 
 }
-p,
-input,
-img{max-width:100%;}
+
+img{max-width:100%; vertical-align: middle;}
+/**responseve */
+@media handheld{
+    body{width:98%;font-family:Verdana;font-size:16px;  
+    } 
+    @media screen and (min-width:300px) and (max-width:800px) {
+        body{font-size:0.8em;}
+        sidebar{display:none;}
+    }
+
+}
+@media screen and (min-width:480px) and (max-width:800px) {
+    /* Target landscape smartphones, portrait tablets, narrow desktops
+  
+    */
+}
+@media screen and (max-width:479px) {
+
+}
+
+
 @media screen and (max-width: 1024px){
-    .work-video{ width: 68%; top: -526px; left: 10px; }
-    .work-video-Modulos{width: 67%; left: -18px; top: -945px;}
-    .img-enlaces-infoM{width: 27%;left: -38px;top: -450px;}
-    .Modulos{ width: 63%;left: 265px;top: -450px;}
-    #botonModulos{ position: relative; left: -0px;}
-    .work-video-ayuda{width: 69%;left: -10px;top: -450px;}
-    #contact-form{ width: 63%;left: -10px;top: -395px; }
-    .img-enlaces-ayuda{width: 25%; left: -2px;top: 20px;}
-    .main{ max-width:640px; left: 275px; top: -395px;}
+    .work-video{ width: 63%; top: -526px; left: -50px; }
+    .work-video-Modulos{width: 66%; left: -30px; top: -895px;}
+    .work-video-ayuda{width: 68%;left: -10px;top: -448px; padding: 7px;}
+    .Modulos{ width: 63%;left: 300px;top: -395px; height: 365px;}
+    #botonModulos{ position: relative; left: -0px;top: -10px; }    
+    #contact-form{ width: 63%;left: -10px;top: -395px; } 
+    .main{ max-width:655px; left: 300px; top: -395px;}
     .Ingresar1{ width: 25%; left: 15px;top: 10px;} 
-    .Ingresar2{width: 25%;left: 2px;height: 440px;top: 10px;padding: 12px;} 
-    .Ingresar3{width: 25%;left: -2px;top: 10px;} 
+    .Ingresar2{width: 25%; left: 15px;top: 10px;} 
+    .Ingresar3{width: 25%; left: 15px;top: 10px;}
+    .img-enlaces-infoM{width: 26%;left: -25px; top: -400px; padding:5px; }
+    .img-enlaces-ayuda{width: 25%;left: 15px;top: 23px;}
     .img-enlaces-inicio{width: 25%;left: -25px;top: -15px;}
-    .slidesjs-pagination{top: -14px;padding: 0px 0px;}
-    .slidesjs-navigation{top: 2px;padding: 10px 0px;}
-    .menu-inicio{width: 800px;}
+    .slidesjs-pagination{top: -27px;padding: 0px 0px;}
+    .slidesjs-navigation{top: -12px;padding: 10px 0px;}
+    .menu-inicio{width: 100%;}
     .MainMenu-link1{top: -20px;left: 50px;padding: 15px;padding-left: 70px;padding-right: 70px;}
-    .Header-title-inicio{float: left;top: 20px;left: -305px;}
-    .Header-logo{left: 345px;width: 350px;height: 80px;}
+    .Header-title-inicio{}
+    .Header-logo{left: 320px;width: 350px;height: 80px; border-radius: 50% 0; /* Borde redondeado */
+                 box-shadow: 0px 0px 15px #000; /* Sombra */
+                 padding:15px; /* Espacio entre la imagen y el borde */
+                 background:#FFF; /* Color de fondo que se ve entre el espacio */
+                 -moz-transition: all 1s;
+                 -webkit-transition: all 1s;
+                 -o-transition: all 1s}
+    .Header-logo:hover {border-radius:0; /* Con esto quitamos el borde redondeado */
+                        -moz-transition: all 1s;
+                        -webkit-transition: all 1s;
+                        -o-transition: all 1s;
+                        cursor:pointer;
+    }
     .enviarAyuda{float: right;border: solid black;}
     .FormularioAyuda{top: -50px;}
+    .Menu-img{position: relative;left: 43em;top: -65px;max-width: 20em;margin: 0;border-radius: 5px;}
+
 }
-@media screen and (max-width: 1366px){
-    .work-video{ width: 72%;  left: -23px;top: -572px; padding: 12px;}
+
+/*@media screen and (max-width: 1366px){
+    .work-video{ width: 72%;  left: -30px;top: -572px; padding: 12px;}
     .work-video-Modulos{width: 72%; left: -28px; top: -933px;}
     .img-enlaces-infoM{width: 21%;left: -5px;top: -440px;}
     .Modulos{ width: 70%;left: 333px; top: -430px; height: 354px; }    
     .work-video-ayuda{width: 71%;left: -45px;top: -500px;}
-    #contact-form{ width: 67%;left: -45px;top: -443px; }
+    #contact-form{ width: 67%;left: -45px; }
     .img-enlaces-ayuda{width: 20%; left: 35px;top: -30px;}
-    .main{ max-width:998px; left: 330px; }
+    .main{ max-width:998px; left: 325px; }
     .Ingresar1{ width: 20%; left: 25px;} 
     .Ingresar2{width: 20%;left: 35px;height: 372px;padding: 10px;} 
     .Ingresar3{width: 20%;left: 35px;} 
@@ -837,38 +881,44 @@ img{max-width:100%;}
     .slidesjs-navigation{padding: 10px 0px;}
     .menu-inicio{width: 100%;}     
     .FormularioAyuda{top: -50px;}
-}
+}*/
 @media screen and (max-width: 800px){
-    .work-video{width: 69%;top: -526px;left: 25px;}
-    .work-video-Modulos{width: 67%;left: -10px;top: -945px;}
-    .img-enlaces-infoM{width: 27%;left: -38px;top: -450px;}    
-    .Modulos{width: 63%; left: 225px;top: -450px;}
-    #botonModulos{ position: relative; left: -0px;}
-    .work-video-ayuda{ width: 69%; left: -1px;top: -450px;}
-    #contact-form{width: 62%; left: 1px;top: -395px;}
-    .img-enlaces-ayuda{width: 25%;left: -2px;top: 20px;}
-    .main{max-width:550px;left: 240px;top: -395px;}
-    .Ingresar1{width: 25%;left: 15px;top: 10px;} 
-    .Ingresar2{width: 25%;left: 2px;height: 440px;top: 10px;} 
-    .Ingresar3{width: 25%;left: -2px;top: 10px;} 
-    .img-enlaces-inicio{width: 25%;left: -25px;top: -15px;}
+    .work-video{width: 67%;  left: 1px;top: -524px;}
+    .work-video-Modulos{  width: 66%;left: -17px; padding: 9px;top: -956px;}
+    .img-enlaces-infoM{width: 26%;left: -35px;padding: 7px;  top: -456px;}    
+    .img-enlaces-inicio{width: 25%;left: -33px;top: -15px;}
+    .Modulos{  width: 63%;  left: 230px;  top: -450px;  height: 420px;}
+    #botonModulos{  width: 100%}
+    .work-video-ayuda{width: 67%; height: 455px; left: -9px;padding: 8px;top: -450px;}
+    #contact-form{width: 61%; left: -9px;top: -395px;}
+    .img-enlaces-ayuda{width: 25%;left: 7px;top: 21px;}
+    .main{max-width:550px; left: 230px;}
+    .Ingresar1{width: 25%;left: 7px;} 
+    .Ingresar2{width: 25%;left: 7px;height: 440px;} 
+    .Ingresar3{width: 25%;left: 7px;}
     .slidesjs-pagination{top: -14px; padding: 2px 0px;}
-    .slidesjs-navigation{top: 2px;padding: 31px 0px;}
+    .slidesjs-navigation{top: 2px;padding: 12px }
     .menu-inicio{width: 800px;}
-    .MainMenu-link1{top: -20px;left: -20px;padding: 15px;padding-left: 50px;padding-right: 50px;}    
-    .Header-title-inicio{float: left; top: 20px; left: -305px;}
-    .Header-logo{ left: 345px;width: 350px;height: 80px;}
+    .MainMenu-link1{top: -20px;left: -30px;padding: 15px;
+                    padding-left: 67px;
+                    padding-right: 48px;}    
+    .Header-title-inicio{ display: none; float: left; top: 47px; left: -360px;}
+    .Header-logo {
+        left: 101px;
+        width: 300px;
+        top: 23px;
+        height: 95px;
+        border-radius: 46% 0;
+        box-shadow: 4px -5px -18px #0B1;
+        padding: 10px;
+        background: #FFF;
+        -moz-transition: all 1s;
+        -webkit-transition: all 1s;
+        -o-transition: all 1s; }
     .enviarAyuda{float: right; border: solid black;}
     .FormularioAyuda{top: -50px;}
+    .Menu-img {left: 442px;top: -65px;}
 
 }
-@media screen and ( max-width: 1280px){
-    #contact-form{width: 67%; left: -35px;}
-     .work-video-ayuda{left: -35px; padding: 7px}
-     .Modulos{ }
-     .work-video-Modulos{left: -22px;}
-    .main{max-width:930px;left: 310px;}
-    .slidesjs-pagination{top: -180px;}
-    .slidesjs-navigation{top: -165px;}
-    
-}
+
+ 
