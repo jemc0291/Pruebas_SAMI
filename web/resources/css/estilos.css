@@ -484,6 +484,62 @@ table, th, td {
     text-align: center;
 }
 
+.titulo{
+  color: white;
+  font-style: italic;
+  background: #C5C7C6;
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 9em;
+  margin-top: 0.5em;
+  margin-left: 9em;
+}
+
+.Crsolicitud{
+  color: white;
+  font-style: italic;
+  background: #C5C7C6;
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 9em;
+  margin-top: 0.5em;
+  margin-left: 9em; 
+}
+
+
+.Busqueda{
+  color: white;
+  font-style: italic;
+  background: #C5C7C6;
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 9em;
+  margin-top: 0.5em;
+  margin-left: 9em;
+  
+}
+
 
 .formuRegis{
     border: solid 1px black;
@@ -573,6 +629,52 @@ table, th, td {
     border-collapse : colapso ;  
 } 
 
+@media screen and (max-width:800px){
+.Busqueda {
+  background: #C5C7C6;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 0em;
+  margin-top: 0.5em;
+  margin-left: 0em;
+}
+
+.Crsolicitud {
+  background: #C5C7C6;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 0em;
+  margin-top: 0.5em;
+  margin-left: 0em;
+}
+
+.titulo {
+  background: #C5C7C6;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 0em;
+  margin-top: 0.5em;
+  margin-left: 0em;
+}
+}
 /*---------MODULO3----------*/
 
 .FormButtonSCCSS{
@@ -836,6 +938,4 @@ table, th, td {
 }
 .image-Container{
     margin-bottom: 0;
-
-
 }
