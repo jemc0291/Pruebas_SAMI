@@ -33,7 +33,7 @@
                             <h:outputLabel value="IdTipoSolicitud:" for="idTipoSolicitud" />
                             <h:selectOneMenu id="idTipoSolicitud" value="#{cdpController.selected.idTipoSolicitud}" title="IdTipoSolicitud" required="true" requiredMessage="The IdTipoSolicitud field is required.">
                                 <!-- TODO: update below reference to list of available items-->
-                                <f:selectItems value="#{fixme}"/>
+                                <f:selectItems value="#{cdpController.itemsAvailableSelectOneTiposDeSolicitudes}"/>
                             </h:selectOneMenu>
                             <h:outputLabel value="IdRubro:" for="idRubro" />
                             <h:selectOneMenu id="idRubro" value="#{cdpController.selected.idRubro}" title="IdRubro" required="true" requiredMessage="The IdRubro field is required.">
@@ -51,11 +51,11 @@
                                 <f:selectItems value="#{fixme}"/>
                             </h:selectOneMenu>
                         </h:panelGrid>
+                        <h:commandButton value="Guardar" actionListener="#{cdpController.create()}"
+                                         action="#{cdpController.loadCreate()}">
+                            <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                        </h:commandButton>
                     </h:form>
-               
-
-                
-                
             </section>
         </ui:define>
     </ui:composition>

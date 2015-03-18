@@ -17,189 +17,190 @@
             <section class="Section-form">
 
                 <form jsf:id="createAvance">
-                    <p:carousel var="var" value="#{solicitudServiciosController.selected}" headerText="Solicitud Realizada" numVisible="1" easing="easeOutBounce" style="width: 93.5%" >
-                        <p:panelGrid  columns="2"  columnClasses="nombre,valor" style="margin-left: 10px;width: 1190px; height: 100%">
+                    <div>
+                        <p:panel header="Solicitud Realizada">
+                            <p:panelGrid  columns="2"  columnClasses="nombre,valor" style="width: 100%">
 
-                            <h:outputText value="Solicitud de Servicio N°.:"/>
-                            <h:outputText value="#{solicitudServiciosController.selected.idSolicitudServicio}"/>
+                                <h:outputText value="Solicitud de Servicio N°.:"/>
+                                <h:outputText value="#{solicitudServiciosController.selected.idSolicitudServicio}"/>
 
-                            <h:outputText value="Descripción:"/>
-                            <h:outputText value="#{solicitudServiciosController.selected.descripcionservicioSolicitud}"/>
+                                <h:outputText value="Descripción:"/>
+                                <h:outputText value="#{solicitudServiciosController.selected.descripcionservicioSolicitud}"/>
 
-                            <h:outputText value="Ubicacion de Solicitud:"/>
-                            <h:outputText value="#{solicitudServiciosController.selected.ubicacionSolicitud}"/>
+                                <h:outputText value="Ubicacion de Solicitud:"/>
+                                <h:outputText value="#{solicitudServiciosController.selected.ubicacionSolicitud}"/>
 
-                            <h:outputText value="Fecha de Solicitud:"/>
-                            <h:outputText value="#{solicitudServiciosController.selected.fechaSolicitudServicio}">
-                                <f:convertDateTime pattern="yyyy/MM/dd hh:mm:ss" />
-                            </h:outputText>
+                                <h:outputText value="Fecha de Solicitud:"/>
+                                <h:outputText value="#{solicitudServiciosController.selected.fechaSolicitudServicio}">
+                                    <f:convertDateTime pattern="yyyy/MM/dd hh:mm:ss" />
+                                </h:outputText>
 
-                            <h:outputText value="IdUsuario:"/>
-                            <h:outputText value="#{solicitudServiciosController.selected.idUsuario}"/>
-
-                        </p:panelGrid>
-                    </p:carousel>
-
-                    <p:panel header="Crear Avance" styleClass="Avance-mant">
-                        <div style="width: 50%">
-                            <p:panelGrid columns="3" layout="grid" style="width: 580px">
-
-                                <Label> *Descripción del Avance </Label>
-                                <textarea cols="25" rows="5" type="text" jsf:id="descripcionServicioPrestado" 
-                                          jsf:value="#{solicitudServiciosController.avanceActual.descripcion}">
-                                </textarea>
-                                <h:message id="descripcionServicioPrestadoMessage" for="descripcionServicioPrestado" styleClass="error"/>
-
-                                <p:outputLabel value="Estado:" for="nombre_estado"/>
-                                <h:selectOneMenu id="nombre_estado" value="#{solicitudServiciosController.avanceActual.idEstado}" 
-                                                 required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
-                                                 style="width:125px">
-                                    <f:selectItem itemLabel="Seleccione uno..."/>
-                                    <f:selectItems value="#{solicitudServiciosController.listEstado}"/>
-                                </h:selectOneMenu>
-                                <h:message id="nombre_estadoMessage" for="nombre_estado" styleClass="error"/>
-
-                                <p:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
-                                <h:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" 
-                                                 required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
-                                                 style="width:125px">
-                                    <f:selectItem itemLabel="Seleccione uno..."/>
-                                    <f:selectItems value="#{tipoDeServiciosController.itemsAvailableSelectOne}"/>
-                                    <f:ajax execute="@this" render="nombre_servicioMessage"/>
-                                </h:selectOneMenu>
-                                <h:message id="nombre_servicioMessage" for="nombre_servicio" styleClass="error"/>
-
-                                <p:outputLabel value="Prioridades:" for="nombre_prioridades" />
-                                <h:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" 
-                                                 required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida."
-                                                 style="width:125px" >
-                                    <f:selectItem itemLabel="Seleccione uno..."/>
-                                    <f:selectItems value="#{solicitudServiciosController.listPrioridades}" />
-                                    <f:ajax execute="@this" render="nombre_prioridadMessage"/>
-                                </h:selectOneMenu>
-                                <h:message id="nombre_prioridadMessage" for="nombre_prioridades" styleClass="error"/>
-
-                                <h:outputLabel value="Fue Atendido" for="tipoSolicitud1" />
-                                <h:selectBooleanCheckbox id="tipoSolicitud1" value="#{solicitudServiciosController.avanceActual.fueAtendido}"/>
-                                <h:message id="tipoSolicitud2Message" for="tipoSolicitud2" styleClass="error"/>
-
-                                <h:outputLabel value="Fue Solucionado" for="tipoSolicitud2" />
-                                <h:selectBooleanCheckbox id="tipoSolicitud2" value="#{solicitudServiciosController.avanceActual.fueSolucionado}"/>
-                                <h:message id="tipoSolicitud1Message" for="tipoSolicitud1" styleClass="error"/>
+                                <h:outputText value="IdUsuario:"/>
+                                <h:outputText value="#{solicitudServiciosController.selected.idUsuario}"/>
 
                             </p:panelGrid>
+                        </p:panel>
 
-                            <p:commandButton  value="Crear Avance" action="#{solicitudServiciosController.addAvance}" update="createAvance"/>
-                        </div>
+                        <p:panel header="Crear Avance" styleClass="Avance-mant">
+                            <div style="width: 50%">
+                                <p:panelGrid columns="3" layout="grid" style="width: 580px">
 
-                        <div class="mainImage-mant" style="width: 50%">
-                            <div class="slides" style="width: 580px; height: 239px">
-                                <img src="#{request.contextPath}/resources/images/mantenimiento2/mant1.jpg" />
-                                <img src="#{request.contextPath}/resources/images/mantenimiento2/mant2.jpg" />
-                                <img src="#{request.contextPath}/resources/images/mantenimiento2/mant3.jpg" />
-                                <img src="#{request.contextPath}/resources/images/mantenimiento2/mant4.jpg" />
+                                    <Label> *Descripción del Avance </Label>
+                                    <textarea cols="25" rows="5" type="text" jsf:id="descripcionServicioPrestado" 
+                                              jsf:value="#{solicitudServiciosController.avanceActual.descripcion}">
+                                    </textarea>
+                                    <h:message id="descripcionServicioPrestadoMessage" for="descripcionServicioPrestado" styleClass="error"/>
+
+                                    <p:outputLabel value="Estado:" for="nombre_estado"/>
+                                    <h:selectOneMenu id="nombre_estado" value="#{solicitudServiciosController.avanceActual.idEstado}" 
+                                                     required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
+                                                     style="width:125px">
+                                        <f:selectItem itemLabel="Seleccione uno..."/>
+                                        <f:selectItems value="#{solicitudServiciosController.listEstado}"/>
+                                    </h:selectOneMenu>
+                                    <h:message id="nombre_estadoMessage" for="nombre_estado" styleClass="error"/>
+
+                                    <p:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
+                                    <h:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" 
+                                                     required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
+                                                     style="width:125px">
+                                        <f:selectItem itemLabel="Seleccione uno..."/>
+                                        <f:selectItems value="#{tipoDeServiciosController.itemsAvailableSelectOne}"/>
+                                        <f:ajax execute="@this" render="nombre_servicioMessage"/>
+                                    </h:selectOneMenu>
+                                    <h:message id="nombre_servicioMessage" for="nombre_servicio" styleClass="error"/>
+
+                                    <p:outputLabel value="Prioridades:" for="nombre_prioridades" />
+                                    <h:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" 
+                                                     required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida."
+                                                     style="width:125px" >
+                                        <f:selectItem itemLabel="Seleccione uno..."/>
+                                        <f:selectItems value="#{solicitudServiciosController.listPrioridades}" />
+                                        <f:ajax execute="@this" render="nombre_prioridadMessage"/>
+                                    </h:selectOneMenu>
+                                    <h:message id="nombre_prioridadMessage" for="nombre_prioridades" styleClass="error"/>
+
+                                    <h:outputLabel value="Fue Atendido" for="tipoSolicitud1" />
+                                    <h:selectBooleanCheckbox id="tipoSolicitud1" value="#{solicitudServiciosController.avanceActual.fueAtendido}"/>
+                                    <h:message id="tipoSolicitud2Message" for="tipoSolicitud2" styleClass="error"/>
+
+                                    <h:outputLabel value="Fue Solucionado" for="tipoSolicitud2" />
+                                    <h:selectBooleanCheckbox id="tipoSolicitud2" value="#{solicitudServiciosController.avanceActual.fueSolucionado}"/>
+                                    <h:message id="tipoSolicitud1Message" for="tipoSolicitud1" styleClass="error"/>
+
+                                </p:panelGrid>
+
+                                <div class="mainImage-mant" style="width: 50%">
+                                    <div class="slides" style="width: 580px; height: 239px">
+                                        <img src="#{request.contextPath}/resources/images/mantenimiento2/mant1.jpg" />
+                                        <img src="#{request.contextPath}/resources/images/mantenimiento2/mant2.jpg" />
+                                        <img src="#{request.contextPath}/resources/images/mantenimiento2/mant3.jpg" />
+                                        <img src="#{request.contextPath}/resources/images/mantenimiento2/mant4.jpg" />
+                                    </div>
+                                </div>
+
+                                <p:commandButton  value="Crear Avance" action="#{solicitudServiciosController.addAvance}" update="createAvance"/>
 
                             </div>
+                        </p:panel>
 
-                        </div>
-                    </p:panel>
+                        <p></p>
+                        <p></p>
 
-                    <p></p>
-                    <p></p>
+                        <p:dataTable value="#{solicitudServiciosController.listAvance}" var="item"
+                                     rows="10" id="formulario1Table" 
+                                     paginator="true"
+                                     paginatorTemplate="{FirstPageLink} 
+                                     {PreviousPageLink} {PageLinks} {NextPageLink} 
+                                     {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
 
-                    <p:dataTable value="#{solicitudServiciosController.listAvance}" var="item"
-                                 rows="10" id="formulario1Table" 
-                                 paginator="true"
-                                 paginatorTemplate="{FirstPageLink} 
-                                 {PreviousPageLink} {PageLinks} {NextPageLink} 
-                                 {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="5,10,15">
+                            <p:column style="width: 60px">                            
+                                <f:facet name="header">
+                                    <h:outputText value="IdAvance"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idAvance}"/>                            
+                            </p:column>
 
-                        <p:column style="width: 60px">                            
-                            <f:facet name="header">
-                                <h:outputText value="IdAvance"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idAvance}"/>                            
-                        </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha Avance"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaAvance}"/>
+                            </p:column>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Fecha Avance"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaAvance}"/>
-                        </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Descripción Servicio Solicitado"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descripcion}"/>
+                            </p:column>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Descripción Servicio Solicitado"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descripcion}"/>
-                        </p:column>
+                            <p:column style="width: 90px">
+                                <f:facet name="header">
+                                    <h:outputText value="Prioridad"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idPrioridades.nombrePrioridad}"/>
+                            </p:column>
 
-                        <p:column style="width: 90px">
-                            <f:facet name="header">
-                                <h:outputText value="Prioridad"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idPrioridades.nombrePrioridad}"/>
-                        </p:column>
+                            <p:column style="width: 90px">
+                                <f:facet name="header">
+                                    <h:outputText value="Estado"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idEstado.nombreEstado}"/>
+                            </p:column>
 
-                        <p:column style="width: 90px">
-                            <f:facet name="header">
-                                <h:outputText value="Estado"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idEstado.nombreEstado}"/>
-                        </p:column>
+                            <p:column style="width: 90px">
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de Servicio"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idSolicitudServicio.idTipoServ.nombreServicio}"/>
+                            </p:column>
 
-                        <p:column style="width: 90px">
-                            <f:facet name="header">
-                                <h:outputText value="Estado"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idSolicitudServicio.idTipoServ.nombreServicio}"/>
-                        </p:column>
+                            <p:column style="width: 60px">
+                                <f:facet name="header">
+                                    <h:outputText value="Se Atendió?"/>
+                                </f:facet>
+                                <h:outputText rendered="#{item.fueAtendido}" value="Si"/>
+                                <h:outputText rendered="#{!item.fueAtendido}" value="No"/>
+                            </p:column>
 
-                        <p:column style="width: 60px">
-                            <f:facet name="header">
-                                <h:outputText value="Se Atendió?"/>
-                            </f:facet>
-                            <h:outputText rendered="#{item.fueAtendido}" value="Si"/>
-                            <h:outputText rendered="#{!item.fueAtendido}" value="No"/>
-                        </p:column>
+                            <p:column style="width: 60px">
+                                <f:facet name="header">
+                                    <h:outputText value="Se Solucionó?"/>
+                                </f:facet>
+                                <h:outputText rendered="#{item.fueSolucionado}" value="Si"/>
+                                <h:outputText rendered="#{!item.fueSolucionado}" value="No"/>
+                            </p:column>
 
-                        <p:column style="width: 60px">
-                            <f:facet name="header">
-                                <h:outputText value="Se Solucionó?"/>
-                            </f:facet>
-                            <h:outputText rendered="#{item.fueSolucionado}" value="Si"/>
-                            <h:outputText rendered="#{!item.fueSolucionado}" value="No"/>
-                        </p:column>
-
-                    </p:dataTable>
+                        </p:dataTable>
 
 
 
-                    <p:button value="Regresar" outcome="ListSolicitud"/>
+                        <p:button value="Regresar" outcome="ListSolicitud"/>
+                    </div>
+                    
+                    <script type="text/javascript" src="#{request.contextPath}/resources/js/jquery.slides.min.js"></script>
+                    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+                    <script src="#{request.contextPath}/resources/js/jquery.slides.js"></script>
+                    <script>
+                        $(function () {
+                            $(".slides").slidesjs({
+                                play: {
+                                    active: true,
+                                    effect: "slide",
+                                    interval: 3000,
+                                    auto: true,
+                                    swap: true,
+                                    pauseOnHover: false,
+                                    restartDelay: 2500
+                                }
+                            });
+                        });
+                    </script>
 
                 </form>
             </section>
-
-            <script type="text/javascript" src="#{request.contextPath}/resources/js/jquery.slides.min.js"></script>
-            <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-            <script src="#{request.contextPath}/resources/js/jquery.slides.js"></script>
-            <script>
-                $(function () {
-                    $(".slides").slidesjs({
-                        play: {
-                            active: true,
-                            effect: "slide",
-                            interval: 3000,
-                            auto: true,
-                            swap: true,
-                            pauseOnHover: false,
-                            restartDelay: 2500
-                        }
-                    });
-                });
-            </script>
 
         </ui:define>
 

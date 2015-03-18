@@ -1,6 +1,7 @@
 package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.Cdp;
+import co.edu.sena.sami.jpa.entities.TiposDeSolicitudes;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.CdpFacade;
@@ -28,6 +29,9 @@ public class CdpController implements Serializable {
     private List<Cdp> items = null;
     private Cdp selected;
 
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.TiposDeSolicitudesFacade ejbTiposDeSolicitudes;
+
     public CdpController() {
     }
 
@@ -54,12 +58,17 @@ public class CdpController implements Serializable {
         initializeEmbeddableKey();
         return "Agregar";
     }
-    
+
     public String prepareVerCdp() {
         return "/modulo4/Gestion_Talento_Humano/Solicitudcdp/verCDP.xhtml";
     }
+
     public String prepareEditarCdp() {
         return "/modulo4/Gestion_Talento_Humano/Solicitudcdp/Editar.xhtml";
+    }
+
+    public String loadCreate() {
+        return "/modulo4/Gestion_Talento_Humano/solicitudcdp/Listar.xhtml";
     }
 
     public void create() {
@@ -115,8 +124,6 @@ public class CdpController implements Serializable {
             }
         }
     }
-    
-    
 
     public Cdp getCdp(java.lang.Integer id) {
         return getFacade().find(id);
@@ -128,6 +135,26 @@ public class CdpController implements Serializable {
 
     public List<Cdp> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+
+    public TiposDeSolicitudes getTiposDeSolicitudes(java.lang.Integer id) {
+        return getEjbTiposDeSolicitudes().find(id);
+    }
+
+    public List<TiposDeSolicitudes> getItemsAvailableSelectManyTiposDeSolicitudes() {
+        return getEjbTiposDeSolicitudes().findAll();
+    }
+
+    public List<TiposDeSolicitudes> getItemsAvailableSelectOneTiposDeSolicitudes() {
+        return getEjbTiposDeSolicitudes().findAll();
+    }
+    
+    /**
+     * @return the ejbTiposDeSolicitudes
+     */
+    public co.edu.sena.sami.jpa.sessions.TiposDeSolicitudesFacade getEjbTiposDeSolicitudes() {
+        return ejbTiposDeSolicitudes;
     }
 
     @FacesConverter(forClass = Cdp.class)
