@@ -140,19 +140,7 @@ public class UsuariosController implements Serializable {
         return "/Configuracion/Usuarios/Listar";
     }
 
-    public String moduloUnoPrepareCreate() {
-        selected = new Usuarios();
-        initializeEmbeddableKey();
-        return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/Agregar";
-    }
-
-    public String prepareEditModuloUno() {
-        return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/Editar";
-    }
-
-    public String prepareViewModuloUno() {
-        return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/Ver";
-    }
+  
 
     public String create() {
         try {
@@ -188,7 +176,7 @@ public class UsuariosController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/ListContratistas.xhtml";
+        return "/modulo1/ContratacionPrestacionDeServicios/Contratos/CreateContrato";
 
     }
 

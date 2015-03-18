@@ -38,19 +38,19 @@
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo4/index_modulo4.xhtml" jsf:rendered="#{loginController.gestionTalento}" >Gestión y talento humano</a></li>
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo5/index_modulo5.xhtml" jsf:rendered="#{loginController.gestionDocumental}" >Gestión documental</a></li>
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo6/index_modulo6.xhtml" jsf:rendered="#{loginController.gestionMateriales}" >Gestión de materiales de formación</a></li>
-                                                                       
+                                  <li class="HeaderList-link"><a jsf:action="#{loginController.logout}" onclick="PF('cerrarSesion').show();">Cerrar Sesión</a></li>
                                     <h:form>           
-                                        <p:growl id="message" showDetail="true" />
-                                        <p:commandButton  value="Cerrar Sesión" action="#{loginController.logout}" 
-                                                         update="message" style="color: black; border-color: black; background:rgba(75, 118, 109, 0.82);">
-                                            <p:confirm header="Desea Cerrar Sesion" message="SEÑOR USUARIO USTED ES PARTE 
-                                                       FUNDAMENTAL DE NUESTRA COMUNIDAD SAMI GRACIAS POR USAR NUESTRO APLICATIVO"  icon="ui-icon-alert" />
-                                        </p:commandButton>                                     
+                                                                         
 
-                                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode"  >
-                                            <p:commandButton value="Yes" type="button" action="#{loginController.logout}" 
+                                        <p:confirmDialog global="true"
+                                                         showEffect="fade" 
+                                                         hideEffect="explode"
+                                                         header="CERRAR SESIÓN"
+                                                         message="Seguro Que Desea Cerrar Sesión "
+                                                         widgetVar="cerrarSesion">
+                                            <p:commandButton value="Yes"  action="#{loginController.logout}" 
                                                              styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" 
+                                            <p:commandButton value="No" styleClass="ui-confirmdialog-no" 
                                                              icon="ui-icon-close" />
                                         </p:confirmDialog>
                                     </h:form>

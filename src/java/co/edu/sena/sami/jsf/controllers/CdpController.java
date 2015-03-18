@@ -54,6 +54,13 @@ public class CdpController implements Serializable {
         initializeEmbeddableKey();
         return "Agregar";
     }
+    
+    public String prepareVerCdp() {
+        return "/modulo4/Gestion_Talento_Humano/Solicitudcdp/verCDP.xhtml";
+    }
+    public String prepareEditarCdp() {
+        return "/modulo4/Gestion_Talento_Humano/Solicitudcdp/Editar.xhtml";
+    }
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("CdpCreated"));
@@ -108,6 +115,8 @@ public class CdpController implements Serializable {
             }
         }
     }
+    
+    
 
     public Cdp getCdp(java.lang.Integer id) {
         return getFacade().find(id);
