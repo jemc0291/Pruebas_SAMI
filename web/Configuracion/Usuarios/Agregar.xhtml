@@ -16,7 +16,8 @@
             <section class="section-form">
                 <form jsf:id="usuarioCreateForm">
                     <p:panelGrid columns="3" layout="grid">
-                        
+
+
                         <label value="#{bundle.CreateUsuariosLabel_idTipoDoc}" jsf:for="tipodocumentosInputText"></label> 
                         <h:selectOneMenu id="tipodocumentosInputText" value="#{usuariosController.selected.idTipoDoc}" 
                                          required="true" 
@@ -27,7 +28,7 @@
                                            itemValue="#{documento}"/>
                         </h:selectOneMenu>
                         <h:message id="tipodocumentosMessage" for="tipodocumentosInputText" styleClass="error"/>
-                        
+
                         <label value="#{bundle.CreateUsuariosLabel_numeroDoc}" jsf:for="numeroidInputText"></label> 
                         <p:inputText type="text" id="numeroidInputText"
                                      required="true"
@@ -38,7 +39,7 @@
                             <f:ajax execute="@this" render="numeroidMessage"/>
                         </p:inputText>
                         <h:message id="numeroidMessage" for="numeroidInputText" styleClass="error"/>
-                        
+
                         <label value="#{bundle.CreateUsuariosLabel_razonSocial}" jsf:for="primerNombreInputText"></label> 
                         <p:inputText type="text" id="primerNombreInputText" required="true" 
                                      requiredMessage="#{bundle.CreateUsuariosRequiredMessage_razonSocial}"
@@ -109,6 +110,8 @@
                         </p:calendar>
                         <h:message id="fechaMessage" for="fechaInputText" styleClass="error"/>
 
+
+
                         <label value="#{bundle.CreateUsuariosLabel_idEstratoSocial}" jsf:for="EstratoSocialInputText"></label>
                         <h:selectOneMenu id="EstratoSocialInputText" 
                                          value="#{usuariosController.selected.idEstratoSocial}">
@@ -127,16 +130,27 @@
                                         forceSelection="true" maxResults="10"/> 
                         <p:message id="ciudad1Message" for="ciudad1"/>
 
-                        <label value="#{bundle.CreateUsuariosLabel_password}" jsf:for="passwordInputText"></label> 
+                        <label  jsf:for="Tipo de Contrato"> Tipo de Contrato </label>
+                        <h:selectOneMenu class="Form-datos" id="ContratoInputText" 
+                                         value="#{usuariosController.selected.idTipoContrato}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems value="#{tipoContratoController.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="ContratoMessage usuarioCreateForm"/>
+                        </h:selectOneMenu>
+                        <h:message id="ContratoMessage" for="ContratoInputText" styleClass="error"/>
+
+
+                        <label jsf:rendered="#{!usuariosController.contratista}" value="#{bundle.CreateUsuariosLabel_password}" jsf:for="passwordInputText"></label> 
                         <p:inputText type="password" id="passwordInputText"
                                      required="true" 
                                      requiredMessage="#{bundle.CreateUsuariosRequiredMessage_password}"
                                      value="#{usuariosController.selected.password}"
-                                     title="#{bundle.CreateUsuariosTitle_password}">
+                                     title="#{bundle.CreateUsuariosTitle_password}"
+                                     rendered="#{!usuariosController.contratista}">
                             <f:validateRegex pattern="[A-Za-z 0-9áéíóúÁÉÍÓÚÑñ]*"/>
                             <f:ajax execute="@this" render="passwordMessage"/>
                         </p:inputText>
-                        <h:message id="passwordMessage" for="passwordInputText" styleClass="error"/>
+                        <h:message rendered="#{!usuariosController.contratista}" id="passwordMessage" for="passwordInputText" styleClass="error"/>
 
                         <label value="#{bundle.CreateUsuariosLabel_direccionUsu}" jsf:for="direccionInputText"></label> 
                         <p:inputText type="text" id="direccionInputText"
@@ -184,7 +198,7 @@
                                         converter="centroFormacionConverter" pt:required="true"
                                         forceSelection="true" maxResults="10"/> 
                         <p:message id="centrodeformacionMessage" for="centroFormacion"/>
-                        
+
                         <label value="#{bundle.CreateUsuariosLabel_gpRh}" jsf:for="FactorInputText"></label>
                         <h:selectOneMenu class="Form-datos" id="FactorInputText" 
                                          value="#{usuariosController.selected.gpRh}">
@@ -240,17 +254,18 @@
                         </h:selectOneMenu>
                         <h:message id="IDArlMessage" for="IDArlInputText" styleClass="error"/>
 
-                        <h:panelGroup rendered="#{!usuariosController.contratista}">
-                        <label value="#{bundle.CreateUsuariosLabel_idCcf}" jsf:for="IdCcfInputText"></label>
+
+                        <label jsf:rendered="#{!usuariosController.contratista}" value="#{bundle.CreateUsuariosLabel_idCcf}" jsf:for="IdCcfInputText"></label>
                         <h:selectOneMenu class="Form-datos" id="IdCcfInputText" 
-                                         value="#{usuariosController.selected.idCcf}">
+                                         value="#{usuariosController.selected.idCcf}"
+                                         rendered="#{!usuariosController.contratista}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{ccfController.itemsAvailableSelectOne}"/>
                             <f:ajax execute="@this" render="IdCcfMessage"/>
                         </h:selectOneMenu>
-                        <h:message id="IdCcfMessage" for="IdCcfInputText" styleClass="error"/>
-                        </h:panelGroup>
-                        
+                        <h:message rendered="#{!usuariosController.contratista}" id="IdCcfMessage" for="IdCcfInputText" styleClass="error"/>
+
+
                         <label value="#{bundle.CreateUsuariosLabel_idFondoPensiones}" jsf:for="IdFondoInputText"></label>
                         <h:selectOneMenu class="Form-datos" id="IdFondoInputText" 
                                          value="#{usuariosController.selected.idFondoPensiones}">
@@ -260,24 +275,18 @@
                         </h:selectOneMenu>
                         <h:message id="IdFondoMessage" for="IdFondoInputText" styleClass="error"/>
 
-                        <label jsf:for="rol"> Rol </label>
+                        <label jsf:rendered="#{!usuariosController.contratista}" jsf:for="rol"> Rol </label>
                         <p:selectManyCheckbox id="rol" value="#{usuariosController.listaRoles}" layout="grid" 
                                               converter="rolConverter"
                                               requiredMessage="Requerido"
-                                              columns="3">  
+                                              columns="3"
+                                              rendered="#{!usuariosController.contratista}">  
                             <f:selectItems value="#{usuariosController.listRolSelectOne}"/>
                             <f:ajax execute="@this" render="rolMessage"/>
                         </p:selectManyCheckbox> 
-                        <p:message id="rolMessage" for="rol"/>
-                        
-                        <label  jsf:for="Tipo de Contrato"> Tipo de Contrato </label>
-                        <h:selectOneMenu class="Form-datos" id="ContratoInputText" 
-                                         value="#{usuariosController.selected.idTipoContrato}">
-                            <f:selectItem itemLabel="Seleccione"/>
-                            <f:selectItems value="#{tipoContratoController.itemsAvailableSelectOne}"/>
-                            <f:ajax execute="@this" render="ContratoMessage usuarioCreateForm"/>
-                        </h:selectOneMenu>
-                        <h:message id="ContratoMessage" for="ContratoInputText" styleClass="error"/>
+                        <p:message rendered="#{!usuariosController.contratista}" id="rolMessage" for="rol"/>
+
+
 
                         <h:outputText value="Cargo:" />
                         <p:selectManyCheckbox id="cargo" value="#{usuariosController.listaCargo}" layout="grid" 
@@ -286,7 +295,7 @@
                                               requiredMessage="Requerido">
                             <f:selectItems value="#{usuariosController.listCargoSelectOne}" 
                                            var="item" itemLabel="#{item}" itemValue="#{item}" />
-                         <f:ajax execute="@this" render="cargoMessage"/>
+                            <f:ajax execute="@this" render="cargoMessage"/>
                         </p:selectManyCheckbox> 
                         <p:message id="cargoMessage" for="cargo"/>
 

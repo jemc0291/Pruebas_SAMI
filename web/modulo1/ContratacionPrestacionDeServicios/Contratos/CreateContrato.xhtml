@@ -156,7 +156,7 @@
 
                         <label jsf:value="#{bundle.CreateContratosLabel_valorMensual}" for="valorMensual" />
                         <p:inputText type="text"  maxlength="9" id="valorMensual" 
-                                     value="#{contratosModulo1Controller.selected.valorMensual}" required="true" 
+                                     value="#{contratosModulo1Controller.selected.valorMensual}"  
                                      title="#{bundle.CreateContratosTitle_valorMensual}" >
                             <f:validateRegex  pattern="[0-9]*"></f:validateRegex>                        
                             <f:ajax execute="@this" render="valorMensualMessage"/>
