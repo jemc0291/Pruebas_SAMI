@@ -15,27 +15,27 @@
             <section class="Section-form">
 
                 <h:form>
-
+                    <h1>Solicitud Materiales</h1>
                     <p:panelGrid columns="3" layout="grid" id="panelSolicitud">
 
                         <label>Area</label>
-                        <h:selectOneMenu id="idArea" pt:required="true" 
+                        <p:selectOneMenu id="idArea" pt:required="true" 
                                          requiredMessage="El Area es un campo requerido por favor elijalo."
                                          value="#{solicitudMaterialesAlmacenController.selected.idArea}" >
                             <f:selectItem itemLabel="Seleccione un Area"/>
                             <f:selectItems value="#{solicitudMaterialesAlmacenController.areasAvailableSelectOne}"/>
                             <f:ajax execute="@this" render="idAreaMessage"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                         <h:message id="idAreaMessage" for="idArea" styleClass="error"/>
 
                         <label>Ficha de Caracterizacion</label>
-                        <h:selectOneMenu id="idFichaCaracterizacion" pt:required="true" 
+                        <p:selectOneMenu id="idFichaCaracterizacion" pt:required="true" 
                                          requiredMessage="La Ficha de Caracterizacion es un campo requerido por favor ingreselo"
                                          value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}" >
                             <f:selectItem itemLabel="Seleccione una Ficha"/>
                             <f:selectItems value="#{solicitudMaterialesAlmacenController.fichasAvailableSelectOne}"/>
                             <f:ajax execute="@this" render="idFichaCaracterizacionMessage"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                         <h:message id="idFichaCaracterizacionMessage" for="idFichaCaracterizacion" styleClass="error"/>
 
                         <!--<Label>Observaciones</Label>
@@ -50,14 +50,14 @@
 
                     <p:panelGrid columns="4" id="panelMateriales" layout="grid">
 
-                        <h:selectOneMenu id="materiales" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.materiales}" title="Materiales" required="true" requiredMessage="The Materiales field is required.">
+                        <p:selectOneMenu id="materiales" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.materiales}"  required="true" requiredMessage="The Materiales field is required.">
                             <!-- TODO: update below reference to list of available items-->
                             <f:selectItem itemLabel="Seleccione un Material..."/>
                             <f:selectItems value="#{materialesController.itemsAvailableSelectOne}"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
 
                         <h:outputLabel value="Cantidad:" for="cantidad" />
-                        <h:inputText id="cantidad" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.cantidad}" title="Cantidad" />
+                        <p:inputText id="cantidad" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.cantidad}" title="Cantidad" />
 
                         <p:commandButton value="Agregar Material" action="#{solicitudMaterialesAlmacenController.agregarMateriales}" process="@this panelMateriales" update="tablaMateriales panelMateriales"/>
 

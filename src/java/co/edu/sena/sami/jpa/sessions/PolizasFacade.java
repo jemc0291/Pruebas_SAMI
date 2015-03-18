@@ -9,7 +9,10 @@ package co.edu.sena.sami.jpa.sessions;
 import co.edu.sena.sami.jpa.entities.Polizas;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +31,15 @@ public class PolizasFacade extends AbstractFacade<Polizas> {
     public PolizasFacade() {
         super(Polizas.class);
     }
-    
+    public Polizas findByNumeroDePoliza(String numeroDePoliza) {
+        Query q = getEntityManager().createNamedQuery("Polizas.findByNumeroDePoliza");
+        q.setParameter("numeroDePoliza", numeroDePoliza);
+        try {
+            return (Polizas) q.getSingleResult();
+        } catch (NonUniqueResultException ex) {
+            throw ex;
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
 }

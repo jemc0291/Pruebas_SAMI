@@ -40,7 +40,7 @@
     color: rgba(255, 255, 255, 0.83);
     content: "\e601";
     font-size: 2.6em;
-    
+
     padding: 6px 4px 4px 4px;
 }
 .icon-icon-sena0:before {
@@ -48,10 +48,10 @@
     border-radius: 20%;
     border: 1px solid rgba(116, 111, 111, 0.57);
     color: #747D7E;
-    
+
     content: "\e605";
     font-size: 2.5em;
-   
+
     padding: 6px 1px 4px 1px;
 
 }
@@ -62,7 +62,7 @@
     color: rgba(36, 32, 32, 0.77);
     content: "\e603";
     font-size: 2.5em;
-  
+
     padding: 6px 3px 4px 3px;
 }
 .icon-triangle-down:before {
@@ -292,7 +292,7 @@ ul, ol {
     background: white;
     margin-left: 2.5em;
     margin-right: 2.5em;
-  
+
 }
 
 /*--------------------------------------------*/
@@ -360,6 +360,11 @@ table, th, td {
     height: 42em;
 }
 
+.ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only {
+    left: 49em;
+    top: -3em;
+}
+
 .Descri-mant{
     border: solid 1px black;
     background-color: white;
@@ -367,6 +372,22 @@ table, th, td {
     width: 75em;
     margin-left: 2em;
     margin-top: 2em
+}
+
+.mainImage-mant{
+    position: absolute;
+    top: 35px;
+    right: 0;
+    display: inline-block !important;
+    width: 50%;
+}
+
+.Avance-mant{
+    position: relative;
+}
+
+.slides-mant{
+    width: 100%;
 }
 
 .soli-exter{
@@ -463,6 +484,62 @@ table, th, td {
     text-align: center;
 }
 
+.titulo{
+  color: white;
+  font-style: italic;
+  background: #C5C7C6;
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 9em;
+  margin-top: 0.5em;
+  margin-left: 9em;
+}
+
+.Crsolicitud{
+  color: white;
+  font-style: italic;
+  background: #C5C7C6;
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 9em;
+  margin-top: 0.5em;
+  margin-left: 9em; 
+}
+
+
+.Busqueda{
+  color: white;
+  font-style: italic;
+  background: #C5C7C6;
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 9em;
+  margin-top: 0.5em;
+  margin-left: 9em;
+  
+}
+
 
 .formuRegis{
     border: solid 1px black;
@@ -552,6 +629,52 @@ table, th, td {
     border-collapse : colapso ;  
 } 
 
+@media screen and (max-width:800px){
+.Busqueda {
+  background: #C5C7C6;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 0em;
+  margin-top: 0.5em;
+  margin-left: 0em;
+}
+
+.Crsolicitud {
+  background: #C5C7C6;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 0em;
+  margin-top: 0.5em;
+  margin-left: 0em;
+}
+
+.titulo {
+  background: #C5C7C6;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+  line-height: 1.3em;
+  list-style: none;
+  margin-right: 0em;
+  margin-top: 0.5em;
+  margin-left: 0em;
+}
+}
 /*---------MODULO3----------*/
 
 .FormButtonSCCSS{
@@ -674,13 +797,13 @@ table, th, td {
 }
 
 .Codigo{
-    
+
     bottom: -10em;
     left: 68em;
 }
 .estilo {
 
-font-size: 18px;
+    font-size: 18px;
 }
 
 /*---------MODULO5----------*/
@@ -770,51 +893,49 @@ font-size: 18px;
 
 
 
-    @media screen and (max-width: 1030px){
+@media screen and (max-width: 1030px){
 
     .Section-Embed{//Gestion Documental
                    width: 0px;
                    height: 0px;
     }
-      /*---------MODULO6----------*/
+    /*---------MODULO6----------*/
 
-        .form{
-            width: 470px;
-            padding: 0 5px;
-            margin: 0 auto;
-        }
-
-
-        .Form-solitudM{
-            width: 470px;
-            height: auto;
-            background: #119178; 
-            margin: 0 auto;
-            padding: 0 1%;
-            box-shadow: 5px 5px 0 #AAA;
-            border-radius: 5px;
-        }
-
-    }
-    .body{
-         font-family: 'Open Sans', sans-serif;
+    .form{
+        width: 470px;
+        padding: 0 5px;
+        margin: 0 auto;
     }
 
-    .titleComision{
-        display: inline-block;
-        margin-left: 17em;
-        position: relative;
-        bottom: 6em;
-    }
-    
-    .descripcion{
-        font-size: 1em;
-        display: inline-block;
-        float: left ;
-        margin-left: 2.7em;
-    }
-    .image-Container{
-      margin-bottom: 0;
-      
 
+    .Form-solitudM{
+        width: 470px;
+        height: auto;
+        background: #119178; 
+        margin: 0 auto;
+        padding: 0 1%;
+        box-shadow: 5px 5px 0 #AAA;
+        border-radius: 5px;
     }
+
+}
+.body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.titleComision{
+    display: inline-block;
+    margin-left: 17em;
+    position: relative;
+    bottom: 6em;
+}
+
+.descripcion{
+    font-size: 1em;
+    display: inline-block;
+    float: left ;
+    margin-left: 2.7em;
+}
+.image-Container{
+    margin-bottom: 0;
+}

@@ -76,6 +76,7 @@
                             <p:commandButton icon="ui-icon-plus"  action="#{comisionesController.prepareCreate()}">
                                 <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
                             </p:commandButton>
+                           
                             <p:commandButton icon="ui-icon-trash"  action="#{comisionesController.destroy}"
                                              process="@this" update="ComisionesTable">
                                 <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar esta Comision?" icon="ui-icon-alert" />

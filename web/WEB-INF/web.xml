@@ -143,6 +143,14 @@
             <url-pattern>/faces/modulo6/*</url-pattern>
         </web-resource-collection>
     </security-constraint>
+    <security-constraint>
+        <display-name>webUsuarioGeneral</display-name>
+        <web-resource-collection>
+            <web-resource-name>webUsuarioGeneral</web-resource-name>
+            <description>Usuario General</description>
+            <url-pattern>/faces/modulo2/mantenimiento/solicitudDeMantenimiento*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>sami-realm</realm-name>
@@ -183,5 +191,9 @@
         <description>Configuracion
 </description>
         <role-name>webConfiguracion</role-name>
+    </security-role>
+    <security-role>
+        <description>UsuarioGeneral</description>
+        <role-name>webUsuarioGeneral</role-name>
     </security-role>
 </web-app>
