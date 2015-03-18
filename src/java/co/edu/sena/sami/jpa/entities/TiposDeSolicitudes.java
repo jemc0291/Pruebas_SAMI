@@ -107,7 +107,7 @@ public class TiposDeSolicitudes implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.TiposDeSolicitudes[ idTipoSolicitud=" + idTipoSolicitud + " ]";
+        return ""+ nombreTipoSolicitud;
     }
     
 }

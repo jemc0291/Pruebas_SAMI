@@ -244,6 +244,7 @@ public class ComisionesController implements Serializable {
     }
     
     
+    
     public String prepareCreateInformeComision2() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/verInformeComision.xhtml";
     }
