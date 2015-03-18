@@ -49,14 +49,28 @@
                         <h:outputText value="#{item1.idUsuario.numeroDoc}"/>
                     </p:column>
 
-                    <p:column filterBy="#{solicitudServiciosController.listAvance}" headerText="Status" footerText="" filterMatchMode="equals" style="width: 100px">
+                    <p:column filterBy="#{solicitudServiciosController.avanceActual.fueAtendido}" 
+                              headerText="Atendido" footerText="" filterMatchMode="equals" style="width: 60px">
                         <f:facet name="filter">
-                            <p:selectOneButton>
+                            <p:selectOneButton onchange="PF('carsTable').filter()">
                                 <f:converter converterId="javax.faces.Boolean" />
-                                <f:selectItem itemLabel="Atendido" itemValue="#{solicitudServiciosController.avanceActual.fueAtendido}" />
-                                <f:selectItem itemLabel="Solucionado" itemValue="#{solicitudServiciosController.avanceActual.fueSolucionado}" />
+                                <f:selectItem itemLabel="Si" itemValue="true" />
+                                <f:selectItem itemLabel="No" itemValue="false" />
                             </p:selectOneButton>
                         </f:facet>
+                        <h:outputText value="#{solicitudServiciosController.avanceActual.fueAtendido ? 'Si': 'No'}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{solicitudServiciosController.avanceActual.fueAtendido}" 
+                              headerText="Solucionado" footerText="" filterMatchMode="equals" style="width: 65px">
+                        <f:facet name="filter">
+                            <p:selectOneButton onchange="PF('carsTable').filter()">
+                                <f:converter converterId="javax.faces.Boolean" />
+                                <f:selectItem itemLabel="Si" itemValue="true" />
+                                <f:selectItem itemLabel="No" itemValue="false" />
+                            </p:selectOneButton>
+                        </f:facet>
+                        <h:outputText value="#{solicitudServiciosController.avanceActual.fueAtendido ? 'Si': 'No'}"/>
                     </p:column>
 
                     <p:column>
