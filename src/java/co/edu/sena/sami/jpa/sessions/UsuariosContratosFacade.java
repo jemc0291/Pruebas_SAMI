@@ -7,6 +7,7 @@ package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.Contratos;
 import co.edu.sena.sami.jpa.entities.UsuariosContratos;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

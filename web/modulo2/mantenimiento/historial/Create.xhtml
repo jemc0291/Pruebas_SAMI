@@ -6,30 +6,30 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <ui:composition template="/template.xhtml">
 
         <ui:define name="title">Solicitud</ui:define>  
         <ui:define name="menu"><ui:include src="/modulo2/menu_modulo2.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h2>Búsqueda</h2>
+            <h2 class="Busqueda">Búsqueda</h2>
 
 
-            <h3>Por Fechas</h3>
+            <h3 style="text-align: center">Por Fechas</h3>
 
             <h:form id="formSolicitud">
 
                 <h:outputText value="Fecha Inicio:"/>
                 <p:calendar showOn="button" value="#{solicitudServiciosController.fechaInicio}"  pattern="yyyy-MM-dd hh:mm:ss a" />
 
-                <h:outputText value="Fecha Fin:"/>
+                <h:outputText value="Fecha Fin:" style="padding-left: 25%"/>
                 <p:calendar showOn="button" value="#{solicitudServiciosController.fechaFin}"  pattern="yyyy-MM-dd hh:mm:ss a" />
 
                 <p></p>
 
-                <p:dataTable id="solicitudTableConsulta" value="#{solicitudServiciosController.itemsRango}" var="item1" >
+                <p:dataTable id="solicitudTableConsulta" value="#{solicitudServiciosController.itemsRango}" var="item1" widgetVar="carsTable">
 
-                    <p:column style="width: 120px" filterBy="#{item1.idSolicitudServicio}" 
+                    <p:column style="width: 115px" filterBy="#{item1.idSolicitudServicio}" 
                               headerText="Número de Solicitud" footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item1.idSolicitudServicio}"/>
                     </p:column>
@@ -49,6 +49,30 @@
                         <h:outputText value="#{item1.idUsuario.numeroDoc}"/>
                     </p:column>
 
+                    <p:column filterBy="#{solicitudServiciosController.avanceActual.fueAtendido}" 
+                              headerText="Atendido" footerText="" filterMatchMode="equals" style="width: 60px">
+                        <f:facet name="filter">
+                            <p:selectOneButton onchange="PF('carsTable').filter()">
+                                <f:converter converterId="javax.faces.Boolean" />
+                                <f:selectItem itemLabel="Si" itemValue="true" />
+                                <f:selectItem itemLabel="No" itemValue="false" />
+                            </p:selectOneButton>
+                        </f:facet>
+                        <h:outputText value="#{solicitudServiciosController.avanceActual.fueAtendido ? 'Si': 'No'}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{solicitudServiciosController.avanceActual.fueAtendido}" 
+                              headerText="Solucionado" footerText="" filterMatchMode="equals" style="width: 65px">
+                        <f:facet name="filter">
+                            <p:selectOneButton onchange="PF('carsTable').filter()">
+                                <f:converter converterId="javax.faces.Boolean" />
+                                <f:selectItem itemLabel="Si" itemValue="true" />
+                                <f:selectItem itemLabel="No" itemValue="false" />
+                            </p:selectOneButton>
+                        </f:facet>
+                        <h:outputText value="#{solicitudServiciosController.avanceActual.fueAtendido ? 'Si': 'No'}"/>
+                    </p:column>
+
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Descripción"/>
@@ -57,11 +81,11 @@
                     </p:column>
 
                     <p:column filterBy="#{item1.ubicacionSolicitud}" headerText="Ubicación" 
-                              footerText=" " filterMatchMode="contains">
+                              footerText=" " filterMatchMode="contains" style="width: 115px">
                         <h:outputText value="#{item1.ubicacionSolicitud}"/>
                     </p:column>
 
-                    <p:column style="width: 120px" filterBy="#{item1.fechaSolicitudServicio}" 
+                    <p:column style="width: 115px" filterBy="#{item1.fechaSolicitudServicio}" 
                               headerText="Fecha y Hora" footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item1.fechaSolicitudServicio}">
                             <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
@@ -75,7 +99,7 @@
                 </p:commandButton>
                 <p></p>
 
-                <h3>Por Solicitud</h3>
+                <h3 style="text-align: center">Por Solicitud</h3>
 
                 <p:dataTable id="solicitudTable" value="#{solicitudServiciosController.items}" var="item" >
 

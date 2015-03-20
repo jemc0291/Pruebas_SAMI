@@ -14,6 +14,17 @@
 
 
                 <h:form>
+                    <h3>Export Data Complete</h3>
+                    <h:commandLink>
+                        <img src="../../modulo1/ContratacionPrestacionDeServicios/Recursos/Imagenes/excel.png" width="26" title="Exportar a Excel"/>                   
+                        <p:dataExporter type="xls" target="contratosTable" fileName="item"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <img src="../../modulo1/ContratacionPrestacionDeServicios/Recursos/Imagenes/pdf.png" width="26" title="Exportar a PDF"/>
+                        <p:dataExporter type="pdf" target="contratosTable" fileName="item"  />
+                    </h:commandLink>
+                    
                     <h1><h:outputText value="Lista de Contratos"/></h1>
                     <p:dataTable value="#{contratosController.items}" var="item" rows="10"
                                  id="contratosTable" 
@@ -22,6 +33,8 @@
                                  rowsPerPageTemplate="5,10,15" >
                         <f:facet name="header">
                         Lista de Contratos
+                        <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+                        <p:columnToggler datasource="contratosTable" trigger="toggler" transient="false"/>
                         </f:facet>
                         
                         <p:column filterBy="#{contratosController.getUsuariosByContratos(item).usuarios.toString()}" filterMatchMode="contains">
@@ -104,10 +117,12 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListContratosTitle_valorContrato}"/>
                             </f:facet>
-                            <h:outputText value="#{item.valorContrato}"/>
+                            <h:outputText value="#{item.valorContrato}">
+                                <f:convertNumber currencySymbol="$" type="currency" maxFractionDigits="0" />
+                            </h:outputText>
                         </p:column>
                         
-                        <p:column>
+                        <p:column exportable="false">
                             <f:facet name="header">
                                 <h:outputText value="OPCIONES"/>
                             </f:facet>

@@ -50,7 +50,7 @@ public class Polizas implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "valor_de_poliza")
-    private int valorDePoliza;
+    private Integer valorDePoliza;
     @Basic(optional = false)
     @NotNull
     @Column(name = "vigencia_desde")
@@ -77,7 +77,7 @@ public class Polizas implements Serializable {
         this.numeroDePoliza = numeroDePoliza;
     }
 
-    public Polizas(Integer numeroDePoliza, int valorDePoliza, Date vigenciaDesde, Date vigenciaHasta) {
+    public Polizas(Integer numeroDePoliza, Integer valorDePoliza, Date vigenciaDesde, Date vigenciaHasta) {
         this.numeroDePoliza = numeroDePoliza;
         this.valorDePoliza = valorDePoliza;
         this.vigenciaDesde = vigenciaDesde;
@@ -92,11 +92,11 @@ public class Polizas implements Serializable {
         this.numeroDePoliza = numeroDePoliza;
     }
 
-    public int getValorDePoliza() {
+    public Integer getValorDePoliza() {
         return valorDePoliza;
     }
 
-    public void setValorDePoliza(int valorDePoliza) {
+    public void setValorDePoliza(Integer valorDePoliza) {
         this.valorDePoliza = valorDePoliza;
     }
 
