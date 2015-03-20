@@ -21,6 +21,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Tarifas.findAll", query = "SELECT t FROM Tarifas t"),
     @NamedQuery(name = "Tarifas.findByIdTarifa", query = "SELECT t FROM Tarifas t WHERE t.idTarifa = :idTarifa"),
-    @NamedQuery(name = "Tarifas.findByValorTarifa", query = "SELECT t FROM Tarifas t WHERE t.valorTarifa = :valorTarifa")})
+    @NamedQuery(name = "Tarifas.findByNombreTarifa", query = "SELECT t FROM Tarifas t WHERE t.nombreTarifa = :nombreTarifa")})
 public class Tarifas implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,8 +45,9 @@ public class Tarifas implements Serializable {
     private Integer idTarifa;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "valor_tarifa")
-    private int valorTarifa;
+    @Size(min = 1, max = 5)
+    @Column(name = "nombre_tarifa")
+    private String nombreTarifa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTarifa")
     private List<ValorGasto> valorGastoList;
     @JoinColumns({
@@ -61,9 +63,9 @@ public class Tarifas implements Serializable {
         this.idTarifa = idTarifa;
     }
 
-    public Tarifas(Integer idTarifa, int valorTarifa) {
+    public Tarifas(Integer idTarifa, String nombreTarifa) {
         this.idTarifa = idTarifa;
-        this.valorTarifa = valorTarifa;
+        this.nombreTarifa = nombreTarifa;
     }
 
     public Integer getIdTarifa() {
@@ -74,12 +76,12 @@ public class Tarifas implements Serializable {
         this.idTarifa = idTarifa;
     }
 
-    public int getValorTarifa() {
-        return valorTarifa;
+    public String getNombreTarifa() {
+        return nombreTarifa;
     }
 
-    public void setValorTarifa(int valorTarifa) {
-        this.valorTarifa = valorTarifa;
+    public void setNombreTarifa(String nombreTarifa) {
+        this.nombreTarifa = nombreTarifa;
     }
 
     @XmlTransient

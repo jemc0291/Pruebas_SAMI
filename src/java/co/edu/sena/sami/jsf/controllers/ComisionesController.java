@@ -8,6 +8,7 @@ import co.edu.sena.sami.jpa.entities.Comisiones;
 import co.edu.sena.sami.jpa.entities.Contratos;
 import co.edu.sena.sami.jpa.entities.DescripcionesReferenciasViaticos;
 import co.edu.sena.sami.jpa.entities.FichaCaracterizacion;
+import co.edu.sena.sami.jpa.entities.TiposPasajes;
 import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jpa.sessions.CentroFormacionFacade;
 import co.edu.sena.sami.jpa.sessions.CiudadComisionesFacade;
@@ -44,6 +45,8 @@ public class ComisionesController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.ContratosFacade ejbFacadeContratos;
     @EJB
     private co.edu.sena.sami.jpa.sessions.BancosFacade ejbFacadeBanco;
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.TiposPasajesFacade ejbFacadeTiposPasajes;
     @EJB
     private co.edu.sena.sami.jpa.sessions.CentroFormacionFacade ejbFacadeCentrosFormacion;
     @EJB
@@ -171,6 +174,10 @@ public class ComisionesController implements Serializable {
         return getFacadeBanco().findAll();
     }
 
+    public List<TiposPasajes> getItemsAvailableSelectOneTiposPasajes() {
+        return getFacadeTiposPasajes().findAll();
+    }
+
     public UsuariosFacade getFacadeUsuarios() {
         return ejbFacadeUsuarios;
     }
@@ -222,7 +229,7 @@ public class ComisionesController implements Serializable {
         ciudadComisionesList = null;
         return "DestinosComision";
     }
-    
+
     public String prepareVisualizarComision() {
         ciudadComisionesList = null;
         return "VerComision";
@@ -240,7 +247,7 @@ public class ComisionesController implements Serializable {
     public String prepareCreateInformeComision() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/informeComision.xhtml";
     }
-    
+
     public String prepareCreateInformeComision2() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/verInformeComision.xhtml";
     }
@@ -248,15 +255,15 @@ public class ComisionesController implements Serializable {
     public String prepareCreateOrdenDeViaje() {
         return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/crearOrdenDeViaje.xhtml";
     }
-    
+
     public String volverComision() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
     }
-    
+
     public String prepareConsultarOrdenDeViaje() {
         return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/verOrdenDeViaje.xhtml";
     }
-    
+
     public String prepareConsultarOrdenDeViajeC() {
         return "/modulo4/Gestion_Talento_Humano/Ordenes de viaje/verOrdenDeViajeC.xhtml";
     }
@@ -270,6 +277,7 @@ public class ComisionesController implements Serializable {
         }
         ciudadComisionesList.add(ciudadComisionesActual);
         ciudadComisionesActual = new CiudadComisiones();
+        initializeEmbeddableKeyCiuComisiones();
         JsfUtil.addSuccessMessage("Destino agregado correctamente");
     }
 
@@ -297,7 +305,9 @@ public class ComisionesController implements Serializable {
         try {
             for (CiudadComisiones item : ciudadComisionesList) {
                 item.setComisiones(selected);
-                setEmbeddableKeysCiuComisiones(item);
+                item.getCiudadComisionesPK().setIdCiudad(item.getCiudad().getCiudadPK().getIdCiudad());
+                item.getCiudadComisionesPK().setIdComision(item.getComisiones().getIdComision());
+                item.getCiudadComisionesPK().setIdDpto(item.getCiudad().getCiudadPK().getIdDpto());
                 getCiudadComisionesFacade().create(item);
             }
 
@@ -312,7 +322,7 @@ public class ComisionesController implements Serializable {
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("ComisionesUpdated"));
     }
-    
+
     public void update2() {
         selected.setFechaOrden(new Date());
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("ComisionesUpdated"));
@@ -417,6 +427,10 @@ public class ComisionesController implements Serializable {
      */
     public co.edu.sena.sami.jpa.sessions.BancosFacade getFacadeBanco() {
         return ejbFacadeBanco;
+    }
+
+    public co.edu.sena.sami.jpa.sessions.TiposPasajesFacade getFacadeTiposPasajes() {
+        return ejbFacadeTiposPasajes;
     }
 
     /**

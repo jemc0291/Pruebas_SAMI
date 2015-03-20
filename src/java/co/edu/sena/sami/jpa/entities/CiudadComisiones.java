@@ -69,7 +69,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CiudadComisiones.findByIdComision", query = "SELECT c FROM CiudadComisiones c WHERE c.ciudadComisionesPK.idComision = :idComision"),
     @NamedQuery(name = "CiudadComisiones.findBySalidaEstimada", query = "SELECT c FROM CiudadComisiones c WHERE c.salidaEstimada = :salidaEstimada"),
     @NamedQuery(name = "CiudadComisiones.findByLlegadaEstimada", query = "SELECT c FROM CiudadComisiones c WHERE c.llegadaEstimada = :llegadaEstimada"),
-    @NamedQuery(name = "CiudadComisiones.findByEmpresaVereda", query = "SELECT c FROM CiudadComisiones c WHERE c.empresaVereda = :empresaVereda")})
+    @NamedQuery(name = "CiudadComisiones.findByEmpresaVereda", query = "SELECT c FROM CiudadComisiones c WHERE c.empresaVereda = :empresaVereda"),
+    @NamedQuery(name = "CiudadComisiones.findByValorViatico", query = "SELECT c FROM CiudadComisiones c WHERE c.valorViatico = :valorViatico")})
 public class CiudadComisiones implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -83,6 +84,8 @@ public class CiudadComisiones implements Serializable {
     @Size(max = 100)
     @Column(name = "empresa_vereda")
     private String empresaVereda;
+    @Column(name = "valor_viatico")
+    private Double valorViatico;
     @JoinColumn(name = "id_comision", referencedColumnName = "id_comision", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Comisiones comisiones;
@@ -133,6 +136,14 @@ public class CiudadComisiones implements Serializable {
 
     public void setEmpresaVereda(String empresaVereda) {
         this.empresaVereda = empresaVereda;
+    }
+    
+        public Double getValorViatico() {
+        return valorViatico;
+    }
+
+    public void setValorViatico(Double valorViatico) {
+        this.valorViatico = valorViatico;
     }
 
     public Comisiones getComisiones() {

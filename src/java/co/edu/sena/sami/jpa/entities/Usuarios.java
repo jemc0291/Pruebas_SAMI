@@ -65,7 +65,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findByFechaDeCreacion", query = "SELECT u FROM Usuarios u WHERE u.fechaDeCreacion = :fechaDeCreacion"),
     @NamedQuery(name = "Usuarios.findByEstado", query = "SELECT u FROM Usuarios u WHERE u.estado = :estado"),
     @NamedQuery(name = "Usuarios.findByNumCuentaBanco", query = "SELECT u FROM Usuarios u WHERE u.numCuentaBanco = :numCuentaBanco"),
-    @NamedQuery(name = "Usuarios.findByNombreTipoCuenta", query = "SELECT u FROM Usuarios u WHERE u.nombreTipoCuenta = :nombreTipoCuenta")})
+    @NamedQuery(name = "Usuarios.findByNombreTipoCuenta", query = "SELECT u FROM Usuarios u WHERE u.nombreTipoCuenta = :nombreTipoCuenta"),
+@NamedQuery(name = "Usuarios.findByGrado", query = "SELECT u FROM Usuarios u WHERE u.grado = :grado"),
+    @NamedQuery(name = "Usuarios.findBySueldo", query = "SELECT u FROM Usuarios u WHERE u.sueldo = :sueldo"),
+    @NamedQuery(name = "Usuarios.findByFechaIngreso", query = "SELECT u FROM Usuarios u WHERE u.fechaIngreso = :fechaIngreso")})
 public class Usuarios implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -146,6 +149,15 @@ public class Usuarios implements Serializable {
     @Size(max = 45)
     @Column(name = "nombre_tipo_cuenta")
     private String nombreTipoCuenta;
+    @Column(name = "grado")
+    private Integer grado;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "sueldo")
+    private Double sueldo;
+    @Column(name = "fecha_ingreso")
+    @Temporal(TemporalType.DATE)
+    private Date fechaIngreso;
+    @Size(max = 45)
     @JoinTable(name = "usuario_formacion_academica", joinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
         @JoinColumn(name = "id_formacion", referencedColumnName = "id_formacion")})
@@ -421,6 +433,30 @@ public class Usuarios implements Serializable {
 
     public void setNombreTipoCuenta(String nombreTipoCuenta) {
         this.nombreTipoCuenta = nombreTipoCuenta;
+    }
+    
+     public Integer getGrado() {
+        return grado;
+    }
+
+    public void setGrado(Integer grado) {
+        this.grado = grado;
+    }
+
+    public Double getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(Double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
     }
 
     @XmlTransient
