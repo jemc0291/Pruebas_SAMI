@@ -17,7 +17,7 @@
 
                         <h:panelGrid columns="2">
                             <label jsf:value="#{bundle.EditPolizasLabel_numeroDePoliza}" for="numeroDePoliza" />
-                            <input type="text" maxlength="20" jsf:id="numeroDePoliza" pattern="[0-9]*"   jsf:value="#{polizasController.selected.numeroDePoliza}" 
+                            <input type="text" maxlength="20" disabled="true" jsf:id="numeroDePoliza" pattern="[0-9]*"   jsf:value="#{polizasController.selected.numeroDePoliza}" 
                                    jsf:title="#{bundle.EditPolizasTitle_numeroDePoliza}" required="true" jsf:requiredMessage="#{bundle.CreatePolizasRequiredMessage_numeroDePoliza}"></input>
 
                             <label jsf:value="#{bundle.EditPolizasLabel_valorDePoliza}"  for="valorDePoliza" />
@@ -82,7 +82,7 @@
                         </h:panelGrid>
 
                         <h:commandButton p:class="Button-guardar" value ="#{bundle.Save}"
-                                         action="#{polizasController.update}"/>
+                                         action="#{polizasController.updateModuloUno}"/>
                         <h:button p:class="Button-cancelar" value="#{bundle.Cancel}" outcome="/modulo1/ContratacionPrestacionDeServicios/polizas/List"/>
 
                     </h:form>
