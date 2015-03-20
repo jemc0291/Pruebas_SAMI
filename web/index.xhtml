@@ -19,7 +19,7 @@
     </head>
     <body class="body" jsf:id="body">
         <header class="Header">
-            <img src="#{request.contextPath}/resources/images/sami.png" width="280" height="100" class="Header-logo" />
+            <img src="#{request.contextPath}/resources/images/template/logo.png" width="280" height="100" class="Header-logo" />
             <p class="Header-title-inicio">SISTEMA ADMINISTRATIVO MODULAR INTEGRADO</p>
             <figure class="Menu-img">
                 <img src="#{request.contextPath}/resources/images/logo_sena.jpg" width="30"/>
@@ -30,7 +30,7 @@
             <nav class="menu-inicio">
                 <ul class="MainMenu-list1">                 
                     <li class="MaiMenu-item1"><a jsf:outcome="/index.xhtml" class="MainMenu-link1">INICIO</a></li>
-                    <li class="MaiMenu-item1"><a jsf:outcome="/inicio_sami/sami_InfoModulos.xhtml" class="MainMenu-link1">INFORMACION MODULOS</a></li>
+                    <li class="MaiMenu-item1"><a jsf:outcome="/inicio_sami/sami_InfoModulos.xhtml" class="MainMenu-link1">INFORMACIÓN MODULOS</a></li>
                     <li class="MaiMenu-item1"><a jsf:outcome="/inicio_sami/sami_ayuda.xhtml" class="MainMenu-link1">AYUDA</a></li> 
                 </ul>                        
             </nav>
@@ -71,7 +71,7 @@
                 <br/><br/><a href="http://siifsena.blogspot.com/" target="_black"><img src="#{request.contextPath}/resources/images/siif.jpg" width="170" height="70" class="Figure-im"/></a>
                 <br/><br/><a href="http://nuevo.fondoemprender.com/" target="_black"><img src="#{request.contextPath}/resources/images/fondoEmp.png" width="170" height="70" class="Figure-im"/></a>
             </figure> 
-           
+
             <aside class="work-video">
                 <h3 class="Title-Videos">NUESTRO APLICATIVO</h3>
                 <div class="videosGenral">
@@ -116,7 +116,12 @@
                 });
             });
         </script>
-        
+        <script type="text/javascript">
+            if (#{loginController.authenticated}) {
+                window.location = "#{request.contextPath}/faces/sami_inicio.xhtml";
+            }
+        </script>
+
         <ui:composition template="/footer.xhtml">
         </ui:composition>     
     </body>   

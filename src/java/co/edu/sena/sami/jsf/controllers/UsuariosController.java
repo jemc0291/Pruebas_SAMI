@@ -111,14 +111,17 @@ public class UsuariosController implements Serializable {
     private UsuariosFacade getFacade() {
         return ejbFacade;
     }
-
+    
+    public boolean isContratista(){
+        return selected.getIdTipoContrato() == null? false : selected.getIdTipoContrato().getIdTipoContrato() == (short) 2;
+    }
  
     public String prepareCreate() {
         selected = new Usuarios();
         listaCargo = new ArrayList<>();
         listaRoles = new ArrayList<>();
         initializeEmbeddableKey();
-        return "Agregar";
+        return "/Configuracion/Usuarios/Agregar";
     }
 
     public String prepareModificarUsuario() {
@@ -137,19 +140,7 @@ public class UsuariosController implements Serializable {
         return "/Configuracion/Usuarios/Listar";
     }
 
-    public String moduloUnoPrepareCreate() {
-        selected = new Usuarios();
-        initializeEmbeddableKey();
-        return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/Agregar";
-    }
-
-    public String prepareEditModuloUno() {
-        return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/Editar";
-    }
-
-    public String prepareViewModuloUno() {
-        return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/Ver";
-    }
+  
 
     public String create() {
         try {
@@ -185,7 +176,7 @@ public class UsuariosController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/ListContratistas.xhtml";
+        return "/modulo1/ContratacionPrestacionDeServicios/Contratos/CreateContrato";
 
     }
 
@@ -282,6 +273,16 @@ public class UsuariosController implements Serializable {
             return getFacade().findByRazonSocialCompletar(query);
         } catch (Exception ex) {
             Logger.getLogger(ContratosController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+     public List<Usuarios> getListNumeroDocumentoAutoComplete(String query) {//se agrego metodo de autocompletar
+        try {
+            return getFacade().findByNumeroDoc(query);
+        } catch (Exception ex) {
+            Logger.getLogger(ContratosModulo1Controller.class
                     .getName()).log(Level.SEVERE, null, ex);
             return null;
         }

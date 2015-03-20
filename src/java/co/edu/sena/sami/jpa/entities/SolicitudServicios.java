@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SolicitudServicios.consultaUsuario", query = "SELECT s FROM SolicitudServicios s WHERE s.idUsuario = :idUsuario"),
     @NamedQuery(name = "SolicitudServicios.findByIdTipoServ", query = "SELECT s FROM SolicitudServicios s WHERE s.idTipoServ = :idTipoServ"),
     @NamedQuery(name = "SolicitudServicios.findByDescripcionservicioSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.descripcionservicioSolicitud = :descripcionservicioSolicitud"),
-    @NamedQuery(name = "SolicitudServicios.findByUbicacionSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.ubicacionSolicitud = :ubicacionSolicitud"),
+    @NamedQuery(name = "SolicitudServicios.findByUbicacionSolicitud", query = "SELECT s FROM SolicitudServicios s WHERE s.ubicacionSolicitud = :ubicacionSolicitud"),    
+    @NamedQuery(name = "SolicitudServicios.findByFechaSolicitudInicioFin", query = "SELECT s FROM SolicitudServicios s WHERE s.fechaSolicitudServicio BETWEEN :fechaInicio AND :fechaFin"),
     @NamedQuery(name = "SolicitudServicios.findByFechaSolicitudServicio", query = "SELECT s FROM SolicitudServicios s WHERE s.fechaSolicitudServicio = :fechaSolicitudServicio")})
 public class SolicitudServicios implements Serializable {
 
@@ -54,7 +55,7 @@ public class SolicitudServicios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 500)
-    @Column(name = "descripcion_servicio_Solicitud")
+    @Column(name = "descripcion_servicio_solicitud")
     private String descripcionservicioSolicitud;
     @Size(max = 40)
     @Column(name = "ubicacion_solicitud")

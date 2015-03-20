@@ -29,28 +29,28 @@
                 <h:form>
                     <nav class="HeaderList">
                         <ul class="HeaderList-option">
-                            <li class="HeaderList-item"><h3 id="list-box">Modulos<span class="icon-triangle-
+                            <li class="HeaderList-item"><h3 id="list-box">Módulos<span class="icon-triangle-
                                                                                        down"></span></h3>
                                 <ul>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo1/index_modulo1.xhtml">Contratación de prestación de servicios</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo2/index_modulo2.xhtml">Mantenimiento</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo3/index_modulo3.xhtml">Supervisión de contratos de compras, suministros y servicios</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo4/index_modulo4.xhtml">Gestión y talento humano</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo5/index_modulo5.xhtml">Gestión documental</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo6/index_modulo6.xhtml">Gestión de materiales de formación</a></li>
-                                    <li class="HeaderList-link"><a  jsf:outcome="/Programa Formacion/index_programa.xhtml">Programa Formacion</a></li>                                   
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo1/index_modulo1.xhtml" jsf:rendered="#{loginController.contratacion}" >Contratación de prestación de servicios</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo2/index_modulo2.xhtml" jsf:rendered="#{loginController.mantenimiento}" >Mantenimiento</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo3/index_modulo3.xhtml" jsf:rendered="#{loginController.supervisionSuministros}" >Supervisión de contratos de compras, suministros y servicios</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo4/index_modulo4.xhtml" jsf:rendered="#{loginController.gestionTalento}" >Gestión y talento humano</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo5/index_modulo5.xhtml" jsf:rendered="#{loginController.gestionDocumental}" >Gestión documental</a></li>
+                                    <li class="HeaderList-link"><a  jsf:outcome="/modulo6/index_modulo6.xhtml" jsf:rendered="#{loginController.gestionMateriales}" >Gestión de materiales de formación</a></li>
+                                  <li class="HeaderList-link"><a jsf:action="#{loginController.logout}" onclick="PF('cerrarSesion').show();">Cerrar Sesión</a></li>
                                     <h:form>           
-                                        <p:growl id="message" showDetail="true" />
-                                        <p:commandButton  value="Cerrar Sesión" action="#{loginController.logout}" 
-                                                         update="message" style="color: black; border-color: black; background:rgba(75, 118, 109, 0.82);">
-                                            <p:confirm header="Desea Cerrar Sesion" message="SEÑOR USUARIO USTED ES PARTE 
-                                                       FUNDAMENTAL DE NUESTRA COMUNIDAD SAMI GRACIAS POR USAR NUESTRO APLICATIVO"  icon="ui-icon-alert" />
-                                        </p:commandButton>                                     
+                                                                         
 
-                                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode"  >
-                                            <p:commandButton value="Yes" type="button" action="#{loginController.logout}" 
+                                        <p:confirmDialog global="true"
+                                                         showEffect="fade" 
+                                                         hideEffect="explode"
+                                                         header="CERRAR SESIÓN"
+                                                         message="Seguro Que Desea Cerrar Sesión "
+                                                         widgetVar="cerrarSesion">
+                                            <p:commandButton value="Yes"  action="#{loginController.logout}" 
                                                              styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" 
+                                            <p:commandButton value="No" styleClass="ui-confirmdialog-no" 
                                                              icon="ui-icon-close" />
                                         </p:confirmDialog>
                                     </h:form>
@@ -78,22 +78,22 @@
                 <p class="Footer-description">contactosami@gmail.com</p>
                 <p class="Footer-description">facebook.com/contactosami</p>
                 <p class="Footer-description">@interactuasami</p>
-                <p class="Footer-description">3173470178 - 3101234568</p>
+                <p class="Footer-description">317-347-01-78 - 310-123-45-68</p>
                 <p class="Footer-description">SENA</p>
             </article>
             <article class="Footer-item">
                 <h4 class="Footer-title">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
-                <p class="Footer-descriptioncon">Centro de biotecnologia industrial</p>
+                <p class="Footer-descriptioncon">Centro de Biotecnologia Industrial</p>
                 <p class="Footer-descriptioncon">Palmira, Valle del Cauca</p>
-                <p class="Footer-descriptioncon">Carrera 30 n° 40-25</p>
-                <p class="Footer-descriptioncon">Telefono: 2750968</p>
-                <p class="Footer-descriptioncon">Fax: 2750965</p>
+                <p class="Footer-descriptioncon">Carrera 30  40-25</p>
+                <p class="Footer-descriptioncon">Teléfono: 275-09-68</p>
+                <p class="Footer-descriptioncon">Fax: 275-09-65</p>
             </article>
             <article class="Footer-item">
 
                 <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/" class="icon-icon-sofia-01" target="_blank"></a>
                 <a href="http://www.sena.edu.co/Paginas/Inicio.aspx" class="icon-icon-sena0" target="_blank"></a>
-                <a jsf:outcome="/Configuracion/index_configuracion.xhtml" class="icon-cog"></a>
+                <a jsf:outcome="/Configuracion/index_configuracion.xhtml" class="icon-cog" jsf:rendered="#{loginController.configuracion}" ></a>
                 <a type="button" onclick="PF('dlg2').show();" class="icon-help" ></a>
             </article>
         </footer>

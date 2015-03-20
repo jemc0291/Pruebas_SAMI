@@ -10,12 +10,12 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Solicitudes</ui:define>
-        <ui:define name="menu"><ui:include src="/modulo6/menu_Instructor.xhtml"></ui:include></ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Coordinacion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <section class="Section-form">
 
                 <h:form>
-
+                    <h1>Solicitud Materiales</h1>
                     <p:panelGrid columns="3" layout="grid" id="panelSolicitud">
 
                         <label jsf:value="#{bundle.CreateSolicitudMaterialesAlmacenLabel_idArea}" for="idArea"></label>
@@ -45,7 +45,6 @@
                             <f:ajax execute="@this" render="observacionesMessage"/>
                         </textarea>
                         <h:message id="observacionesMessage" for="observaciones"/>-->
-
                     </p:panelGrid>
 
                     <p:panelGrid columns="4" id="panelMateriales" layout="grid">
@@ -90,7 +89,7 @@
 
                     <p:commandButton value="Solicitar Materiales" 
                                      action="#{solicitudMaterialesAlmacenController.create}" 
-                                     process="@this panelSolicitud" update="panelSolicitud"/>
+                                     process="@this panelSolicitud panelUsuarios" update="panelSolicitud"/>
                     <p:button value="Cancelar" outcome="/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/MainPage.xhtml" />                
                 </h:form>
             </section>

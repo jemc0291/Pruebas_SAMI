@@ -6,32 +6,37 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition>
-        <ul class="MainMenu-list">
+        <h:form>
+            <ul class="MainMenu-list">
 
 
-            <li class="MainMenu-item">
-                <a jsf:outcome="/modulo1/index_modulo1.xhtml">Inicio</a>
-            </li>
-            <li class="MainMenu-item">
-                <a>Administrar información</a>
-                <ul>
-                    <li class="AlternMenu-link"><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Aseguradora/List.xhtml">Aseguradora</a> </li>
-                                       
-                    <li class="AlternMenu-link"><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Contratistas/ListContratistas.xhtml">Contratistas</a></li>
-                    <li class="AlternMenu-link"><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Contratos/ListContrato.xhtml">Contratos</a>
-                       
-                    </li>
-                    <li class="AlternMenu-link"><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/polizas/List.xhtml">Lista de polizas</a>
-                                  
-                    </li>
-                </ul>
-            </li>
-            <li class="MainMenu-item">
-                <a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/ImportarDocumentos/importarDocumentos.xhtml">Importar documentos</a>
-            </li>
-            <li class="MainMenu-item">
-                <a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Editor/Editor.xhtml">Editor de texto</a>
-            </li>
-        </ul>
+                <li class="MainMenu-item">
+                    <a jsf:outcome="/modulo1/index_modulo1.xhtml">Inicio</a>
+                </li>
+                <li class="MainMenu-item">
+                    <a jsf:action="#{usuariosController.prepareCreate}">Contratistas</a>
+                </li>
+                <li class="MainMenu-item">
+                    <a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Contratos/ListContrato.xhtml">Contratos</a>
+                </li>
+                <li class="MainMenu-item">
+                    <a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/polizas/List.xhtml">Lista de polizas</a>
+                </li>
+
+                <li class="MainMenu-item">
+                    <a>Administrar información</a>
+                    <ul>
+                        <li class="AlternMenu-link"><a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Aseguradora/List.xhtml">Aseguradora</a> </li>
+
+                    </ul>
+                </li>
+               <!-- <li class="MainMenu-item">
+                    <a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/ImportarDocumentos/importarDocumentos.xhtml">Importar documentos</a>
+                </li>
+                <li class="MainMenu-item">
+                    <a jsf:outcome="/modulo1/ContratacionPrestacionDeServicios/Editor/Editor.xhtml">Editor de texto</a>
+                </li>-->
+            </ul>
+        </h:form>
     </ui:composition>
 </html>

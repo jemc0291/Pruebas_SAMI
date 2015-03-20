@@ -224,6 +224,8 @@ public class ComisionesController implements Serializable {
     public String prepareListComision() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
     }
+    
+    
 
     public String prepareConsultarComision() {
         ciudadComisionesList = null;
@@ -296,6 +298,10 @@ public class ComisionesController implements Serializable {
     public String loadCreate() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
     }
+    public String loadCreate1() {
+        return "/modulo4/Gestion_Talento_Humano/Comisiones/informesComisiones.xhtml";
+    }
+    
 
     public void create(ActionEvent event) {
         selected.setIdUsuario((Usuarios) event.getComponent().getAttributes().get("usuario"));
@@ -321,6 +327,7 @@ public class ComisionesController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("ComisionesUpdated"));
+       
     }
 
     public void update2() {

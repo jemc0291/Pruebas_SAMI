@@ -7,12 +7,12 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title"> Pais <h:outputText value="#{bundle.ListPaisTitle}"></h:outputText></ui:define>
+        <ui:define name="title"> País <h:outputText value="#{bundle.ListPaisTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             
             <h:form> 
-                <h:commandButton value="Agregar Pais" action="#{paisController.prepareCreate}"/>
+                <h:commandButton value="Agregar País" action="#{paisController.prepareCreate}"/>
                 <h:commandButton value="Volver A Lista" action="#{paisController.prepareListPais}"/>
             
             </h:form>
@@ -30,7 +30,7 @@
                         </input>
                         <h:message id="PaisMessage" for="PaisInputText" styleClass="error"/>
 
-                        <label class="Form-na" value="#{bundle.CreatePaisLabel_nombrepais}" for="nombrepais"> Nombre Pais </label> 
+                        <label class="Form-na" value="#{bundle.CreatePaisLabel_nombrepais}" for="nombrepais"> Nombre País </label> 
                         <input type="text" jsf:id="NombPaisInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre" 
                                jsf:validatorMessage="Use solo letras"

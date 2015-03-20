@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">LISTA DE CDP/CRP</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="List"/></h1>
+                    <p:dataTable id="cdpTable" value="#{cdpController.items}" var="item">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="NumeroCdp"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroCdp}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="FechaSolicitud"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaSolicitud}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="FechaRecepcion"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaRecepcion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="ObjetivoDelGasto"/>
+                            </f:facet>
+                            <h:outputText value="#{item.objetivoDelGasto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdTipoSolicitud"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoSolicitud}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdRubro"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idRubro}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="CodigoGestion"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoGestion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="CodigoDeDependencia"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoDeDependencia}"/>
+                            
+                        </p:column>
+                        <p:column>
+                        <f:facet name="header"><h:outputText value="Opcion"/></f:facet>
+                        <p:commandButton   id="editButton" icon="ui-icon-pencil" update="cdpTable" action="#{cdpController.prepareEditarCdp}">
+                            <f:setPropertyActionListener value="#{item}" target="#{cdpController.selected}"/>
+                        </p:commandButton>
+                       
+                        <p:commandButton icon="ui-icon-search"  action="#{cdpController.prepareVerCdp}">
+                            <f:setPropertyActionListener value="#{item}" target="#{cdpController.selected}"/>
+                        </p:commandButton>
+                         
+                        </p:column>
+                    
+                        
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+
+        </ui:define>
+    </ui:composition>
+</html>
+
+

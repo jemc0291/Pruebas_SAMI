@@ -14,10 +14,12 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.validator.ValidatorException;
 
 @Named("polizasController")
 @SessionScoped
@@ -79,6 +81,10 @@ public class PolizasController implements Serializable {
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("PolizasUpdated"));
     }
+     public String updateModuloUno() {
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("PolizasUpdated"));
+        return "/modulo1/ContratacionPrestacionDeServicios/polizas/List";
+    }
 
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/resources/Bundle").getString("PolizasDeleted"));
@@ -93,6 +99,16 @@ public class PolizasController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+    
+     public void validarPolizaModuloUno(FacesContext contex, UIComponent component, Object value)
+            throws ValidatorException {
+        if (getFacade().findByNumeroDePoliza((String) value) != null) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "La poliza ya existente", "La poliza ya existe en la base de datos"));
+        } else {
+            selected.setNumeroDePoliza((int) value);
+        }
+
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

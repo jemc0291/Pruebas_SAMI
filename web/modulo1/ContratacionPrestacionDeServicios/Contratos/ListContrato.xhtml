@@ -48,8 +48,14 @@
                         <p:columnToggler datasource="contratosModulo1Table" trigger="toggler" transient="false"/>
                     </f:facet>
 
-                    <p:column style="width:16px" exportable="false" headerText="Ver" toggleable="false">
+                   <!--<p:column style="width:16px" exportable="true" headerText="Contratista" toggleable="false">
                         <p:rowToggler />
+                    </p:column>-->
+                   <p:column  toggleable="false" filterBy="#{contratosModulo1Controller.getUsuariosByContratos(item).informacionUsuario()}">
+                        <f:facet name="header">
+                            <h:outputText value="Contratista"/>
+                        </f:facet>
+                       <h:outputText value="#{contratosModulo1Controller.getUsuariosByContratos(item).informacionUsuario()}"/>
                     </p:column>
                     <p:column   filterBy="#{item.numeroDeContrato}" filterMatchMode="contains" toggleable="false" >
                         <f:facet name="header">
@@ -57,6 +63,14 @@
                         </f:facet>
                         <h:outputText value="#{item.numeroDeContrato}"/>
                     </p:column>
+
+                    <p:column  toggleable="false" filterBy="#{contratosController.getUsuariosByContratos(item).polizas.toString()}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Poliza"/>
+                        </f:facet>
+                        <h:outputText value="#{contratosController.getUsuariosByContratos(item).polizas.toString()}"/>
+                    </p:column>
+
 
                     <p:column toggleable="false">
                         <f:facet name="header">
@@ -114,7 +128,7 @@
                         </h:outputText>
                     </p:column>
 
-                   
+
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_objetoContractual}"/>
@@ -128,19 +142,19 @@
                         <h:outputText value="#{item.obligaciones}"/>
                     </p:column>
 
-                   
-                    
-                    
+
+
+
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_adicionPresupuestal}"/>
                         </f:facet>
                         <h:outputText value="#{item.adicionPresupuestal}"/>
                     </p:column>
-                    
-                   
-                   
-                    
+
+
+
+
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListContratosTitle_idTipoContrato}"/>
@@ -148,10 +162,10 @@
                         <h:outputText value="#{item.idTipoContrato.nombreTipoContrato}"/>
                     </p:column>
 
-                    <p:rowExpansion >
-                        <h:outputText value="#{contratosModulo1Controller.getUsuariosByContratos(item).toString()}"/>
-                        
-                    </p:rowExpansion>
+                   <!-- <p:rowExpansion >
+                        <h:outputText value="# {contratosModulo1Controller.getUsuariosByContratos(item).toStringModuloUno()}"/>
+
+                    </p:rowExpansion>-->
 
 
 
@@ -165,32 +179,26 @@
                             <f:setPropertyActionListener value="#{item}" target="#{contratosModulo1Controller.selected}"/>
                         </p:commandButton>
 
-                        <p:commandButton id="deleteButton" icon="ui-icon-trash" action="#{contratosModulo1Controller.destroy}"
-                                         process="@this" update="contratosModulo1Table">
-                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el contrato?" icon="ui-icon-alert" />
-                            <f:setPropertyActionListener value="#{item}" target="#{contratosModulo1Controller.selected}"/>
-                        </p:commandButton>
+
 
                     </p:column> 
 
                 </p:dataTable>
 
 
-                <h3>Export Page Data Only</h3>
-                <h:commandLink>
-                    <img src="../Recursos/Imagenes/excel.png" width="26"/>                   
-                    <p:dataExporter type="xls" target="contratosModulo1Table" fileName="item" pageOnly="true"/>
+                <h3>Informe Talento Humano</h3>
+                <h:commandLink id="excel">
+                <img src="../Recursos/Imagenes/excel.png" />
+                <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS}" />
                 </h:commandLink>
+                
+                 <h3>Reporte General</h3>
+                <h:commandLink id="excel2">
+                <img src="../Recursos/Imagenes/excel.png" />
+                <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS1}" />
+                </h:commandLink>
+               
 
-                <h:commandLink>
-                    <img src="../Recursos/Imagenes/pdf.png" width="26"/>
-                    <p:dataExporter type="pdf" target="contratosModulo1Table" fileName="item" pageOnly="true" />
-                </h:commandLink>
-
-                <h:commandLink>
-                    <img src="../Recursos/Imagenes/csv.png" width="26"/>
-                    <p:dataExporter type="csv" target="contratosModulo1Table" fileName="item" pageOnly="true" />
-                </h:commandLink>
             </h:form>
 
         </ui:define>

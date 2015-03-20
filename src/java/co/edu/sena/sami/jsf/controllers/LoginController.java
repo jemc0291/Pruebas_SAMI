@@ -105,6 +105,10 @@ public class LoginController implements Serializable {
     public boolean isConfiguracion() {
         return getRequest().isUserInRole("webconfiguracion");
     }
+    
+    public boolean isUsuarioGeneral() {
+        return getRequest().isUserInRole("webusuariogeneral");
+    }
 
     public String login() {
         try {
