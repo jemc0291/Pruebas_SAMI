@@ -120,7 +120,7 @@ public class Dependencias implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Dependencias[ codigoDeDependencia=" + codigoDeDependencia + " ]";
+        return "" + codigoDeDependencia;
     }
     
 }

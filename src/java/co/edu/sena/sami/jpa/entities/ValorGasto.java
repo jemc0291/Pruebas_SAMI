@@ -45,7 +45,6 @@ public class ValorGasto implements Serializable {
     @Column(name = "valor_gastos")
     private String valorGastos;
     @OneToMany(mappedBy = "idValorGasto")
-    private List<Ciudad> ciudadList;
     @JoinColumn(name = "id_tarifa", referencedColumnName = "id_tarifa")
     @ManyToOne(optional = false)
     private Tarifas idTarifa;
@@ -76,14 +75,6 @@ public class ValorGasto implements Serializable {
         this.valorGastos = valorGastos;
     }
 
-    @XmlTransient
-    public List<Ciudad> getCiudadList() {
-        return ciudadList;
-    }
-
-    public void setCiudadList(List<Ciudad> ciudadList) {
-        this.ciudadList = ciudadList;
-    }
 
     public Tarifas getIdTarifa() {
         return idTarifa;

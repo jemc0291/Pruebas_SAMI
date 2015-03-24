@@ -817,8 +817,9 @@ table, th, td {
 
 .Codigo{
 
-    bottom: -10em;
-    left: 68em;
+      position: relative;
+  bottom: 8em;
+  left: -1em;
 }
 .estilo {
 

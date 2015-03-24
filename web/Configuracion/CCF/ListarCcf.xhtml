@@ -6,14 +6,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Lista Ccf <h:outputText value="#{bundle.ListCcfTitle}"></h:outputText></ui:define>
+        <ui:define name="title">Lista CCF <h:outputText value="#{bundle.ListCcfTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>Lista De Caja De Compensacion Familiar</h1>
+            <h1>Lista de Caja de Compensación Familiar</h1>
             <h:form>
 
                 <P>
-                    <h:commandButton action="#{ccfController.prepareCreate}" value="Agregar Ccf"/>
+                    <h:commandButton action="#{ccfController.prepareCreate}" value="Agregar CCF"/>
                 </P>
                 <p:outputPanel id="ArlTablePanel">
                     <p:dataTable value="#{ccfController.items}" var="item"

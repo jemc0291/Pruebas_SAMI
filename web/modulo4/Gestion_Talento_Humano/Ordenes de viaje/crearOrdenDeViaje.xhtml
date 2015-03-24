@@ -87,7 +87,7 @@
                         </p:inputText>
                         <h:message id="transIntermunicipalMessage" for="transIntermunicipalInputText" styleClass="error"/>
                         
-                        <label value="#{bundle.CreateComisionesLabel_transtransComision}" jsf:for="transComisionInputText"></label> 
+                        <label value="#{bundle.CreateComisionesLabel_transComision}" jsf:for="transComisionInputText"></label> 
                         <p:inputText type="text" id="transComisionInputText"
                                required="true"
                                requiredMessage="#{bundle.CreateComisionesRequiredMessage_transComision}"
@@ -146,6 +146,13 @@
                             <f:ajax execute="@this" render="numDiasMessage"/>
                         </p:inputText>
                         <h:message id="numDiasMessage" for="numDiasInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.CreateOrdenesDeviajeLabel_idTipoPasaje}" jsf:for="idTipoPasaje"></label>
+                               <h:selectOneMenu id="idTipoPasaje" value="#{comisionesController.selected.idTipoPasaje}" title="IdDescripcion" required="true" requiredMessage="The IdDescripcion field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneTiposPasajes}"/>
+                        </h:selectOneMenu>
+                        <p:message id="idTipoPasajeMessage" for="idTipoPasaje" styleClass="error"/>
                         
                     </p:panelGrid>
                     

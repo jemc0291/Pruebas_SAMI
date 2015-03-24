@@ -108,7 +108,7 @@ public class Rubros implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Rubros[ idRubro=" + idRubro + " ]";
+        return ""+ idRubro;
     }
     
 }

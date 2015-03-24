@@ -106,7 +106,7 @@ public class TiposPasajes implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.TiposPasajes[ idTipoPasaje=" + idTipoPasaje + " ]";
+        return nombreTipoPasaje;
     }
     
 }
