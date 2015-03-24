@@ -28,25 +28,25 @@
                     <h:outputLabel value="ObjetivoDelGasto:" for="objetivoDelGasto" />
                     <h:inputText id="objetivoDelGasto" value="#{cdpController.selected.objetivoDelGasto}" title="ObjetivoDelGasto" required="true" requiredMessage="The ObjetivoDelGasto field is required."/>
                     <h:outputLabel value="IdTipoSolicitud:" for="idTipoSolicitud" />
-                    <h:selectOneMenu id="idTipoSolicitud" value="#{cdpController.selected.idTipoSolicitud}" title="IdTipoSolicitud" required="true" requiredMessage="The IdTipoSolicitud field is required.">
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{fixme}"/>
-                    </h:selectOneMenu>
+                            <h:selectOneMenu id="idTipoSolicitud" value="#{cdpController.selected.idTipoSolicitud}" title="IdTipoSolicitud" required="true" requiredMessage="The IdTipoSolicitud field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{cdpController.itemsAvailableSelectOneTiposDeSolicitudes}"/>
+                            </h:selectOneMenu>
                     <h:outputLabel value="IdRubro:" for="idRubro" />
-                    <h:selectOneMenu id="idRubro" value="#{cdpController.selected.idRubro}" title="IdRubro" required="true" requiredMessage="The IdRubro field is required.">
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{fixme}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="CodigoGestion:" for="codigoGestion" />
-                    <h:selectOneMenu id="codigoGestion" value="#{cdpController.selected.codigoGestion}" title="CodigoGestion" required="true" requiredMessage="The CodigoGestion field is required.">
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{fixme}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="CodigoDeDependencia:" for="codigoDeDependencia" />
-                    <h:selectOneMenu id="codigoDeDependencia" value="#{cdpController.selected.codigoDeDependencia}" title="CodigoDeDependencia" required="true" requiredMessage="The CodigoDeDependencia field is required.">
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{fixme}"/>
-                    </h:selectOneMenu>
+                            <h:selectOneMenu id="idRubro" value="#{cdpController.selected.idRubro}" title="IdRubro" required="true" requiredMessage="The IdRubro field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{cdpController.itemsAvailableSelectOneRubros}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="CodigoGestion:" for="codigoGestion" />
+                            <h:selectOneMenu id="codigoGestion" value="#{cdpController.selected.codigoGestion}" title="CodigoGestion" required="true" requiredMessage="The CodigoGestion field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{cdpController.itemsAvailableSelectOneGestiones}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="CodigoDeDependencia:" for="codigoDeDependencia" />
+                            <h:selectOneMenu id="codigoDeDependencia" value="#{cdpController.selected.codigoDeDependencia}" title="CodigoDeDependencia" required="true" requiredMessage="The CodigoDeDependencia field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{cdpController.itemsAvailableSelectOneDependencias}"/>
+                            </h:selectOneMenu>
                 </h:panelGrid>
             </h:form>
         </f:view>

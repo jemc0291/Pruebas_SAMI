@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title"> informe de comision</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <f:view>
+            <h:form>
+                  <h1><h:outputText value="Solicitud Comision"/></h1>
+                  <h:panelGrid columns="2">
+                    <h:outputText value="Regional:"/>
+                    <h:outputText value="#{departamentosController.selected.nombreDpto}" title="Regional"/>
+                    <h:outputText value="Centro:"/>
+                    <h:outputText value="#{centroFormacionController.selected.nombreCentroFormacion}" title="Centro"/>
+                    <h:outputText value="Fecha:"/>
+                    <h:outputText value="#{informesController.selected.fechaInforme}" title="Fecha:">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="FuncionarioSolicitante:"/>
+                    <h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="FuncionarioSolicitante"/>
+                    <h:outputText value="NumeroCedula:"/>
+                    <h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="NumeroCedula"/>
+                    <h:outputText value="MesAPlanificar:"/>
+                    <h:outputText value="#{comisionesController.selected.mesaPlanificar}" title="MesAPlanificar"/>
+                    <h:outputText value="Objetivos:"/>
+                    <h:outputText value="#{comisionesController.selected.objetivos}" title="Objetivos"/>
+                    <h:outputText value="Destino:"/>
+                    <h:outputText value="#{comisionesController.selected.ciudad}" title="Destino"/>
+                    <h:outputText value="EmpresaVeredad:"/>
+                    <h:outputText value="#{ciudadComisionesController.selected.empresaVereda}" title="EmpresaVeredad"/>
+                     <h:outputText value="FechasDeSalida:"/>
+                    <h:outputText value="#{ciudadComisionesController.selected.salidaEstimada}" title="FechasDeSalida">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                     <h:outputText value="FechasDellegada:"/>
+                     <h:outputText value="#{ciudadComisionesController.selected.llegadaEstimada}" title="FechasDeLlegada">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Descripcion:"/>
+                    <h:outputText value="#{comisionesController.selected.idDescripcion}" title="Descripcion"/>
+                    <h:outputText value="NumeroFichaDeCaracterizacion:"/>
+                    <h:outputText value="#{comisionesController.selected.idFichaCaracterizacion}" title="NumeroFichaDeCaracterizacion"/>
+                    <h:outputText value="Banco:"/>
+                    <h:outputText value="#{bancosController.selected.nombreDeBanco}" title="Banco"/>
+                    <h:outputText value="Tipo"/>
+                    <h:outputText value="#{usuariosController.selected.nombreTipoCuenta}" title="Tipo"/>
+                    <h:outputText value="Cuenta:"/>
+                    <h:outputText value="#{usuariosController.selected.numCuentaBanco}" title="Cuenta"/>
+                    <h:outputText value="Contrato:"/>
+                    <h:outputText value="#{contratosController.selected.numeroDeContrato}" title="Contrato"/>
+                    <h:outputText value="FechaInicio:"/>
+                    <h:outputText value="#{contratosController.selected.fechaInicioContrato}" title="FechaInicio"/>
+                    <h:outputText value="FechaFin:"/>
+                    <h:outputText value="#{contratosController.selected.fechaFinContrato}" title="FechaFin"/>
+                </h:panelGrid>
+             </h:form>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</html>
