@@ -91,11 +91,13 @@ public class PagosContratosController implements Serializable {
 ///Modulo3/GestionContractual/
     public String prepareList() {
         recargarLista();
-        return "/modulo3/GestionContractual/";
+        return "/modulo3/GestionContractual/ListaFacturas";
     }
 
     public void recargarLista() {
-        items = null;
+        fechaInicio=null;
+        fechaFin=null;
+        getFacturasRango();
     }
 
     public String create() {
@@ -171,7 +173,7 @@ public class PagosContratosController implements Serializable {
         return getFacade().findAll();
     }
     
-    public List<PagosContratos> getFacturasRango() {
+    public List<PagosContratos> getFacturasRango() {//Metodo que permite utilizar la consulta que nos trae las facturas en determinado rango de fechas
         return getFacade().rangoFechas(fechaInicio,fechaFin);
     }
 

@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Contratos.findAll", query = "SELECT c FROM Contratos c"),
     @NamedQuery(name = "Contratos.findByIdContrato", query = "SELECT c FROM Contratos c WHERE c.idContrato = :idContrato"),
     @NamedQuery(name = "Contratos.findByNumeroDeContrato", query = "SELECT c FROM Contratos c WHERE c.numeroDeContrato LIKE :numeroDeContrato"),
-    @NamedQuery(name = "Contratos.findByFechasuscripcion", query = "SELECT c FROM Contratos c WHERE c.fechasuscripcion = :fechasuscripcion"),
+    @NamedQuery(name = "Contratos.findByFechasuscripcion", query = "SELECT c FROM Contratos c WHERE c.fechasuscripcion BETWEEN :fechaInicio AND :fechaFin"),
     @NamedQuery(name = "Contratos.findByFechaInicioContrato", query = "SELECT c FROM Contratos c WHERE c.fechaInicioContrato = :fechaInicioContrato"),
     @NamedQuery(name = "Contratos.findByFechaFinContrato", query = "SELECT c FROM Contratos c WHERE c.fechaFinContrato = :fechaFinContrato"),
     @NamedQuery(name = "Contratos.findByPlazoDias", query = "SELECT c FROM Contratos c WHERE c.plazoDias = :plazoDias"),

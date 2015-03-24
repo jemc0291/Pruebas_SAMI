@@ -45,4 +45,36 @@ public class UsuariosContratosFacade extends AbstractFacade<UsuariosContratos> {
             return null;
         }
     }
+    public List<UsuariosContratos> findByIdContratoSupervisor(Contratos contrato) {
+        Query q = getEntityManager().createNamedQuery("UsuariosContratos.findByIdContrato");
+        q.setParameter("idContrato", contrato.getIdContrato());
+        try{
+        return (List<UsuariosContratos>) q.getResultList();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    public UsuariosContratos findByIdRol(Contratos c){//Metodo para buscar los contratos donde el Id rol sea 2
+        Query q = getEntityManager().createNamedQuery("UsuariosContratos.findByIdRol");
+        q.setParameter("idRol", 2);
+        q.setParameter("idContrato", c.getIdContrato());
+        try{
+        return (UsuariosContratos) q.getSingleResult();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    public UsuariosContratos findByIdRolContratista(Contratos c){//Metodo para buscar los contratos donde el Id rol sea 1
+        Query q = getEntityManager().createNamedQuery("UsuariosContratos.findByIdRol");
+        q.setParameter("idRol", 1);
+        q.setParameter("idContrato", c.getIdContrato());
+        try{
+        return (UsuariosContratos) q.getSingleResult();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }
