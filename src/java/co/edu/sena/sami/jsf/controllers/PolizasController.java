@@ -81,6 +81,10 @@ public class PolizasController implements Serializable {
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("PolizasUpdated"));
     }
+     public String updateModuloUno() {
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("PolizasUpdated"));
+        return "/modulo1/ContratacionPrestacionDeServicios/polizas/List";
+    }
 
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/resources/Bundle").getString("PolizasDeleted"));

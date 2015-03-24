@@ -7,7 +7,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Centro de Formacion <h:outputText value="#{bundle.ListCentroFormacionTitle}"></h:outputText></ui:define>
+        <ui:define name="title">Centro de Formación <h:outputText value="#{bundle.ListCentroFormacionTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
@@ -22,7 +22,7 @@
                     <p:panelGrid columns="3" layout="grid">
                         <label class="Form-na" value="#{bundle.CreateCentroFormacionLabel_idCentroFormacion}" jsf:for="CentroFormacion"> </label> 
                         <input type="tel" jsf:id="CentroFormacionInputText" required="true" 
-                               jsf:requiredMessage="Por favor ingrese el codigo del Centro de Formacion" 
+                               jsf:requiredMessage="Por favor ingrese el codigo del Centro de Formación" 
                                jsf:validatorMessage="Use solo numeros"
                                jsf:converterMessage="Use solo números. Máximo 16 digitos"
                                jsf:value="#{centroFormacionController.selected.idCentroFormacion}">
@@ -32,7 +32,7 @@
 
                         <label class="Form-na" value="#{bundle.CreateCentroFormacionLabel_nombreCentroFormacion}" for="NombreCentroFormacion"> Nombre Centro Formacion </label> 
                         <input type="text" jsf:id="NombCentroFormacionInputText" required="true"
-                               jsf:requiredMessage="Por favor ingrese el nombre del Centro de Formacion" 
+                               jsf:requiredMessage="Por favor ingrese el nombre del Centro de Formación" 
                                jsf:validatorMessage="Use solo letras"
                                jsf:value="#{centroFormacionController.selected.nombreCentroFormacion}" maxlength="30">
                             <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
@@ -61,9 +61,9 @@
 
                         <label class="Form-na" value="#{bundle.CreateCentroFormacionLabel_direccionCentroFormacion}" for="DirCentroFormacion" > Direccion  </label> 
                         <input type="text" jsf:id="DirCentroFormacionInputText" 
-                               jsf:requiredMessage="Por favor ingrese la direccion"
-                               jsf:validatorMessage="Por favor ingrese una direccion valida"
-                               jsf:converterMessage="use solo letras y numeros"
+                               jsf:requiredMessage="Por favor ingrese la dirección"
+                               jsf:validatorMessage="Por favor ingrese una dirección válida"
+                               jsf:converterMessage="use solo letras y números"
                                jsf:value="#{centroFormacionController.selected.direccionCentroFormacion}">
                             <f:validateRegex pattern="[A-Za-z 0-9áéíóúÁÉÍÓÚÑñ]*"/>
                             <f:ajax execute="@this" render="direccionMessage"/>

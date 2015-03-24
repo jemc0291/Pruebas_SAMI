@@ -9,7 +9,7 @@
         <ui:define name="title">Lista EPS <h:outputText value="#{bundle.ListEpsTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-            <h1>Lista De Entidad Promotora De Salud</h1>
+            <h1>Lista de Entidad Promotora de Salud</h1>
             <h:form>
                 <P>
                     <h:commandButton action="#{epsController.prepareCreate}" value="Agregar EPS"/>
@@ -35,7 +35,7 @@
                             
                             <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{epsController.destroy}"
                                              process="@this" update="EpsTable">
-                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar la eps?" icon="ui-icon-alert" />
+                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar la EPS?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{item}" target="#{epsController.selected}"/>
                             </p:commandButton>
                         </p:column>

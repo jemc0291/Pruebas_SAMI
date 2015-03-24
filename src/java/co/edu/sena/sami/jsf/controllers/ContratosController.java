@@ -170,7 +170,7 @@ public class ContratosController implements Serializable {
         selectedUsuariosContratos.setContratos(selected);
         selectedUsuariosContratos.setPolizas(selectedPolizas);
         selectedUsuariosContratos.setRol(new Rol(1));
-        selectedUsuariosContratos.setUsuarios(selectedUsuarios);
+        selectedUsuariosContratos.setUsuarios(selectedUsuarios);        
         selectedUsuariosContratos.getUsuariosContratosPK().setIdContrato(selectedUsuariosContratos.getContratos().getIdContrato());
         selectedUsuariosContratos.getUsuariosContratosPK().setIdRol(selectedUsuariosContratos.getRol().getIdRol());
         selectedUsuariosContratos.getUsuariosContratosPK().setIdUsuario(selectedUsuariosContratos.getUsuarios().getIdUsuario());

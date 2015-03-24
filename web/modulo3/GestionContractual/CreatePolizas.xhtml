@@ -25,8 +25,8 @@
                     <h:message id="numeroDePolizaMessage" for="numeroDePoliza" />
 
                     <label jsf:value="#{bundle.CreatePolizasLabel_valorDePoliza}"  jsf:for="valorDePoliza" />
-                    <input type="text" maxlength="20" jsf:id="valorDePoliza" pattern="[0-9]*"  jsf:value="#{contratosController.selectedPolizas.valorDePoliza}" 
-                           jsf:title="#{bundle.CreatePolizasTitle_valorDePoliza}" required="true" jsf:requiredMessage="#{bundle.CreatePolizasRequiredMessage_valorDePoliza}"   >
+                    <input type="number" maxlength="20" jsf:id="valorDePoliza" jsf:value="#{contratosController.selectedPolizas.valorDePoliza}" 
+                           jsf:title="#{bundle.CreatePolizasTitle_valorDePoliza}" required="true" jsf:requiredMessage="#{bundle.CreatePolizasRequiredMessage_valorDePoliza}">
                     </input>
                     <h:message id="valorDePolizaMessage" for="valorDePoliza" />
 

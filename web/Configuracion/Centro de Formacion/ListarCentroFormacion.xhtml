@@ -6,14 +6,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Centro De Formacion <h:outputText value="#{bundle.ListCentroFormacionTitle}"></h:outputText></ui:define>
+        <ui:define name="title">Centro de Formación <h:outputText value="#{bundle.ListCentroFormacionTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-           <h1>Lista De Centros De Formacion</h1>
+           <h1>Lista de Centros de Formación</h1>
             <h:form>
 
                 <P>
-                    <h:commandButton action="#{centroFormacionController.prepareCreate}" value="Agregar Centro de Formacion"/>
+                    <h:commandButton action="#{centroFormacionController.prepareCreate}" value="Agregar Centro de Formación"/>
                 </P>
                 <p:outputPanel id="CentroFormacionTablePanel">
                     <p:dataTable value="#{centroFormacionController.items}" var="item"
