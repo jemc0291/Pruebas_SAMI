@@ -13,6 +13,7 @@ import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jpa.sessions.CentroFormacionFacade;
 import co.edu.sena.sami.jpa.sessions.CiudadComisionesFacade;
 import co.edu.sena.sami.jpa.sessions.ComisionesFacade;
+import co.edu.sena.sami.jpa.sessions.FichaCaracterizacionFacade;
 import co.edu.sena.sami.jpa.sessions.UsuariosFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
@@ -151,6 +152,10 @@ public class ComisionesController implements Serializable {
         return ciudadComisionesFacade;
     }
 
+    public FichaCaracterizacionFacade getFichaCaracterizacionFacade() {
+        return ejbFacadeFichas;
+    }
+
     public List<CiudadComisiones> getCiudadComisionesList() {
         if (ciudadComisionesList == null) {
             ciudadComisionesList = getCiudadComisionesFacade().findByDestinos(selected);
@@ -207,15 +212,6 @@ public class ComisionesController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    protected void setEmbeddableKeysCiuComisiones(CiudadComisiones ciudadComisiones) {
-        ciudadComisiones.getCiudadComisionesPK().setIdCiudad(ciudadComisiones.getCiudad().getCiudadPK().getIdCiudad());
-        ciudadComisiones.getCiudadComisionesPK().setIdComision(ciudadComisiones.getComisiones().getIdComision());
-        ciudadComisiones.getCiudadComisionesPK().setIdDpto(ciudadComisiones.getCiudad().getCiudadPK().getIdDpto());
-    }
-
-    protected void initializeEmbeddableKeyCiuComisiones() {
-        ciudadComisionesActual.setCiudadComisionesPK(new co.edu.sena.sami.jpa.entities.CiudadComisionesPK());
-    }
 
     private ComisionesFacade getFacade() {
         return ejbFacade;
@@ -224,8 +220,6 @@ public class ComisionesController implements Serializable {
     public String prepareListComision() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
     }
-    
-    
 
     public String prepareConsultarComision() {
         ciudadComisionesList = null;
@@ -241,7 +235,7 @@ public class ComisionesController implements Serializable {
         selected = new Comisiones();
         ciudadComisionesList = new ArrayList<>();
         ciudadComisionesActual = new CiudadComisiones();
-        initializeEmbeddableKeyCiuComisiones();
+        
         initializeEmbeddableKey();
         return "/modulo4/Gestion_Talento_Humano/Comisiones/CrearComision.xhtml";
     }
@@ -279,7 +273,7 @@ public class ComisionesController implements Serializable {
         }
         ciudadComisionesList.add(ciudadComisionesActual);
         ciudadComisionesActual = new CiudadComisiones();
-        initializeEmbeddableKeyCiuComisiones();
+        
         JsfUtil.addSuccessMessage("Destino agregado correctamente");
     }
 
@@ -298,10 +292,10 @@ public class ComisionesController implements Serializable {
     public String loadCreate() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/comision.xhtml";
     }
+
     public String loadCreate1() {
         return "/modulo4/Gestion_Talento_Humano/Comisiones/informesComisiones.xhtml";
     }
-    
 
     public void create(ActionEvent event) {
         selected.setIdUsuario((Usuarios) event.getComponent().getAttributes().get("usuario"));
@@ -310,10 +304,7 @@ public class ComisionesController implements Serializable {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("ComisionesCreated"));
         try {
             for (CiudadComisiones item : ciudadComisionesList) {
-                item.setComisiones(selected);
-                item.getCiudadComisionesPK().setIdCiudad(item.getCiudad().getCiudadPK().getIdCiudad());
-                item.getCiudadComisionesPK().setIdComision(item.getComisiones().getIdComision());
-                item.getCiudadComisionesPK().setIdDpto(item.getCiudad().getCiudadPK().getIdDpto());
+                item.setIdComision(selected);
                 getCiudadComisionesFacade().create(item);
             }
 
@@ -327,7 +318,7 @@ public class ComisionesController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("ComisionesUpdated"));
-       
+
     }
 
     public void update2() {
@@ -399,6 +390,16 @@ public class ComisionesController implements Serializable {
 
     public List<Comisiones> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public List<FichaCaracterizacion> getListFichaCaracterizacionAutoComplete(String query) {
+        try {
+            return getFichaCaracterizacionFacade().findByNombre(query);
+        } catch (Exception ex) {
+            Logger.getLogger(UsuariosController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
     /**

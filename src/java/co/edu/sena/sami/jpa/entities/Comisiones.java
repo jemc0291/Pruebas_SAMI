@@ -5,10 +5,16 @@
  */
 package co.edu.sena.sami.jpa.entities;
 
+import co.edu.sena.sami.jpa.sessions.CentroFormacionFacade;
+import co.edu.sena.sami.jpa.sessions.FichaCaracterizacionFacade;
+import co.edu.sena.sami.jsf.controllers.UsuariosController;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -65,11 +71,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Comisiones.findByFechaOrden", query = "SELECT c FROM Comisiones c WHERE c.fechaOrden = :fechaOrden")})
 
 public class Comisiones implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id_comision")
     private Integer idComision;
     @Basic(optional = false)
@@ -97,7 +102,6 @@ public class Comisiones implements Serializable {
     @Size(max = 45)
     @Column(name = "mesa_planificar")
     private String mesaPlanificar;
-
     @Column(name = "num_dias")
     private Integer numDias;
     @Column(name = "aprobado")
@@ -139,13 +143,8 @@ public class Comisiones implements Serializable {
     private Date fechaOrden;
     @ManyToMany(mappedBy = "comisionesList")
     private List<Cdp> cdpList;
-    @ManyToMany(mappedBy = "comisionesList")
-    private List<Ciudad> ciudadList;
     @OneToMany(mappedBy = "idComision")
     private List<Notificaciones> notificacionesList;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    @ManyToOne(optional = false)
-    private Usuarios idUsuario;
     @JoinColumn(name = "id_tipo_pasaje", referencedColumnName = "id_tipo_pasaje")
     @ManyToOne
     private TiposPasajes idTipoPasaje;
@@ -172,6 +171,11 @@ public class Comisiones implements Serializable {
     @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
     @ManyToOne(optional = false)
     private Bancos idBanco;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuarios idUsuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idComision")
+    private List<CiudadComisiones> ciudadComisionesList;
 
     public Comisiones() {
     }
@@ -386,26 +390,13 @@ public class Comisiones implements Serializable {
         this.fechaOrden = fechaOrden;
     }
 
-        @XmlTransient
-        public List<Cdp> getCdpList
-        
-            () {
+    @XmlTransient
+    public List<Cdp> getCdpList() {
         return cdpList;
-        }
-
-    
+    }
 
     public void setCdpList(List<Cdp> cdpList) {
         this.cdpList = cdpList;
-    }
-
-    @XmlTransient
-    public List<Ciudad> getCiudadList() {
-        return ciudadList;
-    }
-
-    public void setCiudadList(List<Ciudad> ciudadList) {
-        this.ciudadList = ciudadList;
     }
 
     @XmlTransient
@@ -415,14 +406,6 @@ public class Comisiones implements Serializable {
 
     public void setNotificacionesList(List<Notificaciones> notificacionesList) {
         this.notificacionesList = notificacionesList;
-    }
-
-    public Usuarios getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuarios idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public TiposPasajes getIdTipoPasaje() {
@@ -487,6 +470,23 @@ public class Comisiones implements Serializable {
 
     public void setIdBanco(Bancos idBanco) {
         this.idBanco = idBanco;
+    }
+
+    public Usuarios getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuarios idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    @XmlTransient
+    public List<CiudadComisiones> getCiudadComisionesList() {
+        return ciudadComisionesList;
+    }
+
+    public void setCiudadComisionesList(List<CiudadComisiones> ciudadComisionesList) {
+        this.ciudadComisionesList = ciudadComisionesList;
     }
 
     @Override

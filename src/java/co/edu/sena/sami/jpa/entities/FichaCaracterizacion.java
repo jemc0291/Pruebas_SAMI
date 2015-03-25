@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.entities;
 
 import java.io.Serializable;
@@ -25,6 +24,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -39,8 +39,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "FichaCaracterizacion.findAll", query = "SELECT f FROM FichaCaracterizacion f"),
     @NamedQuery(name = "FichaCaracterizacion.findByIdFichaCaracterizacion", query = "SELECT f FROM FichaCaracterizacion f WHERE f.idFichaCaracterizacion = :idFichaCaracterizacion"),
     @NamedQuery(name = "FichaCaracterizacion.findByFechaInicio", query = "SELECT f FROM FichaCaracterizacion f WHERE f.fechaInicio = :fechaInicio"),
-    @NamedQuery(name = "FichaCaracterizacion.findByFechaFin", query = "SELECT f FROM FichaCaracterizacion f WHERE f.fechaFin = :fechaFin")})
+    @NamedQuery(name = "FichaCaracterizacion.findByFechaFin", query = "SELECT f FROM FichaCaracterizacion f WHERE f.fechaFin = :fechaFin"),
+    @NamedQuery(name = "FichaCaracterizacion.findByCodigoFicha", query = "SELECT f FROM FichaCaracterizacion f WHERE f.codigoFicha like :codigoFicha")})
 public class FichaCaracterizacion implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -57,6 +59,11 @@ public class FichaCaracterizacion implements Serializable {
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
+     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "codigo_ficha")
+    private String codigoFicha;
     @JoinTable(name = "proyectos_fichas", joinColumns = {
         @JoinColumn(name = "id_ficha_caracterizacion", referencedColumnName = "id_ficha_caracterizacion")}, inverseJoinColumns = {
         @JoinColumn(name = "id_proyecto_formacion", referencedColumnName = "id_proyecto_formacion")})
@@ -83,6 +90,7 @@ public class FichaCaracterizacion implements Serializable {
         this.idFichaCaracterizacion = idFichaCaracterizacion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.codigoFicha = codigoFicha;
     }
 
     public Integer getIdFichaCaracterizacion() {
@@ -107,6 +115,14 @@ public class FichaCaracterizacion implements Serializable {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+    
+        public String getCodigoFicha() {
+        return codigoFicha;
+    }
+
+    public void setCodigoFicha(String codigoFicha) {
+        this.codigoFicha = codigoFicha;
     }
 
     @XmlTransient
@@ -175,7 +191,7 @@ public class FichaCaracterizacion implements Serializable {
 
     @Override
     public String toString() {
-        return  idFichaCaracterizacion + "";
+        return codigoFicha;
     }
-    
+
 }

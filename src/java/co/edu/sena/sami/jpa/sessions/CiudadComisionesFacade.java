@@ -34,7 +34,7 @@ public class CiudadComisionesFacade extends AbstractFacade<CiudadComisiones> {
     public List<CiudadComisiones>findByDestinos(Comisiones comisiones){
     
         Query q= getEntityManager().createNamedQuery("CiudadComisiones.findByIdComision");
-        q.setParameter("idComision", comisiones.getIdComision());
+        q.setParameter("idComision", comisiones);
         return q.getResultList();
     }
     

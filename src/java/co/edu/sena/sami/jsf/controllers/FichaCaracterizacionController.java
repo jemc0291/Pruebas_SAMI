@@ -121,8 +121,11 @@ public class FichaCaracterizacionController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = FichaCaracterizacion.class)
+    @FacesConverter(forClass = FichaCaracterizacion.class, value = "fichaCaracterizacionConverter")
     public static class FichaCaracterizacionControllerConverter implements Converter {
+        
+        private static final String SEPARATOR = "#";
+        private static final String SEPARATOR_ESCAPED = "\\#";
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
