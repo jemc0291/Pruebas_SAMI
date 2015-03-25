@@ -25,15 +25,26 @@
                         </p:autoComplete>
                         <p:message id="centroFormacionMessage" for="centroFormacion" styleClass="error"/>
                         
+                         <label class="FormLabelMeses" jsf:for="mesaPlanificar" 
+                                value="#{bundle.CreateComisionesLabel_mesaPlanificar}"/>
+                            <h:selectOneMenu styleClass="FormSelectMeses" id="mesaPlanificar" required="true"
+                                             value="#{comisionesController.selected.mesaPlanificar}">
+                                <f:selectItem itemLabel="Seleccionar" />
+                                <f:selectItem itemLabel="Enero" itemValue="Enero"/>
+                                <f:selectItem itemLabel="Febrero" itemValue="Febrero"/>
+                                <f:selectItem itemLabel="Marzo" itemValue="Marzo"/>
+                                <f:selectItem itemLabel="Abril" itemValue="Abril"/>
+                                <f:selectItem itemLabel="Mayo" itemValue="Mayo"/>
+                                <f:selectItem itemLabel="Junio" itemValue="Junio"/>
+                                <f:selectItem itemLabel="Julio" itemValue="Julio"/>
+                                <f:selectItem itemLabel="Agosto" itemValue="Agosto"/>
+                                <f:selectItem itemLabel="Septiembre" itemValue="Septiembre"/>
+                                <f:selectItem itemLabel="Octubre" itemValue="Octubre"/>
+                                <f:selectItem itemLabel="Noviembre" itemValue="Noviembre"/>
+                                <f:selectItem itemLabel="Diciembre" itemValue="Diciembre"/>
 
-                        <label jsf:value="Mes a planificar" jsf:for="mesaPlanificar" />
-                        <input type="text" maxlength="45"  required="true" 
-                               jsf:id="mesaPlanificar" jsf:value="#{comisionesController.selected.mesaPlanificar}" 
-                               title="MesaPlanificar" 
-                               jsf:validatorMessage="Este campo solo admite letras">
-                            <f:validateRegex pattern="[a-zA-Z ñÑ]*"/>
-                            <f:ajax execute="@this" render="mesaPlanificarMessage"/>
-                        </input>
+                            </h:selectOneMenu>
+                         
                         <p:message id="mesaPlanificarMessage" for="mesaPlanificar" styleClass="error"/>
 
                         <label jsf:value="Objetivo Comision:" jsf:for="objetivoComision" />

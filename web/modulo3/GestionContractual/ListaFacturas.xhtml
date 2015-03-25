@@ -15,6 +15,17 @@
 
 
                 <h:form id="tableFacturas">
+                    <h3>Exportar Registros</h3>
+                    <h:commandLink>
+                        <img src="../../modulo1/ContratacionPrestacionDeServicios/Recursos/Imagenes/excel.png" width="26" title="Exportar a Excel"/>                   
+                        <p:dataExporter type="xls" target="facturasTable" fileName="item"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <img src="../../modulo1/ContratacionPrestacionDeServicios/Recursos/Imagenes/pdf.png" width="26" title="Exportar a PDF"/>
+                        <p:dataExporter type="pdf" target="facturasTable" fileName="item"  />
+                    </h:commandLink>
+                    
                     <h1><h:outputText value="#{bundle.ListPagosContratosTitle}"/></h1>
                     <h3><h:outputText value="*Ingrese las dos fechas para realizar la consulta*" class="ErrorDupli"/></h3>
                     <p:panelGrid columns="5">
@@ -40,6 +51,8 @@
                                  rowsPerPageTemplate="5,10,15" >
                         <f:facet name="header">
                         Lista de Facturas
+                        <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+                        <p:columnToggler datasource="facturasTable" trigger="toggler" transient="false"/>
                     </f:facet>
                         
                         <p:column filterBy="#{item.numFactura}" filterMatchMode="contains">
@@ -83,11 +96,11 @@
                                 <h:outputText value="#{bundle.ListPagosContratosTitle_valFactura}"/>
                             </f:facet>
                             <h:outputText value="#{item.valFactura}">
-                                <f:convertNumber type="number" />
+                               <f:convertNumber currencySymbol="$" type="currency" maxFractionDigits="0" />
                             </h:outputText>
                         </p:column>
                         
-                        <p:column>
+                        <p:column exportable="false">
                             <f:facet name="header">
                                 <h:outputText value="OPCIONES"/>
                             </f:facet>

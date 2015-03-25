@@ -95,7 +95,10 @@
                         <h:message id="productosEntregadosMessage" for="productosEntregadoscomision"/>
                     </p:panelGrid>
 
-                    <h:commandButton value="Guardar" action="#{comisionesController.update}"/>
+                    <h:commandButton value="Guardar" actionListener="#{comisionesController.update}" 
+                                     action="#{comisionesController.loadCreate1()}" >
+                                     <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                    </h:commandButton>
                 </h:form>
             
         </ui:define>

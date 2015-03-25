@@ -6,6 +6,7 @@
 package co.edu.sena.sami.jpa.sessions;
 
 import co.edu.sena.sami.jpa.entities.Contratos;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -51,6 +52,11 @@ public class ContratosFacade extends AbstractFacade<Contratos> {
      public List<Contratos> findByContratos(String Contratos){
      return getEntityManager().createNativeQuery("LOAD DATA INFILE : fileName INTO TABLE contratos ").setParameter("fileName", Contratos).getResultList();
      }
-     
+    public List<Contratos> rangoFechas(Date fechaInicio, Date fechaFin) {
+        Query q = getEntityManager().createNamedQuery("Contratos.findByFechasuscripcion");
+        q.setParameter("fechaInicio", fechaInicio);
+        q.setParameter("fechaFin", fechaFin);
+        return q.getResultList();
+    } 
     
 }

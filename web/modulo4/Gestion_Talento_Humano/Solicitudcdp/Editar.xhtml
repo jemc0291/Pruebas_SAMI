@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="NumeroCdp:" for="numeroCdp" />
+                    <h:inputText id="numeroCdp" value="#{cdpController.selected.numeroCdp}" title="NumeroCdp" required="true" requiredMessage="The NumeroCdp field is required."/>
+                    <h:outputLabel value="FechaSolicitud:" for="fechaSolicitud" />
+                    <h:inputText id="fechaSolicitud" value="#{cdpController.selected.fechaSolicitud}" title="FechaSolicitud" required="true" requiredMessage="The FechaSolicitud field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="FechaRecepcion:" for="fechaRecepcion" />
+                    <h:inputText id="fechaRecepcion" value="#{cdpController.selected.fechaRecepcion}" title="FechaRecepcion" required="true" requiredMessage="The FechaRecepcion field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="ObjetivoDelGasto:" for="objetivoDelGasto" />
+                    <h:inputText id="objetivoDelGasto" value="#{cdpController.selected.objetivoDelGasto}" title="ObjetivoDelGasto" required="true" requiredMessage="The ObjetivoDelGasto field is required."/>
+                    <h:outputLabel value="IdTipoSolicitud:" for="idTipoSolicitud" />
+                            <h:selectOneMenu id="idTipoSolicitud" value="#{cdpController.selected.idTipoSolicitud}" title="IdTipoSolicitud" required="true" requiredMessage="The IdTipoSolicitud field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{cdpController.itemsAvailableSelectOneTiposDeSolicitudes}"/>
+                            </h:selectOneMenu>
+                    <h:outputLabel value="IdRubro:" for="idRubro" />
+                            <h:selectOneMenu id="idRubro" value="#{cdpController.selected.idRubro}" title="IdRubro" required="true" requiredMessage="The IdRubro field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{cdpController.itemsAvailableSelectOneRubros}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="CodigoGestion:" for="codigoGestion" />
+                            <h:selectOneMenu id="codigoGestion" value="#{cdpController.selected.codigoGestion}" title="CodigoGestion" required="true" requiredMessage="The CodigoGestion field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{cdpController.itemsAvailableSelectOneGestiones}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="CodigoDeDependencia:" for="codigoDeDependencia" />
+                            <h:selectOneMenu id="codigoDeDependencia" value="#{cdpController.selected.codigoDeDependencia}" title="CodigoDeDependencia" required="true" requiredMessage="The CodigoDeDependencia field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{cdpController.itemsAvailableSelectOneDependencias}"/>
+                            </h:selectOneMenu>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+</ui:define>
+    </ui:composition>
+</html>
+

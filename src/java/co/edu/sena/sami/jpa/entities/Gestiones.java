@@ -108,7 +108,7 @@ public class Gestiones implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Gestiones[ codigoGestion=" + codigoGestion + " ]";
+        return "" + codigoGestion ;
     }
     
 }

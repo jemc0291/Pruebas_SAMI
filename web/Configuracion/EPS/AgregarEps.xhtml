@@ -12,7 +12,7 @@
         <ui:define name="body">
             
             <h:form> 
-                <h:commandButton value="Agregar Eps" action="#{epsController.prepareCreate}"/>
+                <h:commandButton value="Agregar EPS" action="#{epsController.prepareCreate}"/>
                 <h:commandButton value="Volver A Lista" action="#{epsController.prepareListEps}"/>
             
             </h:form>
@@ -21,7 +21,7 @@
                 <form jsf:id="EpsCreateForm">
                     <p:panelGrid columns="3" layout="grid">
                
-                        <label class="Form-na" value="#{bundle.CreateEpsLabel_nombreEps}" for="NombreEps"> Nombre Eps </label> 
+                        <label class="Form-na" value="#{bundle.CreateEpsLabel_nombreEps}" for="NombreEps"> Nombre EPS </label> 
                         <input type="text" jsf:id="NombreEpsInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre de la eps" 
                                jsf:validatorMessage="Use solo letras"

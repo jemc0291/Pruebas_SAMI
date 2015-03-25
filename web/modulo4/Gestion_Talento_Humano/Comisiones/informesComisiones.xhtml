@@ -69,10 +69,13 @@
                         <p:commandButton   id="editButton" icon="ui-icon-pencil" update="comisionesTable" action="#{comisionesController.prepareCreateInformeComision()}">
                             <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
                         </p:commandButton>
+                       
                         <p:commandButton icon="ui-icon-search"  action="#{comisionesController.prepareCreateInformeComision2}">
                                 <f:setPropertyActionListener value="#{item}" target="#{comisionesController.selected}"/>
                             </p:commandButton>
+                         
                     </p:column>
+                   
                 </p:dataTable>
             </h:form>
         </ui:define>

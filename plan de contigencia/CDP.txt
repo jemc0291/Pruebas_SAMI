@@ -1,17 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:p="http://primefaces.org/ui">
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">Gestion talento humano</ui:define>
-        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
-        <ui:define name="body">
-            <section class="section-form">
-                <form jsf:id="cdpCreateForm">
+<form jsf:id="cdpCreateForm">
                     <p:panelGrid columns="3" layout="grid">
                         <label class="Form-na">Numero CDP</label>
                         <input type="Text" jsf:id="numeroCdp" required="true"
@@ -82,8 +69,5 @@
                             <f:selectItems value="#{fixme}"/>
                         </h:selectOneMenu>
                     </p:panelGrid>
+                    
                 </form>
-            </section>
-        </ui:define>
-    </ui:composition>
-</html>
