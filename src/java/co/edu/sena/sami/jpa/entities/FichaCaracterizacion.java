@@ -126,15 +126,7 @@ public class FichaCaracterizacion implements Serializable {
     public void setCodigoFicha(String codigoFicha) {
         this.codigoFicha = codigoFicha;
     }
-
-    public String getCodigoFicha() {
-        return codigoFicha;
-    }
-
-    public void setCodigoFicha(String codigoFicha) {
-        this.codigoFicha = codigoFicha;
-    }
-
+    
     @XmlTransient
     public List<ProyectoFormacion> getProyectoFormacionList() {
         return proyectoFormacionList;
