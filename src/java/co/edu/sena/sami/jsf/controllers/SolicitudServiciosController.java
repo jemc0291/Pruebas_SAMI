@@ -81,6 +81,36 @@ public class SolicitudServiciosController implements Serializable {
         return items;
     }
 
+    public String obtenerAvanceFA(SolicitudServicios s) {
+        List<Avance> a = s.getAvanceList();
+        boolean b = false;
+        if (a != null && a.size() > 0) {
+            b = a.get(a.size() - 1).getFueAtendido();
+            if (b) {
+                return "Si";
+            } else {
+                return "No";
+            }
+        } else {
+            return "No";
+        }
+    }
+    
+      public String obtenerAvanceFS(SolicitudServicios s) {
+        List<Avance> a = s.getAvanceList();
+        boolean b = false;
+        if (a != null && a.size() > 0) {
+            b = a.get(a.size() - 1).getFueSolucionado();
+            if (b) {
+                return "Si";
+            } else {
+                return "No";
+            }
+        } else {
+            return "No";
+        }
+    }
+
     public List<SolicitudServicios> getListSolicituServiciosByUsuario() {
         if (listSolicituServiciosByUsuario == null) {
             try {
@@ -140,8 +170,8 @@ public class SolicitudServiciosController implements Serializable {
     public List<SolicitudServicios> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-    
-    public List<SolicitudServicios> getItemsRango () {
+
+    public List<SolicitudServicios> getItemsRango() {
         return getFacade().rangoFecha(fechaInicio, fechaFin);
     }
 
@@ -349,6 +379,7 @@ public class SolicitudServiciosController implements Serializable {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
         }
         return "List";
+
     }
 
     @FacesConverter(forClass = SolicitudServicios.class, value = "solicitudConverter")

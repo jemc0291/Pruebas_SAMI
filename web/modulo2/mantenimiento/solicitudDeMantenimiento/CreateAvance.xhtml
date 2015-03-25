@@ -41,57 +41,60 @@
                     </p:carousel>
 
                     <p:panel header="Crear Avance" styleClass="Avance-mant">
-                        <div style="width: 50%">
-                            <p:panelGrid columns="3" layout="grid" style="width: 580px">
+                        <h:panelGroup id="formulariactual">
 
-                                <Label> *Descripción del Avance </Label>
-                                <textarea cols="25" rows="5" type="text" jsf:id="descripcionServicioPrestado" 
-                                          jsf:value="#{solicitudServiciosController.avanceActual.descripcion}">
-                                </textarea>
-                                <h:message id="descripcionServicioPrestadoMessage" for="descripcionServicioPrestado" styleClass="error"/>
 
-                                <p:outputLabel value="Estado:" for="nombre_estado"/>
-                                <h:selectOneMenu id="nombre_estado" value="#{solicitudServiciosController.avanceActual.idEstado}" 
-                                                 required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
-                                                 style="width:125px">
-                                    <f:selectItem itemLabel="Seleccione uno..."/>
-                                    <f:selectItems value="#{solicitudServiciosController.listEstado}"/>
-                                </h:selectOneMenu>
-                                <h:message id="nombre_estadoMessage" for="nombre_estado" styleClass="error"/>
+                            <div style="width: 50%">
+                                <p:panelGrid columns="3" layout="grid" style="width: 580px">
 
-                                <p:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
-                                <h:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" 
-                                                 required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
-                                                 style="width:125px">
-                                    <f:selectItem itemLabel="Seleccione uno..."/>
-                                    <f:selectItems value="#{tipoDeServiciosController.itemsAvailableSelectOne}"/>
-                                    <f:ajax execute="@this" render="nombre_servicioMessage"/>
-                                </h:selectOneMenu>
-                                <h:message id="nombre_servicioMessage" for="nombre_servicio" styleClass="error"/>
+                                    <Label> *Descripción del Avance </Label>
+                                    <textarea cols="25" rows="5" type="text" jsf:id="descripcionServicioPrestado" 
+                                              jsf:value="#{solicitudServiciosController.avanceActual.descripcion}">
+                                    </textarea>
+                                    <h:message id="descripcionServicioPrestadoMessage" for="descripcionServicioPrestado" styleClass="error"/>
 
-                                <p:outputLabel value="Prioridades:" for="nombre_prioridades" />
-                                <h:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" 
-                                                 required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida."
-                                                 style="width:125px" >
-                                    <f:selectItem itemLabel="Seleccione uno..."/>
-                                    <f:selectItems value="#{solicitudServiciosController.listPrioridades}" />
-                                    <f:ajax execute="@this" render="nombre_prioridadMessage"/>
-                                </h:selectOneMenu>
-                                <h:message id="nombre_prioridadMessage" for="nombre_prioridades" styleClass="error"/>
+                                    <p:outputLabel value="Estado:" for="nombre_estado"/>
+                                    <h:selectOneMenu id="nombre_estado" value="#{solicitudServiciosController.avanceActual.idEstado}" 
+                                                     required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
+                                                     style="width:125px">
+                                        <f:selectItem itemLabel="Seleccione uno..."/>
+                                        <f:selectItems value="#{solicitudServiciosController.listEstado}"/>
+                                    </h:selectOneMenu>
+                                    <h:message id="nombre_estadoMessage" for="nombre_estado" styleClass="error"/>
 
-                                <h:outputLabel value="Fue Atendido" for="tipoSolicitud1" />
-                                <h:selectBooleanCheckbox id="tipoSolicitud1" value="#{solicitudServiciosController.avanceActual.fueAtendido}"/>
-                                <h:message id="tipoSolicitud2Message" for="tipoSolicitud2" styleClass="error"/>
+                                    <p:outputLabel value="Tipo de Servicio:" for="nombre_servicio" />
+                                    <h:selectOneMenu id="nombre_servicio" value="#{solicitudServiciosController.selected.idTipoServ}" 
+                                                     required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida." 
+                                                     style="width:125px">
+                                        <f:selectItem itemLabel="Seleccione uno..."/>
+                                        <f:selectItems value="#{tipoDeServiciosController.itemsAvailableSelectOne}"/>
+                                        <f:ajax execute="@this" render="nombre_servicioMessage"/>
+                                    </h:selectOneMenu>
+                                    <h:message id="nombre_servicioMessage" for="nombre_servicio" styleClass="error"/>
 
-                                <h:outputLabel value="Fue Solucionado" for="tipoSolicitud2" />
-                                <h:selectBooleanCheckbox id="tipoSolicitud2" value="#{solicitudServiciosController.avanceActual.fueSolucionado}"/>
-                                <h:message id="tipoSolicitud1Message" for="tipoSolicitud1" styleClass="error"/>
+                                    <p:outputLabel value="Prioridades:" for="nombre_prioridades" />
+                                    <h:selectOneMenu id="nombre_prioridades" value="#{solicitudServiciosController.avanceActual.idPrioridades}" 
+                                                     required ="true" requiredMessage="¡SELECCION INCORRECTA!: Por favor, seleccione una opcion válida."
+                                                     style="width:125px" >
+                                        <f:selectItem itemLabel="Seleccione uno..."/>
+                                        <f:selectItems value="#{solicitudServiciosController.listPrioridades}" />
+                                        <f:ajax execute="@this" render="nombre_prioridadMessage"/>
+                                    </h:selectOneMenu>
+                                    <h:message id="nombre_prioridadMessage" for="nombre_prioridades" styleClass="error"/>
 
-                            </p:panelGrid>
+                                    <h:outputLabel value="Fue Atendido" for="tipoSolicitud1" />
+                                    <h:selectBooleanCheckbox id="tipoSolicitud1" value="#{solicitudServiciosController.avanceActual.fueAtendido}"/>
+                                    <h:message id="tipoSolicitud2Message" for="tipoSolicitud2" styleClass="error"/>
 
-                            <p:commandButton  value="Crear Avance" action="#{solicitudServiciosController.addAvance}" update="createAvance"/>
-                        </div>
+                                    <h:outputLabel value="Fue Solucionado" for="tipoSolicitud2" />
+                                    <h:selectBooleanCheckbox id="tipoSolicitud2" value="#{solicitudServiciosController.avanceActual.fueSolucionado}"/>
+                                    <h:message id="tipoSolicitud1Message" for="tipoSolicitud1" styleClass="error"/>
 
+                                </p:panelGrid>
+
+                                <p:commandButton  value="Crear Avance" action="#{solicitudServiciosController.addAvance}" update="formulariactual :createAvance:formulario1Table"/>
+                            </div>
+                        </h:panelGroup>
                         <div class="mainImage-mant" style="width: 50%">
                             <div class="slides" style="width: 580px; height: 239px">
                                 <img src="#{request.contextPath}/resources/images/mantenimiento2/mant1.jpg" />
@@ -186,7 +189,7 @@
             <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
             <script src="#{request.contextPath}/resources/js/jquery.slides.js"></script>
             <script>
-                $(function () {
+                $(function() {
                     $(".slides").slidesjs({
                         play: {
                             active: true,
