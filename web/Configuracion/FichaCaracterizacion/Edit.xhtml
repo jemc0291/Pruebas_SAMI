@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FichaCaracterizacionEditDlg" widgetVar="FichaCaracterizacionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFichaCaracterizacionTitle}">
+            <h:form id="FichaCaracterizacionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{fichaCaracterizacionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFichaCaracterizacionLabel_idFichaCaracterizacion}" for="idFichaCaracterizacion" />
+                        <p:inputText id="idFichaCaracterizacion" value="#{fichaCaracterizacionController.selected.idFichaCaracterizacion}" title="#{bundle.EditFichaCaracterizacionTitle_idFichaCaracterizacion}" required="true" requiredMessage="#{bundle.EditFichaCaracterizacionRequiredMessage_idFichaCaracterizacion}"/>
+                        <p:outputLabel value="#{bundle.EditFichaCaracterizacionLabel_fechaInicio}" for="fechaInicio" />
+                        <p:calendar id="fechaInicio" pattern="MM/dd/yyyy" value="#{fichaCaracterizacionController.selected.fechaInicio}" title="#{bundle.EditFichaCaracterizacionTitle_fechaInicio}" required="true" requiredMessage="#{bundle.EditFichaCaracterizacionRequiredMessage_fechaInicio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFichaCaracterizacionLabel_fechaFin}" for="fechaFin" />
+                        <p:calendar id="fechaFin" pattern="MM/dd/yyyy" value="#{fichaCaracterizacionController.selected.fechaFin}" title="#{bundle.EditFichaCaracterizacionTitle_fechaFin}" required="true" requiredMessage="#{bundle.EditFichaCaracterizacionRequiredMessage_fechaFin}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFichaCaracterizacionLabel_codigoFicha}" for="codigoFicha" />
+                        <p:inputText id="codigoFicha" value="#{fichaCaracterizacionController.selected.codigoFicha}" title="#{bundle.EditFichaCaracterizacionTitle_codigoFicha}" required="true" requiredMessage="#{bundle.EditFichaCaracterizacionRequiredMessage_codigoFicha}"/>
+                        <p:outputLabel value="#{bundle.EditFichaCaracterizacionLabel_idProgramaFormacion}" for="idProgramaFormacion" />
+                        <p:selectOneMenu id="idProgramaFormacion" value="#{fichaCaracterizacionController.selected.idProgramaFormacion}" required="true" requiredMessage="#{bundle.EditFichaCaracterizacionRequiredMessage_idProgramaFormacion}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{programaDeFormacionController.itemsAvailableSelectOne}"
+                                           var="idProgramaFormacionItem"
+                                           itemValue="#{idProgramaFormacionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{fichaCaracterizacionController.update}" value="#{bundle.Save}" update="display,:FichaCaracterizacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FichaCaracterizacionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FichaCaracterizacionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -9,15 +9,11 @@ import co.edu.sena.sami.jpa.entities.SolicitudMaterialesAlmacenMateriales;
 import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jpa.entities.UsuariosSolicitudMaterialesAlmacen;
 import co.edu.sena.sami.jpa.sessions.AreasFacade;
-import co.edu.sena.sami.jpa.sessions.CentroFormacionFacade;
 import co.edu.sena.sami.jpa.sessions.FichaCaracterizacionFacade;
-import co.edu.sena.sami.jpa.sessions.RolFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import co.edu.sena.sami.jpa.sessions.SolicitudMaterialesAlmacenFacade;
 import co.edu.sena.sami.jpa.sessions.SolicitudMaterialesAlmacenMaterialesFacade;
-import co.edu.sena.sami.jpa.sessions.UsuariosFacade;
-import co.edu.sena.sami.jpa.sessions.UsuariosSolicitudMaterialesAlmacenFacade;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -62,7 +58,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
 
     @EJB
     private co.edu.sena.sami.jpa.sessions.MaterialesFacade ejbFacadeMateriales;
-
+    
     private FichaCaracterizacionFacade getFichaFacade() {
         return fichaFacade;
     }
@@ -86,7 +82,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     private SolicitudMaterialesAlmacenMaterialesFacade getSolicitudMaterialesFacade() {
         return ejbFacadeSolicitudMateriales;
     }
-    
+
     public Areas getAreas(java.lang.Integer id) {
         return getAreaFacade().find(id);
     }
@@ -108,7 +104,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
 
     public SolicitudMaterialesAlmacenController() {
     }
-
+    
     public SolicitudMaterialesAlmacen getSelected() {
         return selected;
     }
@@ -124,11 +120,11 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     public void setSelectedSolMaterial(SolicitudMaterialesAlmacenMateriales selected) {
         this.selectedSolMaterial = selected;
     }
-    
+     
     protected void setEmbeddableKeysSolMaterial() {
         selectedSolMaterial.getSolicitudMaterialesAlmacenMaterialesPK().setIdMateriales(selectedSolMaterial.getMateriales().getIdMateriales());
         selectedSolMaterial.getSolicitudMaterialesAlmacenMaterialesPK().setIdSolicitudMaterial(selectedSolMaterial.getSolicitudMaterialesAlmacen().getIdSolicitudMaterial());
-    }
+    }    
     protected void initializeEmbeddableKeySolMaterial() {
         selectedSolMaterial.setSolicitudMaterialesAlmacenMaterialesPK(new co.edu.sena.sami.jpa.entities.SolicitudMaterialesAlmacenMaterialesPK());
     }
@@ -136,7 +132,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     private SolicitudMaterialesAlmacenMaterialesFacade getFacadeSolMaterial() {
         return ejbSolMaterial;
     }
-
+    
     protected void setEmbeddableKeys() {
     }
 
@@ -207,11 +203,11 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         }
         return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Solicitudes.xhtml";
     }
-
+        
     public void eliminar() {
         itemsSolMaterial.remove(selectedSolMaterial);
     }
-
+    
     public String createDos() {
         selected.setFechaDeSolicitud(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenCreated"));
@@ -222,10 +218,10 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         }
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
-        }
+    }
         return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/ViewRedireccion.xhtml";
     }
-
+    
     public String update() {
         selected.setSolicitudMaterialesAlmacenMaterialesList(itemsSolMaterial);
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenUpdated"));
@@ -281,7 +277,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
             }
         }
     }
-
+    
     private void persistSolMaterial(PersistAction persistAction, String successMessage) {
         if (selectedSolMaterial != null) {
             setEmbeddableKeysSolMaterial();
@@ -339,8 +335,8 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
     public List<Materiales> getItemsAvailableSelectOneMateriales() {
         return getFacadeMateriales().findAll();
     }
+    
 
-   
     @FacesConverter(forClass = SolicitudMaterialesAlmacen.class)
     public static class SolicitudMaterialesAlmacenControllerConverter implements Converter {
 

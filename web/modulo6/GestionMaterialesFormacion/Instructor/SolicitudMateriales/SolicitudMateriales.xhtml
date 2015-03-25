@@ -88,8 +88,8 @@
                         </p:column>
                     </p:dataTable>
 
-                    <p:commandButton value="Solicitar" 
-                                     action="#{solicitudMaterialesAlmacenController.createDos}" 
+                    <p:commandButton value="Solicitar" actionListener="#{solicitudMaterialesAlmacenController.create}" 
+                                     action="#{solicitudMaterialesAlmacenController.viewRedireccion}"                                    
                                      process="@this panelSolicitud" update="panelSolicitud"/>
                     <p:button value="Cancelar" outcome="/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/SolicitudesUsuario.xhtml" />                
                 </h:form>

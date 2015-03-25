@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.sena.sami.jpa.entities;
 
 import java.io.Serializable;
@@ -13,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,12 +26,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Snyck
+ * @author usuario
  */
 @Entity
 @Table(name = "ficha_caracterizacion")
@@ -39,12 +41,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "FichaCaracterizacion.findAll", query = "SELECT f FROM FichaCaracterizacion f"),
     @NamedQuery(name = "FichaCaracterizacion.findByIdFichaCaracterizacion", query = "SELECT f FROM FichaCaracterizacion f WHERE f.idFichaCaracterizacion = :idFichaCaracterizacion"),
     @NamedQuery(name = "FichaCaracterizacion.findByFechaInicio", query = "SELECT f FROM FichaCaracterizacion f WHERE f.fechaInicio = :fechaInicio"),
-    @NamedQuery(name = "FichaCaracterizacion.findByFechaFin", query = "SELECT f FROM FichaCaracterizacion f WHERE f.fechaFin = :fechaFin")})
+    @NamedQuery(name = "FichaCaracterizacion.findByFechaFin", query = "SELECT f FROM FichaCaracterizacion f WHERE f.fechaFin = :fechaFin"),
+    @NamedQuery(name = "FichaCaracterizacion.findByCodigoFicha", query = "SELECT f FROM FichaCaracterizacion f WHERE f.codigoFicha = :codigoFicha")})
 public class FichaCaracterizacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id_ficha_caracterizacion")
     private Integer idFichaCaracterizacion;
     @Basic(optional = false)
@@ -57,6 +60,11 @@ public class FichaCaracterizacion implements Serializable {
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "codigo_ficha")
+    private String codigoFicha;
     @JoinTable(name = "proyectos_fichas", joinColumns = {
         @JoinColumn(name = "id_ficha_caracterizacion", referencedColumnName = "id_ficha_caracterizacion")}, inverseJoinColumns = {
         @JoinColumn(name = "id_proyecto_formacion", referencedColumnName = "id_proyecto_formacion")})
@@ -79,10 +87,11 @@ public class FichaCaracterizacion implements Serializable {
         this.idFichaCaracterizacion = idFichaCaracterizacion;
     }
 
-    public FichaCaracterizacion(Integer idFichaCaracterizacion, Date fechaInicio, Date fechaFin) {
+    public FichaCaracterizacion(Integer idFichaCaracterizacion, Date fechaInicio, Date fechaFin, String codigoFicha) {
         this.idFichaCaracterizacion = idFichaCaracterizacion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.codigoFicha = codigoFicha;
     }
 
     public Integer getIdFichaCaracterizacion() {
@@ -107,6 +116,14 @@ public class FichaCaracterizacion implements Serializable {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public String getCodigoFicha() {
+        return codigoFicha;
+    }
+
+    public void setCodigoFicha(String codigoFicha) {
+        this.codigoFicha = codigoFicha;
     }
 
     @XmlTransient
@@ -175,7 +192,7 @@ public class FichaCaracterizacion implements Serializable {
 
     @Override
     public String toString() {
-        return  idFichaCaracterizacion + "";
+        return "entities.FichaCaracterizacion[ idFichaCaracterizacion=" + idFichaCaracterizacion + " ]";
     }
     
 }

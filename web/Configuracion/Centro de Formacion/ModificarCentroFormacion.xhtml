@@ -7,12 +7,12 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">Centro de Formacion <h:outputText value="#{bundle.ListCentroFormacionTitle}"></h:outputText></ui:define>
+        <ui:define name="title">Centro de Formación <h:outputText value="#{bundle.ListCentroFormacionTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
 
             <h:form> 
-                <h:commandButton value="Modificar Centro de Formacion" action="#{centroFormacionController.prepareModificarCentroFormacion}"/>
+                <h:commandButton value="Modificar Centro de Formación" action="#{centroFormacionController.prepareModificarCentroFormacion}"/>
                 <h:commandButton value="Volver A Lista" action="#{centroFormacionController.prepareListCentroFormacion}"/>
 
             </h:form>
@@ -22,7 +22,7 @@
                     <p:panelGrid columns="3" layout="grid">
                         <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_idCentroFormacion}" jsf:for="CentroFormacion"> </label> 
                         <input type="tel" jsf:id="CentroFormacionInputText" required="true"  disabled="true"
-                               jsf:requiredMessage="Por favor ingrese el codigo del Centro de Formacion" 
+                               jsf:requiredMessage="Por favor ingrese el codigo del Centro de Formación" 
                                jsf:validatorMessage="Use solo numeros"
                                jsf:converterMessage="Use solo números. Máximo 16 digitos"
                                jsf:value="#{centroFormacionController.selected.idCentroFormacion}">
@@ -30,7 +30,7 @@
                         </input>
                         <h:message id="CentroFormacionMessage" for="CentroFormacionInputText" styleClass="error"/>
 
-                        <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_nombreCentroFormacion}" for="NombreCentroFormacion"> Nombre Centro Formacion </label> 
+                        <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_nombreCentroFormacion}" for="NombreCentroFormacion"> Nombre Centro Formación </label> 
                         <input type="text" jsf:id="NombCentroFormacionInputText" required="true"
                                jsf:requiredMessage="Por favor ingrese el nombre del Centro de Formacion" 
                                jsf:validatorMessage="Use solo letras"
@@ -40,9 +40,9 @@
                         </input>
                         <h:message id="NombCentroFormacionMessage" for="NombCentroFormacionInputText" styleClass="error"/>
 
-                        <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_telefonoCentroFormacion}" for="TelCentroFormacion"> Telefono </label> 
+                        <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_telefonoCentroFormacion}" for="TelCentroFormacion"> Teléfono </label> 
                         <input type="tel" jsf:id="TelCentroFormacionInputText"
-                               jsf:requiredMessage="Por favor ingrese el numero de telefono" 
+                               jsf:requiredMessage="Por favor ingrese el numero de teléfono" 
                                jsf:validatorMessage="Ingrese un numero movi valido, debe ser mayor a cero"
                                jsf:converterMessage="Use solo números. Máximo 16 digitos"
                                jsf:value="#{centroFormacionController.selected.telefonoCentroFormacion}">
@@ -59,7 +59,7 @@
                         </h:selectOneMenu>
                         <h:message id="ciudadMessage" for="ciudadInputText" styleClass="error"/>
 
-                        <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_direccionCentroFormacion}" for="DirCentroFormacion" > Direccion  </label> 
+                        <label class="Form-na" value="#{bundle.EditCentroFormacionLabel_direccionCentroFormacion}" for="DirCentroFormacion" > Dirección  </label> 
                         <input type="text" jsf:id="DirCentroFormacionInputText" 
                                jsf:requiredMessage="Por favor ingrese la direccion"
                                jsf:validatorMessage="Por favor ingrese una direccion valida"
