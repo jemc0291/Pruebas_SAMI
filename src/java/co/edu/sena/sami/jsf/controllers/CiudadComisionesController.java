@@ -64,13 +64,9 @@ public class CiudadComisionesController implements Serializable {
     }
 
     protected void setEmbeddableKeys() {
-        selected.getCiudadComisionesPK().setIdCiudad(selected.getCiudad().getCiudadPK().getIdCiudad());
-        selected.getCiudadComisionesPK().setIdComision(selected.getComisiones().getIdComision());
-        selected.getCiudadComisionesPK().setIdDpto(selected.getCiudad().getCiudadPK().getIdDpto());
     }
 
     protected void initializeEmbeddableKey() {
-        selected.setCiudadComisionesPK(new co.edu.sena.sami.jpa.entities.CiudadComisionesPK());
     }
 
     private CiudadComisionesFacade getFacade() {
@@ -140,7 +136,7 @@ public class CiudadComisionesController implements Serializable {
         }
     }
 
-    public CiudadComisiones getCiudadComisiones(co.edu.sena.sami.jpa.entities.CiudadComisionesPK id) {
+    public CiudadComisiones getCiudadComisiones(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
@@ -189,23 +185,15 @@ public class CiudadComisionesController implements Serializable {
             return controller.getCiudadComisiones(getKey(value));
         }
 
-        co.edu.sena.sami.jpa.entities.CiudadComisionesPK getKey(String value) {
-            co.edu.sena.sami.jpa.entities.CiudadComisionesPK key;
-            String values[] = value.split(SEPARATOR_ESCAPED);
-            key = new co.edu.sena.sami.jpa.entities.CiudadComisionesPK();
-            key.setIdCiudad(Integer.parseInt(values[0]));
-            key.setIdComision(Integer.parseInt(values[1]));
-            key.setIdDpto(Integer.parseInt(values[2]));
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
             return key;
         }
 
-        String getStringKey(co.edu.sena.sami.jpa.entities.CiudadComisionesPK value) {
+       String getStringKey(java.lang.Integer value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value.getIdCiudad());
-            sb.append(SEPARATOR);
-            sb.append(value.getIdComision());
-            sb.append(SEPARATOR);
-            sb.append(value.getIdDpto());
+            sb.append(value);
             return sb.toString();
         }
 
@@ -216,7 +204,7 @@ public class CiudadComisionesController implements Serializable {
             }
             if (object instanceof CiudadComisiones) {
                 CiudadComisiones o = (CiudadComisiones) object;
-                return getStringKey(o.getCiudadComisionesPK());
+                return getStringKey(o.getIdciudadComision());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), CiudadComisiones.class.getName()});
                 return null;

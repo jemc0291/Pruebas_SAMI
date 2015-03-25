@@ -6,10 +6,13 @@
 
 package co.edu.sena.sami.jpa.sessions;
 
+import co.edu.sena.sami.jpa.entities.CentroFormacion;
 import co.edu.sena.sami.jpa.entities.FichaCaracterizacion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,13 @@ public class FichaCaracterizacionFacade extends AbstractFacade<FichaCaracterizac
 
     public FichaCaracterizacionFacade() {
         super(FichaCaracterizacion.class);
+    }
+    
+    public List<FichaCaracterizacion> findByNombre(String nombre) {
+        Query q= getEntityManager().createNamedQuery("FichaCaracterizacion.findByCodigoFicha");
+        q.setParameter("codigoFicha", "%" + nombre + "%");
+        return q.getResultList();
+
     }
     
 }
