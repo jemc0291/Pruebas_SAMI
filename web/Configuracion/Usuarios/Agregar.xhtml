@@ -138,9 +138,8 @@
                             <f:ajax execute="@this" render="ContratoMessage usuarioCreateForm"/>
                         </h:selectOneMenu>
                         <h:message id="ContratoMessage" for="ContratoInputText" styleClass="error"/>
-
-
-                        <label jsf:rendered="#{!usuariosController.contratista}" value="#{bundle.CreateUsuariosLabel_password}" jsf:for="passwordInputText"></label> 
+                     
+                        <label jsf:rendered="#{!usuariosController.contratista}" jsf:value="#{bundle.CreateUsuariosLabel_password}" jsf:for="passwordInputText"></label> 
                         <p:inputText type="password" id="passwordInputText"
                                      required="true" 
                                      requiredMessage="#{bundle.CreateUsuariosRequiredMessage_password}"
@@ -151,6 +150,42 @@
                             <f:ajax execute="@this" render="passwordMessage"/>
                         </p:inputText>
                         <h:message rendered="#{!usuariosController.contratista}" id="passwordMessage" for="passwordInputText" styleClass="error"/>
+                        
+                        <label jsf:rendered="#{!usuariosController.carreraAdministrativa}" jsf:value="#{bundle.CreateUsuariosLabel_grado}" jsf:for="gradoInputText"></label> 
+                        <p:inputText type="text" id="gradoInputText"
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_grado}"
+                                     value="#{usuariosController.selected.grado}"
+                                     title="#{bundle.CreateUsuariosTitle_grado}"
+                                     rendered="#{!usuariosController.carreraAdministrativa}">
+                            <f:validateRegex pattern="[0-9]*"/>
+                            <f:ajax execute="@this" render="gradoMessage"/>
+                        </p:inputText>
+                        <h:message rendered="#{!usuariosController.carreraAdministrativa}" id="gradoMessage" for="gradoInputText" styleClass="error"/>
+                        
+                        <label jsf:rendered="#{!usuariosController.carreraAdministrativa}" jsf:value="#{bundle.CreateUsuariosLabel_sueldo}" jsf:for="sueldoInputText"></label> 
+                        <p:inputText type="text" id="sueldoInputText"
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_sueldo}"
+                                     value="#{usuariosController.selected.sueldo}"
+                                     title="#{bundle.CreateUsuariosTitle_sueldo}"
+                                     rendered="#{!usuariosController.carreraAdministrativa}">
+                            <f:validateRegex pattern="[0-9]*"/>
+                            <f:ajax execute="@this" render="sueldoMessage"/>
+                        </p:inputText>
+                        <h:message rendered="#{!usuariosController.carreraAdministrativa}" id="sueldoMessage" for="sueldoInputText" styleClass="error"/>                       
+                        
+                        <label jsf:rendered="#{!usuariosController.carreraAdministrativa}" value="#{bundle.CreateUsuariosLabel_fechaIngreso}" jsf:for="fechaIngresoInputText"></label>
+                        <p:calendar id="fechaIngresoInputText" required="true"                            
+                                    value="#{usuariosController.selected.fechaIngreso}"
+                                    title="#{bundle.CreateUsuariosTitle_fechaIngreso}"
+                                    locale="de" navigator="true" pattern="yyyy-MM-dd"
+                                    showOn="button"
+                                    rendered="#{!usuariosController.carreraAdministrativa}">
+                            <f:ajax execute="@this" render="fechaIngresoMessage"/>
+                        </p:calendar>
+                        <h:message rendered="#{!usuariosController.carreraAdministrativa}" id="fechaIngresoMessage" for="fechaIngresoInputText" styleClass="error"/>
+                        
 
                         <label value="#{bundle.CreateUsuariosLabel_direccionUsu}" jsf:for="direccionInputText"></label> 
                         <p:inputText type="text" id="direccionInputText"

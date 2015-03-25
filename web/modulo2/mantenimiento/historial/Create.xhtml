@@ -20,13 +20,17 @@
             <h:form id="formSolicitud">
 
                 <h:outputText value="Fecha Inicio:"/>
-                <p:calendar showOn="button" value="#{solicitudServiciosController.fechaInicio}"  pattern="yyyy-MM-dd hh:mm:ss a" />
+                <p:calendar id="fechaInicioQuery" showOn="button" value="#{solicitudServiciosController.fechaInicio}"  pattern="yyyy-MM-dd hh:mm" />
 
                 <h:outputText value="Fecha Fin:" style="padding-left: 25%"/>
-                <p:calendar showOn="button" value="#{solicitudServiciosController.fechaFin}"  pattern="yyyy-MM-dd hh:mm:ss a" />
+                <p:calendar id="fechaFinQuery" showOn="button" value="#{solicitudServiciosController.fechaFin}"  pattern="yyyy-MM-dd hh:mm" />
 
                 <p></p>
+                <p:commandButton value="Consultar" 
+                                 process="fechaInicioQuery fechaFinQuery"
+                                 update="solicitudTableConsulta"/>
 
+                <p></p>
                 <p:dataTable id="solicitudTableConsulta" value="#{solicitudServiciosController.itemsRango}" var="item1" widgetVar="carsTable">
 
                     <p:column style="width: 115px" filterBy="#{item1.idSolicitudServicio}" 
@@ -47,31 +51,7 @@
                     <p:column style="width: 120px" filterBy="#{item1.idUsuario.numeroDoc}" 
                               headerText="Número documento" footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item1.idUsuario.numeroDoc}"/>
-                    </p:column>
-
-                    <p:column filterBy="#{solicitudServiciosController.avanceActual.fueAtendido}" 
-                              headerText="Atendido" footerText="" filterMatchMode="equals" style="width: 60px">
-                        <f:facet name="filter">
-                            <p:selectOneButton onchange="PF('carsTable').filter()">
-                                <f:converter converterId="javax.faces.Boolean" />
-                                <f:selectItem itemLabel="Si" itemValue="true" />
-                                <f:selectItem itemLabel="No" itemValue="false" />
-                            </p:selectOneButton>
-                        </f:facet>
-                        <h:outputText value="#{solicitudServiciosController.avanceActual.fueAtendido ? 'Si': 'No'}"/>
-                    </p:column>
-
-                    <p:column filterBy="#{solicitudServiciosController.avanceActual.fueAtendido}" 
-                              headerText="Solucionado" footerText="" filterMatchMode="equals" style="width: 65px">
-                        <f:facet name="filter">
-                            <p:selectOneButton onchange="PF('carsTable').filter()">
-                                <f:converter converterId="javax.faces.Boolean" />
-                                <f:selectItem itemLabel="Si" itemValue="true" />
-                                <f:selectItem itemLabel="No" itemValue="false" />
-                            </p:selectOneButton>
-                        </f:facet>
-                        <h:outputText value="#{solicitudServiciosController.avanceActual.fueAtendido ? 'Si': 'No'}"/>
-                    </p:column>
+                    </p:column>                   
 
                     <p:column>
                         <f:facet name="header">
@@ -79,12 +59,12 @@
                         </f:facet>
                         <h:outputText value="#{item1.descripcionservicioSolicitud}"/>
                     </p:column>
-                     <p:column headerText="Fue Atendido?" style="width: 120px">                                                               
-                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFA(item)}"/>
+                    <p:column headerText="Fue Atendido?" style="width: 120px">                                                               
+                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFA(item1)}"/>
                     </p:column>
 
                     <p:column headerText="Fue Solucionado?" style="width: 120px">                                                               
-                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFS(item)}"/>
+                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFS(item1)}"/>
                     </p:column>
 
                     <p:column filterBy="#{item1.ubicacionSolicitud}" headerText="Ubicación" 
@@ -100,10 +80,6 @@
                     </p:column>
                 </p:dataTable>
 
-                <p></p>
-                <p:commandButton value="Consultar" actionListener="#{solicitudServiciosController.itemsRango()}">
-                    <p:ajax process="@this formSolicitud solicitudTableConsulta" update="formSolicitud solicitudTableConsulta"/>
-                </p:commandButton>
                 <p></p>
 
                 <h3 style="text-align: center">Por Solicitud</h3>

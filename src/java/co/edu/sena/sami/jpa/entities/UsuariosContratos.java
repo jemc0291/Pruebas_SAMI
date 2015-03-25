@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UsuariosContratos.findByIdRol", query = "SELECT u FROM UsuariosContratos u WHERE u.usuariosContratosPK.idRol = :idRol"),
     @NamedQuery(name = "UsuariosContratos.findByNumeroDePoliza", query = "SELECT u FROM UsuariosContratos u WHERE u.usuariosContratosPK.numeroDePoliza = :numeroDePoliza"),
     @NamedQuery(name = "UsuariosContratos.findByFechaSesion", query = "SELECT u FROM UsuariosContratos u WHERE u.fechaSesion = :fechaSesion"),
-    @NamedQuery(name = "UsuariosContratos.findByObservaciones", query = "SELECT u FROM UsuariosContratos u WHERE u.observaciones = :observaciones")})
+    @NamedQuery(name = "UsuariosContratos.findByObservaciones", query = "SELECT u FROM UsuariosContratos u WHERE u.observaciones = :observaciones"),
+    @NamedQuery(name = "UsuariosContratos.findByUsuarioFecha", query = "SELECT u FROM UsuariosContratos u WHERE u.usuariosContratosPK.idUsuario = :idUsuario and u.contratos.fechaInicioContrato <= :fechaActual and u.contratos.fechaFinContrato >= :fechaActual")})
 public class UsuariosContratos implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId

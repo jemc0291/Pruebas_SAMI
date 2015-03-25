@@ -14,12 +14,10 @@
 //        }
 //        if (!Objects.equals(this.ciudad, other.ciudad)) {
 ////
-
 //            return false;
 //        }
 //        return true;
 //    }
-
 ////<<<<<<< HEAD
 //    
 //
@@ -41,9 +39,13 @@ package co.edu.sena.sami.jpa.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -63,18 +65,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "ciudad_comisiones")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CiudadComisiones.findAll", query = "SELECT c FROM CiudadComisiones c"),
-    @NamedQuery(name = "CiudadComisiones.findByIdCiudad", query = "SELECT c FROM CiudadComisiones c WHERE c.ciudadComisionesPK.idCiudad = :idCiudad"),
-    @NamedQuery(name = "CiudadComisiones.findByIdDpto", query = "SELECT c FROM CiudadComisiones c WHERE c.ciudadComisionesPK.idDpto = :idDpto"),
-    @NamedQuery(name = "CiudadComisiones.findByIdComision", query = "SELECT c FROM CiudadComisiones c WHERE c.ciudadComisionesPK.idComision = :idComision"),
+       @NamedQuery(name = "CiudadComisiones.findAll", query = "SELECT c FROM CiudadComisiones c"),
+    @NamedQuery(name = "CiudadComisiones.findByIdCiudad", query = "SELECT c FROM CiudadComisiones c WHERE c.ciudad = :idCiudad"),
+    @NamedQuery(name = "CiudadComisiones.findByIdComision", query = "SELECT c FROM CiudadComisiones c WHERE c.idComision = :idComision"),
     @NamedQuery(name = "CiudadComisiones.findBySalidaEstimada", query = "SELECT c FROM CiudadComisiones c WHERE c.salidaEstimada = :salidaEstimada"),
     @NamedQuery(name = "CiudadComisiones.findByLlegadaEstimada", query = "SELECT c FROM CiudadComisiones c WHERE c.llegadaEstimada = :llegadaEstimada"),
     @NamedQuery(name = "CiudadComisiones.findByEmpresaVereda", query = "SELECT c FROM CiudadComisiones c WHERE c.empresaVereda = :empresaVereda"),
-    @NamedQuery(name = "CiudadComisiones.findByValorViatico", query = "SELECT c FROM CiudadComisiones c WHERE c.valorViatico = :valorViatico")})
+    @NamedQuery(name = "CiudadComisiones.findByValorViatico", query = "SELECT c FROM CiudadComisiones c WHERE c.valorViatico = :valorViatico"),
+    @NamedQuery(name = "CiudadComisiones.findByIdciudadComision", query = "SELECT c FROM CiudadComisiones c WHERE c.idciudadComision = :idciudadComision")})
 public class CiudadComisiones implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected CiudadComisionesPK ciudadComisionesPK;
+private static final long serialVersionUID = 1L;
     @Column(name = "salida_estimada")
     @Temporal(TemporalType.DATE)
     private Date salidaEstimada;
@@ -84,34 +84,28 @@ public class CiudadComisiones implements Serializable {
     @Size(max = 100)
     @Column(name = "empresa_vereda")
     private String empresaVereda;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valor_viatico")
     private Double valorViatico;
-    @JoinColumn(name = "id_comision", referencedColumnName = "id_comision", insertable = false, updatable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_ciudadComision")
+    private Integer idciudadComision;
+    @JoinColumn(name = "id_comision", referencedColumnName = "id_comision")
     @ManyToOne(optional = false)
-    private Comisiones comisiones;
+    private Comisiones idComision;
     @JoinColumns({
-        @JoinColumn(name = "id_ciudad", referencedColumnName = "id_ciudad", insertable = false, updatable = false),
-        @JoinColumn(name = "id_dpto", referencedColumnName = "id_dpto", insertable = false, updatable = false)})
+        @JoinColumn(name = "id_ciudad", referencedColumnName = "id_ciudad"),
+        @JoinColumn(name = "id_dpto", referencedColumnName = "id_dpto")})
     @ManyToOne(optional = false)
     private Ciudad ciudad;
 
-    public CiudadComisiones() {
+        public CiudadComisiones() {
     }
 
-    public CiudadComisiones(CiudadComisionesPK ciudadComisionesPK) {
-        this.ciudadComisionesPK = ciudadComisionesPK;
-    }
-
-    public CiudadComisiones(int idCiudad, int idDpto, int idComision) {
-        this.ciudadComisionesPK = new CiudadComisionesPK(idCiudad, idDpto, idComision);
-    }
-
-    public CiudadComisionesPK getCiudadComisionesPK() {
-        return ciudadComisionesPK;
-    }
-
-    public void setCiudadComisionesPK(CiudadComisionesPK ciudadComisionesPK) {
-        this.ciudadComisionesPK = ciudadComisionesPK;
+    public CiudadComisiones(Integer idciudadComision) {
+        this.idciudadComision = idciudadComision;
     }
 
     public Date getSalidaEstimada() {
@@ -137,8 +131,8 @@ public class CiudadComisiones implements Serializable {
     public void setEmpresaVereda(String empresaVereda) {
         this.empresaVereda = empresaVereda;
     }
-    
-        public Double getValorViatico() {
+
+    public Double getValorViatico() {
         return valorViatico;
     }
 
@@ -146,12 +140,20 @@ public class CiudadComisiones implements Serializable {
         this.valorViatico = valorViatico;
     }
 
-    public Comisiones getComisiones() {
-        return comisiones;
+    public Integer getIdciudadComision() {
+        return idciudadComision;
     }
 
-    public void setComisiones(Comisiones comisiones) {
-        this.comisiones = comisiones;
+    public void setIdciudadComision(Integer idciudadComision) {
+        this.idciudadComision = idciudadComision;
+    }
+
+    public Comisiones getIdComision() {
+        return idComision;
+    }
+
+    public void setIdComision(Comisiones idComision) {
+        this.idComision = idComision;
     }
 
     public Ciudad getCiudad() {
@@ -161,23 +163,26 @@ public class CiudadComisiones implements Serializable {
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (ciudadComisionesPK != null ? ciudadComisionesPK.hashCode() : 0);
+        hash += (idciudadComision != null ? idciudadComision.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof CiudadComisiones)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        CiudadComisiones other = (CiudadComisiones) object;
+        if ((this.idciudadComision == null && other.idciudadComision != null) 
+                || (this.idciudadComision != null 
+                && !this.idciudadComision.equals(other.idciudadComision))) {
             return false;
         }
-        final CiudadComisiones other = (CiudadComisiones) obj;
         if (!Objects.equals(this.salidaEstimada, other.salidaEstimada)) {
             return false;
         }
@@ -190,13 +195,9 @@ public class CiudadComisiones implements Serializable {
         return true;
     }
 
-    
-
     @Override
     public String toString() {
-        return "co.sena.sami.edu.jpa.entities.CiudadComisiones[ ciudadComisionesPK=" + ciudadComisionesPK + " ]";
+        return "co.edu.sena.sami.jpa.entities.Comisiones[ idComision=" + idComision + " ]";
     }
 
-    
-    
 }

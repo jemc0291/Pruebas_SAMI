@@ -115,7 +115,11 @@ public class UsuariosController implements Serializable {
     public boolean isContratista(){
         return selected.getIdTipoContrato() == null? false : selected.getIdTipoContrato().getIdTipoContrato() == (short) 2;
     }
- 
+    
+    public boolean isCarreraAdministrativa(){
+        return selected.getIdTipoContrato() == null? false : selected.getIdTipoContrato().getIdTipoContrato() == (short) 2;
+    } 
+    
     public String prepareCreate() {
         selected = new Usuarios();
         listaCargo = new ArrayList<>();

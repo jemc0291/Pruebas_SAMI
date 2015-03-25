@@ -42,8 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "FichaCaracterizacion.findByIdFichaCaracterizacion", query = "SELECT f FROM FichaCaracterizacion f WHERE f.idFichaCaracterizacion = :idFichaCaracterizacion"),
     @NamedQuery(name = "FichaCaracterizacion.findByFechaInicio", query = "SELECT f FROM FichaCaracterizacion f WHERE f.fechaInicio = :fechaInicio"),
     @NamedQuery(name = "FichaCaracterizacion.findByFechaFin", query = "SELECT f FROM FichaCaracterizacion f WHERE f.fechaFin = :fechaFin"),
-    @NamedQuery(name = "FichaCaracterizacion.findByCodigoFicha", query = "SELECT f FROM FichaCaracterizacion f WHERE f.codigoFicha = :codigoFicha")})
+    @NamedQuery(name = "FichaCaracterizacion.findByCodigoFicha", query = "SELECT f FROM FichaCaracterizacion f WHERE f.codigoFicha like :codigoFicha")})
 public class FichaCaracterizacion implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,7 +61,7 @@ public class FichaCaracterizacion implements Serializable {
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    @Basic(optional = false)
+     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "codigo_ficha")
@@ -116,6 +117,14 @@ public class FichaCaracterizacion implements Serializable {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+    
+        public String getCodigoFicha() {
+        return codigoFicha;
+    }
+
+    public void setCodigoFicha(String codigoFicha) {
+        this.codigoFicha = codigoFicha;
     }
 
     public String getCodigoFicha() {
@@ -192,7 +201,7 @@ public class FichaCaracterizacion implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.FichaCaracterizacion[ idFichaCaracterizacion=" + idFichaCaracterizacion + " ]";
+        return codigoFicha;
     }
-    
+
 }
