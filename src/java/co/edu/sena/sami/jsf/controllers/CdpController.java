@@ -1,6 +1,9 @@
 package co.edu.sena.sami.jsf.controllers;
 
 import co.edu.sena.sami.jpa.entities.Cdp;
+import co.edu.sena.sami.jpa.entities.Dependencias;
+import co.edu.sena.sami.jpa.entities.Gestiones;
+import co.edu.sena.sami.jpa.entities.Rubros;
 import co.edu.sena.sami.jpa.entities.TiposDeSolicitudes;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
@@ -28,9 +31,15 @@ public class CdpController implements Serializable {
     private co.edu.sena.sami.jpa.sessions.CdpFacade ejbFacade;
     private List<Cdp> items = null;
     private Cdp selected;
-
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.RubrosFacade ejbFacadeRubro;
     @EJB
     private co.edu.sena.sami.jpa.sessions.TiposDeSolicitudesFacade ejbTiposDeSolicitudes;
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.GestionesFacade ejbFacadeGestiones;
+    @EJB
+    private co.edu.sena.sami.jpa.sessions.DependenciasFacade ejbFacadeDependencias;
+    
 
     public CdpController() {
     }
@@ -68,7 +77,7 @@ public class CdpController implements Serializable {
     }
 
     public String loadCreate() {
-        return "/modulo4/Gestion_Talento_Humano/solicitudcdp/Listar.xhtml";
+        return "/modulo4/Gestion_Talento_Humano/Solicitudcdp/Listar.xhtml";
     }
 
     public void create() {
@@ -150,11 +159,67 @@ public class CdpController implements Serializable {
         return getEjbTiposDeSolicitudes().findAll();
     }
     
+    public Rubros getRubros(java.lang.String id) {
+        return getEjbFacadeRubro().find(id);
+    }
+
+    public List<Rubros> getItemsAvailableSelectManyRubros() {
+        return getEjbFacadeRubro().findAll();
+    }
+
+    public List<Rubros> getItemsAvailableSelectOneRubros() {
+        return getEjbFacadeRubro().findAll();
+    }
+        public Gestiones getGestiones(java.lang.String id) {
+        return getEjbFacadeGestiones().find(id);
+    }
+
+    public List<Gestiones> getItemsAvailableSelectManyGestiones() {
+        return getEjbFacadeGestiones().findAll();
+    }
+
+    public List<Gestiones> getItemsAvailableSelectOneGestiones() {
+        return getEjbFacadeGestiones().findAll();
+    }
+
+    
     /**
      * @return the ejbTiposDeSolicitudes
      */
     public co.edu.sena.sami.jpa.sessions.TiposDeSolicitudesFacade getEjbTiposDeSolicitudes() {
         return ejbTiposDeSolicitudes;
+    }
+
+    /**
+     * @return the ejbFacadeRubro
+     */
+    public co.edu.sena.sami.jpa.sessions.RubrosFacade getEjbFacadeRubro() {
+        return ejbFacadeRubro;
+    }
+
+    /**
+     * @return the ejbFacadeGestiones
+     */
+    public co.edu.sena.sami.jpa.sessions.GestionesFacade getEjbFacadeGestiones() {
+        return ejbFacadeGestiones;
+    }
+
+    /**
+     * @return the ejbFacadeDependencias
+     */
+    public co.edu.sena.sami.jpa.sessions.DependenciasFacade getEjbFacadeDependencias() {
+        return ejbFacadeDependencias;
+    }
+       public Dependencias getDependencias(java.lang.Integer id) {
+        return getEjbFacadeDependencias().find(id);
+    }
+
+    public List<Dependencias> getItemsAvailableSelectManyDependencias() {
+        return getEjbFacadeDependencias().findAll();
+    }
+
+    public List<Dependencias> getItemsAvailableSelectOneDependencias() {
+        return getEjbFacadeDependencias().findAll();
     }
 
     @FacesConverter(forClass = Cdp.class)

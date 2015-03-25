@@ -95,6 +95,15 @@
                                     forceSelection="true" maxResults="10"/> 
                         <h:message id="UsuarioMessage" for="Usuario" />
                         
+                        <label value="Supervisor" jsf:for="Supervisor" class="FormLabelSCCSS" />
+                        <p:autoComplete id="Supervisor" value="#{contratosController.selectedSupervisor}" 
+                                        required="true" requiredMessage="#{bundle.CreateUsuariosContratosRequiredMessage_usuarios}"
+                                        completeMethod="#{usuariosController.getListRazonSocialAutoComplete}" 
+                                        var="razonSocial" itemLabel="#{razonSocial}" itemValue="#{razonSocial}" 
+                                    converter="usuariosConverter" pt:required="true"
+                                    forceSelection="true" maxResults="10"/> 
+                        <h:message id="SupervisorMessage" for="Supervisor" />
+                        
                         <label>Pólizas</label>
                         <p:commandButton onclick="PF('PolizasDialogo').show()" value="Póliza" process="@this" update=":polizasForm" />
                         

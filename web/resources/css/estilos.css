@@ -288,8 +288,9 @@ ul, ol {
 }
 
 .View-cpds{
+    background-image: url(../../resources/images/modulo3/background.png);
+    background-size: cover;
     padding: 1em;
-    background: white;
     margin-left: 2.5em;
     margin-right: 2.5em;
 
@@ -384,6 +385,7 @@ table, th, td {
 
 .Avance-mant{
     position: relative;
+
 }
 
 .slides-mant{
@@ -485,59 +487,59 @@ table, th, td {
 }
 
 .titulo{
-  color: white;
-  font-style: italic;
-  background: #C5C7C6;
-  font-size: 2em;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  border-radius: 5px;
-  text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
-  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
-  line-height: 1.3em;
-  list-style: none;
-  margin-right: 9em;
-  margin-top: 0.5em;
-  margin-left: 9em;
+    color: white;
+    font-style: italic;
+    background: #C5C7C6;
+    font-size: 2em;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-radius: 5px;
+    text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
+    box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+    line-height: 1.3em;
+    list-style: none;
+    margin-right: 9em;
+    margin-top: 0.5em;
+    margin-left: 9em;
 }
 
 .Crsolicitud{
-  color: white;
-  font-style: italic;
-  background: #C5C7C6;
-  font-size: 2em;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  border-radius: 5px;
-  text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
-  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
-  line-height: 1.3em;
-  list-style: none;
-  margin-right: 9em;
-  margin-top: 0.5em;
-  margin-left: 9em; 
+    color: white;
+    font-style: italic;
+    background: #C5C7C6;
+    font-size: 2em;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-radius: 5px;
+    text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
+    box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+    line-height: 1.3em;
+    list-style: none;
+    margin-right: 9em;
+    margin-top: 0.5em;
+    margin-left: 9em; 
 }
 
 
 .Busqueda{
-  color: white;
-  font-style: italic;
-  background: #C5C7C6;
-  font-size: 2em;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  border-radius: 5px;
-  text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
-  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
-  line-height: 1.3em;
-  list-style: none;
-  margin-right: 9em;
-  margin-top: 0.5em;
-  margin-left: 9em;
-  
+    color: white;
+    font-style: italic;
+    background: #C5C7C6;
+    font-size: 2em;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-radius: 5px;
+    text-shadow: rgba(0,0,0,0.4) 2px 2px 2px;
+    box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+    line-height: 1.3em;
+    list-style: none;
+    margin-right: 9em;
+    margin-top: 0.5em;
+    margin-left: 9em;
+
 }
 
 
@@ -630,50 +632,50 @@ table, th, td {
 } 
 
 @media screen and (max-width:800px){
-.Busqueda {
-  background: #C5C7C6;
-  font-size: 1em;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
-  line-height: 1.3em;
-  list-style: none;
-  margin-right: 0em;
-  margin-top: 0.5em;
-  margin-left: 0em;
-}
+    .Busqueda {
+        background: #C5C7C6;
+        font-size: 1em;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+        line-height: 1.3em;
+        list-style: none;
+        margin-right: 0em;
+        margin-top: 0.5em;
+        margin-left: 0em;
+    }
 
-.Crsolicitud {
-  background: #C5C7C6;
-  font-size: 1em;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
-  line-height: 1.3em;
-  list-style: none;
-  margin-right: 0em;
-  margin-top: 0.5em;
-  margin-left: 0em;
-}
+    .Crsolicitud {
+        background: #C5C7C6;
+        font-size: 1em;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+        line-height: 1.3em;
+        list-style: none;
+        margin-right: 0em;
+        margin-top: 0.5em;
+        margin-left: 0em;
+    }
 
-.titulo {
-  background: #C5C7C6;
-  font-size: 1em;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
-  line-height: 1.3em;
-  list-style: none;
-  margin-right: 0em;
-  margin-top: 0.5em;
-  margin-left: 0em;
-}
+    .titulo {
+        background: #C5C7C6;
+        font-size: 1em;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: rgba(0,0,0,0.5) 5px 5px 20px;
+        line-height: 1.3em;
+        list-style: none;
+        margin-right: 0em;
+        margin-top: 0.5em;
+        margin-left: 0em;
+    }
 }
 /*---------MODULO3----------*/
 
@@ -739,6 +741,23 @@ table, th, td {
     padding-right: 60px;
     padding-left: 4px;
 }
+.Section-indexSCCS{
+    background-color: rgba(255, 255, 255, 0);
+    margin: 0 auto;
+    border: 0.5px solid whitesmoke;
+    min-height: 25em;
+    margin: .6em 0;
+    margin-top: 0px;   
+
+    .Panel-slide{
+        position: relative;
+
+    }
+    .msj{
+        padding: 1em;
+        position: relative;
+    }
+}
 
 /*---------MODULO4----------*/
 
@@ -798,8 +817,9 @@ table, th, td {
 
 .Codigo{
 
-    bottom: -10em;
-    left: 68em;
+      position: relative;
+  bottom: 8em;
+  left: -1em;
 }
 .estilo {
 

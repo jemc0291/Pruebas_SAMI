@@ -18,7 +18,8 @@
                 </a>
             </li>
             <li class="MainMenu-item">
-                <a jsf:outcome="/modulo3/GestionContractual/ListaContratos" class="MainMenu-link">
+                <!--<a jsf:outcome="/modulo3/GestionContractual/ListaContratos" class="MainMenu-link">-->
+                <a jsf:action="#{contratosController.prepareList()}" class="MainMenu-link">
                     Lista Contratos
                 </a>
             </li>
@@ -48,7 +49,8 @@
                 </a>
             </li>
             <li class="MainMenu-item">
-                <a jsf:outcome="/modulo3/GestionContractual/ListaFacturas" class="MainMenu-link">
+                <a jsf:action="#{pagosContratosController.prepareList()}" class="MainMenu-link">
+                <!--<a jsf:outcome="/modulo3/GestionContractual/ListaFacturas" class="MainMenu-link">-->
                     Lista de Facturas
                 </a>
             </li>

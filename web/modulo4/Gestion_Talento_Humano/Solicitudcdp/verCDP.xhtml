@@ -11,33 +11,79 @@
         <ui:define name="body">
    
         <f:view>
-
-
-            <h:form>
-                <h1><h:outputText value="VISTA CDP"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputText value="NumeroCdp:"/>
-                    <h:outputText value="#{cdpController.selected.numeroCdp}" title="NumeroCdp"/>
-                    <h:outputText value="FechaSolicitud:"/>
-                    <h:outputText value="#{cdpController.selected.fechaSolicitud}" title="FechaSolicitud">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="FechaRecepcion:"/>
-                    <h:outputText value="#{cdpController.selected.fechaRecepcion}" title="FechaRecepcion">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="ObjetivoDelGasto:"/>
-                    <h:outputText value="#{cdpController.selected.objetivoDelGasto}" title="ObjetivoDelGasto"/>
-                    <h:outputText value="IdTipoSolicitud:"/>
-                    <h:outputText value="#{cdpController.selected.idTipoSolicitud}" title="IdTipoSolicitud"/>
-                    <h:outputText value="IdRubro:"/>
-                    <h:outputText value="#{cdpController.selected.idRubro}" title="IdRubro"/>
-                    <h:outputText value="CodigoGestion:"/>
-                    <h:outputText value="#{cdpController.selected.codigoGestion}" title="CodigoGestion"/>
-                    <h:outputText value="CodigoDeDependencia:"/>
-                    <h:outputText value="#{cdpController.selected.codigoDeDependencia}" title="CodigoDeDependencia"/>
-                </h:panelGrid>
+           <h:form id="solicitudCDP">
+               <fieldset>
+                        
+                        <figure class="image-Container">
+                        <img src="#{request.contextPath}/resources/images/logo_sena.jpg" />
+                        </figure>
+                        <figcaption class="descripcion">Regional Valle<br/>Grupo Apoyo Administreativo Mixto</figcaption>
+                        
+                        <div class="titleCDP"  columns="3">
+                            <center><p>FORMATO SOLICITUD CERTIFICADO DE <br>
+                                      DISPONIBILIDAD PRESUPUESTAL</br></p>
+                               </center>
+                        </div>
+                        
+                        <div   id="divpg" columns="3" style="display:block">
+                            <p class="Codigo" align="right" style="position: absolute; bottom: -10em;left: 68em;">Codigo F00-1002-15-76:<br/><br/>Version:3<br/><br/>Fecha:10/01/2012</p>
+                        </div>
+                        
+                    </fieldset>
+                
+                <fieldset>
+           <div>
+             <label for="numeroCdp">Solicitud Nº:</label>
+             <u><h:outputText value="#{cdpController.selected.numeroCdp}" title="numeroCdp"/></u>
+           </div>
+             <br/>
+             <div>
+             <label for="fechaSolicitud">Fecha De Solicitud:</label>
+             <u><h:outputText value="#{cdpController.selected.fechaSolicitud}" title="fechaSolicitud">
+             <f:convertDateTime pattern="dd/MM/yyyy"/></h:outputText></u>
+           </div>
+             <br/>
+             <div>
+             <label for="fechaRecepcion">Fecha De Recepcion:</label>
+             <u><h:outputText value="#{cdpController.selected.fechaRecepcion}" title="fechaRecepcion">
+              <f:convertDateTime pattern="dd/MM/yyyy"/></h:outputText></u>
+           </div>
+             <br/>
+              <div>
+             <label for="objetivoDelGasto">Objeto Del Gasto:</label>
+             <u><h:outputText value="#{cdpController.selected.objetivoDelGasto}" title="objetivoDelGasto"/></u>
+           </div>
+             <br/>
+              <div>
+             <label for="idTipoSolicitud">Tipo De Solicitud:</label>
+             <u><h:outputText value="#{cdpController.selected.idTipoSolicitud}" title="idTipoSolicitud"/></u>
+           </div>
+             <br/>
+             </fieldset>
+             <p:dataTable>
+                <p:column>
+                <f:facet name="header">
+                    <h:outputText value="IdRubro"/>
+                </f:facet>
+                <h:outputText value="#{item.idRubro}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="CodigoGestion"/>
+                </f:facet>
+                <h:outputText value="#{item.codigoGestion}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="CodigoDeDependencia"/>
+                </f:facet>
+                <h:outputText value="#{item.codigoDeDependencia}"/>
+            </p:column>
+        </p:dataTable>
             </h:form>
+            <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+                <p:printer target="solicitudCDP" />
+                </p:commandButton>
         </f:view>
             </ui:define>
     </ui:composition>

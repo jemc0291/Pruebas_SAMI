@@ -79,6 +79,13 @@
                         </f:facet>
                         <h:outputText value="#{item1.descripcionservicioSolicitud}"/>
                     </p:column>
+                     <p:column headerText="Fue Atendido?" style="width: 120px">                                                               
+                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFA(item)}"/>
+                    </p:column>
+
+                    <p:column headerText="Fue Solucionado?" style="width: 120px">                                                               
+                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFS(item)}"/>
+                    </p:column>
 
                     <p:column filterBy="#{item1.ubicacionSolicitud}" headerText="Ubicación" 
                               footerText=" " filterMatchMode="contains" style="width: 115px">
@@ -130,10 +137,20 @@
                         <h:outputText value="#{item.descripcionservicioSolicitud}"/>
                     </p:column>
 
+
+                    <p:column headerText="Fue Atendido?" style="width: 120px">                                                               
+                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFA(item)}"/>
+                    </p:column>
+
+                    <p:column headerText="Fue Solucionado?" style="width: 120px">                                                               
+                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFS(item)}"/>
+                    </p:column>
+
                     <p:column filterBy="#{item.ubicacionSolicitud}" headerText="Ubicación" 
                               footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item.ubicacionSolicitud}"/>
                     </p:column>
+
 
                     <p:column style="width: 120px" filterBy="#{item.fechaSolicitudServicio}" 
                               headerText="Fecha y Hora" footerText=" " filterMatchMode="contains">
