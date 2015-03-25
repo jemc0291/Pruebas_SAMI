@@ -41,10 +41,7 @@
                     </p:panelGrid>                    
                 </p:carousel>
                 
-                <p>
-                </p>
-                
-                <Label> Describa el problema </Label>
+                <p> Describa el problema</p>
                     <textarea type="text" jsf:id="descripcionServicioSolicitud" 
                               required="true"
                               jsf:requiredMessage="El campo Describa el problema es requerido."
@@ -52,8 +49,9 @@
                         <f:ajax execute="@this" render="descripcionServicioSolicitudMessage"/>
                     </textarea>
                     <h:message id="descripcionServicioSolicitudMessage" for="descripcionServicioSolicitud" styleClass="error"/>
-
-                    <Label> Ubicación: </Label>
+                    
+                    <p>Ubicacion</p>
+                    
                     <input type="text" jsf:id="ubicacion" 
                            jsf:value="#{solicitudServiciosController.selected.ubicacionSolicitud}" 
                            jsf:requiredMessage="The Ubicacion field is required.">
