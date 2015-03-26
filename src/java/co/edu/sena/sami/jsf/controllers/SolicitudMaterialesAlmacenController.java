@@ -152,13 +152,21 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Create.xhtml";
     }
 
-    public String prepareCreateDos() {
+        public String prepareCreateIns() {
         selected = new SolicitudMaterialesAlmacen();
         initializeEmbeddableKey();
         selectedSolMaterial = new SolicitudMaterialesAlmacenMateriales();
         initializeEmbeddableKeySolMaterial();
         itemsSolMaterial = new ArrayList<>();
         return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/SolicitudMateriales.xhtml";
+    }
+    
+    public String cargarSolicitudes() {
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Solicitudes.xhtml";
+    }
+    
+    public String viewRedireccion() {
+        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/ViewRedireccion.xhtml";
     }
 
     public String prepareEdit() {
@@ -190,7 +198,7 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         return itemsSolMaterial;
     }
     
-    public String create() {
+    public void create() {
         selected.setFechaDeSolicitud(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenCreated"));
         for (SolicitudMaterialesAlmacenMateriales item : itemsSolMaterial) {
@@ -201,26 +209,13 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Solicitudes.xhtml";
+        
     }
         
     public void eliminar() {
         itemsSolMaterial.remove(selectedSolMaterial);
     }
-    
-    public String createDos() {
-        selected.setFechaDeSolicitud(new Date());
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenCreated"));
-        for (SolicitudMaterialesAlmacenMateriales item : itemsSolMaterial) {
-            selectedSolMaterial = item;
-            selectedSolMaterial.setSolicitudMaterialesAlmacen(selected);
-            persistSolMaterial(PersistAction.CREATE, null);
-        }
-        if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
-    }
-        return "/modulo6/GestionMaterialesFormacion/Instructor/SolicitudMateriales/ViewRedireccion.xhtml";
-    }
+     
     
     public String update() {
         selected.setSolicitudMaterialesAlmacenMaterialesList(itemsSolMaterial);

@@ -34,7 +34,7 @@
 
 
                     <label>ID de usuario</label>
-                    <h:selectOneMenu id="idUsuario" value="#{facturasController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
+                    <h:selectOneMenu id="idUsuario" value="#{facturasController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required." converter="usuariosConverter">
                         <f:selectItem itemLabel="Seleccione un Usuario"/>
                         <f:selectItems value="#{facturasController.itemsAvailableSelectOneUsuarios}"/>
                         <f:ajax execute="@this" render="idUsuarioMessage"/>

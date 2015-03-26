@@ -18,14 +18,15 @@
                         <p:calendar id="fechaInicio" pattern="MM/dd/yyyy" value="#{fichaCaracterizacionController.selected.fechaInicio}" title="#{bundle.EditFichaCaracterizacionTitle_fechaInicio}" required="true" requiredMessage="#{bundle.EditFichaCaracterizacionRequiredMessage_fechaInicio}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditFichaCaracterizacionLabel_fechaFin}" for="fechaFin" />
                         <p:calendar id="fechaFin" pattern="MM/dd/yyyy" value="#{fichaCaracterizacionController.selected.fechaFin}" title="#{bundle.EditFichaCaracterizacionTitle_fechaFin}" required="true" requiredMessage="#{bundle.EditFichaCaracterizacionRequiredMessage_fechaFin}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditFichaCaracterizacionLabel_codigoFicha}" for="codigoFicha" />
-                        <p:inputText id="codigoFicha" value="#{fichaCaracterizacionController.selected.codigoFicha}" title="#{bundle.EditFichaCaracterizacionTitle_codigoFicha}" required="true" requiredMessage="#{bundle.EditFichaCaracterizacionRequiredMessage_codigoFicha}"/>
+                        <p:outputLabel value="Numero de Ficha" for="codigoFicha" />
+                        <p:inputText id="codigoFicha" value="#{fichaCaracterizacionController.selected.codigoFicha}" title="Numero Ficha" required="true" requiredMessage="El numero de ficha es requerido"/>
                         <p:outputLabel value="#{bundle.EditFichaCaracterizacionLabel_idProgramaFormacion}" for="idProgramaFormacion" />
                         <p:selectOneMenu id="idProgramaFormacion" value="#{fichaCaracterizacionController.selected.idProgramaFormacion}" required="true" requiredMessage="#{bundle.EditFichaCaracterizacionRequiredMessage_idProgramaFormacion}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{programaDeFormacionController.itemsAvailableSelectOne}"
                                            var="idProgramaFormacionItem"
-                                           itemValue="#{idProgramaFormacionItem}"/>
+                                           itemValue="#{idProgramaFormacionItem}"
+                                           itemLabel="#{idProgramaFormacionItem.nombreprogramaformacion}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{fichaCaracterizacionController.update}" value="#{bundle.Save}" update="display,:FichaCaracterizacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FichaCaracterizacionEditDialog');"/>
