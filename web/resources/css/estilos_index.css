@@ -350,18 +350,18 @@ a{
     padding: 3px;
 
 }
-/*/////posicion y diseño de Videos/////*/
+/*/////posicion y dise?o de Videos/////*/
 .work-video{
     position: relative;
     float: right;
-    top: -45px;
-    right: 80px;
+    top: -571px;
+    right: 9px;
     display: none;
     display: inline-block;
     background-color: #119178;
     border-radius: 5px;
     text-align: center;
-    width: 69%;
+    width: 73%;
     height: 471px;
     padding: 12px;
 }

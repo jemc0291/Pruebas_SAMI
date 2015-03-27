@@ -22,6 +22,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ActionEvent;
 
 @Named("facturasController")
 @SessionScoped
@@ -68,15 +69,25 @@ public class FacturasController implements Serializable {
     private FacturasFacade getFacade() {
         return ejbFacade;
     }
-
-    public Facturas prepareCreate() {
-        selected = new Facturas();
-        initializeEmbeddableKey();
-        return selected;
+    
+    public String redirigir(){
+        return "Create";
     }
 
-    public String createDos() {
-        try {
+    public String prepareCreate() {
+        selected = new Facturas();
+        initializeEmbeddableKey();
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/Facturas/Create.xhtml";
+        
+    }
+    
+    public String recargarLista(){
+    return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/Facturas/Facturas.xhtml";
+    }
+
+    public String createDos(ActionEvent event) {
+        try{
+        selected.setIdUsuario((Usuarios) event.getComponent().getAttributes().get("usuario"));
             selected.setFecha(new Date());
             getFacade().create(selected);
             addSuccessMessage("Crear Cliente", "Factura Creada Exitosamente");

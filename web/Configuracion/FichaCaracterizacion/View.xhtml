@@ -22,10 +22,10 @@
                         <h:outputText value="#{fichaCaracterizacionController.selected.fechaFin}" title="#{bundle.ViewFichaCaracterizacionTitle_fechaFin}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewFichaCaracterizacionLabel_codigoFicha}"/>
-                        <h:outputText value="#{fichaCaracterizacionController.selected.codigoFicha}" title="#{bundle.ViewFichaCaracterizacionTitle_codigoFicha}"/>
+                        <h:outputText value="Numero de Ficha"/>
+                        <h:outputText value="#{fichaCaracterizacionController.selected.codigoFicha}" title="codigo ficha"/>
                         <h:outputText value="#{bundle.ViewFichaCaracterizacionLabel_idProgramaFormacion}"/>
-                        <h:outputText value="#{fichaCaracterizacionController.selected.idProgramaFormacion}" title="#{bundle.ViewFichaCaracterizacionTitle_idProgramaFormacion}"/>
+                        <h:outputText value="#{fichaCaracterizacionController.selected.idProgramaFormacion.nombreprogramaformacion}" title="#{bundle.ViewFichaCaracterizacionTitle_idProgramaFormacion}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="FichaCaracterizacionViewDialog.hide()"/>
                 </h:panelGroup>

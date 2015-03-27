@@ -20,8 +20,8 @@
                                  rowKey="#{item.idFactura}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50">
-                        <p:ajax event="rowSelect"   update="createButton editButton"/>
-                        <p:ajax event="rowUnselect" update="createButton editButton"/>
+                        <p:ajax event="rowSelect"   update="editButton"/>
+                        <p:ajax event="rowUnselect" update="editButton"/>
 
                         <p:column>
                             <f:facet name="header">
@@ -51,7 +51,7 @@
                         </p:column>
                         <p:column>
                             <f:facet name="footer">
-                                <p:commandButton id="createButton" icon="ui-icon-plus" actionListener="#{facturasController.prepareCreate}" update=":FacturaCreateForm" oncomplete="PF('FacturaCreateDialog').show()"/>
+                                <p:commandButton id="createButton" icon="ui-icon-plus" action="#{facturasController.prepareCreate}"/>
                                 <p:commandButton id="editButton"   icon="ui-icon-pencil" update=":FacturaEditForm" oncomplete="PF('FacturaEditDialog').show()" disabled="#{empty facturasController.selected}"/>
                             </f:facet>
                         </p:column>
@@ -59,7 +59,6 @@
                 </p:panel>
             </h:form>
             
-            <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
         </ui:define>
     </ui:composition>

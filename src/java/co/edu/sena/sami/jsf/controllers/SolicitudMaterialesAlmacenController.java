@@ -227,6 +227,17 @@ public class SolicitudMaterialesAlmacenController implements Serializable {
         items = null;
         return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/Solicitudes.xhtml";
     }
+    
+    public String updateDos() {
+        selected.setSolicitudMaterialesAlmacenMaterialesList(itemsSolMaterial);
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenUpdated"));
+        for (SolicitudMaterialesAlmacenMateriales item : itemsSolMaterial) {
+            selectedSolMaterial = item;
+            persistSolMaterial(PersistAction.UPDATE, null);
+        }
+        items = null;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/Materiales/SolicitudesAprobadas.xhtml";
+    }
 
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/resources/Bundle").getString("SolicitudMaterialesAlmacenDeleted"));
