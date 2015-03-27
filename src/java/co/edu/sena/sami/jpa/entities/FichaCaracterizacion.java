@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -30,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Snyck
+ * @author usuario
  */
 @Entity
 @Table(name = "ficha_caracterizacion")
@@ -45,8 +47,8 @@ public class FichaCaracterizacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id_ficha_caracterizacion")
     private Integer idFichaCaracterizacion;
     @Basic(optional = false)
@@ -86,7 +88,7 @@ public class FichaCaracterizacion implements Serializable {
         this.idFichaCaracterizacion = idFichaCaracterizacion;
     }
 
-    public FichaCaracterizacion(Integer idFichaCaracterizacion, Date fechaInicio, Date fechaFin) {
+    public FichaCaracterizacion(Integer idFichaCaracterizacion, Date fechaInicio, Date fechaFin, String codigoFicha) {
         this.idFichaCaracterizacion = idFichaCaracterizacion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -124,7 +126,7 @@ public class FichaCaracterizacion implements Serializable {
     public void setCodigoFicha(String codigoFicha) {
         this.codigoFicha = codigoFicha;
     }
-
+    
     @XmlTransient
     public List<ProyectoFormacion> getProyectoFormacionList() {
         return proyectoFormacionList;

@@ -11,7 +11,7 @@
         <ui:define name="body">
             <h:form>
                 <p:outputPanel id="solicitudMaterialesAlmacenPanel">
-                    <p:panel header="#{bundle.ListSolicitudMaterialesAlmacenTitleDos}">
+                    <p:panel header="#{bundle.ListSolicitudMaterialesAlmacenTitle}">
                         <p:dataTable value="#{solicitudMaterialesAlmacenController.items}" var="item"
                                      id="solicitudesUsuarioTable"
                                      rows="10" paginator="true"
@@ -20,20 +20,20 @@
 
                             <p:column filterBy="#{item.idSolicitudMaterial}" filterMatchMode="contains">
                                 <f:facet name="header">
-                                    <h:outputText value="IdSolicitudMaterial"/>
+                                    <h:outputText value="Número de Solicitud"/>
                                 </f:facet>
                                 <h:outputText value="#{item.idSolicitudMaterial}"/>
                             </p:column>
                             <p:column >
                                 <f:facet name="header">
-                                    <h:outputText value="IdFicha"/>
+                                    <h:outputText value="Ficha de Caracterización"/>
                                 </f:facet>
                                 <h:outputText value="#{item.idFichaCaracterizacion}"/>
                             </p:column>
 
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="FechaDeSolicitud"/>
+                                    <h:outputText value="Fecha de Solicitud"/>
                                 </f:facet>
                                 <h:outputText value="#{item.fechaDeSolicitud}">
                                     <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -47,7 +47,7 @@
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="IdArea"/>
+                                    <h:outputText value="Área"/>
                                 </f:facet>
                                 <h:outputText value="#{item.idArea}"/>
                             </p:column>
@@ -55,7 +55,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="Aprobado"/>
                                 </f:facet>
-                                <p:selectBooleanCheckbox value="#{item.aprobado}" disabled="true"/>
+                                <h:outputText rendered="#{item.aprobado}" value="Si"/>
+                                <h:outputText rendered="#{!item.aprobado}" value="No"/>
                             </p:column>
                             <p:column>
                                 <p:commandButton id="viewButton" icon="ui-icon-search" update="solicitudesUsuarioTable" action="#{solicitudMaterialesAlmacenController.prepareViewIns()}">

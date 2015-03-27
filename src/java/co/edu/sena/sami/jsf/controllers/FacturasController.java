@@ -22,6 +22,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ActionEvent;
 
 @Named("facturasController")
 @SessionScoped
@@ -68,15 +69,25 @@ public class FacturasController implements Serializable {
     private FacturasFacade getFacade() {
         return ejbFacade;
     }
-
-    public Facturas prepareCreate() {
-        selected = new Facturas();
-        initializeEmbeddableKey();
-        return selected;
+    
+    public String redirigir(){
+        return "Create";
     }
 
-    public String createDos() {
-        try {
+    public String prepareCreate() {
+        selected = new Facturas();
+        initializeEmbeddableKey();
+        return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/Facturas/Create.xhtml";
+        
+    }
+    
+    public String recargarLista(){
+    return "/modulo6/GestionMaterialesFormacion/Admin/Almacen/Facturas/Facturas.xhtml";
+    }
+
+    public String createDos(ActionEvent event) {
+        try{
+        selected.setIdUsuario((Usuarios) event.getComponent().getAttributes().get("usuario"));
             selected.setFecha(new Date());
             getFacade().create(selected);
             addSuccessMessage("Crear Cliente", "Factura Creada Exitosamente");
@@ -195,6 +206,49 @@ public class FacturasController implements Serializable {
         }
 
     }
+    
+    
+    @FacesConverter(forClass = Usuarios.class, value = "usuariosConverter")
+    public static class UsuariosControllerConverter implements Converter {
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            UsuariosController controller = (UsuariosController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "usuariosController");
+            return controller.getUsuarios(getKey(value));
+        }
+
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
+            return key;
+        }
+
+        String getStringKey(java.lang.Integer value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof Usuarios) {
+                Usuarios o = (Usuarios) object;
+                return getStringKey(o.getIdUsuario());
+            } else {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Usuarios.class.getName()});
+                return null;
+            }
+        }
+
+    }
+
     
     private void addErrorMessage(String title, String msg) {
         FacesMessage facesMsg

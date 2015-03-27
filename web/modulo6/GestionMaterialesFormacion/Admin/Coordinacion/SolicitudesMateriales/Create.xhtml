@@ -19,23 +19,23 @@
                     <p:panelGrid columns="3" layout="grid" id="panelSolicitud">
 
                         <label jsf:value="#{bundle.CreateSolicitudMaterialesAlmacenLabel_idArea}" for="idArea"></label>
-                        <p:selectOneMenu id="idArea" pt:required="true" 
+                        <h:selectOneMenu id="idArea" pt:required="true" 
                                          requiredMessage="El Area es un campo requerido por favor elijalo."
                                          value="#{solicitudMaterialesAlmacenController.selected.idArea}" >
                             <f:selectItem itemLabel="Seleccione un Area"/>
                             <f:selectItems value="#{solicitudMaterialesAlmacenController.areasAvailableSelectOne}"/>
                             <f:ajax execute="@this" render="idAreaMessage"/>
-                        </p:selectOneMenu>
+                        </h:selectOneMenu>
                         <p:message id="idAreaMessage" for="idArea" styleClass="error"/>
 
                         <label jsf:value="#{bundle.CreateSolicitudMaterialesAlmacenLabel_idFichaCaracterizacion}" for="idFichaCaracterizacion"/>
-                        <p:selectOneMenu id="idFichaCaracterizacion" pt:required="true" 
+                        <h:selectOneMenu id="idFichaCaracterizacion" pt:required="true" converter="fichaCaracterizacionConverter"
                                          requiredMessage="La Ficha de Caracterizacion es un campo requerido por favor ingreselo"
                                          value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}" >
                             <f:selectItem itemLabel="Seleccione una Ficha"/>
                             <f:selectItems value="#{solicitudMaterialesAlmacenController.fichasAvailableSelectOne}"/>
                             <f:ajax execute="@this" render="idFichaCaracterizacionMessage"/>
-                        </p:selectOneMenu>
+                        </h:selectOneMenu>
                         <p:message id="idFichaCaracterizacionMessage" for="idFichaCaracterizacion" styleClass="error"/>
 
                         <!--<Label>Observaciones</Label>
@@ -49,11 +49,11 @@
 
                     <p:panelGrid columns="4" id="panelMateriales" layout="grid">
 
-                        <p:selectOneMenu id="materiales" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.materiales}" required="true" requiredMessage="The Materiales field is required.">
+                        <h:selectOneMenu id="materiales" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.materiales}" requiredMessage="The Materiales field is required.">
                             <!-- TODO: update below reference to list of available items-->
                             <f:selectItem itemLabel="Seleccione un Material..."/>
                             <f:selectItems value="#{materialesController.itemsAvailableSelectOne}"/>
-                        </p:selectOneMenu>
+                        </h:selectOneMenu>
 
                         <h:outputLabel value="#{bundle.CreateSolicitudMaterialesAlmacenMaterialesLabel_cantidad}" for="cantidad" />
                         <p:inputText id="cantidad" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.cantidad}" title="Cantidad" />
@@ -88,8 +88,8 @@
                     </p:dataTable>
 
                     <p:commandButton value="Solicitar Materiales" 
-                                     action="#{solicitudMaterialesAlmacenController.create}" 
-                                     process="@this panelSolicitud panelUsuarios" update="panelSolicitud"/>
+                                     actionListener="#{solicitudMaterialesAlmacenController.create}" 
+                                     action="#{solicitudMaterialesAlmacenController.cargarSolicitudes}" process="@this panelSolicitud" update="panelSolicitud"/>
                     <p:button value="Cancelar" outcome="/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/MainPage.xhtml" />                
                 </h:form>
             </section>

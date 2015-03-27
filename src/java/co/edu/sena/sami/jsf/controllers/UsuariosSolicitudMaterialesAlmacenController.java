@@ -1,5 +1,7 @@
 package co.edu.sena.sami.jsf.controllers;
 
+import co.edu.sena.sami.jpa.entities.Rol;
+import co.edu.sena.sami.jpa.entities.Usuarios;
 import co.edu.sena.sami.jpa.entities.UsuariosSolicitudMaterialesAlmacen;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
@@ -53,10 +55,10 @@ public class UsuariosSolicitudMaterialesAlmacenController implements Serializabl
         return ejbFacade;
     }
 
-    public UsuariosSolicitudMaterialesAlmacen prepareCreate() {
+    public String prepareCreate() {
         selected = new UsuariosSolicitudMaterialesAlmacen();
         initializeEmbeddableKey();
-        return selected;
+        return "/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/SolicitudesMateriales/SolicitudUsuarios.xhtml";
     }
 
     public void create() {
@@ -175,6 +177,87 @@ public class UsuariosSolicitudMaterialesAlmacenController implements Serializabl
             }
         }
 
+    }
+    
+    @FacesConverter(forClass = Usuarios.class, value = "usuariosConverter")
+    public static class UsuariosControllerConverter implements Converter {
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            UsuariosController controller = (UsuariosController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "usuariosController");
+            return controller.getUsuarios(getKey(value));
+        }
+
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
+            return key;
+        }
+
+        String getStringKey(java.lang.Integer value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof Usuarios) {
+                Usuarios o = (Usuarios) object;
+                return getStringKey(o.getIdUsuario());
+            } else {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Usuarios.class.getName()});
+                return null;
+            }
+        }
+
+        @FacesConverter(forClass = Rol.class, value = "rolConverter")
+    public static class RolControllerConverter implements Converter {
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            RolController controller = (RolController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "rolController");
+            return controller.getRol(getKey(value));
+        }
+
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
+            return key;
+        }
+
+        String getStringKey(java.lang.Integer value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof Rol) {
+                Rol o = (Rol) object;
+                return getStringKey(o.getIdRol());
+            } else {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Rol.class.getName()});
+                return null;
+            }
+        }
+
+    }
     }
 
 }

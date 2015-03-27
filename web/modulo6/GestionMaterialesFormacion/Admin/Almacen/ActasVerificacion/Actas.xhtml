@@ -23,8 +23,8 @@
                                  rowKey="#{item.idActaVerificacion}"
                                  rows="10"
                                  rowsPerPageTemplate="20,40,60"
-                                 style="width:130%"
-                                 scrollable="true" scrollWidth="1200">
+                                 style="width:100%"
+                                 scrollable="true" >
                         <p:ajax event="rowSelect"   update="editButton viewButton"/>
                         <p:ajax event="rowUnselect" update="editButton viewButton"/>
                         
@@ -60,12 +60,7 @@
                             </f:facet>
                             <h:outputText value="#{item.entrega}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="LugarRecepcion"/>
-                            </f:facet>
-                            <h:outputText value="#{item.lugarRecepcion}"/>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Fecha"/>
@@ -74,14 +69,7 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Hora"/>
-                            </f:facet>
-                            <h:outputText value="#{item.hora}">
-                                <f:convertDateTime pattern="hh:mm:ss a" />
-                            </h:outputText>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Valor"/>

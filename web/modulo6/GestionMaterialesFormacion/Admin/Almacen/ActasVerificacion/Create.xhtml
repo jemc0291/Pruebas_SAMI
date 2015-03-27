@@ -112,6 +112,8 @@
                         </input>
                         <h:message id="pendienteEntregaMessage" for="pendienteEntrega" styleClass="error"/>
 
+
+                        
                         <label class="Form-na">Observaciones</label>
                         <input type="text" jsf:id="observaciones" required="true" 
                                jsf:requiredMessage="Por favor describa las observaciones"
@@ -129,10 +131,19 @@
                             <f:ajax execute="@this" render="idFacturaMessage"/>
                         </h:selectOneMenu>
                         <h:message id="idFacturaMessage" for="idFactura" styleClass="error"/>
+                        <label>Usuario</label>
+                        <h:selectOneMenu id="idUsuario" value="#{actaVerificacionController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required." converter="usuariosConverter">
+                            <f:selectItem itemLabel="Seleccione un Usuario"/>
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="idUsuarioMessage"/>
+                        </h:selectOneMenu>
+                        <h:message id="idUsuarioMessage" for="idUsuario" styleClass="error"/>
                     </p:panelGrid>
+                    
+                    
+                        
                     <p:commandButton value="Guardar" actionListener="#{actaVerificacionController.create}" 
-                                     action="#{actaVerificacionController.recargarLista}" update="@form" >
-                        <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                                     action="#{actaVerificacionController.recargarLista}" update="@this" >
                     </p:commandButton>
                 </h:panelGroup>
             </h:form>

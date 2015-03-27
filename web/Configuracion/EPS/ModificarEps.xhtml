@@ -7,12 +7,12 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title"> Eps <h:outputText value="#{bundle.ListEpsTitle}"></h:outputText></ui:define>
+        <ui:define name="title"> EPS <h:outputText value="#{bundle.ListEpsTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             
             <h:form> 
-                <h:commandButton value="Modificar Eps" action="#{epsController.prepareModificarEps}"/>
+                <h:commandButton value="Modificar EPS" action="#{epsController.prepareModificarEps}"/>
                 <h:commandButton value="Volver A Lista" action="#{epsController.prepareListEps}"/>
             
             </h:form>
@@ -23,7 +23,7 @@
                        
                         <label class="Form-na" value="#{bundle.EditEpsLabel_nombreEps}" for="NombreEps"> Nombre Eps </label> 
                         <input type="text" jsf:id="NombreEpsInputText" required="true"
-                               jsf:requiredMessage="Por favor ingrese el nombre de la eps" 
+                               jsf:requiredMessage="Por favor ingrese el nombre de la EPs" 
                                jsf:validatorMessage="Use solo letras"
                                jsf:value="#{epsController.selected.nombreEps}" maxlength="30">
                             <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>

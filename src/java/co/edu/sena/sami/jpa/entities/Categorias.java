@@ -107,7 +107,7 @@ public class Categorias implements Serializable {
 
     @Override
     public String toString() {
-        return "co.edu.sena.sami.jpa.entities.Categorias[ idCategoria=" + idCategoria + " ]";
+        return "" + nombreCategoria;    
     }
     
 }
