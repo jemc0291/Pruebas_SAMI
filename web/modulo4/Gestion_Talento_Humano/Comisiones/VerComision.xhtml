@@ -10,7 +10,7 @@
         <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
         <ui:define name="body">
             <f:view>
-                <h:form>
+                <h:form id="PlanDeComision">
                     <fieldset>
                         
                         <figure class="image-Container">
@@ -167,7 +167,7 @@
                     <h4>Vo.Bo:</h4>
                 </h:form>
                 <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
-                <p:printer target="PlanDeComision" />
+                    <p:printer target="PlanDeComision" />
                 </p:commandButton>
             </f:view>
         </ui:define>
