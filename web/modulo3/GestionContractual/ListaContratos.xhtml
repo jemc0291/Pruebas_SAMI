@@ -31,12 +31,14 @@
                     <p:panelGrid columns="5">
                      <label value="*Fecha Inicio" jsf:for="fechaInicio" class="FormLabelSCCSS" />
                      <p:calendar showOn="button" id="fechaInicio" value="#{contratosController.fechaInicio}" title="#{bundle.CreateContratosTitle_fechaFinContrato}"
-                                    required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}" mindate="#{contratosController.selected.fechaInicioContrato}"
+                                    required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}"
                                     pattern="yyyy-MM-dd">
+                         <p:ajax event="dateSelect" process="@this" update="fechaFin"/>
+                         <p:ajax event="valueChange" process="@this" update="fechaFin"/>
                      </p:calendar>
                      <label value="*Fecha Final" jsf:for="fechaFin" class="FormLabelSCCSS" />
                      <p:calendar showOn="button" id="fechaFin" value="#{contratosController.fechaFin}" title="#{bundle.CreateContratosTitle_fechaFinContrato}"
-                                    required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}" mindate="#{contratosController.selected.fechaInicioContrato}"
+                                    required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}" mindate="#{contratosController.fechaInicio}"
                                     pattern="yyyy-MM-dd">
                      </p:calendar>
                      <p:commandButton value="Consultar" actionListener="#{pagosContratosController.facturasRango()}" >
@@ -113,6 +115,13 @@
                             </f:facet>
                             <h:outputText value="#{item.idTipoContrato.toString()}"/>
                         </p:column>
+                        
+                        <!--<p:column filterBy="# {contratosController.getUsuariosByContratos(item).polizas.toString()}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Número Poliza"/>
+                            </f:facet>
+                            <h:outputText value="# {contratosController.getUsuariosByContratos(item).polizas.toString()}"/>
+                        </p:column>-->
 
                         <p:column>
                             <f:facet name="header">
