@@ -80,4 +80,14 @@ public class UsuariosContratosFacade extends AbstractFacade<UsuariosContratos> {
             return null;
         }
     }
+    
+    public UsuariosContratos findByIdUsuario(Usuarios usuarios) {
+        Query q = getEntityManager().createNamedQuery("UsuariosContratos.findByUsuarioFecha");
+        q.setParameter("idUsuario", usuarios);
+        q.setParameter("fechaActual", new Date(), TemporalType.DATE);
+        try {
+            return (UsuariosContratos) q.getSingleResult();
+        } catch (NonUniqueResultException ex) {
+            throw ex;
+        } catch (NoResultException ex) {
 }
