@@ -37,7 +37,7 @@
                         <label value="#{bundle.CreateContratosLabel_fechaSuscripcion}" jsf:for="fechaSuscripcion" class="FormLabelSCCSS" />
                         <p:calendar showOn="button" id="fechaSuscripcion" value="#{contratosController.selected.fechasuscripcion}" title="#{bundle.CreateContratosTitle_fechaSuscripcion}"
                                     required="true"  requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaSuscripcion}" mindate="#{contratosController.selected.fechaInicioContrato}" maxdate="#{contratosController.selected.fechaInicioContrato}" 
-                                    pattern="yyyy-MM-dd">
+                                    pattern="yyyy-MM-dd" navigator="true">
                             <p:ajax event="dateSelect" process="@this" update="FechaSuscripcionMessage fechaInicioContrato"/>
                             <p:ajax event="valueChange" process="@this" update="FechaSuscripcionMessage fechaInicioContrato"/>
                         </p:calendar>
@@ -46,7 +46,7 @@
                         <label value="#{bundle.CreateContratosLabel_fechaInicioContrato}" jsf:for="fechaInicioContrato" class="FormLabelSCCSS" />
                         <p:calendar showOn="button" id="fechaInicioContrato" value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.CreateContratosTitle_fechaInicioContrato}"
                                     required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}" mindate="#{contratosController.selected.fechasuscripcion}" maxdate="#{contratosController.selected.fechaFinContrato}" 
-                                    pattern="yyyy-MM-dd">
+                                    pattern="yyyy-MM-dd" navigator="true">
                             <p:ajax event="dateSelect" process="@this" update="FechaInicioMessage fechaFinContrato"/>
                             <p:ajax event="valueChange" process="@this" update="FechaInicioMessage fechaFinContrato"/>
                         </p:calendar>
@@ -55,7 +55,7 @@
                         <label value="#{bundle.CreateContratosLabel_fechaFinContrato}" jsf:for="fechaFinContrato" class="FormLabelSCCSS" />
                         <p:calendar showOn="button" id="fechaFinContrato" value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.CreateContratosTitle_fechaFinContrato}"
                                     required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}" mindate="#{contratosController.selected.fechaInicioContrato}"
-                                    pattern="yyyy-MM-dd">
+                                    pattern="yyyy-MM-dd" navigator="true">
                             <p:ajax event="dateSelect" process="@this" update="FechaFinalMessage fechaInicioContrato"/>
                             <p:ajax event="valueChange" process="@this" update="FechaFinalMessage fechaInicioContrato"/>
                         </p:calendar>

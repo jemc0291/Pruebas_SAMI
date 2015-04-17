@@ -41,7 +41,7 @@
 
                             <label value="#{bundle.CreatePagosContratosLabel_fechaDePago}" jsf:for="fechaDePago" class="FormLabelSCCSS"/>
                             <p:calendar showOn="button" id="fechaDePago" value="#{pagosContratosController.selected.fechaDePago}"
-                                    title="#{bundle.CreatePagosContratosTitle_fechaDePago}" required="true" 
+                                    title="#{bundle.CreatePagosContratosTitle_fechaDePago}" required="true" navigator="true"
                                     requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_fechaDePago}" mindate="2014-11-01" maxdate="2016-12-31"
                                     pattern="yyyy-MM-dd">
                                 <p:ajax process="@this" update="fechaDePagoMessage"/>

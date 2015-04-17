@@ -29,7 +29,7 @@
                                          pattern="yyyy-MM-dd"
                                          value="#{polizasController.selected.fechaAprobacion}" 
                                          title="#{bundle.CreatePolizasTitle_fechaAprobacion}"
-                                         showOn="button"
+                                         showOn="button" navigator="true"
                                          effect="fold"
                                          maxdate="#{contratosModulo1Controller.selectedPolizas.vigenciaDesde}"
                                          required="true" >
@@ -45,7 +45,7 @@
                                          pattern="yyyy-MM-dd"
                                          value="#{polizasController.selected.vigenciaDesde}" 
                                          title="#{bundle.CreatePolizasTitle_vigenciaDesde}"
-                                         showOn="button"
+                                         showOn="button" navigator="true"
                                          mindate="#{contratosModulo1Controller.selectedPolizas.fechaAprobacion}"
                                          maxdate="#{contratosModulo1Controller.selectedPolizas.vigenciaHasta}"
                                          required="true" requiredMessage="#{bundle.CreatePolizasRequiredMessage_vigenciaDesde}">
@@ -62,7 +62,7 @@
                                          title="#{bundle.CreatePolizasTitle_vigenciaHasta}"
                                          pattern="yyyy-MM-dd"
                                          showOn="button"
-                                         effect="fold"
+                                         effect="fold" navigator="true"
                                          mindate="#{contratosModulo1Controller.selectedPolizas.vigenciaDesde}"
                                          required="true" requiredMessage="#{bundle.CreatePolizasRequiredMessage_vigenciaHasta}"  >
 

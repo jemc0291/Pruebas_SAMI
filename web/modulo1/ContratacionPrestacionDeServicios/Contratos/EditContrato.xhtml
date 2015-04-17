@@ -41,7 +41,7 @@
                                      pattern="yyyy-MM-dd"
                                      value="#{contratosModulo1Controller.selected.fechasuscripcion}" 
                                      title="#{bundle.CreateContratosTitle_fechaSuscripcion}"
-                                     showOn="button"
+                                     showOn="button" navigator="true"
                                      effect="fold"
                                      maxdate="#{contratosModulo1Controller.selected.fechaInicioContrato}"
                                      required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}">
@@ -58,7 +58,7 @@
                                      pattern="yyyy-MM-dd"
                                      value="#{contratosModulo1Controller.selected.fechaInicioContrato}" 
                                      title="#{bundle.CreateContratosTitle_fechaInicioContrato}"
-                                     showOn="button"
+                                     showOn="button" navigator="true"
                                      mindate="#{contratosModulo1Controller.selected.fechasuscripcion}"
                                      maxdate="#{contratosModulo1Controller.selected.fechaFinContrato}"
                                      required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}">
@@ -71,7 +71,7 @@
                         <label  jsf:value="#{bundle.CreateContratosLabel_fechaFinContrato}" for="fechaFinContrato" />
                         <p:calendar  id="fechaFinContrato" value="#{contratosModulo1Controller.selected.fechaFinContrato}" 
                                      title="#{bundle.CreateContratosTitle_fechaFinContrato}"
-                                     pattern="yyyy-MM-dd"
+                                     pattern="yyyy-MM-dd" navigator="true"
                                      showOn="button"
                                      effect="fold"
                                      mindate="#{contratosModulo1Controller.selected.fechaInicioContrato}"
@@ -167,7 +167,7 @@
                                      pattern="yyyy-MM-dd"
                                      value="#{contratosModulo1Controller.selected.fechaAnexo}" 
                                      title="#{bundle.CreateContratosTitle_fechaAnexo}"
-                                     showOn="button"
+                                     showOn="button" navigator="true"
                                      required="true" >  
                         </p:calendar>
                         <p:message id="fechaAnexoMessage" for="fechaAnexo" styleClass="error"/>
@@ -177,8 +177,7 @@
                                      pattern="yyyy-MM-dd"
                                      value="#{contratosModulo1Controller.selected.fechaDeAutorizacion}" 
                                      title="#{bundle.CreateContratosTitle_fechaDeAutorizacion}"
-                                     showOn="button"
-
+                                     showOn="button" navigator="true"
                                      required="true"    >                   
 
                         </p:calendar>
@@ -189,8 +188,7 @@
                                      pattern="yyyy-MM-dd"
                                      value="#{contratosModulo1Controller.selected.fechaDeEstudioPrevio}" 
                                      title="#{bundle.CreateContratosTitle_fechaDeEstudioPrevio}"
-                                     showOn="button"
-
+                                     showOn="button" navigator="true"
                                      required="true" >                     
 
                         </p:calendar>
@@ -201,8 +199,7 @@
                                      pattern="yyyy-MM-dd"
                                      value="#{contratosModulo1Controller.selected.fechaDeIdoneidad}" 
                                      title="#{bundle.CreateContratosTitle_fechaDeIdoneidad}"
-                                     showOn="button"
-
+                                     showOn="button" navigator="true"
                                      required="true"    >                  
 
                         </p:calendar>
@@ -221,8 +218,7 @@
                                      pattern="yyyy-MM-dd"
                                      value="#{contratosModulo1Controller.selected.adicionPlazoNuevaFecha}" 
                                      title="#{bundle.CreateContratosTitle_adicionPlazoNuevaFecha}"
-                                     showOn="button"
-
+                                     showOn="button" navigator="true"
                                      required="true"    >                   
 
                         </p:calendar>

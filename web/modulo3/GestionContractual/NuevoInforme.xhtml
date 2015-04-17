@@ -19,7 +19,7 @@
                             
                             <label class="FormLabelSCCSS" for="fechaInforme" jsf:value="#{bundle.CreateInformesLabel_fechaInforme}" />
                             <p:calendar showOn="button" id="fechaInforme" required="true" 
-                                   value="#{informesController.selected.fechaInforme}" title="#{bundle.CreateInformesTitle_fechaInforme}"
+                                   value="#{informesController.selected.fechaInforme}" title="#{bundle.CreateInformesTitle_fechaInforme}" navigator="true"
                                    requiredMessage="#{bundle.CreateInformesRequiredMessage_fechaInforme}" mindate="#{informesController.selected.idContrato.fechaInicioContrato}" pattern="yyyy-MM-dd">
                                 <p:ajax process="@this" update="fechaInformeMessage" />
                             </p:calendar>

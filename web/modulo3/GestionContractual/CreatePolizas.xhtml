@@ -32,7 +32,7 @@
 
                     <label jsf:value="#{bundle.CreatePolizasLabel_vigenciaDesde}"  jsf:for="vigenciaDesde" />
                     <p:calendar showOn="button" id="vigenciaDesde" value="#{contratosController.selectedPolizas.vigenciaDesde}" title="#{bundle.EditPolizasTitle_vigenciaDesde}" 
-                                required="true" requiredMessage="#{bundle.EditPolizasRequiredMessage_vigenciaDesde}"
+                                required="true" requiredMessage="#{bundle.EditPolizasRequiredMessage_vigenciaDesde}" navigator="true"
                            pattern="yyyy-MM-dd" >
                         <p:ajax event="dateSelect" process="@this" update="vigenciaDesdeMessage vigenciaHasta"/>
                         <p:ajax event="valueChange" process="@this" update="vigenciaDesdeMessage vigenciaHasta"/>
@@ -41,7 +41,7 @@
 
                     <label jsf:value="#{bundle.CreatePolizasLabel_vigenciaHasta}" jsf:for="vigenciaHasta" id="" />
                     <p:calendar showOn="button" id="vigenciaHasta" value="#{contratosController.selectedPolizas.vigenciaHasta}"
-                                title="#{bundle.EditPolizasTitle_vigenciaHasta}" required="true" requiredMessage="#{bundle.EditPolizasRequiredMessage_vigenciaHasta}" mindate="#{contratosController.selectedPolizas.vigenciaDesde}"
+                                title="#{bundle.EditPolizasTitle_vigenciaHasta}" required="true" navigator="true" requiredMessage="#{bundle.EditPolizasRequiredMessage_vigenciaHasta}" mindate="#{contratosController.selectedPolizas.vigenciaDesde}"
                                 pattern="yyyy-MM-dd" >
                         <p:ajax event="dateSelect" process="@this" update="vigenciaDesdeMessage vigenciaHasta"/>
                         <p:ajax event="valueChange" process="@this" update="vigenciaDesdeMessage vigenciaHasta"/>
@@ -49,7 +49,7 @@
                     <h:message id="vigenciaHastaMessage" for="vigenciaHasta" />
 
                     <label jsf:value="#{bundle.CreatePolizasLabel_fechaAprobacion}" jsf:for="fechaAprobacion" />
-                    <p:calendar showOn="button" id="fechaAprobacion" value="#{contratosController.selectedPolizas.fechaAprobacion}" title="#{bundle.EditPolizasTitle_fechaAprobacion}" 
+                    <p:calendar showOn="button" id="fechaAprobacion" navigator="true" value="#{contratosController.selectedPolizas.fechaAprobacion}" title="#{bundle.EditPolizasTitle_fechaAprobacion}" 
                                 pattern="yyyy-MM-dd" >
                     </p:calendar>
                     <h:message id="fechaAprobacionMessage" for="fechaAprobacion" />

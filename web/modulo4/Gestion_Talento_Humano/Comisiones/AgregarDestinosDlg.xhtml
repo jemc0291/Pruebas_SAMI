@@ -22,7 +22,7 @@
                                 pattern="yyyy/MM/dd" 
                                 value="#{comisionesController.ciudadComisionesActual.salidaEstimada}"
                                 title="#{bundle.CreateCiudadComisionesTitle_salidaEstimada}"
-                                showOn="button" 
+                                showOn="button" navigator="true"
                                 effect="fold"
                                 maxdate="#{comisionesController.ciudadComisionesActual.llegadaEstimada}"
                                 required="true"  requiredMessage="The SalidaEstimada field is required.">
@@ -38,7 +38,7 @@
                                 pattern="yyyy/MM/dd"
                                 value="#{comisionesController.ciudadComisionesActual.llegadaEstimada}"
                                 title="#{bundle.CreateCiudadComisionesTitle_llegadaEstimada}" 
-                                showOn="button" 
+                                showOn="button" navigator="true"
                                 effect="fold"
                                 mindate="#{comisionesController.ciudadComisionesActual.salidaEstimada}"
                                 required="true" requiredMessage="The LlegadaEstimada field is required.">

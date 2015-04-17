@@ -20,10 +20,10 @@
             <h:form id="formSolicitud">
 
                 <h:outputText value="Fecha Inicio:"/>
-                <p:calendar id="fechaInicioQuery" showOn="button" value="#{solicitudServiciosController.fechaInicio}"  pattern="yyyy-MM-dd hh:mm" />
+                <p:calendar id="fechaInicioQuery" showOn="button" navigator="true" value="#{solicitudServiciosController.fechaInicio}"  pattern="yyyy-MM-dd hh:mm" />
 
                 <h:outputText value="Fecha Fin:" style="padding-left: 25%"/>
-                <p:calendar id="fechaFinQuery" showOn="button" value="#{solicitudServiciosController.fechaFin}"  pattern="yyyy-MM-dd hh:mm" />
+                <p:calendar id="fechaFinQuery" showOn="button" navigator="true" value="#{solicitudServiciosController.fechaFin}"  pattern="yyyy-MM-dd hh:mm" />
 
                 <p></p>
                 <p:commandButton value="Consultar" 

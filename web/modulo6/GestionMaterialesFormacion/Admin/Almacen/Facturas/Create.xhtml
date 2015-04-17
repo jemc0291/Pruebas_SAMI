@@ -50,7 +50,7 @@
                                      pattern="yyyy-MM-dd"
                                      value="#{facturasController.selected.fecha}" 
                                      title="#{bundle.CreateContratosTitle_fechaSuscripcion}"
-                                     showOn="button"
+                                     showOn="button" navigator="true"
                                      required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}">
                             <p:ajax event="dateSelect" process="@this fecha" update="FacturaCreateForm"/>
                             <p:ajax  event="valueChange"  process="@this fecha" update="FacturaCreateForm"/>

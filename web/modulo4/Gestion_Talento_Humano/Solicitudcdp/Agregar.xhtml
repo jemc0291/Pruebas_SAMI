@@ -22,7 +22,7 @@
                             <h:inputText id="numeroCdp" value="#{cdpController.selected.numeroCdp}" title="NumeroCdp" required="true" requiredMessage="The NumeroCdp field is required."/>
                             <h:outputLabel value="FechaSolicitud:" for="fechaSolicitud" />
                             <p:calendar  id="fechaSolicitud" value="#{cdpController.selected.fechaSolicitud}"
-                                     pattern="yyyy-MM-dd"
+                                     pattern="yyyy-MM-dd" navigator="true"
                                      showOn="button"
                                      effect="fold"
                                      required="true" >
@@ -31,7 +31,7 @@
                             <h:outputLabel value="FechaRecepcion:" for="fechaRecepcion" />
                             <p:calendar  id="fechaRecepcion" value="#{cdpController.selected.fechaRecepcion}"
                                      pattern="yyyy-MM-dd"
-                                     showOn="button"
+                                     showOn="button" navigator="true"
                                      effect="fold"
                                      required="true" >
 
