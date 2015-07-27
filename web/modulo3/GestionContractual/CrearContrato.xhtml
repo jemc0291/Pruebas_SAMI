@@ -14,6 +14,7 @@
 
 
                 <h:form id="contratoForm">
+                    <h:outputScript name="#{request.contextPath}/resources/js/calendar-localization.js"/>
                     <h1><h:outputText value="#{bundle.CreateContratosTitle}"/></h1>
                     <h:panelGrid columns="3">
                         <label value="#{bundle.CreateContratosLabel_numeroDeContrato}" jsf:for="numeroDeContrato" class="FormLabelSCCSS" />
@@ -37,7 +38,7 @@
                         <label value="#{bundle.CreateContratosLabel_fechaSuscripcion}" jsf:for="fechaSuscripcion" class="FormLabelSCCSS" />
                         <p:calendar showOn="button" id="fechaSuscripcion" value="#{contratosController.selected.fechasuscripcion}" title="#{bundle.CreateContratosTitle_fechaSuscripcion}"
                                     required="true"  requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaSuscripcion}" mindate="#{contratosController.selected.fechaInicioContrato}" maxdate="#{contratosController.selected.fechaInicioContrato}" 
-                                    pattern="yyyy-MM-dd" navigator="true">
+                                    pattern="yyyy-MM-dd" navigator="true" locale="es" showButtonPanel="true">
                             <p:ajax event="dateSelect" process="@this" update="FechaSuscripcionMessage fechaInicioContrato"/>
                             <p:ajax event="valueChange" process="@this" update="FechaSuscripcionMessage fechaInicioContrato"/>
                         </p:calendar>

@@ -162,9 +162,11 @@
 }
 
 .Header-logo{
-    width: 97%;
+    width: 72%;
     height: 60%;
-    margin-right: 2em;
+    margin-right: 5em;
+    padding-bottom: 7em;
+    padding-left: 2em;
 }
 
 .HeaderList-item{
@@ -817,9 +819,9 @@ table, th, td {
 
 .Codigo{
 
-      position: relative;
-  bottom: 8em;
-  left: -1em;
+    position: relative;
+    bottom: 8em;
+    left: -1em;
 }
 .estilo {
 

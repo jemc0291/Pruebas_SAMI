@@ -501,7 +501,7 @@ a{
 /*////////////////////////////*/
 .MainMenu{
     text-align: center;
-    height: 3.75em;
+    height: 0.75em;
     border-radius: 5px;
     line-height: 3.75em;
     top:0;
@@ -756,14 +756,16 @@ input:required, textarea:required {
     text-align: center;
 }
 .Footer {
-    background-image: url("../images/footer.png");
-    background-position: center; 
+    background-image: url("resources/images/template/footer.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
     position: relative;
-    top: 75em;
+    top: 28em;
     /* left: 12px; */
     text-align: center;
-    height: 450px;
+    height: 191px;
 }
 
 
@@ -773,8 +775,8 @@ input:required, textarea:required {
 .Footer-imageDescription{
 
     display: inline-block;
-    margin-right: 3em;
-    margin-left: 3em;
+    //margin-right: 3em;
+    //margin-left: 3em;
     margin-bottom: 2em;
     list-style: none;
 
@@ -863,6 +865,7 @@ img{max-width:100%; vertical-align: middle;}
     .Menu-img{position: relative;left: 43em;top: -65px;max-width: 20em;margin: 0;border-radius: 5px;}
 
 }
+
 
 /*@media screen and (max-width: 1366px){
     .work-video{ width: 72%;  left: -30px;top: -572px; padding: 12px;}

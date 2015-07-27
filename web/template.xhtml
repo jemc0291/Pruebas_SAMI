@@ -9,9 +9,10 @@
 
     <head jsf:id="head">
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, minimum-scale=1,maximun-scale=1" />      
+        <meta name="viewport" content="width=device-width, minimum-scale=1,maximun-scale=1" />
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/normalize.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/estilos.css"/>
+        <link href="#{request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
         <title><ui:insert name="title">Default Title</ui:insert></title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
@@ -38,9 +39,9 @@
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo4/index_modulo4.xhtml" jsf:rendered="#{loginController.gestionTalento}" >Gestión y talento humano</a></li>
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo5/index_modulo5.xhtml" jsf:rendered="#{loginController.gestionDocumental}" >Gestión documental</a></li>
                                     <li class="HeaderList-link"><a  jsf:outcome="/modulo6/index_modulo6.xhtml" jsf:rendered="#{loginController.gestionMateriales}" >Gestión de materiales de formación</a></li>
-                                  <li class="HeaderList-link"><a jsf:action="#{loginController.logout}" onclick="PF('cerrarSesion').show();">Cerrar Sesión</a></li>
+                                    <li class="HeaderList-link"><a jsf:action="#{loginController.logout}" onclick="PF('cerrarSesion').show();">Cerrar Sesión</a></li>
                                     <h:form>           
-                                                                         
+
 
                                         <p:confirmDialog global="true"
                                                          showEffect="fade" 
@@ -97,47 +98,49 @@
                 <a type="button" onclick="PF('dlg2').show();" class="icon-help" ></a>
             </article>
         </footer>
+
+        <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
+            <h:outputText value="" />
+            <h:form>
+                <p:panel header="Tienes un problema?, te ayudamos">
+                    <p:messages autoUpdate="true"/>
+
+                    <h:panelGrid id="grid" columns="4" cellpadding="5">
+                        <h:outputLabel for="to" value="Email:" style="font-weight:bold"/>                    
+                        <p:inputText id="to" value="#{emailController.to}" required="true" label="to"/>
+                        <p:message for="to" />
+                        <h:outputText value="#{emailController.to}" />
+
+                        <h:outputLabel for="subject" value="Asunto:" style="font-weight:bold"/>                    
+                        <p:inputText id="subject" value="#{emailController.asunto}" label="subject">
+                            <f:validateDoubleRange minimum="5" maximum="8" />
+                        </p:inputText>
+                        <p:message for="subject" />
+                        <h:outputText value="#{emailController.asunto}" />
+
+                        <h:outputLabel for="desc" value="Description" style="font-weight:bold"/>
+                        <p:inputTextarea id="desc" value="#{emailController.body}" required="true" label="Description">
+                            <f:validateLength minimum="3" maximum="10" /> 
+                        </p:inputTextarea>
+                        <p:message for="desc" />
+                        <h:outputText value="#{emailController.body}" />
+
+                    </h:panelGrid>
+                    <p:commandButton icon="ui-icon-mail-closed" value="Enviar" action="#{emailController.sendMail}"/>
+                </p:panel>
+            </h:form> 
+        </p:dialog> 
+
+        <form jsf:id="confirmForm">
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </form>
+
         
-            <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
-                <h:outputText value="" />
-                <h:form>
-                    <p:panel header="Tienes un problema?, te ayudamos">
-                        <p:messages autoUpdate="true"/>
-
-                        <h:panelGrid id="grid" columns="4" cellpadding="5">
-                            <h:outputLabel for="to" value="Email:" style="font-weight:bold"/>                    
-                            <p:inputText id="to" value="#{emailController.to}" required="true" label="to"/>
-                            <p:message for="to" />
-                            <h:outputText value="#{emailController.to}" />
-
-                            <h:outputLabel for="subject" value="Asunto:" style="font-weight:bold"/>                    
-                            <p:inputText id="subject" value="#{emailController.asunto}" label="subject">
-                                <f:validateDoubleRange minimum="5" maximum="8" />
-                            </p:inputText>
-                            <p:message for="subject" />
-                            <h:outputText value="#{emailController.asunto}" />
-
-                            <h:outputLabel for="desc" value="Description" style="font-weight:bold"/>
-                            <p:inputTextarea id="desc" value="#{emailController.body}" required="true" label="Description">
-                                <f:validateLength minimum="3" maximum="10" /> 
-                            </p:inputTextarea>
-                            <p:message for="desc" />
-                            <h:outputText value="#{emailController.body}" />
-
-                        </h:panelGrid>
-                        <p:commandButton icon="ui-icon-mail-closed" value="Enviar" action="#{emailController.sendMail}"/>
-                    </p:panel>
-                </h:form> 
-            </p:dialog> 
-
-            <form jsf:id="confirmForm">
-                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                </p:confirmDialog>
-            </form>
-
-
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
     </body>
 
 </html>

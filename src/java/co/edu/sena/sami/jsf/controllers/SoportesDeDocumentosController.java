@@ -40,7 +40,8 @@ public class SoportesDeDocumentosController implements Serializable {
     private List<SoportesDeDocumentos> items = null;
     private SoportesDeDocumentos selected;
     private UploadedFile file;
-    private String destination = "var\\sami\\sup_cont\\doc\\";
+    private String destination = "C:\\users\\aprendiz\\docs\\";
+//    private String destination = "var\\sami\\sup_cont\\doc\\";
 
     public SoportesDeDocumentosController() {
     }

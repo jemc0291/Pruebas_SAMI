@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <footer id="footer">
+        <div class="row">
+            <div class="col-md-1">.<!--espacio entre columnas-->
+            </div>
+            <div class="col-md-3">
+                <h3 class="text-center">Contacto</h3>
+                <p class="text-center">
+                    contactosami@gmail.com<br/>facebook.com/contactosami<br/>@interactuasami 
+                    <br/>317-347-01-78 - 310-123-45-68<br/>SENA
+                </p>
+            </div>
+            <div class="col-md-1">.<!--espacio entre columnas-->
+            </div>
+            <div class="col-md-3">
+                <h4 class="text-center">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
+                <p class="text-center">Centro de Biotecnologia Industrial<br/>Palmira, Valle del Cauca<br/>Carrera 30 40-25  
+                    <br/>Teléfono: 275-09-68<br/>Fax: 275-09-65</p>
+            </div>
+            <div class="col-md-1">.<!--espacio entre columnas-->
+            </div>
+            <div class="col-md-3 text-center">
+                <h3 class="text-center">Opciones</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/" class="icon-icon-sofia-01" target="_blank"></a>
+                        <a href="http://www.sena.edu.co/Paginas/Inicio.aspx" class="icon-icon-sena0" target="_blank"></a>
+                    </div>
+                </div>
+                <div class="row">.<!--espacio entre filas-->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a jsf:outcome="/Configuracion/index_configuracion.xhtml" class="icon-cog" jsf:rendered="#{loginController.configuracion}" ></a>
+                        <a type="button" onclick="PF('dlg2').show();" class="icon-help" ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
+        <h:outputText value="" />
+        <h:form>
+            <p:panel header="Tienes un problema?, te ayudamos">
+                <p:messages autoUpdate="true"/>
+
+                <h:panelGrid id="grid" columns="4" cellpadding="5">
+                    <h:outputLabel for="to" value="Email:" style="font-weight:bold"/>                    
+                    <p:inputText id="to" value="#{emailController.to}" required="true" label="to"/>
+                    <p:message for="to" />
+                    <h:outputText value="#{emailController.to}" />
+
+                    <h:outputLabel for="subject" value="Asunto:" style="font-weight:bold"/>                    
+                    <p:inputText id="subject" value="#{emailController.asunto}" label="subject">
+                        <f:validateDoubleRange minimum="5" maximum="8" />
+                    </p:inputText>
+                    <p:message for="subject" />
+                    <h:outputText value="#{emailController.asunto}" />
+
+                    <h:outputLabel for="desc" value="Description" style="font-weight:bold"/>
+                    <p:inputTextarea id="desc" value="#{emailController.body}" required="true" label="Description">
+                        <f:validateLength minimum="3" maximum="10" /> 
+                    </p:inputTextarea>
+                    <p:message for="desc" />
+                    <h:outputText value="#{emailController.body}" />
+
+                </h:panelGrid>
+                <p:commandButton icon="ui-icon-mail-closed" value="Enviar" action="#{emailController.sendMail}"/>
+            </p:panel>
+        </h:form> 
+    </p:dialog> 
+
+    <form jsf:id="confirmForm">
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </p:confirmDialog>
+    </form>
+</html>
+
