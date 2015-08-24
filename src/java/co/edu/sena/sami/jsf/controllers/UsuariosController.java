@@ -118,7 +118,7 @@ public class UsuariosController implements Serializable {
     
     public boolean isCarreraAdministrativa(){
         return selected.getIdTipoContrato() == null? false : selected.getIdTipoContrato().getIdTipoContrato() == (short) 2;
-    } 
+    }
     
     public String prepareCreate() {
         selected = new Usuarios();
@@ -126,6 +126,13 @@ public class UsuariosController implements Serializable {
         listaRoles = new ArrayList<>();
         initializeEmbeddableKey();
         return "/Configuracion/Usuarios/Agregar";
+    }
+    public String prepareCreateModulo1() {
+        selected = new Usuarios();
+        listaCargo = new ArrayList<>();
+        listaRoles = new ArrayList<>();
+        initializeEmbeddableKey();
+        return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/AgregarN";
     }
 
     public String prepareModificarUsuario() {
@@ -152,6 +159,7 @@ public class UsuariosController implements Serializable {
             selected.setEstado(true);
             selected.setRolList(listaRoles);
             selected.setCargoList(listaCargo);
+            selected.setPassword(selected.getNumeroDoc());
             getFacade().create(selected);
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());

@@ -83,9 +83,15 @@ public class LoginController implements Serializable {
     }
 
     public boolean isMantenimiento() {
-        return getRequest().isUserInRole("webModulo2");
+        return getRequest().isUserInRole("webModulo2") ;
     }
 
+    public boolean isOnlyMantenimiento() {
+        return getRequest().isUserInRole("webModulo2") && !getRequest().isUserInRole("Invitado_Mantenimiento");
+    }
+    public boolean isSuperMantenimiento() {
+        return getRequest().isUserInRole("superMantenimiento");
+    }
     public boolean isSupervisionSuministros() {
         return getRequest().isUserInRole("webModulo3");
     }
@@ -108,6 +114,10 @@ public class LoginController implements Serializable {
     
     public boolean isUsuarioGeneral() {
         return getRequest().isUserInRole("webusuariogeneral");
+    }
+    
+    public boolean isUsuarioInvitadoMantenimiento() {
+        return getRequest().isUserInRole("Invitado_Mantenimiento")||getRequest().isUserInRole("webModulo2");
     }
 
     public String login() {
