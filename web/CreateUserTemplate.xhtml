@@ -162,7 +162,7 @@
 
                 </div>
                 <div class="row form-group">
-                    <label class="control-label col-md-2" jsf:for="ContratoInputText"> Tipo de Contrato </label>
+                    <label class="control-label col-md-2" jsf:for="ContratoInputText"> Tipo de Contrato:</label>
                     <div class="col-md-2">
                         <select class="Form-datos" jsf:id="ContratoInputText" size="1"
                                 jsf:value="#{usuariosController.selected.idTipoContrato}">
@@ -416,7 +416,7 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <h:outputText class="control-label col-md-2" value="Cargo:"/>
+                    <label class="control-label col-md-2" jsf:for="cargo">Cargo:</label>
                     <div class="col-md-9">
                         <p:selectManyCheckbox id="cargo" value="#{usuariosController.listaCargo}" layout="grid" 
                                               columns="3"

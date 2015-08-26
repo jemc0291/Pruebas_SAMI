@@ -84,6 +84,11 @@ public class Usuarios implements Serializable {
     @Column(name = "fecha_expedicion_doc")
     @Temporal(TemporalType.DATE)
     private Date fechaExpedicionDoc;
+//    @Basic(optional = false)
+//    @NotNull
+//    @Size(min = 1, max = 20)
+//    @Column(name = "primer_nombre")
+//    private String primerNombre;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)

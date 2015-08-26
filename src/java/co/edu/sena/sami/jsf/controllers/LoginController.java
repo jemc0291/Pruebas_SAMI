@@ -87,7 +87,7 @@ public class LoginController implements Serializable {
     }
 
     public boolean isOnlyMantenimiento() {
-        return getRequest().isUserInRole("webModulo2") && !getRequest().isUserInRole("Invitado_Mantenimiento");
+        return getRequest().isUserInRole("webModulo2") && !getRequest().isUserInRole("Invitado_Mantenimiento")&& !getRequest().isUserInRole("superMantenimiento");
     }
     public boolean isSuperMantenimiento() {
         return getRequest().isUserInRole("superMantenimiento");
