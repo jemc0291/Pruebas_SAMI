@@ -12,8 +12,7 @@
 
             <h:form >
 
-
-                <h:commandButton value="Agregar contrato" action="#{contratosModulo1Controller.prepareCreate}"/>
+                <p:commandButton rendered="#{loginController.contratacion}" icon="ui-icon-plusthick" action="#{contratosModulo1Controller.prepareCreate}" value="#{bundle.Create}"/>
 
                 <h3>Export Data Complete</h3>
                 <h:commandLink>
@@ -32,7 +31,7 @@
                 </h:commandLink>
 
                 <p:dataTable id="contratosModulo1Table" value="#{contratosModulo1Controller.items}" var="item"
-                             paginator="true"
+                             paginator="true" style="font-size:12px"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rows="10"
                              rowsPerPageTemplate="10,20,30,40,50"
@@ -179,26 +178,27 @@
                             <f:setPropertyActionListener value="#{item}" target="#{contratosModulo1Controller.selected}"/>
                         </p:commandButton>
 
-
-
                     </p:column> 
 
                 </p:dataTable>
-
-
-                <h3>Informe Talento Humano</h3>
-                <h:commandLink id="excel">
-                <img src="../Recursos/Imagenes/excel.png" />
-                <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS}" />
-                </h:commandLink>
-                
-                 <h3>Reporte General</h3>
-                <h:commandLink id="excel2">
-                <img src="../Recursos/Imagenes/excel.png" />
-                <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS1}" />
-                </h:commandLink>
-               
-
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-4">
+                            <h5>Informe Talento Humano</h5>
+                            <h:commandLink id="excel">
+                                <img src="../Recursos/Imagenes/excel.png" />
+                                <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS}" />
+                            </h:commandLink>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>Reporte General</h5>
+                            <h:commandLink id="excel2">
+                                <img src="../Recursos/Imagenes/excel.png" />
+                                <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS1}" />
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </div>
             </h:form>
 
         </ui:define>

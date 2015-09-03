@@ -36,7 +36,7 @@
                                 </h:outputText>
 
                                 <h:outputText value="IdUsuario:"/>
-                                <h:outputText value="#{solicitudServiciosController.selected.idUsuario}"/>
+                                <h:outputText value="#{solicitudServiciosController.selected.idUsuario.numeroDoc}"/>
 
                             </p:panelGrid>
                         </p:panel>
@@ -111,7 +111,7 @@
 
                         <p:dataTable value="#{solicitudServiciosController.listAvance}" var="item"
                                      rows="10" id="formulario1Table" 
-                                     paginator="true"
+                                     paginator="true" style="font-size:12px"
                                      paginatorTemplate="{FirstPageLink} 
                                      {PreviousPageLink} {PageLinks} {NextPageLink} 
                                      {LastPageLink} {RowsPerPageDropdown}"

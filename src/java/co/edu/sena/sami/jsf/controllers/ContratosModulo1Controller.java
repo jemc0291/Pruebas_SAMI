@@ -9,6 +9,7 @@ import co.edu.sena.sami.jpa.entities.UsuariosContratosPK;
 import co.edu.sena.sami.jpa.sessions.ContratosFacade;
 import co.edu.sena.sami.jpa.sessions.PolizasFacade;
 import co.edu.sena.sami.jpa.sessions.UsuariosContratosFacade;
+import co.edu.sena.sami.jpa.sessions.UsuariosFacade;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil;
 import co.edu.sena.sami.jsf.controllers.util.JsfUtil.PersistAction;
 import java.io.File;
@@ -47,6 +48,8 @@ public class ContratosModulo1Controller implements Serializable {
 
     @EJB
     private PolizasFacade polizasFacade;
+    @EJB
+    private UsuariosFacade usuariosFacade;
     @EJB
     private UsuariosContratosFacade usuariosContratosFacade;
     @EJB
@@ -117,6 +120,11 @@ public class ContratosModulo1Controller implements Serializable {
         return polizasFacade;
     }
 
+    public UsuariosFacade getUsuariosFacade() {
+        return usuariosFacade;
+    }
+    
+
     public UsuariosContratosFacade getUsuariosContratosFacade() {
         return usuariosContratosFacade;
     }
@@ -184,6 +192,13 @@ public class ContratosModulo1Controller implements Serializable {
     public void createPolizas() {
         try {
             getPolizasFacade().create(selectedPolizas);
+        } catch (Exception e) {
+
+        }
+    }
+    public void createUsers() {
+        try {
+            getUsuariosFacade().create(selectedUsuarios);
         } catch (Exception e) {
 
         }

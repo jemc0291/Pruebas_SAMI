@@ -138,21 +138,24 @@ public class UsuariosController implements Serializable {
     public String prepareModificarUsuario() {
         return "Modificar";
     }
+     public String prepareModificarUsuario1() {
+        return "Agregar";
+    }
 
     public String prepareConsultarUsuario() {
         return "Consultar";
     }
 
-    public String prepareConsultarUsuario2() {
-        return "Consultar";
+    public String prepareViewUsuario() {
+        return "Ver";
     }
 
     public String prepareListUsuario() {
         return "/Configuracion/Usuarios/Listar";
     }
-
-  
-
+    public String prepareListUsuario1() {
+        return "/modulo1/ContratacionPrestacionDeServicios/ListContratistas";
+    }
     public String create() {
         try {
             selected.setFechaDeCreacion(new Date());
@@ -163,14 +166,14 @@ public class UsuariosController implements Serializable {
             getFacade().create(selected);
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            
+
         }
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/resources/Bundle").getString("UsuariosCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
         return "/Configuracion/Usuarios/Listar";
-      
+
     }
 
     public String createModuloUno() {
@@ -178,6 +181,8 @@ public class UsuariosController implements Serializable {
             selected.setFechaDeCreacion(new Date());
             selected.setEstado(true);
             selected.setRolList(listaRoles);
+            selected.setCargoList(listaCargo);
+            selected.setPassword(selected.getNumeroDoc());
             getFacade().create(selected);
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
@@ -188,12 +193,18 @@ public class UsuariosController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        return "/modulo1/ContratacionPrestacionDeServicios/Contratos/CreateContrato";
+        return "/modulo1/ContratacionPrestacionDeServicios/Contratistas/ListContratistas";
 
     }
 
-    public void update() {
+    public String update() {
+        try{
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/resources/Bundle").getString("UsuariosUpdated"));
+        return "ListContratistas";
+        }catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return null;
+        }
 
     }
 
@@ -283,6 +294,15 @@ public class UsuariosController implements Serializable {
     public List<Usuarios> getListRazonSocialAutoComplete(String query) {//se agrego metodo de autocompletar
         try {
             return getFacade().findByRazonSocialCompletar(query);
+        } catch (Exception ex) {
+            Logger.getLogger(ContratosController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+     public List<Usuarios> getListPrimerNombreAutoComplete(String query) {//se agrego metodo de autocompletar pendiente por revision
+        try {
+            return getFacade().findByPrimerNombreCompletar(query);
         } catch (Exception ex) {
             Logger.getLogger(ContratosController.class
                     .getName()).log(Level.SEVERE, null, ex);

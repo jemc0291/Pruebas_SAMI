@@ -50,6 +50,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findByNumeroDoc", query = "SELECT u FROM Usuarios u WHERE u.numeroDoc LIKE :numeroDoc"),
     @NamedQuery(name = "Usuarios.findByFechaExpedicionDoc", query = "SELECT u FROM Usuarios u WHERE u.fechaExpedicionDoc = :fechaExpedicionDoc"),
     @NamedQuery(name = "Usuarios.findByRazonSocial", query = "SELECT u FROM Usuarios u WHERE u.razonSocial LIKE :razonSocial"),
+    @NamedQuery(name = "Usuarios.findByPrimerNombre", query = "SELECT u FROM Usuarios u WHERE u.primerNombre LIKE :primerNombre"),
     @NamedQuery(name = "Usuarios.findBySegundoNombre", query = "SELECT u FROM Usuarios u WHERE u.segundoNombre = :segundoNombre"),
     @NamedQuery(name = "Usuarios.findByPrimerApellido", query = "SELECT u FROM Usuarios u WHERE u.primerApellido = :primerApellido"),
     @NamedQuery(name = "Usuarios.findBySegundoApellido", query = "SELECT u FROM Usuarios u WHERE u.segundoApellido = :segundoApellido"),
@@ -84,13 +85,11 @@ public class Usuarios implements Serializable {
     @Column(name = "fecha_expedicion_doc")
     @Temporal(TemporalType.DATE)
     private Date fechaExpedicionDoc;
-//    @Basic(optional = false)
-//    @NotNull
-//    @Size(min = 1, max = 20)
-//    @Column(name = "primer_nombre")
-//    private String primerNombre;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "primer_nombre")
+    private String primerNombre;
     @Size(min = 1, max = 20)
     @Column(name = "razon_social")
     private String razonSocial;
@@ -258,10 +257,11 @@ public class Usuarios implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuarios(Integer idUsuario, String numeroDoc, String razonSocial, String primerApellido, String email, String telefonoPrincipalUsu, String direccionUsu, String password, boolean estado) {
+    public Usuarios(Integer idUsuario, String numeroDoc, String razonSocial, String primerNombre,String primerApellido, String email, String telefonoPrincipalUsu, String direccionUsu, String password, boolean estado) {
         this.idUsuario = idUsuario;
         this.numeroDoc = numeroDoc;
         this.razonSocial = razonSocial;
+        this.primerNombre = primerNombre;
         this.primerApellido = primerApellido;
         this.email = email;
         this.telefonoPrincipalUsu = telefonoPrincipalUsu;
@@ -304,6 +304,14 @@ public class Usuarios implements Serializable {
 
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
+    }
+
+    public String getPrimerNombre() {
+        return primerNombre;
+    }
+
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
     }
 
     public String getSegundoNombre() {
@@ -734,13 +742,13 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return razonSocial;
+        return primerNombre;
     }
     
     
     public String informacionUsuario(){
         return (numeroDoc==null?"":numeroDoc + " - ") 
-                + (razonSocial==null?"": razonSocial) 
+                + (primerNombre==null?"": primerNombre)
                 + (segundoNombre == null? "": " " + segundoNombre) 
                 + (primerApellido==null?"": " " + primerApellido);
     }

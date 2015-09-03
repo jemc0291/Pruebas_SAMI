@@ -61,7 +61,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Contratos.findByIdPoliza", query = "SELECT c FROM Contratos c WHERE c.idPoliza = :idPoliza"),
     @NamedQuery(name = "Contratos.findByIdCuentasBancarias", query = "SELECT c FROM Contratos c WHERE c.idCuentasBancarias = :idCuentasBancarias"),
     @NamedQuery(name = "Contratos.findByObservaciones", query = "SELECT c FROM Contratos c WHERE c.observaciones = :observaciones"),
-    @NamedQuery(name = "Contratos.findByJustificacion", query = "SELECT c FROM Contratos c WHERE c.justificacion = :justificacion")})
+    @NamedQuery(name = "Contratos.findByJustificacion", query = "SELECT c FROM Contratos c WHERE c.justificacion = :justificacion"),
+    @NamedQuery(name = "Contratos.findByRegistroPresupuestal", query = "SELECT c FROM Contratos c WHERE c.registroPresupuestal = :registroPresupuestal"),
+    @NamedQuery(name = "Contratos.findByFechaRegPresupuestal", query = "SELECT c FROM Contratos c WHERE c.fechaRegPresupuestal = :fechaRegPresupuestal")})
 public class Contratos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -137,6 +139,12 @@ public class Contratos implements Serializable {
     @Size(max = 500)
     @Column(name = "justificacion")
     private String justificacion;
+    @Size(max = 25)
+    @Column(name = "registro_presupuestal")
+    private String registroPresupuestal;
+    @Column(name = "fecha_reg_presupuestal")
+    @Temporal(TemporalType.DATE)
+    private Date fechaRegPresupuestal;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idContrato")
     private List<SoportesDeDocumentos> soportesDeDocumentosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idContrato")
@@ -363,6 +371,23 @@ public class Contratos implements Serializable {
         this.justificacion = justificacion;
     }
 
+    public String getRegistroPresupuestal() {
+        return registroPresupuestal;
+    }
+
+    public void setRegistroPresupuestal(String registroPresupuestal) {
+        this.registroPresupuestal = registroPresupuestal;
+    }
+
+    public Date getFechaRegPresupuestal() {
+        return fechaRegPresupuestal;
+    }
+
+    public void setFechaRegPresupuestal(Date fechaRegPresupuestal) {
+        this.fechaRegPresupuestal = fechaRegPresupuestal;
+    }
+
+    
     @XmlTransient
     public List<SoportesDeDocumentos> getSoportesDeDocumentosList() {
         return soportesDeDocumentosList;

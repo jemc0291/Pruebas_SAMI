@@ -12,11 +12,10 @@
             <h:form id="UsuariosListForm">
 
                 <P>
-                    <h:commandButton action="#{usuariosController.moduloUnoPrepareCreate}" value="Agregar Usuario"/>
-
+                    <p:commandButton rendered="#{loginController.contratacion}" icon="ui-icon-plusthick" action="#{usuariosController.prepareCreateModulo1()}" value="#{bundle.Create}"/>
                 </P>
 
-                <h3>Export Data Complete</h3>
+                <h3>Exportar todos los datos</h3>
                 <h:commandLink>
                     <img src="../Recursos/Imagenes/excel.png" width="26"/>                   
                     <p:dataExporter type="xls" target="datalist" fileName="item"/>
@@ -33,13 +32,15 @@
                 </h:commandLink>
 
                 <p:dataTable id="datalist" value="#{usuariosController.items}" var="item"
-
-                             paginator="true"
+                             paginator="true" scrollable="true"
                              rowKey="#{item.idUsuario}"
-                             rows="10"
-                             rowsPerPageTemplate="10,20,30,40,50"
-                             >
-
+                             rows="10" style="font-size:12px"
+                             rowsPerPageTemplate="10,20,30,40,50">
+                    <f:facet name="header">
+                        Lista de Contratistas
+                        <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+                        <p:columnToggler datasource="datalist" trigger="toggler" />
+                    </f:facet>
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListUsuariosTitle_numeroDoc}"/>
@@ -50,7 +51,7 @@
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListUsuariosTitle_razonSocial}"/>
                         </f:facet>
-                        <h:outputText value="#{item.razonSocial}"/>
+                        <h:outputText value="#{item.primerNombre}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -97,10 +98,10 @@
                     </p:column>
                     <p:column exportable="false" > 
                         <f:facet name="header">Opciones</f:facet>
-                        <p:commandButton id="viewButton" icon="ui-icon-search" update="datalist" action="#{usuariosController.prepareViewModuloUno}">
+                        <p:commandButton id="viewButton" icon="ui-icon-search" update="datalist" action="#{usuariosController.prepareViewUsuario()}">
                             <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selected}"/>
                         </p:commandButton>
-                        <p:commandButton  id="editButton" icon="ui-icon-pencil" update="datalist" action="#{usuariosController.prepareEditModuloUno}">
+                        <p:commandButton  id="editButton" icon="ui-icon-pencil" update="datalist" action="#{usuariosController.prepareModificarUsuario1()}">
                             <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selected}"/>
                         </p:commandButton>
                         <p:commandButton id="deleteButton" icon="ui-icon-trash" action="#{usuariosController.destroy}"
@@ -108,14 +109,10 @@
                             <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el contratista?" icon="ui-icon-alert" />
                             <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selected}"/>
                         </p:commandButton>
-
                     </p:column>
-
-
-
                 </p:dataTable>
 
-                <h3>Export Page Data Only</h3>
+                <h3>Exportar página</h3>
                 <h:commandLink>
                     <img src="../Recursos/Imagenes/excel.png" width="26"/>                   
                     <p:dataExporter type="xls" target="datalist" fileName="item" pageOnly="true"/>

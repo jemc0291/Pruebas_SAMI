@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui">
@@ -15,7 +14,7 @@
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idTipoDoc}" jsf:for="tipodocumentosInputText"></label> 
                     <div class="col-md-2">
                         <select class="Form-datos" jsf:id="tipodocumentosInputText" jsf:value="#{usuariosController.selected.idTipoDoc}" 
-                                required="true" size="1"
+                                required="true" size="1" disabled="true"
                                 jsf:requiredMessage="#{bundle.CreateUsuariosRequiredMessage_idTipoDoc}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{tipoDocumentosController.itemsAvailableSelectOne}"
@@ -31,11 +30,10 @@
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_numeroDoc}" jsf:for="numeroidInputText"></label> 
                     <div class="col-md-2">
                         <p:inputText type="text" id="numeroidInputText"
-                                     required="true"
+                                     required="true" disabled="true"
                                      requiredMessage="#{bundle.CreateUsuariosRequiredMessage_numeroDoc}"
                                      value="#{usuariosController.selected.numeroDoc}"
                                      title="#{bundle.CreateUsuariosTitle_numeroDoc}"
-                                     validator="#{usuariosController.validarDocumento}"
                                      pt:pattern="[0-999]*">
                             <p:ajax process="@this" update="numeroidMessage"/>
                         </p:inputText>
@@ -44,25 +42,10 @@
                         <p:message id="numeroidMessage" for="numeroidInputText" styleClass="error"/>
                     </div>
                 </div>
-                <!--div class="row form-group">
-                    <label class="control-label col-md-2" value="" jsf:for="primerNombreInputText"></label> 
-                    <div class="col-md-2">
-                        <p:inputText type="text" id="primerNombreInputText" required="true" 
-                                     requiredMessage=""
-                                     value="" maxlength="20"
-                                     title="">
-                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
-                            <p:ajax process="@this" update="primerNombreMessage"/>
-                        </p:inputText>
-                    </div>
-                    <div class="col-md-2">
-                        <p:message id="primerNombreMessage" for="primerNombreInputText" styleClass="error"/>
-                    </div-->
-                    
-                    <div class="row form-group">
+                <div class="row form-group">
                     <label class="control-label col-md-2" value="#{#bundle.CreateUsuariosLabel_primerNombre}" jsf:for="primerNombreInputText"></label> 
                     <div class="col-md-2">
-                        <p:inputText type="text" id="primerNombreInputText" required="true" 
+                        <p:inputText type="text" id="primerNombreInputText" required="true" disabled="true"
                                      requiredMessage="#{bundle.CreateUsuariosRequiredMessage_razonSocial}"
                                      value="#{usuariosController.selected.primerNombre}" maxlength="20"
                                      title="#{bundle.CreateUsuariosTitle_razonSocial}">
@@ -76,7 +59,7 @@
 
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_segundoNombre}" jsf:for="segundoNombreInputText"></label> 
                     <div class="col-md-2">
-                        <p:inputText type="text" id="segundoNombreInputText"
+                        <p:inputText type="text" id="segundoNombreInputText" disabled="true"
                                      value="#{usuariosController.selected.segundoNombre}" maxlength="20"
                                      title="#{bundle.CreateUsuariosTitle_segundoNombre}">
                             <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
@@ -91,7 +74,7 @@
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_primerApellido}" jsf:for="primerApellidoInputText"></label> 
                     <div class="col-md-2">
                         <p:inputText type="text" id="primerApellidoInputText" 
-                                     required="true" 
+                                     required="true" disabled="true"
                                      requiredMessage="#{bundle.CreateUsuariosRequiredMessage_primerApellido}"
                                      value="#{usuariosController.selected.primerApellido}" maxlength="20"
                                      title="#{bundle.CreateUsuariosTitle_primerApellido}">
@@ -105,7 +88,7 @@
 
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_segundoApellido}" jsf:for="segundoApellidoInputText"></label> 
                     <div class="col-md-2">
-                        <p:inputText type="text" id="segundoApellidoInputText" 
+                        <p:inputText type="text" id="segundoApellidoInputText" disabled="true"
                                      value="#{usuariosController.selected.segundoApellido}" maxlength="20"
                                      title="#{bundle.CreateUsuariosTitle_segundoApellido}">
                             <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
@@ -122,7 +105,7 @@
                         <p:autoComplete id="ciudad1" value="#{usuariosController.selected.ciudad1}"
                                         completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 
                                         var="ciudad1" itemLabel="#{ciudad1}" itemValue="#{ciudad1}" 
-                                        converter="ciudadConverter" pt:required="true"
+                                        converter="ciudadConverter" pt:required="true" disabled="true"
                                         forceSelection="true" maxResults="10">
                             <p:ajax process="@this" update="ciudad1Message"/>
                         </p:autoComplete>
@@ -134,7 +117,7 @@
                 <div class="row form-group">
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_fechaNac}" jsf:for="fechaInputText"></label>
                     <div class="col-md-3">
-                        <p:calendar id="fechaInputText" yearRange="c-100:c+100"
+                        <p:calendar id="fechaInputText" yearRange="c-100:c+100" disabled="true"
                                     value="#{usuariosController.selected.fechaNac}"
                                     title="#{bundle.CreateUsuariosTitle_fechaNac}"
                                     locale="co" navigator="true" pattern="yyyy-MM-dd"
@@ -150,7 +133,7 @@
                 <div class="row form-group">
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idEstratoSocial}" jsf:for="EstratoSocialInputText"></label>
                     <div class="col-md-2">
-                        <select class="Form-datos" jsf:id="EstratoSocialInputText" size="1"
+                        <select class="Form-datos" jsf:id="EstratoSocialInputText" size="1" disabled="true"
                                 jsf:value="#{usuariosController.selected.idEstratoSocial}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{estratoSocialController.itemsAvailableSelectOne}"/>
@@ -163,7 +146,7 @@
 
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_ciudad}" jsf:for="ciudad"></label>
                     <div class="col-md-2">
-                        <p:autoComplete id="ciudad" value="#{usuariosController.selected.ciudad}" 
+                        <p:autoComplete id="ciudad" value="#{usuariosController.selected.ciudad}" disabled="true"
                                         required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_ciudad}"
                                         completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 
                                         var="ciudad" itemLabel="#{ciudad}" itemValue="#{ciudad}" 
@@ -180,7 +163,7 @@
                 <div class="row form-group">
                     <label class="control-label col-md-2" jsf:for="ContratoInputText"> Tipo de Contrato:</label>
                     <div class="col-md-2">
-                        <select class="Form-datos" jsf:id="ContratoInputText" size="1"
+                        <select class="Form-datos" jsf:id="ContratoInputText" size="1" disabled="true"
                                 jsf:value="#{usuariosController.selected.idTipoContrato}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{tipoContratoController.itemsAvailableSelectOne}"/>
@@ -197,7 +180,7 @@
 
                         <label class="control-label col-md-2" jsf:rendered="#{!usuariosController.carreraAdministrativa}" jsf:value="#{bundle.CreateUsuariosLabel_grado}" jsf:for="gradoInputText"></label> 
                         <div class="col-md-2">
-                            <p:inputText type="number" id="gradoInputText"
+                            <p:inputText type="number" id="gradoInputText" disabled="true"
                                          value="#{usuariosController.selected.grado}"
                                          title="#{bundle.CreateUsuariosTitle_grado}"
                                          rendered="#{!usuariosController.carreraAdministrativa}">
@@ -211,7 +194,7 @@
                     <div class="row form-group">
                         <label class="control-label col-md-2" jsf:rendered="#{!usuariosController.carreraAdministrativa}" jsf:value="#{bundle.CreateUsuariosLabel_sueldo}" jsf:for="sueldoInputText"></label> 
                         <div class="col-md-2">
-                            <p:inputText type="number" id="sueldoInputText"
+                            <p:inputText type="number" id="sueldoInputText" disabled="true"
                                          value="#{usuariosController.selected.sueldo}"
                                          title="#{bundle.CreateUsuariosTitle_sueldo}"
                                          rendered="#{!usuariosController.carreraAdministrativa}">
@@ -224,7 +207,7 @@
 
                         <label class="control-label col-md-2" jsf:rendered="#{!usuariosController.carreraAdministrativa}" value="#{bundle.CreateUsuariosLabel_fechaIngreso}" jsf:for="fechaIngresoInputText"></label>
                         <div class="col-md-3">
-                            <p:calendar id="fechaIngresoInputText"                           
+                            <p:calendar id="fechaIngresoInputText" disabled="true"                         
                                         value="#{usuariosController.selected.fechaIngreso}"
                                         title="#{bundle.CreateUsuariosTitle_fechaIngreso}"
                                         locale="co" navigator="true" pattern="yyyy-MM-dd"
@@ -240,7 +223,7 @@
                     <div class="row form-group">
                         <label class="control-label col-md-2" jsf:rendered="#{!usuariosController.contratista}" value="#{bundle.CreateUsuariosLabel_idCcf}" jsf:for="IdCcfInputText"></label>
                         <div class="col-md-2">
-                            <select class="Form-datos" jsf:id="IdCcfInputText" size="1"
+                            <select class="Form-datos" jsf:id="IdCcfInputText" size="1" disabled="true"
                                     jsf:value="#{usuariosController.selected.idCcf}"
                                     jsf:rendered="#{!usuariosController.contratista}">
                                 <f:selectItem itemLabel="Seleccione"/>
@@ -258,7 +241,7 @@
                             <p:selectManyCheckbox id="rol" value="#{usuariosController.listaRoles}" layout="grid" 
                                                   converter="rolConverter"
                                                   requiredMessage="Requerido"
-                                                  columns="3"
+                                                  columns="3" disabled="true"
                                                   rendered="#{!usuariosController.contratista}">  
                                 <f:selectItems value="#{usuariosController.listRolSelectOne}"/>
                                 <f:ajax execute="@this" render="rolMessage"/>
@@ -273,7 +256,7 @@
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_direccionUsu}" jsf:for="direccionInputText"></label> 
                     <div class="col-md-2">
                         <p:inputText type="text" id="direccionInputText"
-                                     required="true" 
+                                     required="true" disabled="true"
                                      requiredMessage="#{bundle.CreateUsuariosRequiredMessage_direccionUsu}"
                                      value="#{usuariosController.selected.direccionUsu}"
                                      title="#{bundle.CreateUsuariosTitle_direccionUsu}">
@@ -287,7 +270,7 @@
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_telefonoPrincipalUsu}" jsf:for="movilInputText"></label>
                     <div class="col-md-2">
                         <p:inputText type="text" id="movilInputText" 
-                                     required="true" 
+                                     required="true" disabled="true"
                                      requiredMessage="#{bundle.CreateUsuariosRequiredMessage_telefonoPrincipalUsu}"
                                      value="#{usuariosController.selected.telefonoPrincipalUsu}"
                                      title="#{bundle.CreateUsuariosTitle_telefonoPrincipalUsu}">
@@ -302,7 +285,7 @@
                 <div class="row form-group">
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_telefonoAlternoUsu}" jsf:for="TelefonoInputText"></label>
                     <div class="col-md-2">
-                        <p:inputText type="text" id="TelefonoInputText"
+                        <p:inputText type="text" id="TelefonoInputText" disabled="true"
                                      value="#{usuariosController.selected.telefonoAlternoUsu}"
                                      title="#{bundle.CreateUsuariosTitle_telefonoAlternoUsu}">
                             <f:validateRegex pattern="[0-9]*"/>
@@ -316,7 +299,7 @@
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_email}" jsf:for="emailInputText"></label> 
                     <div class="col-md-2">
                         <p:inputText type="email" id="emailInputText" 
-                                     required="true" 
+                                     required="true" disabled="true"
                                      requiredMessage="#{bundle.CreateUsuariosRequiredMessage_email}"
                                      value="#{usuariosController.selected.email}"
                                      title="#{bundle.CreateUsuariosTitle_email}">
@@ -333,7 +316,7 @@
                         <p:autoComplete id="centroFormacion" value="#{usuariosController.selected.idCentroFormacion}" 
                                         completeMethod="#{usuariosController.getListCentroFormacionAutoComplete}" 
                                         var="centroFormacion" itemLabel="#{centroFormacion}" itemValue="#{centroFormacion}" 
-                                        converter="centroFormacionConverter" pt:required="true"
+                                        converter="centroFormacionConverter" pt:required="true" disabled="true"
                                         forceSelection="true" maxResults="10">
                         </p:autoComplete>
                     </div>   
@@ -344,7 +327,7 @@
                 <div class="row form-group">
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_gpRh}" jsf:for="FactorInputText"></label>
                     <div class="col-md-2">
-                        <select class="Form-datos" jsf:id="FactorInputText" size="1"
+                        <select class="Form-datos" jsf:id="FactorInputText" size="1" disabled="true"
                                 jsf:value="#{usuariosController.selected.gpRh}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItem itemLabel="A+" itemValue="A+"/>
@@ -364,7 +347,7 @@
 
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idEstadoCivil}" jsf:for="EstadoCivilInputText"></label>
                     <div class="col-md-2">
-                        <select class="Form-datos" jsf:id="EstadoCivilInputText" size="1"
+                        <select class="Form-datos" jsf:id="EstadoCivilInputText" size="1" disabled="true"
                                 jsf:value="#{usuariosController.selected.idEstadoCivil}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{estadoCivilController.itemsAvailableSelectOne}"/>
@@ -378,7 +361,7 @@
                 <div class="row form-group">
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idSexo}" jsf:for="generoInputText"></label>
                     <div class="col-md-2">
-                        <select class="Form-datos" jsf:id="generoInputText" size="1"
+                        <select class="Form-datos" jsf:id="generoInputText" size="1" disabled="true"
                                 jsf:value="#{usuariosController.selected.idSexo}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{sexoController.itemsAvailableSelectOne}"/>
@@ -392,7 +375,7 @@
 
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idEps}" jsf:for="IdEpsInputText"></label>
                     <div class="col-md-2">
-                        <select  class="Form-datos" jsf:id="IdEpsInputText" size="1"
+                        <select  class="Form-datos" jsf:id="IdEpsInputText" size="1" disabled="true"
                                  jsf:value="#{usuariosController.selected.idEps}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems  value="#{epsController.itemsAvailableSelectOne}"
@@ -408,7 +391,7 @@
                 <div class="row form-group">
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idArl}" jsf:for="IdArlInputText"></label>
                     <div class="col-md-2">
-                        <select class="Form-datos" jsf:id="IdArlInputText" size="1"
+                        <select class="Form-datos" jsf:id="IdArlInputText" size="1" disabled="true"
                                 jsf:value="#{usuariosController.selected.idArl}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{arlController.itemsAvailableSelectOne}"/>
@@ -420,7 +403,7 @@
                     </div>
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idFondoPensiones}" jsf:for="IdFondoInputText"></label>
                     <div class="col-md-2">
-                        <select class="Form-datos" jsf:id="IdFondoInputText" size="1"
+                        <select class="Form-datos" jsf:id="IdFondoInputText" size="1" disabled="true"
                                 jsf:value="#{usuariosController.selected.idFondoPensiones}">
                             <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{fondoDePensionesController.itemsAvailableSelectOne}"/>
@@ -435,7 +418,7 @@
                     <label class="control-label col-md-2" jsf:for="cargo">Cargo:</label>
                     <div class="col-md-9">
                         <p:selectManyCheckbox id="cargo" value="#{usuariosController.listaCargo}" layout="grid" 
-                                              columns="3"
+                                              columns="3" disabled="true"
                                               converter="cargoConverter"
                                               requiredMessage="Requerido">
                             <f:selectItems value="#{usuariosController.listCargoSelectOne}" 
@@ -447,14 +430,9 @@
                         <p:message id="cargoMessage" for="cargo"/>
                     </div>
                 </div>
-                <h:commandButton rendered="#{loginController.contratacion}" action="#{usuariosController.createModuloUno()}" value="#{bundle.Save}"/>
-                <h:commandButton rendered="#{loginController.configuracion}" action="#{usuariosController.create}" value="#{bundle.Save}"/>
-                <h:button rendered="#{loginController.contratacion}" value="Regresar a la lista" outcome="ListContratistas"/>
-                <h:button rendered="#{loginController.configuracion}" value="Regresar a la lista" outcome="Listar"/>
-                
-                
-
+                 <h:button rendered="#{loginController.contratacion}" value="Regresar a la lista" outcome="ListContratistas"/>
             </form>
         </section>
     </div>
 </html>
+

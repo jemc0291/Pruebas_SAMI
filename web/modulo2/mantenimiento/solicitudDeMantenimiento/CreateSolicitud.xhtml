@@ -16,27 +16,21 @@
             <h2 class="Crsolicitud">Crear Nueva Solicitud</h2>
 
             <h:form>
-                <p:carousel var="var" value="#{loginController.userLogueado}" headerText="Datos del Solicitante" numVisible="1" easing="easeOutBounce" style="width: 93.5%" >
+                <p:carousel var="var" value="#{loginController.userLogueado}" numVisible="1" easing="easeOutBounce" style="width: 93.5%; font-size: 12px" >
 
-                    <p:panelGrid columns="2" columnClasses="nombre,valor" style="border: none;margin-left: 10px;width: 1190px; height: 100%">
+                    <p:panelGrid columns="4" columnClasses="nombre,valor" style="border: none;margin-left: 10px;width: 1190px; height: 100%">
 
-                        <h:outputText value="Numero Documento:"/>
+                        <h:outputText value="Número Documento:"/>
                         <h:outputText value="#{loginController.userLogueado.numeroDoc}" title="NumeroDoc"/>
+                        
+                        <h:outputText value="Centro de Formacion:"/>
+                        <h:outputText value="#{loginController.userLogueado.idCentroFormacion}" title="IdCentroFormacion"/>
 
                         <h:outputText value="Primer Nombre:"/>
-                        <h:outputText value="#{loginController.userLogueado.razonSocial}" title="RazonSocial"/>
-
-                        <h:outputText value="Segundo Nombre:"/>
-                        <h:outputText value="#{loginController.userLogueado.segundoNombre}" title="SegundoNombre"/>
+                        <h:outputText value="#{loginController.userLogueado.primerNombre}" title="RazonSocial"/>
 
                         <h:outputText value="Primer Apellido:"/>
                         <h:outputText value="#{loginController.userLogueado.primerApellido}" title="PrimerApellido"/>
-
-                        <h:outputText value="Segundo Apellido:"/>
-                        <h:outputText value="#{loginController.userLogueado.segundoApellido}" title="SegundoApellido"/>
-
-                        <h:outputText value="Centro de Formacion:"/>
-                        <h:outputText value="#{loginController.userLogueado.idCentroFormacion}" title="IdCentroFormacion"/>
 
                     </p:panelGrid>                    
                 </p:carousel>
@@ -59,7 +53,7 @@
 
                 <h3>Solicitudes Realizadas</h3>
                 <p:dataTable value="#{solicitudServiciosController.listSolicituServiciosByUsuario}" var="item"
-                             rows="10" id="solicitudTable" 
+                             rows="10" id="solicitudTable" style="font-size:12px"
                              paginator="true"
                              paginatorTemplate="{FirstPageLink} 
                              {PreviousPageLink} {PageLinks} {NextPageLink} 

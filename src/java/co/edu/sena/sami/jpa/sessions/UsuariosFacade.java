@@ -50,10 +50,17 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
         return q.getResultList();
 
     }
-     public List<Usuarios> findByRazonSocialCompletar(String razonSocial) {
+    public List<Usuarios> findByRazonSocialCompletar(String razonSocial) {
         Query q = getEntityManager().createNamedQuery("Usuarios.findByRazonSocial");
         q.setParameter("razonSocial", razonSocial + "%");
         //q.setMaxResults(10);
+        return q.getResultList();
+    }
+
+    public List<Usuarios> findByPrimerNombreCompletar(String primerNombre) {
+        Query q = getEntityManager().createNamedQuery("Usuarios.findByPrimerNombre");
+        q.setParameter("primerNombre", primerNombre + "%");
+//        //q.setMaxResults(10);
         return q.getResultList();
     }
 }

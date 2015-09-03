@@ -1,81 +1,13 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="/template.xhtml">
-        <ui:define name="title"><h:outputText value="#{bundle.ListUsuariosTitle}"></h:outputText></ui:define>
+        <ui:define name="title"><h:outputText value="#{bundle.CreateUsuariosTitle}"></h:outputText></ui:define>
         <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
         <ui:define name="body">
-
-
-            <h:form>
-                <p>
-                    <p:commandButton icon="ui-icon-plusthick" action="#{usuariosController.prepareCreate}" value="#{bundle.Create}"/>
-                </p>
-                <p:outputPanel id="UsuarioTablePanel" >
-                    <p:dataTable value="#{usuariosController.items}" var="item"
-                                 rows="10" id="UsuarioTable" 
-                                 paginator="true"
-                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="20,40,60">
-
-                        <p:column filterBy="#{item.numeroDoc}" filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuariosTitle_numeroDoc}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.numeroDoc}"/>
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuariosTitle_razonSocial}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.razonSocial}"/>
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuariosTitle_segundoNombre}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.segundoNombre}"/>
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuariosTitle_primerApellido}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.primerApellido}"/>
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuariosTitle_segundoApellido}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.segundoApellido}"/>
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">Opciones</f:facet>
-                            <p:commandButton icon="ui-icon-search"  action="#{usuariosController.prepareConsultarUsuario}">
-                                <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selected}"/>
-                            </p:commandButton>
-                            <p:commandButton icon="ui-icon-pencil"  action="#{usuariosController.prepareModificarUsuario}">
-                                <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selected}"/>
-                            </p:commandButton>
-
-                            <p:commandButton icon="ui-icon-trash"  action="#{usuariosController.destroy}"
-                                             process="@this" update="UsuarioTable">
-                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el usuario?" icon="ui-icon-alert" />
-                                <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selected}"/>
-                            </p:commandButton>
-                        </p:column>       
-                    </p:dataTable>
-                </p:outputPanel>
-            </h:form>
-
+            <ui:include src="/ListUsersTemplate.xhtml"></ui:include>>
         </ui:define>
     </ui:composition>
 </html>

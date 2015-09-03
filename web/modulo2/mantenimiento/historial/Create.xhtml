@@ -31,7 +31,7 @@
                                  update="solicitudTableConsulta"/>
 
                 <p></p>
-                <p:dataTable id="solicitudTableConsulta" value="#{solicitudServiciosController.itemsRango}" var="item1" widgetVar="carsTable">
+                <p:dataTable id="solicitudTableConsulta" value="#{solicitudServiciosController.itemsRango}" style="font-size:12px" var="item1" widgetVar="carsTable">
 
                     <p:column style="width: 115px" filterBy="#{item1.idSolicitudServicio}" 
                               headerText="Número de Solicitud" footerText=" " filterMatchMode="contains">

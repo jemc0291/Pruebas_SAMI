@@ -1,16 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
-    <div class="container">
-        <section class="section-form">
-            <form jsf:id="usuarioCreateForm">
-
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition >
+        <p:dialog widgetVar="UsersDialog" 
+                  appendTo="@(body)"
+                  modal="true"
+                  resizable="false"
+                  header="Create user">
+            <h:form id="usersForm" >
+                <h:panelGroup id="msgs">
+                    <p:messages/>
+                </h:panelGroup>
                 <div class="row form-group">
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idTipoDoc}" jsf:for="tipodocumentosInputText"></label> 
                     <div class="col-md-2">
@@ -58,8 +64,8 @@
                     <div class="col-md-2">
                         <p:message id="primerNombreMessage" for="primerNombreInputText" styleClass="error"/>
                     </div-->
-                    
-                    <div class="row form-group">
+
+                <div class="row form-group">
                     <label class="control-label col-md-2" value="#{#bundle.CreateUsuariosLabel_primerNombre}" jsf:for="primerNombreInputText"></label> 
                     <div class="col-md-2">
                         <p:inputText type="text" id="primerNombreInputText" required="true" 
@@ -447,14 +453,12 @@
                         <p:message id="cargoMessage" for="cargo"/>
                     </div>
                 </div>
-                <h:commandButton rendered="#{loginController.contratacion}" action="#{usuariosController.createModuloUno()}" value="#{bundle.Save}"/>
-                <h:commandButton rendered="#{loginController.configuracion}" action="#{usuariosController.create}" value="#{bundle.Save}"/>
-                <h:button rendered="#{loginController.contratacion}" value="Regresar a la lista" outcome="ListContratistas"/>
-                <h:button rendered="#{loginController.configuracion}" value="Regresar a la lista" outcome="Listar"/>
-                
-                
+                <p:commandButton process="usersForm" oncomplete="handleSubmit(arg,'UsersDialog')" onclick="PF('UsersDialog').hide()" value="Guardar" update="usersForm msgs" />
+                <p:commandButton value="Cancelar" process="@this" onclick="PF('UsersDialog').hide()"/>
 
-            </form>
-        </section>
-    </div>
+            </h:form>
+
+        </p:dialog>
+    </ui:composition>
 </html>
+
