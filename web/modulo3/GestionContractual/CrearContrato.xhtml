@@ -86,6 +86,22 @@
                         </textarea>
                         <h:message id="ObservacionesMessage" for="observaciones" />
                         
+                         <label jsf:value="Número registro presupuestal:" for="registroPresupuestal" />
+                        <input type="text"  maxlength="25" jsf:id="registroPresupuestal" 
+                               jsf:value="#{contratosModulo1Controller.selected.registroPresupuestal}">                      
+                            <f:ajax execute="@this" render="registroPresupuestalMessage"/>
+                        </input>
+                        <h:message id="registroPresupuestalMessage" for="registroPresupuestal" styleClass="error"/>
+
+                        <label jsf:value="Fecha de registro presupuestal:" for="fechaRegPresupuestal" />
+                        <p:calendar  id="fechaRegPresupuestal"
+                                     pattern="yyyy-MM-dd"
+                                     value="#{contratosModulo1Controller.selected.fechaRegPresupuestal}" 
+                                     showOn="button" navigator="true" >                   
+                            <f:ajax execute="@this" render="fechaRegPresupuestalMessage"/>
+                        </p:calendar>
+                        <h:message id="fechaRegPresupuestalMessage" for="fechaRegPresupuestal" styleClass="error"/>
+
                         <label value="#{bundle.CreateUsuariosContratosLabel_usuarios}" jsf:for="Usuario" class="FormLabelSCCSS" />
                         <p:autoComplete id="Usuario" value="#{contratosController.selectedUsuarios}" 
                                         required="true" requiredMessage="#{bundle.CreateUsuariosContratosRequiredMessage_usuarios}"
