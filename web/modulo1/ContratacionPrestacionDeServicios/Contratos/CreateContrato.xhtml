@@ -232,6 +232,7 @@
                         </p:inputTextarea>
                         <p:message id="justificacionMessage" for="justificacion" styleClass="error"/> 
 
+                        <div>
                         <label value="#{bundle.CreateUsuariosContratosLabel_usuarios}" jsf:for="Usuario" class="FormLabelSCCSS" />
                         <p:autoComplete id="Usuario" value="#{contratosModulo1Controller.selectedUsuarios}" 
                                         required="true" requiredMessage="#{bundle.CreateUsuariosContratosRequiredMessage_usuarios}"
@@ -240,7 +241,8 @@
                                         converter="usuariosConverter" 
                                         forceSelection="true" maxResults="10"/> 
                         <p:message id="UsuarioMessage" for="Usuario" />
-
+                         <p:commandButton onclick="PF('UsersDialog').show()" value="+" process="@this" update=":usersForm" />
+                    </div>
                         <label jsf:value="Número registro presupuestal:" for="registroPresupuestal" />
                         <p:inputText type="text"  maxlength="25" id="registroPresupuestal" value="#{contratosModulo1Controller.selected.registroPresupuestal}" 
                                      title="" >                      
@@ -270,6 +272,7 @@
                 </form>
             </section>
             <ui:include src="/modulo1/ContratacionPrestacionDeServicios/Contratos/CreatePolizas.xhtml" />
+            <ui:include src="/modulo1/ContratacionPrestacionDeServicios/Contratos/CreateContratista.xhtml" />
 
         </ui:define>
     </ui:composition>

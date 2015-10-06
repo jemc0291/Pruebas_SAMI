@@ -177,7 +177,7 @@
     </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>sami-realm</realm-name>
+        <realm-name>prueba-realm</realm-name>
         <form-login-config>
             <form-login-page>/inicio_sami/mensaje_sami.xhtml</form-login-page>
             <form-error-page>/inicio_sami/mensaje_sami.xhtml</form-error-page>

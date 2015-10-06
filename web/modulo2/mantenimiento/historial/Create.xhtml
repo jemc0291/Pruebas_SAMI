@@ -38,9 +38,9 @@
                         <h:outputText value="#{item1.idSolicitudServicio}"/>
                     </p:column>
 
-                    <p:column style="width: 120px" filterBy="#{item1.idUsuario.razonSocial}" 
+                    <p:column style="width: 120px" filterBy="#{item1.idUsuario.primerNombre}" 
                               headerText="Nombre Solicitante" footerText=" " filterMatchMode="contains">
-                        <h:outputText value="#{item1.idUsuario.razonSocial}  "/>
+                        <h:outputText value="#{item1.idUsuario.primerNombre}  "/>
                     </p:column>
 
                     <p:column style="width: 120px" filterBy="#{item1.idUsuario.primerApellido}" 
@@ -84,16 +84,16 @@
 
                 <h3 style="text-align: center">Por Solicitud</h3>
 
-                <p:dataTable id="solicitudTable" value="#{solicitudServiciosController.items}" var="item" >
+                <p:dataTable id="solicitudTable" value="#{solicitudServiciosController.items}" style="font-size:12px" var="item" >
 
                     <p:column style="width: 120px" filterBy="#{item.idSolicitudServicio}" 
                               headerText="Número de Solicitud" footerText=" " filterMatchMode="contains">
                         <h:outputText value="#{item.idSolicitudServicio}"/>
                     </p:column>
 
-                    <p:column style="width: 120px" filterBy="#{item.idUsuario.razonSocial}" 
+                    <p:column style="width: 120px" filterBy="#{item.idUsuario.primerNombre}" 
                               headerText="Nombre Solicitante" footerText=" " filterMatchMode="contains">
-                        <h:outputText value="#{item.idUsuario.razonSocial}  "/>
+                        <h:outputText value="#{item.idUsuario.primerNombre}  "/>
                     </p:column>
 
                     <p:column style="width: 120px" filterBy="#{item.idUsuario.primerApellido}" 
