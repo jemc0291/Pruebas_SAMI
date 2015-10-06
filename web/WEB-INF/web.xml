@@ -175,9 +175,45 @@
             <role-name>superMantenimiento</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <display-name>encargadoMantenimiento</display-name>
+        <web-resource-collection>
+            <web-resource-name>encargadoMantenimiento</web-resource-name>
+            <description>encargadoMantenimiento</description>
+            <url-pattern>/faces/modulo2/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>encargadoMantenimiento</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>gestorContractual</display-name>
+        <web-resource-collection>
+            <web-resource-name>gestorContractual</web-resource-name>
+            <description>Gestor contractual</description>
+            <url-pattern>/faces/modulo3/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>gestorContractual</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>invitadoContractual</display-name>
+        <web-resource-collection>
+            <web-resource-name>invitadoContractual</web-resource-name>
+            <description/>
+            <url-pattern>/faces/modulo3/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>invitadoContractual</role-name>
+        </auth-constraint>
+    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>prueba-realm</realm-name>
+        <realm-name>sami-realm</realm-name>
         <form-login-config>
             <form-login-page>/inicio_sami/mensaje_sami.xhtml</form-login-page>
             <form-error-page>/inicio_sami/mensaje_sami.xhtml</form-error-page>
@@ -228,5 +264,16 @@
         <description>supervisor mantenimiento</description>
         <role-name>superMantenimiento</role-name>
     </security-role>
+    <security-role>
+        <description>encargado de mantenimiento</description>
+        <role-name>encargadoMantenimiento</role-name>
+    </security-role>
+    <security-role>
+        <description>Gestor Contractual</description>
+        <role-name>gestorContractual</role-name>
+    </security-role>
+    <security-role>
+        <description>invitado modulo de gestion contractual</description>
+        <role-name>invitadoContractual</role-name>
+    </security-role>
 </web-app>
-

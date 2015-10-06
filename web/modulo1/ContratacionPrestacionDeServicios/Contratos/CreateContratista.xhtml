@@ -171,7 +171,7 @@
                 <p:commandButton process="usersForm" 
                                  actionListener="#{contratosModulo1Controller.setSelectedUsuarios(selectedUsuarios)}"
                                  oncomplete="handleSubmit(arg,'UsersDialog')"
-                                 action="#{usuariosController.create}"
+                                 action="#{usuariosController.createModuloUno()}"
                                  onclick="PF('UsersDialog').hide()" 
                                  value="Guardar" 
                                  update="usersForm msgs" />
