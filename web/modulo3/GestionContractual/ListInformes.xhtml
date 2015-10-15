@@ -97,17 +97,17 @@
                                 <f:setPropertyActionListener value="#{item}" target="#{informesController.selected}"/>
                             </p:commandButton>
                 
-                            <p:commandButton icon="ui-icon-pencil" title="Editar Informe" action="#{informesController.prepareEdit()}">
+                            <p:commandButton rendered="#{loginController.supervisorContractual}" icon="ui-icon-pencil" title="Editar Informe" action="#{informesController.prepareEdit()}">
                                 <f:setPropertyActionListener value="#{item}" target="#{informesController.selected}"/>
                             </p:commandButton>
                             
-                            <p:commandButton icon="ui-icon-trash" title="Eliminar Informe" action="#{informesController.destroy()}"
+                            <p:commandButton rendered="#{loginController.supervisorContractual}" icon="ui-icon-trash" title="Eliminar Informe" action="#{informesController.destroy()}"
                                              process="@this" update="InformesTable">
                                 <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el Informe?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{item}" target="#{informesController.selected}"/>
                             </p:commandButton>
                             
-                            <p:commandButton icon="ui-icon-star" value="Nuevo informe contrato" title="Crear nuevo informe de este contrato" 
+                            <p:commandButton rendered="#{loginController.supervisorContractual}" icon="ui-icon-star" value="Nuevo informe contrato" title="Crear nuevo informe de este contrato" 
                                              action="#{informesController.openCreate()}">
                                 <f:setPropertyActionListener value="#{item}" target="#{informesController.temp}"/>
                             </p:commandButton>

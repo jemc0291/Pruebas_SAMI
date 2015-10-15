@@ -96,10 +96,13 @@ public class LoginController implements Serializable {
         return getRequest().isUserInRole("webModulo3");
     }
     public boolean isGestorContractual() {
-        return getRequest().isUserInRole("webModulo3")&& !getRequest().isUserInRole("invitadoContractual");
+        return getRequest().isUserInRole("webModulo3")&& !getRequest().isUserInRole("invitadoContractual")&& !getRequest().isUserInRole("supervisorContractual");
     }
     public boolean isInvitadoContractual() {
-        return getRequest().isUserInRole("invitadoContractual")||getRequest().isUserInRole("webModulo3")&& !getRequest().isUserInRole("gestorContractual");
+        return getRequest().isUserInRole("invitadoContractual")||getRequest().isUserInRole("webModulo3")&& !getRequest().isUserInRole("gestorContractual")&& !getRequest().isUserInRole("supervisorContractual");
+    }
+    public boolean isSupervisorContractual() {
+        return getRequest().isUserInRole("supervisorContractual")||getRequest().isUserInRole("webModulo3")&& !getRequest().isUserInRole("gestorContractual")&& !getRequest().isUserInRole("invitadoContractual");
     }
 
     public boolean isGestionTalento() {

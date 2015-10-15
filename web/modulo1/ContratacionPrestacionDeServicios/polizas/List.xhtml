@@ -15,7 +15,7 @@
 
             <h:form id="PolizasListForm">
                 <p:messages/>
-                <h3>Export Data Complete</h3>
+                <h3>Exportar todos los datos</h3>
                 <h:commandLink>
                     <img src="../Recursos/Imagenes/excel.png" width="26"/>                   
                     <p:dataExporter type="xls" target="datalist" fileName="item"/>
@@ -72,7 +72,7 @@
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                     </p:column>
-                    <p:column>
+                    <p:column filterBy="#{item.idAseguradora.toString()}" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListPolizasTitle_idAseguradora}"/>
                         </f:facet>
@@ -92,7 +92,7 @@
 
                     </p:column>                                          
                 </p:dataTable>
-                <h3>Export Page Data Only</h3>
+                <h3>Exportar página actual</h3>
                 <h:commandLink>
                     <img src="../Recursos/Imagenes/excel.png" width="26"/>                   
                     <p:dataExporter type="xls" target="datalist" fileName="item" pageOnly="true"/>

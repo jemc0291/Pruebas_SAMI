@@ -168,10 +168,9 @@
                         <p:message id="emailMessage" for="emailInputText" styleClass="error"/>
                     </div>
                 </div>
-                <p:commandButton process="usersForm" 
-                                 actionListener="#{contratosModulo1Controller.setSelectedUsuarios(selectedUsuarios)}"
+                <p:commandButton process="usersForm"
                                  oncomplete="handleSubmit(arg,'UsersDialog')"
-                                 action="#{usuariosController.createModuloUno()}"
+                                 action="#{usuariosController.create()}"
                                  onclick="PF('UsersDialog').hide()" 
                                  value="Guardar" 
                                  update="usersForm msgs" />

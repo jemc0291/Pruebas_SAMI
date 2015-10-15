@@ -211,6 +211,18 @@
             <role-name>invitadoContractual</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <display-name>supervisorContractual</display-name>
+        <web-resource-collection>
+            <web-resource-name>supervisorContractual</web-resource-name>
+            <description>supervisor de contratos</description>
+            <url-pattern>/faces/modulo3/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>supervisorContractual</role-name>
+        </auth-constraint>
+    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>sami-realm</realm-name>
@@ -275,5 +287,9 @@
     <security-role>
         <description>invitado modulo de gestion contractual</description>
         <role-name>invitadoContractual</role-name>
+    </security-role>
+    <security-role>
+        <description>supervisor de contratos</description>
+        <role-name>supervisorContractual</role-name>
     </security-role>
 </web-app>
