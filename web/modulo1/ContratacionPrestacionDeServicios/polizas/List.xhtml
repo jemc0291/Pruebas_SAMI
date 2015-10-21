@@ -28,6 +28,8 @@
                     <img src="../Recursos/Imagenes/csv.png" width="26"/>
                     <p:dataExporter type="csv" target="datalist" fileName="item"  />
                 </h:commandLink>
+                
+                <h1>Lista de pólizas</h1>
 
                 <p:dataTable id="datalist" value="#{polizasController.items}" var="item"                           
                              paginator="true" style="font-size:12px"                            
@@ -78,7 +80,7 @@
                         </f:facet>
                         <h:outputText value="#{item.idAseguradora.toString()}"/>
                     </p:column>
-                   <p:column exportable="false" > 
+                   <p:column exportable="false" rendered="#{loginController.noEsInvitado}" > 
                         <f:facet name="header">Opciones</f:facet>
                        
                         <p:commandButton  id="editButton" icon="ui-icon-pencil" update="datalist" action="#{polizasController.prepareEditModuloUno}">

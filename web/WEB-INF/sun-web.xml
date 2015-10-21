@@ -49,6 +49,10 @@
     <role-name>supervisorContractual</role-name>
     <group-name>12</group-name>
   </security-role-mapping>
+  <security-role-mapping>
+    <role-name>coordinadorAdministrativo</role-name>
+    <group-name>13</group-name>
+  </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>
     <property name="keepgenerated" value="true">

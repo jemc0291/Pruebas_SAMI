@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Lista de contratos</ui:define>
         <ui:define name="menu"><ui:include src="/modulo1/menu_modulo1.xhtml"></ui:include></ui:define>
@@ -12,7 +13,7 @@
 
             <h:form >
 
-                <p:commandButton rendered="#{loginController.contratacion}" icon="ui-icon-plusthick" action="#{contratosModulo1Controller.prepareCreate}" value="#{bundle.Create}"/>
+                <p:commandButton rendered="#{loginController.noEsInvitado}" icon="ui-icon-plusthick" action="#{contratosModulo1Controller.prepareCreate}" value="Crear Contrato"/>
 
                 <h3>Exportar todos los datos</h3>
                 <h:commandLink>
@@ -29,21 +30,18 @@
                     <img src="../Recursos/Imagenes/csv.png" width="26"/>
                     <p:dataExporter type="csv" target="contratosModulo1Table" fileName="item"  />
                 </h:commandLink>
+                
+                <h1>Lista de contratos</h1>
 
                 <p:dataTable id="contratosModulo1Table" value="#{contratosModulo1Controller.items}" var="item"
                              paginator="true" style="font-size:12px"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rows="10"
-                             rowsPerPageTemplate="10,20,30,40,50"
-
-                             >
-                    <!--    scrollable="true" scrollWidth="500"
-                            style="width:3400px" -->
+                             rowsPerPageTemplate="10,20,30,40,50">
 
                     <f:facet name="header">
 
-
-                        <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+                        <p:commandButton id="toggler" type="button" value="Datos" style="float:right" icon="ui-icon-calculator" />
                         <p:columnToggler datasource="contratosModulo1Table" trigger="toggler" transient="false"/>
                     </f:facet>
 
@@ -174,31 +172,15 @@
                             <f:setPropertyActionListener value="#{item}" target="#{contratosModulo1Controller.selected}"/>
                         </p:commandButton>
 
-                        <p:commandButton  id="editButton" icon="ui-icon-pencil" update="contratosModulo1Table" action="#{contratosModulo1Controller.prepareEdit}">
+                        <p:commandButton  id="editButton" icon="ui-icon-pencil" update="contratosModulo1Table" rendered="#{loginController.noEsInvitado}"
+                                          action="#{contratosModulo1Controller.prepareEdit}">
                             <f:setPropertyActionListener value="#{item}" target="#{contratosModulo1Controller.selected}"/>
                         </p:commandButton>
 
                     </p:column> 
 
                 </p:dataTable>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-4">
-                            <h5>Informe Talento Humano</h5>
-                            <h:commandLink id="excel">
-                                <img src="../Recursos/Imagenes/excel.png" />
-                                <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS}" />
-                            </h:commandLink>
-                        </div>
-                        <div class="col-md-2">
-                            <h5>Reporte General</h5>
-                            <h:commandLink id="excel2">
-                                <img src="../Recursos/Imagenes/excel.png" />
-                                <p:dataExporter type="xls" target="contratosModulo1Table" fileName="Reporte" postProcessor="#{contratosModulo1Controller.postProcessXLS1}" />
-                            </h:commandLink>
-                        </div>
-                    </div>
-                </div>
+                
             </h:form>
 
         </ui:define>
