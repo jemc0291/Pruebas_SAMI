@@ -13,14 +13,13 @@
 
             <section class="section-form">
                 <form jsf:id="contratoForm" >
-                    <h1><h:outputText value="Crear contrato"/></h1>
+                    <h1>Crear contrato</h1>
                     <p:panelGrid columns="3" id="PanelGrid" layout="grid">
 
                         <label jsf:value="#{bundle.CreateContratosLabel_idTipoContrato}" for="idTipoContrato" />
                         <h:selectOneMenu id="idTipoContrato" value="#{contratosModulo1Controller.selected.idTipoContrato}" title="#{bundle.CreateContratosTitle_idTipoContrato}" 
                                          required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_idTipoContrato}">
-                            <f:selectItems value="#{tipoDeContratoController.itemsAvailableSelectOne}"
-                                           var="idTipoContratoItem"
+                            <f:selectItems value="#{tipoDeContratoController.itemsAvailableSelectOne}" var="idTipoContratoItem"
                                            itemValue="#{idTipoContratoItem}"/>
                         </h:selectOneMenu>
                         <p:message id="idTipoContratoMessage" for="idTipoContrato" styleClass="error"/>
