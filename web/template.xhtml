@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/styleTemplate.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/fonts.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/otherFontStyle.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/estilos.css"/>
         <link rel="shortcut icon" href="#{request.contextPath}/resources/images/favicon.ico"/>               
     </head>
@@ -92,44 +93,55 @@
             </article>
         </section>
         <footer id="footer">
-        <div class="row">
-            <div class="col-md-1">.<!--espacio entre columnas-->
-            </div>
-            <div class="col-md-3">
-                <h3 class="text-center"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Contacto</h3>
-                <p class="text-center">
-                    sena.cbi.sami@gmail.com<br/>facebook.com/contactosami<br/>@interactuasami 
-                    <br/>317-347-01-78<br/>SENA
-                </p>
-            </div>
-            <div class="col-md-1">.<!--espacio entre columnas-->
-            </div>
-            <div class="col-md-3">
-                <h4 class="text-center">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
-                <p class="text-center">Centro de Biotecnologia Industrial<br/>Palmira, Valle del Cauca<br/>Carrera 30 40-25  
-                    <br/>Teléfono: 275-09-68<br/>Fax: 275-09-65</p>
-            </div>
-            <div class="col-md-1">.<!--espacio entre columnas-->
-            </div>
-            <div class="col-md-3 text-center">
-                <h3 class="text-center"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span> Opciones</h3>
-                <div class="row">
-                    <div class="col-md-12">
-                        <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/" class="icon-icon-sofia-01" target="_blank"></a>
-                        <a href="http://www.sena.edu.co/Paginas/Inicio.aspx" class="icon-icon-sena0" target="_blank"></a>
+            <div class="row">
+                <div class="col-md-1">.<!--espacio entre columnas-->
+                </div>
+                <div class="col-md-1">
+                    <h3>.</h3>
+                    <p class="text-right hidden-xs">
+                        <span class="icon-mail4" aria-hidden="true"></span><br/>
+                        <span class="icon-facebook3" aria-hidden="true"></span><br/>
+                        <span class="icon-twitter3" aria-hidden="true"></span><br/>
+                        <span class="icon-phone-hang-up" aria-hidden="true"></span>
+                    </p>
+                </div>
+                <div class="col-md-2">
+                    <h3 class="text-center"><span class="icon-users" aria-hidden="true"/>Contacto</h3>
+                    <p class="text-center">
+                        sena.cbi.sami@gmail.com<br/>
+                        facebook.com/contactosami<br/>
+                        @interactuasami<br/>
+                        317-347-01-78<br/>SENA
+                    </p>
+                </div>
+                <div class="col-md-1">.<!--espacio entre columnas-->
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-center">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
+                    <p class="text-center">Centro de Biotecnologia Industrial<br/>Palmira, Valle del Cauca<br/>Carrera 30 40-25  
+                        <br/>Teléfono: 275-09-68<br/>Fax: 275-09-65</p>
+                </div>
+                <div class="col-md-1">.<!--espacio entre columnas-->
+                </div>
+                <div class="col-md-3 text-center">
+                    <h3 class="text-center"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Opciones</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/" class="icon-icon-sofia-01" target="_blank"></a>
+                            <a href="http://www.sena.edu.co/Paginas/Inicio.aspx" class="icon-icon-sena0" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="row">.<!--espacio entre filas-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a jsf:outcome="/Configuracion/index_configuracion.xhtml" class="icon-cog" jsf:rendered="#{loginController.configuracion}" ></a>
+                            <a type="button" onclick="PF('dlg2').show();" class="icon-help" ></a>
+                        </div>
                     </div>
                 </div>
-                <div class="row">.<!--espacio entre filas-->
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <a jsf:outcome="/Configuracion/index_configuracion.xhtml" class="icon-cog" jsf:rendered="#{loginController.configuracion}" ></a>
-                        <a type="button" onclick="PF('dlg2').show();" class="icon-help" ></a>
-                    </div>
-                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
         <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
             <h:outputText value="" />
             <h:form>
