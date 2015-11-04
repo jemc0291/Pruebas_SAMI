@@ -40,7 +40,7 @@
                             .
                         </div>
                         <div class="row text-center">
-                            <h5>Bienvenido,#{loginController.userLogueado.primerNombre} #{loginController.userLogueado.primerApellido}</h5>
+                            <h5><span class="glyphicon glyphicon-user"/> Bienvenido(a),#{loginController.userLogueado.primerNombre} #{loginController.userLogueado.primerApellido}</h5>
                         </div>
                         <div class="row text-center">
                             <h:form>
@@ -57,7 +57,7 @@
                                         <li><a jsf:outcome="/modulo5/index_modulo5.xhtml" jsf:rendered="#{loginController.gestionDocumental}" >Gestión documental</a></li>
                                         <li><a  jsf:outcome="/modulo6/index_modulo6.xhtml" jsf:rendered="#{loginController.gestionMateriales}" >Gestión de materiales de formación</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a jsf:action="#{loginController.logout}" onclick="PF('cerrarSesion').show();">Cerrar Sesión</a></li>
+                                        <li><a jsf:action="#{loginController.logout}" onclick="PF('cerrarSesion').show();"><span class="glyphicon glyphicon-off"/> Cerrar Sesión</a></li>
                                         <h:form>   
                                             <p:confirmDialog global="true"
                                                              showEffect="fade" 

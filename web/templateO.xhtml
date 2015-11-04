@@ -39,12 +39,13 @@
                             .
                         </div>
                         <div class="row text-center">
-                            <h5>Bienvenido,#{loginController.userLogueado.primerNombre} #{loginController.userLogueado.primerApellido}</h5>
+                            <h5><span class="glyphicon glyphicon-user"/> Bienvenido(a),#{loginController.userLogueado.primerNombre} #{loginController.userLogueado.primerApellido}</h5>
                         </div>
                         <div class="row text-center">
 
                             <h:form>   
-                                <a class="btn btn-default" role="button" jsf:action="#{loginController.logout}" onclick="PF('cerrarSesion').show();">Cerrar Sesión</a>
+                                <a class="btn btn-default" role="button" jsf:action="#{loginController.logout}" onclick="PF('cerrarSesion').show();">
+                                    <span class="glyphicon glyphicon-off"/> Cerrar Sesión</a>
                                 <p:confirmDialog global="true"
                                                  showEffect="fade" 
                                                  hideEffect="explode"
