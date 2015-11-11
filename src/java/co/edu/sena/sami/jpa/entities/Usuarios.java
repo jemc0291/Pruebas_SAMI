@@ -69,7 +69,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findByNombreTipoCuenta", query = "SELECT u FROM Usuarios u WHERE u.nombreTipoCuenta = :nombreTipoCuenta"),
     @NamedQuery(name = "Usuarios.findByGrado", query = "SELECT u FROM Usuarios u WHERE u.grado = :grado"),
     @NamedQuery(name = "Usuarios.findBySueldo", query = "SELECT u FROM Usuarios u WHERE u.sueldo = :sueldo"),
-    @NamedQuery(name = "Usuarios.findByFechaIngreso", query = "SELECT u FROM Usuarios u WHERE u.fechaIngreso = :fechaIngreso")})
+    @NamedQuery(name = "Usuarios.findByFechaIngreso", query = "SELECT u FROM Usuarios u WHERE u.fechaIngreso = :fechaIngreso"),
+    @NamedQuery(name = "Usuarios.findByPersonalidad", query = "SELECT u FROM Usuarios u WHERE u.personalidad = :personalidad")})
 public class Usuarios implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -90,10 +91,8 @@ public class Usuarios implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "primer_nombre")
     private String primerNombre;
-    @Size(min = 1, max = 20)
     @Column(name = "razon_social")
     private String razonSocial;
-    @Size(max = 20)
     @Column(name = "segundo_nombre")
     private String segundoNombre;
     @Basic(optional = false)
@@ -161,6 +160,9 @@ public class Usuarios implements Serializable {
     @Column(name = "fecha_ingreso")
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
+    @Size(max = 45)
+    @Column(name = "personalidad")
+    private String personalidad;
     @Size(max = 45)
     @JoinTable(name = "usuario_formacion_academica", joinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
@@ -471,6 +473,15 @@ public class Usuarios implements Serializable {
     public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
+
+    public String getPersonalidad() {
+        return personalidad;
+    }
+
+    public void setPersonalidad(String personalidad) {
+        this.personalidad = personalidad;
+    }
+    
 
     @XmlTransient
     public List<FormacionAcademica> getFormacionAcademicaList() {

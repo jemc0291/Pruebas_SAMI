@@ -11,6 +11,38 @@
         <section class="section-form">
             <form jsf:id="usuarioCreateForm">
                 <h1>Crear contratistas</h1>
+                <div class="row form-group">
+                    <label class="control-label col-md-2" jsf:for="personalidadInputText">Tipo persona:</label>
+                    <div class="col-md-2">
+                        <select jsf:id="personalidadInputText" size="1"
+                                jsf:value="#{usuariosController.selected.personalidad}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItem itemLabel="personaJuridica" itemValue="personaJuridica"/>
+                            <f:selectItem itemLabel="personaNatural" itemValue="personaNatural"/>
+                            <f:ajax execute="@this" render="personalidadMessage"/>
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <p:message id="personalidadMessage" for="personalidadInputText" styleClass="error"/>
+                    </div>
+                </div>
+                <h:panelGroup id="personalidadForm">
+                    <div class="row form-group">
+                        <label class="control-label col-md-2"
+                               jsf:for="razonSocialInputText">Razón social:</label> 
+                        <div class="col-md-2">
+                            <p:inputText type="text" id="razonSocialInputText" required="false"
+                                         value="#{usuariosController.selected.razonSocial}">
+                                <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                <p:ajax process="@this" update="razonSocialMessage"/>
+                            </p:inputText>
+                        </div>
+                        <div class="col-md-8">
+                            <p:message id="razonSocialMessage" 
+                                       for="razonSocialInputText" styleClass="error"/>
+                        </div>
+                    </div>
+                </h:panelGroup>
 
                 <div class="row form-group">
                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idTipoDoc}" jsf:for="tipodocumentosInputText"></label> 
