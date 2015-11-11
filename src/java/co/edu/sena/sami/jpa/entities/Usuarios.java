@@ -70,7 +70,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findByGrado", query = "SELECT u FROM Usuarios u WHERE u.grado = :grado"),
     @NamedQuery(name = "Usuarios.findBySueldo", query = "SELECT u FROM Usuarios u WHERE u.sueldo = :sueldo"),
     @NamedQuery(name = "Usuarios.findByFechaIngreso", query = "SELECT u FROM Usuarios u WHERE u.fechaIngreso = :fechaIngreso"),
-    @NamedQuery(name = "Usuarios.findByPersonalidad", query = "SELECT u FROM Usuarios u WHERE u.personalidad = :personalidad")})
+    @NamedQuery(name = "Usuarios.findByPersonalidad", query = "SELECT u FROM Usuarios u WHERE u.personalidad = :personalidad"),
+    @NamedQuery(name = "Usuarios.findByDv", query = "SELECT u FROM Usuarios u WHERE u.dv = :dv")})
 public class Usuarios implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -80,14 +81,12 @@ public class Usuarios implements Serializable {
     private Integer idUsuario;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 20)
     @Column(name = "numero_doc")
     private String numeroDoc;
     @Column(name = "fecha_expedicion_doc")
     @Temporal(TemporalType.DATE)
     private Date fechaExpedicionDoc;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "primer_nombre")
     private String primerNombre;
@@ -95,8 +94,6 @@ public class Usuarios implements Serializable {
     private String razonSocial;
     @Column(name = "segundo_nombre")
     private String segundoNombre;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "primer_apellido")
     private String primerApellido;
@@ -163,6 +160,8 @@ public class Usuarios implements Serializable {
     @Size(max = 45)
     @Column(name = "personalidad")
     private String personalidad;
+    @Column(name = "dv")
+    private String dv;
     @Size(max = 45)
     @JoinTable(name = "usuario_formacion_academica", joinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
@@ -481,8 +480,15 @@ public class Usuarios implements Serializable {
     public void setPersonalidad(String personalidad) {
         this.personalidad = personalidad;
     }
-    
 
+    public String getDv() {
+        return dv;
+    }
+
+    public void setDv(String dv) {
+        this.dv = dv;
+    }
+    
     @XmlTransient
     public List<FormacionAcademica> getFormacionAcademicaList() {
         return formacionAcademicaList;
