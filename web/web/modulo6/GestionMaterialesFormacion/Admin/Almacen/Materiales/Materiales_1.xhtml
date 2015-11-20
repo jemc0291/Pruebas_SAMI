@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h:form id="MaterialListForm">
+                <p:panel header="#{bundle.ListMaterialesTitle}">
+                    <p:dataTable id="datalist" var="item" value="#{materialesController.items}" 
+                                 widgetVar="materialTable" selectionMode="single" selection="#{materialesController.selected}"
+                                 rowKey="#{item}"
+                                 emptyMessage="No cars found with given criteria" filteredValue="#{item}">
+
+                        <!--<f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Filtro de Busqueda:" />
+                                <p:inputText id="globalFilter" onkeyup="PF('materialTable').filter()" style="width:150px" placeholder="Material a Buscar"/>
+                            </p:outputPanel>
+                        </f:facet>-->
+                        
+                        <p:ajax event="rowSelect"   update="createButton editButton"/>
+                        <p:ajax event="rowUnselect" update="createButton editButton"/>
+                        
+                        <p:column filterBy="#{item.idMateriales}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="IdMateriales"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMateriales}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.nombreMaterial}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="NombreMaterial"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreMaterial}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="UnidadMedida"/>
+                            </f:facet>
+                            <h:outputText value="#{item.unidadMedida}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="TipoMaterial"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoMaterial}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Descripcionelemento"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionelemento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdCategoria"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCategoria.nombreCategoria}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   actionListener="#{materialesController.prepareCreate}" update=":MaterialCreateForm" oncomplete="PF('MaterialCreateDialog').show()"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" update=":MaterialEditForm" oncomplete="PF('MaterialEditDialog').show()" disabled="#{empty materialesController.selected}"/>
+                            </f:facet>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Editar Informe</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h1><h:outputText value="#{bundle.EditInformesTitle}"/></h1>
+                <h:panelGrid columns="2">
+                    <h:form>                       
+                        <h:panelGrid columns="3">
+                            <label class="FormLabelSCCSS" value="#{bundle.EditInformesLabel_fechaInforme}" jsf:for="fechaInforme"/>
+                            <input class="FormInputDateSCCSS" jsf:id="fechaInforme" title="#{bundle.EditInformesTitle_fechaInforme}"
+                                   type="date" jsf:required="true" min="2014-08-01"
+                                   jsf:value="#{informesController.selected.fechaInforme}"
+                                   jsf:requiredMessage="#{bundle.EditInformesRequiredMessage_fechaInforme}" disabled="true" >
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                                <f:ajax execute="@this" render="fechaInformeMessage"/>
+                            </input>
+                            <h:message id="fechaInformeMessage" for="fechaInforme" class="ErrorDupli" />
+
+                            <label class="FormLabelSCCSS"  jsf:for="observacionesTextArea" value="#{bundle.EditInformesLabel_observaciones}"  /> 
+                            <textarea class="FormTextAreaSCCSS" jsf:id="observacionesTextArea" title="#{bundle.EditInformesTitle_observaciones}"
+                                      jsf:value="#{informesController.selected.observaciones}"
+                                      cols="22" rows="4" >
+                                <f:ajax execute="@this" render="observacionesMessage"/>
+                            </textarea>
+                            <h:message id="observacionesMessage" for="observacionesTextArea" class="Error"/>
+
+                            <label jsf:value="#{bundle.ViewInformesLabel_idContrato}" class="FormLabelSCCSS" />
+                            <input class="FormInputSCCSS" disabled="true"
+                                   value="#{informesController.selected.idContrato}" title="#{bundle.ViewContratosTitle_numeroDeContrato}" > 
+                            </input>
+                            <h:message id="selectmessage" for="idContrato"/>
+
+                        </h:panelGrid>
+
+                        <h:commandButton class="FormButtonSCCSS" value="#{bundle.EditInformesSaveLink}" action="#{informesController.update()}" />
+                        <h:button class="FormButtonSCCSS" value="Cancelar" outcome="ListInformes"/>
+                        <h:button class="FormButtonSCCSS" value="#{bundle.EditInformesIndexLink}" outcome="/index"/>
+                    </h:form>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>          
+</html>

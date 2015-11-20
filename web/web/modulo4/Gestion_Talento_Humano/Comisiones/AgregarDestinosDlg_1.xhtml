@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition>
+        <p:dialog widgetVar="agregarDestinoDlg"
+                  modal="true"
+                  resizable="false"
+                  header="Agregar Destino">
+
+            <h:form id="formAgregarDestino">
+                <p:messages/>
+                <h1><h:outputText value="Agregar Destinos"/></h1>
+                <h:panelGrid columns="2">
+                    <label jsf:value="#{bundle.CreateCiudadComisionesLabel_salidaEstimada}" jsf:for="salidaEstimada" />
+                    
+                    <p:calendar id="salidaEstimada" 
+                                pattern="yyyy/MM/dd" 
+                                value="#{comisionesController.ciudadComisionesActual.salidaEstimada}"
+                                title="#{bundle.CreateCiudadComisionesTitle_salidaEstimada}"
+                                showOn="button" navigator="true"
+                                effect="fold"
+                                maxdate="#{comisionesController.ciudadComisionesActual.llegadaEstimada}"
+                                required="true"  requiredMessage="The SalidaEstimada field is required.">
+
+                        <p:ajax event="dateSelect" process="@this llegadaEstimada" update="llegadaEstimada"/>
+                        <p:ajax event="valueChange" process="@this llegadaEstimada" update="llegadaEstimada"/>
+                         <p:ajax event="dateSelect" process="@this salidaEstimada" update="llegadaEstimada"/>
+                         
+                       </p:calendar>
+                    
+                    <label jsf:value="#{bundle.CreateCiudadComisionesLabel_llegadaEstimada}" jsf:for="llegadaEstimada" />
+                    <p:calendar id="llegadaEstimada"
+                                pattern="yyyy/MM/dd"
+                                value="#{comisionesController.ciudadComisionesActual.llegadaEstimada}"
+                                title="#{bundle.CreateCiudadComisionesTitle_llegadaEstimada}" 
+                                showOn="button" navigator="true"
+                                effect="fold"
+                                mindate="#{comisionesController.ciudadComisionesActual.salidaEstimada}"
+                                required="true" requiredMessage="The LlegadaEstimada field is required.">
+
+                        <p:ajax event="valueChange" process="@this salidaEstimada" update="llegadaEstimada"/>
+                    </p:calendar>
+
+                    <h:outputLabel value="#{bundle.CreateCiudadComisionesLabel_empresaVereda}" for="empresaVereda" />
+                    <h:inputText id="empresaVereda" value="#{comisionesController.ciudadComisionesActual.empresaVereda}" title="EmpresaVereda" />
+
+                    <label jsf:value="#{bundle.CreateCiudadComisionesLabel_ciudad}" for="ciudad"></label>
+                    <p:autoComplete id="ciudad" value="#{comisionesController.ciudadComisionesActual.ciudad}" 
+
+                                    completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 
+                                    var="ciudad" itemLabel="#{ciudad}" itemValue="#{ciudad}" 
+                                    converter="ciudadConverter" 
+                                    forceSelection="true" maxResults="10"/> 
+
+
+                    <p:commandButton process="formAgregarDestino" actionListener="#{comisionesController.adicionarCiudadComision}" oncomplete="PF('agregarDestinoDlg').hide()" value="Agregar" update="formAgregarDestino :formSolicitudComision:ComisionesTablePanel" />
+                    <p:commandButton value='Cancelar' action="@this" onclick="PF('agregarDestinoDlg').hide()"/>
+
+                </h:panelGrid>
+
+
+            </h:form>
+
+        </p:dialog>
+    </ui:composition>
+</html>
+

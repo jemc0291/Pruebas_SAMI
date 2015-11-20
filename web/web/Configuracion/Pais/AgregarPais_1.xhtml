@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title"> País <h:outputText value="#{bundle.ListPaisTitle}"></h:outputText></ui:define>
+        <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            
+            <h:form> 
+                <h:commandButton value="Agregar País" action="#{paisController.prepareCreate}"/>
+                <h:commandButton value="Volver A Lista" action="#{paisController.prepareListPais}"/>
+            
+            </h:form>
+            
+            <section class="section-form">
+                <form jsf:id="CiudadCreateForm">
+                    <p:panelGrid columns="3" layout="grid">
+                        <label class="Form-na" value="#{bundle.CreatePaisLabel_idPais}" for="idPais"> Siglas </label> 
+                        <input type="tel" jsf:id="PaisInputText" required="true" 
+                               jsf:requiredMessage="Por favor ingrese el numero de id" 
+                               jsf:validatorMessage="Use solo numeros"
+                               jsf:converterMessage="Use solo números. Máximo 16 digitos"
+                               jsf:value="#{paisController.selected.idPais}">
+                            <f:ajax execute="@this" render="PaisMessage"/>
+                        </input>
+                        <h:message id="PaisMessage" for="PaisInputText" styleClass="error"/>
+
+                        <label class="Form-na" value="#{bundle.CreatePaisLabel_nombrepais}" for="nombrepais"> Nombre País </label> 
+                        <input type="text" jsf:id="NombPaisInputText" required="true"
+                               jsf:requiredMessage="Por favor ingrese el nombre" 
+                               jsf:validatorMessage="Use solo letras"
+                               jsf:value="#{paisController.selected.nombrepais}" maxlength="30">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="NombPaisMessage"/>
+                        </input>
+                        <h:message id="NombPaisMessage" for="NombPaisInputText" styleClass="error"/>
+                    </p:panelGrid>
+                    <h:commandButton value="Guardar" action="#{paisController.create}"/>
+                </form>
+            </section>
+
+        </ui:define>
+    </ui:composition>
+</html>

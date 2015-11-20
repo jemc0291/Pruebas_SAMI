@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head jsf:id="head">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>S.A.M.I.</title>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/styleTemplate.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/fonts.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/estilos.css"/>
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/images/favicon.ico"/>               
+    </head>
+    <body jsf:id="body">
+        <header>
+            <p:growl id="growl" life="3000"/>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-responsive" src="#{request.contextPath}/resources/images/logo.png"/>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="row">
+                            .
+                        </div>
+                        <div class="row">
+                            <h3>SISTEMA ADMINISTRATIVO MODULAR INTEGRADO</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            .
+                        </div>
+                        <div class="row text-center">
+                            .
+                        </div>
+                        <div class="row text-center">
+                            <img class="img-responsive" src="#{request.contextPath}/resources/images/logo-minTrabajo.png" width='200' height='100'/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    .
+                </div>
+            </div><!-- aqui finaliza el header(container) -->
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-default boxPanel col-md-12">
+                    <div class="panel-heading tittleBox">
+                        <h3 class="panel-title tittleBox text-center">Sistema Administrativo Modular Integrado</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h3>Señor usuario:</h3>
+                        <h4>Gracias por usar los servicios de S.A.M.I.</h4>
+                        <p class="text-justify">Lo invitamos a obtener más información acerca del manejo del aplicativo,
+                            el cual está conformado por 6 módulos que brindarán soluciones comunicativas
+                            y metodológicas a algunos procesos que emplean el personal administrativo del
+                            CBI Palmira. El aplicativo agrupa los siguientes módulos: Contratación de
+                            prestación de servicios, Mantenimiento, Supervisión de contratos administrativos,
+                            Gestión del talento humano, Gestión Documental y Gestión de materiales de formación.</p>
+                    </div>
+                    <div class="panel-footer tittleBox">
+                        <p:button value="regresar al inicio" outcome="/index" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+            <div class="row">
+                <div class="col-md-1">.<!--espacio entre columnas-->
+                </div>
+                <div class="col-md-3">
+                    <h3 class="text-center">Contacto</h3>
+                    <p class="text-center">
+                        contactosami@gmail.com<br/>facebook.com/contactosami<br/>@interactuasami 
+                        <br/>317-347-01-78 - 310-123-45-68<br/>SENA
+                    </p>
+                </div>
+                <div class="col-md-1">.<!--espacio entre columnas-->
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-center">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
+                    <p class="text-center">Centro de Biotecnologia Industrial<br/>Palmira, Valle del Cauca<br/>Carrera 30 40-25  
+                        <br/>Teléfono: 275-09-68<br/>Fax: 275-09-65</p>
+                </div>
+                <div class="col-md-1">.<!--espacio entre columnas-->
+                </div>
+                <div class="col-md-3 text-center">
+                    <h3 class="text-center">Opciones</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/" class="icon-icon-sofia-01" target="_blank"></a>
+                            <a href="http://www.sena.edu.co/Paginas/Inicio.aspx" class="icon-icon-sena0" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="row">.<!--espacio entre filas-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a jsf:outcome="/Configuracion/index_configuracion.xhtml" class="icon-cog" jsf:rendered="#{loginController.configuracion}" ></a>
+                            <a type="button" onclick="PF('dlg2').show();" class="icon-help" ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
+            <h:outputText value="" />
+            <h:form>
+                <p:panel header="Tienes un problema?, te ayudamos">
+                    <p:messages autoUpdate="true"/>
+
+                    <h:panelGrid id="grid" columns="4" cellpadding="5">
+                        <h:outputLabel for="to" value="Email:" style="font-weight:bold"/>                    
+                        <p:inputText id="to" value="#{emailController.to}" required="true" label="to"/>
+                        <p:message for="to" />
+                        <h:outputText value="#{emailController.to}" />
+
+                        <h:outputLabel for="subject" value="Asunto:" style="font-weight:bold"/>                    
+                        <p:inputText id="subject" value="#{emailController.asunto}" label="subject">
+                            <f:validateDoubleRange minimum="5" maximum="8" />
+                        </p:inputText>
+                        <p:message for="subject" />
+                        <h:outputText value="#{emailController.asunto}" />
+
+                        <h:outputLabel for="desc" value="Description" style="font-weight:bold"/>
+                        <p:inputTextarea id="desc" value="#{emailController.body}" required="true" label="Description">
+                            <f:validateLength minimum="3" maximum="10" /> 
+                        </p:inputTextarea>
+                        <p:message for="desc" />
+                        <h:outputText value="#{emailController.body}" />
+
+                    </h:panelGrid>
+                    <p:commandButton icon="ui-icon-mail-closed" value="Enviar" action="#{emailController.sendMail}"/>
+                </p:panel>
+            </h:form> 
+        </p:dialog> 
+
+        <form jsf:id="confirmForm">
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </form>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+    </body>
+</html>

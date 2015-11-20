@@ -1,0 +1,597 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title"><h:outputText value="#{bundle.ViewDatosOnbaseIndexLink}"></h:outputText></ui:define>
+        <ui:define name="menu"><ui:include src="/modulo5/menu_modulo5.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+
+            <section class="section-form">
+                <form jsf:id="datosOnBaseCreateForm">
+                    <p:panelGrid columns="3" layout="grid">
+                        <label value="#{bundle.ViewDatosOnbaseLabel_numRadicadoProducida}" jsf:for="numeroRadicadoProducidaInputText"></label> 
+                        <h:inputText  id="numeroRadicadoProducidaInputText" required="true"
+                               value="#{datosOnbaseController.selected.numRadicadoRecibida}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_numRadicadoProducida}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="numeroRadicadoProducidaMessage" for="numeroRadicadoProducidaInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_nis}" jsf:for="nisInputText"></label> 
+                        <h:inputText id="nisInputText" required="true"
+                                     value="#{datosOnbaseController.selected.nis}" maxlength="30"
+                                     title="#{bundle.ViewDatosOnbaseLabel_nis}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="nisRecibidaMessage" for="nisInputText" styleClass="error"/>
+                        
+                       
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_codigoRegional}" jsf:for="codigoRegionalInputText"></label> 
+                        <h:inputText id="codigoRegionalInputText" required="true"
+                                     value="#{datosOnbaseController.selected.codigoRegional}" maxlength="30"
+                                     title="#{bundle.ViewDatosOnbaseLabel_codigoRegional}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="codigoRegionalRecibidaMessage" for="codigoRegionalInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_modoIngreso}" jsf:for="modoIngresoInputText"></label> 
+                        <h:inputText id="modoIngresoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.modoIngreso}" maxlength="30"
+                                     title="#{bundle.ViewDatosOnbaseLabel_modoIngreso}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="modoIngresoMessage" for="modoIngresoInputText" styleClass="error"/>
+                     
+                        <label value="#{bundle.ViewDatosOnbaseLabel_entregaALaMano}" jsf:for="entregaALaManoInputText"></label> 
+                        <h:inputText id="entregaALaManoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.entragaALaMano}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_entregaALaMano}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="entregaALaManoMessage" for="entregaALaManoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_fechaProcedencia}" jsf:for="fechaProcedenciaInputText"></label> 
+                        <h:inputText  id="fechaProcedenciaInputText" required="true"
+                               value="#{datosOnbaseController.selected.fechaProcedencia}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_fechaProcedencia}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="fechaProcedenciaMessage" for="fechaProcedenciaInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_numeroRadicadoOrigen}" jsf:for="numeroRadicadoOrigenInputText"></label> 
+                        <h:inputText  id="numeroRadicadoOrigenInputText" required="true"
+                               value="#{datosOnbaseController.selected.numeroRadicadoOrigen}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_numeroRadicadoOrigen}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="numeroRadicadoOrigenMessage" for="numeroRadicadoOrigenInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_tipoDocumento}" jsf:for="tipoDocumentoInputText"></label> 
+                        <h:inputText id="tipoDocumentoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.tipoDocumento}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_tipoDocumento}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="tipoDocumentoMessage" for="tipoDocumentoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_tiempoRespuestaDias}" jsf:for="tiempoRespuestaDiasInputText"></label> 
+                        <h:inputText id="tiempoRespuestaDiasInputText" required="true"
+                                     value="#{datosOnbaseController.selected.tiempoRespuestaDias}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_tiempoRespuestaDias}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="tiempoRespuestaDiasMessage" for="tiempoRespuestaDiasInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_fechaRespuesta}" jsf:for="fechaRespuestaInputText"></label> 
+                        <h:inputText  id="fechaRespuestaInputText" required="true"
+                                     value="#{datosOnbaseController.selected.fechaRespuesta}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_fechaRespuesta}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="fechaRespuestaMessage" for="fechaRespuestaInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_numeroDeAnexos}" jsf:for="numeroDeAnexosInputText"></label> 
+                        <h:inputText  id="numeroDeAnexosInputText" required="true"
+                                     value="#{datosOnbaseController.selected.numeroDeAnexos}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_numeroDeAnexos}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="numeroDeAnexosMessage" for="numeroDeAnexosInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_descripcionAnexos}" jsf:for="descripcionAnexosInputText"></label> 
+                        <h:inputText  id="descripcionAnexosInputText" required="true"
+                                     value="#{datosOnbaseController.selected.descripcionAnexos}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_descripcionAnexos}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="descripcionAnexosMessage" for="descripcionAnexosInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_tipoDigitalizacion}" jsf:for="tipoDigitalizacionInputText"></label> 
+                        <h:inputText  id="tipoDigitalizacionInputText" required="true"
+                                     value="#{datosOnbaseController.selected.tipoDigitalizacion}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_tipoDigitalizacion}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="tipoDigitalizacionMessage" for="tipoDigitalizacionInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_numRadicadoRecibida}" jsf:for="asuntoInputText"></label> 
+                        <h:inputText  id="asuntoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.asunto}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_asunto}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="asuntoMessage" for="asuntoInputText" styleClass="error"/>
+                        
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_tipoPeticion}" jsf:for="dpTipoDePeticionInputText"></label> 
+                        <h:inputText  id="dpTipoDePeticionInputText" required="true"
+                                     value="#{datosOnbaseController.selected.dpTipoDePeticion}" 
+                               title="#{bundle.ViewDatosOnbaseLabel_tipoDePeticion}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="dpTipoDePeticionMessage" for="dpTipoDePeticionInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_tema}" jsf:for="temaQYRInputText"></label> 
+                        <h:inputText  id="temaQYRInputText" required="true"
+                                     value="#{datosOnbaseController.selected.temaQYR}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_tema}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="temaQYRMessage" for="temaQYRInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_descripcionAsunto}" jsf:for="descripcionAsuntoInputText"></label> 
+                        <h:inputText  id="descripcionAsuntoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.descripcionAsunto}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_descripcionAsunto}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="descripcionAsuntoMessage" for="descripcionAsuntoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_empresaTransportadora}" jsf:for="empresaTransportadoraInputText"></label> 
+                        <h:inputText  id="empresaTransportadoraInputText" required="true"
+                                     value="#{datosOnbaseController.selected.empresaTransportadora}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_empresaTransportadora}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="empresaTransportadoraMessage" for="empresaTransportadoraInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_numeroGuiaR}" jsf:for="numeroGuiaRInputText"></label> 
+                        <h:inputText  id="numeroGuiaRInputText" required="true"
+                                     value="#{datosOnbaseController.selected.numeroGuiaR}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_numeroGuiaR}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="numeroGuiaRMessage" for="numeroGuiaRInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_ccNitRemitente}" jsf:for="ccNitRemitenteInputText"></label> 
+                        <h:inputText  id="ccNitRemitenteInputText" required="true"
+                                     value="#{datosOnbaseController.selected.ccNitRemitente}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_ccNitRemitente}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="ccNitRemitenteMessage" for="ccNitRemitenteInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_remitenteNombreEntidadExterna}" jsf:for="remitenteNombreEntidadExternaInputText"></label> 
+                        <h:inputText  id="remitenteNombreEntidadExternaInputText" required="true"
+                                     value="#{datosOnbaseController.selected.remitenteNombreEntidadExterna}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_remitenteNombreEntidadExterna}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="remitenteNombreEntidadExternaMessage" for="remitenteNombreEntidadExternaInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_nombrePersona}" jsf:for="nombrePersonaInputText"></label> 
+                        <h:inputText  id="nombrePersonaInputText" required="true"
+                                     value="#{datosOnbaseController.selected.nombrePersona}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_nombrePersona}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="nombrePersonaMessage" for="nombrePersonaInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_cargoPersonaODependencia}" jsf:for="cargoPersonaODependenciaInputText"></label> 
+                        <h:inputText  id="cargoPersonaODependenciaInputText" required="true"
+                                     value="#{datosOnbaseController.selected.cargoPersonaODependencia}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_cargoPersonaODependencia}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="cargoPersonaODependenciaMessage" for="cargoPersonaODependenciaInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_municipio}" jsf:for="municipioInputText"></label> 
+                        <h:inputText  id="municipioInputText" required="true"
+                                     value="#{datosOnbaseController.selected.municipio}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_municipio}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="municipioMessage" for="municipioInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_departamento}" jsf:for="departamentoInputText"></label> 
+                        <h:inputText  id="departamentoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.departamento}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_departamento}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="departamentoMessage" for="departamentoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_pais}" jsf:for="paisInputText"></label> 
+                        <h:inputText  id="paisInputText" required="true"
+                                     value="#{datosOnbaseController.selected.pais}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_pais}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="paisMessage" for="paisInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_direccionRemitente}" jsf:for="direccionRemitenteInputText"></label> 
+                        <h:inputText  id="direccionRemitenteInputText" required="true"
+                                     value="#{datosOnbaseController.selected.direccionRemitente}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_direccionRemitente}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="direccionRemitenteMessage" for="direccionRemitenteInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_telefonoRemitente}" jsf:for="telefonoRemitenteInputText"></label> 
+                        <h:inputText  id="telefonoRemitenteInputText" required="true"
+                                     value="#{datosOnbaseController.selected.telefonoRemitente}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_telefonoRemitenteRemitente}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="telefonoRemitenteMessage" for="telefonoRemitenteInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_emailRemitente}" jsf:for="emailRemitenteInputText"></label> 
+                        <h:inputText  id="emailRemitenteInputText" required="true"
+                                     value="#{datosOnbaseController.selected.emailRemitente}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_emailRemitente}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="emailRemitenteMessage" for="emailRemitenteInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_codDependenciaCfpDestino}" jsf:for="codDependenciaCfpDestinoInputText"></label> 
+                        <h:inputText  id="codDependenciaCfpDestinoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.codDependenciaCfpDestino}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_codDependenciaCfpDestino}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="codDependenciaCfpDestinoMessage" for="codDependenciaCfpDestinoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_nombreRegionalDestino}" jsf:for="nombreRegionalDestinoInputText"></label> 
+                        <h:inputText  id="nombreRegionalDestinoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.nombreRegionalDestino}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_nombreRegionalDestino}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="nombreRegionalDestinoMessage" for="nombreRegionalDestinoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_codRegionalDestino}" jsf:for="codRegionalDestinoInputText"></label> 
+                        <h:inputText  id="codRegionalDestinoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.codRegionalDestino}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_codRegionalDestino}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="codRegionalDestinoMessage" for="codRegionalDestinoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_funcionarioDestino}" jsf:for="funcionarioDestinoInputText"></label> 
+                        <h:inputText  id="funcionarioDestinoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.funcionarioDestino}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_funcionarioDestino}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="funcionarioDestinoMessage" for="funcionarioDestinoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_emailUsuario}" jsf:for="emailUsuarioInputText"></label> 
+                        <h:inputText  id="emailUsuarioInputText" required="true"
+                                     value="#{datosOnbaseController.selected.emailUsuario}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_emailUsuario}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="emailUsuarioMessage" for="emailUsuarioInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_dependenciaDestino}" jsf:for="dependenciaDestinoInputText"></label> 
+                        <h:inputText  id="dependenciaDestinoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.dependenciaDestino}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_dependenciaDestino}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="dependenciaDestinoMessage" for="dependenciaDestinoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_copiaCodDependencia}" jsf:for="copiaCodDependenciaInputText"></label> 
+                        <h:inputText  id="copiaCodDependenciaInputText" required="true"
+                                     value="#{datosOnbaseController.selected.copiaCodDependencia}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_copiaCodDependencia}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="copiaCodDependenciaMessage" for="copiaCodDependenciaInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_copiaCodRegional}" jsf:for="copiaCodRegionalInputText"></label> 
+                        <h:inputText  id="copiaCodRegionalInputText" required="true"
+                                     value="#{datosOnbaseController.selected.copiaCodRegional}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_copiaCodRegional}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="copiaCodRegionalMessage" for="copiaCodRegionalInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_copiaFuncionarioDestino}" jsf:for="copiaFuncionarioDestinoInputText"></label> 
+                        <h:inputText  id="copiaFuncionarioDestinoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.copiaFuncionarioDestino}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_copiaFuncionarioDestino}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="copiaFuncionarioDestinoMessage" for="copiaFuncionarioDestinoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_copiaDependencia}" jsf:for="copiaDependenciaInputText"></label> 
+                        <h:inputText  id="copiaDependenciaInputText" required="true"
+                                     value="#{datosOnbaseController.selected.copiaDependencia}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_copiaDependencia}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="copiaDependenciaMessage" for="copiaDependenciaInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_copiaNombreRegional}" jsf:for="copiaNombreRegionalInputText"></label> 
+                        <h:inputText  id="copiaNombreRegionalInputText" required="true"
+                                     value="#{datosOnbaseController.selected.copiaNombreRegional}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_copiaNombreRegional}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="copiaNombreRegionalMessage" for="copiaNombreRegionalInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_estado}" jsf:for="estadoInputText"></label> 
+                        <h:inputText  id="estadoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.estado}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_estado}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="estadoMessage" for="estadoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_swEnvioCorreo}" jsf:for="swEnvioCorreoInputText"></label> 
+                        <h:inputText  id="swEnvioCorreoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.swEnvioCorreo}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_swEnvioCorreo}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="swEnvioCorreoMessage" for="swEnvioCorreoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_status}" jsf:for="statusInputText"></label> 
+                        <h:inputText  id="statusInputText" required="true"
+                                     value="#{datosOnbaseController.selected.status}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_status}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="statusMessage" for="statusInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_wfUsuarioActual}" jsf:for="wfUsuarioActualInputText"></label> 
+                        <h:inputText  id="wfUsuarioActualInputText" required="true"
+                                     value="#{datosOnbaseController.selected.wfUsuarioActual}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_wfUsuarioActual}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="wfUsuarioActualMessage" for="wfUsuarioActualInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_fechaHora}" jsf:for="fechaHoraInputText"></label> 
+                        <h:inputText  id="fechaHoraInputText" required="true"
+                                     value="#{datosOnbaseController.selected.fechaHora}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_fechaHora}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="fechaHoraMessage" for="fechaHoraInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_username}" jsf:for="usernameInputText"></label> 
+                        <h:inputText  id="usernameInputText" required="true"
+                                     value="#{datosOnbaseController.selected.username}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_username}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="usernameMessage" for="usernameInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_copiaEmailUsuario}" jsf:for="copiaEmailUsuarioInputText"></label> 
+                        <h:inputText  id="copiaEmailUsuarioInputText" required="true"
+                                     value="#{datosOnbaseController.selected.copiaEmailUsuario}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_copiaEmailUsuario}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="copiaEmailUsuarioMessage" for="copiaEmailUsuarioInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_copiaUsername}" jsf:for="copiaUsernameInputText"></label> 
+                        <h:inputText  id="copiaUsernameInputText" required="true"
+                                     value="#{datosOnbaseController.selected.copiaUsername}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_copiaUsername}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="copiaUsernameMessage" for="copiaUsernameInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_usarNameOd}" jsf:for="usarNameOdInputText"></label> 
+                        <h:inputText  id="usarNameOdInputText" required="true"
+                                     value="#{datosOnbaseController.selected.usarNameOd}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_usarNameOd}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="usarNameOdMessage" for="usarNameOdInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_codArchivoFisico}" jsf:for="codArchivoFisicoInputText"></label> 
+                        <h:inputText  id="codArchivoFisicoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.codArchivoFisico}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_codArchivoFisico}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="codArchivoFisicoMessage" for="codArchivoFisicoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_mailMesageid}" jsf:for="mailMesageidInputText"></label> 
+                        <h:inputText  id="mailMesageidInputText" required="true"
+                                     value="#{datosOnbaseController.selected.mailMesageid}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_mailMesageid}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="mailMesageidMessage" for="mailMesageidInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_wfUsuarioBalanceo}" jsf:for="wfUsuarioBalanceoInputText"></label> 
+                        <h:inputText  id="wfUsuarioBalanceoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.wfUsuarioBalanceo}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_wfUsuarioBalanceo}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="wfUsuarioBalanceoMessage" for="wfUsuarioBalanceoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_entregadoAInterno}" jsf:for="entregadoAInternoInputText"></label> 
+                        <h:inputText  id="entregadoAInternoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.entregadoAInterno}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_entregadoAInterno}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="entregadoAInternoMessage" for="entregadoAInternoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_superiorFuncionarioDestinoMail}" jsf:for="superiorFuncionarioDestinoMailInputText"></label> 
+                        <h:inputText  id="superiorFuncionarioDestinoMailInputText" required="true"
+                                     value="#{datosOnbaseController.selected.superiorFuncionarioDestinoMail}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_superiorFuncionarioDestinoMail}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="superiorFuncionarioDestinoMailMessage" for="superiorFuncionarioDestinoMailInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_mailCc}" jsf:for="mailCcInputText"></label> 
+                        <h:inputText  id="mailCcInputText" required="true"
+                                     value="#{datosOnbaseController.selected.mailCc}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_mailCc}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="mailCcMessage" for="mailCcInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_tipoDeProceso}" jsf:for="tipoDeProcesoInputText"></label> 
+                        <h:inputText  id="tipoDeProcesoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.tipoDeProceso}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_tipoDeProceso}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="tipoDeProcesoMessage" for="tipoDeProcesoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_realizadoPor}" jsf:for="realizadoPorInputText"></label> 
+                        <h:inputText  id="realizadoPorInputText" required="true"
+                                     value="#{datosOnbaseController.selected.realizadoPor}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_realizadoPor}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="realizadoPorMessage" for="realizadoPorInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_flag}" jsf:for="flagInputText"></label> 
+                        <h:inputText  id="flagInputText" required="true"
+                                     value="#{datosOnbaseController.selected.flag}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_flag}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="flagMessage" for="flagInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_codDependenciaOCfpDestino}" jsf:for="codDependenciaOCfpDestinoInputText"></label> 
+                        <h:inputText  id="codDependenciaOCfpDestinoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.codDependenciaOCfpDestino}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_codDependenciaOCfpDestino}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="codDependenciaOCfpDestinoMessage" for="codDependenciaOCfpDestinoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_dependenciaDestinoOriginal}" jsf:for="dependenciaDestinoOriginalInputText"></label> 
+                        <h:inputText  id="dependenciaDestinoOriginalInputText" required="true"
+                                     value="#{datosOnbaseController.selected.dependenciaDestinoOriginal}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_numRadicadoRecibida}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="dependenciaDestinoOriginalMessage" for="dependenciaDestinoOriginalInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_funcionarioDestinoOriginal}" jsf:for="funcionarioDestinoOriginalInputText"></label> 
+                        <h:inputText  id="funcionarioDestinoOriginalInputText" required="true"
+                                     value="#{datosOnbaseController.selected.funcionarioDestinoOriginal}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_funcionarioDestinoOriginal}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="funcionarioDestinoOriginalMessage" for="funcionarioDestinoOriginalInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_handle}" jsf:for="handleInputText"></label> 
+                        <h:inputText  id="handleInputText" required="true"
+                                     value="#{datosOnbaseController.selected.handle}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_handle}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="handleMessage" for="handleInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_numeroAntecedentes}" jsf:for="numeroAntecedentesInputText"></label> 
+                        <h:inputText  id="numeroAntecedentesInputText" required="true"
+                                     value="#{datosOnbaseController.selected.numeroAntecedentes}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_numeroAntecedentes}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="numeroAntecedentesMessage" for="numeroAntecedentesInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_controlSecurityKeyword}" jsf:for="controlSecurityKeywordInputText"></label> 
+                        <h:inputText  id="controlSecurityKeywordInputText" required="true"
+                                     value="#{datosOnbaseController.selected.controlSecurityKeyword}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_controlSecurityKeyword}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="controlSecurityKeywordMessage" for="controlSecurityKeywordInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_emailSuperiorDestino}" jsf:for="emailSuperiorDestinoInputText"></label> 
+                        <h:inputText  id="emailSuperiorDestinoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.emailSuperiorDestino}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_emailSuperiorDestino}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="emailSuperiorDestinoMessage" for="emailSuperiorDestinoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_regionalRemitenteInterno}" jsf:for="regionalRemitenteInternoInputText"></label> 
+                        <h:inputText  id="regionalRemitenteInternoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.regionalRemitenteInterno}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_regionalRemitenteInterno}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="regionalRemitenteInternoMessage" for="regionalRemitenteInternoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_codRegionalRemitenteInterno}" jsf:for="codRegionalRemitenteInternoInputText"></label> 
+                        <h:inputText  id="codRegionalRemitenteInternoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.codRegionalRemitenteInterno}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_codRegionalRemitenteInterno}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="codRegionalRemitenteInternoMessage" for="codRegionalRemitenteInternoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_funcionarioRemitenteInterno}" jsf:for="funcionarioRemitenteInternoInputText"></label> 
+                        <h:inputText  id="funcionarioRemitenteInternoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.funcionarioRemitenteInterno}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_funcionarioRemitenteInterno}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="funcionarioRemitenteInternoMessage" for="funcionarioRemitenteInternoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_codDependenciaRemitenteInterno}" jsf:for="codDependenciaRemitenteInternoInputText"></label> 
+                        <h:inputText  id="codDependenciaRemitenteInternoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.codDependenciaRemitenteInterno}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_codDependenciaRemitenteInterno}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="codDependenciaRemitenteInternoMessage" for="codDependenciaRemitenteInternoInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_dependenciaRemitenteInterna}" jsf:for="dependenciaRemitenteInternaInputText"></label> 
+                        <h:inputText  id="dependenciaRemitenteInternaInputText" required="true"
+                                     value="#{datosOnbaseController.selected.dependenciaRemitenteInterna}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_dependenciaRemitenteInterna}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="dependenciaRemitenteInternaMessage" for="dependenciaRemitenteInternaInputText" styleClass="error"/>
+                        
+                        <label value="#{bundle.ViewDatosOnbaseLabel_fechaDelDocumento}" jsf:for="fechaDelDocumentoInputText"></label> 
+                        <h:inputText id="fechaDelDocumentoInputText" required="true"
+                                     value="#{datosOnbaseController.selected.fechaDelDocumento}" maxlength="30"
+                               title="#{bundle.ViewDatosOnbaseLabel_fechaDelDocumento}"
+                               disabled="true">
+                        </h:inputText>
+                        <p:message id="fechaDelDocumentoMessage" for="fechaDelDocumentoInputText" styleClass="error"/>
+          
+                    </p:panelGrid>
+               
+                </form>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/templateO.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="body">
+            <div class="container">
+                <h:form>
+                    <div class="row">
+                        <div class="panel panel-default boxPanel col-md-12">
+                            <div class="panel-heading tittleBox">
+                                <h3 class="panel-title tittleBox text-center">MÓDULOS</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4">
+                                        <a jsf:outcome="/modulo1/index_modulo1.xhtml" jsf:rendered="#{loginController.contratacion}" class="linkM thumbnail">
+                                            <img class="img-responsive img-rounded" src="#{request.contextPath}/resources/images/linkm1.png" width='300' height='340' alt="Contratación de prestación de servicios"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <a jsf:outcome="/modulo2/index_modulo2.xhtml" jsf:rendered="#{loginController.mantenimiento}" class="linkM thumbnail">
+                                            <img class="img-responsive img-rounded" src="#{request.contextPath}/resources/images/linkm2.png" width='300' height='340' alt="Mantenimiento"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <a jsf:outcome="/modulo3/index_modulo3.xhtml" jsf:rendered="#{loginController.supervisionSuministros}" class="linkM thumbnail">
+                                            <img class="img-responsive img-rounded" src="#{request.contextPath}/resources/images/linkm3.png" width='300' height='340' alt="Supervisión de contratos administrativos"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4">
+                                        <a jsf:outcome="/modulo4/index_modulo4.xhtml" jsf:rendered="#{loginController.gestionTalento}" class="linkM thumbnail">
+                                            <img class="img-responsive img-rounded" src="#{request.contextPath}/resources/images/linkm4.png" width='300' height='340' alt="Gestión y talento humano"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <a jsf:outcome="/modulo5/index_modulo5.xhtml" jsf:rendered="#{loginController.gestionDocumental}" class="linkM thumbnail">
+                                            <img class="img-responsive img-rounded" src="#{request.contextPath}/resources/images/linkm5.png" width='300' height='340' alt="Gestión documental"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <a jsf:outcome="/modulo6/index_modulo6.xhtml" jsf:rendered="#{loginController.gestionMateriales}" class="linkM thumbnail">
+                                            <img class="img-responsive img-rounded" src="#{request.contextPath}/resources/images/linkm6.png" width='300' height='340' alt="Gestión de materiales de formación"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

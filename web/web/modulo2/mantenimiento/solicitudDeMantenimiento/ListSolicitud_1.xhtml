@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">Lista de Solicitudes</ui:define>        
+        <ui:define name="menu"><ui:include src="/modulo2/menu_modulo2.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h:form id="tablaSolicitud">
+                <h1 class="titulo">SOLICITUD DE MANTENIMIENTO</h1>
+
+                <p>
+                    <p:commandButton  value="Crear Solicitud" actionListener="#{solicitudServiciosController.cargarUsuario}" 
+                                      action="#{solicitudServiciosController.prepareCreate}" rendered="#{loginController.usuarioInvitadoMantenimiento}" update="@this">
+                        <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                    </p:commandButton>
+
+                </p>
+                <div jsf:rendered="#{loginController.onlyMantenimiento}">
+                    <p:dataTable id="solicitudTableExtra" value="#{solicitudServiciosController.items}"
+                                 var="item" rows="10" style="font-size:12px"
+                                 paginator="true" rendered="#{loginController.mantenimiento}"
+                                 paginatorTemplate="{FirstPageLink} 
+                                 {PreviousPageLink} {PageLinks} {NextPageLink} 
+                                 {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column style="width:120px" headerText="Avances">
+                            <p:rowToggler/>
+                        </p:column>
+
+                        <p:column style="width: 120px" headerText="Fecha y Hora de solicitud">
+                            <h:outputText value="#{item.fechaSolicitudServicio}">
+                                <f:convertDateTime pattern="yyyy/MM/dd hh:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Descripción de solicitud"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionservicioSolicitud}"/>
+                        </p:column>
+
+                        <p:column headerText="Ubicación de solicitud" style="width: 120px">
+                            <h:outputText value="#{item.ubicacionSolicitud}"/>
+                        </p:column>
+
+                        <p:column style="width: 200px">
+                            <f:facet name="header">
+                                <h:outputText value="Crear Avance"/>
+                            </f:facet>
+                            <p:commandButton icon="ui-icon-pencil" value="Crear nuevo avance" action="#{solicitudServiciosController.prepareCreateAvance}"
+                                             rendered="#{loginController.mantenimiento}">
+                                <f:setPropertyActionListener value="#{item}" target="#{solicitudServiciosController.selected}"/>
+                            </p:commandButton>
+                        </p:column>
+                         <p:column headerText="Avances" style="width: 120px" filterBy="#{solicitudServiciosController.obtenerAvanceFA(item)}">                                                               
+                            <h:outputText value="#{solicitudServiciosController.obtenerAvanceFA(item)}"/>
+                        </p:column>
+
+                        <p:column headerText="Finalizado" style="width: 120px" filterBy="#{solicitudServiciosController.obtenerAvanceFS(item)}">                                                               
+                            <h:outputText value="#{solicitudServiciosController.obtenerAvanceFS(item)}"/>
+                        </p:column>
+
+                        <p:rowExpansion>
+                            <p:dataTable value="#{solicitudServiciosController.getListAvance(item)}" var="avance">
+
+                                <p:column style="width: 120px">
+                                    <f:facet name="header">
+                                        <h:outputText value="Estado:" />
+                                    </f:facet>
+                                    <h:outputText value="#{avance.idEstado.nombreEstado}" />
+                                </p:column>
+
+                                <p:column style="width: 120px">
+                                    <f:facet name="header">
+                                        <h:outputText value="Prioridad:" />
+                                    </f:facet>
+                                    <h:outputText value="#{avance.idPrioridades.nombrePrioridad}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Observaciones:" />
+                                    </f:facet>
+                                    <h:outputText value="#{avance.descripcion}" />
+                                </p:column>
+
+                                <p:column headerText="Fue Atendido?" style="width: 120px">                                                               
+                                    <h:outputText rendered="#{avance.fueAtendido}" value="Si" />
+                                    <h:outputText rendered="#{!avance.fueAtendido}" value="No" />
+                                </p:column>
+
+                                <p:column headerText="Fue Solucionado?" style="width: 120px">                                                               
+                                    <h:outputText rendered="#{avance.fueSolucionado}" value="Si" />
+                                    <h:outputText rendered="#{!avance.fueSolucionado}" value="No" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:rowExpansion>
+                    </p:dataTable>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

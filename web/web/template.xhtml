@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head jsf:id="head">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>S.A.M.I.</title>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/normalize.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/styleTemplate.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/fonts.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/otherFontStyle.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/estilos.css"/>
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/images/favicon.ico"/>               
+    </head>
+    <body jsf:id="body">
+        <header>
+            <p:growl id="growl" life="3000"/>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-responsive" src="#{request.contextPath}/resources/images/logo.png"/>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="row">
+                            .
+                        </div>
+                        <div class="row">
+                            <h3>SISTEMA ADMINISTRATIVO MODULAR INTEGRADO</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            .
+                        </div>
+                        <div class="row text-center">
+                            <h5><span class="glyphicon glyphicon-user"/> Bienvenido(a),#{loginController.userLogueado.primerNombre} #{loginController.userLogueado.primerApellido}</h5>
+                        </div>
+                        <div class="row text-center">
+                            <h:form>
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle dropdown-menu-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Módulos
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu listaModulo" aria-labelledby="dropdownMenu1">
+                                        <li><a jsf:outcome="/modulo1/index_modulo1.xhtml" jsf:rendered="#{loginController.contratacion}" >Contratación de prestación de servicios</a></li>
+                                        <li><a jsf:outcome="/modulo2/index_modulo2.xhtml" jsf:rendered="#{loginController.mantenimiento}" >Mantenimiento</a></li>
+                                        <li><a jsf:outcome="/modulo3/index_modulo3.xhtml" jsf:rendered="#{loginController.supervisionSuministros}">Supervisión de contratos administrativos</a></li>
+                                        <li><a jsf:outcome="/modulo4/index_modulo4.xhtml" jsf:rendered="#{loginController.gestionTalento}" >Gestión y talento humano</a></li>
+                                        <li><a jsf:outcome="/modulo5/index_modulo5.xhtml" jsf:rendered="#{loginController.gestionDocumental}" >Gestión documental</a></li>
+                                        <li><a  jsf:outcome="/modulo6/index_modulo6.xhtml" jsf:rendered="#{loginController.gestionMateriales}" >Gestión de materiales de formación</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a jsf:action="#{loginController.logout}" onclick="PF('cerrarSesion').show();"><span class="glyphicon glyphicon-off"/> Cerrar Sesión</a></li>
+                                        <h:form>   
+                                            <p:confirmDialog global="true"
+                                                             showEffect="fade" 
+                                                             hideEffect="explode"
+                                                             header="CERRAR SESIÓN"
+                                                             message="Seguro Que Desea Cerrar Sesión "
+                                                             widgetVar="cerrarSesion">
+                                                <p:commandButton value="Yes"  action="#{loginController.logout}" 
+                                                                 styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                <p:commandButton value="No" styleClass="ui-confirmdialog-no" 
+                                                                 icon="ui-icon-close" />
+                                            </p:confirmDialog>
+                                        </h:form>
+                                    </ul>
+                                </div>
+                            </h:form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    .
+                </div>
+            </div><!-- aqui finaliza el header(container) -->
+        </header>
+        <section class="Band-mant">
+            <nav class="MainMenu">
+                <ui:insert name="menu"/>
+            </nav>
+            <article class="View-cpds">
+                <ui:insert name="body"/>
+                <br/>
+            </article>
+        </section>
+        <footer id="footer">
+            <div class="row">
+                <div class="col-md-1">.<!--espacio entre columnas-->
+                </div>
+                <div class="col-md-1">
+                    <h3>.</h3>
+                    <p class="text-right hidden-xs">
+                        <span class="icon-mail4" aria-hidden="true"></span><br/>
+                        <span class="icon-facebook3" aria-hidden="true"></span><br/>
+                        <span class="icon-twitter3" aria-hidden="true"></span><br/>
+                        <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                    </p>
+                </div>
+                <div class="col-md-2">
+                    <h3 class="text-center"><span class="icon-users" aria-hidden="true"/>Contacto</h3>
+                    <p class="text-center">
+                        sena.cbi.sami@gmail.com<br/>
+                        facebook.com/contactosami<br/>
+                        @interactuasami<br/>
+                        317-347-01-78<br/>SENA
+                    </p>
+                </div>
+                <div class="col-md-1">.<!--espacio entre columnas-->
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-center">.:SAMI:. Sistema Administrativo Modular Integrado</h4>
+                    <p class="text-center">Centro de Biotecnologia Industrial<br/>Palmira, Valle del Cauca<br/>Carrera 30 40-25  
+                        <br/>Teléfono: 275-09-68<br/>Fax: 275-09-65</p>
+                </div>
+                <div class="col-md-1">.<!--espacio entre columnas-->
+                </div>
+                <div class="col-md-3 text-center">
+                    <h3 class="text-center"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Opciones</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/" class="icon-icon-sofia-01" target="_blank"></a>
+                            <a href="http://www.sena.edu.co/Paginas/Inicio.aspx" class="icon-icon-sena0" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="row">.<!--espacio entre filas-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a jsf:outcome="/Configuracion/index_configuracion.xhtml" class="icon-cog" jsf:rendered="#{loginController.configuracion}" ></a>
+                            <a type="button" onclick="PF('dlg2').show();" class="icon-help" ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <p:dialog header="Servicio de Ayuda" widgetVar="dlg2" modal="true" height="280">
+            <h:outputText value="" />
+            <h:form>
+                <p:panel header="Tienes un problema?, te ayudamos">
+                    <p:messages autoUpdate="true"/>
+
+                    <h:panelGrid id="grid" columns="4" cellpadding="5">
+                        <h:outputLabel for="to" value="Email:" style="font-weight:bold"/>                    
+                        <p:inputText id="to" value="#{emailController.to}" required="true" label="to"/>
+                        <p:message for="to" />
+                        <h:outputText value="#{emailController.to}" />
+
+                        <h:outputLabel for="subject" value="Asunto:" style="font-weight:bold"/>                    
+                        <p:inputText id="subject" value="#{emailController.asunto}" label="subject">
+                            <f:validateDoubleRange minimum="5" maximum="8" />
+                        </p:inputText>
+                        <p:message for="subject" />
+                        <h:outputText value="#{emailController.asunto}" />
+
+                        <h:outputLabel for="desc" value="Description" style="font-weight:bold"/>
+                        <p:inputTextarea id="desc" value="#{emailController.body}" required="true" label="Description">
+                            <f:validateLength minimum="3" maximum="10" /> 
+                        </p:inputTextarea>
+                        <p:message for="desc" />
+                        <h:outputText value="#{emailController.body}" />
+
+                    </h:panelGrid>
+                    <p:commandButton icon="ui-icon-mail-closed" value="Enviar" action="#{emailController.sendMail}"/>
+                </p:panel>
+            </h:form> 
+        </p:dialog> 
+
+        <form jsf:id="confirmForm">
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </form>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

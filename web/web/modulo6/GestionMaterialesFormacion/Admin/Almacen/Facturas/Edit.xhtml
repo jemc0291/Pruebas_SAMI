@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+        <p:dialog id="FacturaEditDlg" widgetVar="FacturaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFacturasTitle}" showEffect="fade">
+            <h:form id="FacturaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="3" rendered="#{facturasController.selected != null}">
+                                    <label>Numero Factura:</label>
+                                    <input type="number" jsf:id="numeroFactura" required="true" 
+                                           jsf:requiredMessage="Por favor digite el numero de factura."
+                                           jsf:validatorMessage="Por favor ingrese un numero válido" 
+                                           jsf:value="#{facturasController.selected.numeroFactura}" >
+                                        <f:validateLongRange minimum="1" maximum="99999999"/>
+                                        <f:ajax execute="@this" render="numeroFacturaMessage"/>
+                                    </input>
+                                    <h:message id="numeroFacturaMessage" for="numeroFactura" styleClass="error"/>
+                                    
+                                    
+                                    
+                                    <label>ID de usuario</label>
+                                    <h:selectOneMenu id="idUsuario" value="#{facturasController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
+                                        <f:selectItems value="#{facturasController.itemsAvailableSelectOneUsuarios}"/>
+                                        <f:ajax execute="@this" render="idUsuarioMessage"/>
+                                    </h:selectOneMenu>
+                                    <h:message id="idUsuarioMessage" for="fecha" styleClass="error"/>
+                                    
+                                </p:panelGrid>
+                    <p:commandButton value="#{bundle.Save}" actionListener="#{facturasController.update}"  update="display,:FacturaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FacturaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FacturasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+</html>
+

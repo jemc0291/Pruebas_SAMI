@@ -1,0 +1,76 @@
+/* -----clases comunes------*/
+@font-face {
+    font-family: 'icomoon';
+    src:url("/SAMI/faces/javax.faces.resources/fonts/icomoon.eot?jfrvdd");
+    src:url("/SAMI/faces/javax.faces.resources/fonts/icomoon.eot?#iefixjfrvdd") format('embedded-opentype'),
+        url("/SAMI/faces/javax.faces.resources/fonts/icomoon.woff?jfrvdd") format('woff'),
+        url("/SAMI/faces/javax.faces.resources/fonts/icomoon.ttf?jfrvdd") format('truetype'),
+        url("/SAMI/faces/javax.faces.resources/fonts/icomoon.svg?jfrvdd#icomoon") format('svg');
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    text-decoration: none;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-help:before {
+    background: -webkit-linear-gradient(rgba(87, 240, 170, 0.88), rgba(37, 148, 55, 1));
+    border-radius: 20%;
+    border: 1px solid rgba(176, 166, 166, 1);
+    color: rgba(0, 0, 0, 0.76);
+    content: "\e600";
+    font-size: 2.6em;
+    padding: 6px 4px 4px 4px;
+}
+.icon-cog:before {
+    background: -webkit-linear-gradient(rgba(213, 201, 201, 1), rgba(0, 0, 0, 0.96));
+    border-radius: 20%;
+    border: 1px solid rgba(176, 166, 166, 1);
+    color: rgba(255, 255, 255, 0.83);
+    content: "\e601";
+    font-size: 2.6em;
+
+    padding: 6px 4px 4px 4px;
+}
+.icon-icon-sena0:before {
+    background: -webkit-linear-gradient(rgba(193, 248, 250, 1), rgba(188, 222, 224, 0.67));
+    border-radius: 20%;
+    border: 1px solid rgba(116, 111, 111, 0.57);
+    color: #747D7E;
+
+    content: "\e605";
+    font-size: 2.5em;
+
+    padding: 6px 1px 4px 1px;
+
+}
+.icon-icon-sofia-01:before {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 1), rgba(194, 199, 195, 0.6));
+    border-radius: 20%;
+    border: 1px solid rgba(116, 111, 111, 0.57);
+    color: rgba(36, 32, 32, 0.77);
+    content: "\e603";
+    font-size: 2.5em;
+
+    padding: 6px 3px 4px 3px;
+}
+.icon-triangle-down:before {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 1), rgba(194, 199, 195, 0.6));
+    content: "\e601";
+    font-size: 1.2em;
+    border-radius: 16%;
+    border: 1px solid rgba(116, 111, 111, 0.57);
+    color: rgba(0, 0, 0, 0.37);
+    padding: 1px 1px 1px 1px;
+}

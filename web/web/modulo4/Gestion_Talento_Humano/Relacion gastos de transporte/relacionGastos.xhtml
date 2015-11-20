@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo4/menu_modulo4.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Relación gastos de transporte"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="IdUsuario:" for="idUsuario" />
+                        <h:selectOneMenu id="idUsuario" value="#{comisionesController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{comisionesController.itemsAvailableSelectOneUsuarios}"/>
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel value="ObjetivoComision:" for="objetivoComision" />
+                        <h:inputText id="objetivoComision" value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision" required="true" requiredMessage="The ObjetivoComision field is required."/>
+                        
+                        <h:outputLabel value="NumComServicios:" for="numComServicios" />
+                        <h:inputText id="numComServicios" value="#{comisionesController.selected.numComServicios}" title="NumComServicios" />
+                        
+                        <h:outputLabel value="MesaPlanificar:" for="mesaPlanificar" />
+                        <h:inputText id="mesaPlanificar" value="#{comisionesController.selected.mesaPlanificar}" title="MesaPlanificar" />
+                       
+                        
+                    </h:panelGrid>
+                </h:form>
+
+
+            </f:view>
+
+        </ui:define>
+    </ui:composition>
+</html>
+
+

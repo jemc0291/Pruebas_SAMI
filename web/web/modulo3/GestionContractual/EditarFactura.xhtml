@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Lista Contratos</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            
+            <h:form>
+                        <h1><h:outputText value="#{bundle.EditPagosContratosTitle}"/></h1>
+                        <h:panelGrid columns="3">
+
+                            <label value="#{bundle.CreatePagosContratosLabel_numFactura}" jsf:for="numFactura" class="FormLabelSCCSS" />
+                            <input type="number" jsf:id="numFactura" jsf:value="#{pagosContratosController.selected.numFactura}" disabled="true"
+                                   title="#{bundle.CreatePagosContratosTitle_numFactura}" required="true" class="FormInputSCCSS"
+                                   jsf:requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_numFactura}">
+                                   <f:ajax execute="@this" render="numFacturaMessage" />
+                                   <f:validateLongRange minimum="1"/>
+                                   </input>
+                            <h:message id="numFacturaMessage" for="numFactura" class="ErrorDupli"/>
+
+                            <label value="#{bundle.CreatePagosContratosLabel_fechaFactura}" jsf:for="fechaFactura" class="FormLabelSCCSS" />
+                            <input type="date" jsf:id="fechaFactura" jsf:value="#{pagosContratosController.selected.fechaFactura}" disabled="true"
+                                   title="#{bundle.CreatePagosContratosTitle_fechaFactura}" required="true" class="FormInputDateSCCSS"
+                                   jsf:requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_fechaFactura}" min="2014-11-01" max="2016-12-31">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                                <f:ajax execute="@this" render="fechaFacturaMessage"/>
+                            </input>
+                            <h:message id="fechaFacturaMessage" for="fechaFactura" class="Error"/>
+
+                            <label value="#{bundle.CreatePagosContratosLabel_valFactura}" jsf:for="valFactura" class="FormLabelSCCSS" />
+                            <h:inputText id="valFactura" value="#{pagosContratosController.selected.valFactura}" class="FormInputSCCSS" disabled="true">
+                                     <f:convertNumber type="number" />
+                            </h:inputText>
+                                   <h:message id="valFacturaMessage" for="valFactura" class="Error"/>
+
+                            <label value="#{bundle.CreatePagosContratosLabel_fechaDePago}" jsf:for="fechaDePago" class="FormLabelSCCSS"/>
+                            <p:calendar showOn="button" id="fechaDePago" value="#{pagosContratosController.selected.fechaDePago}"
+                                    title="#{bundle.CreatePagosContratosTitle_fechaDePago}" required="true" navigator="true"
+                                    requiredMessage="#{bundle.CreatePagosContratosRequiredMessage_fechaDePago}" mindate="2014-11-01" maxdate="2016-12-31"
+                                    pattern="yyyy-MM-dd">
+                                <p:ajax process="@this" update="fechaDePagoMessage"/>
+                            </p:calendar>
+                            <h:message id="fechaDePagoMessage" for="fechaDePago" class="Error"/>
+
+                            <label value="#{bundle.CreatePagosContratosLabel_idContrato}" jsf:for="idContrato" class="FormLabelSCCSS" />
+                            <input jsf:id="idContrato" value="#{pagosContratosController.selected.idContrato}"
+                                   title="IdContrato" class="FormInputSCCSS" disabled="true">
+                                    <!-- TODO: update below reference to list of available items-->
+                            </input>
+                        </h:panelGrid>
+                        <h:commandButton class="FormButtonSCCSS" value="#{bundle.CreatePagosContratosSaveLink}" action="#{pagosContratosController.update()}" />
+                        <h:button class="FormButtonSCCSS" value="Cancelar" outcome="ListaFacturas"/>
+                        <h:button class="FormButtonSCCSS" value="#{bundle.CreatePagosContratosIndexLink}" outcome="/modulo3/index_modulo3"/>
+                    </h:form>
+            
+        </ui:define>
+    </ui:composition>
+</html>
+

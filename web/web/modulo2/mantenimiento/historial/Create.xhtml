@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">Solicitud</ui:define>  
+        <ui:define name="menu"><ui:include src="/modulo2/menu_modulo2.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h2 class="Busqueda">Búsqueda</h2>
+
+
+            <h3 style="text-align: center">Por Fechas</h3>
+
+            <h:form id="formSolicitud">
+
+                <h:outputText value="Fecha Inicio:"/>
+                <p:calendar id="fechaInicioQuery" showOn="button" navigator="true" value="#{solicitudServiciosController.fechaInicio}"  pattern="yyyy-MM-dd hh:mm" />
+
+                <h:outputText value="Fecha Fin:" style="padding-left: 25%"/>
+                <p:calendar id="fechaFinQuery" showOn="button" navigator="true" value="#{solicitudServiciosController.fechaFin}"  pattern="yyyy-MM-dd hh:mm" />
+
+                <p></p>
+                <p:commandButton value="Consultar" 
+                                 process="fechaInicioQuery fechaFinQuery"
+                                 update="solicitudTableConsulta"/>
+
+                <p></p>
+                <p:dataTable id="solicitudTableConsulta" value="#{solicitudServiciosController.itemsRango}"
+                             style="font-size:12px" var="item1" widgetVar="carsTable">
+
+                    <p:column style="width: 115px" filterBy="#{item1.idSolicitudServicio}" 
+                              headerText="Número de Solicitud" footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item1.idSolicitudServicio}"/>
+                    </p:column>
+
+                    <p:column style="width: 120px" filterBy="#{item1.idUsuario.primerNombre}" 
+                              headerText="Nombre Solicitante" footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item1.idUsuario.primerNombre}  "/>
+                    </p:column>
+
+                    <p:column style="width: 120px" filterBy="#{item1.idUsuario.primerApellido}" 
+                              headerText="Apellido Solicitante" footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item1.idUsuario.primerApellido}"/>
+                    </p:column>
+
+                    <p:column style="width: 120px" filterBy="#{item1.idUsuario.numeroDoc}" 
+                              headerText="Número documento" footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item1.idUsuario.numeroDoc}"/>
+                    </p:column>                   
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripción"/>
+                        </f:facet>
+                        <h:outputText value="#{item1.descripcionservicioSolicitud}"/>
+                    </p:column>
+                    <p:column headerText="Fue Atendido?" style="width: 120px" filterBy="#{solicitudServiciosController.obtenerAvanceFA(item1)}">
+                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFA(item1)}"/>
+                    </p:column>
+
+                    <p:column headerText="Fue Solucionado?" style="width: 120px" filterBy="#{solicitudServiciosController.obtenerAvanceFS(item1)}">                                                               
+                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFS(item1)}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{item1.ubicacionSolicitud}" headerText="Ubicación" 
+                              footerText=" " filterMatchMode="contains" style="width: 115px">
+                        <h:outputText value="#{item1.ubicacionSolicitud}"/>
+                    </p:column>
+
+                    <p:column style="width: 115px" filterBy="#{item1.fechaSolicitudServicio}" 
+                              headerText="Fecha y Hora" footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item1.fechaSolicitudServicio}">
+                            <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    
+                </p:dataTable>
+
+                <p></p>
+
+                <h3 style="text-align: center">Por Solicitud</h3>
+
+                <p:dataTable id="solicitudTable" value="#{solicitudServiciosController.items}"
+                             style="font-size:12px" var="item" >
+
+                    <p:column style="width:100px; font-size: 11px" headerText="Avances">
+                        <p:rowToggler/>
+                    </p:column>
+
+                    <p:column style="width: 120px" filterBy="#{item.idSolicitudServicio}" 
+                              headerText="Solicitud N°" footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item.idSolicitudServicio}"/>
+                    </p:column>
+
+                    <p:column style="width: 120px" filterBy="#{item.idUsuario.primerNombre}" 
+                              headerText="Nombre Solicitante" footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item.idUsuario.primerNombre}  "/>
+                    </p:column>
+
+                    <p:column style="width: 120px" filterBy="#{item.idUsuario.primerApellido}" 
+                              headerText="Apellido Solicitante" footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item.idUsuario.primerApellido}"/>
+                    </p:column>
+
+                    <p:column style="width: 120px" filterBy="#{item.idUsuario.numeroDoc}" 
+                              headerText="Número documento" footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item.idUsuario.numeroDoc}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripción"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripcionservicioSolicitud}"/>
+                    </p:column>
+
+
+                    <p:column headerText="Fue Atendido?" style="width: 120px" filterBy="#{solicitudServiciosController.obtenerAvanceFA(item)}">                                                               
+                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFA(item)}"/>
+                    </p:column>
+
+                    <p:column headerText="Fue Solucionado?" style="width: 120px" filterBy="#{solicitudServiciosController.obtenerAvanceFS(item)}">                                                               
+                        <h:outputText value="#{solicitudServiciosController.obtenerAvanceFS(item)}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{item.ubicacionSolicitud}" headerText="Ubicación" 
+                              footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item.ubicacionSolicitud}"/>
+                    </p:column>
+
+
+                    <p:column style="width: 120px" filterBy="#{item.fechaSolicitudServicio}" 
+                              headerText="Fecha y Hora" footerText=" " filterMatchMode="contains">
+                        <h:outputText value="#{item.fechaSolicitudServicio}">
+                            <f:convertDateTime pattern="yyyy/MM/dd hh:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:rowExpansion>
+                        <p:dataTable value="#{solicitudServiciosController.getListAvance(item)}" var="avance">
+
+                            <p:column style="width: 120px">
+                                <f:facet name="header">
+                                    <h:outputText value="Estado:" />
+                                </f:facet>
+                                <h:outputText value="#{avance.idEstado.nombreEstado}" />
+                            </p:column>
+
+                            <p:column style="width: 120px">
+                                <f:facet name="header">
+                                    <h:outputText value="Prioridad:" />
+                                </f:facet>
+                                <h:outputText value="#{avance.idPrioridades.nombrePrioridad}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Observaciones:" />
+                                </f:facet>
+                                <h:outputText value="#{avance.descripcion}" />
+                            </p:column>
+
+                            <p:column headerText="Fue Atendido?" style="width: 120px">                                                               
+                                <h:outputText rendered="#{avance.fueAtendido}" value="Si" />
+                                <h:outputText rendered="#{!avance.fueAtendido}" value="No" />
+                            </p:column>
+
+                            <p:column headerText="Fue Solucionado?" style="width: 120px">                                                               
+                                <h:outputText rendered="#{avance.fueSolucionado}" value="Si" />
+                                <h:outputText rendered="#{!avance.fueSolucionado}" value="No" />
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </p:rowExpansion>
+                </p:dataTable>
+
+                <p:button value="Regresar" outcome="/modulo2/index_modulo2.xhtml"/>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

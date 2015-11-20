@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template_1.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="body">
+
+            <h:body>
+                <div>
+                    <h:panelGroup rendered="true">
+                        <div class="iniciar col-md-3 panel panel-default boxIndex" >
+                            <h4 class="text-center"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> INICIO SESIÓN</h4>
+                            <div class="panel-body">
+                                <form jsf:id="LoginForm" class="" name="inicioDatos">
+                                    <h:panelGroup id="messagePanel" layout="block">
+                                        <p:messages/>
+                                    </h:panelGroup>
+                                    <div class="form-group">
+                                        <label for="user">Usuario</label>
+                                        <input jsf:id="user" type="text" class="form-control input-lg" placeholder="Usuario" jsf:value="#{loginController.username}" required="true"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input jsf:id="password" type="password" class="form-control input-lg" placeholder="Contraseña" jsf:value="#{loginController.password}" required="true"/>
+                                    </div>
+                                    <input class="btn btn-default botonBox" type="submit" value="Ingresar" jsf:action="#{loginController.login}">
+                                        <f:ajax execute="@this @form" render="messagePanel"/>
+                                    </input>   
+                                </form>
+                            </div><!-- aqui finaliza la caja del inicio de sesion panel-body -->
+                        </div><!-- aqui finaliza panel-default -->
+                    </h:panelGroup>
+                </div>
+                <div class="col-md-1">
+                    .<!-- espacio entre cajas -->
+                </div>
+                <div class="col-md-8 panel panel-default boxIndex"><!-- info de modulos -->
+                    <h4 class="text-center"><span class="icon-books" aria-hidden="true"></span> MÓDULOS</h4>
+                    <div class="panel-group boxIndex" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-default"><!--primer contenedor info -->
+                                    <div class="panel-heading botonInfo" role="tab" id="heading1">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                                Contratación de prestación de servicios
+                                            </a>
+                                        </h4>
+                                    </div>
+                                </div><!--cierre primer contenedor info-->
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                                <div class="panel-body collapseInfo">
+                                    <span class="capitalLetter">O</span><p>btendrá la facilidad de elaboración, control, generación de contratos ,actas, importar 
+                                        y digitalizar documentos a demás seguimiento en el proceso de la contratación debidamente relacionados 
+                                        con la prestación de servicios, se tiene una completa organización en el manejo de la información con lo 
+                                        cual optimiza y agiliza el funcionamiento del módulo</p>
+                                </div>
+                            </div><!-- se deja este div por fuera del contenedor para que el parrafo descriptivo ocupe el espacio de la fila -->
+                            <div class="col-md-6">
+                                <div class="panel panel-default"><!--segundo contenedor info -->
+                                    <div class="panel-heading botonInfo" role="tab" id="heading2">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                                Mantenimiento
+                                            </a>
+                                        </h4>
+                                    </div>
+                                </div><!--cierre segundo contenedor info -->
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                                <div class="panel-body collapseInfo">
+                                    <span class="capitalLetter">T</span><p>iene como objetivo administrar la gestión que se realiza al momento de solicitar y ejecutar 
+                                        el mantenimiento de la infraestructura del CBI. Se requiere hacer solicitudes de diferentes
+                                        niveles como correctivo, predictivo, preventivo, con la complejidad de tareas realizadas por 
+                                        medio del formato de apoyo de solicitud, donde los usuarios podrán solicitar el mantenimiento 
+                                        correspondiente. El encargado de mantenimiento podrá controlar, organizar, y 
+                                        solicitar materiales que se necesitan con características como el tipo de herramienta, 
+                                        descripción, fecha de cambio, instalación, tiempo de vida, cantidad, marca, y precio, 
+                                        así como también podrá hacer un historial de toda la información de los arreglos corregidos 
+                                        y materiales utilizados en la ejecución de dichos servicios.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">.</div><!-- espacio entre filas -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default"><!-- cuarto contenedor info -->
+                                    <div class="panel-heading botonInfo" role="tab" id="heading4">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                                Supervisión De Contratos De Compras Suministros y Servicios
+                                            </a>
+                                        </h4>
+                                    </div>
+                                </div><!--cierre cuarto contenedor info -->
+                            </div>
+                            <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                                <div class="panel-body collapseInfo">
+                                    <span class="capitalLetter">E</span><p>l módulo de supervisión de Contratos De Compras, Suministros Y Servicios, realiza un seguimiento 
+                                        y control al cumplimiento de las obligaciones por parte del proveedor contratista con la finalidad
+                                        de controlar la ejecución satisfactoria de cada uno de los contratos, de esta manera evitar 
+                                        perjuicios a la entidad y al contratista, agilizando los procesos de entrega por parte del 
+                                        proveedor y los respectivos pagos de la entidad contratante SENA C.B.I. En este módulo contamos 
+                                        con el apoyo de los funcionarios: Gestor contractual, Coordinadora administrativa, supervisor 
+                                        contractual y almacenista.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">.</div>
+                    </div><!--cierre del panel group de videos -->
+                </div><!--cierre del panel group de videos -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        .<!-- espacio entre filas -->
+                    </div>
+                </div>
+                <div class="row" id="boxMarge" ><!-- segunda fila(enlaces y nuestro...) -->
+                    <div class="col-md-3 panel panel-default boxIndex">
+                        <!-- Default panel contents -->
+                        <h4 class="text-center"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> ENLACES</h4>
+                        <!-- List group -->
+                        <ul id="sessionBox" class="list-group">
+                            <li class="list-group-item boxIndex"><a class="btn btn-default btn-lg btn-block" href="http://oferta.senasofiaplus.edu.co/" role="button">Sena Sofia Plus</a></li>
+                            <li class="list-group-item boxIndex"><a class="btn btn-default btn-lg btn-block" href="http://sis.senavirtual.edu.co/index.php" role="button">SENA Virtual</a></li>
+                            <li class="list-group-item boxIndex"><a class="btn btn-default btn-lg btn-block" href="http://www.minhacienda.gov.co/HomeMinhacienda/siif" role="button">SIIF</a></li>
+                            <li class="list-group-item boxIndex"><a class="btn btn-default btn-lg btn-block" href="http://nuevo.fondoemprender.com/" role="button">Fondo emprender</a></li>
+                        </ul>
+                    </div><!-- aqui finaliza el panel default -->
+                    <div class="col-md-1">
+                        .<!-- espacio entre cajas-->
+                    </div>
+                    <div class="col-md-8 panel panel-default boxIndex">
+                        <h4 class="text-center"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> NUESTRO APLICATIVO</h4>
+                        <div class="panel-group boxIndex" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default"><!--primer contenedor video -->
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Introducción de S.A.M.I.
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapsing" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe class="embed-responsive-item" width="640" height="480" src="https://www.youtube.com/embed/6HZswNFd84Y" frameborder="0" allowfullscreen="true" ></iframe>
+                                        </div>
+                                        <p>
+                                            <a href="https://www.youtube.com/channel/UCWeRtxO-XB1l3TmTOHM1uXw/videos" class="btn btn-default btn-lg btn-danger" role="button">
+                                                <span class="icon-youtube3" aria-hidden="true"></span> Canal Youtube
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div><!--cierre primer contenedor video -->
+                            <div class="panel panel-default"><!--segundo contenedor video -->
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Módulo de contratación de prestación de servicios
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe class="embed-responsive-item" width="640" height="480" src="https://www.youtube.com/embed/ZXBaH7OOGqo" frameborder="0" allowfullscreen="true"></iframe>
+                                        </div>
+                                        <div>
+                                            <a href="https://www.youtube.com/playlist?list=PL84oWl8oQXEWape7Kd5Vg1Wnc79C-8Nld" class="btn btn-default btn-lg btn-danger" role="button">
+                                                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  Lista de reproducción/relacionados
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--cierre segundo contenedor video -->
+                            <div class="panel panel-default"><!--tercer contenedor video -->
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Módulo de mantenimiento
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe class="embed-responsive-item" width="640" height="480" src="https://www.youtube.com/embed/hLGuuwirpao" frameborder="0" allowfullscreen="true"></iframe>
+                                        </div>
+                                        <div>
+                                            <a href="https://www.youtube.com/playlist?list=PL84oWl8oQXEVBG2cR405a8BHzIs8-ijH3" class="btn btn-default btn-lg btn-danger" role="button">
+                                                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  Lista de reproducción/relacionados
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--cierre tercer contenedor video -->
+                            <div class="panel panel-default"><!--cuarto contenedor video -->
+                                <div class="panel-heading" role="tab" id="headingFour">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Módulo de Supervisión de contratos de compras, suministros y servicios
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                    <div class="panel-body">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe class="embed-responsive-item" width="640" height="480" src="https://www.youtube.com/embed/ARTMo4LLhoA" frameborder="0" allowfullscreen="true"></iframe>
+                                        </div>
+                                        <div>
+                                            <a href="https://www.youtube.com/playlist?list=PL84oWl8oQXEWhXuzXSg7JHFgafhmjxvBB" class="btn btn-default btn-lg btn-danger" role="button">
+                                                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  Lista de reproducción/relacionados
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--cierre cuarto contenedor video -->
+                             <button type="button" class="btn btn-default btn-lg btn-block Youtube">
+                                <span class="icon-youtube" aria-hidden="true"></span>
+                                <a href="https://www.youtube.com/channel/UCWeRtxO-XB1l3TmTOHM1uXw/videos"></a>
+                                 Canal YouTube</button>
+                        </div><!--cierre del panel group de videos -->
+                    </div><!--cierre de columna con panel de videos(nuestro aplicativo)-->
+                </div><!--cierre de fila (enlaces y nuestro...)-->
+                <script src="#{request.contextPath}/resources/js/jquery-1.11.3.js"></script>	
+                <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script> 
+            </h:body>
+        </ui:define>
+    </ui:composition>   
+</html>
+

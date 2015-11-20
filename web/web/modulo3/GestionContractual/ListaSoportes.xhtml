@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Crear Soportes</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h1><h:outputText value="#{bundle.ListSoportesDeDocumentosTitle}"/></h1>
+                <p:outputPanel id="SoportesTablePanel">
+                    <p:dataTable value="#{soportesDeDocumentosController.items}" var="item"
+                                 rows="10" id="SoportesTable" style="font-size:12px"
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">
+                        Lista de Soportes
+                        </f:facet>
+                        <p:column style="width:16px" >
+                            <p:rowToggler />
+                        </p:column>
+
+                        <!--p:column>
+                            <p:graphicImage value="#{facesContext.getCurrentInstace().getExternalContext}/avatar/#{item.idSoporte}.png">
+                        </p:column-->
+                        
+                        <p:column filterBy="#{item.idContrato}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSoportesDeDocumentosTitle_idContrato}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idContrato.numeroDeContrato}"/>
+                        </p:column>
+                        
+                        <p:column filterBy="#{item.tipoSoporte}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSoportesDeDocumentosTitle_tipoSoporte}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoSoporte}"/>
+                        </p:column>                  
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSoportesDeDocumentosTitle_urlDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urlDocumento}"/>
+                        </p:column>
+                        <p:rowExpansion>
+                            <p:panelGrid columns="2" columnClasses="label,value" style="width:650px" >
+                                <f:facet name="header">
+                                    Soporte Seleccionado
+                                </f:facet>
+                                <label jsf:value="#{bundle.ViewSoportesDeDocumentosLabel_idContrato}" class="FormLabelSCCSS" />
+                                <input class="FormInputSCCSS" disabled="true"
+                                       value="#{item.idContrato.numeroDeContrato}" title="#{bundle.ViewSoportesDeDocumentosTitle_idContrato}" >
+                                </input>
+                                <label jsf:value="#{bundle.ViewSoportesDeDocumentosLabel_tipoSoporte}" class="FormLabelSCCSS" />
+                                <input class="FormInputSCCSS" disabled="true"
+                                       value="#{item.tipoSoporte}" title="#{bundle.ViewSoportesDeDocumentosTitle_tipoSoporte}" >
+                                </input>
+                                <label jsf:value="#{bundle.ViewSoportesDeDocumentosLabel_observacion}" class="FormLabelSCCSS" />
+                                <textarea  rows="6" cols="45" class="FormTextAreaSCCSS" disabled="true"
+                                          jsf:value="#{item.observacion}" title="#{bundle.ViewSoportesDeDocumentosTitle_observacion}" >
+                                </textarea>
+                            </p:panelGrid>
+                        </p:rowExpansion>
+
+                        <p:column>
+                            <p:commandButton icon="ui-icon-search" action="#{soportesDeDocumentosController.prepareView}">
+                                <f:setPropertyActionListener value="#{item}" target="#{soportesDeDocumentosController.selected}"/>
+                            </p:commandButton>
+                            <p:commandButton icon="ui-icon-pencil" action="#{soportesDeDocumentosController.prepareEdit}">
+                                <f:setPropertyActionListener value="#{item}" target="#{soportesDeDocumentosController.selected}"/>
+                            </p:commandButton>
+
+                            <p:commandButton icon="ui-icon-trash" action="#{soportesDeDocumentosController.destroy()}"
+                                             process="@this" update="SoportesTable">
+                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el Soporte?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{item}" target="#{soportesDeDocumentosController.selected}"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
+            </h:form>
+        </ui:define>
+    </ui:composition>          
+</html>

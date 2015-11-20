@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-web-app PUBLIC "-//Sun Microsystems, Inc.//DTD GlassFish Application Server 3.0 Servlet 3.0//EN" "http://www.sun.com/software/appserver/dtds/sun-web-app_3_0-0.dtd">
+<sun-web-app error-url="">
+  <security-role-mapping>
+    <role-name>webModulo1</role-name>
+    <group-name>1</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>webModulo2</role-name>
+    <group-name>2</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>webModulo3</role-name>
+    <group-name>3</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>webModulo4</role-name>
+    <group-name>4</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>webModulo5</role-name>
+    <group-name>5</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>webModulo6</role-name>
+    <group-name>6</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>webConfiguracion</role-name>
+    <group-name>7</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>Invitado_Mantenimiento</role-name>
+    <group-name>8</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>superMantenimiento</role-name>
+    <group-name>9</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>gestorContractual</role-name>
+    <group-name>10</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>invitadoContractual</role-name>
+    <group-name>11</group-name>
+  </security-role-mapping>
+  <class-loader delegate="true"/>
+  <jsp-config>
+    <property name="keepgenerated" value="true">
+      <description>Keep a copy of the generated servlet class' java code.</description>
+    </property>
+  </jsp-config>
+</sun-web-app>

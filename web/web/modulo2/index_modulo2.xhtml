@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo2/menu_modulo2.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default"><span class="icon-youtube3"/> Tutoriales</button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="https://youtu.be/6HZswNFd84Y"><span class="icon-youtube"/>
+                                                Bienvenid@ a S.A.M.I.</a></li>
+                                        <li><a href="https://youtu.be/hLGuuwirpao?list=PL84oWl8oQXEVBG2cR405a8BHzIs8-ijH3"><span class="icon-youtube"/> 
+                                                Módulo de mantenimiento</a></li>
+                                        <li><a href="https://youtu.be/OdG2qgVfyiM?list=PL84oWl8oQXEVBG2cR405a8BHzIs8-ijH3"><span class="icon-youtube"/>
+                                                Funciones del encargado de mantenimiento</a></li>
+                                        <li><a href="https://youtu.be/e0qwhS-0eko?list=PL84oWl8oQXEVBG2cR405a8BHzIs8-ijH3"><span class="icon-youtube"/> 
+                                                Tabla de solicitudes</a></li>
+                                        <li><a href="https://youtu.be/l66s_1rRJL8?list=PL84oWl8oQXEVBG2cR405a8BHzIs8-ijH3"><span class="icon-youtube"/>
+                                                Funciones del Supervisor de mantenimiento</a></li>
+                                        <li><a href="https://youtu.be/RTWLAHFWQ50?list=PL84oWl8oQXEVBG2cR405a8BHzIs8-ijH3"><span class="icon-youtube"/>
+                                                Funciones del Invitado de mantenimiento</a></li>
+                                        <li><a href="https://www.youtube.com/playlist?list=PL84oWl8oQXEVBG2cR405a8BHzIs8-ijH3"><span class="glyphicon glyphicon-th-list"/>
+                                                Todos los videos</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel-body text-center">
+                                <img src="../resources/images/inicio_modulo2.png" alt="..." class="img-responsive img-rounded center-block"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

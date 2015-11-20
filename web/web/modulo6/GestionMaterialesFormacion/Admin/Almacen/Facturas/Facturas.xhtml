@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Facturas</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <h:form id="FacturaListForm">
+                
+                <p:panel header="#{bundle.ListFacturasTitle}">
+                    
+                    <p:dataTable id="datalist" value="#{facturasController.items}" var="item"
+                                 selectionMode="single" selection="#{facturasController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idFactura}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50">
+                        <p:ajax event="rowSelect"   update="editButton"/>
+                        <p:ajax event="rowUnselect" update="editButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdFactura"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idFactura}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="NumeroFactura"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroFactura}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdUsuario"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus" action="#{facturasController.prepareCreate}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" update=":FacturaEditForm" oncomplete="PF('FacturaEditDialog').show()" disabled="#{empty facturasController.selected}"/>
+                            </f:facet>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+            
+            <ui:include src="Edit.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</html>

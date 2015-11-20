@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition>
+        <ul class="MainMenu-list">
+            <li class="MainMenu-item"><a jsf:outcome="/modulo6/index_modulo6.xhtml">Inicio</a></li>            
+            <li class="MainMenu-item"><a >Actas/Facturas</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo6/GestionMaterialesFormacion/Admin/Almacen/ActasVerificacion/Actas.xhtml">Actas de Verificacion</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo6/GestionMaterialesFormacion/Admin/Almacen/Facturas/Facturas.xhtml">Facturas</a></li>
+                </ul>
+            </li>
+            
+                    <li class="MainMenu-item"><a jsf:outcome="/modulo6/GestionMaterialesFormacion/Admin/Almacen/Materiales/SolicitudesAprobadas.xhtml">Solicitudes Pendientes</a></li>
+                
+            <li class="MainMenu-item"><a >Materiales</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo6/GestionMaterialesFormacion/Admin/Almacen/Materiales/Materiales.xhtml">Ingreso de Materiales al Sistema</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/Configuracion/Categorias/List.xhtml">Categorias</a></li>
+                </ul>
+            </li>
+        </ul>
+    </ui:composition>
+</html>

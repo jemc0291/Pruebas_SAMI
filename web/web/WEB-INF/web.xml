@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/index.xhtml</welcome-file>
+    </welcome-file-list>
+    <mime-mapping>
+        <extension>eot</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>otf</extension>
+        <mime-type>font/opentype</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>ttf</extension>
+        <mime-type>application/x-font-ttf</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>application/x-font-woff</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <filter>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>
+            org.primefaces.webapp.filter.FileUploadFilter
+        </filter-class>
+        <init-param>
+            <param-name>thresholdSize</param-name>
+            <param-value>51200</param-value>
+        </init-param>
+        <init-param>
+            <param-name>uploadDirectory</param-name>
+            <param-value>c:\Users\Adsim\AppData\Local\Temp</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+    <security-constraint>
+        <display-name>webModulo1</display-name>
+        <web-resource-collection>
+            <web-resource-name>webModulo1</web-resource-name>
+            <description>Contratacion</description>
+            <url-pattern>/faces/modulo1/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>webModulo1</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>webModulo2</display-name>
+        <web-resource-collection>
+            <web-resource-name>webModulo2</web-resource-name>
+            <description>Supervision Contratos</description>
+            <url-pattern>/faces/modulo2/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>webModulo2</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>webModulo3</display-name>
+        <web-resource-collection>
+            <web-resource-name>webModulo3</web-resource-name>
+            <description>Supervision Contratos administrativos</description>
+            <url-pattern>/faces/modulo3/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>webModulo3</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>webModulo4</display-name>
+        <web-resource-collection>
+            <web-resource-name>webModulo4</web-resource-name>
+            <description>Gestion talento humano</description>
+            <url-pattern>/faces/modulo4/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>webModulo4</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>webModulo5</display-name>
+        <web-resource-collection>
+            <web-resource-name>webModulo5</web-resource-name>
+            <description>Gestion Documental</description>
+            <url-pattern>/faces/modulo5/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>webModulo5</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>webModulo6</display-name>
+        <web-resource-collection>
+            <web-resource-name>webModulo6</web-resource-name>
+            <description>Gestion materiales</description>
+            <url-pattern>/faces/modulo6/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>webModulo6</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>webConfiguracion</display-name>
+        <web-resource-collection>
+            <web-resource-name>webConfiguracion</web-resource-name>
+            <description>Configuracion Sami</description>
+            <url-pattern>/faces/modulo6/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    <security-constraint>
+        <display-name>webUsuarioGeneral</display-name>
+        <web-resource-collection>
+            <web-resource-name>webUsuarioGeneral</web-resource-name>
+            <description>Usuario General</description>
+            <url-pattern>/faces/modulo2/mantenimiento/solicitudDeMantenimiento*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Invitado_Mantenimiento</display-name>
+        <web-resource-collection>
+            <web-resource-name>webInvitadoMantenimiento</web-resource-name>
+            <description>invitado</description>
+            <url-pattern>/faces/modulo2/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>webInvitadoMantenimiento</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>superMantenimiento</display-name>
+        <web-resource-collection>
+            <web-resource-name>superMantenimiento</web-resource-name>
+            <description>supervisor Mantenimiento</description>
+            <url-pattern>/faces/modulo2/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>superMantenimiento</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>encargadoMantenimiento</display-name>
+        <web-resource-collection>
+            <web-resource-name>encargadoMantenimiento</web-resource-name>
+            <description>encargadoMantenimiento</description>
+            <url-pattern>/faces/modulo2/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>encargadoMantenimiento</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>gestorContractual</display-name>
+        <web-resource-collection>
+            <web-resource-name>gestorContractual</web-resource-name>
+            <description>Gestor contractual</description>
+            <url-pattern>/faces/modulo3/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>gestorContractual</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>invitadoContractual</display-name>
+        <web-resource-collection>
+            <web-resource-name>invitadoContractual</web-resource-name>
+            <description/>
+            <url-pattern>/faces/modulo3/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>invitadoContractual</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>supervisorContractual</display-name>
+        <web-resource-collection>
+            <web-resource-name>supervisorContractual</web-resource-name>
+            <description>supervisor de contratos</description>
+            <url-pattern>/faces/modulo3/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>supervisorContractual</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>coordinadorAdministrativo</display-name>
+        <web-resource-collection>
+            <web-resource-name>coordinadorAdministrativo</web-resource-name>
+            <description>coordinador(a) Administrativo(a)</description>
+            <url-pattern>/faces/modulo3/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>coordinadorAdministrativo</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>sami-realm</realm-name>
+        <form-login-config>
+            <form-login-page>/inicio_sami/mensaje_sami.xhtml</form-login-page>
+            <form-error-page>/inicio_sami/mensaje_sami.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>Contratacion</description>
+        <role-name>webModulo1</role-name>
+    </security-role>
+    <security-role>
+        <description>Mantenimiento
+</description>
+        <role-name>webModulo2</role-name>
+    </security-role>
+    <security-role>
+        <description>Supervision de contratos administrativos
+</description>
+        <role-name>webModulo3</role-name>
+    </security-role>
+    <security-role>
+        <description>Gestion talento humano
+</description>
+        <role-name>webModulo4</role-name>
+    </security-role>
+    <security-role>
+        <description>Gestion documental
+</description>
+        <role-name>webModulo5</role-name>
+    </security-role>
+    <security-role>
+        <description>Gestion de materiales</description>
+        <role-name>webModulo6</role-name>
+    </security-role>
+    <security-role>
+        <description>Configuracion
+</description>
+        <role-name>webConfiguracion</role-name>
+    </security-role>
+    <security-role>
+        <description>UsuarioGeneral</description>
+        <role-name>webUsuarioGeneral</role-name>
+    </security-role>
+    <security-role>
+        <description>instructores e invitados</description>
+        <role-name>Invitado_Mantenimiento</role-name>
+    </security-role>
+    <security-role>
+        <description>supervisor mantenimiento</description>
+        <role-name>superMantenimiento</role-name>
+    </security-role>
+    <security-role>
+        <description>encargado de mantenimiento</description>
+        <role-name>encargadoMantenimiento</role-name>
+    </security-role>
+    <security-role>
+        <description>Gestor Contractual</description>
+        <role-name>gestorContractual</role-name>
+    </security-role>
+    <security-role>
+        <description>invitado modulo de gestion contractual</description>
+        <role-name>invitadoContractual</role-name>
+    </security-role>
+    <security-role>
+        <description>supervisor de contratos</description>
+        <role-name>supervisorContractual</role-name>
+    </security-role>
+    <security-role>
+        <description>coordinador(a) Administrativo(a)</description>
+        <role-name>coordinadorAdministrativo</role-name>
+    </security-role>
+</web-app>

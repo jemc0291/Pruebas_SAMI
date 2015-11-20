@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Barrios <h:outputText value="#{bundle.ListBarriosTitle}"/></ui:define>
+        <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            
+            <h:form> 
+                <h:commandButton value="Agregar Barrios" action="#{barriosController.prepareCreate}"/>
+               <h:commandButton value="Volver A Lista" action="#{barriosController.prepareListBarrios}"/>
+
+            </h:form>
+
+            <section class="section-form">
+                <form jsf:id="BarrioCreateForm">
+                    <p:panelGrid columns="3" layout="grid">
+                        
+                        <label>Id: </label> 
+                        <input type="text" jsf:id="idInputText" required="true"
+                               jsf:requiredMessage="Por favor ingrese el numero de id" 
+                               jsf:validatorMessage="Use solo numeros"
+                               jsf:converterMessage="Use solo números. Máximo 16 digitos"
+                               jsf:value="#{barriosController.selected.idBarrio}">
+                            <f:ajax execute="@this" render="idMessage"/>
+                        </input>
+                        <h:message id="idMessage" for="idInputText" styleClass="error"/>
+
+                        <label class="Form-na" value="#{bundle.CreateBarriosLabel_nombreBarrio}" for="NombreBarrio"> </label> 
+                        <input type="text" jsf:id="NombreBarrioInputText" required="true"
+                               jsf:requiredMessage="Por favor ingrese el nombre del Barrio" 
+                               jsf:validatorMessage="Use solo letras"
+                               jsf:value="#{barriosController.selected.nombreBarrio}" maxlength="30">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="NombreBarrioMessage"/>
+                        </input>
+                        <h:message id="NombreBarrioMessage" for="NombreBarrioInputText" styleClass="error"/>
+
+                        <label class="Form-na" value="#{bundle.CreateComunasLabel_nombreComuna}"> Comuna</label> 
+                        <p:selectOneMenu id="comunas" value="#{barriosController.selected.idComuna}" required="true" requiredMessage="#{bundle.EditCiudadRequiredMessage_departamentos}">
+                            <f:selectItems value="#{comunasController.itemsAvailableSelectOne}"
+                                           var="comunasItem"
+                                           itemValue="#{comunasItem}"/>
+                        </p:selectOneMenu>
+                        <h:message id="ComunasMessage" for="ComunasInputText" styleClass="error"/> 
+                        
+                    </p:panelGrid>
+                    <h:commandButton value="Guardar" action="#{barriosController.create}"/>
+                </form>
+            </section>
+
+        </ui:define>
+    </ui:composition>
+</html>

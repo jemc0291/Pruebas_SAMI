@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Lista CCF <h:outputText value="#{bundle.ListCcfTitle}"></h:outputText></ui:define>
+        <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h1>Lista de Caja de Compensación Familiar</h1>
+            <h:form>
+
+                <P>
+                    <h:commandButton action="#{ccfController.prepareCreate}" value="Agregar CCF"/>
+                </P>
+                <p:outputPanel id="ArlTablePanel">
+                    <p:dataTable value="#{ccfController.items}" var="item"
+                                 rows="10" id="ArlTable" 
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="20,40,60">
+
+                        <p:column filterBy="#{item.nombreCcf}" filterMatchMode="contains">
+                            <f:facet name="header"> <h:outputText value="#{bundle.ListCcfTitle_nombreCcf}"/></f:facet>
+                            <h:outputText value="#{item.nombreCcf}"/>
+                        </p:column>
+                        
+                         <p:column>
+                        <f:facet name="header">Opciones</f:facet>
+                        <p:commandButton icon="ui-icon-pencil" value="#{bundle.Edit}" action="#{ccfController.prepareModificarCcf}">
+                                 <f:setPropertyActionListener value="#{item}" target="#{ccfController.selected}"/>
+                        </p:commandButton>
+
+                        <p:commandButton icon="ui-icon-trash" value="#{bundle.Delete}" action="#{ccfController.destroy}"
+                                         process="@this" update="ArlTable">
+                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar la ARL?" icon="ui-icon-alert" />
+                            <f:setPropertyActionListener value="#{item}" target="#{ccfController.selected}"/>
+                        </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

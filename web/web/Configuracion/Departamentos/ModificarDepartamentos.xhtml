@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Ciudad <h:outputText value="#{bundle.ListDepartamentosTitle}"></h:outputText></ui:define>
+        <ui:define name="menu"><ui:include src="/Configuracion/menu_configuracion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <h:form> 
+                <h:commandButton value="Modificar Departamento" action="#{departamentosController.prepareModificarDepartamentos}"/>
+              <h:commandButton value="Volver A Lista" action="#{departamentosController.prepareListDepartamentos}"/>
+
+            </h:form>
+
+            <section class="section-form">
+                <form jsf:id="DepratamentoCreateForm">
+                    <p:panelGrid columns="3" layout="grid">
+                        <label class="Form-na" value="#{bundle.EditDepartamentosLabel_idDpto}" for="Departamento"> Codigo Departamento</label> 
+                        <input type="tel" jsf:id="DepartamentoInputText" required="true" disabled="true"
+                               jsf:requiredMessage="Por favor ingrese el numero de id" 
+                               jsf:validatorMessage="Use solo numeros"
+                               jsf:converterMessage="Use solo números. Máximo 16 digitos"
+                               jsf:value="#{departamentosController.selected.idDpto}">
+                            <f:ajax execute="@this" render="DepartamentosMessage"/>
+                        </input>
+                        <h:message id="DepartamentosMessage" for="DepartamentoInputText" styleClass="error"/>
+
+                        <label class="Form-na" value="#{bundle.EditDepartamentosLabel_nombreDpto}" for="NombDepartamento"> Nombre Departamento </label> 
+                        <input type="text" jsf:id="NombDepartamentoInputText" required="true"
+                               jsf:requiredMessage="Por favor ingrese el nombre" 
+                               jsf:validatorMessage="Use solo letras"
+                               jsf:value="#{departamentosController.selected.nombreDpto}" maxlength="30">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="NombDepartamentoMessage"/>
+                        </input>
+                        <h:message id="NombDepartamentoMessage" for="NombDepartamentoInputText" styleClass="error"/>
+                    </p:panelGrid>
+                    <h:commandButton value="Guardar" action="#{departamentosController.update}"/>
+                </form>
+            </section>
+
+        </ui:define>
+    </ui:composition>
+</html>

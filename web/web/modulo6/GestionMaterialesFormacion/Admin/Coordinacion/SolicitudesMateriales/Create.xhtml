@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Solicitudes</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Coordinacion.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <section class="Section-form">
+
+                <h:form>
+                    <h1>Solicitud Materiales</h1>
+                    <p:panelGrid columns="3" layout="grid" id="panelSolicitud">
+
+                        <label jsf:value="#{bundle.CreateSolicitudMaterialesAlmacenLabel_idArea}" for="idArea"></label>
+                        <h:selectOneMenu id="idArea" pt:required="true" 
+                                         requiredMessage="El Area es un campo requerido por favor elijalo."
+                                         value="#{solicitudMaterialesAlmacenController.selected.idArea}" >
+                            <f:selectItem itemLabel="Seleccione un Area"/>
+                            <f:selectItems value="#{solicitudMaterialesAlmacenController.areasAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="idAreaMessage"/>
+                        </h:selectOneMenu>
+                        <p:message id="idAreaMessage" for="idArea" styleClass="error"/>
+
+                        <label jsf:value="#{bundle.CreateSolicitudMaterialesAlmacenLabel_idFichaCaracterizacion}" for="idFichaCaracterizacion"/>
+                        <h:selectOneMenu id="idFichaCaracterizacion" pt:required="true" converter="fichaCaracterizacionConverter"
+                                         requiredMessage="La Ficha de Caracterizacion es un campo requerido por favor ingreselo"
+                                         value="#{solicitudMaterialesAlmacenController.selected.idFichaCaracterizacion}" >
+                            <f:selectItem itemLabel="Seleccione una Ficha"/>
+                            <f:selectItems value="#{solicitudMaterialesAlmacenController.fichasAvailableSelectOne}"/>
+                            <f:ajax execute="@this" render="idFichaCaracterizacionMessage"/>
+                        </h:selectOneMenu>
+                        <p:message id="idFichaCaracterizacionMessage" for="idFichaCaracterizacion" styleClass="error"/>
+
+                        <!--<Label>Observaciones</Label>
+                        <textarea rows="5" jsf:id="observaciones" required="true" 
+                                  jsf:requiredMessage="Por favor describa su material a solicitar y las especificaciones"
+                                  jsf:value="# {solicitudMaterialesAlmacenController.selected.observaciones}" >
+                            <f:ajax execute="@this" render="observacionesMessage"/>
+                        </textarea>
+                        <h:message id="observacionesMessage" for="observaciones"/>-->
+                    </p:panelGrid>
+
+                    <p:panelGrid columns="4" id="panelMateriales" layout="grid">
+
+                        <h:selectOneMenu id="materiales" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.materiales}" requiredMessage="The Materiales field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItem itemLabel="Seleccione un Material..."/>
+                            <f:selectItems value="#{materialesController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.CreateSolicitudMaterialesAlmacenMaterialesLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{solicitudMaterialesAlmacenController.selectedSolMaterial.cantidad}" title="Cantidad" />
+
+                        <p:commandButton value="Agregar Material" action="#{solicitudMaterialesAlmacenController.agregarMateriales}" process="@this panelMateriales" update="tablaMateriales panelMateriales"/>
+
+                    </p:panelGrid>
+
+                    <p:dataTable value="#{solicitudMaterialesAlmacenController.itemsSolMaterial}" var="item" id="tablaMateriales">
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Materiales"/>
+                            </f:facet>
+                            <h:outputText value="#{item.materiales}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cantidad"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </p:column>
+                        <p:column headerText="Borrar Pedido">
+                            <p:commandButton icon="ui-icon-trash"  action="#{solicitudMaterialesAlmacenController.eliminar}"
+                                             process="@this" update="tablaMateriales">
+                                <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar este material?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{item}" target="#{solicitudMaterialesAlmacenController.selectedSolMaterial}"/>
+                                <p:ajax process="@this" update="tablaMateriales"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:commandButton value="Solicitar Materiales" 
+                                     actionListener="#{solicitudMaterialesAlmacenController.create}" 
+                                     action="#{solicitudMaterialesAlmacenController.cargarSolicitudes}" process="@this panelSolicitud" update="panelSolicitud"/>
+                    <p:button value="Cancelar" outcome="/modulo6/GestionMaterialesFormacion/Admin/Coordinacion/MainPage.xhtml" />                
+                </h:form>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>

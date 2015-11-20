@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">Lista de Solicitudes</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo2/menu_modulo2.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Vista"/></h1>
+                    <p:panelGrid columns="2">
+                        <h:outputText value="IdSolicitudServicio:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.idSolicitudServicio}" title="IdSolicitudServicio"/>
+                        <h:outputText value="DescripcionservicioSolicitud:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.descripcionservicioSolicitud}" title="DescripcionservicioSolicitud"/>
+                        <h:outputText value="UbicacionSolicitud:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.ubicacionSolicitud}" title="UbicacionSolicitud"/>
+                        <h:outputText value="FechaSolicitudServicio:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.fechaSolicitudServicio}" title="FechaSolicitudServicio">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="IdUsuario:"/>
+                        <h:outputText value="#{solicitudServiciosController.selected.idUsuario}" title="IdUsuario"/>
+                    </p:panelGrid>
+
+                    <p:button value="Regresar" outcome="ListSolicitud"/>
+                    
+                </h:form>
+            </f:view>     
+        </ui:define>
+    </ui:composition>
+
+</html>

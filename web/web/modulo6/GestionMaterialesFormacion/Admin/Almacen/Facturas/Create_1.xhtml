@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Actas de Verificación</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo6/menu_Almacen.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <h:form id="FacturaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="3" layout="grid">
+
+                        <label>ID Factura:</label>
+                        <input type="number" jsf:id="idFactura" required="true" 
+                               jsf:requiredMessage="Por favor digite el numero de factura."
+                               jsf:validatorMessage="Por favor ingrese un numero válido" 
+                               jsf:value="#{facturasController.selected.idFactura}" >
+                            <f:validateLongRange minimum="1" maximum="99999999"/>
+                            <f:ajax execute="@this" render="idFacturaMessage"/>
+                        </input>
+                        <h:message id="idFacturaMessage" for="idFactura" styleClass="error"/>
+
+                        <label>Numero Factura:</label>
+                        <input type="number" jsf:id="numeroFactura" required="true" 
+                               jsf:requiredMessage="Por favor digite el numero de factura."
+                               jsf:validatorMessage="Por favor ingrese un numero válido" 
+                               jsf:value="#{facturasController.selected.numeroFactura}" >
+                            <f:validateLongRange minimum="1" maximum="99999999"/>
+                            <f:ajax execute="@this" render="numeroFacturaMessage"/>
+                        </input>
+                        <h:message id="numeroFacturaMessage" for="numeroFactura" styleClass="error"/>
+
+
+
+                    <label>Usuario</label>
+                    <h:selectOneMenu id="idUsuario" value="#{facturasController.selected.idUsuario}" title="IdUsuario" required="true" requiredMessage="The IdUsuario field is required." converter="usuariosConverter">
+                        <f:selectItem itemLabel="Seleccione un Usuario"/>
+                        <f:selectItems value="#{facturasController.itemsAvailableSelectOneUsuarios}"/>
+                        <f:ajax execute="@this" render="idUsuarioMessage"/>
+                    </h:selectOneMenu>
+                    <h:message id="idUsuarioMessage" for="idUsuario" styleClass="error"/>
+
+                        <label>Fecha</label>
+                        <p:calendar  id="fecha" 
+                                     pattern="yyyy-MM-dd"
+                                     value="#{facturasController.selected.fecha}" 
+                                     title="#{bundle.CreateContratosTitle_fechaSuscripcion}"
+                                     showOn="button" navigator="true"
+                                     required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}">
+                            <p:ajax event="dateSelect" process="@this fecha" update="FacturaCreateForm"/>
+                            <p:ajax  event="valueChange"  process="@this fecha" update="FacturaCreateForm"/>
+                        </p:calendar>
+
+                    </p:panelGrid>
+                    <p:commandButton value="Guardar" actionListener="#{facturasController.create}" 
+                                     action="#{facturasController.recargarLista}" update="@form" >
+                        <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                    </p:commandButton>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

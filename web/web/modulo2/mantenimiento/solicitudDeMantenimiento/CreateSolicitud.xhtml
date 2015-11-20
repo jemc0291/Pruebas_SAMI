@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">Solicitud</ui:define>  
+        <ui:define name="menu"><ui:include src="/modulo2/menu_modulo2.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <h2 class="Crsolicitud">Crear Nueva Solicitud</h2>
+
+            <h:form>
+                <p:carousel var="var" value="#{loginController.userLogueado}" numVisible="1" easing="easeOutBounce" style="width: 93.5%; font-size: 12px" >
+
+                    <p:panelGrid columns="4" columnClasses="nombre,valor" style="border: none;margin-left: 10px;width: 1190px; height: 100%">
+
+                        <h:outputText value="Número Documento:"/>
+                        <h:outputText value="#{loginController.userLogueado.numeroDoc}" title="NumeroDoc"/>
+                        
+                        <h:outputText value="Centro de Formacion:"/>
+                        <h:outputText value="#{loginController.userLogueado.idCentroFormacion}" title="IdCentroFormacion"/>
+
+                        <h:outputText value="Primer Nombre:"/>
+                        <h:outputText value="#{loginController.userLogueado.primerNombre}" title="RazonSocial"/>
+
+                        <h:outputText value="Primer Apellido:"/>
+                        <h:outputText value="#{loginController.userLogueado.primerApellido}" title="PrimerApellido"/>
+
+                    </p:panelGrid>                    
+                </p:carousel>
+                <div class="form-group">
+                        <label value="Describa el problema:" jsf:for="descripcionServicioSolicitud"/>
+                        <textarea type="text" jsf:id="descripcionServicioSolicitud" 
+                                  required="true" class="form-control" rows="3"
+                                  jsf:requiredMessage="El campo Describa el problema es requerido."
+                                  jsf:value="#{solicitudServiciosController.selected.descripcionservicioSolicitud}">
+                            <f:ajax execute="@this" render="descripcionServicioSolicitudMessage"/>
+                        </textarea>
+                        <p:message id="descripcionServicioSolicitudMessage" for="descripcionServicioSolicitud" styleClass="error"/>
+                    
+                        <label value="Ubicación del problema:" jsf:for="ubicacion"/>
+                        <input type="text" jsf:id="ubicacion" class="form-control"
+                               jsf:value="#{solicitudServiciosController.selected.ubicacionSolicitud}">
+                        </input>
+                </div>
+
+                <h3>Solicitudes Realizadas</h3>
+                <p:dataTable value="#{solicitudServiciosController.listSolicituServiciosByUsuario}" var="item"
+                             rows="10" id="solicitudTable" style="font-size:12px"
+                             paginator="true"
+                             paginatorTemplate="{FirstPageLink} 
+                             {PreviousPageLink} {PageLinks} {NextPageLink} 
+                             {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+
+                    <f:facet name="header">
+                        Pulse la flecha para ver detalles
+                    </f:facet>
+
+                    <p:column style="width:100px" headerText="Avances">
+                        <p:rowToggler />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Fecha Solicitud"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaSolicitudServicio}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripción Servicio Solicitado"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripcionservicioSolicitud}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ubicación de Solicitud"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ubicacionSolicitud}"/>
+                    </p:column>
+
+                    <p:rowExpansion>
+                        <p:dataTable value="#{solicitudServiciosController.getListAvance(item)}" var="avance">
+
+                            <p:column style="width: 120px">
+                                <f:facet name="header">
+                                    <h:outputText value="Estado:" />
+                                </f:facet>
+                                <h:outputText value="#{avance.idEstado.nombreEstado}" />
+                            </p:column>
+
+                            <p:column style="width: 120px">
+                                <f:facet name="header">
+                                    <h:outputText value="Prioridad:" />
+                                </f:facet>
+                                <h:outputText value="#{avance.idPrioridades.nombrePrioridad}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Observaciones:" />
+                                </f:facet>
+                                <h:outputText value="#{avance.descripcion}" />
+                            </p:column>
+
+                            <p:column headerText="Fue Atendido?" style="width: 120px">                                                               
+                                <h:outputText rendered="#{avance.fueAtendido}" value="Si" />
+                                <h:outputText rendered="#{!avance.fueAtendido}" value="No" />
+                            </p:column>
+
+                            <p:column headerText="Fue Solucionado?" style="width: 120px">                                                               
+                                <h:outputText rendered="#{avance.fueSolucionado}" value="Si" />
+                                <h:outputText rendered="#{!avance.fueSolucionado}" value="No" />
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </p:rowExpansion>
+
+                </p:dataTable>
+
+                <p:commandButton value="Guardar" actionListener="#{solicitudServiciosController.addSolicitudServicios}"
+                                 action="#{solicitudServiciosController.prepareView}" update="@this" >
+                    <f:attribute name="usuario" value="#{loginController.userLogueado}"/>
+                </p:commandButton>
+
+                <p:button value="Regresar" outcome="ListSolicitud"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

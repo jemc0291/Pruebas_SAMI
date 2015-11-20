@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Registrar Contrato</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+
+                <h:form id="contratoForm">
+                    <h1><h:outputText value="#{bundle.CreateContratosTitle}"/></h1>
+                    <h:panelGrid columns="3">
+                        <label value="#{bundle.CreateContratosLabel_numeroDeContrato}" jsf:for="numeroDeContrato" class="FormLabelSCCSS" />
+                        <input type="number" jsf:id="numeroDeContrato" class="FormInputSCCSS"
+                               jsf:value="#{contratosController.selected.numeroDeContrato}" title="#{bundle.CreateContratosTitle_numeroDeContrato}" 
+                               required="true" jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_numeroDeContrato}"
+                               jsf:validator="#{contratosController.validarContrato}" >
+                            <f:ajax execute="@this" render="NumeroContratoMessage" />
+                            <f:validateLongRange minimum="1"/>
+                        </input>
+                        <h:message id="NumeroContratoMessage" for="numeroDeContrato" class="ErrorDupli" />
+                        
+                        <label value="#{bundle.CreateContratosLabel_idTipoContrato}" jsf:for="idTipoContrato" class="FormLabelSCCSS" />
+                        <h:selectOneMenu id="idTipoContrato" value="#{contratosController.selected.idTipoContrato}" title="#{bundle.CreateContratosTitle_idTipoContrato}" required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_idTipoContrato}" styleClass="FormSelectSCCSS" >
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItem itemLabel="Seleccionar" />
+                            <f:selectItems value="#{tipoDeContratoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:message id="TipoContratoMessage" for="idTipoContrato" />
+                        
+                        <label value="#{bundle.CreateContratosLabel_fechaSuscripcion}" jsf:for="fechaSuscripcion" class="FormLabelSCCSS" />
+                        <p:calendar showOn="button" id="fechaSuscripcion" value="#{contratosController.selected.fechasuscripcion}" title="#{bundle.CreateContratosTitle_fechaSuscripcion}"
+                                    required="true"  requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaSuscripcion}" mindate="#{contratosController.selected.fechaInicioContrato}" maxdate="#{contratosController.selected.fechaInicioContrato}" 
+                                    pattern="yyyy-MM-dd" navigator="true" locale="es" showButtonPanel="true">
+                            <p:ajax event="dateSelect" process="@this" update="FechaSuscripcionMessage fechaInicioContrato"/>
+                            <p:ajax event="valueChange" process="@this" update="FechaSuscripcionMessage fechaInicioContrato"/>
+                        </p:calendar>
+                        <h:message id="FechaSuscripcionMessage" for="fechaSuscripcion" />
+                        
+                        <label value="#{bundle.CreateContratosLabel_fechaInicioContrato}" jsf:for="fechaInicioContrato" class="FormLabelSCCSS" />
+                        <p:calendar showOn="button" id="fechaInicioContrato" value="#{contratosController.selected.fechaInicioContrato}" title="#{bundle.CreateContratosTitle_fechaInicioContrato}"
+                                    required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaInicioContrato}" mindate="#{contratosController.selected.fechasuscripcion}" maxdate="#{contratosController.selected.fechaFinContrato}" 
+                                    pattern="yyyy-MM-dd" navigator="true">
+                            <p:ajax event="dateSelect" process="@this" update="FechaInicioMessage fechaFinContrato"/>
+                            <p:ajax event="valueChange" process="@this" update="FechaInicioMessage fechaFinContrato"/>
+                        </p:calendar>
+                        <h:message id="FechaInicioMessage" for="fechaInicioContrato" />
+                        
+                        <label value="#{bundle.CreateContratosLabel_fechaFinContrato}" jsf:for="fechaFinContrato" class="FormLabelSCCSS" />
+                        <p:calendar showOn="button" id="fechaFinContrato" value="#{contratosController.selected.fechaFinContrato}" title="#{bundle.CreateContratosTitle_fechaFinContrato}"
+                                    required="true" requiredMessage="#{bundle.CreateContratosRequiredMessage_fechaFinContrato}" mindate="#{contratosController.selected.fechaInicioContrato}"
+                                    pattern="yyyy-MM-dd" navigator="true">
+                            <p:ajax event="dateSelect" process="@this" update="FechaFinalMessage fechaInicioContrato"/>
+                            <p:ajax event="valueChange" process="@this" update="FechaFinalMessage fechaInicioContrato"/>
+                        </p:calendar>
+                        <h:message id="FechaFinalMessage" for="fechaFinContrato" />
+                        
+                        <label value="#{bundle.CreateContratosLabel_objetoContractual}" jsf:for="objetoContractual" class="FormLabelSCCSS" />
+                        <textarea type="text" jsf:id="objetoContractual" jsf:value="#{contratosController.selected.objetoContractual}" title="#{bundle.CreateContratosTitle_objetoContractual}" class="FormTextAreaSCCSS"
+                               required="true" jsf:requiredMessage="#{bundle.CreateContratosRequiredMessage_objetoContractual}" maxlength="499" 
+                               jsf:rows="4">
+                            <f:ajax execute="@this" render="ObjetoContractualMessage" />
+                        </textarea>
+                        <h:message id="ObjetoContractualMessage" for="objetoContractual" />
+                        
+                        <label value="#{bundle.CreateContratosLabel_valorContrato}" jsf:for="valorContrato" class="FormLabelSCCSS" />
+                        <input type="number" jsf:id="valorContrato" jsf:value="#{contratosController.selected.valorContrato}" title="#{bundle.CreateContratosTitle_valorContrato}" class="FormInputSCCSS"
+                               required="true" jsf:requiredMessage="El valor del contrato es obligatorio" maxlength="9" 
+                               jsf:validatorMessage="El número no puede ser menor a cero">
+                            <f:ajax execute="@this" render="ValorContratoMessage" />
+                            <f:validateLongRange minimum="1"/>
+                        </input>
+                        <h:message id="ValorContratoMessage" for="valorContrato" class="ErrorDupli" />                      
+                                                
+                        <label value="#{bundle.CreateContratosLabel_observaciones}" jsf:for="observaciones" class="FormLabelSCCSS" />
+                        <textarea type="text" jsf:id="observaciones" jsf:value="#{contratosController.selected.observaciones}" title="#{bundle.CreateContratosTitle_observaciones}" class="FormTextAreaSCCSS"
+                                  jsf:validatorMessage="Ingrese texto" maxlength="4999" 
+                                  jsf:rows="4">
+                            <f:ajax execute="@this" render="ObservacionesMessage" />
+                        </textarea>
+                        <h:message id="ObservacionesMessage" for="observaciones" />
+                        
+                         <label jsf:value="Número registro presupuestal:" for="registroPresupuestal" />
+                        <input type="text"  maxlength="25" jsf:id="registroPresupuestal" 
+                               jsf:value="#{contratosModulo1Controller.selected.registroPresupuestal}">                      
+                            <f:ajax execute="@this" render="registroPresupuestalMessage"/>
+                        </input>
+                        <h:message id="registroPresupuestalMessage" for="registroPresupuestal" styleClass="error"/>
+
+                        <label jsf:value="Fecha de registro presupuestal:" for="fechaRegPresupuestal" />
+                        <p:calendar  id="fechaRegPresupuestal"
+                                     pattern="yyyy-MM-dd"
+                                     value="#{contratosModulo1Controller.selected.fechaRegPresupuestal}" 
+                                     showOn="button" navigator="true" >                   
+                            <f:ajax execute="@this" render="fechaRegPresupuestalMessage"/>
+                        </p:calendar>
+                        <h:message id="fechaRegPresupuestalMessage" for="fechaRegPresupuestal" styleClass="error"/>
+
+                        <label value="#{bundle.CreateUsuariosContratosLabel_usuarios}" jsf:for="Usuario" class="FormLabelSCCSS" />
+                        <p:autoComplete id="Usuario" value="#{contratosController.selectedUsuarios}" 
+                                        required="true" requiredMessage="#{bundle.CreateUsuariosContratosRequiredMessage_usuarios}"
+                                        completeMethod="#{usuariosController.getListRazonSocialAutoComplete}" 
+                                        var="razonSocial" itemLabel="#{razonSocial}" itemValue="#{razonSocial}" 
+                                    converter="usuariosConverter" pt:required="true"
+                                    forceSelection="true" maxResults="10"/> 
+                        <h:message id="UsuarioMessage" for="Usuario" />
+                        
+                        <label value="Supervisor" jsf:for="Supervisor" class="FormLabelSCCSS" />
+                        <p:autoComplete id="Supervisor" value="#{contratosController.selectedSupervisor}" 
+                                        required="true" requiredMessage="#{bundle.CreateUsuariosContratosRequiredMessage_usuarios}"
+                                        completeMethod="#{usuariosController.getListRazonSocialAutoComplete}" 
+                                        var="razonSocial" itemLabel="#{razonSocial}" itemValue="#{razonSocial}" 
+                                    converter="usuariosConverter" pt:required="true"
+                                    forceSelection="true" maxResults="10"/> 
+                        <h:message id="SupervisorMessage" for="Supervisor" />
+                        
+                        <label>Pólizas</label>
+                        <p:commandButton onclick="PF('PolizasDialogo').show()" value="Póliza" process="@this" update=":polizasForm" />
+                        
+                    </h:panelGrid>
+                    <h:commandButton value="#{bundle.CreateContratosSaveLink}" action="#{contratosController.create()}" class="FormButtonSCCSS"/>
+                    <h:button value="Cancelar" outcome="ListaContratos" class="FormButtonSCCSS" />
+                </h:form>
+            <ui:include src="/modulo3/GestionContractual/CreatePolizas.xhtml" />
+
+    </ui:define>
+    </ui:composition>
+</html>
+

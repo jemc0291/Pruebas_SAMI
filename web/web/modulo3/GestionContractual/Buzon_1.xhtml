@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Registrar Contrato</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo3/menu_modulo3.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <h:form>
+                <h1><h:outputText value="Contratos sin Informe de Supervisión"/></h1>
+                <p:dataTable value="#{contratosController.contratosSinInforme()}" var="item" rows="10"
+                             id="contratosTable" style="font-size:12px"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15" >
+                    <f:facet name="header">
+                        Contratos sin Informe de Supervisión
+                    </f:facet>
+
+                    <p:column filterBy="#{item.numeroDeContrato}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListContratosTitle_numeroDeContrato}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numeroDeContrato}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{item.idTipoContrato}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListContratosTitle_idTipoContrato}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idTipoContrato.toString()}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListContratosTitle_fechaSuscripcion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechasuscripcion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column filterBy="#{item.fechaInicioContrato}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListContratosTitle_fechaInicioContrato}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaInicioContrato}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListContratosTitle_fechaFinContrato}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaFinContrato}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Asunto"/>
+                        </f:facet>
+                        <h:outputText value="Este contrato requiere informe de supervisión" class="ErrorDupli"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton icon="ui-icon-plusthick" value="Crear Informe" action="#{informesController.loadCreate}">
+                            <f:setPropertyActionListener value="#{item}" target="#{contratosController.selected}"/>
+                        </p:commandButton>
+                    </p:column>
+                    </p:dataTable>
+                </h:form>
+                    
+           </ui:define>
+           </ui:composition>
+</html>
+

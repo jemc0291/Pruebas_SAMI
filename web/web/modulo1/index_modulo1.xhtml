@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Sami</ui:define>
+        <ui:define name="menu"><ui:include src="/modulo1/menu_modulo1.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default"><span class="icon-youtube3"/> Tutoriales</button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="https://youtu.be/6HZswNFd84Y"><span class="icon-youtube"/>
+                                                 Bienvenid@ a S.A.M.I.</a></li>
+                                        <li><a href="https://youtu.be/ZXBaH7OOGqo"><span class="icon-youtube"/> 
+                                                Módulo de contratación de prestación de servicios</a></li>
+                                        <li><a href="https://youtu.be/6Qtic0eS67M?list=PL84oWl8oQXEWape7Kd5Vg1Wnc79C-8Nld"><span class="icon-youtube"/>
+                                                 Creación de contratistas</a></li>
+                                        <li><a href="https://youtu.be/ha-aguCAoBQ?list=PL84oWl8oQXEWape7Kd5Vg1Wnc79C-8Nld"><span class="icon-youtube"/> 
+                                                Creación de contratos de funcionarios</a></li>
+                                        <li><a href="https://youtu.be/5tdMlimfQCQ?list=PL84oWl8oQXEWape7Kd5Vg1Wnc79C-8Nld"><span class="icon-youtube"/>
+                                                 Gestión de requisitos: Pólizas y aseguradoras</a></li>
+                                        <li><a href="https://youtu.be/6HZswNFd84Y"><span class="glyphicon glyphicon-th-list"/>
+                                                 Todos los videos</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel-body text-center">
+                                <img src="../resources/images/inicio_modulo1.png" alt="..." class="img-responsive img-rounded center-block"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

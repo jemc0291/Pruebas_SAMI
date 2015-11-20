@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <fieldset>
+                        
+                        <figure class="image-Container">
+                        <img src="#{request.contextPath}/resources/images/logo_sena.jpg" />
+                        </figure>
+                        <figcaption class="descripcion">Sistema de <br/>Gestion de la<br/>Calidad</figcaption>
+                        
+                        <div class="titleComision"  columns="3">
+                            <center><p>SISTEMA INTEGRADO DE GESTION<br>
+                                        RELACION GASTOS DE TRANSPORTE POR COMISION</br>
+                                    F002-P001-DE version01<br/>proceso de gestion de los recursos financieros<br/>
+                                procedimiento gestion presupuestal contable y tesoreria</p>
+                                <h3>Solicitud Plan De Comision</h3></center>
+                        </div>
+                 </fieldset>
+                <div>
+                    <label for="idCentroFormacions">Centro:</label>
+                    <u><h:outputText value="#{comisionesController.selected.idCentroFormacion}" title="idCentroFormacion"/></u>
+                </div>
+                <br/>
+                 <div>
+                            <label for="FechaTramite">Fecha:</label>
+                            <u><h:outputText value="#{comisionesController.selected.fechaTramite}" title="FechaTramite"/></u>
+                 </div>
+                        <br/>
+                <h1><h:outputText value="verRelacionGastoDeTransporte"/></h1>
+                <fieldset>
+                     <br/>
+                        <div>
+                            <label for="IdUsuario">Funcionario</label>
+                            <u><h:outputText value="#{comisionesController.selected.idUsuario.razonSocial2}" title="IdUsuario"/></u>
+                        </div>
+                     <br/>
+                        <div>
+                            <label for="numeroDo">Cedula de ciudadania N°:</label>
+                            <u><h:outputText value="#{comisionesController.selected.idUsuario.numeroDoc}" title="numeroDoc"/></u>
+                        </div>
+                     <br/>
+                        <div>
+                            <label for="nombreCargo">cargo</label>
+                            <u><h:outputText value="#{cargoController.selected.nombreCargo}" title="nombreCargo"/></u>
+                        </div>
+                     <br/>
+                        <div>
+                            <label for="numComServicios">Nº. orden de viaje</label>
+                            <u><h:outputText value="#{comisionesController.selected.numComServicios}" title="numComServicios"/></u>
+                        </div>
+                     <br/>
+                        <div>
+                            <label for="mesaPlanificar">Mes Comision:</label>
+                            <u><h:outputText value="#{comisionesController.selected.mesaPlanificar}" title="mesaPlanificar"/></u>
+                        </div>
+                </fieldset>
+                
+                 <fieldset>
+                        <div>
+                            <label for="ObjetivoComision">OBJETIVO:</label>
+                            <u><h:outputText value="#{comisionesController.selected.objetivoComision}" title="ObjetivoComision"/></u>
+                        </div> 
+                            </fieldset>
+                
+                    <h1><h:outputText value="List"/></h1>
+                    <p:dataTable value="#{comisionesController.ciudadComisionesList}" var="item">
+                     <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="NumDias"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numDias}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdCentroFormacion"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCentroFormacion}"/>
+                        </p:column>
+                         <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCiudadComisionesTitle_ciudad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ciudad}"/>
+                            </p:column>
+                    </p:dataTable>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition >
+        <p:dialog widgetVar="UsersDialog" 
+                  appendTo="@(body)"
+                  modal="true"
+                  resizable="false"
+                  header="Creación de contratistas">
+            <h:form id="usersForm">
+                <h:panelGroup id="msgs">
+                    <p:messages/>
+                </h:panelGroup>
+                <div class="row form-group">
+                    <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idTipoDoc}" jsf:for="tipodocumentosInputText"></label> 
+                    <div class="col-md-2">
+                        <select class="Form-datos" jsf:id="tipodocumentosInputText" jsf:value="#{usuariosController.selected.idTipoDoc}" 
+                                required="true" size="1"
+                                jsf:requiredMessage="#{bundle.CreateUsuariosRequiredMessage_idTipoDoc}">
+                            <f:selectItem itemLabel="Seleccione"/>
+                            <f:selectItems value="#{tipoDocumentosController.itemsAvailableSelectOne}"
+                                           var="documento"
+                                           itemValue="#{documento}"/>
+                            <p:ajax process="@this" update="tipodocumentosMessage"/>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <p:message id="tipodocumentosMessage" for="tipodocumentosInputText" styleClass="error"/>
+                    </div>
+
+                    <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_numeroDoc}" jsf:for="numeroidInputText"></label> 
+                    <div class="col-md-2">
+                        <p:inputText type="text" id="numeroidInputText"
+                                     required="true"
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_numeroDoc}"
+                                     value="#{usuariosController.selected.numeroDoc}"
+                                     title="#{bundle.CreateUsuariosTitle_numeroDoc}"
+                                     validator="#{usuariosController.validarDocumento}"
+                                     pt:pattern="[0-999]*">
+                            <p:ajax process="@this" update="numeroidMessage"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-md-2">
+                        <p:message id="numeroidMessage" for="numeroidInputText" styleClass="error"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_ciudad1}" jsf:for="ciudad1"></label> 
+                    <div class="col-md-2">
+                        <p:autoComplete id="ciudad1" value="#{usuariosController.selected.ciudad1}"
+                                        completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 
+                                        var="ciudad1" itemLabel="#{ciudad1}" itemValue="#{ciudad1}" 
+                                        converter="ciudadConverter" pt:required="true"
+                                        forceSelection="true" maxResults="10">
+                            <p:ajax process="@this" update="ciudad1Message"/>
+                        </p:autoComplete>
+                    </div>
+                    <div class="col-md-2">
+                        <p:message id="ciudad1Message" for="ciudad1"/>
+                    </div>
+                    <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_idCentroFormacion}" jsf:for="centroFormacion"></label> 
+                    <div class="col-md-2">
+                        <p:autoComplete id="centroFormacion" value="#{usuariosController.selected.idCentroFormacion}" 
+                                        completeMethod="#{usuariosController.getListCentroFormacionAutoComplete}" 
+                                        var="centroFormacion" itemLabel="#{centroFormacion}" itemValue="#{centroFormacion}" 
+                                        converter="centroFormacionConverter" pt:required="true"
+                                        forceSelection="true" maxResults="10">
+                        </p:autoComplete>
+                    </div>   
+                    <div class="col-md-2">
+                        <p:message id="centrodeformacionMessage" for="centroFormacion"/>
+                    </div>
+                   
+                </div>
+                <div class="row form-group">
+                    <label class="control-label col-md-2" value="#{#bundle.CreateUsuariosLabel_razonSocial}" jsf:for="primerNombreInputText"></label> 
+                    <div class="col-md-2">
+                        <p:inputText type="text" id="primerNombreInputText" required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_razonSocial}"
+                                     value="#{usuariosController.selected.primerNombre}" maxlength="20"
+                                     title="#{bundle.CreateUsuariosTitle_razonSocial}">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <p:ajax process="@this" update="primerNombreMessage"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-md-2">
+                        <p:message id="primerNombreMessage" for="primerNombreInputText" styleClass="error"/>
+                    </div>
+                    <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_primerApellido}" jsf:for="primerApellidoInputText"></label> 
+                    <div class="col-md-2">
+                        <p:inputText type="text" id="primerApellidoInputText" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_primerApellido}"
+                                     value="#{usuariosController.selected.primerApellido}" maxlength="20"
+                                     title="#{bundle.CreateUsuariosTitle_primerApellido}">
+                            <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                            <p:ajax process="@this" update="primerApellidoMessage"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-md-2">
+                        <p:message id="primerApellidoMessage" for="primerApellidoInputText" styleClass="error"/>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_direccionUsu}" jsf:for="direccionInputText"></label> 
+                    <div class="col-md-2">
+                        <p:inputText type="text" id="direccionInputText"
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_direccionUsu}"
+                                     value="#{usuariosController.selected.direccionUsu}"
+                                     title="#{bundle.CreateUsuariosTitle_direccionUsu}">
+                            <f:validateRegex pattern="[A-Za-z 0-9áéíóúÁÉÍÓÚÑñ]*"/>
+                            <f:ajax execute="@this" render="direccionMessage"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-md-2">
+                        <p:message id="direccionMessage" for="direccionInputText" styleClass="error"/>
+                    </div>
+                     <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_ciudad}" jsf:for="ciudad"></label>
+                    <div class="col-md-2">
+                        <p:autoComplete id="ciudad" value="#{usuariosController.selected.ciudad}" 
+                                        required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_ciudad}"
+                                        completeMethod="#{usuariosController.getListCiudadesAutoComplete}" 
+                                        var="ciudad" itemLabel="#{ciudad}" itemValue="#{ciudad}" 
+                                        converter="ciudadConverter" pt:required="true"
+                                        forceSelection="true" maxResults="10">
+                            <p:ajax process="@this" update="ciudadMessage"/>
+                        </p:autoComplete> 
+                    </div>
+                    <div class="col-md-2">
+                        <p:message id="ciudadMessage" for="ciudad"/>
+                    </div>
+                </div>
+                
+                <div class="row form-group">
+                    <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_telefonoPrincipalUsu}" jsf:for="movilInputText"></label>
+                    <div class="col-md-2">
+                        <p:inputText type="text" id="movilInputText" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_telefonoPrincipalUsu}"
+                                     value="#{usuariosController.selected.telefonoPrincipalUsu}"
+                                     title="#{bundle.CreateUsuariosTitle_telefonoPrincipalUsu}">
+                            <f:validateRegex pattern="[0-9]*"/>
+                            <f:ajax execute="@this" render="movilMessage"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-md-2">
+                        <p:message id="movilMessage" for="movilInputText" styleClass="error"/>
+                    </div>
+                    <label class="control-label col-md-2" value="#{bundle.CreateUsuariosLabel_email}" jsf:for="emailInputText"></label> 
+                    <div class="col-md-2">
+                        <p:inputText type="email" id="emailInputText" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateUsuariosRequiredMessage_email}"
+                                     value="#{usuariosController.selected.email}"
+                                     title="#{bundle.CreateUsuariosTitle_email}">
+                            <f:ajax execute="@this" render= "emailMessage"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-md-2">
+                        <p:message id="emailMessage" for="emailInputText" styleClass="error"/>
+                    </div>
+                </div>
+                <p:commandButton process="usersForm" 
+                                 actionListener="#{contratosModulo1Controller.setSelectedUsuarios(selectedUsuarios)}"
+                                 oncomplete="handleSubmit(arg,'UsersDialog')"
+                                 action="#{usuariosController.create}"
+                                 onclick="PF('UsersDialog').hide()" 
+                                 value="Guardar" 
+                                 update="usersForm msgs" />
+                <p:commandButton value="Cancelar" process="@this" onclick="PF('UsersDialog').hide()"/>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>
+

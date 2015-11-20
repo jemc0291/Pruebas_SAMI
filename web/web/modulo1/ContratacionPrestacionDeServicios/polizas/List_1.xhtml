@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPolizasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="menu"><ui:include src="/modulo1/menu_modulo1.xhtml"></ui:include></ui:define>
+        <ui:define name="body">
+
+            <h:form id="PolizasListForm">
+                <p:messages/>
+                <h3>Exportar todos los datos</h3>
+                <h:commandLink>
+                    <img src="../Recursos/Imagenes/excel.png" width="26"/>                   
+                    <p:dataExporter type="xls" target="datalist" fileName="item"/>
+                </h:commandLink>
+                <h:commandLink>
+                    <img src="../Recursos/Imagenes/pdf.png" width="26"/>
+                    <p:dataExporter type="pdf" target="datalist" fileName="item"  />
+                </h:commandLink>
+                <h:commandLink>
+                    <img src="../Recursos/Imagenes/csv.png" width="26"/>
+                    <p:dataExporter type="csv" target="datalist" fileName="item"  />
+                </h:commandLink>
+
+                <p:dataTable id="datalist" value="#{polizasController.items}" var="item"                           
+                             paginator="true" style="font-size:12px"                            
+                             rows="10"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="10,20,30,40,50">
+
+                    <p:column filterBy="#{item.numeroDePoliza}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPolizasTitle_numeroDePoliza}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numeroDePoliza}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPolizasTitle_valorDePoliza}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.valorDePoliza}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPolizasTitle_vigenciaDesde}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.vigenciaDesde}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPolizasTitle_vigenciaHasta}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.vigenciaHasta}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPolizasTitle_fechaAprobacion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaAprobacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column filterBy="#{item.idAseguradora.toString()}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPolizasTitle_idAseguradora}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idAseguradora.toString()}"/>
+                    </p:column>
+                   <p:column exportable="false" > 
+                        <f:facet name="header">Opciones</f:facet>
+                       
+                        <p:commandButton  id="editButton" icon="ui-icon-pencil" update="datalist" action="#{polizasController.prepareEditModuloUno}">
+                            <f:setPropertyActionListener value="#{item}" target="#{polizasController.selected}"/>
+                        </p:commandButton> 
+                     <!--   <p:commandButton id="deleteButton" icon="ui-icon-trash" action="# {polizasController.destroy}"
+                                         process="@this" update="datalist">
+                            <p:confirm header="Confirmación" message="¿Esta seguro que desea eliminar el contrato?" icon="ui-icon-alert" />
+                            <f:setPropertyActionListener value="# {item}" target="#  {polizasController.selected}"/>
+                        </p:commandButton>-->
+
+                    </p:column>                                          
+                </p:dataTable>
+                <h3>Exportar página actual</h3>
+                <h:commandLink>
+                    <img src="../Recursos/Imagenes/excel.png" width="26"/>                   
+                    <p:dataExporter type="xls" target="datalist" fileName="item" pageOnly="true"/>
+                </h:commandLink>
+                <h:commandLink>
+                    <img src="../Recursos/Imagenes/pdf.png" width="26"/>
+                    <p:dataExporter type="pdf" target="datalist" fileName="item" pageOnly="true" />
+                </h:commandLink>
+                <h:commandLink>
+                    <img src="../Recursos/Imagenes/csv.png" width="26"/>
+                    <p:dataExporter type="csv" target="datalist" fileName="item" pageOnly="true" />
+                </h:commandLink>              
+            </h:form>            
+        </ui:define>
+    </ui:composition>
+
+</html>

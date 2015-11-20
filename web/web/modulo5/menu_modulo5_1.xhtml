@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition>
+        <ul class="MainMenu-list">
+            <li class="MainMenu-item"><a jsf:outcome="/modulo5/index_modulo5.xhtml">Inicio</a></li>
+            <li class="MainMenu-item"><a >P.Q.R.S.F.</a>
+                <ul>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo5/Gestion Documental/Pqrsf/ListarRecibidas.xhtml">Listar Recibidas</a></li>
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo5/Gestion Documental/Pqrsf/ListarProducidas.xhtml">Listar Producidas</a></li>  
+                    <li class="AlternMenu-link"><a jsf:outcome="/modulo5/Gestion Documental/Pqrsf/CargarArchivos.xhtml">Cargar Archivos</a></li>
+                </ul>
+            </li>
+            <li class="MainMenu-item"><a jsf:outcome="/modulo5/Gestion Documental/Pqrsf/ListarInforme.xhtml">Informe Diario Mes</a>
+            </li>
+            <li class="MainMenu-item"><a>Documentos</a>
+                <ul>
+                    <li>
+                        <a jsf:outcome="/modulo5/Gestion Documental/Documentos/listaDocumentos.xhtml">Lista Documentos</a>
+                    </li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+    </ui:composition>
+</html>
